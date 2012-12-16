@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/asm/asm/3.3.1/asm-3.3.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/com.springsource.slf4j.api/1.6.1/com.springsource.slf4j.api-1.6.1.jar" sourcepath="M2_REPO/org/slf4j/com.springsource.slf4j.api/1.6.1/com.springsource.slf4j.api-1.6.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/com.springsource.slf4j.org.apache.commons.logging/1.6.1/com.springsource.slf4j.org.apache.commons.logging-1.6.1.jar" sourcepath="M2_REPO/org/slf4j/com.springsource.slf4j.org.apache.commons.logging/1.6.1/com.springsource.slf4j.org.apache.commons.logging-1.6.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/ch/qos/logback/com.springsource.ch.qos.logback.classic/0.9.24/com.springsource.ch.qos.logback.classic-0.9.24.jar" sourcepath="M2_REPO/ch/qos/logback/com.springsource.ch.qos.logback.classic/0.9.24/com.springsource.ch.qos.logback.classic-0.9.24-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/ch/qos/logback/com.springsource.ch.qos.logback.core/0.9.24/com.springsource.ch.qos.logback.core-0.9.24.jar" sourcepath="M2_REPO/ch/qos/logback/com.springsource.ch.qos.logback.core/0.9.24/com.springsource.ch.qos.logback.core-0.9.24-sources.jar"/>
+</classpath>
