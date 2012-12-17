@@ -123,15 +123,15 @@
             <version>2.2.0</version>
         </dependency>
         <dependency>
-            <groupId>com.conx.awbtracker.thirdparty</groupId>
-            <artifactId>com.conx.awbtracker.thirdparty.javassist</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>org.flowframe.thirdparty.javassist</artifactId>
             <version>3.12.0.GA</version>
         </dependency>
 
         <!-- optional but not if using cglib -->
         <dependency>
-            <groupId>com.conx.awbtracker.thirdparty</groupId>
-            <artifactId>com.conx.awbtracker.thirdparty.asm</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>org.flowframe.thirdparty.asm</artifactId>
             <version>3.3.1</version>
         </dependency>
     </dependencies>

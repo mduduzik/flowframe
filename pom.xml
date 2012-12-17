@@ -8,5 +8,6 @@
   <module>bpm</module>
   <module>parent</module>
   <module>thirdparty</module>
+  <module>tm</module>
   </modules>
 </project>

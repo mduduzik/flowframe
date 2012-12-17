@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.7.1
-Bundle-Vendor: SpringSource
+Bundle-Vendor: org.flowframe
 Implementation-Version: 2.1.2
 Bundle-Version: 2.1.2
 Tool: Bundlor 1.0.0.RELEASE

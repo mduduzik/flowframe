@@ -98,63 +98,6 @@ cglib:cglib:jar:2.2:compile
             <version>1.0.0.GA</version>
         </dependency>
     </dependencies>
-
-    <!--<profiles>-->
-        <!--<profile>-->
-            <!--<id>full</id>-->
-            <!--<dependencies>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-ehcache</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-jbosscache</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-infinispan</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-oscache</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-swarmcache</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-c3p0</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-proxool</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-                <!--<dependency>-->
-                    <!--<groupId>${project.groupId}</groupId>-->
-                    <!--<artifactId>hibernate-envers</artifactId>-->
-                    <!--<version>${wrapped.version}</version>-->
-                    <!--<optional>true</optional>-->
-                <!--</dependency>-->
-            <!--</dependencies>-->
-        <!--</profile>-->
-    <!--</profiles>-->
-
     <build>
         <plugins>
             <plugin>
