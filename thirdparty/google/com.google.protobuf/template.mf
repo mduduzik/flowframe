@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.6.0_30 (Sun Microsystems Inc.)
+Built-By: hudson
+Build-Jdk: 1.6.0_30
+Bundle-Version: 2.4.1
+Bundle-SymbolicName: com.google.protobuf
+

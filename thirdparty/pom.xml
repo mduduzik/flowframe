@@ -29,5 +29,4 @@
   	<module>knowledge-api</module>
   	<module>knowledge-internal-api</module>
   </modules>
-
 </project>

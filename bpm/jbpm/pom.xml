@@ -1,28 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>org.flowframe.bpm</artifactId>
-    <groupId>org.flowframe</groupId>
-    <version>0.0.1</version>
-    <relativePath>..</relativePath>
-  </parent>
-  <artifactId>org.flowframe.bpm.jbpm</artifactId>
-  <packaging>pom</packaging>
-  <properties>
-  	<virgo.repository.base>D:/dev/workspaces/flowframe/Runtimes/virgo-tomcat-server-3.0.3.RELEASE-DEV/repository</virgo.repository.base>
-  </properties>
-  <modules>
-  	<module>persistence.datasource</module>
-<!--   	<module>shared</module>
-  	<module>bpmserver</module>
-  	<module>bpmserver.persistence</module>
-  	<module>bpmserver.tests.standalone</module>
-  	<module>services</module>
-  	<module>taskserver</module>
-  	<module>taskserver.osgi.fragment.human-task-core</module>
-  	<module>taskserver.osgi.fragment.mina</module>
-  	<module>taskserver.persistence</module> -->
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.flowframe.bpm</artifactId>
+		<groupId>org.flowframe</groupId>
+		<version>0.0.1</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>org.flowframe.bpm.jbpm</artifactId>
+	<packaging>pom</packaging>
+	<properties>
+		<virgo.repository.base>D:/dev/workspaces/flowframe/Runtimes/virgo-tomcat-server-3.0.3.RELEASE-DEV/repository</virgo.repository.base>
+	</properties>
+	<modules>
+		<module>persistence.datasource</module>
+		<!-- <module>shared</module> <module>bpmserver</module> <module>bpmserver.persistence</module> 
+			<module>bpmserver.tests.standalone</module> <module>services</module> <module>taskserver</module> 
+			<module>taskserver.osgi.fragment.human-task-core</module> <module>taskserver.osgi.fragment.mina</module> 
+			<module>taskserver.persistence</module> -->
+	</modules>
 	<build>
 		<plugins>
 			<plugin>
@@ -79,7 +75,7 @@
 						</configuration> </execution -->
 				</executions>
 			</plugin>
- 			<plugin>
+			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<inherited>false</inherited>
 				<executions>
@@ -88,143 +84,116 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-							  <copy todir="${virgo.repository.base}/common/jbpm">
-							    <filelist dir="dependent-bundles">
-							      <file name="org.flowframe.thirdparty.bitronix-2.1.2.jar"/>
-							      <file name="org.flowframe.thirdparty.com.mysql.jdbc-5.1.20.jar"/>
-							      <file name="org.flowframe.thirdparty.javassist-3.12.0.GA.jar"/>
-							      <file name="org.flowframe.thirdparty.asm-3.3.1.jar"/>
-							      <file name="com.springsource.javax.validation-1.0.0.GA.jar"/>
-							      <file name="com.springsource.javax.persistence-2.0.0.jar"/>
-							      <file name="org.flowframe.thirdparty.hibernate.annotations.commons-3.2.0.Final.jar"/>
-							      <file name="org.flowframe.thirdparty.hibernate.core-3.6.0.Final.jar"/>
-							      <file name="org.flowframe.thirdparty.hibernate.entitymanager-3.6.0.Final.jar"/>
-							      <file name="com.springsource.antlr-2.7.7.jar"/>
-							      <file name="com.springsource.org.apache.commons.collections-3.2.1.jar"/>
-							      <file name="com.springsource.org.dom4j-1.6.1.jar"/>
-							      
-							      <file name="org.flowframe.thirdparty.javax.security.jacc-0.0.1.jar"/>
-							      <file name="org.flowframe.thirdparty.jboss-arrai-all-1.1-M1.jar"/>
-							      <file name="org.flowframe.thirdparty.jbpm-bam-${jbpm.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.jbpm-human-task-core-${jbpm.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.jbpm-human-task-mina-${jbpm.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.jbpm-persistence-jpa-${jbpm.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.jbpm-workitems-${jbpm.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.drools-core-${drools.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.drools-persistence-${drools.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.knowledge-api-${drools.version}.jar"/>
-							      <file name="org.flowframe.thirdparty.knowledge-internal-api-${drools.version}.jar"/>	
-							    </filelist>
-							  </copy>
-<!-- 							  <copy todir="${virgo.repository.base}/conx/component">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.kernel.ui.components.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.components.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.components.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.components.domain-1.0.0.jar"/>
-							    </filelist>
-							  </copy>	
-							  <copy todir="${virgo.repository.base}/conx/datasource">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.kernel.datasource.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.datasource.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.datasource.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.datasource.domain-1.0.0.jar"/>
-							    </filelist>
-							  </copy>		
-							  <copy todir="${virgo.repository.base}/conx/doclib">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.kernel.documentlibrary.remote.services.impl-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.documentlibrary.remote.services-1.0.0.jar"/>
-							    </filelist>
-							  </copy>		
-							  <copy todir="${virgo.repository.base}/conx/im">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.app.whse.im.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.im.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.im.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.im.domain-1.0.0.jar"/>
-							    </filelist>
-							  </copy>		
-							  <copy todir="${virgo.repository.base}/conx/mdm">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.mdm.dao.services.impl-1.0.0.jar"/>
-							      <file name="com.conx.logistics.mdm.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.mdm.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.mdm.domain-1.0.0.jar"/>
-							    </filelist>
-							  </copy>			
-							  <copy todir="${virgo.repository.base}/conx/metamodel">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.kernel.metamodel.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.metamodel.dao.services-1.0.0.jar"/>
-							    </filelist>
-							  </copy>	
-							  <copy todir="${virgo.repository.base}/conx/pageflow">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.kernel.pageflow.engine-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.pageflow.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.pageflow.ui-1.0.0.jar"/>
-							    </filelist>
-							  </copy>	
-							  <copy todir="${virgo.repository.base}/conx/portal">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.kernel.portal.remote.services.impl-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.portal.remote.services-1.0.0.jar"/>
-							    </filelist>
-							  </copy>			
-							  <copy todir="${virgo.repository.base}/conx/reporting">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.reporting.remote.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.reporting.jasperreports.service.impl-1.0.0.jar"/>
-							    </filelist>
-							  </copy>			
-							  <copy todir="${virgo.repository.base}/conx/tms">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.app.tms.domain-1.0.0.jar"/>
-							    </filelist>
-							  </copy>	
-							  <copy todir="${virgo.repository.base}/conx/ui">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.app.whse.ui-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.system.ui-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.common-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.editors.entity.vaadin-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.factory.services.impl-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.factory.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.forms.vaadin-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.manager-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.ui.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.kernel.workspace.ui-1.0.0.jar"/>
-							    </filelist>
-							  </copy>	
-							  <copy todir="${virgo.repository.base}/conx/web">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.web.app.sprint2-2.0.2.RC1.war"/>
-							    </filelist>
-							  </copy>			
-							  <copy todir="${virgo.repository.base}/conx/wms">
-							    <filelist dir="plugins">
-							      <file name="com.conx.logistics.app.whse.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.domain-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.domain.osgi.fragment.human-task-core-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.domain-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.workitems-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.asn.pageflow-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.dao.jpa.persistence-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.dao.services-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.domain.osgi.fragment.human-task-core-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.domain.persistence.config-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.domain-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.pageflow-1.0.0.jar"/>
-							      <file name="com.conx.logistics.app.whse.rcv.rcv.workitems-1.0.0.jar"/>
-							    </filelist>
-							  </copy> -->							  				  						  							  					  				  						  						  					  					  						  					  						  
+								<copy todir="${virgo.repository.base}/common/jbpm">
+									<filelist dir="dependent-bundles">
+										<file name="org.flowframe.thirdparty.bitronix-2.1.2.jar" />
+										<file name="org.flowframe.thirdparty.com.mysql.jdbc-5.1.20.jar" />
+										<file name="org.flowframe.thirdparty.javassist-3.12.0.GA.jar" />
+										<file name="org.flowframe.thirdparty.asm-3.3.1.jar" />
+										<file name="com.springsource.javax.validation-1.0.0.GA.jar" />
+										<file name="com.springsource.javax.persistence-2.0.0.jar" />
+										<file
+											name="org.flowframe.thirdparty.hibernate.annotations.commons-3.2.0.Final.jar" />
+										<file
+											name="org.flowframe.thirdparty.hibernate.core-3.6.0.Final.jar" />
+										<file
+											name="org.flowframe.thirdparty.hibernate.entitymanager-3.6.0.Final.jar" />
+										<file name="com.springsource.antlr-2.7.7.jar" />
+										<file
+											name="com.springsource.org.apache.commons.collections-3.2.1.jar" />
+										<file name="com.springsource.org.dom4j-1.6.1.jar" />
+										<file
+											name="com.conx.logistics.thirdparty.com.google.protobuf-2.4.1.jar" />
+										<file name="com.springsource.com.sun.tools.xjc-2.2.0.jar" />
+										<file name="com.springsource.com.sun.xml.bind-2.2.0.jar" />
+										<file name="com.springsource.javax.xml.bind-2.2.0.jar" />
+										<file name="com.springsource.com.sun.xml.fastinfoset-1.2.2.jar" />
+										<file name="com.springsource.javax.xml.stream-1.0.1.jar" />
+
+										<file name="org.flowframe.thirdparty.javax.security.jacc-0.0.1.jar" />
+										<file name="org.flowframe.thirdparty.jboss-arrai-all-1.1-M1.jar" />
+										<file name="org.flowframe.thirdparty.jbpm-bam-${jbpm.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.jbpm-human-task-core-${jbpm.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.jbpm-human-task-mina-${jbpm.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.jbpm-persistence-jpa-${jbpm.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.jbpm-workitems-${jbpm.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.drools-core-${drools.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.drools-persistence-${drools.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.knowledge-api-${drools.version}.jar" />
+										<file
+											name="org.flowframe.thirdparty.knowledge-internal-api-${drools.version}.jar" />
+									</filelist>
+								</copy>
+								<!-- <copy todir="${virgo.repository.base}/conx/component"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.kernel.ui.components.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.components.dao.services-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.components.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.components.domain-1.0.0.jar"/> </filelist> 
+									</copy> <copy todir="${virgo.repository.base}/conx/datasource"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.kernel.datasource.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.datasource.dao.services-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.datasource.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.datasource.domain-1.0.0.jar"/> </filelist> 
+									</copy> <copy todir="${virgo.repository.base}/conx/doclib"> <filelist dir="plugins"> 
+									<file name="com.conx.logistics.kernel.documentlibrary.remote.services.impl-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.documentlibrary.remote.services-1.0.0.jar"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/im"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.app.whse.im.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.im.dao.services-1.0.0.jar"/> <file 
+									name="com.conx.logistics.app.whse.im.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.im.domain-1.0.0.jar"/> </filelist> 
+									</copy> <copy todir="${virgo.repository.base}/conx/mdm"> <filelist dir="plugins"> 
+									<file name="com.conx.logistics.mdm.dao.services.impl-1.0.0.jar"/> <file name="com.conx.logistics.mdm.dao.services-1.0.0.jar"/> 
+									<file name="com.conx.logistics.mdm.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.mdm.domain-1.0.0.jar"/> </filelist> </copy> 
+									<copy todir="${virgo.repository.base}/conx/metamodel"> <filelist dir="plugins"> 
+									<file name="com.conx.logistics.kernel.metamodel.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.metamodel.dao.services-1.0.0.jar"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/pageflow"> 
+									<filelist dir="plugins"> <file name="com.conx.logistics.kernel.pageflow.engine-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.pageflow.services-1.0.0.jar"/> <file 
+									name="com.conx.logistics.kernel.pageflow.ui-1.0.0.jar"/> </filelist> </copy> 
+									<copy todir="${virgo.repository.base}/conx/portal"> <filelist dir="plugins"> 
+									<file name="com.conx.logistics.kernel.portal.remote.services.impl-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.portal.remote.services-1.0.0.jar"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/reporting"> 
+									<filelist dir="plugins"> <file name="com.conx.logistics.reporting.remote.services-1.0.0.jar"/> 
+									<file name="com.conx.logistics.reporting.jasperreports.service.impl-1.0.0.jar"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/tms"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.app.tms.domain-1.0.0.jar"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/ui"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.app.whse.ui-1.0.0.jar"/> <file 
+									name="com.conx.logistics.kernel.system.ui-1.0.0.jar"/> <file name="com.conx.logistics.kernel.ui.common-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.editors.entity.vaadin-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.factory.services.impl-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.factory.services-1.0.0.jar"/> <file 
+									name="com.conx.logistics.kernel.ui.forms.vaadin-1.0.0.jar"/> <file name="com.conx.logistics.kernel.ui.manager-1.0.0.jar"/> 
+									<file name="com.conx.logistics.kernel.ui.services-1.0.0.jar"/> <file name="com.conx.logistics.kernel.workspace.ui-1.0.0.jar"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/web"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.web.app.sprint2-2.0.2.RC1.war"/> 
+									</filelist> </copy> <copy todir="${virgo.repository.base}/conx/wms"> <filelist 
+									dir="plugins"> <file name="com.conx.logistics.app.whse.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.dao.services-1.0.0.jar"/> <file name="com.conx.logistics.app.whse.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.domain-1.0.0.jar"/> <file name="com.conx.logistics.app.whse.rcv.asn.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.asn.dao.services-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.asn.domain.osgi.fragment.human-task-core-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.asn.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.asn.domain-1.0.0.jar"/> <file 
+									name="com.conx.logistics.app.whse.rcv.asn.workitems-1.0.0.jar"/> <file name="com.conx.logistics.app.whse.rcv.asn.pageflow-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.rcv.dao.jpa.persistence-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.rcv.dao.services-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.rcv.domain.osgi.fragment.human-task-core-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.rcv.domain.persistence.config-1.0.0.jar"/> 
+									<file name="com.conx.logistics.app.whse.rcv.rcv.domain-1.0.0.jar"/> <file 
+									name="com.conx.logistics.app.whse.rcv.rcv.pageflow-1.0.0.jar"/> <file name="com.conx.logistics.app.whse.rcv.rcv.workitems-1.0.0.jar"/> 
+									</filelist> </copy> -->
 							</tasks>
 						</configuration>
 						<goals>
@@ -232,9 +201,9 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>			
+			</plugin>
 		</plugins>
-	</build>  
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.flowframe</groupId>
@@ -245,67 +214,102 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.bitronix</artifactId>
 			<version>2.1.2</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.javassist</artifactId>
 			<version>3.12.0.GA</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.asm</artifactId>
 			<version>3.3.1</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.hibernate.annotations.commons</artifactId>
 			<version>3.2.0.Final</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
 			<version>3.6.0.Final</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.hibernate.entitymanager</artifactId>
 			<version>3.6.0.Final</version>
-		</dependency>	
-		<dependency>
-		    <groupId>javax.validation</groupId>
-		    <artifactId>com.springsource.javax.validation</artifactId>
-		    <version>1.0.0.GA</version>
 		</dependency>
 		<dependency>
-		    <groupId>javax.persistence</groupId>
-		    <artifactId>com.springsource.javax.persistence</artifactId>
-		    <version>2.0.0</version>
+			<groupId>javax.validation</groupId>
+			<artifactId>com.springsource.javax.validation</artifactId>
+			<version>1.0.0.GA</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.antlr</groupId>
-		    <artifactId>com.springsource.antlr</artifactId>
-		    <version>2.7.7</version>
+			<groupId>javax.persistence</groupId>
+			<artifactId>com.springsource.javax.persistence</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>com.springsource.org.apache.commons.collections</artifactId>
-		    <version>3.2.1</version>
-		</dependency>	
+			<groupId>org.antlr</groupId>
+			<artifactId>com.springsource.antlr</artifactId>
+			<version>2.7.7</version>
+		</dependency>
 		<dependency>
-		    <groupId>org.dom4j</groupId>
-		    <artifactId>com.springsource.org.dom4j</artifactId>
-		    <version>1.6.1</version>
-		</dependency>	
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dom4j</groupId>
+			<artifactId>com.springsource.org.dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml</groupId>
+			<artifactId>com.springsource.com.sun.tools.xjc</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml</groupId>
+			<artifactId>com.springsource.com.sun.xml.bind</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>com.springsource.javax.xml.bind</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml</groupId>
+			<artifactId>com.springsource.com.sun.xml.fastinfoset</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml</groupId>
+			<artifactId>com.springsource.com.sun.tools.xjc</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.stream</groupId>
+			<artifactId>com.springsource.javax.xml.stream</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>com.conx.logistics.thirdparty.com.google.protobuf</artifactId>
+			<version>2.4.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.javax.security.jacc</artifactId>
 			<version>0.0.1</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.jboss-arrai-all</artifactId>
 			<version>1.1-M1</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.jbpm-bam</artifactId>
@@ -315,17 +319,17 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.jbpm-human-task-core</artifactId>
 			<version>${jbpm.version}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.jbpm-human-task-mina</artifactId>
 			<version>${jbpm.version}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.jbpm-persistence-jpa</artifactId>
 			<version>${jbpm.version}</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.jbpm-workitems</artifactId>
@@ -335,21 +339,21 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.drools-core</artifactId>
 			<version>${drools.version}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.drools-persistence</artifactId>
 			<version>${drools.version}</version>
-		</dependency>			
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.knowledge-api</artifactId>
 			<version>${drools.version}</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.knowledge-internal-api</artifactId>
 			<version>${drools.version}</version>
-		</dependency>															
+		</dependency>
 	</dependencies>
 </project>

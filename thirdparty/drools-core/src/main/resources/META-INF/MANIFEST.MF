@@ -1,0 +1,260 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.6.0_30 (Sun Microsystems Inc.)
+Built-By: hudson
+Build-Jdk: 1.6.0_30
+Specification-Title: Drools :: Core
+Specification-Version: 5.4.0-SNAPSHOT
+Specification-Vendor: JBoss by Red Hat
+Implementation-Title: Drools :: Core
+Implementation-Version: 5.4.0-SNAPSHOT
+Implementation-Vendor-Id: org.drools
+Implementation-Vendor: JBoss by Red Hat
+Export-Package:   org.drools.persistence.jpa;uses:="org.drools.runtime
+ ,org.drools";version="5.4.0.Final", org.drools.reteoo;uses:="org.droo
+ ls.common,org.drools.base,org.drools.reteoo.builder,org.drools.rule,o
+ rg.drools.spi,org.drools.marshalling.impl,org.drools,org.drools.core.
+ util,org.drools.rule.constraint,org.drools.base.extractors,org.drools
+ .event,org.drools.runtime.impl,org.drools.type,org.drools.runtime.pro
+ cess,org.drools.time,org.drools.facttemplates,org.drools.time.impl,or
+ g.drools.reteoo.compiled,org.drools.concurrent,org.drools.impl,org.dr
+ ools.marshalling,org.drools.management,org.drools.runtime.rule.impl,o
+ rg.drools.base.mvel";version="5.4.0.Final", org.drools.reteoo.compile
+ d;uses:="org.drools.base,org.drools.rule,org.drools.spi,org.drools.re
+ teoo,org.drools.common,org.drools.core.util";version="5.4.0.Final", o
+ rg.drools.reteoo.builder;uses:="org.drools.common,org.drools.rule,org
+ .drools.spi,org.drools.reteoo,org.drools.time,org.drools,org.drools.b
+ ase.accumulators,org.mvel2.integration,org.drools.base.mvel,org.drool
+ s.base,org.drools.time.impl";version="5.4.0.Final", org.drools.audit.
+ event;version="5.4.0.Final", org.drools.marshalling;version="5.4.0.Fi
+ nal", org.drools.process.core.impl;uses:="org.drools.process.core.dat
+ atype,org.drools.process.core";version="5.4.0.Final", org.drools.base
+ .dataproviders;uses:="org.mvel2.integration,org.drools.base.mvel,org.
+ drools,org.drools.common,org.mvel2,org.drools.rule,org.drools.spi,org
+ .drools.reteoo,org.drools.core.util";version="5.4.0.Final", org.drool
+ s.builder.conf.impl;uses:="com.sun.tools.xjc";version="5.4.0.Final", 
+ org.drools.command.assertion;uses:="org.mvel2,org.drools.command,org.
+ drools.core.util,org.drools.command.impl";version="5.4.0.Final", org.
+ drools.type;version="5.4.0.Final", org.drools.command.runtime.process
+ ;uses:="org.drools.command,org.drools.command.impl,org.drools.runtime
+ .process,javax.xml.bind.annotation,org.drools.xml.jaxb.util,org.drool
+ s.runtime.impl,javax.xml.bind.annotation.adapters,org.drools.process.
+ instance";version="5.4.0.Final", org.drools.conflict;uses:="org.drool
+ s.spi,org.drools.rule,org.drools.common,org.drools.reteoo";version="5
+ .4.0.Final", org.drools.runtime.process;uses:="org.drools.event,org.d
+ rools.common,org.drools";version="5.4.0.Final", org.drools.time.impl;
+ uses:="org.drools.time,org.drools.common,org.drools.rule,org.drools,o
+ rg.drools.spi,org.drools.command,org.drools.core.util,org.drools.base
+ .mvel,org.drools.reteoo";version="5.4.0.Final", org.drools.process.co
+ re.datatype.impl;uses:="org.drools.process.core.datatype";version="5.
+ 4.0.Final", org.drools.rule;uses:="org.drools.common,org.drools.spi,o
+ rg.drools.reteoo,org.drools,org.drools.core.util,org.drools.base,org.
+ drools.time,org.drools.base.evaluators,org.drools.base.extractors,org
+ .drools.rule.constraint,org.mvel2.integration.impl,org.mvel2.integrat
+ ion,org.mvel2.ast,org.drools.base.mvel,org.mvel2,org.drools.factmodel
+ ,org.drools.facttemplates,org.drools.core.util.asm,org.mvel2.asm.util
+ ,org.mvel2.asm,org.drools.time.impl,org.drools.impl,org.drools.marsha
+ lling.impl";version="5.4.0.Final", org.drools.spi;uses:="org.drools.b
+ ase,org.drools.common,org.drools.rule,org.drools,org.drools.core.util
+ ,org.drools.reteoo,org.drools.time,org.drools.concurrent,org.drools.f
+ actmodel.traits,org.drools.facttemplates,org.drools.runtime.process,o
+ rg.drools.marshalling.impl,org.drools.event";version="5.4.0.Final", o
+ rg.drools.xml;uses:="org.xml.sax,org.drools.xml.changeset,javax.xml.p
+ arsers,org.w3c.dom,org.xml.sax.helpers,org.drools";version="5.4.0.Fin
+ al", org.drools.base.field;uses:="org.drools,org.drools.spi,org.drool
+ s.common,org.drools.reteoo,org.drools.core.util";version="5.4.0.Final
+ ", org.drools.base.extractors;uses:="org.drools.common,org.drools.bas
+ e,org.drools,org.drools.spi,org.drools.core.util,org.drools.base.mvel
+ ,org.mvel2,org.drools.rule,org.mvel2.compiler";version="5.4.0.Final",
+  org.drools.audit;uses:="org.drools.event,org.drools.audit.event,org.
+ drools,com.thoughtworks.xstream,org.drools.impl,org.drools.common,org
+ .drools.runtime.process,org.drools.rule,org.drools.command,org.drools
+ .spi,org.drools.reteoo,org.drools.command.impl";version="5.4.0.Final"
+ , org.drools.osgi.core;uses:="org.drools.io.impl,org.drools.impl,org.
+ drools.marshalling,org.drools.marshalling.impl,org.drools,org.osgi.fr
+ amework";version="5.4.0.Final", org.drools.impl;uses:="org.drools.mar
+ shalling,org.drools.marshalling.impl,org.drools,org.drools.definition
+ s.rule.impl,org.drools.event.knowlegebase.impl,org.drools.event,org.d
+ rools.definitions.impl,org.drools.rule,org.drools.common,org.drools.a
+ gent,org.drools.reteoo,org.drools.event.rule.impl,org.drools.spi,org.
+ drools.runtime.impl,org.drools.runtime.rule.impl,org.drools.runtime.p
+ rocess,org.drools.command.runtime,org.drools.command,org.drools.time,
+ org.drools.command.impl,org.drools.base,org.drools.command.runtime.ru
+ le,org.drools.agent.impl,org.drools.core.util";version="5.4.0.Final",
+  org.drools.event.knowlegebase.impl;uses:="org.drools";version="5.4.0
+ .Final", org.drools.event.rule.impl;uses:="org.drools.common,org.droo
+ ls.event,org.drools,org.drools.spi,org.drools.rule,org.drools.reteoo,
+ org.drools.impl";version="5.4.0.Final", org.drools.core.util.debug;us
+ es:="org.drools.common,org.drools.core.util,org.drools.reteoo,org.dro
+ ols.rule,org.drools.impl,org.drools,org.mvel2.integration.impl,org.mv
+ el2.templates,org.mvel2.integration,org.mvel2.optimizers";version="5.
+ 4.0.Final", org.drools.base.evaluators;uses:="org.drools.common,org.d
+ rools.base,org.drools.rule,org.drools,org.drools.spi,org.drools.time,
+ org.drools.core.util,org.drools.type,org.drools.base.field,org.drools
+ .factmodel.traits,org.drools.reteoo,org.mvel2.util";version="5.4.0.Fi
+ nal", org.drools.world.impl;uses:="org.drools.command,org.drools.comm
+ and.impl";version="5.4.0.Final", org.drools.definitions.impl;uses:="o
+ rg.drools.definitions.rule.impl,org.drools.rule";version="5.4.0.Final
+ ", org.drools.process.instance;uses:="org.drools.runtime.process,org.
+ drools.common";version="5.4.0.Final", org.drools.command.builder;uses
+ :="org.drools.command,org.drools.command.impl,org.drools.runtime.impl
+ ,org.drools,org.drools.core.util";version="5.4.0.Final", org.drools.x
+ ml.jaxb.util;uses:="javax.xml.bind.annotation.adapters,javax.xml.bind
+ .annotation,org.drools,org.drools.runtime.rule.impl,org.drools.common
+ ";version="5.4.0.Final", org.drools.command.runtime;uses:="org.drools
+ .command,org.drools.command.impl,org.drools.command.runtime.process,c
+ om.thoughtworks.xstream.annotations,javax.xml.bind.annotation,org.dro
+ ols.command.runtime.rule,org.drools.impl,org.drools.runtime.impl,org.
+ drools.reteoo,org.drools,org.drools.xml.jaxb.util,javax.xml.bind.anno
+ tation.adapters";version="5.4.0.Final", org.drools.rule.builder.diale
+ ct.asm;uses:="org.mvel2.asm,org.drools.base,org.drools.core.util,org.
+ drools.common,org.drools.rule,org.drools,org.drools.spi,org.drools.re
+ teoo,org.drools.core.util.asm";version="5.4.0.Final", org.drools.mana
+ gement;uses:="org.drools.common,javax.management,org.drools.reteoo,or
+ g.drools.impl,org.drools,javax.management.openmbean,org.drools.base,o
+ rg.drools.spi,org.drools.event,org.drools.rule,org.drools.runtime.pro
+ cess";version="5.4.0.Final", org.drools.io.impl;uses:="org.drools.io.
+ internal,org.drools,org.drools.core.util,org.drools.concurrent,org.dr
+ ools.util.codec";version="5.4.0.Final", org.drools.definitions.rule.i
+ mpl;uses:="org.drools.rule";version="5.4.0.Final", org.drools.core.ut
+ il.asm;uses:="org.mvel2.asm,org.drools,org.mvel2.asm.util";version="5
+ .4.0.Final", org.drools.factmodel.traits;uses:="org.drools.factmodel,
+ org.mvel2.asm,org.drools.impl,org.drools.core.util.asm,org.drools,org
+ .drools.common,org.drools.base,org.drools.rule,org.drools.spi,org.dro
+ ols.core.util";version="5.4.0.Final", org.drools.base.mvel;uses:="org
+ .drools.common,org.mvel2.integration,org.drools.rule,org.drools.reteo
+ o,org.mvel2,org.drools,org.drools.spi,org.drools.type,org.drools.core
+ .util,org.drools.base,org.mvel2.util,org.mvel2.optimizers,org.mvel2.c
+ ompiler,org.mvel2.debug";version="5.4.0.Final", org.drools.process.in
+ stance.impl;uses:="org.drools.common,org.drools.process.instance,org.
+ drools.runtime.process,org.drools";version="5.4.0.Final", org.drools.
+ runtime.impl;uses:="org.drools.xml.jaxb.util,javax.xml.bind.annotatio
+ n,javax.xml.bind.annotation.adapters";version="5.4.0.Final", org.droo
+ ls.base.accumulators;uses:="org.drools.common,org.drools.rule,org.dro
+ ols,org.drools.spi,org.drools.reteoo,org.mvel2.integration,org.drools
+ .base.mvel,org.mvel2";version="5.4.0.Final", org.drools.runtime.rule.
+ impl;uses:="org.drools.common,org.drools.spi,org.drools.xml.jaxb.util
+ ,javax.xml.bind.annotation,org.drools.rule,org.drools,javax.xml.bind.
+ annotation.adapters,org.drools.reteoo,org.drools.base";version="5.4.0
+ .Final", org.drools.facttemplates;uses:="org.drools.rule,org.drools.c
+ ommon,org.drools.base,org.drools,org.drools.spi,org.drools.core.util"
+ ;version="5.4.0.Final", org.drools.base;uses:="org.drools.event,org.d
+ rools,org.drools.spi,org.drools.concurrent,org.drools.common,org.droo
+ ls.core.util.asm,org.drools.core.util,org.drools.base.evaluators,org.
+ drools.time,org.drools.base.extractors,org.mvel2.asm,org.drools.factm
+ odel,org.drools.rule,org.drools.reteoo,org.drools.factmodel.traits,or
+ g.drools.runtime.process,org.drools.base.field,org.drools.type,org.mv
+ el2.optimizers.impl.refl.nodes,org.mvel2.integration,org.drools.base.
+ mvel,org.mvel2.compiler,org.mvel2.ast,org.drools.impl,org.drools.fact
+ templates";version="5.4.0.Final", org.drools.process.core.datatype;ve
+ rsion="5.4.0.Final", org.drools.util.codec;version="5.4.0.Final", org
+ .drools.process.core;uses:="org.drools.process.core.datatype";version
+ ="5.4.0.Final", org.drools.core.util;uses:="org.drools.common,org.dro
+ ols.rule,org.drools.spi,org.drools.reteoo,org.drools,org.drools.type"
+ ;version="5.4.0.Final", org.drools.process.core.datatype.impl.type;us
+ es:="org.drools.process.core.datatype,org.drools.process.core,com.tho
+ ughtworks.xstream";version="5.4.0.Final", org.drools.factmodel;uses:=
+ "org.drools.base,org.mvel2.asm,org.drools,org.drools.factmodel.traits
+ ,org.mvel2,org.drools.core.util,com.thoughtworks.xstream.io,com.thoug
+ htworks.xstream.io.xml,com.thoughtworks.xstream";version="5.4.0.Final
+ ", org.drools.fluent.impl;uses:="org.drools.command,org.drools.comman
+ d.impl";version="5.4.0.Final", org.drools.rule.constraint;uses:="org.
+ mvel2.asm,org.drools.rule,org.drools.rule.builder.dialect.asm,org.dro
+ ols.reteoo,org.mvel2.util,org.drools.common,org.drools.core.util,org.
+ mvel2.optimizers.impl.refl.nodes,org.mvel2.optimizers.impl.refl.colle
+ ction,org.drools.base,org.mvel2.optimizers.dynamic,org.mvel2,org.mvel
+ 2.compiler,org.mvel2.ast,org.drools.spi,org.drools.time,org.mvel2.int
+ egration,org.drools.base.mvel,org.drools,org.drools.concurrent,org.dr
+ ools.base.extractors";version="5.4.0.Final", org.drools.marshalling.i
+ mpl;uses:="org.drools.marshalling,org.drools.core.util,org.drools.imp
+ l,org.drools,org.drools.common,org.drools.rule,org.drools.spi,org.dro
+ ols.time,org.drools.reteoo,org.drools.concurrent,org.drools.reteoo.bu
+ ilder,org.drools.process.instance.impl,org.drools.process.instance,or
+ g.drools.base,org.drools.time.impl,com.google.protobuf,org.drools.run
+ time.process";version="5.4.0.Final", org.drools.common;uses:="org.dro
+ ols.spi,org.drools.reteoo,org.drools.rule,org.drools.impl,org.drools.
+ factmodel,org.drools.event,org.drools.factmodel.traits,org.drools,org
+ .drools.base,org.drools.management,org.drools.core.util,org.drools.ma
+ rshalling,org.drools.runtime.impl,org.drools.type,org.drools.runtime.
+ process,org.drools.time.impl,org.drools.time,org.drools.marshalling.i
+ mpl,org.drools.process.instance,org.drools.concurrent,org.drools.rete
+ oo.builder,org.drools.rule.constraint,javax.xml.bind.annotation,org.d
+ rools.facttemplates";version="5.4.0.Final", org.drools.agent.impl;use
+ s:="org.drools,org.drools.spi,org.drools.rule,org.drools.agent,org.dr
+ ools.core.util,org.drools.definitions.impl,org.drools.io.internal,org
+ .drools.io.impl,org.drools.event,org.drools.base,org.drools.reteoo,or
+ g.drools.xml,org.drools.impl,javax.xml.parsers,org.drools.common,org.
+ drools.concurrent";version="5.4.0.Final", org.drools.grid;uses:="org.
+ drools.command,org.drools.command.impl";version="5.4.0.Final", org.dr
+ ools.agent;uses:="org.drools,org.drools.io.impl,org.drools.rule,org.d
+ rools.core.util,org.drools.definitions.impl,org.drools.util.codec,org
+ .drools.agent.impl,org.drools.common";version="5.4.0.Final", org.droo
+ ls.command.runtime.rule;uses:="org.drools.command,org.drools.command.
+ impl,org.drools.impl,org.drools,org.drools.spi,org.drools.reteoo,java
+ x.xml.bind.annotation,org.drools.runtime.impl,org.drools.common,javax
+ .xml.bind.annotation.adapters,org.drools.xml.jaxb.util,org.drools.cor
+ e.util,org.mvel2";version="5.4.0.Final", org.drools.io.internal;versi
+ on="5.4.0.Final", org.drools.runtime.help.impl;uses:="com.thoughtwork
+ s.xstream,org.drools.common,org.drools.command.runtime.process,org.dr
+ ools.command.runtime,org.drools.runtime.impl,org.drools.command.runti
+ me.rule,org.drools.runtime.rule.impl,com.thoughtworks.xstream.convert
+ ers,com.thoughtworks.xstream.io,com.thoughtworks.xstream.converters.r
+ eflection,com.thoughtworks.xstream.mapper,com.thoughtworks.xstream.co
+ re.util,com.thoughtworks.xstream.converters.collections,org.drools.co
+ mmand,org.drools.command.impl,org.drools.core.util,com.thoughtworks.x
+ stream.io.json,org.drools.base,org.drools.rule,org.drools.spi";versio
+ n="5.4.0.Final", org.drools.xml.changeset;uses:="org.drools.io.impl,o
+ rg.drools,org.w3c.dom,org.xml.sax,org.drools.xml,org.drools.builder.c
+ onf.impl,org.drools.io.internal,org.drools.core.util";version="5.4.0.
+ Final", org.drools.command.impl;uses:="org.drools.command,org.drools.
+ command.runtime.process,org.drools.process.instance,org.drools.runtim
+ e.process,org.drools.command.runtime.rule,org.drools,org.drools.comma
+ nd.runtime,org.drools.rule,org.drools.time";version="5.4.0.Final", or
+ g.drools.concurrent;uses:="org.drools,org.drools.spi";version="5.4.0.
+ Final", org.drools.persistence;uses:="org.drools.persistence.info,org
+ .drools.persistence.jpa.processinstance,org.slf4j,org.drools.persiste
+ nce.jta,org.drools.persistence.jpa,javax.transaction";version="5.4.0.
+ Final", org.drools.persistence.jta;uses:="org.drools.persistence,java
+ x.naming,javax.transaction,org.slf4j";version="5.4.0.Final", org.droo
+ ls.persistence.jpa.marshaller;uses:="javax.persistence,org.slf4j";ver
+ sion="5.4.0.Final", org.drools.persistence.info;uses:="org.drools.per
+ sistence,javax.persistence";version="5.4.0.Final", org.drools.persist
+ ence.osgi;uses:="org.osgi.framework";version="5.4.0.Final", org.drool
+ s.persistence.map;uses:="org.drools.persistence,org.drools.persistenc
+ e.info,org.slf4j";version="5.4.0.Final", org.drools.persistence.jpa.p
+ rocessinstance;uses:="org.drools.persistence,org.drools.persistence.i
+ nfo";version="5.4.0.Final"  
+Private-Package: .;version="5.4.0.Final",org.drools.visualize;version=
+ "5.4.0.Final"
+Tool: Bnd-0.0.357
+Bundle-Name: Drools :: Core
+Bundle-Vendor: JBoss by Red Hat
+DynamicImport-Package: *
+Bundle-Version: 5.4.0.Final
+Bnd-LastModified: 1336998646574
+Bundle-Activator: org.drools.osgi.core.Activator
+Bundle-ManifestVersion: 2
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion
+  does complex event processing (CEP).
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Import-Package: com.google.protobuf, com.sun.tools.xjc, com.thoughtwor
+ ks.xstream, com.thoughtworks.xstream.annotations, com.thoughtworks.xs
+ tream.converters, com.thoughtworks.xstream.converters.collections, co
+ m.thoughtworks.xstream.converters.reflection, com.thoughtworks.xstrea
+ m.core.util, com.thoughtworks.xstream.io, com.thoughtworks.xstream.io
+ .json, com.thoughtworks.xstream.io.xml, com.thoughtworks.xstream.mapp
+ er, javax.management, javax.management.openmbean, javax.xml.bind.anno
+ tation, javax.xml.bind.annotation.adapters, javax.xml.parsers, org.mv
+ el2;version="2.1", org.mvel2.asm;version="2.1", org.mvel2.asm.util;ve
+ rsion="2.1", org.mvel2.ast;version="2.1", org.mvel2.compiler;version=
+ "2.1", org.mvel2.debug;version="2.1", org.mvel2.integration;version="
+ 2.1", org.mvel2.integration.impl;version="2.1", org.mvel2.optimizers;
+ version="2.1", org.mvel2.optimizers.dynamic;version="2.1", org.mvel2.
+ optimizers.impl.refl.collection;version="2.1", org.mvel2.optimizers.i
+ mpl.refl.nodes;version="2.1", org.mvel2.templates;version="2.1", org.
+ mvel2.util;version="2.1", org.osgi.framework;version="1.5", org.osgi.
+ util.tracker;version="1.4", org.w3c.dom, org.xml.sax, org.xml.sax.hel
+ pers
+Bundle-SymbolicName: org.drools.core
+Bundle-DocURL: http://www.jboss.org/
+

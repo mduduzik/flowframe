@@ -2,47 +2,31 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.flowframe.thirdparty</artifactId>
+		<artifactId>org.flowframe.thirdparty.google</artifactId>
 		<groupId>org.flowframe</groupId>
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>org.flowframe.thirdparty.com.mysql.jdbc</artifactId>
-	<version>5.1.20</version>
-	<dependencies>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.20</version>
-		</dependency>
-	</dependencies>
+	<version>2.4.1</version>
+	<artifactId>com.conx.logistics.thirdparty.com.google.protobuf</artifactId>
+	<packaging>bundle</packaging>
+	<description>This bundle simply wraps com.google.protobuf.jar for use as an OSGI bundle.</description>
+	<organization>
+		<name>Apache Felix Project</name>
+		<url>http://felix.apache.org/</url>
+	</organization>
+
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
 				<configuration>
-					<!-- <useDefaultManifestFile>true</useDefaultManifestFile> -->
-					<archive>
-						<manifestFile>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-					</archive>
+					<instructions>
+						<_include>src/main/resources/META-INF/MANIFEST.MF</_include>
+					</instructions>
 				</configuration>
-			</plugin>		
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<createSourcesJar>false</createSourcesJar>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>com.springsource.bundlor</groupId>
@@ -74,7 +58,7 @@
 							<!-- used to properly set-up versions for system packages -->
 							<osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
 						</configuration>
-					</execution>					
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -91,7 +75,14 @@
 						</fileset>
 					</filesets>
 				</configuration>
-			</plugin>				
+			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+	</dependencies>
 </project>
