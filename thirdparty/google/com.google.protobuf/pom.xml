@@ -8,7 +8,7 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<version>2.4.1</version>
-	<artifactId>com.conx.logistics.thirdparty.com.google.protobuf</artifactId>
+	<artifactId>org.flowframe.thirdparty.com.google.protobuf</artifactId>
 	<packaging>bundle</packaging>
 	<description>This bundle simply wraps com.google.protobuf.jar for use as an OSGI bundle.</description>
 	<organization>

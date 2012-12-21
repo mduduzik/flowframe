@@ -78,62 +78,21 @@
 	<build>
 		<plugins>
 			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.4</version>
 				<executions>
 					<execution>
-						<id>copy-tran-dependencies</id>
-						<phase>generate-resources</phase>
+						<phase>package</phase>
 						<goals>
-							<goal>copy-dependencies</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>lib</outputDirectory>
-							<overWriteReleases>true</overWriteReleases>
-							<overWriteSnapshots>true</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-							<stripVersion>true</stripVersion>
-							<includeScope>runtime</includeScope>
-							<excludeGroupIds>net.sf.jxls</excludeGroupIds>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>unpack-dependency</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target/classes</outputDirectory>
-							<overWriteReleases>true</overWriteReleases>
-							<overWriteSnapshots>true</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-							<stripVersion>true</stripVersion>
-							<includeScope>runtime</includeScope>
-							<includeGroupIds>org.jbpm</includeGroupIds>
-							<includeArtifactIds>jbpm-persistence-jpa</includeArtifactIds>
+							<createSourcesJar>false</createSourcesJar>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			
+			</plugin>		
 			<plugin>
 				<groupId>com.springsource.bundlor</groupId>
 				<artifactId>com.springsource.bundlor.maven</artifactId>
@@ -154,12 +113,6 @@
 					</execution>
 				</executions>
 			</plugin>			
-		</plugins>
-		<resources>
-			<resource>
-				<targetPath>META-INF</targetPath>
-				<directory>META-INF</directory>
-			</resource>
-		</resources>		
+		</plugins>		
 	</build>
 </project>

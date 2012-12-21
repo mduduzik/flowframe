@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Archiver-Version: Plexus Archiver
 Created-By: 1.6.0_30 (Sun Microsystems Inc.)
 Built-By: dev
-Build-Jdk: 1.6.0_30
 Specification-Title: Google :: protobuf
 Specification-Version: 2.4.1
 Specification-Vendor: Google
@@ -10,7 +9,7 @@ Implementation-Title: Google :: protobuf
 Implementation-Version: 2.4.1
 Implementation-Vendor-Id: com.google
 Implementation-Vendor: Google
-Export-Package: com.google.protobuf
+Export-Package: com.google.protobuf;version="2.4.1"
 Bundle-SymbolicName: com.google.protobuf
 Bundle-Name: Google :: protobuf
 Bundle-Vendor: JBoss by Red Hat

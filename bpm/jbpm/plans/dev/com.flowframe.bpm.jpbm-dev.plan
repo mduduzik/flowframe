@@ -12,6 +12,8 @@
 	
 	<!-- Kernel: BPM : HumanTaskService -->
 	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver.persistence" version="0.0.1"/>
+	
+	<artifact name="com.google.protobuf" type="bundlue" version="2.4.1"/>
 	<!--
 	<artifact type="bundle" name="com.conx.logistics.kernel.bpm.impl.jbpm.taskserver" version="1.0.0"/> -->
 	
@@ -22,4 +24,7 @@
 	<!-- Dependencies -->
 <!-- 	<artifact type="bundle" name="org.flowframe.thirdparty.org.codehaus.btm" version="2.1.2"/>
 	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/> -->
+	<!-- Dependencies -->
+	<artifact type="bundle" name="org.flowframe.tm.jta" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/>	
 </plan>
