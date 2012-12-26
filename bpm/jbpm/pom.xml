@@ -84,10 +84,25 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
+								<copy todir="${virgo.repository.base}/common/jdbc">
+									<filelist dir="dependent-bundles">
+										<file name="org.flowframe.thirdparty.com.mysql.jdbc-5.1.20.jar" />
+									</filelist>								
+								</copy>							
+								<copy todir="${virgo.repository.base}/common/tm">
+									<filelist dir="../../tm/jta/target">
+										<file name="org.flowframe.tm.jta-0.0.1.jar" />
+									</filelist>								
+								</copy>							
 								<copy todir="${virgo.repository.base}/common/jbpm">
+									<filelist dir="taskserver.persistence/target">
+										<file name="org.flowframe.bpm.jbpm.taskserver.persistence-0.0.1.jar" />
+									</filelist>		
+									<filelist dir="persistence.datasource/target">
+										<file name="org.flowframe.bpm.jbpm.persistence.datasource-0.0.1.jar" />
+									</filelist>																
 									<filelist dir="dependent-bundles">
 										<file name="org.flowframe.thirdparty.bitronix-2.1.2.jar" />
-										<file name="org.flowframe.thirdparty.com.mysql.jdbc-5.1.20.jar" />
 										<file name="org.flowframe.thirdparty.javassist-3.12.0.GA.jar" />
 										<file name="org.flowframe.thirdparty.asm-3.3.1.jar" />
 										<file name="com.springsource.javax.validation-1.0.0.GA.jar" />
@@ -236,6 +251,26 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- TMS -->
+<!-- 		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.tm.jta</artifactId>
+			<version>0.0.1</version>
+		</dependency> -->
+				
+		<!--  BPM -->
+<!-- 		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.persistence.datasource</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.taskserver.persistence</artifactId>
+			<version>0.0.1</version>
+		</dependency> -->
+		
+				
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.com.mysql.jdbc</artifactId>

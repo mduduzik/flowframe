@@ -18,7 +18,7 @@ Bundle-Version: 5.1.20
 Bundle-Name: MySQL AB's JDBC Driver for MySQL
 Bundle-ManifestVersion: 2
 Created-By: 1.4.2-b28 (Sun Microsystems Inc.)
-Bundle-SymbolicName: com.springsource.com.mysql.jdbc
+Bundle-SymbolicName: org.flowframe.thirdparty.com.mysql.jdbc
 Import-Package: com.mchange.v2.c3p0;version="[0.9.1.2, 1.0.0)";resolut
  ion:=optional,javax.naming,javax.naming.spi,javax.net,javax.net.ssl,j
  avax.sql,javax.transaction.xa;version="[1.0.1, 2.0.0)";resolution:=op

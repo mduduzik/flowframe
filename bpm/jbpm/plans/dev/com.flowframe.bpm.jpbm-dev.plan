@@ -13,18 +13,18 @@
 	<!-- Kernel: BPM : HumanTaskService -->
 	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver.persistence" version="0.0.1"/>
 	
-	<artifact name="com.google.protobuf" type="bundlue" version="2.4.1"/>
-	<!--
-	<artifact type="bundle" name="com.conx.logistics.kernel.bpm.impl.jbpm.taskserver" version="1.0.0"/> -->
-	
-	<!-- Kernel: BPM : BPM Server -->
-<!-- 	<artifact type="bundle" name="com.conx.logistics.kernel.bpm.impl.jbpm.bpmserver.persistence" version="1.0.0"/>
-	<artifact type="bundle" name="com.conx.logistics.kernel.bpm.impl.jbpm.bpmserver" version="1.0.0"/> -->
-	
-	<!-- Dependencies -->
-<!-- 	<artifact type="bundle" name="org.flowframe.thirdparty.org.codehaus.btm" version="2.1.2"/>
-	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/> -->
-	<!-- Dependencies -->
+
+	<!-- JTA TM & JDBC -->
 	<artifact type="bundle" name="org.flowframe.tm.jta" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/>	
+	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/>
+	
+	<!-- JBPM Common -->
+	<artifact name="org.jbpm.persistence" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.jbpm.human-task-core" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.jbpm.flow.core" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.jbpm.bam" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.drools.persistence-jpa" type="bundle" version="5.4.0.Final"/>
+	<artifact name="org.drools.compiler" type="bundle" version="5.4.0.Final"/>
+	<artifact name="org.drools.core" type="bundle" version="5.4.0.Final"/>
+	<artifact name="com.google.protobuf" type="bundle" version="2.4.1"/>
 </plan>
