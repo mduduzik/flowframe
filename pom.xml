@@ -9,5 +9,7 @@
   <module>parent</module>
   <module>thirdparty</module>
   <module>tm</module>
+  <module>portal</module>
+  <module>kernel</module>
   </modules>
 </project>

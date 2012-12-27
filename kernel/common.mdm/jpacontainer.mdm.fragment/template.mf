@@ -1,0 +1,17 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF JPAContainer MDM Base Fragment
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
+Bundle-SymbolicName: org.flowframe.kernel.common.mdm.jpacontainer.fragment
+Import-Package: org.flowframe.kernel.common.mdm.domain;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.constants;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.geolocation;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.metadata;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.note;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.role;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.task;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)"

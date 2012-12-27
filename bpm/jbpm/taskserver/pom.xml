@@ -14,17 +14,7 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.bpm.jbpm.services</artifactId>
 			<version>${project.version}</version>
-		</dependency>	
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.kernel.portal.remote.services</artifactId>
-			<version>${project.version}</version>
-		</dependency>	
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.kernel.bpm.impl.jbpm.taskserver.osgi.fragment.human-task-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+		</dependency>		
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
@@ -163,7 +153,21 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.transaction</artifactId>
 			<version>${springframework.version}</version>
-		</dependency>				
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.portal.remote.services
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

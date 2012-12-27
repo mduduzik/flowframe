@@ -10,6 +10,8 @@
   <packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<virgo.repository.base>D:/dev/workspaces/flowframe/Runtimes/virgo-tomcat-server-3.0.3.RELEASE-DEV/repository</virgo.repository.base>
+		
 		<bundlor.manifest.output.path>${basedir}/src/main/resources</bundlor.manifest.output.path>
 		<slf4j.version>1.6.1</slf4j.version>
 		<logback.version>0.9.24</logback.version>
@@ -45,28 +47,28 @@
 		<dependencies>
 			<!-- Hibernate JPA -->
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.asm</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.asm</artifactId>
 				<version>3.3.1</version>
 			</dependency>
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.javassist</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.javassist</artifactId>
 				<version>3.12.0.GA</version>
 			</dependency>
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.hibernate.annotations.commons</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.hibernate.annotations.commons</artifactId>
 				<version>3.2.0.Final</version>
 			</dependency>
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.hibernate.core</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
 				<version>3.6.0.Final</version>
 			</dependency>
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.hibernate.entitymanager</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.hibernate.entitymanager</artifactId>
 				<version>3.6.0.Final</version>
 				<exclusions>
 					<exclusion>
@@ -78,8 +80,8 @@
 
 			<!-- Modified for Drools & JBPM -->
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.com.google.protobuf</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.com.google.protobuf</artifactId>
 				<version>2.4.1</version>
 				<exclusions>
 					<exclusion>
@@ -89,8 +91,8 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.osgi.wrapper.jxls-reader</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.osgi.wrapper.jxls-reader</artifactId>
 				<version>0.9.8</version>
 				<exclusions>
 					<exclusion>
@@ -101,115 +103,115 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.bitronix</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.bitronix</artifactId>
 				<version>2.1.2</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.com.mysql.jdbc</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.com.mysql.jdbc</artifactId>
 				<version>5.1.20</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.gwt-console-rpc</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.gwt-console-rpc</artifactId>
 				<version>2.3.2-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.hornetq</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.hornetq</artifactId>
 				<version>2.2.5.Final</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.jboss-arrai-all</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.jboss-arrai-all</artifactId>
 				<version>1.1-M1</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.jbpm-bam</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.jbpm-bam</artifactId>
 				<version>${jbpm.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.gwt-console-server-integration</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.gwt-console-server-integration</artifactId>
 				<version>2.3.2-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.jbpm-human-task</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.jbpm-human-task</artifactId>
 				<version>${jbpm.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.jbpm-human-task-mina</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.jbpm-human-task-mina</artifactId>
 				<version>${jbpm.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.jbpm-persistence-jpa</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.jbpm-persistence-jpa</artifactId>
 				<version>${jbpm.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.jbpm-workitems</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.jbpm-workitems</artifactId>
 				<version>${jbpm.version}</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.netty</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.netty</artifactId>
 				<version>3.2.7.Final</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.commons-exec</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.commons-exec</artifactId>
 				<version>1.0.1</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.commons-compress</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.commons-compress</artifactId>
 				<version>1.0</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.vaadin-addon-contextmenu</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.vaadin-addon-contextmenu</artifactId>
 				<version>3.1.0</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.vaadin-addon-jpacontainer-agpl-3.0</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0</artifactId>
 				<version>2.0.0</version>
 			</dependency>
 
 
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.vaadin-addon-mvp</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.vaadin-addon-mvp</artifactId>
 				<version>0.9.0</version>
 			</dependency>
 
-			<!-- <dependency> <groupId>com.conx.logistics</groupId> <artifactId>com.conx.logistics.thirdparty.org.vaadin.mvp.common-customized</artifactId> 
-				<version>0.9.2-SNAPSHOT</version> </dependency> <dependency> <groupId>com.conx.logistics</groupId> 
-				<artifactId>com.conx.logistics.thirdparty.vaadin-addon-mvp-customized-common-osgi</artifactId> 
+			<!-- <dependency> <groupId>org.flowframe</groupId> <artifactId>org.flowframe.thirdparty.org.vaadin.mvp.common-customized</artifactId> 
+				<version>0.9.2-SNAPSHOT</version> </dependency> <dependency> <groupId>org.flowframe</groupId> 
+				<artifactId>org.flowframe.thirdparty.vaadin-addon-mvp-customized-common-osgi</artifactId> 
 				<version>0.9.2-SNAPSHOT</version> </dependency> -->
 			<dependency>
-				<groupId>com.conx.logistics</groupId>
-				<artifactId>com.conx.logistics.thirdparty.osgi-vaadin</artifactId>
+				<groupId>org.flowframe</groupId>
+				<artifactId>org.flowframe.thirdparty.osgi-vaadin</artifactId>
 				<version>6.8.6</version>
 			</dependency>
 

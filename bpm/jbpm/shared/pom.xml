@@ -47,7 +47,7 @@
 				<configuration>
 					<failOnWarnings>true</failOnWarnings>
 					<!-- used to properly set-up versions for system packages -->
-					<osgiProfilePath>${basedir}/../../../../java6-server.profile</osgiProfilePath>
+					<osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
 					<bundleVersion>${project.version}</bundleVersion>
 					<!-- point to a different output path - so manifest will be regenerated 
 						on each build and can be eyeballed if desired. Also for eclipse use, where 

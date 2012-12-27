@@ -1,0 +1,25 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF JBPM TaskServer Human-Task-Core Fragment
+Bundle-SymbolicName: org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment
+Fragment-Host: org.jbpm.human-task-core
+Import-Package: 
+ org.springframework.jndi;version="[3.0,3.1)"
+Excluded-Exports: 
+ org.jbpm.task.service,
+ org.jbpm.task.service.persistence,
+ org.mvel2
+Excluded-Imports: 
+  javax.persistence,
+  org.drools,
+  org.drools.persistence,
+  org.drools.persistence.jta,
+  org.jbpm.eventmessaging,
+  org.jbpm.task,
+  org.jbpm.task.admin,
+  org.jbpm.task.event,
+  org.jbpm.task.query,
+  org.jbpm.task.service,
+  org.jbpm.task.service.persistence,
+  org.mvel2,
+  org.slf4j

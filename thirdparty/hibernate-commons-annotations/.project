@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>com.conx.bi.thirdparty.hibernate.annotations.commons</name>
+  <name>org.flowframe.thirdparty.hibernate.annotations.commons</name>
   <comment>Wrapped OSGi bundle of hibernate-commons-annotations. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects/>
   <buildSpec>

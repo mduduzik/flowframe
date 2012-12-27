@@ -9,7 +9,7 @@
 	<!-- <osgi:reference id="dataSource" interface="javax.sql.DataSource" filter="(module=KERNEL.SYSTEM)"/> -->
 
 	<!-- export internal interfaces -->
-<!-- 	<osgi:service ref="applicationDao" interface="com.conx.logistics.kernel.system.dao.services.application.IApplicationDAOService"/> -->
+<!-- 	<osgi:service ref="applicationDao" interface="IApplicationDAOService"/> -->
 	<!-- KERNEL.TM.BITRONIX Transaction Manager -->
 	<osgi:service ref="globalBitronixTransactionManagerConfig" interface="bitronix.tm.Configuration">
 		<osgi:service-properties>

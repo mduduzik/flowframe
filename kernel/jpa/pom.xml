@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>org.flowframe.kernel</artifactId>
+    <groupId>org.flowframe</groupId>
+    <version>0.0.1</version>
+    <relativePath>..</relativePath>
+  </parent>
+  <artifactId>org.flowframe.kernel.jpa</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>lob.jpacontainer.springdm</module>
+  	<module>jpa.container.services</module>
+  </modules>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>clean plugins</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete>
+									<fileset dir="plugins" includes="**/*.jar"
+										excludes="com.springsource.org.jgroups-2.2.8.jar, com.springsource.org.objectweb.asm-1.5.3.jar, **/.gitignore" />
+								</delete>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>dependent-bundles</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<stripVersion>false</stripVersion>
+							<includeScope>runtime</includeScope>
+							<excludeTransitive>true</excludeTransitive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>copy to virgo repository</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>							
+								<copy todir="${virgo.repository.base}/common/jpa">
+									<filelist dir="jpa.container.services/target">
+										<file name="org.flowframe.kernel.jpa.container.services-0.0.1.jar" />
+									</filelist>		
+									<filelist dir="lob.jpacontainer.springdm/target">
+										<file name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm-0.0.1.jar" />
+									</filelist>																
+								</copy>			
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>  
+</project>

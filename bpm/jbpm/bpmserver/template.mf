@@ -1,29 +1,24 @@
 Bundle-ManifestVersion: 2
-Bundle-Version: 1.0.0
-Bundle-Name: JBPM Core
-Bundle-SymbolicName: com.conx.logistics.kernel.bpm.impl.jbpm.bpmserver
-Import-Package: 
- com.conx.logistics.kernel.bpm.impl.jbpm.shared.utils;version="1.0.0",
- com.conx.logistics.kernel.bpm.services;version="1.0.0",
- com.conx.logistics.app.whse.rcv.asn.domain;version="1.0.0",
-  com.conx.logistics.mdm.dao.services;version="1.0.0",
-  com.conx.logistics.mdm.domain.application;version="1.0.0",
-  com.conx.logistics.mdm.domain.commercialrecord;version="1.0.0",
-  com.conx.logistics.mdm.domain.organization;version="1.0.0",
-  com.conx.logistics.mdm.domain.product;version="1.0.0",
-  com.conx.logistics.mdm.domain.task;version="1.0.0",
-  com.conx.logistics.mdm.domain.geolocation;version="1.0.0",
-  com.conx.logistics.mdm.dao.services.currency;version="1.0.0",
-  com.conx.logistics.mdm.dao.services.product;version="1.0.0",
-  com.conx.logistics.mdm.domain.currency;version="1.0.0",
-  com.conx.logistics.mdm.domain.metadata;version="1.0.0",
-  com.conx.logistics.mdm.dao.services.referencenumber;version="1.0.0",
-  com.conx.logistics.mdm.domain.referencenumber;version="1.0.0",
-  com.conx.logistics.mdm.dao.services.documentlibrary;version="1.0.0",
-  com.conx.logistics.mdm.domain.documentlibrary;version="1.0.0",
-  com.conx.logistics.mdm.dao.services.documentlibrary;version="1.0.0",
-  com.conx.logistics.mdm.domain.documentlibrary;version="1.0.0",
- org.jbpm.task.utils;version="1.0.0",
+Bundle-Version: 0.0.1
+Bundle-Name: FF JBPM Core
+Bundle-SymbolicName: org.flowframe.bpm.jbpm.bpmserver
+Import-Package: org.flowframe.bpm.jbpm.shared.utils;version="[0.0.1,1.0.0)",
+ org.flowframe.bpm.jbpm.services;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.application;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.organization;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.product;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.task;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.geolocation;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.dao.services.currency;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.dao.services.product;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.metadata;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.dao.services.referencenumber;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.referencenumber;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.dao.services.documentlibrary;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.documentlibrary;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.dao.services.documentlibrary;version="[0.0.1,1.0.0)",
+ org.flowframe.kernel.mdm.domain.documentlibrary;version="[0.0.1,1.0.0)",
+ org.jbpm.task.utils;version="[0.0.1,1.0.0)",
  org.drools;version="[5.4.0,5.5.0)",
  org.drools.agent;version="[5.4.0,5.5.0)",
  org.drools.builder ;version="[5.4.0,5.5.0)",
@@ -108,4 +103,4 @@ Excluded-Imports:
  org.apache.commons.io,
  org.mvel2,
  org.mvel2.compiler,
- com.conx.logistics.kernel.bpm.impl.jbpm
+ org.flowframe.bpm.jbpm.bpmserver

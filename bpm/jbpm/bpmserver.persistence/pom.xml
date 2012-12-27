@@ -7,26 +7,13 @@
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>com.conx.logistics.kernel.bpm.impl.jbpm.bpmserver.persistence</artifactId>
+	<artifactId>org.flowframe.bpm.jbpm.bpmserver.persistence</artifactId>
 	<dependencies>
-		<dependency>
-			<groupId>com.conx.logistics</groupId>
-			<artifactId>com.conx.logistics.distribution.common</artifactId>
-			<version>1.0.0</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.codehaus.btm</groupId>
 			<artifactId>btm</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.conx.logistics</groupId>
-			<artifactId>com.conx.logistics.kernel.persistence.tm.jta</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 
 		<!-- Spring and AspectJ -->
 		<dependency>
@@ -103,21 +90,23 @@
 
 		<!-- Hibernate -->
 		<dependency>
-			<groupId>com.conx.logistics</groupId>
-			<artifactId>com.conx.logistics.thirdparty.hibernate.core</artifactId>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
 			<scope>provided</scope>
+			<version>3.6.0.Final</version>
 		</dependency>	
 		
 		<dependency>
-			<groupId>com.conx.logistics</groupId>
-			<artifactId>com.conx.logistics.thirdparty.hibernate.entitymanager</artifactId>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.entitymanager</artifactId>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>javassist</groupId>
 					<artifactId>javassist</artifactId>
 				</exclusion>
-			</exclusions>			
+			</exclusions>	
+			<version>3.6.0.Final</version>		
 		</dependency>	
 	</dependencies>
 	<build>
@@ -129,7 +118,7 @@
 				<configuration>
 					<failOnWarnings>true</failOnWarnings>
 					<!-- used to properly set-up versions for system packages -->
-					<osgiProfilePath>${basedir}/../../../../java6-server.profile</osgiProfilePath>
+					<osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
 					<bundleVersion>${project.version}</bundleVersion>
 					<!-- point to a different output path - so manifest will be regenerated 
 						on each build and can be eyeballed if desired. Also for eclipse use, where 

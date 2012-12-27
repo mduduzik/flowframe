@@ -24,13 +24,13 @@
 	<osgi:reference id="userTransaction" interface="javax.transaction.UserTransaction">
 	</osgi:reference>		
 	
-	<osgi:reference id="portalUserService" cardinality="1..1" interface="com.conx.logistics.kernel.portal.remote.services.IPortalUserService">
+	<osgi:reference id="portalUserService" cardinality="1..1" interface="org.flowframe.portal.remote.services.IPortalUserService">
 	</osgi:reference>	
 	
-	<osgi:reference id="portalOrganizationService" cardinality="1..1" interface="com.conx.logistics.kernel.portal.remote.services.IPortalOrganizationService">
+	<osgi:reference id="portalOrganizationService" cardinality="1..1" interface="org.flowframe.portal.remote.services.IPortalOrganizationService">
 	</osgi:reference>				
 	
 	<!-- Service Exports -->
-	<osgi:service ref="humanTaskServer" interface="com.conx.logistics.kernel.bpm.services.IBPMTaskService">
+	<osgi:service ref="humanTaskServer" interface="org.flowframe.bpm.jbpm.services.IBPMTaskService">
 	</osgi:service>	
 </beans>

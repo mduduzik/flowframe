@@ -28,5 +28,9 @@
   	<module>jbpm-workitems</module>
   	<module>knowledge-api</module>
   	<module>knowledge-internal-api</module>
+  	<module>flexjson</module>
+  	<module>google</module>
+  	<module>hornetq-all</module>
+  	<module>netty</module>
   </modules>
 </project>

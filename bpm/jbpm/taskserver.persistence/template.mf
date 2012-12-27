@@ -1,6 +1,6 @@
 Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
-Bundle-Name: JBPM TaskServer Persistence in Hibernate
+Bundle-Name: FF JBPM TaskServer Persistence in Hibernate
 Bundle-SymbolicName: org.flowframe.bpm.jbpm.taskserver.persistence
 Import-Bundle: org.flowframe.thirdparty.hibernate.core;version="3.6.0.Final";import-scope:=application,
  org.flowframe.thirdparty.hibernate.annotations.commons;version="3.2.0.Final";import-scope:=application

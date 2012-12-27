@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>com.conx.bi.thirdparty.hibernate.core</name>
+  <name>org.flowframe.thirdparty.hibernate.core</name>
   <comment>Hibernate Core 3.6.0.Final OSGi bundle. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
-    <project>com.conx.bi.thirdparty.hibernate.annotations.commons</project>
-    <project>com.conx.awbtracker.thirdparty.javassist</project>
+    <project>org.flowframe.thirdparty.asm</project>
+    <project>org.flowframe.thirdparty.hibernate.annotations.commons</project>
+    <project>org.flowframe.thirdparty.javassist</project>
   </projects>
   <buildSpec>
     <buildCommand>
