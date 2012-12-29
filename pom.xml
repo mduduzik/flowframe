@@ -11,5 +11,6 @@
   <module>tm</module>
   <module>portal</module>
   <module>kernel</module>
+  <module>distribution</module>
   </modules>
 </project>
