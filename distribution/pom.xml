@@ -383,5 +383,7 @@
 		<module>jdbc</module>
 		<module>jpa</module>
 		<module>tm</module>
+		<module>kernel</module>
+		<module>portal</module>
 	</modules>
 </project>
