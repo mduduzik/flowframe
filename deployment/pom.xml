@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.flowframe.parent</artifactId>
+		<groupId>org.flowframe</groupId>
+		<version>0.0.1</version>
+		<relativePath>../parent</relativePath>
+	</parent>
+	<artifactId>org.flowframe.deployment</artifactId>
+	<packaging>pom</packaging>
+	<properties>
+		<virgo.runtime.repository>D:\dev\workspaces\flowframe\Runtimes\virgo-tomcat-server-3.0.3.RELEASE-DEV\repository\common</virgo.runtime.repository>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>clean plugins</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete>
+									<fileset dir="${virgo.runtime.repository}" includes="**/*.jar"/>
+								</delete>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy to virgo repository</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<copy todir="${virgo.runtime.repository}">
+									<fileset  dir="../distribution/virgo-bundles/repository/common">
+										<include  name="**/*"/>
+									</fileset>
+								</copy>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

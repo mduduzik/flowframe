@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plan name="com.flowframe.kernel.mdm-dev.plan" version="0.0.1" scoped="false" atomic="true"
+        xmlns="http://www.eclipse.org/virgo/schema/plan"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+		        http://www.eclipse.org/virgo/schema/plan 
+		        http://www.eclipse.org/virgo/schema/plan/eclipse-virgo-plan.xsd">
+	<!-- Kernel: MDM -->
+	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.domain" version="0.0.1"/>		
+	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services" version="0.0.1"/>	        
+
+	<!-- Kernel: JPA Container -->
+	<artifact type="bundle" name="org.flowframe.kernel.jpa.lob.jpacontainer" version="0.0.1"/>
+	
+	<!-- Kernel: MySQL Datasource -->
+	<artifact type="bundle" name="org.flowframe.kernel.datasource.mysql" version="0.0.1"/>
+	
+
+	<!-- JTA TM & JDBC -->
+	<artifact type="bundle" name="org.flowframe.tm.jta" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/>
+</plan>
