@@ -37,4 +37,40 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>com.springsource.javax.persistence</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.kernel.common.mdm.domain
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.spring-library</artifactId>
+			<type>libd</type>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ds.dao.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ds.domain</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.kernel.metamodel.dao.services
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
 </project>
