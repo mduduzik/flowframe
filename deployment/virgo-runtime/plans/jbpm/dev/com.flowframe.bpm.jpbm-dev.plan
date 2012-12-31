@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plan name="com.flowframe.bpm.jpbm-dev.plan" version="0.0.1" scoped="false" atomic="true"
+        xmlns="http://www.eclipse.org/virgo/schema/plan"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+		        http://www.eclipse.org/virgo/schema/plan 
+		        http://www.eclipse.org/virgo/schema/plan/eclipse-virgo-plan.xsd">
+		        
+
+	<!-- Kernel: BPM : DataSource -->
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.persistence.datasource" version="0.0.1"/>
+	
+	<!-- Kernel: BPM : HumanTaskService -->
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver.persistence" version="0.0.1"/>
+	
+
+	<!-- JTA TM & JDBC -->
+	<artifact type="bundle" name="org.flowframe.tm.jta" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/>
+	
+	<!-- JBPM Common -->
+	<artifact name="org.jbpm.persistence" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.jbpm.human-task-core" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.jbpm.flow.core" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.jbpm.bam" type="bundle" version="5.3.0.Final"/>
+	<artifact name="org.drools.persistence-jpa" type="bundle" version="5.4.0.Final"/>
+	<artifact name="org.drools.compiler" type="bundle" version="5.4.0.Final"/>
+	<artifact name="org.drools.core" type="bundle" version="5.4.0.Final"/>
+	<artifact name="com.google.protobuf" type="bundle" version="2.4.1"/>
+</plan>

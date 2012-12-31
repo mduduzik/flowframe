@@ -14,5 +14,6 @@
   <module>distribution</module>
   <module>ui</module>
   <module>ds</module>
+  <module>deployment</module>
   </modules>
 </project>
