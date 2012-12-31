@@ -1,0 +1,6 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Component DAO Services Implementation
+Bundle-SymbolicName: org.flowframe.ui.component.dao.services.impl
+Excluded-Imports:  javax.persistence,javax.validation.constraints,
+  org.springframework.format.annotation

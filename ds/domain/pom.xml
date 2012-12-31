@@ -2,13 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.flowframe.ui.component</artifactId>
+		<artifactId>org.flowframe.ds</artifactId>
 		<groupId>org.flowframe</groupId>
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>org.flowframe.ui.component.dao.services</artifactId>
-	<name>org.flowframe.ui.component.dao.services</name>
+	<artifactId>org.flowframe.ds.domain</artifactId>
+	<name>org.flowframe.ds.domain</name>
 	<build>
 		<plugins>
 			<!-- Overriding the bundlor plugin defined in the parent pom -->
@@ -19,7 +19,7 @@
 				<configuration>
 					<failOnWarnings>true</failOnWarnings>
 					<!-- used to properly set-up versions for system packages -->
-					<osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
+					<osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
 					<bundleVersion>${project.version}</bundleVersion>
 					<!-- point to a different output path - so manifest will be regenerated 
 						on each build and can be eyeballed if desired. Also for eclipse use, where 

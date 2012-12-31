@@ -7,8 +7,8 @@
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>org.flowframe.ui.component.dao.services</artifactId>
-	<name>org.flowframe.ui.component.dao.services</name>
+	<artifactId>org.flowframe.ui.component.jpacontainer.component.fragment</artifactId>
+	<name>org.flowframe.ui.component.jpacontainer.component.fragment</name>
 	<build>
 		<plugins>
 			<!-- Overriding the bundlor plugin defined in the parent pom -->

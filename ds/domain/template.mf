@@ -1,0 +1,6 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF DataSource Domain Model
+Bundle-SymbolicName: org.flowframe.ds.domain
+Excluded-Imports:  javax.persistence,javax.validation.constraints,
+  org.springframework.format.annotation
