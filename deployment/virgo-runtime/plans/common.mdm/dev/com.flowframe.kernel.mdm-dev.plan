@@ -10,12 +10,15 @@
 	<artifact type="bundle" name="org.flowframe.thirdparty.com.mysql.jdbc" version="5.1.20"/>	
 	
 	<!-- Kernel: MySQL Datasource -->
-	<artifact type="bundle" name="org.flowframe.kernel.datasource.mysql" version="0.0.1"/>	
+	<artifact type="bundle" name="org.flowframe.kernel.datasource.mysql" version="0.0.1"/>
 	
-	<!-- Kernel: MDM -->
+	<!-- Kernel: MDM & MetaModel -->
 	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.domain" version="0.0.1"/>		
-	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services" version="0.0.1"/>			        
+	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services" version="0.0.1"/>	
+	<artifact type="bundle" name="org.flowframe.kernel.metamodel.dao.services" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.kernel.metamodel.dao.services.impl" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services.impl" version="0.0.1"/>
 		        
 	<!-- Kernel: JPA Container -->
-	<!-- <artifact type="bundle" name="org.flowframe.kernel.jpa.lob.jpacontainer" version="0.0.1"/> -->
+	<artifact type="bundle" name="org.flowframe.kernel.jpa.lob.jpacontainer" version="0.0.1"/>
 </plan>

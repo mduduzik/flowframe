@@ -24,7 +24,7 @@ import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "sysdsdatasourcefield")
+@Table(name = "ffsysdsdatasourcefield")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DataSourceField extends MultitenantBaseEntity {
 	private int ordinal = -1;

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ConX MDM DAO Services
+Bundle-Name: FF MDM DAO Services
 Bundle-SymbolicName: org.flowframe.kernel.common.mdm.dao.services
-Bundle-Vendor: ConX
+Bundle-Vendor: FF
 Bundle-Version: 0.0.1
 Import-Package: 
   org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1,1.0.0)",
@@ -17,4 +17,5 @@ Import-Package:
   org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.domain.role;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",
-  javax.persistence.metamodel;version="0"
+  javax.persistence;version="2.0.0",
+  javax.persistence.metamodel;version="2.0.0"

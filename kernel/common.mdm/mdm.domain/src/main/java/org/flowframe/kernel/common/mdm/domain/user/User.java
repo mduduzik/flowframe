@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "syssecuser")
+@Table(name="ffsyssecuser")
 public class User extends AbstractUser{
 	private String uuid;
 	private String originalUuid;

@@ -393,5 +393,7 @@
 		<module>tm</module>
 		<module>kernel</module>
 		<module>portal</module>
+		<module>ds</module>
+		<module>metamodel</module>
 	</modules>
 </project>

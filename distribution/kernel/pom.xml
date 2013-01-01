@@ -63,6 +63,7 @@
 									    <file name="org.flowframe.kernel.common.mdm.dao.services-0.0.1.jar" />
 										<file name="org.flowframe.kernel.common.mdm.domain-0.0.1.jar" />
 										<file name="org.flowframe.kernel.common.mdm.jpacontainer.fragment-0.0.1.jar" />
+										<file name="org.flowframe.kernel.common.mdm.dao.services.impl-0.0.1.jar" />
 									</filelist>
 								</copy>	
 								<copy todir="../virgo-bundles/repository/common/utils">															
@@ -104,6 +105,11 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.mdm.jpacontainer.fragment</artifactId>
 			<version>0.0.1</version>
-		</dependency>									
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.common.mdm.dao.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>										
 	</dependencies>
 </project>

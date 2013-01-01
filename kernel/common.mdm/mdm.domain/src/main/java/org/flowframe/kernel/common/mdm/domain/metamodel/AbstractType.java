@@ -20,7 +20,7 @@ import javax.persistence.metamodel.Type.PersistenceType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="sysmmtype")
+@Table(name="ffsysmmtype")
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 public abstract class AbstractType implements Serializable {
     @Id

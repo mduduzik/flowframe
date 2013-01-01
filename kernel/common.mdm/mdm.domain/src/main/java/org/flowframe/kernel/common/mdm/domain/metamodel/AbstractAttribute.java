@@ -19,7 +19,7 @@ import javax.persistence.metamodel.Type.PersistenceType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="sysmmattribute")
+@Table(name="ffsysmmattribute")
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 public abstract class AbstractAttribute {
     @Id

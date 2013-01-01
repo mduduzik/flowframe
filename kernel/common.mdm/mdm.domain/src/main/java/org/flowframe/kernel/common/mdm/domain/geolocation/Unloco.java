@@ -14,7 +14,7 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refunloco")
+@Table(name="ffrefunloco")
 public class Unloco extends BaseEntity implements Serializable {
 
     @ManyToOne(targetEntity = Country.class)

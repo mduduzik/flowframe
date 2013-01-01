@@ -22,7 +22,7 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
 
 @Entity
-@Table(name = "sysdsdatasource")
+@Table(name = "ffsysdsdatasource")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DataSource extends MultitenantBaseEntity {
 	@ManyToOne

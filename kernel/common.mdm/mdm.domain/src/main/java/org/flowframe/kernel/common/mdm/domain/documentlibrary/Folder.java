@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sysdlfolder")
+@Table(name="ffsysdlfolder")
 public class Folder extends AbstractDocument {
 
 	@OneToMany(targetEntity=FileEntry.class, mappedBy="folder",cascade=CascadeType.ALL,fetch=FetchType.EAGER)

@@ -11,6 +11,6 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="sysdldoctype")
+@Table(name="ffsysdldoctype")
 public class DocType extends MultitenantBaseEntity {
 }

@@ -11,6 +11,6 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 @SuppressWarnings("serial")
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refcontacttype")
+@Table(name="ffrefcontacttype")
 public class ContactType extends MultitenantBaseEntity {
 }

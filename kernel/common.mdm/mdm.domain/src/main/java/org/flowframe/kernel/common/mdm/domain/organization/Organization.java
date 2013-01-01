@@ -15,7 +15,7 @@ import org.flowframe.kernel.common.mdm.domain.geolocation.AddressTypeAddress;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="reforganization")
+@Table(name="ffreforganization")
 public class Organization extends MultitenantBaseEntity {
 	@OneToMany(targetEntity = AddressTypeAddress.class)
     private Set<AddressTypeAddress> addressTypeAddresses = new HashSet<AddressTypeAddress>();

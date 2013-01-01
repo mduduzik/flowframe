@@ -14,7 +14,7 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refcontacttypecontact")
+@Table(name="ffrefcontacttypecontact")
 public class ContactTypeContact extends MultitenantBaseEntity implements IRelationEntity {
 	private static final long serialVersionUID = 1L;
 	

@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="mdmentitymetadata")
+@Table(name="ffmdmentitymetadata")
 public class DefaultEntityMetadata implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

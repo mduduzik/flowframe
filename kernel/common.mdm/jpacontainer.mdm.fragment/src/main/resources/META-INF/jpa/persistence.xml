@@ -8,9 +8,6 @@
 		<class>org.flowframe.kernel.common.mdm.domain.application.Application</class>
 		<class>org.flowframe.kernel.common.mdm.domain.application.Feature</class>	
 		<class>org.flowframe.kernel.common.mdm.domain.application.FeatureSet</class>	
-		<class>org.flowframe.kernel.common.mdm.domain.commercialrecord.CommercialRecord</class>
-		<class>org.flowframe.kernel.common.mdm.domain.commercialrecord.CommercialValue</class>
-		<class>org.flowframe.kernel.common.mdm.domain.currency.CurrencyUnit</class>
 		<class>org.flowframe.kernel.common.mdm.domain.documentlibrary.AbstractDocument</class>
 		<class>org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType</class>
 		<class>org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry</class>
@@ -31,9 +28,6 @@
 		<class>org.flowframe.kernel.common.mdm.domain.note.Note</class>
 		<class>org.flowframe.kernel.common.mdm.domain.note.NoteItem</class>
 		<class>org.flowframe.kernel.common.mdm.domain.note.NoteType</class>
-		
-		<class>org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber</class>
-		<class>org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumberType</class>
 		
 		<class>org.flowframe.kernel.common.mdm.domain.role.Role</class>
 		

@@ -11,6 +11,8 @@
   <modules>
   	<module>mdm.domain</module>
   	<module>mdm.dao.services</module>
+  	<module>jpacontainer.mdm.fragment</module>
+  	<module>mdm.dao.services.impl</module>
   </modules>
 	<build>
 		<plugins>

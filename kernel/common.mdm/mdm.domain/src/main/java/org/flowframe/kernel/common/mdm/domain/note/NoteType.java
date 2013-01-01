@@ -11,6 +11,6 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refnotetype")
+@Table(name="ffrefnotetype")
 public class NoteType extends MultitenantBaseEntity {
 }
