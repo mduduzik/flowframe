@@ -19,7 +19,7 @@ import org.flowframe.kernel.common.utils.Validator;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name = "sysfeature")
+@Table(name="ffsysfeature")
 public class Feature extends BaseEntity {
 	@ManyToOne(targetEntity = Application.class)
 	@JoinColumn

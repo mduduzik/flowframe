@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
-@Table(name = "sysdsfielddependenceexpression")
+@Table(name = "ffsysdsfielddependenceexpression")
 public class DataSourceFieldDependenceExpression extends MultitenantBaseEntity {
 	private static final long serialVersionUID = 7764591627340689123L;
 

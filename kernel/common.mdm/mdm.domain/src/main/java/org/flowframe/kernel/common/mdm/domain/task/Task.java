@@ -15,6 +15,6 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="mdmtask")
+@Table(name="ffmdmtask")
 public class Task extends MultitenantBaseEntity {
 }

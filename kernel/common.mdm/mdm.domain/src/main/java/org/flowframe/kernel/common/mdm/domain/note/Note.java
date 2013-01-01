@@ -18,7 +18,7 @@ import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="mdmnote")
+@Table(name="ffmdmnote")
 public class Note extends MultitenantBaseEntity {
     @OneToMany(mappedBy="note",cascade = CascadeType.ALL,targetEntity=NoteItem.class)
     private Set<NoteItem> notes = new java.util.HashSet<NoteItem>();

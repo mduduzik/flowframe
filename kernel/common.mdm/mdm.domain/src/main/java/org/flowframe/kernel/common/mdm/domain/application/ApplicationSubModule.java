@@ -19,7 +19,7 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="sysapplicationsubmodule")
+@Table(name="ffsysapplicationsubmodule")
 public class ApplicationSubModule extends BaseEntity {
 
     @ManyToOne(targetEntity = ApplicationModule.class)

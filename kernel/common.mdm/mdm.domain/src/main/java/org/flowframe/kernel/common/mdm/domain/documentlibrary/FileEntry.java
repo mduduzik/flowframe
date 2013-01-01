@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "sysdlfileentry")
+@Table(name="ffsysdlfileentry")
 public class FileEntry extends AbstractDocument {
 	
 	@Transient

@@ -22,7 +22,7 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="sysapplicationModule")
+@Table(name="ffsysapplicationModule")
 public class ApplicationModule extends BaseEntity {
     @ManyToOne(targetEntity = Application.class, fetch = FetchType.EAGER)
     @JoinColumn

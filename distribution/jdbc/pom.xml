@@ -61,6 +61,7 @@
 								<copy todir="../virgo-bundles/repository/common/jdbc">															
 									<filelist dir="dependencies">
 										<file name="org.flowframe.thirdparty.com.mysql.jdbc-5.1.20.jar" />
+										<file name="org.flowframe.kernel.datasource.mysql-0.0.1.jar" />
 									</filelist>
 								</copy>	
 							</tasks>
@@ -78,6 +79,11 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.com.mysql.jdbc</artifactId>
 			<version>5.1.20</version>
-		</dependency>									
+		</dependency>			
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.datasource.mysql</artifactId>
+			<version>0.0.1</version>
+		</dependency>								
 	</dependencies>
 </project>

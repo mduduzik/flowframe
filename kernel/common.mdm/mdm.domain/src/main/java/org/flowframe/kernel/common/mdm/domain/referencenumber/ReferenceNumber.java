@@ -21,7 +21,7 @@ import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
 @SuppressWarnings("serial")
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="mdmreferencenumber")
+@Table(name="ffmdmreferencenumber")
 public class ReferenceNumber extends MultitenantBaseEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ReferenceNumber> childReferenceNumbers = new java.util.HashSet<ReferenceNumber>();

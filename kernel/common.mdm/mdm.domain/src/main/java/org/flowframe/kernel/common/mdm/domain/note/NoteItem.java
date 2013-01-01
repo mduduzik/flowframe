@@ -13,7 +13,7 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="mdmnoteitem")
+@Table(name="ffmdmnoteitem")
 public class NoteItem extends MultitenantBaseEntity {
     @ManyToOne(targetEntity = Note.class)
     private Note parentNote;

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity
-@Table(name="sysapplication")
+@Table(name="ffsysapplication")
 public class Application extends BaseEntity {
 	
     private String themeIconPath;

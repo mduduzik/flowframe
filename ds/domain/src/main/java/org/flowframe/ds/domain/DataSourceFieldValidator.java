@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
 @Entity
-@Table(name = "sysdsfieldvalidator")
+@Table(name = "ffsysdsfieldvalidator")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class DataSourceFieldValidator extends MultitenantBaseEntity {
 	private static final long serialVersionUID = 2947385360166519486L;

@@ -20,7 +20,7 @@ import org.flowframe.kernel.common.mdm.domain.application.Application;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="mdmtaskdefinition")
+@Table(name="ffmdmtaskdefinition")
 public class TaskDefinition extends MultitenantBaseEntity {
     private String bpmn2ProcDefURL;
     private String processId;

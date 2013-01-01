@@ -4,9 +4,22 @@ Bundle-Name: FF Metamodel DAO Services Implementation
 Bundle-SymbolicName: org.flowframe.kernel.metamodel.dao.services.impl
 Import-Package:  org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1, 1.0.0)",
   org.flowframe.kernel.metamodel.dao.services;version="[0.0.1, 1.0.0)",
-  org.slf4j;version="[1.6.1, 1.7.0)",
-  org.springframework.stereotype;version="[3.0, 3.1)",
-  org.springframework.transaction;version="[3.0, 3.1)",
-  org.springframework.transaction.annotation;version="[3.0, 3.1)"
-Excluded-Imports:  javax.persistence,javax.validation.constraints,
-  org.springframework.format.annotation, javax.persistence.metamodel, javax.persistence.criteria
+  org.hibernate.hql.ast;version="3.6.0.Final",
+  javax.persistence;version="2.0.0",
+  javax.persistence.criteria;version="2.0.0",
+  javax.persistence.metamodel;version="2.0.0",
+  org.slf4j;version="[1.6.1,1.7.0)",
+  org.springframework.dao.annotation;version="[3.0,3.1)",
+  org.springframework.transaction;version="[3.0,3.1)",
+  org.springframework.transaction.jta;version="[3.0,3.1)",
+  org.springframework.transaction.aspectj;version="[3.0,3.1)",
+  org.springframework.stereotype;version="[3.0,3.1)",
+  org.springframework.transaction.annotation;version="[3.0,3.1)",
+  org.springframework.beans.factory.annotation;version="[3.0,3.1)",
+  org.springframework.orm.jpa.vendor;version="[3.0,3.1)",
+  org.springframework.dao;version="[3.0,3.1)",
+  org.springframework.dao.support;version="[3.0,3.1)",
+  org.springframework.orm.jpa;version="[3.0,3.1)",
+  org.springframework.aop;version="[3.0,3.1)",
+  org.aopalliance.aop;version="1.0.0",
+  org.springframework.aop.framework;version="[3.0,3.1)"

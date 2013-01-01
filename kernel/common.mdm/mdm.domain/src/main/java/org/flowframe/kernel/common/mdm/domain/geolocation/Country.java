@@ -12,7 +12,7 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refcountry")
+@Table(name="ffrefcountry")
 public class Country extends BaseEntity implements Serializable {
 
 	public  static boolean defaultsCreated = false;

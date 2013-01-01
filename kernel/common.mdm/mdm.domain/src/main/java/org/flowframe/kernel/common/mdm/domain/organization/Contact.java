@@ -20,7 +20,7 @@ import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refcontact")
+@Table(name="ffrefcontact")
 public class Contact extends BaseEntity implements Serializable {
     private String firstName;
 

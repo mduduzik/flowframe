@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sysmmentitytypeattribute")
+@Table(name="ffsysmmentitytypeattribute")
 public class EntityTypeAttribute implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

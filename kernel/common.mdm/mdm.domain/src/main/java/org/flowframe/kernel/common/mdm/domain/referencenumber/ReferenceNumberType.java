@@ -16,7 +16,7 @@ import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="mdmreferencenumbertype")
+@Table(name="ffmdmreferencenumbertype")
 public class ReferenceNumberType extends MultitenantBaseEntity implements Serializable {
     @OneToOne(targetEntity = DefaultEntityMetadata.class)
     @JoinColumn

@@ -2,6 +2,6 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF Metamodel DAO Services
 Bundle-SymbolicName: org.flowframe.kernel.metamodel.dao.services
-Import-Package: org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1, 1.0.0)"
-Excluded-Imports:  javax.persistence,javax.validation.constraints,
-  org.springframework.format.annotation, javax.persistence.metamodel
+Import-Package: org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1, 1.0.0)",
+  javax.persistence;version="2.0.0",
+  javax.persistence.metamodel;version="2.0.0"

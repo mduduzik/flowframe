@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "syssecrole")
+@Table(name="ffsyssecrole")
 public class Role extends AbstractRole{
 	private long roleId;
 	private long companyId;

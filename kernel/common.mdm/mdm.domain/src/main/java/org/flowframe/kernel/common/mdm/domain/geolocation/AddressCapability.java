@@ -12,6 +12,6 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="refaddresscapability")
+@Table(name="ffrefaddresscapability")
 public class AddressCapability extends BaseEntity implements Serializable {
 }
