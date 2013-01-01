@@ -2,5 +2,8 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF UI Component DAO Services
 Bundle-SymbolicName: org.flowframe.ui.component.dao.services
+Import-Package:  org.flowframe.ds.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.component.domain.masterdetail;version="[0.0.1, 1.0.0)"
 Excluded-Imports:  javax.persistence,javax.validation.constraints,
   org.springframework.format.annotation
