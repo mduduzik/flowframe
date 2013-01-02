@@ -37,4 +37,31 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ds.domain</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>com.springsource.javax.persistence</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.kernel.common.mdm.domain
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.annotations.commons</artifactId>
+		</dependency>
+	</dependencies>
 </project>
