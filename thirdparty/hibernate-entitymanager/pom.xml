@@ -110,7 +110,7 @@ cglib:cglib:jar:2.2:compile
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <!--<createSourcesJar>true</createSourcesJar>-->
+                            <createSourcesJar>true</createSourcesJar>
                             <artifactSet>
                                 <includes>
                                     <include>org.hibernate:hibernate-entitymanager</include>

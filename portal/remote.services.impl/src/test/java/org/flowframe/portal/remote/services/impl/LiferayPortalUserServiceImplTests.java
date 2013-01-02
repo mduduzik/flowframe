@@ -30,7 +30,7 @@ public class LiferayPortalUserServiceImplTests extends AbstractTestNGSpringConte
     private ApplicationContext applicationContext;
 	
 	@Autowired
-	private EntityManagerFactory  conxLogisticsManagerFactory;
+	private EntityManagerFactory  ffLoBEntityManagerFactory;
 	
 	private UserTransaction userTransactionManager;
 
@@ -42,9 +42,9 @@ public class LiferayPortalUserServiceImplTests extends AbstractTestNGSpringConte
 	@BeforeClass
 	public void setUp() throws Exception {
         Assert.assertNotNull(applicationContext);
-        Assert.assertNotNull(conxLogisticsManagerFactory);
+        Assert.assertNotNull(ffLoBEntityManagerFactory);
         
-    	em = conxLogisticsManagerFactory.createEntityManager();
+    	em = ffLoBEntityManagerFactory.createEntityManager();
         
         userTransactionManager = (UserTransaction) applicationContext.getBean("globalBitronixTransactionManager");
         Assert.assertNotNull(userTransactionManager);

@@ -148,7 +148,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <!--<createSourcesJar>true</createSourcesJar>-->
+                            <createSourcesJar>true</createSourcesJar>
                             <artifactSet>
                                 <excludes>
                                     <exclude>org.hibernate:jtidy</exclude>

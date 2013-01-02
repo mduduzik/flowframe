@@ -1,15 +1,16 @@
 Manifest-Version: 1.0
-Export-Package: org.flowframe.kernel.jpa;version="0.0.1";uses:="javax.
- persistence,javax.sql,org.flowframe.kernel.jpa.container.services,org
- .springframework.beans.factory,org.springframework.beans.factory.anno
- tation,org.springframework.context,org.springframework.context.weavin
- g,org.springframework.orm.jpa,org.springframework.orm.jpa.persistence
- unit",org.flowframe.kernel.jpa.dynaconfig.hibernate;version="0.0.1";u
- ses:="javax.sql,javax.transaction,org.flowframe.kernel.jpa.container.
- services,org.hibernate,org.hibernate.transaction,org.osgi.framework,o
- rg.slf4j,org.springframework.beans.factory",org.flowframe.kernel.jpa.
- multipu;version="0.0.1";uses:="javax.sql,org.springframework.beans.fa
- ctory.annotation,org.springframework.orm.jpa.persistenceunit"
+Export-Package: org.flowframe.kernel.domain;version="0.0.1";uses:="jav
+ ax.persistence",org.flowframe.kernel.jpa;version="0.0.1";uses:="javax
+ .persistence,javax.sql,org.flowframe.kernel.jpa.container.services,or
+ g.springframework.beans.factory,org.springframework.beans.factory.ann
+ otation,org.springframework.context,org.springframework.context.weavi
+ ng,org.springframework.orm.jpa,org.springframework.orm.jpa.persistenc
+ eunit",org.flowframe.kernel.jpa.dynaconfig.hibernate;version="0.0.1";
+ uses:="javax.sql,javax.transaction,org.flowframe.kernel.jpa.container
+ .services,org.hibernate,org.hibernate.transaction,org.osgi.framework,
+ org.slf4j,org.springframework.beans.factory",org.flowframe.kernel.jpa
+ .multipu;version="0.0.1";uses:="javax.sql,org.springframework.beans.f
+ actory.annotation,org.springframework.orm.jpa.persistenceunit"
 Import-Bundle: org.flowframe.thirdparty.hibernate.core;version="3.6.0.
  Final";import-scope:="application",org.flowframe.thirdparty.hibernate
  .annotations.commons;version="3.2.0.Final";import-scope:="application

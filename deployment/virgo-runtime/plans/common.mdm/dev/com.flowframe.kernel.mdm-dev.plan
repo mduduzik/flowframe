@@ -17,8 +17,8 @@
 	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services" version="0.0.1"/>	
 	<artifact type="bundle" name="org.flowframe.kernel.metamodel.dao.services" version="0.0.1"/>
 	<artifact type="bundle" name="org.flowframe.kernel.metamodel.dao.services.impl" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services.impl" version="0.0.1"/>
-		        
+    <artifact type="bundle" name="org.flowframe.kernel.common.mdm.dao.services.impl" version="0.0.1"/>
+    
 	<!-- Kernel: JPA Container -->
 	<artifact type="bundle" name="org.flowframe.kernel.jpa.lob.jpacontainer" version="0.0.1"/>
 </plan>

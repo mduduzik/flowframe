@@ -84,8 +84,9 @@
 										<file name="com.springsource.net.sf.cglib-2.2.0.jar" />
 										<file
 											name="com.springsource.org.logicalcobwebs.cglib.core-0.9.1.jar" />
-										<file name="com.springsource.org.aspectj.weaver-1.6.1.jar" />
-										<file name="com.springsource.org.aspectj.runtime-1.6.1.jar" />
+										<file name="com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar" />
+										<file name="com.springsource.org.aspectj.runtime-1.6.8.RELEASE.jar" />
+										<file name="com.springsource.org.aopalliance-1.0.0.jar" />
 										<file name="com.springsource.antlr-2.7.7.jar" />
 										<file
 											name="com.springsource.org.hibernate.validator-4.2.0.Final.jar" />
@@ -169,12 +170,14 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>com.springsource.org.aspectj.weaver</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>com.springsource.org.aspectj.runtime</artifactId>
-			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aopalliance</groupId>
+			<artifactId>com.springsource.org.aopalliance</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
