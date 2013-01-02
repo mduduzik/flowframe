@@ -1,0 +1,22 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Common Vaadin Addons
+Bundle-SymbolicName: org.flowframe.ui.vaadin.addons.common
+Vaadin-Widgetsets: org.flowframe.ui.vaadin.addons.common.gwt.CommonWidgetset
+Import-Package:  com.google.gwt.core.client;version="2.3.0",
+  com.google.gwt.dom.client;version="2.3.0",
+  com.google.gwt.event.dom.client;version="2.3.0",
+  com.google.gwt.event.logical.shared;version="2.3.0",
+  com.google.gwt.event.shared;version="2.3.0",
+  com.google.gwt.user.client;version="2.3.0",
+  com.google.gwt.user.client.ui;version="2.3.0",
+  com.vaadin.addon.jpacontainer;version="2.0.0",
+  com.vaadin.data;version="6.8.6",
+  com.vaadin.data.util;version="6.8.6",
+  com.vaadin.event;version="6.8.6",
+  com.vaadin.terminal;version="6.8.6",
+  com.vaadin.terminal.gwt.client;version="6.8.6",
+  com.vaadin.terminal.gwt.client.ui;version="6.8.6",
+  com.vaadin.tools;version="6.8.6",
+  com.vaadin.ui;version="6.8.6",
+  org.flowframe.ui.vaadin.addons.filtertable;version="[0.0.1, 1.0.0)"

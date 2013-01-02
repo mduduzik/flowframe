@@ -1,0 +1,11 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Vaadin Common
+Bundle-SymbolicName: org.flowframe.ui.vaadin.common
+Import-Package:  com.vaadin;version="6.8.2",
+  com.vaadin.data;version="6.8.2",
+  com.vaadin.data.util;version="6.8.2",
+  com.vaadin.terminal;version="6.8.2",
+  com.vaadin.terminal.gwt.server;version="6.8.2",
+  com.vaadin.ui;version="6.8.2",
+  org.slf4j;version="[1.6.1, 1.7.0)"
