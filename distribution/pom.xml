@@ -59,7 +59,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy todir="virgo-bundles/repository/common/common">
+								<copy todir="virgo-bundles/repository/flowframe/common">
 									<filelist dir="dependencies">
 										<!-- FF 3rd Parties -->
 										<file name="org.flowframe.thirdparty.bitronix-2.1.2.jar" />

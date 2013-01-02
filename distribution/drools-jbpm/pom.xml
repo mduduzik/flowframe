@@ -58,7 +58,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy todir="../virgo-bundles/repository/common/drools-jbpm">															
+								<copy todir="../virgo-bundles/repository/flowframe/drools-jbpm">															
 									<filelist dir="dependencies">
 									    <file name="org.flowframe.bpm.jbpm.taskserver.persistence-0.0.1.jar" />
 										<file name="org.flowframe.bpm.jbpm.persistence.datasource-0.0.1.jar" />

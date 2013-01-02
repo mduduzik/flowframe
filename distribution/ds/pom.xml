@@ -58,7 +58,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy todir="../virgo-bundles/repository/common/ds">															
+								<copy todir="../virgo-bundles/repository/flowframe/ds">															
 									<filelist dir="dependencies">
 										<file name="org.flowframe.ds.dao.services-0.0.1.jar" />
 										<file name="org.flowframe.ds.dao.services.impl-0.0.1.jar" />

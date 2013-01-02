@@ -58,14 +58,14 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy todir="../virgo-bundles/repository/common/mdm">															
+								<copy todir="../virgo-bundles/repository/flowframe/mdm">															
 									<filelist dir="dependencies">
 									    <file name="org.flowframe.kernel.common.mdm.dao.services-0.0.1.jar" />
 										<file name="org.flowframe.kernel.common.mdm.domain-0.0.1.jar" />
 										<file name="org.flowframe.kernel.common.mdm.dao.services.impl-0.0.1.jar" />
 									</filelist>
 								</copy>	
-								<copy todir="../virgo-bundles/repository/common/utils">															
+								<copy todir="../virgo-bundles/repository/flowframe/utils">															
 									<filelist dir="dependencies">
 									    <file name="org.flowframe.kernel.common.utils-0.0.1.jar" />
 									</filelist>

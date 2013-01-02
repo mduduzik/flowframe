@@ -58,7 +58,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy todir="../virgo-bundles/repository/common/jdbc">															
+								<copy todir="../virgo-bundles/repository/flowframe/jdbc">															
 									<filelist dir="dependencies">
 										<file name="org.flowframe.thirdparty.com.mysql.jdbc-5.1.20.jar" />
 										<file name="org.flowframe.kernel.datasource.mysql-0.0.1.jar" />

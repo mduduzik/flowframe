@@ -10,7 +10,7 @@
 	<artifactId>org.flowframe.deployment</artifactId>
 	<packaging>pom</packaging>
 	<properties>
-		<virgo.runtime.repository>D:\dev\workspaces\flowframe\Runtimes\virgo-tomcat-server-3.0.3.RELEASE-DEV\repository\common</virgo.runtime.repository>
+		<virgo.runtime.repository>D:\dev\workspaces\flowframe\Runtimes\virgo-tomcat-server-3.0.3.RELEASE-DEV\repository\flowframe</virgo.runtime.repository>
 	</properties>
 	<build>
 		<plugins>
@@ -38,7 +38,7 @@
 						<configuration>
 							<tasks>
 								<copy todir="${virgo.runtime.repository}">
-									<fileset  dir="../distribution/virgo-bundles/repository/common">
+									<fileset  dir="../distribution/virgo-bundles/repository/flowframe">
 										<include  name="**/*"/>
 									</fileset>
 								</copy>
