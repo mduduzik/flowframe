@@ -8,7 +8,7 @@
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi</artifactId>
-	<name>MVP and UiBinder for Vaadin for OSGi</name>	
+	<name>org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi</name>	
 	<dependencies>
 		<dependency>
 			<groupId>org.flowframe</groupId>

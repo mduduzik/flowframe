@@ -8,7 +8,7 @@
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>org.flowframe.thirdparty.org.vaadin.addons.wizard-customized-osgi</artifactId>
-	<name>Wizard for Vaadin Customized OSGi</name>	
+	<name>org.flowframe.thirdparty.org.vaadin.addons.wizard-customized-osgi</name>	
 	<dependencies>
 		<dependency>
 			<groupId>org.flowframe</groupId>

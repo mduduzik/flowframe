@@ -2,11 +2,10 @@ package org.flowframe.bpm.jbpm.pageflow.services;
 
 import java.util.Map;
 
-import com.conx.logistics.mdm.domain.application.Feature;
-import com.vaadin.ui.Component;
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
 
 public interface ITaskWizard extends IPageFlowListener {
-	public Component getComponent();
+	public Object getComponent();
 	public Feature getOnCompletionFeature();
 	public Map<String,Object> getProperties();
 	public void setNextEnabled(boolean isEnabled);

@@ -7,9 +7,8 @@
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>vaadin-addon-toolbar</artifactId>
-	<name>vaadin-addon-toolbar</name>
-	<description>vaadin-addon-toolbar</description>
+	<artifactId>org.flowframe.thirdparty.vaadin-addon-toolbar</artifactId>
+	<name>org.flowframe.thirdparty.vaadin-addon-toolbar</name>
 	<repositories>
 		<repository>
 			<id>jvnet-nexus-snapshots</id>

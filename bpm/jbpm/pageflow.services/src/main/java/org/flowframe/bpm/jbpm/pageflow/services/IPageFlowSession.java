@@ -9,14 +9,13 @@ import javax.transaction.UserTransaction;
 
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.conx.logistics.kernel.bpm.services.IBPMProcessInstance;
-import com.conx.logistics.mdm.domain.application.Feature;
-import com.vaadin.ui.Component;
+import org.flowframe.bpm.jbpm.services.IBPMProcessInstance;
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
 
 public interface IPageFlowSession {
 	public IBPMProcessInstance getBPMProcessInstance();
 	public Collection<IPageFlowPage> getPages();
-	public Component getWizardComponent();
+	public Object getWizardComponent();
 	public Feature getOnCompletionFeature();
 	public void nextPage();
 	public void previousPage();

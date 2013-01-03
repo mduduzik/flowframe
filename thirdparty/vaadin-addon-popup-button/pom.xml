@@ -8,7 +8,7 @@
 	</parent>
   <artifactId>vaadin-addon-popup-button</artifactId>
   <name>org.flowframe.thirdparty.vaadin-addon-popup-button</name>
-  <description>Vaadin Popup Button Addon</description>
+  <description>org.flowframe.thirdparty.vaadin-addon-popup-button</description>
     <repositories>
 		<repository>
 			<id>jvnet-nexus-snapshots</id>

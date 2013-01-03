@@ -8,9 +8,9 @@ import javax.transaction.UserTransaction;
 
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.conx.logistics.kernel.bpm.services.IBPMService;
-import com.conx.logistics.kernel.metamodel.dao.services.IEntityTypeDAOService;
-import com.conx.logistics.mdm.domain.task.TaskDefinition;
+import org.flowframe.bpm.jbpm.services.IBPMService;
+import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
+import org.flowframe.kernel.common.mdm.domain.task.TaskDefinition;
 
 public interface IPageFlowManager {
 	/**

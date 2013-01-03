@@ -9,8 +9,7 @@
 	</parent>
 	<artifactId>org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0</artifactId>
 	<version>2.0.0</version>
-	<name>vaadin-addon-jpacontainer-agpl-3.0</name>
-	<description>vaadin-addon-jpacontainer-agpl-3.0</description>
+	<name>org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0</name>
 	<dependencies>
 		<dependency>
 			<groupId>com.vaadin.addon</groupId>

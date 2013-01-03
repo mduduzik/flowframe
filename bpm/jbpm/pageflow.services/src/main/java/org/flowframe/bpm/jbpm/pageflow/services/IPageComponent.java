@@ -2,9 +2,7 @@ package org.flowframe.bpm.jbpm.pageflow.services;
 
 import java.util.Map;
 
-import org.vaadin.teemu.wizards.WizardStep;
-
-public interface IPageComponent extends WizardStep {
+public interface IPageComponent {
 	public static final String CONX_ENTITY_MANAGER_FACTORY = "CONX_ENTITY_MANAGER_FACTORY";
 	public static final String JTA_GLOBAL_TRANSACTION_MANAGER = "JTA_GLOBAL_TRANSACTION_MANAGER";
 	public static final String ENTITY_CONTAINER_PROVIDER = "ENTITY_CONTAINER_PROVIDER";
@@ -23,4 +21,43 @@ public interface IPageComponent extends WizardStep {
 	public Object getResultData();
 	public boolean isExecuted();
 	public void setExecuted(boolean executed);
+	
+	/**
+	 * 
+	 * WizardStep-like interface
+	 * 
+	 */
+    /**
+     * Returns the caption of this WizardStep.
+     * 
+     * @return the caption of this WizardStep.
+     */
+    public String getCaption();
+
+    /**
+     * Returns the {@link Component} that is to be used as the actual content of
+     * this WizardStep.
+     * 
+     * @return the content of this WizardStep as a Component.
+     */
+    public Object getContent();
+
+    /**
+     * Returns true if user is allowed to navigate forward past this WizardStep.
+     * Typically this method is called when user clicks the Next button of the
+     * {@link Wizard}.
+     * 
+     * @return true if user is allowed to navigate past this WizardStep.
+     */
+    public boolean onAdvance();
+
+    /**
+     * Returns true if user is allowed to navigate backwards from this
+     * WizardStep. Typically this method is called when user clicks the Back
+     * button of the {@link Wizard}.
+     * 
+     * @return true if user is allowed to navigate backwards from this
+     *         WizardStep.
+     */
+    public boolean onBack();	
 }

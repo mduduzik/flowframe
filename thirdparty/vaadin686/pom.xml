@@ -7,6 +7,7 @@
     <relativePath>..</relativePath>
   </parent>
   <artifactId>org.flowframe.thirdparty.vaadin</artifactId>
+  <name>org.flowframe.thirdparty.vaadin</name>
 	<version>6.8.6</version>
 	<dependencies>
 		<dependency>

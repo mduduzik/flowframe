@@ -8,8 +8,7 @@
 	</parent>
   <artifactId>org.flowframe.thirdparty.vaadin-addon-contextmenu</artifactId>
   <version>3.1.0</version>
-  <name>vaadin-addon-contextmenu</name>
-  <description>vaadin-addon-contextmenu</description>
+  <name>org.flowframe.thirdparty.vaadin-addon-contextmenu</name>
 	<dependencies>
 		<dependency>
 		   <groupId>org.vaadin.addons</groupId>

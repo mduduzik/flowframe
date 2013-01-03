@@ -1,7 +1,7 @@
 package org.flowframe.bpm.jbpm.pageflow.services;
 
-import com.conx.logistics.kernel.ui.components.domain.page.TaskPage;
+import org.flowframe.ui.component.domain.page.TaskPageComponent;
 
 public interface IModelDrivenPageFlowPage extends IPageFlowPage {
-	public TaskPage getComponentModel();
+	public TaskPageComponent getComponentModel();
 }

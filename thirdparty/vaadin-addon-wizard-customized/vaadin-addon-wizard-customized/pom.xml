@@ -9,7 +9,7 @@
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>org.flowframe.thirdparty.org.vaadin.addons.wizard-customized</artifactId>
-	<name>Wizard for Vaadin Customized</name>
+	<name>org.flowframe.thirdparty.org.vaadin.addons.wizard-customized</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
