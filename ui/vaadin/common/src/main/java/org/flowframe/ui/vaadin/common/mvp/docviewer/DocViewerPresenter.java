@@ -5,16 +5,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
+import org.flowframe.ui.vaadin.common.mvp.docviewer.view.DocViewerView;
+import org.flowframe.ui.vaadin.common.mvp.docviewer.view.IDocViewerView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.conx.logistics.kernel.documentlibrary.remote.services.IRemoteDocumentRepository;
-import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
-import org.flowframe.ui.vaadin.common.mvp.docviewer.view.DocViewerView;
-import org.flowframe.ui.vaadin.common.mvp.docviewer.view.IDocViewerView;
-import com.conx.logistics.mdm.domain.documentlibrary.FileEntry;
 import com.vaadin.terminal.ExternalResource;
 import com.vaadin.ui.Embedded;
 

@@ -2,7 +2,8 @@ package org.flowframe.ui.vaadin.common.data.container;
 
 import javax.persistence.EntityManager;
 
-import com.conx.logistics.mdm.domain.BaseEntity;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.provider.CachingLocalEntityProvider;
 

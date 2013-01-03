@@ -32,5 +32,6 @@
   	<module>google</module>
   	<module>hornetq-all</module>
   	<module>netty</module>
+  	<module>vaadin-addon-mvp-customized</module>
   </modules>
 </project>
