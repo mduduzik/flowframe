@@ -9,7 +9,7 @@
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized</artifactId>
-	<name>MVP and UiBinder for Vaadin Customized</name>
+	<name>org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>

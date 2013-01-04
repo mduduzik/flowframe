@@ -18,5 +18,6 @@
 		<module>taskserver</module>
 		<module>taskserver.human-task-core.fragment</module>
 		<module>taskserver.persistence</module>
+		<module>pageflow.services</module>
 	</modules>
 </project>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import org.flowframe.kernel.common.mdm.dao.services.IEntityMetadataDAOService;
+import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.jpa.container.services.IEntityManagerFactoryManager;
@@ -21,6 +23,8 @@ import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IApplicationViewContribution;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.contribution.IViewContribution;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.data.IDAOProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
 import org.slf4j.Logger;

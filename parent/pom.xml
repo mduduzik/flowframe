@@ -2617,6 +2617,16 @@
 			</snapshots>
 		</repository>
 		<repository>
+			<id>conx nexus repo</id>	
+			<url>http://conxbuild.bconv.com:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>			
+		</repository>		
+		<repository>
 			<id>jboss-deprecated</id>
 			<name>JBoss Deprecated</name>
 			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>

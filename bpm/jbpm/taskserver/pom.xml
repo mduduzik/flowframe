@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>org.flowframe.bpm.jbpm.taskserver</artifactId>
 	<dependencies>
-		<!-- ConX -->
+		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.bpm.jbpm.services</artifactId>

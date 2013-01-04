@@ -118,6 +118,9 @@
 										<file name="com.springsource.net.sf.cglib-2.2.0.jar" />
 										<file name="com.springsource.org.antlr.runtime-3.1.3.jar" />
 										<file name="mvel2-2.1.0.drools10.jar" />
+										
+										<file name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3-0.5.7.SNAPSHOT.jar" />
+										<file name="org.flowframe.thirdparty.org.jvnet.jaxb2_commons-0.6.4.SNAPSHOT.jar" />										
 									</filelist>
 								</copy>
 							</tasks>
@@ -155,6 +158,16 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.org.jvnet.hyperjaxb3</artifactId>
+			<version>0.5.7.SNAPSHOT</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</artifactId>
+			<version>0.6.4.SNAPSHOT</version>
+		</dependency>	
 		<dependency>
 			<groupId>net.sourceforge.cglib</groupId>
 			<artifactId>com.springsource.net.sf.cglib</artifactId>

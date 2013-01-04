@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 
-	<osgi:reference id="conxLogisticsManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
+	<osgi:reference id="ffEntityManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
 	</osgi:reference>		
 	
 	<!-- KERNEL.TM.JTA Transaction Manager -->
