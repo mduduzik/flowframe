@@ -5,7 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.conx.logistics.common.utils.StringUtil;
+import org.flowframe.kernel.common.utils.StringUtil;
+
 import com.vaadin.ui.Upload.Receiver;
 
 public class AttachmentFormReceiver implements Receiver {

@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collection;
 
+import org.flowframe.ui.component.domain.form.CollapseableSectionFormComponent;
+import org.flowframe.ui.vaadin.forms.impl.VaadinCollapsibleSectionForm;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.conx.logistics.kernel.ui.components.domain.form.CollapseableSectionFormComponent;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinCollapsibleSectionForm;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
 import com.vaadin.data.Item;
 import com.vaadin.ui.VerticalLayout;
 

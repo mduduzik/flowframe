@@ -2,8 +2,9 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table;
 
 import java.util.Locale;
 
-import com.conx.logistics.kernel.ui.filteredtable.FilterDecorator;
-import com.conx.logistics.kernel.ui.filteredtable.FilterGenerator;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterDecorator;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterGenerator;
+
 import com.vaadin.data.Container.Filter;
 import com.vaadin.terminal.Resource;
 import com.vaadin.ui.CustomTable;

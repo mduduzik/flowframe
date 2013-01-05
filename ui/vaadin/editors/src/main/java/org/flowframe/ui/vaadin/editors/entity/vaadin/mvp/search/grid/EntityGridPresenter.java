@@ -2,11 +2,9 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid;
 
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.table.ConXTable;
+import org.flowframe.ui.component.domain.table.GridComponent;
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IDepletedListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
@@ -15,8 +13,10 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorE
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.view.EntityGridView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.view.IEntityGridView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.service.contribution.IMainApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;
@@ -31,7 +31,7 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 	private JPAContainer<?> entityContainer;
 	private MultiLevelEntityEditorEventBus entityEditorEventListener;
 	private IMainApplication mainApplication;
-	private ConXTable tableComponent;
+	private GridComponent tableComponent;
 	private MultiLevelEntityEditorPresenter multiLevelEntityEditorPresenter;
 	private Class<?> entityClass;
 
@@ -82,7 +82,7 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 
 	@Override
 	public void configure() {
-		this.tableComponent = (ConXTable) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.tableComponent = (GridComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
 		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
 		this.entityEditorEventListener = multiLevelEntityEditorPresenter.getEventBus();

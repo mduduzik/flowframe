@@ -1,18 +1,18 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.simple;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.form.SimpleFormComponent;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.ui.component.domain.form.SimpleFormComponent;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.simple.view.EntityLineEditorSimpleFormView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.simple.view.IEntityLineEditorSimpleFormView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
-import com.conx.logistics.mdm.domain.BaseEntity;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 
 @Presenter(view = EntityLineEditorSimpleFormView.class)

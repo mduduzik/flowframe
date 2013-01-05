@@ -14,5 +14,6 @@
   <module>ui</module>
   <module>ds</module>
   <module>distribution</module>
+  <module>reporting</module>
   </modules>
 </project>

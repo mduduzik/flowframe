@@ -1,9 +1,9 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes;
 
+import org.flowframe.kernel.common.mdm.domain.note.NoteItem;
+import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.vaadin.mvp.eventbus.annotation.Event;
 
-import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
-import com.conx.logistics.mdm.domain.note.NoteItem;
 import com.vaadin.addon.jpacontainer.EntityItem;
 
 public interface NotesEditorEventBus extends AbstractEntityEditorEventBus {

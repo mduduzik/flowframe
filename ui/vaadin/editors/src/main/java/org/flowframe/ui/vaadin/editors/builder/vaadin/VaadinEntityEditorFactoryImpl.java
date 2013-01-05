@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
 import org.flowframe.ui.component.domain.form.CollapseableSectionFormComponent;
@@ -52,32 +53,32 @@ public class VaadinEntityEditorFactoryImpl implements IEntityEditorFactory {
 	}
 
 	@Override
-	public Map<IPresenter<?, ? extends EventBus>, EventBus> create(AbstractComponent conXComponent, Map<String, Object> params) {
+	public Map<IPresenter<?, ? extends EventBus>, EventBus> create(AbstractComponent componentModel, Map<String, Object> params) {
 		Map<IPresenter<?, ? extends EventBus>, EventBus> res = null;
 
-		if (conXComponent instanceof AttachmentEditorComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		if (componentModel instanceof AttachmentEditorComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			final IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(AttachmentEditorPresenter.class);
 			final EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof NoteEditorComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof NoteEditorComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(NotesEditorPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof ReferenceNumberEditorComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof ReferenceNumberEditorComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(ReferenceNumberEditorPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof MasterDetailComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof MasterDetailComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			ConfigurablePresenterFactory presenterFactory = null;
 			EventBusManager ebm = (EventBusManager) params.get(IEntityEditorFactory.FACTORY_PARAM_MVP_EVENTBUS_MANAGER);
 
@@ -96,43 +97,43 @@ public class VaadinEntityEditorFactoryImpl implements IEntityEditorFactory {
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(mainPresenter, mainEventBus);
-		} else if (conXComponent instanceof DetailFormComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof DetailFormComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityFormPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof CollapseableSectionFormComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof CollapseableSectionFormComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorCollapsibleFormPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof SimpleFormComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof SimpleFormComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorSimpleFormPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof DetailGridComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof DetailGridComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorGridPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		} else if (conXComponent instanceof GridComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		} else if (componentModel instanceof GridComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityGridPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
-		}  else if (conXComponent instanceof LineEditorComponent) {
-			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, conXComponent);
+		}  else if (componentModel instanceof LineEditorComponent) {
+			params.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorSectionPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 

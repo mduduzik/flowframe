@@ -9,18 +9,13 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.presenter.IPresenter;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.AbstractComponent;
-import com.conx.logistics.kernel.ui.components.domain.attachment.AttachmentEditorComponent;
-import com.conx.logistics.kernel.ui.components.domain.masterdetail.LineEditorComponent;
-import com.conx.logistics.kernel.ui.components.domain.masterdetail.LineEditorContainerComponent;
-import com.conx.logistics.kernel.ui.components.domain.note.NoteEditorComponent;
-import com.conx.logistics.kernel.ui.components.domain.referencenumber.ReferenceNumberEditorComponent;
+import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
+import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
+import org.flowframe.ui.component.domain.masterdetail.LineEditorContainerComponent;
+import org.flowframe.ui.component.domain.note.NoteEditorComponent;
+import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -28,7 +23,12 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurablePresenterFa
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.view.EntityLineEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.view.IEntityLineEditorView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.presenter.IPresenter;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;

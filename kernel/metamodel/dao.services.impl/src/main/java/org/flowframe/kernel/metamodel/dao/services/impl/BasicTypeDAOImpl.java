@@ -54,7 +54,7 @@ public class BasicTypeDAOImpl implements IBasicTypeDAOService {
 
 	@Override
 	public List<BasicType> getAll() {
-		return em.createQuery("select o from com.conx.logistics.kernel.metamodel.domain.metadata.BasicType o record by o.id", BasicType.class).getResultList();
+		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel o record by o.id", BasicType.class).getResultList();
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class BasicTypeDAOImpl implements IBasicTypeDAOService {
 
 			return typedQuery.getSingleResult();
 			// TypedQuery<BasicType> q =
-			// em.createQuery("select DISTINCT  o from com.conx.logistics.kernel.metamodel.domain.metadata.BasicType o WHERE o.entityJavaSimpleType = :entityJavaSimpleType",BasicType.class);
+			// em.createQuery("select DISTINCT  o from org.flowframe.kernel.common.mdm.domain.metamodel.BasicType o WHERE o.entityJavaSimpleType = :entityJavaSimpleType",BasicType.class);
 			// q.setParameter("entityJavaSimpleType",
 			// entityClass.getSimpleName());
 			// record = q.getSingleResult();

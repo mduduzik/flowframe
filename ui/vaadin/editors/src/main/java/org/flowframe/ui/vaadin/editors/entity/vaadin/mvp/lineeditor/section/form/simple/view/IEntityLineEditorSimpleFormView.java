@@ -2,9 +2,10 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.for
 
 import java.util.Collection;
 
-import com.conx.logistics.kernel.ui.components.domain.form.SimpleFormComponent;
+import org.flowframe.ui.component.domain.form.SimpleFormComponent;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentView;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
+
 import com.vaadin.data.Item;
 
 public interface IEntityLineEditorSimpleFormView extends IEntityEditorComponentView {

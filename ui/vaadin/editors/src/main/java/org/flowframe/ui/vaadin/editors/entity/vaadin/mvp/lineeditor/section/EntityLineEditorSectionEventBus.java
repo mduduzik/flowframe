@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import javax.persistence.EntityManager;
 
-import org.vaadin.mvp.eventbus.annotation.Event;
-
-import com.conx.logistics.kernel.ui.components.domain.AbstractComponent;
+import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.header.EntityLineEditorFormHeaderPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.EntityLineEditorGridPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.header.EntityLineEditorGridHeaderPresenter;
+import org.vaadin.mvp.eventbus.annotation.Event;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 
 public interface EntityLineEditorSectionEventBus extends AbstractEntityEditorEventBus {

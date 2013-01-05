@@ -12,23 +12,23 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.referencenumber.ReferenceNumberEditorComponent;
+import org.flowframe.kernel.common.mdm.dao.services.IEntityMetadataDAOService;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
+import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
+import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.IReferenceNumberEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.ReferenceNumberEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.ReferenceNumberEditorView.ICreateReferenceNumberListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.ReferenceNumberEditorView.ISaveReferenceNumberListener;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
-import com.conx.logistics.kernel.ui.service.contribution.IMainApplication;
-import com.conx.logistics.mdm.dao.services.IEntityMetadataDAOService;
-import com.conx.logistics.mdm.domain.BaseEntity;
-import com.conx.logistics.mdm.domain.metadata.DefaultEntityMetadata;
-import com.conx.logistics.mdm.domain.referencenumber.ReferenceNumber;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.util.DefaultQueryModifierDelegate;

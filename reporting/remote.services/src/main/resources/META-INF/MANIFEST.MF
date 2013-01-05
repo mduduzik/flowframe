@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.reporting.remote.services;version="0.0.1
+ "
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF Reporting Services
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.reporting.remote.services
+

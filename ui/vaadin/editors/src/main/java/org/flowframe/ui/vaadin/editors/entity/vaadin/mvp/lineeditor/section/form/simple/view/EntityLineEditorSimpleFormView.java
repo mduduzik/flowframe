@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collection;
 
+import org.flowframe.ui.component.domain.form.SimpleFormComponent;
+import org.flowframe.ui.vaadin.forms.impl.VaadinSimpleForm;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.conx.logistics.kernel.ui.components.domain.form.SimpleFormComponent;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinSimpleForm;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
 import com.vaadin.data.Item;
 import com.vaadin.ui.VerticalLayout;
 

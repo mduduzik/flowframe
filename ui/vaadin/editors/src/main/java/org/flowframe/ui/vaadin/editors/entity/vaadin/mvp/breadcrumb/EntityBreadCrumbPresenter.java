@@ -1,17 +1,17 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.header.EntityEditorBreadCrumbItem;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.view.EntityBreadCrumbView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.view.IEntityBreadCrumbView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.service.contribution.IMainApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;
 import com.vaadin.data.Container;

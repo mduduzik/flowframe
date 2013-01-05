@@ -64,7 +64,7 @@ public class ComponentDAOImpl implements IComponentDAOService {
 
 	@Override
 	public List<AbstractComponent> getAll() {
-		return em.createQuery("select o from com.conx.logistics.kernel.ui.components.domain.AbstractComponent o record by o.id",
+		return em.createQuery("select o from org.flowframe.ui.component.domain.AbstractComponent o record by o.id",
 				AbstractComponent.class).getResultList();
 	}
 
@@ -80,7 +80,7 @@ public class ComponentDAOImpl implements IComponentDAOService {
 		AbstractComponent comp = null;
 
 		try {
-			Query q = em.createQuery("select o from com.conx.logistics.kernel.ui.components.domain.AbstractComponent o WHERE o.code = :code");
+			Query q = em.createQuery("select o from org.flowframe.ui.component.domain.AbstractComponent o WHERE o.code = :code");
 			q.setParameter("code", code);
 			return (AbstractComponent) q.getSingleResult();
 //			CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -126,7 +126,7 @@ public class ComponentDAOImpl implements IComponentDAOService {
 		try {
 			TypedQuery<MasterDetailComponent> q = em
 					.createQuery(
-							"select DISTINCT o from com.conx.logistics.kernel.ui.components.domain.AbstractComponent o WHERE o.typeId = :typeId AND o.dataSource = :dataSource",
+							"select DISTINCT o from org.flowframe.ui.component.domain.AbstractComponent o WHERE o.typeId = :typeId AND o.dataSource = :dataSource",
 							MasterDetailComponent.class);
 			q.setParameter("typeId", "masterdetailcomponent");
 			q.setParameter("dataSource", ds);

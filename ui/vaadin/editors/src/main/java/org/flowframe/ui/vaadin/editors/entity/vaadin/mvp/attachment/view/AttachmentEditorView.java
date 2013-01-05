@@ -5,20 +5,20 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.vaadin.mvp.uibinder.annotation.UiField;
-
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.attachment.AttachmentEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.attachment.AttachmentForm;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.fieldfactory.ConXFieldFactory;
+import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.fieldfactory.FlowFrameFieldFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityGridFilterManager;
-import com.conx.logistics.kernel.ui.filteredtable.FilterTable;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXAbstractSplitPanel.ISplitPositionChangeListener;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXVerticalSplitPanel;
-import com.conx.logistics.mdm.domain.documentlibrary.DocType;
-import com.conx.logistics.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.vaadin.mvp.uibinder.annotation.UiField;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
@@ -37,7 +37,7 @@ public class AttachmentEditorView extends VerticalLayout implements IAttachmentE
 	@UiField
 	private VerticalLayout mainLayout;
 
-	private ConXVerticalSplitPanel splitPanel;
+	private FlowFrameVerticalSplitPanel splitPanel;
 	private AttachmentEditorToolStrip toolStrip;
 	private VerticalLayout masterLayout;
 	private VerticalLayout detailLayout;
@@ -58,7 +58,7 @@ public class AttachmentEditorView extends VerticalLayout implements IAttachmentE
 
 	public AttachmentEditorView() {
 		this.grid = new FilterTable();
-		this.splitPanel = new ConXVerticalSplitPanel();
+		this.splitPanel = new FlowFrameVerticalSplitPanel();
 		this.toolStrip = new AttachmentEditorToolStrip();
 		this.masterLayout = new VerticalLayout();
 		this.detailLayout = new VerticalLayout();
@@ -128,7 +128,7 @@ public class AttachmentEditorView extends VerticalLayout implements IAttachmentE
 		this.masterLayout.addComponent(grid);
 		this.masterLayout.setExpandRatio(grid, 1.0f);
 
-		this.form.setFormFieldFactory(new ConXFieldFactory());
+		this.form.setFormFieldFactory(new FlowFrameFieldFactory());
 		this.form.setView(this);
 
 		this.detailLayout.setSizeFull();

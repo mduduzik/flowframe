@@ -2,10 +2,11 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.ext.attachment;
 
 import java.util.Collection;
 
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinFormHeader;
-import com.conx.logistics.mdm.domain.documentlibrary.DocType;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.flowframe.ui.vaadin.forms.impl.VaadinFormHeader;
+
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.ui.Alignment;

@@ -1,7 +1,8 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.view;
 
+import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentView;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXAbstractSplitPanel.ISplitPositionChangeListener;
+
 import com.vaadin.ui.Component;
 
 public interface IMultiLevelEntityEditorView extends IEntityEditorComponentView {

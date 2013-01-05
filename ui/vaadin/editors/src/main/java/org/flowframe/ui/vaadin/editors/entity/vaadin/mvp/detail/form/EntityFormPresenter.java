@@ -1,18 +1,18 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.detail.form;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.form.ConXDetailForm;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.ui.component.domain.form.DetailFormComponent;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.detail.form.view.EntityFormView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.detail.form.view.IEntityFormView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
-import com.conx.logistics.mdm.domain.BaseEntity;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.data.Item;
 
@@ -22,7 +22,7 @@ public class EntityFormPresenter extends ConfigurableBasePresenter<IEntityFormVi
 
 	private boolean initialized = false;
 	private MultiLevelEntityEditorPresenter multiLevelEntityEditorPresenter;
-	private ConXDetailForm formComponent;
+	private DetailFormComponent formComponent;
 	private EntityItem<?> itemDataSource;
 	private BaseEntity entity;
 	private MultiLevelEntityEditorEventBus entityEditorEventListener;
@@ -58,7 +58,7 @@ public class EntityFormPresenter extends ConfigurableBasePresenter<IEntityFormVi
 	@Override
 	public void configure() {
 		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
-		this.formComponent = (ConXDetailForm) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.formComponent = (DetailFormComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.entityEditorEventListener = multiLevelEntityEditorPresenter.getEventBus();
 	}
 

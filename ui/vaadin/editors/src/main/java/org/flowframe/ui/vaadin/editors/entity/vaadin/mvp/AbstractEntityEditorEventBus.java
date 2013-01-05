@@ -4,10 +4,9 @@ import java.util.HashMap;
 
 import javax.persistence.EntityManager;
 
+import org.flowframe.ui.component.domain.AbstractComponent;
 import org.vaadin.mvp.eventbus.EventBus;
 
-import com.conx.logistics.kernel.ui.components.domain.AbstractComponent;
-import com.conx.logistics.mdm.domain.documentlibrary.FileEntry;
 import com.vaadin.addon.jpacontainer.EntityItem;
 
 public abstract interface AbstractEntityEditorEventBus extends EventBus {

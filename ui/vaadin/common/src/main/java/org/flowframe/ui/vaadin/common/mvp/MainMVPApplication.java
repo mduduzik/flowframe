@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.kernel.common.mdm.dao.services.IEntityMetadataDAOService;
 import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
 import org.flowframe.kernel.common.mdm.domain.user.User;
@@ -18,6 +19,7 @@ import org.flowframe.kernel.jpa.container.services.IEntityManagerFactoryManager;
 import org.flowframe.portal.remote.services.IPortalOrganizationService;
 import org.flowframe.portal.remote.services.IPortalRoleService;
 import org.flowframe.portal.remote.services.IPortalUserService;
+import org.flowframe.reporting.remote.services.IReportGenerator;
 import org.flowframe.ui.services.IUIContributionManager;
 import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IApplicationViewContribution;

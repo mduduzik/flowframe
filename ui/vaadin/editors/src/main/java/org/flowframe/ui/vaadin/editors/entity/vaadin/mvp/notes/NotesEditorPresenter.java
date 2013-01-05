@@ -12,23 +12,23 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.AbstractComponent;
-import com.conx.logistics.kernel.ui.components.domain.note.NoteEditorComponent;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.kernel.common.mdm.domain.note.Note;
+import org.flowframe.kernel.common.mdm.domain.note.NoteItem;
+import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.component.domain.note.NoteEditorComponent;
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.INotesEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.NotesEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.NotesEditorView.ICreateNoteListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.NotesEditorView.ISaveNoteListener;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.service.contribution.IMainApplication;
-import com.conx.logistics.mdm.domain.BaseEntity;
-import com.conx.logistics.mdm.domain.note.Note;
-import com.conx.logistics.mdm.domain.note.NoteItem;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.util.DefaultQueryModifierDelegate;

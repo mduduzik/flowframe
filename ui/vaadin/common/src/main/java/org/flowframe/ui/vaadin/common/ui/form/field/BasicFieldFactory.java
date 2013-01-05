@@ -2,9 +2,9 @@ package org.flowframe.ui.vaadin.common.ui.form.field;
 
 import java.util.Collection;
 
-import com.conx.logistics.common.utils.Validator;
-import org.flowframe.ui.vaadin.common.data.container.EntityTypeContainerFactory;
-import com.conx.logistics.mdm.domain.BaseEntity;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.kernel.common.utils.Validator;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.ui.CheckBox;

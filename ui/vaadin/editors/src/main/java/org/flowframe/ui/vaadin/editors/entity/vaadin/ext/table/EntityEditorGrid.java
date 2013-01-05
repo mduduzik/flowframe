@@ -3,10 +3,10 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.conx.logistics.kernel.ui.filteredtable.FilterDecorator;
-import com.conx.logistics.kernel.ui.filteredtable.FilterGenerator;
-import com.conx.logistics.kernel.ui.filteredtable.FilterTable;
-import com.conx.logistics.kernel.ui.filteredtable.FilterTableExcelExport;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterDecorator;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterGenerator;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Item;
@@ -79,10 +79,11 @@ public class EntityEditorGrid extends VerticalLayout implements FilterDecorator,
 	}
 	
 	public void printGrid() {
-		FilterTableExcelExport excelExport = new FilterTableExcelExport(this.grid);
+		// FIXME : Recreate FilterTableExcelExport
+		/*FilterTableExcelExport excelExport = new FilterTableExcelExport(this.grid);
 		excelExport.excludeCollapsedColumns();
 		excelExport.setReportTitle("Demo Report");
-		excelExport.export();	
+		excelExport.export();*/	
 	}
 
 	public void addEditListener(IEditListener listener) {

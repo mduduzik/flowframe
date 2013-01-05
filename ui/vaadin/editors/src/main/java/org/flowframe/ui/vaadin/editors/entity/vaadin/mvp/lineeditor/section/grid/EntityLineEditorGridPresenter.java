@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.conx.logistics.common.utils.StringUtil;
-import com.conx.logistics.kernel.ui.components.domain.table.ConXTable;
+import com.conx.logistics.kernel.ui.components.domain.table.GridComponent;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -41,7 +41,7 @@ public class EntityLineEditorGridPresenter extends ConfigurableBasePresenter<IEn
 	private JPAContainer<?> entityContainer;
 	private MultiLevelEntityEditorEventBus entityEditorEventListener;
 	private IMainApplication mainApplication;
-	private ConXTable tableComponent;
+	private GridComponent tableComponent;
 	private MultiLevelEntityEditorPresenter multiLevelEntityEditorPresenter;
 	private Class<?> entityClass;
 	private EntityItem<?> parentEntityItem;
@@ -128,7 +128,7 @@ public class EntityLineEditorGridPresenter extends ConfigurableBasePresenter<IEn
 
 	@Override
 	public void configure() {
-		this.tableComponent = (ConXTable) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.tableComponent = (GridComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
 		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
 		this.entityEditorEventListener = multiLevelEntityEditorPresenter.getEventBus();

@@ -5,18 +5,18 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.vaadin.mvp.uibinder.annotation.UiField;
-
+import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.fieldfactory.ConXFieldFactory;
+import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.fieldfactory.FlowFrameFieldFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.refNum.ReferenceNumberEditorForm;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.refNum.ReferenceNumberEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityGridFilterManager;
-import com.conx.logistics.kernel.ui.filteredtable.FilterTable;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXAbstractSplitPanel.ISplitPositionChangeListener;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXVerticalSplitPanel;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.vaadin.mvp.uibinder.annotation.UiField;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.event.ItemClickEvent;
@@ -34,7 +34,7 @@ public class ReferenceNumberEditorView extends VerticalLayout implements IRefere
 	@UiField
 	private VerticalLayout mainLayout;
 
-	private ConXVerticalSplitPanel splitPanel;
+	private FlowFrameVerticalSplitPanel splitPanel;
 	private ReferenceNumberEditorToolStrip toolStrip;
 	private VerticalLayout masterLayout;
 	private VerticalLayout detailLayout;
@@ -54,7 +54,7 @@ public class ReferenceNumberEditorView extends VerticalLayout implements IRefere
 	
 	public ReferenceNumberEditorView() {
 		this.grid = new FilterTable();
-		this.splitPanel = new ConXVerticalSplitPanel();
+		this.splitPanel = new FlowFrameVerticalSplitPanel();
 		this.toolStrip = new ReferenceNumberEditorToolStrip();
 		this.masterLayout = new VerticalLayout();
 		this.detailLayout = new VerticalLayout();
@@ -156,7 +156,7 @@ public class ReferenceNumberEditorView extends VerticalLayout implements IRefere
 		this.masterLayout.addComponent(grid);
 		this.masterLayout.setExpandRatio(grid, 1.0f);
 		
-		this.form.setFormFieldFactory(new ConXFieldFactory());
+		this.form.setFormFieldFactory(new FlowFrameFieldFactory());
 		
 		this.detailLayout.setSizeFull();
 		this.detailLayout.addComponent(formToolStrip);

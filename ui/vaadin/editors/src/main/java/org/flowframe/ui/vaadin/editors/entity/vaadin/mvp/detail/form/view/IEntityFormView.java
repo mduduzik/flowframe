@@ -2,15 +2,16 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.detail.form.view;
 
 import java.util.Collection;
 
-import com.conx.logistics.kernel.ui.components.domain.form.ConXDetailForm;
+import org.flowframe.ui.component.domain.form.DetailFormComponent;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentView;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
+
 import com.vaadin.data.Item;
 
 public interface IEntityFormView extends IEntityEditorComponentView {
 	public void setItemDataSource(Item item);
 	public void setItemDataSource(Item item, Collection<?> propertyIds);
-	public void setForm(ConXDetailForm formComponent);
+	public void setForm(DetailFormComponent formComponent);
 	public void setFormTitle(String title);
 	public void addFormChangeListener(IFormChangeListener listener);
 	public void saveForm();

@@ -1,14 +1,15 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search;
 
-import com.conx.logistics.kernel.ui.components.domain.search.SearchGrid;
+import org.flowframe.ui.component.domain.search.SearchGridComponent;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
+import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityGridFilterManager;
-import com.conx.logistics.kernel.ui.filteredtable.FilterTable;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinFormAlertPanel;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinFormAlertPanel.AlertType;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinSearchForm;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXVerticalSplitPanel;
+import org.flowframe.ui.vaadin.forms.impl.VaadinFormAlertPanel;
+import org.flowframe.ui.vaadin.forms.impl.VaadinFormAlertPanel.AlertType;
+import org.flowframe.ui.vaadin.forms.impl.VaadinSearchForm;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.data.Container;
@@ -26,19 +27,19 @@ public class EntitySearchGrid extends VerticalLayout {
 
 	private VaadinSearchForm searchForm;
 	private FilterTable grid;
-	private ConXVerticalSplitPanel splitPanel;
+	private FlowFrameVerticalSplitPanel splitPanel;
 	private EntityEditorToolStrip formToolStrip;
 	private EntityEditorToolStrip gridToolStrip;
-	private SearchGrid componentModel;
+	private SearchGridComponent componentModel;
 	private VaadinFormAlertPanel gridStatus;
 	private boolean statusEnabled;
 	private Object selectedEntity;
 
-	public EntitySearchGrid(SearchGrid componentModel) {
+	public EntitySearchGrid(SearchGridComponent componentModel) {
 		this.componentModel = componentModel;
 		this.searchForm = new VaadinSearchForm();
 		this.grid = new FilterTable();
-		this.splitPanel = new ConXVerticalSplitPanel();
+		this.splitPanel = new FlowFrameVerticalSplitPanel();
 		this.formToolStrip = new EntityEditorToolStrip();
 		this.gridToolStrip = new EntityEditorToolStrip();
 		this.gridStatus = new VaadinFormAlertPanel();
@@ -46,7 +47,7 @@ public class EntitySearchGrid extends VerticalLayout {
 		initialize();
 	}
 	
-	public SearchGrid getComponentModel() {
+	public SearchGridComponent getComponentModel() {
 		return this.componentModel;
 	}
 
@@ -149,7 +150,7 @@ public class EntitySearchGrid extends VerticalLayout {
 		gridWrapper.addComponent(this.grid);
 		gridWrapper.setExpandRatio(this.grid, 1.0f);
 
-		this.splitPanel = new ConXVerticalSplitPanel();
+		this.splitPanel = new FlowFrameVerticalSplitPanel();
 		this.splitPanel.setSizeFull();
 		this.splitPanel.setImmediate(true);
 		this.splitPanel.setSplitPosition(0);

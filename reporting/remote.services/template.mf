@@ -1,0 +1,4 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Reporting Services
+Bundle-SymbolicName: org.flowframe.reporting.remote.services

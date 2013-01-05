@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.flowframe.ui.vaadin.addons.common.gwt.client.VActiveLink;
+
 import com.vaadin.terminal.PaintException;
 import com.vaadin.terminal.PaintTarget;
 import com.vaadin.terminal.Resource;

@@ -1,7 +1,8 @@
 package org.flowframe.ui.vaadin.common.mvp.view;
 
-import com.conx.logistics.kernel.ui.vaadin.common.ConXFooter;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXHeader;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameFooter;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameHeader;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.HierarchicalContainer;
@@ -15,11 +16,11 @@ public class MainView extends Window implements IMainView {
 	// Window theme name; themes are located in web.app/src/main/webapp/VAADIN
 	private static final String CONX_THEME_NAME = "conx";
 	// Window title
-	private final String WINDOW_TITLE = "ConX Logistics";
+	private final String WINDOW_TITLE = "FlowFrame Logistics";
 
 	private VerticalLayout mainLayout;
-	private ConXHeader headerStrip;
-	private ConXFooter footerStrip;
+	private FlowFrameHeader headerStrip;
+	private FlowFrameFooter footerStrip;
 	private TabSheet applicationTabSheet;
 	
 	@Override
@@ -47,13 +48,13 @@ public class MainView extends Window implements IMainView {
 		// MainLayout occupies maximum space available
 		getMainLayout().setSizeFull();
 		setCaption(WINDOW_TITLE);
-		// Sets the Window's Vaadin theme to the "ConX" theme
+		// Sets the Window's Vaadin theme to the "FlowFrame" theme
 		setTheme(CONX_THEME_NAME);
 
 		// Header
-		headerStrip = new ConXHeader();
+		headerStrip = new FlowFrameHeader();
 		// Footer
-		footerStrip = new ConXFooter();
+		footerStrip = new FlowFrameFooter();
 		// Application TabSheet
 		applicationTabSheet = new TabSheet();
 		applicationTabSheet.setSizeFull();

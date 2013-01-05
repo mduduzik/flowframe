@@ -1,15 +1,15 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.header;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.header.view.EntityLineEditorFormHeaderView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.header.view.IEntityLineEditorFormHeaderView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.data.Item;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;

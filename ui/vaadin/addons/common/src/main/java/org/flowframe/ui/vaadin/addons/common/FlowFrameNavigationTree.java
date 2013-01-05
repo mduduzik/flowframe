@@ -34,7 +34,7 @@ public class FlowFrameNavigationTree extends TreeTable implements ValueChangeLis
 		setNullSelectionAllowed(false);
 		setImmediate(true);
 		addStyleName("conx-tree-nav");
-		addListener(new ConXNavigationTreeValueChangeListener());
+		addListener(new FlowFrameNavigationTreeValueChangeListener());
 		setColumnHeaderMode(FlowFrameNavigationTree.COLUMN_HEADER_MODE_HIDDEN);
 		addContainerProperty("name", FlowFrameNavigationTreeItem.class, "");
 	}
@@ -159,7 +159,7 @@ public class FlowFrameNavigationTree extends TreeTable implements ValueChangeLis
 		this.navigationListener = navigationListener;
 	}
 
-	private class ConXNavigationTreeValueChangeListener implements ValueChangeListener {
+	private class FlowFrameNavigationTreeValueChangeListener implements ValueChangeListener {
 		private static final long serialVersionUID = -8010282811L;
 
 		public void valueChange(final com.vaadin.data.Property.ValueChangeEvent event) {

@@ -5,20 +5,12 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.eventbus.EventBusManager;
-import org.vaadin.mvp.presenter.IPresenter;
-import org.vaadin.mvp.presenter.PresenterFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.app.whse.im.dao.services.IStockItemDAOService;
-import com.conx.logistics.app.whse.im.domain.stockitem.StockItem;
-import com.conx.logistics.kernel.ui.common.mvp.MainMVPApplication;
-import com.conx.logistics.kernel.ui.common.mvp.StartableApplicationEventBus;
-import com.conx.logistics.kernel.ui.components.domain.masterdetail.MasterDetailComponent;
-import com.conx.logistics.kernel.ui.components.domain.table.ConXTable;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
+import org.flowframe.ui.component.domain.table.GridComponent;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
+import org.flowframe.ui.vaadin.common.mvp.StartableApplicationEventBus;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.EntityBreadCrumbEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.EntityBreadCrumbPresenter;
@@ -31,9 +23,14 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.EntityLineEd
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.header.EntityGridHeaderPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.view.IMultiLevelEntityEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.view.MultiLevelEntityEditorView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXAbstractSplitPanel.ISplitPositionChangeListener;
-import com.conx.logistics.mdm.domain.documentlibrary.FileEntry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.eventbus.EventBusManager;
+import org.vaadin.mvp.presenter.IPresenter;
+import org.vaadin.mvp.presenter.PresenterFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.Application;
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.data.Item;
@@ -79,14 +76,15 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	}
 
 	public void onReportItem(Object itemEntity) {
+		// FIXME: MLE should not need whse.im
 		Application app = ((Component) this.getView()).getApplication();
-		if (app instanceof MainMVPApplication && itemEntity instanceof StockItem) {
-			String url = ((MainMVPApplication) app).getDaoProvider().provideByDAOClass(IStockItemDAOService.class)
-					.getStockItemLabelUrl((StockItem) itemEntity, ((MainMVPApplication) app).getReportingUrl());
-			if (url != null) {
-				this.appEventBus.openDocument(url, "Label for " + ((StockItem) itemEntity).getCode());
-			}
-		}
+//		if (app instanceof MainMVPApplication && itemEntity instanceof StockItem) {
+//			String url = ((MainMVPApplication) app).getDaoProvider().provideByDAOClass(IStockItemDAOService.class)
+//					.getStockItemLabelUrl((StockItem) itemEntity, ((MainMVPApplication) app).getReportingUrl());
+//			if (url != null) {
+//				this.appEventBus.openDocument(url, "Label for " + ((StockItem) itemEntity).getCode());
+//			}
+//		}
 	}
 
 	public void onSetItemDataSource(Item item) {
@@ -198,7 +196,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	}
 
 	public boolean isDetailEditor() {
-		return !(this.metaData.getMasterComponent() instanceof ConXTable);
+		return !(this.metaData.getMasterComponent() instanceof GridComponent);
 	}
 
 	public boolean isInitialized() {

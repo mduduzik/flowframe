@@ -1,9 +1,9 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.view;
 
+import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
+import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.conx.logistics.kernel.ui.vaadin.common.ConXAbstractSplitPanel.ISplitPositionChangeListener;
-import com.conx.logistics.kernel.ui.vaadin.common.ConXVerticalSplitPanel;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
@@ -17,7 +17,7 @@ public class MultiLevelEntityEditorView extends VerticalLayout implements IMulti
 
 	private Component breadCrumb; // Index 0
 	private Component header; // Index 1
-	private ConXVerticalSplitPanel splitPanel; // Index 2
+	private FlowFrameVerticalSplitPanel splitPanel; // Index 2
 	private Component detail;
 	private Component footer; // Index 3
 
@@ -28,7 +28,7 @@ public class MultiLevelEntityEditorView extends VerticalLayout implements IMulti
 	}
 
 	public void init() {
-		splitPanel = new ConXVerticalSplitPanel();
+		splitPanel = new FlowFrameVerticalSplitPanel();
 		splitPanel.setSizeFull();
 		splitPanel.setImmediate(true);
 		splitPanel.setSplitPosition(50);

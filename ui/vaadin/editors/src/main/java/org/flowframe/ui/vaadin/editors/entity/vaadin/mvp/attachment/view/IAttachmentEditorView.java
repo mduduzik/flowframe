@@ -6,7 +6,8 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentV
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView.ICreateAttachmentListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView.IInspectAttachmentListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView.ISaveAttachmentListener;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
+import org.flowframe.ui.vaadin.forms.FormMode;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;

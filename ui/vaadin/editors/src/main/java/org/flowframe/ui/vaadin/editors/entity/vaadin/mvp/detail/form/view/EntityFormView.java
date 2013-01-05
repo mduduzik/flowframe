@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collection;
 
+import org.flowframe.ui.component.domain.form.DetailFormComponent;
+import org.flowframe.ui.vaadin.forms.impl.VaadinDetailForm;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.conx.logistics.kernel.ui.components.domain.form.ConXDetailForm;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinDetailForm;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
 import com.vaadin.data.Item;
 import com.vaadin.ui.VerticalLayout;
 
@@ -34,7 +34,7 @@ public class EntityFormView extends VerticalLayout implements IEntityFormView {
 	}
 
 	@Override
-	public void setForm(ConXDetailForm formComponent) {
+	public void setForm(DetailFormComponent formComponent) {
 		this.form = new VaadinDetailForm(formComponent);
 		this.form.setSizeFull();
 		this.form.setTitle(formComponent.getCaption());

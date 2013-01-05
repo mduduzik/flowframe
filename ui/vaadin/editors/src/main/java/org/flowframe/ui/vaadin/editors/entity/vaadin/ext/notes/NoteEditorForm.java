@@ -4,9 +4,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
-import com.conx.logistics.kernel.ui.forms.vaadin.impl.VaadinFormHeader;
-import com.conx.logistics.kernel.ui.forms.vaadin.listeners.IFormChangeListener;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.flowframe.ui.vaadin.forms.impl.VaadinFormHeader;
+import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
+
 import com.vaadin.data.Property;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;

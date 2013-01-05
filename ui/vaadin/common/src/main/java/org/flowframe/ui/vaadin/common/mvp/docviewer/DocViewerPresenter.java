@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
 import org.flowframe.ui.vaadin.common.mvp.docviewer.view.DocViewerView;

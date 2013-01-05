@@ -2,10 +2,11 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view;
 
 import java.util.Collection;
 
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.NotesEditorView.ICreateNoteListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.NotesEditorView.ISaveNoteListener;
+import org.flowframe.ui.vaadin.forms.FormMode;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Layout;

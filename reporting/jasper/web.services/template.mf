@@ -1,0 +1,17 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Jasper Reporting Web Services
+Bundle-SymbolicName: org.flowframe.reporting.jasper.web.services
+Bundle-ClassPath: .,WEB-INF/classes
+Web-ContextPath: reporting
+Import-Library: 
+  org.springframework.spring;version="[3.0, 3.1)"
+Import-Package:  javax.servlet;version="[3.0.0, 3.1.0)",
+  javax.servlet.http;version="[3.0.0, 3.1.0)",
+  net.sf.jasperreports.engine;version="0",
+  net.sf.jasperreports.engine.export;version="0",
+  net.sf.jasperreports.engine.util;version="0",
+  org.flowframe.reporting.remote.services;version="[0.0.1, 1.0.0)",
+  org.springframework.beans.factory.annotation;version="[3.0.0, 3.1.0)",
+  org.springframework.stereotype;version="[3.0.0, 3.1.0)",
+  org.springframework.transaction.annotation;version="[3.0.0, 3.1.0)"

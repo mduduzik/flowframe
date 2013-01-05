@@ -2,16 +2,11 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.presenter.IPresenter;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.ui.components.domain.form.CollapseableSectionFormComponent;
-import com.conx.logistics.kernel.ui.components.domain.form.SimpleFormComponent;
-import com.conx.logistics.kernel.ui.components.domain.masterdetail.LineEditorComponent;
-import com.conx.logistics.kernel.ui.components.domain.table.DetailGridComponent;
+import org.flowframe.ui.component.domain.form.CollapseableSectionFormComponent;
+import org.flowframe.ui.component.domain.form.SimpleFormComponent;
+import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
+import org.flowframe.ui.component.domain.table.DetailGridComponent;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -22,7 +17,12 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.header.EntityLineEditorGridHeaderPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.view.EntityLineEditorSectionView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.view.IEntityLineEditorSectionView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.presenter.IPresenter;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.ui.Component;
 

@@ -11,12 +11,15 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.kernel.documentlibrary.remote.services.IRemoteDocumentRepository;
-import com.conx.logistics.kernel.ui.components.domain.attachment.AttachmentEditorComponent;
+import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
+import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
+import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView;
@@ -25,14 +28,11 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.Attachm
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView.ISaveAttachmentListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.IAttachmentEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.view.IMultiLevelEntityEditorView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.forms.vaadin.FormMode;
-import com.conx.logistics.kernel.ui.service.contribution.IMainApplication;
-import com.conx.logistics.mdm.dao.services.documentlibrary.IFolderDAOService;
-import com.conx.logistics.mdm.domain.BaseEntity;
-import com.conx.logistics.mdm.domain.documentlibrary.DocType;
-import com.conx.logistics.mdm.domain.documentlibrary.FileEntry;
-import com.conx.logistics.mdm.domain.documentlibrary.Folder;
+import org.flowframe.ui.vaadin.forms.FormMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;

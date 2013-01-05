@@ -12,10 +12,10 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.TextArea;
 
-public class ConXFieldFactory extends FieldFactory {
+public class FlowFrameFieldFactory extends FieldFactory {
 	private static final long serialVersionUID = -2958448405826099336L;
 
-	public ConXFieldFactory() {
+	public FlowFrameFieldFactory() {
 		super();
 	}
 
