@@ -1,0 +1,234 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.ui.vaadin.editors.builder.vaadin;version
+ ="0.0.1";uses:="org.flowframe.documentlibrary.remote.services,org.flo
+ wframe.ui.component.domain,org.flowframe.ui.services.factory,org.flow
+ frame.ui.vaadin.editors.entity.vaadin.mvp,org.springframework.stereot
+ ype,org.springframework.transaction.annotation",org.flowframe.ui.vaad
+ in.editors.entity.vaadin.ext;version="0.0.1";uses:="com.vaadin.ui",or
+ g.flowframe.ui.vaadin.editors.entity.vaadin.ext.attachment;version="0
+ .0.1";uses:="com.vaadin.data,com.vaadin.ui,org.flowframe.ui.vaadin.ed
+ itors.entity.vaadin.mvp.attachment.view,org.flowframe.ui.vaadin.forms
+ ",org.flowframe.ui.vaadin.editors.entity.vaadin.ext.fieldfactory;vers
+ ion="0.0.1";uses:="com.vaadin.addon.jpacontainer,com.vaadin.addon.jpa
+ container.fieldfactory,com.vaadin.data,com.vaadin.ui",org.flowframe.u
+ i.vaadin.editors.entity.vaadin.ext.header;version="0.0.1";uses:="com.
+ vaadin.ui",org.flowframe.ui.vaadin.editors.entity.vaadin.ext.notes;ve
+ rsion="0.0.1";uses:="com.vaadin.data,com.vaadin.event,com.vaadin.ui,o
+ rg.flowframe.ui.vaadin.forms,org.flowframe.ui.vaadin.forms.listeners"
+ ,org.flowframe.ui.vaadin.editors.entity.vaadin.ext.pager;version="0.0
+ .1";uses:="com.vaadin.ui",org.flowframe.ui.vaadin.editors.entity.vaad
+ in.ext.refNum;version="0.0.1";uses:="com.vaadin.data,com.vaadin.event
+ ,com.vaadin.ui,org.flowframe.ui.vaadin.forms,org.flowframe.ui.vaadin.
+ forms.listeners",org.flowframe.ui.vaadin.editors.entity.vaadin.ext.se
+ arch;version="0.0.1";uses:="com.vaadin.data,com.vaadin.event,com.vaad
+ in.terminal,com.vaadin.ui,org.flowframe.ui.component.domain.search,or
+ g.flowframe.ui.vaadin.addons.common,org.flowframe.ui.vaadin.addons.fi
+ ltertable,org.flowframe.ui.vaadin.editors.entity.vaadin.ext,org.flowf
+ rame.ui.vaadin.forms.impl",org.flowframe.ui.vaadin.editors.entity.vaa
+ din.ext.table;version="0.0.1";uses:="com.vaadin.addon.jpacontainer,co
+ m.vaadin.data,com.vaadin.event,com.vaadin.terminal,com.vaadin.ui,org.
+ flowframe.ui.vaadin.addons.filtertable",org.flowframe.ui.vaadin.edito
+ rs.entity.vaadin.mvp;version="0.0.1";uses:="com.vaadin.addon.jpaconta
+ iner,com.vaadin.data,javax.persistence,org.flowframe.kernel.common.md
+ m.domain.documentlibrary,org.flowframe.ui.component.domain,org.flowfr
+ ame.ui.component.domain.masterdetail,org.flowframe.ui.vaadin.addons.c
+ ommon,org.flowframe.ui.vaadin.editors.entity.vaadin.ext,org.flowframe
+ .ui.vaadin.editors.entity.vaadin.mvp.customizer,org.vaadin.mvp.eventb
+ us,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presenter,org.va
+ adin.mvp.presenter.annotation,org.vaadin.mvp.uibinder",org.flowframe.
+ ui.vaadin.editors.entity.vaadin.mvp.attachment;version="0.0.1";uses:=
+ "com.vaadin.addon.jpacontainer,com.vaadin.addon.jpacontainer.util,com
+ .vaadin.data,com.vaadin.event,com.vaadin.ui,javax.persistence,javax.p
+ ersistence.criteria,org.flowframe.kernel.common.mdm.domain.documentli
+ brary,org.flowframe.ui.component.domain,org.flowframe.ui.vaadin.edito
+ rs.entity.vaadin.mvp,org.flowframe.ui.vaadin.editors.entity.vaadin.mv
+ p.attachment.view,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.p
+ resenter.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mv
+ p.attachment.view;version="0.0.1";uses:="com.vaadin.addon.jpacontaine
+ r,com.vaadin.data,com.vaadin.event,com.vaadin.ui,org.flowframe.kernel
+ .common.mdm.domain.documentlibrary,org.flowframe.ui.vaadin.addons.com
+ mon,org.flowframe.ui.vaadin.editors.entity.vaadin.ext.attachment,org.
+ flowframe.ui.vaadin.editors.entity.vaadin.mvp,org.flowframe.ui.vaadin
+ .forms,org.vaadin.mvp.uibinder.annotation",org.flowframe.ui.vaadin.ed
+ itors.entity.vaadin.mvp.breadcrumb;version="0.0.1";uses:="com.vaadin.
+ addon.jpacontainer,com.vaadin.data,com.vaadin.ui,javax.persistence,or
+ g.flowframe.ui.component.domain,org.flowframe.ui.vaadin.editors.entit
+ y.vaadin.mvp,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presen
+ ter.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.bre
+ adcrumb.view;version="0.0.1";uses:="com.vaadin.ui,org.flowframe.ui.va
+ adin.editors.entity.vaadin.ext.header,org.flowframe.ui.vaadin.editors
+ .entity.vaadin.mvp,org.vaadin.mvp.uibinder.annotation",org.flowframe.
+ ui.vaadin.editors.entity.vaadin.mvp.customizer;version="0.0.1";uses:=
+ "org.vaadin.mvp.presenter",org.flowframe.ui.vaadin.editors.entity.vaa
+ din.mvp.detail.form;version="0.0.1";uses:="com.vaadin.addon.jpacontai
+ ner,com.vaadin.data,org.flowframe.kernel.common.mdm.domain,org.flowfr
+ ame.ui.vaadin.editors.entity.vaadin.mvp,org.flowframe.ui.vaadin.forms
+ .listeners,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presente
+ r.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.detai
+ l.form.view;version="0.0.1";uses:="com.vaadin.data,com.vaadin.ui,org.
+ flowframe.ui.component.domain.form,org.flowframe.ui.vaadin.editors.en
+ tity.vaadin.mvp,org.flowframe.ui.vaadin.forms.listeners,org.vaadin.mv
+ p.uibinder.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.
+ mvp.detail.header;version="0.0.1";uses:="com.vaadin.addon.jpacontaine
+ r,com.vaadin.data,com.vaadin.ui,javax.persistence,org.flowframe.ui.co
+ mponent.domain,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp,org.
+ vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presenter.annotation",o
+ rg.flowframe.ui.vaadin.editors.entity.vaadin.mvp.detail.header.view;v
+ ersion="0.0.1";uses:="com.vaadin.ui,org.flowframe.ui.vaadin.editors.e
+ ntity.vaadin.mvp,org.vaadin.mvp.uibinder.annotation",org.flowframe.ui
+ .vaadin.editors.entity.vaadin.mvp.footer;version="0.0.1";uses:="com.v
+ aadin.addon.jpacontainer,com.vaadin.data,javax.persistence,org.flowfr
+ ame.ui.component.domain,org.flowframe.ui.vaadin.editors.entity.vaadin
+ .mvp,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presenter.anno
+ tation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.footer.view
+ ;version="0.0.1";uses:="com.vaadin.ui,org.flowframe.ui.vaadin.editors
+ .entity.vaadin.mvp,org.vaadin.mvp.uibinder.annotation",org.flowframe.
+ ui.vaadin.editors.entity.vaadin.mvp.lineeditor;version="0.0.1";uses:=
+ "com.vaadin.addon.jpacontainer,com.vaadin.data,javax.persistence,org.
+ flowframe.ui.component.domain,org.flowframe.ui.vaadin.editors.entity.
+ vaadin.mvp,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presente
+ r.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.linee
+ ditor.section;version="0.0.1";uses:="com.vaadin.addon.jpacontainer,ja
+ vax.persistence,org.flowframe.ui.component.domain,org.flowframe.ui.va
+ adin.editors.entity.vaadin.mvp,org.vaadin.mvp.eventbus.annotation,org
+ .vaadin.mvp.presenter.annotation",org.flowframe.ui.vaadin.editors.ent
+ ity.vaadin.mvp.lineeditor.section.form.collapsible;version="0.0.1";us
+ es:="com.vaadin.addon.jpacontainer,com.vaadin.data,org.flowframe.kern
+ el.common.mdm.domain,org.flowframe.ui.vaadin.editors.entity.vaadin.mv
+ p,org.flowframe.ui.vaadin.forms.listeners,org.vaadin.mvp.eventbus.ann
+ otation,org.vaadin.mvp.presenter.annotation",org.flowframe.ui.vaadin.
+ editors.entity.vaadin.mvp.lineeditor.section.form.collapsible.view;ve
+ rsion="0.0.1";uses:="com.vaadin.data,com.vaadin.ui,org.flowframe.ui.c
+ omponent.domain.form,org.flowframe.ui.vaadin.editors.entity.vaadin.mv
+ p,org.flowframe.ui.vaadin.forms.listeners,org.vaadin.mvp.uibinder.ann
+ otation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor
+ .section.form.header;version="0.0.1";uses:="com.vaadin.addon.jpaconta
+ iner,com.vaadin.data,com.vaadin.ui,javax.persistence,org.flowframe.ui
+ .component.domain,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp,o
+ rg.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.presenter.annotation
+ ",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.sectio
+ n.form.header.view;version="0.0.1";uses:="com.vaadin.ui,org.flowframe
+ .ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp.uibinder.annotati
+ on",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.sect
+ ion.form.simple;version="0.0.1";uses:="com.vaadin.addon.jpacontainer,
+ org.flowframe.kernel.common.mdm.domain,org.flowframe.ui.vaadin.editor
+ s.entity.vaadin.mvp,org.flowframe.ui.vaadin.forms.listeners,org.vaadi
+ n.mvp.eventbus.annotation,org.vaadin.mvp.presenter.annotation",org.fl
+ owframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.s
+ imple.view;version="0.0.1";uses:="com.vaadin.data,com.vaadin.ui,org.f
+ lowframe.ui.component.domain.form,org.flowframe.ui.vaadin.editors.ent
+ ity.vaadin.mvp,org.flowframe.ui.vaadin.forms.listeners,org.vaadin.mvp
+ .uibinder.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.m
+ vp.lineeditor.section.grid;version="0.0.1";uses:="com.vaadin.addon.jp
+ acontainer,com.vaadin.addon.jpacontainer.util,com.vaadin.data,javax.p
+ ersistence,javax.persistence.criteria,org.flowframe.ui.component.doma
+ in,org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table,org.flowfr
+ ame.ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp.eventbus.annot
+ ation,org.vaadin.mvp.presenter.annotation",org.flowframe.ui.vaadin.ed
+ itors.entity.vaadin.mvp.lineeditor.section.grid.header;version="0.0.1
+ ";uses:="com.vaadin.addon.jpacontainer,com.vaadin.ui,javax.persistenc
+ e,org.flowframe.ui.component.domain,org.flowframe.ui.vaadin.editors.e
+ ntity.vaadin.mvp,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.pr
+ esenter.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp
+ .lineeditor.section.grid.header.view;version="0.0.1";uses:="com.vaadi
+ n.ui,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp
+ .uibinder.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.m
+ vp.lineeditor.section.grid.view;version="0.0.1";uses:="com.vaadin.dat
+ a,com.vaadin.ui,org.flowframe.ui.vaadin.editors.entity.vaadin.ext.tab
+ le,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp.u
+ ibinder.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp
+ .lineeditor.section.view;version="0.0.1";uses:="com.vaadin.ui,org.flo
+ wframe.ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp.uibinder.an
+ notation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineedito
+ r.view;version="0.0.1";uses:="com.vaadin.ui,org.flowframe.ui.vaadin.e
+ ditors.entity.vaadin.mvp,org.vaadin.mvp.uibinder.annotation",org.flow
+ frame.ui.vaadin.editors.entity.vaadin.mvp.notes;version="0.0.1";uses:
+ ="com.vaadin.addon.jpacontainer,com.vaadin.addon.jpacontainer.util,co
+ m.vaadin.data,javax.persistence.criteria,org.flowframe.kernel.common.
+ mdm.domain.note,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp,org
+ .flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view,org.vaadin.
+ mvp.eventbus.annotation,org.vaadin.mvp.presenter.annotation",org.flow
+ frame.ui.vaadin.editors.entity.vaadin.mvp.notes.view;version="0.0.1";
+ uses:="com.vaadin.data,com.vaadin.event,com.vaadin.ui,org.flowframe.u
+ i.vaadin.addons.common,org.flowframe.ui.vaadin.editors.entity.vaadin.
+ ext,org.flowframe.ui.vaadin.editors.entity.vaadin.ext.notes,org.flowf
+ rame.ui.vaadin.editors.entity.vaadin.mvp,org.flowframe.ui.vaadin.form
+ s,org.flowframe.ui.vaadin.forms.listeners,org.vaadin.mvp.uibinder.ann
+ otation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum;ver
+ sion="0.0.1";uses:="com.vaadin.addon.jpacontainer,com.vaadin.addon.jp
+ acontainer.util,com.vaadin.data,javax.persistence.criteria,org.flowfr
+ ame.kernel.common.mdm.domain,org.flowframe.kernel.common.mdm.domain.m
+ etadata,org.flowframe.kernel.common.mdm.domain.note,org.flowframe.ker
+ nel.common.mdm.domain.referencenumber,org.flowframe.ui.vaadin.editors
+ .entity.vaadin.mvp,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.
+ refnum.view,org.vaadin.mvp.eventbus.annotation,org.vaadin.mvp.present
+ er.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refn
+ um.view;version="0.0.1";uses:="com.vaadin.data,com.vaadin.event,com.v
+ aadin.ui,org.flowframe.ui.vaadin.addons.common,org.flowframe.ui.vaadi
+ n.editors.entity.vaadin.ext.refNum,org.flowframe.ui.vaadin.editors.en
+ tity.vaadin.mvp,org.flowframe.ui.vaadin.forms,org.vaadin.mvp.uibinder
+ .annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search
+ .grid;version="0.0.1";uses:="com.vaadin.addon.jpacontainer,com.vaadin
+ .data,javax.persistence,org.flowframe.ui.component.domain,org.flowfra
+ me.ui.vaadin.editors.entity.vaadin.ext.table,org.flowframe.ui.vaadin.
+ editors.entity.vaadin.mvp,org.vaadin.mvp.eventbus.annotation,org.vaad
+ in.mvp.presenter.annotation",org.flowframe.ui.vaadin.editors.entity.v
+ aadin.mvp.search.grid.view;version="0.0.1";uses:="com.vaadin.data,com
+ .vaadin.ui,org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table,or
+ g.flowframe.ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp.uibind
+ er.annotation",org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.sear
+ ch.header;version="0.0.1";uses:="com.vaadin.addon.jpacontainer,com.va
+ adin.ui,javax.persistence,org.flowframe.ui.component.domain,org.flowf
+ rame.ui.vaadin.editors.entity.vaadin.mvp,org.vaadin.mvp.eventbus.anno
+ tation,org.vaadin.mvp.presenter.annotation",org.flowframe.ui.vaadin.e
+ ditors.entity.vaadin.mvp.search.header.view;version="0.0.1";uses:="co
+ m.vaadin.ui,org.flowframe.ui.vaadin.editors.entity.vaadin.mvp,org.vaa
+ din.mvp.uibinder.annotation",org.flowframe.ui.vaadin.editors.entity.v
+ aadin.mvp.view;version="0.0.1";uses:="com.vaadin.ui,org.flowframe.ui.
+ vaadin.addons.common,org.flowframe.ui.vaadin.editors.entity.vaadin.mv
+ p,org.vaadin.mvp.uibinder.annotation"
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF UI Vaadin Editors
+Bundle-ManifestVersion: 2
+Import-Package: com.vaadin;version="6.8.2",com.vaadin.addon.jpacontain
+ er;version="2.0.0",com.vaadin.addon.jpacontainer.fieldfactory;version
+ ="2.0.0",com.vaadin.addon.jpacontainer.util;version="2.0.0",com.vaadi
+ n.data;version="6.8.2",com.vaadin.data.util;version="6.8.2",com.vaadi
+ n.event;version="6.8.2",com.vaadin.terminal;version="6.8.2",com.vaadi
+ n.ui;version="6.8.2",org.flowframe.documentlibrary.remote.services;ve
+ rsion="[0.0.1, 1.0.0)",org.flowframe.ds.domain;version="[0.0.1, 1.0.0
+ )",org.flowframe.kernel.common.mdm.dao.services;version="[0.0.1, 1.0.
+ 0)",org.flowframe.kernel.common.mdm.dao.services.documentlibrary;vers
+ ion="[0.0.1, 1.0.0)",org.flowframe.kernel.common.mdm.domain;version="
+ [0.0.1, 1.0.0)",org.flowframe.kernel.common.mdm.domain.documentlibrar
+ y;version="[0.0.1, 1.0.0)",org.flowframe.kernel.common.mdm.domain.met
+ adata;version="[0.0.1, 1.0.0)",org.flowframe.kernel.common.mdm.domain
+ .metamodel;version="[0.0.1, 1.0.0)",org.flowframe.kernel.common.mdm.d
+ omain.note;version="[0.0.1, 1.0.0)",org.flowframe.kernel.common.mdm.d
+ omain.referencenumber;version="[0.0.1, 1.0.0)",org.flowframe.kernel.c
+ ommon.utils;version="[0.0.1, 1.0.0)",org.flowframe.ui.component.domai
+ n;version="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.attachme
+ nt;version="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.form;ve
+ rsion="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.masterdetail
+ ;version="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.note;vers
+ ion="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.referencenumbe
+ r;version="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.search;v
+ ersion="[0.0.1, 1.0.0)",org.flowframe.ui.component.domain.table;versi
+ on="[0.0.1, 1.0.0)",org.flowframe.ui.services.contribution;version="[
+ 0.0.1, 1.0.0)",org.flowframe.ui.services.factory;version="[0.0.1, 1.0
+ .0)",org.flowframe.ui.vaadin.addons.common;version="[0.0.1, 1.0.0)",o
+ rg.flowframe.ui.vaadin.addons.filtertable;version="[0.0.1, 1.0.0)",or
+ g.flowframe.ui.vaadin.common.mvp;version="[0.0.1, 1.0.0)",org.flowfra
+ me.ui.vaadin.forms;version="[0.0.1, 1.0.0)",org.flowframe.ui.vaadin.f
+ orms.impl;version="[0.0.1, 1.0.0)",org.flowframe.ui.vaadin.forms.list
+ eners;version="[0.0.1, 1.0.0)",org.slf4j;version="[1.6.0, 1.7.0)",org
+ .springframework.stereotype;version="[3.0, 3.1)",org.springframework.
+ transaction.annotation;version="[3.0, 3.1)",org.vaadin.mvp.eventbus;v
+ ersion="0.9.2.SNAPSHOT",org.vaadin.mvp.eventbus.annotation;version="0
+ .9.2.SNAPSHOT",org.vaadin.mvp.presenter;version="0.9.2.SNAPSHOT",org.
+ vaadin.mvp.presenter.annotation;version="0.9.2.SNAPSHOT",org.vaadin.m
+ vp.uibinder;version="0.9.2.SNAPSHOT",org.vaadin.mvp.uibinder.annotati
+ on;version="0.9.2.SNAPSHOT"
+Bundle-SymbolicName: org.flowframe.ui.vaadin.editors
+

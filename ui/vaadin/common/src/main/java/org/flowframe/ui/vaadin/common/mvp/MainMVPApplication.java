@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.kernel.common.mdm.dao.services.IEntityMetadataDAOService;
 import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;

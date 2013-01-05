@@ -11,12 +11,10 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.vaadin.mvp.presenter.annotation.Presenter;
-
-import com.conx.logistics.common.utils.StringUtil;
-import com.conx.logistics.kernel.ui.components.domain.table.GridComponent;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
+import org.flowframe.ui.component.domain.table.GridComponent;
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -24,9 +22,10 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorE
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.view.EntityLineEditorGridView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.view.IEntityLineEditorGridView;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.service.contribution.IMainApplication;
-import com.conx.logistics.mdm.domain.BaseEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.vaadin.mvp.presenter.annotation.Presenter;
+
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;

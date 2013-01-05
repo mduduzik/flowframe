@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.bpm.jbpm.ui.pageflow.services;version="0
+ .0.1";uses:="com.vaadin.ui,javax.persistence,javax.transaction,org.fl
+ owframe.bpm.jbpm.services,org.flowframe.bpm.jbpm.ui.pageflow.services
+ .event,org.flowframe.kernel.common.mdm.domain.application,org.flowfra
+ me.kernel.common.mdm.domain.task,org.flowframe.kernel.jpa.container.s
+ ervices,org.flowframe.kernel.metamodel.dao.services,org.flowframe.ui.
+ component.domain.page,org.springframework.transaction,org.vaadin.teem
+ u.wizards",org.flowframe.bpm.jbpm.ui.pageflow.services.event;version=
+ "0.0.1"
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF JBPM UI Pageflow Services
+Bundle-ManifestVersion: 2
+Import-Package: com.vaadin.ui;version="6.8.2",javax.transaction;versio
+ n="0",org.flowframe.bpm.jbpm.services;version="[0.0.1, 1.0.0)",org.fl
+ owframe.kernel.common.mdm.domain.application;version="[0.0.1, 1.0.0)"
+ ,org.flowframe.kernel.common.mdm.domain.task;version="[0.0.1, 1.0.0)"
+ ,org.flowframe.kernel.jpa.container.services;version="[0.0.1, 1.0.0)"
+ ,org.flowframe.kernel.metamodel.dao.services;version="[0.0.1, 1.0.0)"
+ ,org.flowframe.ui.component.domain.page;version="[0.0.1, 1.0.0)",org.
+ springframework.transaction;version="[3.0, 3.1)",org.vaadin.teemu.wiz
+ ards;version="0.4.4"
+Bundle-SymbolicName: org.flowframe.bpm.jbpm.ui.pageflow.services
+
