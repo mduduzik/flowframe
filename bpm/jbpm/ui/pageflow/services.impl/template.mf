@@ -1,0 +1,4 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF JBPM UI Pageflow Services Implementation
+Bundle-SymbolicName: org.flowframe.bpm.jbpm.ui.pageflow.services.impl

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.reporting.jasper.web.services.impl;versi
+ on="0.0.1";uses:="javax.sql,org.flowframe.reporting.remote.services,o
+ rg.springframework.beans.factory.annotation",org.flowframe.reporting.
+ jasper.web.services.web.service.servlet;version="0.0.1";uses:="javax.
+ servlet,javax.servlet.http,javax.sql,org.springframework.beans.factor
+ y.annotation,org.springframework.stereotype,org.springframework.trans
+ action.annotation"
+Bundle-ClassPath: .,WEB-INF/classes
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF UI Jasper Reporting Web Services
+Import-Library: org.springframework.spring;version="[3.0, 3.1)"
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.reporting.jasper.web.services
+Web-ContextPath: reporting
+Import-Package: javax.servlet;version="[3.0.0, 3.1.0)",javax.servlet.h
+ ttp;version="[3.0.0, 3.1.0)",javax.sql;version="0",net.sf.jasperrepor
+ ts.engine;version="0",net.sf.jasperreports.engine.export;version="0",
+ net.sf.jasperreports.engine.util;version="0",org.flowframe.reporting.
+ remote.services;version="[0.0.1, 1.0.0)",org.springframework.beans.fa
+ ctory.annotation;version="[3.0.0, 3.1.0)",org.springframework.stereot
+ ype;version="[3.0.0, 3.1.0)",org.springframework.transaction.annotati
+ on;version="[3.0.0, 3.1.0)"
+

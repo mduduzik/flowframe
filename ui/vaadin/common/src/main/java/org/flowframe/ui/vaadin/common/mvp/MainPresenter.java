@@ -8,6 +8,13 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import org.flowframe.kernel.common.mdm.domain.application.Application;
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
+import org.flowframe.kernel.common.utils.Validator;
+import org.flowframe.ui.services.contribution.IApplicationViewContribution;
+import org.flowframe.ui.vaadin.common.mvp.view.IMainView;
+import org.flowframe.ui.vaadin.common.mvp.view.MainView;
+import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.EventBus;
@@ -16,21 +23,10 @@ import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.IPresenterFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.conx.logistics.common.utils.Validator;
-import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
-import org.flowframe.ui.vaadin.common.mvp.view.IMainView;
-import org.flowframe.ui.vaadin.common.mvp.view.MainView;
-import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
-import com.conx.logistics.kernel.ui.service.contribution.IApplicationViewContribution;
-import com.conx.logistics.mdm.domain.application.Application;
-import com.conx.logistics.mdm.domain.application.Feature;
 import com.vaadin.addon.jpacontainer.JPAContainer;
-import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
-import com.vaadin.data.Property.ConversionException;
-import com.vaadin.data.Property.ReadOnlyException;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.data.util.filter.Not;
@@ -39,10 +35,8 @@ import com.vaadin.terminal.Resource;
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Component.Event;
 
 @Presenter(view = MainView.class)
 public class MainPresenter extends BasePresenter<IMainView, MainEventBus>

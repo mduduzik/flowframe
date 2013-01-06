@@ -1,13 +1,10 @@
 package org.flowframe.ui.vaadin.common.mvp;
 
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
+import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.annotation.Event;
 import org.vaadin.mvp.presenter.BasePresenter;
-
-import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
-import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
-import com.conx.logistics.kernel.ui.service.contribution.IApplicationViewContribution;
-import com.conx.logistics.mdm.domain.application.Feature;
 
 public interface MainEventBus extends EventBus {
 

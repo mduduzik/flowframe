@@ -3,24 +3,24 @@ package org.flowframe.ui.vaadin.common.mvp.view.feature;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.presenter.IPresenter;
-import org.vaadin.mvp.presenter.IPresenterFactory;
-
-import com.conx.logistics.common.utils.Validator;
+import org.flowframe.kernel.common.mdm.domain.application.DocViewFeature;
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
+import org.flowframe.kernel.common.mdm.domain.application.ReportViewFeature;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.kernel.common.mdm.domain.user.User;
+import org.flowframe.kernel.common.utils.Validator;
+import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.services.contribution.ITaskActionContribution;
+import org.flowframe.ui.services.contribution.IViewContribution;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.common.mvp.LaunchableViewEventBus;
 import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
 import org.flowframe.ui.vaadin.common.mvp.docviewer.DocViewerPresenter;
 import org.flowframe.ui.vaadin.common.mvp.reportviewer.ReportViewerPresenter;
-import com.conx.logistics.kernel.ui.components.domain.AbstractConXComponent;
-import com.conx.logistics.kernel.ui.factory.services.IEntityEditorFactory;
-import com.conx.logistics.kernel.ui.service.contribution.ITaskActionContribution;
-import com.conx.logistics.kernel.ui.service.contribution.IViewContribution;
-import com.conx.logistics.mdm.domain.application.DocViewFeature;
-import com.conx.logistics.mdm.domain.application.Feature;
-import com.conx.logistics.mdm.domain.application.ReportViewFeature;
-import com.conx.logistics.mdm.domain.documentlibrary.FileEntry;
-import com.conx.logistics.mdm.domain.user.User;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.presenter.IPresenter;
+import org.vaadin.mvp.presenter.IPresenterFactory;
+
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
@@ -169,7 +169,7 @@ public class FeatureTabbedView extends TabSheet implements IFeatureView {
 				IViewContribution vc = app.getViewContributionByCode(viewCode);
 				if (vc != null) {
 					try {
-						AbstractConXComponent componentModel = vc.getComponentModel(this.app, feature);
+						AbstractComponent componentModel = vc.getComponentModel(this.app, feature);
 						if (Validator.isNotNull(componentModel)) {
 							VerticalLayout viewContainer = new VerticalLayout();
 							viewContainer.setSizeFull();

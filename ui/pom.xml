@@ -11,7 +11,8 @@
 	<packaging>pom</packaging>
 	<name>org.flowframe.ui</name>
 	<modules>
-		<!-- <module>vaadin</module> -->
+		<module>vaadin</module>
 		<module>component</module>
+		<module>services</module>
 	</modules>
 </project>

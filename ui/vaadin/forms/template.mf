@@ -1,0 +1,29 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Vaadin Forms
+Bundle-SymbolicName: org.flowframe.ui.vaadin.forms
+Import-Package:   com.vaadin.addon.jpacontainer;version="2.0.0",
+  com.vaadin.addon.jpacontainer.fieldfactory;version="2.0.0",
+  com.vaadin.addon.jpacontainer.metadata;version="2.0.0",
+  com.vaadin.addon.jpacontainer.util;version="2.0.0",
+  com.vaadin.data;version="6.8.2",
+  com.vaadin.data.util;version="6.8.2",
+  com.vaadin.data.util.filter;version="6.8.2",
+  com.vaadin.event;version="6.8.2",
+  com.vaadin.terminal;version="6.8.2",
+  com.vaadin.ui;version="6.8.2",
+  org.flowframe.ds.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.geolocation;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.utils;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.jpa.container.services;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.metamodel.dao.services;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.component.domain.form;version="[0.0.1, 1.0.0)",
+  org.springframework.expression;version="[3.0, 3.1)",
+  org.springframework.expression.spel.standard;version="[3.0, 3.1)",
+  org.springframework.expression.spel.support;version="[3.0, 3.1)"
+Excluded-Imports: javax.persistence, javax.persistence.criteria, javax.persistence.metamodel
