@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.bpm.jbpm.pageflow.event;version="0.0.1",
+ org.flowframe.bpm.jbpm.pageflow.services;version="0.0.1";uses:="javax
+ .persistence,javax.transaction,org.flowframe.bpm.jbpm.services,org.fl
+ owframe.kernel.common.mdm.domain.application,org.flowframe.kernel.com
+ mon.mdm.domain.task,org.flowframe.kernel.metamodel.dao.services,org.f
+ lowframe.ui.component.domain.page,org.springframework.transaction"
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF kernel PageFlow Services
+Bundle-ManifestVersion: 2
+Import-Package: javax.persistence;version="0",javax.transaction;versio
+ n="0",org.flowframe.bpm.jbpm.services;version="[0.0.1,1.0.0)",org.flo
+ wframe.kernel.common.mdm.domain.application;version="[0.0.1,1.0.0)",o
+ rg.flowframe.kernel.common.mdm.domain.task;version="[0.0.1,1.0.0)",or
+ g.flowframe.kernel.metamodel.dao.services;version="[0.0.1,1.0.0)",org
+ .flowframe.ui.component.domain.page;version="[0.0.1,1.0.0)",org.sprin
+ gframework.transaction;version="[3.0,3.1)"
+Bundle-SymbolicName: org.flowframe.bpm.jbpm.pageflow.services
+
