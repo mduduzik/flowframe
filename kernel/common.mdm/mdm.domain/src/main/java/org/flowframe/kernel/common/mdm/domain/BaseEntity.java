@@ -73,7 +73,7 @@ public abstract class BaseEntity implements Serializable {
     
     @ManyToOne(targetEntity = Note.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn
-    private Note note;
+    private Note note;    
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated = new Date();

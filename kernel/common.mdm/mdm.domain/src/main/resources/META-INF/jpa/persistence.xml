@@ -51,5 +51,12 @@
 		<class>org.flowframe.kernel.common.mdm.domain.metamodel.SetAttribute</class>
 		<class>org.flowframe.kernel.common.mdm.domain.metamodel.SingularAttribute</class>
 		<class>org.flowframe.kernel.common.mdm.domain.metamodel.VersionAttribute</class>
+		
+		
+		<class>org.flowframe.kernel.common.mdm.domain.preferences.Prefentry</class>
+		<class>org.flowframe.kernel.common.mdm.domain.preferences.Preferences</class>
+		<class>org.flowframe.kernel.common.mdm.domain.preferences.Prefmap</class>
+		<class>org.flowframe.kernel.common.mdm.domain.preferences.Prefnode</class>
+		<class>org.flowframe.kernel.common.mdm.domain.preferences.Prefroot</class>
 	</persistence-unit>
 </persistence>

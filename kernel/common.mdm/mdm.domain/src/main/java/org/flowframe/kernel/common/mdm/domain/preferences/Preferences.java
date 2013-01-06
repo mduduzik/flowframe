@@ -63,6 +63,10 @@ public class Preferences
 {
 
     @XmlElement(required = true)
+    @ManyToOne(targetEntity = Prefroot.class, cascade = {
+        CascadeType.ALL
+    })
+    @JoinColumn(name = "PREFROOT_PREFERENCES_HJID")    
     protected Prefroot prefroot;
     @XmlAttribute(name = "EXTERNAL_XML_VERSION")
     protected String externalxmlversion;
@@ -75,10 +79,6 @@ public class Preferences
      *     {@link Prefroot }
      *     
      */
-    @ManyToOne(targetEntity = Prefroot.class, cascade = {
-        CascadeType.ALL
-    })
-    @JoinColumn(name = "PREFROOT_PREFERENCES_HJID")
     public Prefroot getPrefroot() {
         return prefroot;
     }

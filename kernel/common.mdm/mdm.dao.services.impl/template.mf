@@ -28,6 +28,8 @@ Import-Package:
   org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.metamodel.dao.services;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.dao.services.preferences;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.preferences;version="[0.0.1,1.0.0)",  
   org.hibernate.hql.ast;version="3.6.0.Final",
   javax.persistence;version="0",
   javax.persistence.criteria;version="0",
