@@ -10,7 +10,7 @@
 	<osgi:reference id="conxlogisticsEMF" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
 	</osgi:reference>
 	<!-- export the workSpace bean to OSGi under the IPageFlowManager interface -->
-	<osgi:service ref="pageFlowImpl"  interface="corg.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager">
+	<osgi:service ref="pageFlowImpl"  interface="org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager">
 		<osgi:service-properties>
 		    <entry key="code" value="KERNEL.PAGEFLOWENGINE.DEFAULT"/>
 		  </osgi:service-properties>		

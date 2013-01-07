@@ -14,13 +14,10 @@ Import-Bundle: org.flowframe.thirdparty.hibernate.core;version="3.6.0.
  Final";import-scope:="application",org.flowframe.thirdparty.hibernate
  .annotations.commons;version="3.2.0.Final";import-scope:="application
  "
-Build-Jdk: 1.6.0_37
-Built-By: Sandile
 Bundle-Version: 0.0.1
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: FF LoB MultiPU JPAContainer for SpringDM
 Bundle-ManifestVersion: 2
-Created-By: Maven Integration for Eclipse
 Bundle-SymbolicName: org.flowframe.kernel.jpa.lob.jpacontainer
 Import-Package: bitronix.tm;version="[2.1.0,2.2.0)",bitronix.tm.journa
  l;version="[2.1.0,2.2.0)",bitronix.tm.recovery;version="[2.1.0,2.2.0)

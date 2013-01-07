@@ -12,7 +12,7 @@
 	<name>org.flowframe.bpm.jbpm.ui.pageflow</name>
 	<modules>
 		<module>services</module>
-		<module>services.impl</module>
 		<module>vaadin</module>
+		<module>services.impl</module>
 	</modules>
 </project>

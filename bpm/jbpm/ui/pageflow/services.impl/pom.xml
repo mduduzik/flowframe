@@ -102,5 +102,12 @@
 			<artifactId>org.flowframe.ui.vaadin.common</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.bpm.jbpm.ui.pageflow.vaadin
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

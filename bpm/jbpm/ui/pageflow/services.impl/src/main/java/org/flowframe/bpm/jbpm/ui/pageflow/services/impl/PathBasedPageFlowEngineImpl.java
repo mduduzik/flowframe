@@ -25,6 +25,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowSession;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.ITaskWizard;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.event.PageFlowPageChangedEvent;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.impl.path.PageFlowPathAssessor;
+import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.wizard.TaskWizard;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.task.TaskDefinition;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;

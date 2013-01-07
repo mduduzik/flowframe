@@ -269,10 +269,10 @@ public class EntityLineEditorGridPresenter extends BasePresenter<IEntityLineEdit
 	private String getReportUrlForEntity(BaseEntity entity) {
 		Application app = ((Component) this.getView()).getApplication();
 		if (app instanceof IMainApplication) {
-			String baseUrl = ((IMainApplication) app).getReportingUrl();
-			if (entity instanceof StockItem) {
-				return this.daoProvider.provideByDAOClass(IStockItemDAOService.class).getStockItemLabelUrl((StockItem) entity, baseUrl);
-			}
+//			String baseUrl = ((IMainApplication) app).getReportingUrl();
+//			if (entity instanceof StockItem) {
+//				return this.daoProvider.provideByDAOClass(IStockItemDAOService.class).getStockItemLabelUrl((StockItem) entity, baseUrl);
+//			}
 		}
 		
 		return null;

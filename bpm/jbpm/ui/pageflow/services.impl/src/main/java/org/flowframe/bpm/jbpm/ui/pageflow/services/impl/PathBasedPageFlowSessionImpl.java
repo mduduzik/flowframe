@@ -19,6 +19,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowSession;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.impl.path.PageFlowPathAssessor;
+import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.wizard.TaskWizard;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.utils.Validator;
 import org.jboss.bpm.console.client.model.ProcessInstanceRef;

@@ -15,5 +15,6 @@
   <module>ds</module>
   <module>distribution</module>
   <module>reporting</module>
+  <module>documentlibrary</module>
   </modules>
 </project>
