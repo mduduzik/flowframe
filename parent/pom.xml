@@ -2515,6 +2515,13 @@
 			<version>${logback.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.instrument</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>		
 	</dependencies>
 
 	<repositories>
