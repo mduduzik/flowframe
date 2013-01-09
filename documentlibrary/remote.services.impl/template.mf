@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: FF DocLib Remote Services Impl
-Bundle-SymbolicName: org.flowframe.kernel.documentlibrary.remote.services.impl
+Bundle-SymbolicName: org.flowframe.documentlibrary.remote.services.impl
 Bundle-Vendor: ConX
 Bundle-Version: 1.0.0
 Import-Package: 
-  org.flowframe.kernel.documentlibrary.remote.services;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.common.mdm.dao.services.documentlibrary;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.common.utils;version="[0.0.1,1.0.0)",
-  org.flowframe.mdm.dao.services.documentlibrary;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.common.mdm.domain;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1,1.0.0)",
-  org.flowframe.documentlibrary.remote.services;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.metamodel.dao.services;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",
+  org.flowframe.documentlibrary.remote.services;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.dao.services.documentlibrary;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.utils;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.documentlibrary.remote.services;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.metamodel.dao.services;version="[0.0.1, 1.0.0)",
+  org.flowframe.mdm.dao.services.documentlibrary;version="[0.0.1, 1.0.0)",
   org.springframework.dao.annotation;version="[3.0,3.1)",
   org.springframework.transaction;version="[3.0,3.1)",
   org.springframework.transaction.jta;version="[3.0,3.1)",

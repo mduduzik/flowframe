@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: FF Portal Remote Services Impl
-Bundle-SymbolicName: org.flowframe.impl
+Bundle-SymbolicName: org.flowframe.portal.remote.services.impl
 Bundle-Vendor: FF
 Bundle-Version: 0.0.1
 Import-Package: org.flowframe.portal.remote.services;version="[0.0.1,1.0.0)",
