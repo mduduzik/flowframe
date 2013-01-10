@@ -120,62 +120,6 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
-		</dependency>
-		
-		<!-- FF -->
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.drools-jbpm</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>	
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.jdbc</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>	
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.jpa</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>	
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.tm</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>							
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.kernel</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>	
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.portal</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.ds</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.distribution.metamodel</artifactId>
-			<version>0.0.1</version>
-			<type>pom</type>
-		</dependency>				
+		</dependency>			
 	</dependencies> 
 </project>
