@@ -63,7 +63,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	static public final String FFDOCREPO_SERVER_PORT = "ffdocrepo.server.port";// 8080
 	static public final String FFDOCREPO_REPOSITORY_ID = "ffdocrepo.repository.id";// 10180
 	static public final String FFDOCREPO_REPOSITORY_COMPANYID = "ffdocrepo.repository.companyid";// 10154
-	static public final String FFDOCREPO_REPOSITORY_FFLOGISTICS_FOLDERID = "ffdocrepo.repository.lob.folderid";// 10644
+	static public final String FFDOCREPO_REPOSITORY_MAIN_FOLDERID = "ffdocrepo.repository.main.folderid";// 10644
 	static public final String FFDOCREPO_USER_EMAIL = "ffdocrepo.user.email";// test@liferay.com
 	static public final String FFDOCREPO_USER_PASSWORD = "ffdocrepo.user.password";// test
 	static public final String FFDOCREPO_USER_GROUP_ID = "ffdocrepo.user.group.id";// 10180
@@ -96,7 +96,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		port = liferayProperties.getProperty(FFDOCREPO_SERVER_PORT);
 		repositoryId = liferayProperties.getProperty(FFDOCREPO_REPOSITORY_ID);
 		companyId = liferayProperties.getProperty(FFDOCREPO_REPOSITORY_COMPANYID);
-		fflogiFolderId = liferayProperties.getProperty(FFDOCREPO_REPOSITORY_FFLOGISTICS_FOLDERID);
+		fflogiFolderId = liferayProperties.getProperty(FFDOCREPO_REPOSITORY_MAIN_FOLDERID);
 		loginGroupId = liferayProperties.getProperty(FFDOCREPO_USER_GROUP_ID);
 		loginEmail = liferayProperties.getProperty(FFDOCREPO_USER_EMAIL);
 		loginPassword = liferayProperties.getProperty(FFDOCREPO_USER_PASSWORD);

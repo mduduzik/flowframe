@@ -100,7 +100,7 @@ public class BPMServerImpl implements IBPMService {
 
 	private EntityManagerFactory jbpmEMF;
 	private EntityManagerFactory jbpmTaskEMF;
-	private EntityManagerFactory conxlogisticsEMF;
+	private EntityManagerFactory flowframeEMF;
 	
 	private TransactionManager globalTransactionManager;
 	private UserTransaction globalUserTransaction;
@@ -148,12 +148,12 @@ public class BPMServerImpl implements IBPMService {
 	}
 	
 
-	public EntityManagerFactory getConxlogisticsEMF() {
-		return conxlogisticsEMF;
+	public EntityManagerFactory getFlowframeEMF() {
+		return flowframeEMF;
 	}
 
-	public void setConxlogisticsEMF(EntityManagerFactory conxlogisticsEMF) {
-		this.conxlogisticsEMF = conxlogisticsEMF;
+	public void setFlowframeEMF(EntityManagerFactory flowframeEMF) {
+		this.flowframeEMF = flowframeEMF;
 	}
 
 	public void setGlobalTransactionManager(
@@ -517,7 +517,7 @@ public class BPMServerImpl implements IBPMService {
 			
 			//-- Configure for JPA Entity Persistence support when saving ProcessInstance's with JPA Entities as variables
 	        Environment domainEnv = EnvironmentFactory.newEnvironment();
-	        domainEnv.set(EnvironmentName.ENTITY_MANAGER_FACTORY, conxlogisticsEMF);
+	        domainEnv.set(EnvironmentName.ENTITY_MANAGER_FACTORY, flowframeEMF);
 	        domainEnv.set(EnvironmentName.TRANSACTION_MANAGER, this.globalTransactionManager);
 /*	        env.set(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new ObjectMarshallingStrategy[]{
 	                    new JPAPlaceholderResolverStrategy(domainEnv),

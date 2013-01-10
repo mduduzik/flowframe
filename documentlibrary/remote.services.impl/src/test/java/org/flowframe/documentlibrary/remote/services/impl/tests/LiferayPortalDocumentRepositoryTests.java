@@ -22,13 +22,12 @@ import org.testng.annotations.Test;
 
 import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl;
 
-@ContextConfiguration(locations = { "/META-INF/tm.jta-module-context.xml",
-        "/META-INF/persistence.datasource-module-context.xml",
-        "/META-INF/persistence.dynaconfiguration-module-context.xml",
-        "/META-INF/mdm.dao.services.impl-module-context.xml",
-        "/META-INF/metamodel.dao.jpa.persistence-module-context.xml",
-        "/META-INF/module-context.xml"
-        })
+@ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml",
+        "/META-INF/flowframe/jpa.lob.jpacontainer.springdm-module-context.xml",
+        "/META-INF/flowframe/dao.services.impl-module-context.xml",
+        "/META-INF/flowframe/metamodel.dao.services.impl-module-context.xml",        
+        "/META-INF/core.dao.datasource.mysql-module-context.xml",
+        "/META-INF/doclib-module-context.xml"})
 public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringContextTests {
 	@Autowired
     private ApplicationContext applicationContext;

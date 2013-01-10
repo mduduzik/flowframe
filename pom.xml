@@ -16,6 +16,6 @@
 		<module>reporting</module>
 		<module>documentlibrary</module>
 		<module>ui</module>
-		<module>distribution</module>
+		<!--<module>distribution</module>-->
 	</modules>
 </project>

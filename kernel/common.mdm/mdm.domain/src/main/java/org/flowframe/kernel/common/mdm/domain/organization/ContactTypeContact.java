@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.flowframe.kernel.common.mdm.domain.IRelationEntity;
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
@@ -50,11 +51,13 @@ public class ContactTypeContact extends MultitenantBaseEntity implements IRelati
 	}
 
 	@Override
+	@Transient
 	public Object getIdentifierPropertyId() {
 		return "type";
 	}
 
 	@Override
+	@Transient
 	public Object getEntityPropertyId() {
 		return "contact";
 	}

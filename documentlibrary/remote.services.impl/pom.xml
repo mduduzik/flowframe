@@ -12,6 +12,13 @@
 		<liferay.version>6.1.20</liferay.version>
 	</properties>
 	<dependencies>
+		<!-- Extra -->
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.documentlibrary.remote.services.impl.config.fragment</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+				
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
@@ -95,6 +102,19 @@
 			<artifactId>testng</artifactId>
 			<version>6.5.2</version>
 		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.tests.common</artifactId>
+			<version>${project.version}</version>
+		</dependency>			
+		
 		<!-- Spring and AspectJ -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -109,6 +129,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -124,34 +145,95 @@
 			<artifactId>org.springframework.context</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>com.springsource.org.junit</artifactId>
-
+			<groupId>javax.transaction</groupId>
+			<artifactId>com.springsource.javax.transaction</artifactId>
+			<scope>provided</scope>
+		</dependency>	
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-osgi</artifactId>
+			<version>4.2.1</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.objectweb.asm</groupId>
-			<artifactId>com.springsource.org.objectweb.asm</artifactId>
-
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore-osgi</artifactId>
+			<version>4.2.1</version>
 		</dependency>
 
 		<dependency>
-		    <groupId>javax.transaction</groupId>
-		    <artifactId>com.springsource.javax.transaction</artifactId>
-		    <version>1.1.0</version>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- FF -->
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.drools-jbpm</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.jdbc</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.jpa</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.tm</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>							
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.kernel</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.portal</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.ds</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.distribution.metamodel</artifactId>
+			<version>0.0.1</version>
+			<type>pom</type>
 		</dependency>
 	</dependencies>
 	<build>

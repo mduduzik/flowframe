@@ -12,5 +12,6 @@ Excluded-Imports:  org.flowframe.kernel.common.utils,
   org.springframework.format.annotation,
   org.jvnet.jaxb2_commons.lang,
   org.jvnet.jaxb2_commons.locator,
-  org.jvnet.jaxb2_commons.locator.util
+  org.jvnet.jaxb2_commons.locator.util,
+  org.jvnet.hyperjaxb3.xml.bind.annotation.adapters
   

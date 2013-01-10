@@ -62,6 +62,7 @@
 									<filelist dir="dependencies">
 									    <file name="org.flowframe.portal.remote.services-0.0.1.jar" />
 										<file name="org.flowframe.portal.remote.services.impl-0.0.1.jar" />
+										<file name="org.flowframe.portal.remote.services.impl.config.fragment-0.0.1.jar" />
 									</filelist>
 								</copy>										
 							</tasks>
@@ -83,6 +84,11 @@
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.portal.remote.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>			
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.portal.remote.services.impl.config.fragment</artifactId>
 			<version>0.0.1</version>
 		</dependency>											
 	</dependencies>

@@ -4,12 +4,12 @@ Bundle-Name: FF Portal Remote Services
 Bundle-SymbolicName: org.flowframe.portal.remote.services
 Bundle-Vendor: FF
 Bundle-Version: 0.0.1
-Import-Package: org.flowframe.kernel.common.mdm.domain.organization;version="0.0.1",
-  org.flowframe.kernel.common.mdm.domain.user;version="0.0.1",
-  org.flowframe.kernel.common.mdm.domain;version="0.0.1",
-  org.flowframe.kernel.metamodel.dao.services;version="0.0.1",
-  org.flowframe.kernel.common.mdm.dao.services.documentlibrary;version="0.0.1",
-  org.flowframe.kernel.common.mdm.domain.role;version="0.0.1",
+Import-Package: org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.metamodel.dao.services;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.dao.services.documentlibrary;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.role;version="[0.0.1,1.0.0)",
   org.springframework.transaction;version="[3.0,3.1)",
   org.springframework.transaction.aspectj;version="[3.0,3.1)",
   javax.persistence;version="0",

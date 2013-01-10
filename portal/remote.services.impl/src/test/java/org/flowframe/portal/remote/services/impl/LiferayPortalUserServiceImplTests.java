@@ -18,13 +18,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@ContextConfiguration(locations = { "/META-INF/tm.jta-module-context.xml",
-        "/META-INF/persistence.datasource-module-context.xml",
-        "/META-INF/persistence.dynaconfiguration-module-context.xml",
-        "/META-INF/mdm.dao.services.impl-module-context.xml",
-        "/META-INF/metamodel.dao.jpa.persistence-module-context.xml",
-        "/META-INF/module-context.xml"
-        })
+@ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml",
+        "/META-INF/flowframe/jpa.lob.jpacontainer.springdm-module-context.xml",
+        "/META-INF/flowframe/tm.jta-module-context.xml",
+        "/META-INF/flowframe/core.dao.datasource.mysql-module-context.xml",
+        "/META-INF/portal-module-context.xml"})
 public class LiferayPortalUserServiceImplTests extends AbstractTestNGSpringContextTests {
 	@Autowired
     private ApplicationContext applicationContext;

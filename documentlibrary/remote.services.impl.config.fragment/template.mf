@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF DocLib Remote Services Impl config fragment
+Bundle-SymbolicName: org.flowframe.documentlibrary.remote.services.impl.config.fragment
+Bundle-Vendor: FF
+Bundle-Version: 0.0.1

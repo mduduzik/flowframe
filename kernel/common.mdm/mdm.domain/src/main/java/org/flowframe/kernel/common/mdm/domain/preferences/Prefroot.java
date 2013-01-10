@@ -8,6 +8,7 @@
 
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -77,10 +78,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "ffprefroot")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Prefroot
-    implements Equals, HashCode
+    implements Equals, HashCode, Serializable
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7869822230680505449L;
+	@XmlElement(required = true)
     protected Prefmap prefmap;
     protected List<Prefnode> prefnode;
     @XmlAttribute(name = "type", required = true)

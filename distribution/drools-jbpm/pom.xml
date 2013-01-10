@@ -60,6 +60,12 @@
 							<tasks>
 								<copy todir="../virgo-bundles/repository/flowframe/drools-jbpm">															
 									<filelist dir="dependencies">
+									    <file name="org.flowframe.bpm.jbpm.bpmserver-0.0.1.jar" />
+									    <file name="org.flowframe.bpm.jbpm.bpmserver.persistence-0.0.1.jar" />
+									    <file name="org.flowframe.bpm.jbpm.taskserver-0.0.1.jar" />
+									    <file name="org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment-0.0.1.jar" />
+									    <file name="org.flowframe.bpm.jbpm.services-0.0.1.jar" />
+									    <file name="org.flowframe.bpm.jbpm.shared-0.0.1.jar" />
 									    <file name="org.flowframe.bpm.jbpm.taskserver.persistence-0.0.1.jar" />
 										<file name="org.flowframe.bpm.jbpm.persistence.datasource-0.0.1.jar" />
 									
@@ -84,6 +90,8 @@
 											name="org.flowframe.thirdparty.knowledge-api-${drools.version}.jar" />
 										<file
 											name="org.flowframe.thirdparty.knowledge-internal-api-${drools.version}.jar" />
+										<file name="org.flowframe.thirdparty.gwt-console-server-integration-2.3.2-SNAPSHOT.jar" />
+										<file name="org.flowframe.thirdparty.gwt-console-rpc-2.3.2-SNAPSHOT.jar" />	
 									</filelist>
 								</copy>	
 							</tasks>
@@ -96,7 +104,37 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>	
+	<dependencies>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.bpmserver</artifactId>
+			<version>0.0.1</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.bpmserver.persistence</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment</artifactId>
+			<version>0.0.1</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.taskserver</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.bpm.jbpm.shared</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.bpm.jbpm.taskserver.persistence</artifactId>
@@ -188,5 +226,19 @@
 			<artifactId>org.flowframe.thirdparty.knowledge-internal-api</artifactId>
 			<version>${drools.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.jbpm-workitems</artifactId>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.gwt-console-server-integration</artifactId>
+			<version>2.3.2-SNAPSHOT</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.gwt-console-rpc</artifactId>
+			<version>2.3.2-SNAPSHOT</version>
+		</dependency>					
 	</dependencies>
 </project>

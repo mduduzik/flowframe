@@ -42,14 +42,14 @@ import flexjson.JSONDeserializer;
 @Transactional
 @Service
 public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrganizationService, IPortalRoleService {
-	static public final String CONXPORTAL_SERVER_HOSTNAME = "conxportal.server.hostname";//localhost
-	static public final String CONXPORTAL_SERVER_PORT = "conxportal.server.port";//8080
-	static public final String CONXPORTAL_REPOSITORY_ID = "conxportal.repository.id";//10180
-	static public final String CONXPORTAL_REPOSITORY_COMPANYID = "conxportal.repository.companyid";//10154
-	static public final String CONXPORTAL_REPOSITORY_CONXLOGISTICS_FOLDERID = "conxportal.repository.conxlogistics.folderid";//10644
-	static public final String CONXPORTAL_USER_EMAIL = "conxportal.user.email";//test@liferay.com
-	static public final String CONXPORTAL_USER_PASSWORD = "conxportal.user.password";//test
-	static public final String CONXPORTAL_USER_GROUP_ID = "conxportal.user.group.id";//10180
+	static public final String FFPORTAL_SERVER_HOSTNAME = "ffportal.server.hostname";//localhost
+	static public final String FFPORTAL_SERVER_PORT = "ffportal.server.port";//8080
+	static public final String FFPORTAL_REPOSITORY_ID = "ffportal.repository.id";//10180
+	static public final String FFPORTAL_REPOSITORY_COMPANYID = "ffportal.repository.companyid";//10154
+	static public final String FFPORTAL_REPOSITORY_MAIN_FOLDERID = "ffportal.repository.main.folderid";//10644
+	static public final String FFPORTAL_USER_EMAIL = "ffportal.user.email";//test@liferay.com
+	static public final String FFPORTAL_USER_PASSWORD = "ffportal.user.password";//test
+	static public final String FFPORTAL_USER_GROUP_ID = "ffportal.user.group.id";//10180
 	
 	private Properties liferayProperties = new Properties();
 
@@ -68,12 +68,12 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 	{
 		loadLiferayProperties();
 		
-		hostname = liferayProperties.getProperty(CONXPORTAL_SERVER_HOSTNAME);
-		port = liferayProperties.getProperty(CONXPORTAL_SERVER_PORT);
-		companyId = liferayProperties.getProperty(CONXPORTAL_REPOSITORY_COMPANYID);
-		loginGroupId = liferayProperties.getProperty(CONXPORTAL_USER_GROUP_ID);
-		loginEmail = liferayProperties.getProperty(CONXPORTAL_USER_EMAIL);
-		loginPassword = liferayProperties.getProperty(CONXPORTAL_USER_PASSWORD);
+		hostname = liferayProperties.getProperty(FFPORTAL_SERVER_HOSTNAME);
+		port = liferayProperties.getProperty(FFPORTAL_SERVER_PORT);
+		companyId = liferayProperties.getProperty(FFPORTAL_REPOSITORY_COMPANYID);
+		loginGroupId = liferayProperties.getProperty(FFPORTAL_USER_GROUP_ID);
+		loginEmail = liferayProperties.getProperty(FFPORTAL_USER_EMAIL);
+		loginPassword = liferayProperties.getProperty(FFPORTAL_USER_PASSWORD);
 		
 		targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
 		httpclient = new DefaultHttpClient();
@@ -128,10 +128,10 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		}
 		try {
 			liferayProperties.load(LiferayPortalServicesImpl.class
-					.getResourceAsStream("/conxliferay.properties"));
+					.getResourceAsStream("/ffliferay.properties"));
 		} catch (IOException e) {
 			throw new RuntimeException(
-					"Could not load conxliferay.properties", e);
+					"Could not load ffliferay.properties", e);
 		}
 
 		return liferayProperties;

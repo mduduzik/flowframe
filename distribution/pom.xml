@@ -88,6 +88,7 @@
 										<file name="com.springsource.org.aspectj.runtime-1.6.8.RELEASE.jar" />
 										<file name="com.springsource.org.aopalliance-1.0.0.jar" />
 										<file name="com.springsource.antlr-2.7.7.jar" />
+										<file name="com.springsource.org.antlr.stringtemplate-3.2.0.jar" />
 										<file
 											name="com.springsource.org.hibernate.validator-4.2.0.Final.jar" />
 										<file name="com.springsource.org.joda.time-1.6.2.jar" />
@@ -118,9 +119,36 @@
 										<file name="com.springsource.net.sf.cglib-2.2.0.jar" />
 										<file name="com.springsource.org.antlr.runtime-3.1.3.jar" />
 										<file name="mvel2-2.1.0.drools10.jar" />
+
+										<file
+											name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3-0.5.7.SNAPSHOT.jar" />
+										<file
+											name="org.flowframe.thirdparty.org.jvnet.jaxb2_commons-0.6.4.SNAPSHOT.jar" />
+
+										<file
+											name="com.springsource.org.apache.httpcomponents.httpcore-4.2.1.jar" />
+										<file
+											name="com.springsource.org.apache.httpcomponents.httpclient-4.2.1.jar" />
+										<file
+											name="com.springsource.org.apache.httpcomponents.httpmime-4.2.1.jar" />
+										<file name="com.springsource.org.apache.commons.codec-1.4.0.jar" />
+										<file name="org.flowframe.thirdparty.flexjson-2.1.jar" />
+
+										<file name="com.springsource.org.antlr.stringtemplate-3.2.0.jar" />
+										<file name="com.springsource.javax.mail-1.4.1.jar" />
+										<file name="com.springsource.org.apache.commons.io-1.4.0.jar" />
+										<file name="com.springsource.org.apache.commons.net-2.0.0.jar" />
+										<file name="com.springsource.org.jdom-1.1.0.jar" />
+										<file name="com.springsource.org.jivesoftware.smack-3.1.0.jar" />
+										<file name="com.springsource.com.sun.syndication-1.0.0.jar" />
+
+										<file name="org.flowframe.thirdparty.netty-3.2.7.Final.jar" />
+										<file name="org.flowframe.thirdparty.hornetq-2.2.5.Final.jar" />
+
+										<file name="org.flowframe.thirdparty.commons-compress-1.0.0.jar" />
+										<file name="org.flowframe.thirdparty.commons-exec-1.0.1.jar" />
 										
-										<file name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3-0.5.7.SNAPSHOT.jar" />
-										<file name="org.flowframe.thirdparty.org.jvnet.jaxb2_commons-0.6.4.SNAPSHOT.jar" />										
+										<file name="com.springsource.org.antlr-3.1.3.jar" />
 									</filelist>
 								</copy>
 							</tasks>
@@ -162,12 +190,12 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.org.jvnet.hyperjaxb3</artifactId>
 			<version>0.5.7.SNAPSHOT</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</artifactId>
 			<version>0.6.4.SNAPSHOT</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>net.sourceforge.cglib</groupId>
 			<artifactId>com.springsource.net.sf.cglib</artifactId>
@@ -401,6 +429,91 @@
 			<artifactId>org.flowframe.thirdparty.knowledge-internal-api</artifactId>
 			<version>${drools.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>com.springsource.org.apache.httpcomponents.httpcore</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>com.springsource.org.apache.httpcomponents.httpclient</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>com.springsource.org.apache.httpcomponents.httpmime</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.codec</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.flexjson</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>com.springsource.org.antlr.stringtemplate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>com.springsource.javax.mail</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.io</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.net</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>com.springsource.org.jdom</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.igniterealtime</groupId>
+			<artifactId>com.springsource.org.jivesoftware.smack</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.syndication</groupId>
+			<artifactId>com.springsource.com.sun.syndication</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.netty</artifactId>
+			<version>3.2.7.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hornetq</artifactId>
+			<version>2.2.5.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.commons-compress</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.commons-exec</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>com.springsource.org.antlr</artifactId>
+			<version>3.1.3</version>
+		</dependency>
+
 	</dependencies>
 	<modules>
 		<module>drools-jbpm</module>
@@ -411,5 +524,7 @@
 		<module>portal</module>
 		<module>ds</module>
 		<module>metamodel</module>
+		<module>common</module>
+		<module>documentlibrary</module>
 	</modules>
 </project>

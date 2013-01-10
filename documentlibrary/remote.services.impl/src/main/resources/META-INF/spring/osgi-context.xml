@@ -17,10 +17,10 @@
 	</osgi:reference>	
 	
 	<!-- import external interfaces -->
-	<osgi:reference id="folderDao" interface="org.flowframe.mdm.dao.services.documentlibrary.IFolderDAOService"/>
+	<osgi:reference id="folderDao" interface="org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService"/>
 	<osgi:reference id="basicTypeDao" interface="org.flowframe.kernel.metamodel.dao.services.IBasicTypeDAOService"/>
 	<osgi:reference id="entityTypeDao" interface="org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService"/>
 	
 	<!-- export internal interfaces -->
-	<osgi:service ref="lplDocLibService" interface="org.flowframe.kernel.documentlibrary.remote.services.IRemoteDocumentRepository"/>
+	<osgi:service ref="lplDocLibService" interface="org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository"/>
 </beans>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-Vendor: FF
+Fragment-Host: org.flowframe.portal.remote.services.impl
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF Portal Remote Services Impl config fragment
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.portal.remote.services.impl.config.
+ fragment
+
