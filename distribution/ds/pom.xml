@@ -92,12 +92,5 @@
 			<artifactId>org.flowframe.ds.domain</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>
-				org.flowframe.ds.jpacontainer.ds.fragment
-			</artifactId>
-			<version>0.0.1</version>
-		</dependency>
 	</dependencies>
 </project>

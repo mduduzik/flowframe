@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="pu-uicomponents">
+		<class>org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.custom.provider.factory.ICustomContentPresenterFactory</class>
+		<class>org.flowframe.ui.component.domain.custom.provider.presenter.ICustomContentPresenter</class>
+		<class>org.flowframe.ui.component.domain.custom.provider.ICustomContentProvider</class>
+		<class>org.flowframe.ui.component.domain.custom.CustomComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.editor.EntityEditorComponent</class>
+		<class>org.flowframe.ui.component.domain.editor.MultiLevelEntityEditorComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.form.AbstractTextFieldComponent</class>
+		<class>org.flowframe.ui.component.domain.form.CollapseableSectionFormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.CollapsibleConfirmActualsFormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.CollapsiblePhysicalAttributeConfirmActualsFormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.ConfirmActualsFieldSetComponent</class>
+		<class>org.flowframe.ui.component.domain.form.ConfirmActualsFieldSetFieldComponent</class>
+		<class>org.flowframe.ui.component.domain.form.ConfirmActualsFormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.DetailFormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.FieldSetComponent</class>
+		<class>org.flowframe.ui.component.domain.form.FieldSetFieldComponent</class>
+		<class>org.flowframe.ui.component.domain.form.FormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.PhysicalAttributeConfirmActualsFieldSetComponent</class>
+		<class>org.flowframe.ui.component.domain.form.PhysicalAttributeConfirmActualsFieldSetFieldComponent</class>
+		<class>org.flowframe.ui.component.domain.form.SimpleFormComponent</class>
+		<class>org.flowframe.ui.component.domain.form.TextFieldComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.layout.AbstractLayoutComponent</class>
+		<class>org.flowframe.ui.component.domain.layout.AbstractOrderedLayoutComponent</class>
+		<class>org.flowframe.ui.component.domain.layout.GridLayoutComponent</class>
+		<class>org.flowframe.ui.component.domain.layout.HorizontalLayoutComponent</class>
+		<class>org.flowframe.ui.component.domain.layout.OrderedLayoutComponent</class>
+		<class>org.flowframe.ui.component.domain.layout.VerticalLayoutComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.masterdetail.CreateNewLineEditorComponent</class>
+		<class>org.flowframe.ui.component.domain.masterdetail.LineEditorComponent</class>
+		<class>org.flowframe.ui.component.domain.masterdetail.LineEditorContainerComponent</class>
+		<class>org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.note.NoteEditorComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.page.TaskPageComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.search.SearchGridComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.tabbed.TabComponent</class>
+		<class>org.flowframe.ui.component.domain.tabbed.TabSheetComponent</class>
+		<class>org.flowframe.ui.component.domain.tabbed.TabSheetTabComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.table.ColumnAlignment</class>
+		<class>org.flowframe.ui.component.domain.table.ColumnIconPath</class>
+		<class>org.flowframe.ui.component.domain.table.ColumnWidth</class>
+		<class>org.flowframe.ui.component.domain.table.DetailGridComponent</class>
+		<class>org.flowframe.ui.component.domain.table.GridComponent</class>
+		<class>org.flowframe.ui.component.domain.table.MatchGridComponent</class>
+		
+		<class>org.flowframe.ui.component.domain.types.Alignment</class>
+		
+		<class>org.flowframe.ui.component.domain.AbstractComponent</class>
+		<class>org.flowframe.ui.component.domain.AbstractFieldComponent</class>
+		<class>org.flowframe.ui.component.domain.AbstractSelectComponent</class>
+		<class>org.flowframe.ui.component.domain.ComponentAlignment</class>
+		<class>org.flowframe.ui.component.domain.ComponentExpandRatio</class>
+		<class>org.flowframe.ui.component.domain.MarginInfo</class>
+		<class>org.flowframe.ui.component.domain.Sizeable</class>
+	</persistence-unit>
+</persistence>

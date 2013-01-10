@@ -2,6 +2,7 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF DataSource Domain Model
 Bundle-SymbolicName: org.flowframe.ds.domain
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Import-Package:  org.flowframe.kernel.common.mdm.domain;version="[0.0.1, 1.0.0)",
   org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1, 1.0.0)",
   org.flowframe.kernel.common.utils;version="[0.0.1, 1.0.0)"

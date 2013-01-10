@@ -75,18 +75,22 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		loginEmail = liferayProperties.getProperty(FFPORTAL_USER_EMAIL);
 		loginPassword = liferayProperties.getProperty(FFPORTAL_USER_PASSWORD);
 		
-		targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
-		httpclient = new DefaultHttpClient();
-		httpclient.getCredentialsProvider().setCredentials(
-				new AuthScope(targetHost.getHostName(), targetHost.getPort()),
-				new UsernamePasswordCredentials(loginEmail, loginPassword));
+		try {
+			targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
+			httpclient = new DefaultHttpClient();
+			httpclient.getCredentialsProvider().setCredentials(
+					new AuthScope(targetHost.getHostName(), targetHost.getPort()),
+					new UsernamePasswordCredentials(loginEmail, loginPassword));
 
-		// Create AuthCache instance
-		this.authCache = new BasicAuthCache();
-		// Generate BASIC scheme object and add it to the local
-		// auth cache
-		BasicScheme basicAuth = new BasicScheme();
-		authCache.put(targetHost, basicAuth);	
+			// Create AuthCache instance
+			this.authCache = new BasicAuthCache();
+			// Generate BASIC scheme object and add it to the local
+			// auth cache
+			BasicScheme basicAuth = new BasicScheme();
+			authCache.put(targetHost, basicAuth);
+		} catch (NumberFormatException e) {
+			throw new RuntimeException("The provided port was not a number: " + port);
+		}	
 	}	
 	
 	private String getLoginUserId() throws ParseException, IOException

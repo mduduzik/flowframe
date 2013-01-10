@@ -1,6 +1,0 @@
-Bundle-ManifestVersion: 2
-Bundle-Version: 0.0.1
-Bundle-Name: FF UI Component JPAContainer Persistence Fragment
-Bundle-SymbolicName: org.flowframe.ui.component.jpacontainer.component.fragment
-Excluded-Imports:  javax.persistence,javax.validation.constraints,
-  org.springframework.format.annotation
