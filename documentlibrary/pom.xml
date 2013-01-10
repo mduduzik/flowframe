@@ -11,6 +11,7 @@
   <modules>
   	<module>remote.services</module>
   	<module>remote.services.impl</module>
+  	<module>remote.services.impl.config.fragment</module>
   </modules>
 	<build>
 		<plugins>
