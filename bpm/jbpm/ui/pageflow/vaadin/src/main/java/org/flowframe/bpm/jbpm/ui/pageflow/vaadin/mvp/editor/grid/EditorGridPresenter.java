@@ -17,11 +17,11 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.multilevel.MultiLeve
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityTypeAttribute;
 import org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute;
+import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
-import org.flowframe.ui.services.factory.data.IDAOProvider;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
 import org.slf4j.Logger;

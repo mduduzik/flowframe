@@ -25,9 +25,9 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.container.VaadinBeanIt
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.container.VaadinJPAContainer;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
+import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
-import org.flowframe.ui.services.factory.data.IDAOProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.mvp.StartableApplicationEventBus;

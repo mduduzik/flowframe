@@ -10,9 +10,9 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IContainerItemPresenter
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.ILocalizedEventSubscriber;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.form.view.EditorFormView;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.form.view.IEditorFormView;
+import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.ui.component.domain.form.FormComponent;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
-import org.flowframe.ui.services.factory.data.IDAOProvider;
 import org.flowframe.ui.vaadin.forms.impl.VaadinForm;
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.slf4j.Logger;
