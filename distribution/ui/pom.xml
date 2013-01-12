@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.flowframe.distribution</artifactId>
+		<groupId>org.flowframe</groupId>
+		<version>0.0.1</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>org.flowframe.distribution.ui</artifactId>
+	<name>org.flowframe.distribution.ui</name>
+	<packaging>pom</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>dependencies</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<stripVersion>false</stripVersion>
+							<includeScope>runtime</includeScope>
+							<excludeTransitive>true</excludeTransitive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>clean plugins</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete>
+									<fileset dir="dependencies" includes="**/*.jar"
+										excludes="com.springsource.org.jgroups-2.2.8.jar, com.springsource.org.objectweb.asm-1.5.3.jar, **/.gitignore" />
+								</delete>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy to virgo repository</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<copy todir="../virgo-bundles/repository/flowframe/ui">
+									<filelist dir="dependencies">
+										<file name="org.flowframe.ui.services-0.0.1.jar" />
+										<file name="org.flowframe.ui.manager-0.0.1.jar" />
+										<file name="org.flowframe.ui.vaadin.editors-0.0.1.jar" />
+										<file name="org.flowframe.ui.vaadin.forms-0.0.1.jar" />
+										<file name="org.flowframe.ui.vaadin.common-0.0.1.jar" />
+										<file name="org.flowframe.ui.vaadin.addons.common-0.0.1.jar" />
+										<file name="org.flowframe.ui.vaadin.addons.filtertable-0.0.1.jar" />
+									</filelist>
+								</copy>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.forms</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.editors</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.addons.common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.addons.filtertable</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.manager</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
+</project>

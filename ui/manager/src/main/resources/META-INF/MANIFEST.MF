@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.ui.manager;version="0.0.1";uses:="com.va
+ adin,org.flowframe.ui.services,org.flowframe.ui.services.contribution
+ "
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF UI Manager
+Bundle-ManifestVersion: 2
+Import-Package: com.vaadin;version="6.8.2",com.vaadin.ui;version="6.8.
+ 2",org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1
+ , 1.0.0)",org.flowframe.kernel.common.utils;version="[0.0.1, 1.0.0)",
+ org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",org.flowfr
+ ame.ui.services;version="[0.0.1, 1.0.0)",org.flowframe.ui.services.co
+ ntribution;version="[0.0.1, 1.0.0)",org.slf4j;version="[1.6.1, 1.7.0)
+ ",org.vaadin.mvp.presenter;version="0.9.2.SNAPSHOT",org.vaadin.mvp.ui
+ binder;version="0.9.2.SNAPSHOT"
+Bundle-SymbolicName: org.flowframe.ui.manager
+

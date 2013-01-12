@@ -6,12 +6,26 @@ Bundle-ClassPath: .,WEB-INF/classes
 Web-ContextPath: reporting
 Import-Library: 
   org.springframework.spring;version="[3.0, 3.1)"
-Import-Package:  javax.servlet;version="[3.0.0, 3.1.0)",
-  javax.servlet.http;version="[3.0.0, 3.1.0)",
+Import-Package: org.flowframe.reporting.remote.services;version="[0.0.1, 1.0.0)",
+  javax.servlet;version="[3.0.0, 3.1.0)",
+  javax.servlet.http;version="[3.0.0,3.1.0)",
+  javax.servlet.jsp.jstl.core;version="[1.2.0,2.0.0)",
   net.sf.jasperreports.engine;version="0",
   net.sf.jasperreports.engine.export;version="0",
   net.sf.jasperreports.engine.util;version="0",
-  org.flowframe.reporting.remote.services;version="[0.0.1, 1.0.0)",
-  org.springframework.beans.factory.annotation;version="[3.0.0, 3.1.0)",
-  org.springframework.stereotype;version="[3.0.0, 3.1.0)",
-  org.springframework.transaction.annotation;version="[3.0.0, 3.1.0)"
+  com.lowagie.text;version="[2.0,3.0)",
+  org.codehaus.groovy.control;version="[1.7.0,1.9.0)",
+  org.eclipse.virgo.web.dm;version="[3.0.0, 4.0.0)",
+  org.springframework.beans.factory.annotation;version="[3.0, 3.1)",
+  org.springframework.core.io;version="[3.0, 3.1)",
+  org.springframework.stereotype;version="[3.0, 3.1)",
+  org.springframework.web.bind.annotation;version="[3.0, 3.1)",
+  org.springframework.web.context;version="[3.0, 3.1)",
+  org.springframework.web.servlet;version="[3.0, 3.1)",
+  org.springframework.web.servlet.mvc.annotation;version="[3.0, 3.1)",
+  org.springframework.orm.jpa.support;version="[3.0, 3.1)",
+  org.springframework.beans.factory.annotation;version="[3.0,3.1)",
+  org.springframework.orm.jpa;version="[3.0,3.1)",
+  org.springframework.transaction;version="[3.0,3.1)",
+  org.springframework.transaction.annotation;version="[3.0,3.1)",
+  org.springframework.transaction.aspectj;version="[3.0,3.1)"

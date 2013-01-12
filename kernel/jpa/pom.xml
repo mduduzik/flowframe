@@ -11,6 +11,7 @@
   <modules>
   	<module>lob.jpacontainer.springdm</module>
   	<module>jpa.container.services</module>
+  	<module>jpa.container.services.impl</module>
   </modules>
 	<build>
 		<plugins>

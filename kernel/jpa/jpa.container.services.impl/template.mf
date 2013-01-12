@@ -1,0 +1,7 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF JPA Container Services Impl
+Bundle-SymbolicName: org.flowframe.kernel.jpa.container.services.impl
+Import-Package: org.osgi.framework;version="0",
+  javax.persistence;version="0"
+

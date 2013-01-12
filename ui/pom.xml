@@ -14,5 +14,6 @@
 		<module>vaadin</module>
 		<module>component</module>
 		<module>services</module>
+		<module>manager</module>
 	</modules>
 </project>
