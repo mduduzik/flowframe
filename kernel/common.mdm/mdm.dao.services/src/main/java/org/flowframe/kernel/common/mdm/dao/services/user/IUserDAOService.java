@@ -24,5 +24,7 @@ public interface IUserDAOService {
 	
 	public void provideDefaults();
 
-	User getByEmailOrScreenname(String email, String screenName);
+	public User getByEmailOrScreenname(String email, String screenName);
+
+	public User getByEmailAndScreenname(String email, String screenName);
 }

@@ -24,7 +24,7 @@ import org.flowframe.portal.remote.services.IPortalUserService;
 import org.flowframe.reporting.remote.services.IReportGenerator;
 import org.flowframe.ui.services.IUIContributionManager;
 import org.flowframe.ui.services.contribution.IActionContribution;
-import org.flowframe.ui.services.contribution.IApplicationViewContribution;
+import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
@@ -67,7 +67,7 @@ public class MainMVPApplication extends Application implements IMainApplication,
 	private IPortalRoleService portalRoleService;
 	@Autowired
 	private IPortalOrganizationService portalOrganizationService;
-//	@Autowired
+	// @Autowired
 	private IEntityEditorFactory entityEditorFactory;
 	@Autowired
 	private IEntityManagerFactoryManager entityManagerFactoryManager;
@@ -90,7 +90,7 @@ public class MainMVPApplication extends Application implements IMainApplication,
 
 			// request an instance of MainPresenter
 			mainPresenter = this.presenterFactory.createPresenter(MainPresenter.class);
-			
+
 			// Create EntityFactory Presenter params
 			((MainEventBus) mainPresenter.getEventBus()).start(this);
 		} catch (Exception e) {
@@ -110,15 +110,23 @@ public class MainMVPApplication extends Application implements IMainApplication,
 			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_LOCALE, getLocale());
 			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_ENTITYMANAGERPERREQUESTHELPER,
 					this.entityManagerPerRequestHelper);
-			
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_ENTITY_MANAGER_FACTORY, this.entityManagerFactoryManager.getKernelSystemEmf());
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE, this.daoProvider.provideByDAOClass(IRemoteDocumentRepository.class));
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IFOLDER_SERVICE, this.daoProvider.provideByDAOClass(IFolderDAOService.class));
+
+			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_ENTITY_MANAGER_FACTORY,
+					this.entityManagerFactoryManager.getKernelSystemEmf());
+			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE,
+					this.daoProvider.provideByDAOClass(IRemoteDocumentRepository.class));
+			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IFOLDER_SERVICE,
+					this.daoProvider.provideByDAOClass(IFolderDAOService.class));
 			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP, this);
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IENTITY_METADATA_SERVICE, this.daoProvider.provideByDAOClass(IEntityMetadataDAOService.class));
+			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IENTITY_METADATA_SERVICE,
+					this.daoProvider.provideByDAOClass(IEntityMetadataDAOService.class));
 		}
-		
+
 		return this.entityEditorFactoryParams;
+	}
+
+	public Map<String, Object> getApplicationConfiguration() {
+		return provideEntityEditorFactoryParams();
 	}
 
 	/**
@@ -194,7 +202,8 @@ public class MainMVPApplication extends Application implements IMainApplication,
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Object createPersistenceContainer(Class entityClass) {
-		CustomNonCachingMutableLocalEntityProvider provider = new CustomNonCachingMutableLocalEntityProvider(entityClass, this.entityManagerFactoryManager.getKernelSystemEmf(), this.userTransaction);
+		CustomNonCachingMutableLocalEntityProvider provider = new CustomNonCachingMutableLocalEntityProvider(entityClass,
+				this.entityManagerFactoryManager.getKernelSystemEmf(), this.userTransaction);
 		JPAContainer<?> container = new JPAContainer(entityClass);
 		container.setEntityProvider(provider);
 		return container;
@@ -206,13 +215,13 @@ public class MainMVPApplication extends Application implements IMainApplication,
 
 	public AppMenuEntry[] createAppMenuEntries() throws UiBinderException {
 		// TODO Why are we not using collections here?
-		IApplicationViewContribution[] appContributions = this.contributionManager.getCurrentApplicationContributions();
+		IApplicationContribution[] appContributions = this.contributionManager.getCurrentApplicationContributions();
 		if (appContributions.length == 0) {
 			return new AppMenuEntry[] {};
 		} else {
 			ArrayList<AppMenuEntry> entries = new ArrayList<AppMenuEntry>();
-			for (IApplicationViewContribution ac : appContributions) {
-				entries.add(new AppMenuEntry(ac.getCode(), ac.getName(), ac.getIcon(), ac.getApplicationComponent(this), ac.getPresenterClass()));
+			for (IApplicationContribution ac : appContributions) {
+				entries.add(new AppMenuEntry(ac.getCode(), ac.getName(), ac.getIcon(), ac.getPresenterClass()));
 			}
 			return entries.toArray(new AppMenuEntry[] {});
 		}
@@ -461,7 +470,7 @@ public class MainMVPApplication extends Application implements IMainApplication,
 	}
 
 	@Override
-	public IApplicationViewContribution getApplicationContributionByCode(String code) {
+	public IApplicationContribution getApplicationContributionByCode(String code) {
 		return this.contributionManager.getApplicationContributionByCode(this, code);
 	}
 
@@ -481,11 +490,11 @@ public class MainMVPApplication extends Application implements IMainApplication,
 	public IEntityManagerFactoryManager getEntityManagerFactoryManager() {
 		return entityManagerFactoryManager;
 	}
-	
+
 	public IPresenter<?, ? extends EventBus> getMainPresenter() {
 		return this.mainPresenter;
 	}
-	
+
 	public UserTransaction getUserTransaction() {
 		return userTransaction;
 	}
@@ -509,7 +518,7 @@ public class MainMVPApplication extends Application implements IMainApplication,
 		if (getURL().getPort() != -1) {
 			baseUrl += ":" + getURL().getPort();
 		}
-		
+
 		return this.reportingGenerator.getUrlPathForPDFGenerator(baseUrl);
 	}
 }

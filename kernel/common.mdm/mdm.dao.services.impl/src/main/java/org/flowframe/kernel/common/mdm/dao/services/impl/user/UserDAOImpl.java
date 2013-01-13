@@ -48,6 +48,40 @@ public class UserDAOImpl implements IUserDAOService {
 	}
 	
 	@Override
+	public User getByEmailAndScreenname(String email, String screenName) {
+		User org = null;
+		
+		try
+		{
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> rootEntity = query.from(User.class);
+			ParameterExpression<String> p1 = builder.parameter(String.class);
+			ParameterExpression<String> p2 = builder.parameter(String.class);
+			query.select(rootEntity).where(builder.and(builder.equal(rootEntity.get("emailAddress"), p1),builder.equal(rootEntity.get("screenName"), p2)));
+
+			TypedQuery<User> typedQuery = em.createQuery(query);
+			typedQuery.setParameter(p1, email);
+			typedQuery.setParameter(p2, screenName);
+			org = typedQuery.getSingleResult();
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return org;
+	}		
+	
+	@Override
 	public User getByEmailOrScreenname(String email, String screenName) {
 		User org = null;
 		
@@ -104,6 +138,10 @@ public class UserDAOImpl implements IUserDAOService {
 		User existingRecord = getByEmailOrScreenname(record.getEmailAddress(),record.getScreenName());
 		if (Validator.isNull(existingRecord))
 		{		
+			record = add(record);
+		}
+		else
+		{
 			record = update(record);
 		}
 		return record;
@@ -112,7 +150,7 @@ public class UserDAOImpl implements IUserDAOService {
 	@Override
 	public User provide(String email, String screenName) {
 		User res = null;
-		if ((res = getByEmailOrScreenname(email,screenName)) == null)
+		if ((res = getByEmailAndScreenname(email,screenName)) == null)
 		{
 			User unit = new User();
 

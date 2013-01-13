@@ -183,7 +183,7 @@
 			<dependency>
 				<groupId>org.flowframe</groupId>
 				<artifactId>org.flowframe.thirdparty.commons-compress</artifactId>
-				<version>1.0</version>
+				<version>1.0.0</version>
 			</dependency>
 
 			<dependency>

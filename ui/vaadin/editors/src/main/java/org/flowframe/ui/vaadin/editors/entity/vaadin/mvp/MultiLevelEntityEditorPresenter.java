@@ -10,7 +10,7 @@ import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
-import org.flowframe.ui.vaadin.common.mvp.StartableApplicationEventBus;
+import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.EntityBreadCrumbEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.EntityBreadCrumbPresenter;
@@ -49,9 +49,9 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	private EntityLineEditorEventBus lineEditorBus;
 	private ConfigurableBasePresenter<?, ? extends EventBus> footerPresenter;
 	private MasterDetailComponent metaData;
-	private StartableApplicationEventBus appEventBus;
+	private ApplicationEventBus appEventBus;
 	private MultiLevelEntityEditorPresenter parentEditor;
-	private IPresenter<?, ? extends StartableApplicationEventBus> appPresenter;
+	private IPresenter<?, ? extends ApplicationEventBus> appPresenter;
 	private Map<MasterDetailComponent, MultiLevelEntityEditorPresenter> childEditorPresenterMap;
 	private VaadinEntityEditorFactoryImpl entityFactory;
 	private ConfigurableBasePresenter<?, ? extends EventBus> masterPresenter;
@@ -135,7 +135,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		this.metaData = (MasterDetailComponent) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.presenterFactory = (ConfigurablePresenterFactory) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
 		this.ebm = this.presenterFactory.getEventBusManager();
-		this.appPresenter = (IPresenter<?, ? extends StartableApplicationEventBus>) config
+		this.appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config
 				.get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
 		this.appEventBus = appPresenter.getEventBus();
 

@@ -1,14 +1,13 @@
 package org.flowframe.ui.services.contribution;
 
-import org.flowframe.kernel.common.mdm.domain.application.Feature;
+import java.util.Map;
+
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.BasePresenter;
 
-import com.vaadin.Application;
-
 public interface IViewContribution {
-	public AbstractComponent  getComponentModel(Application application, Feature feature);
+	public AbstractComponent getComponentModel(Map<String, Object> properties);
 
 	public String getIcon();
 

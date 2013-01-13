@@ -30,7 +30,7 @@ import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
-import org.flowframe.ui.vaadin.common.mvp.StartableApplicationEventBus;
+import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -219,10 +219,10 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 		if (isLastStep) {
 			fireEvent(new WizardCompletedEvent(this));
 			if (this.appPresenter instanceof IPresenter<?, ?>) {
-				if (this.appPresenter.getEventBus() instanceof StartableApplicationEventBus) {
+				if (this.appPresenter.getEventBus() instanceof ApplicationEventBus) {
 					if (this.onCompletionCompletionFeature != null) {
-						((StartableApplicationEventBus) this.appPresenter.getEventBus()).openFeatureView(this.onCompletionCompletionFeature);
-						((StartableApplicationEventBus) this.appPresenter.getEventBus()).closeFeatureView(this.feature);
+						((ApplicationEventBus) this.appPresenter.getEventBus()).openFeatureView(this.onCompletionCompletionFeature);
+						((ApplicationEventBus) this.appPresenter.getEventBus()).closeFeatureView(this.feature);
 					}
 				}
 			}

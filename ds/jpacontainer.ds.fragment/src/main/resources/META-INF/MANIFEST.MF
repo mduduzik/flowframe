@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF DataSource JPAContainer Persistence Fragment
+Bundle-ManifestVersion: 2
+Import-Package: org.flowframe.ds.domain;version="[0.0.1,1.0.0)",org.fl
+ owframe.ds.domain.formatters;version="[0.0.1,1.0.0)",org.flowframe.ds
+ .domain.validators;version="[0.0.1,1.0.0)"
+Bundle-SymbolicName: org.flowframe.ds.jpacontainer.ds.fragment
+
