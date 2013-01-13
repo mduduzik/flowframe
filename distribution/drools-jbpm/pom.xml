@@ -109,6 +109,24 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.bpm.jbpm.bpmserver</artifactId>
 			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate-core</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-annotations</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-tools</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-entitymanager</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>	
 		<dependency>
 			<groupId>org.flowframe</groupId>

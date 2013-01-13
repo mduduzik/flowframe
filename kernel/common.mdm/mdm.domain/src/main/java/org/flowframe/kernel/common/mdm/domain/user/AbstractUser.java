@@ -1,5 +1,6 @@
 package org.flowframe.kernel.common.mdm.domain.user;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class AbstractUser{
 	@Column(name = "id")
 	protected Long id;
 	
-    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn
     private Organization tenant;
 
