@@ -57,31 +57,9 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus> implem
 		try {
 			// keep a reference to the application instance
 			this.application = app;
-
-			/**
-			 * this.kernelSystemEntityManagerFactory =
-			 * this.application.getKernelSystemEntityManagerFactory();
-			 * this.kernelSystemEntityManager =
-			 * this.kernelSystemEntityManagerFactory.createEntityManager();
-			 * 
-			 * this.launchableAppsContainer =
-			 * JPAContainerFactory.make(Application
-			 * .class,this.kernelSystemEntityManager);
-			 * this.view.getAppSelection(
-			 * ).setContainerDataSource(this.launchableAppsContainer);
-			 */
 			this.view.addAppSelectionListener(MainPresenter.this);
 			// set the applications main windows (the view)
 			this.application.setMainWindow((Window) this.view);
-
-			// load the workspace presenter
-
-			// By default, add workspace
-			IApplicationContribution ac = app.getApplicationContributionByCode("KERNEL.WORKSPACE");
-			if (Validator.isNotNull(ac)) {
-				Class<? extends BasePresenter<?, ? extends EventBus>> acClass = ac.getPresenterClass();
-				onOpenApplication(acClass, ac.getName(), ac.getIcon(), false);
-			}
 
 			initialized = true;
 			// AppMenuEntry[] entries = createAppMenuEntries();
@@ -91,7 +69,6 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus> implem
 			appSelectionContainer.addContainerProperty("name", String.class, null);
 			appSelectionContainer.addContainerProperty("id", String.class, null);
 			appSelectionContainer.addContainerProperty("icon", Resource.class, null);
-			appSelectionContainer.addContainerProperty("launchable", Component.class, null);
 			appSelectionContainer.addContainerProperty("presenterClass", Object.class, null);
 			Filter filter = new Not(new SimpleStringFilter("id", "KERNEL.WORKSPACE", true, false));
 			appSelectionContainer.addContainerFilter(filter);
@@ -297,8 +274,26 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus> implem
 	public void valueChange(ValueChangeEvent event) {
 		String id = event.getProperty().toString();
 		Item menuEntry = (Item) this.appSelectionContainer.getItem(id);
-		onOpenApplicationComponent((Component) menuEntry.getItemProperty("launchable").getValue(), (String) menuEntry.getItemProperty("name")
-				.getValue(), ((ThemeResource) menuEntry.getItemProperty("icon").getValue()).getResourceId(),
-				(Class<? extends BasePresenter<?, ? extends EventBus>>) menuEntry.getItemProperty("presenterClass").getValue(), true);
+
+		assert (menuEntry.getItemProperty("name").getValue() instanceof String) : "This application must have a \"name\" property of type String.";
+		String appName = (String) menuEntry.getItemProperty("name").getValue();
+		assert (menuEntry.getItemProperty("icon").getValue() instanceof ThemeResource) : "This application must have a \"icon\" property of type ThemeResource.";
+		ThemeResource appIcon = (ThemeResource) menuEntry.getItemProperty("icon").getValue();
+		assert (menuEntry.getItemProperty("presenterClass").getValue() instanceof Class<?>) : "This application must have a \"presenterClass\" property of type Class<? implements IPresenter<?, ? extends EventBus>>.";
+		Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass = null;
+		try {
+			appPresenterClass = (Class<? extends BasePresenter<?, ? extends EventBus>>) menuEntry.getItemProperty("presenterClass").getValue();
+		} catch (ClassCastException e) {
+			throw new RuntimeException("The application presenter class was not of type Class<? extends BasePresenter<?, ? extends EventBus>>.");
+		}
+		
+		IPresenter<?, ? extends EventBus> appPresenter = this.application.getPresenterFactory().createPresenter(appPresenterClass);
+		if (appPresenter.getEventBus() instanceof ApplicationEventBus) {
+			((ApplicationEventBus) appPresenter.getEventBus()).start(this.application);
+		}
+		assert (appPresenter.getView() instanceof Component) : "The application presenter must have a view that implements com.vaadin.ui.Component.";
+		Component appView = (Component) appPresenter.getView();
+		
+		onOpenApplicationComponent(appView, appName, appIcon.getResourceId(), appPresenterClass, true);
 	}
 }

@@ -9,7 +9,7 @@
 	<osgi:service ref="uiContributionManager"  interface="org.flowframe.ui.services.IUIContributionManager"/>
 	
 	<!-- Subscribe to UI contribution services -->
-	<osgi:list id="appContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IApplicationViewContribution" >
+	<osgi:list id="appContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IApplicationContribution" >
 		<osgi:listener ref="uiContributionManager" bind-method="bindApplicationContribution" unbind-method="unbindApplicationContribution"/>
 	</osgi:list>	
 	<osgi:list id="viewContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IViewContribution" >

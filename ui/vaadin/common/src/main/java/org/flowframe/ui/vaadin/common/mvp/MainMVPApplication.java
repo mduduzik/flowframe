@@ -154,15 +154,13 @@ public class MainMVPApplication extends Application implements IMainApplication,
 		String screenName = null;
 
 		if (Validator.isNull(currentUser)) {
-			if (Validator.isNotNull(email)) // Normal login
-			{
+			if (Validator.isNotNull(email)) {
 				try {
 					currentUser = portalUserService.provideUserByEmailAddress(email);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else// Test/Dev login
-			{
+			} else {
 				email = "test@liferay.com";
 				screenName = "test";
 				currentUser = new User();
@@ -221,178 +219,12 @@ public class MainMVPApplication extends Application implements IMainApplication,
 		} else {
 			ArrayList<AppMenuEntry> entries = new ArrayList<AppMenuEntry>();
 			for (IApplicationContribution ac : appContributions) {
+				logger.debug("[APP MENU ENTRY] Adding app with 'presenterClass' = " + ac.getPresenterClass());
 				entries.add(new AppMenuEntry(ac.getCode(), ac.getName(), ac.getIcon(), ac.getPresenterClass()));
 			}
 			return entries.toArray(new AppMenuEntry[] {});
 		}
 	}
-
-	// private void initAppService() {
-	// if (Validator.isNotNull(this.kernelSystemTransManager) &&
-	// Validator.isNotNull(this.applicationDAOService)) {
-	// DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-	// // explicitly setting the transaction name is something that can
-	// // only be done programmatically
-	// def.setName("sendFlightScheduleUpdate");
-	// def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-	// TransactionStatus status =
-	// this.kernelSystemTransManager.getTransaction(def);
-	// try {
-	// this.applicationDAOService.provideControlPanelApplication();
-	// this.kernelSystemTransManager.commit(status);
-	// } catch (Exception e) {
-	// StringWriter sw = new StringWriter();
-	// e.printStackTrace(new PrintWriter(sw));
-	// String stacktrace = sw.toString();
-	// logger.error(stacktrace);
-	//
-	// this.kernelSystemTransManager.rollback(status);
-	// }
-	// appServiceInititialized = true;
-	// }
-	// }
-
-	// public void bindApplicationDAOService(IApplicationDAOService
-	// applicationDAOService, Map properties) {
-	// logger.debug("bindApplicationDAOService()");
-	// this.applicationDAOService = applicationDAOService;
-	// if (!appServiceInititialized)
-	// initAppService();
-	// }
-	//
-	// public void unbindApplicationDAOService(IApplicationDAOService
-	// applicationDAOService, Map properties) {
-	// logger.debug("unbindApplicationDAOService()");
-	// this.applicationDAOService = null;
-	// appServiceInititialized = false;
-	// }
-	//
-	// public void bindFeatureDAOService(IFeatureDAOService featureDAOService,
-	// Map properties) {
-	// logger.debug("bindFeatureDAOService()");
-	// this.featureDAOService = featureDAOService;
-	// if (!appServiceInititialized)
-	// initAppService();
-	// }
-	//
-	// public void unbindFeatureDAOService(IFeatureDAOService featureDAOService,
-	// Map properties) {
-	// logger.debug("unbindFeatureDAOService()");
-	// this.featureDAOService = null;
-	// appServiceInititialized = false;
-	// }
-	//
-	// public void unbindPageFlowEngine(IPageFlowManager pageflowEngine, Map
-	// properties) {
-	// logger.debug("unbindPageFlowEngine()");
-	// this.setPageFlowEngine(null);
-	// }
-	//
-	// public void bindPageFlowEngine(IPageFlowManager pageflowEngine, Map
-	// properties) {
-	// logger.debug("bindPageFlowEngine()");
-	// this.setPageFlowEngine(pageflowEngine);
-	// // this.pageFlowEngine.setMainApplication(this);
-	// }
-	//
-	// public void bindKernelSystemTransManager(PlatformTransactionManager
-	// kernelSystemTransManager, Map properties) {
-	// logger.debug("bindKernelSystemTransManager()");
-	// this.kernelSystemTransManager = kernelSystemTransManager;
-	// if (!appServiceInititialized)
-	// initAppService();
-	// }
-	//
-	// public void unbindKernelSystemTransManager(PlatformTransactionManager
-	// kernelSystemTransManager, Map properties) {
-	// logger.debug("unbindKernelSystemTransManager()");
-	// this.kernelSystemTransManager = null;
-	// appServiceInititialized = false;
-	// }
-	//
-	// public void bindUserTransaction(UserTransaction userTransaction, Map
-	// properties) {
-	// logger.debug("bindUserTransaction()");
-	// this.userTransaction = userTransaction;
-	// }
-	//
-	// public void unbindUserTransaction(UserTransaction userTransaction, Map
-	// properties) {
-	// logger.debug("unbindUserTransaction()");
-	// this.userTransaction = null;
-	// }
-	//
-	// public void bindKernelSystemEntityManagerFactory(EntityManagerFactory
-	// kernelSystemEntityManagerFactory, Map properties) {
-	// logger.debug("bindKernelSystemEntityManagerFactory()");
-	// this.entityTypeContainerFactory = new
-	// EntityTypeContainerFactory(kernelSystemEntityManagerFactory.createEntityManager());
-	// this.kernelSystemEntityManagerFactory = kernelSystemEntityManagerFactory;
-	// }
-	//
-	// public void
-	// unbindKernelSystemEntityManagerFactory(PlatformTransactionManager
-	// kernelSystemTransManager, Map properties) {
-	// logger.debug("unbindKernelSystemEntityManagerFactory()");
-	// this.entityTypeContainerFactory = null;
-	// this.kernelSystemEntityManagerFactory = null;
-	// }
-	//
-	// public void bindConxJbpmEntityManagerFactory(EntityManagerFactory
-	// conxJBpmEntityManagerFactory, Map properties) {
-	// logger.debug("bindConxJbpmEntityManagerFactory()");
-	// this.conxJBpmEntityManagerFactory = conxJBpmEntityManagerFactory;
-	// }
-	//
-	// public void unbindConxJbpmEntityManagerFactory(PlatformTransactionManager
-	// conxJBpmEntityManagerFactory, Map properties) {
-	// logger.debug("unbindConxJbpmEntityManagerFactory()");
-	// this.conxJBpmEntityManagerFactory = null;
-	// }
-	//
-	// public void bindConxHumanTaskEntityManagerFactory(EntityManagerFactory
-	// conxHumanTaskEntityManagerFactory, Map properties) {
-	// logger.debug("bindConxHumanTaskEntityManagerFactory()");
-	// this.conxHumanTaskEntityManagerFactory =
-	// conxHumanTaskEntityManagerFactory;
-	// }
-	//
-	// public void
-	// unbindConxHumanTaskEntityManagerFactory(PlatformTransactionManager
-	// conxHumanTaskEntityManagerFactory, Map properties) {
-	// logger.debug("unbindConxHumanTaskntityManagerFactory()");
-	// this.conxHumanTaskEntityManagerFactory = null;
-	// }
-	//
-	// public void bindRemoteDocumentRepository(IRemoteDocumentRepository
-	// remoteDocumentRepository, Map properties) {
-	// logger.debug("bindRemoteDocumentRepository()");
-	// this.remoteDocumentRepository = remoteDocumentRepository;
-	// }
-	//
-	// public void unbindRemoteDocumentRepository(IRemoteDocumentRepository
-	// remoteDocumentRepository, Map properties) {
-	// logger.debug("unbindRemoteDocumentRepository()");
-	// this.remoteDocumentRepository = null;
-	// }
-	//
-	// public void bindFolderDAOService(IFolderDAOService folderDAOService, Map
-	// properties) {
-	// logger.debug("bindFolderDAOService()");
-	// this.folderDAOService = folderDAOService;
-	// }
-	//
-	// public void unbindFolderDAOService(IFolderDAOService folderDAOService,
-	// Map properties) {
-	// logger.debug("unbindFolderDAOService()");
-	// this.folderDAOService = null;
-	// }
-
-	// @SuppressWarnings("rawtypes")
-	// public EventBus createEventBuss(Class eventBusClass, IPresenter
-	// presenter) {
-	// return ebm.register(eventBusClass, presenter);
-	// }
 
 	public EntityManagerPerRequestHelper getEntityManagerPerRequestHelper() {
 		return entityManagerPerRequestHelper;
