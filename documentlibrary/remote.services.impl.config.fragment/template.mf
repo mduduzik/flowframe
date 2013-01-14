@@ -3,4 +3,5 @@ Bundle-ManifestVersion: 2
 Bundle-Name: FF DocLib Remote Services Impl config fragment
 Bundle-SymbolicName: org.flowframe.documentlibrary.remote.services.impl.config.fragment
 Bundle-Vendor: FF
+Fragment-Host: org.flowframe.documentlibrary.remote.services.impl
 Bundle-Version: 0.0.1

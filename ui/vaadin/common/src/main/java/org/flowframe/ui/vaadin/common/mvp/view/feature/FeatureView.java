@@ -1,0 +1,109 @@
+package org.flowframe.ui.vaadin.common.mvp.view.feature;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
+import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.services.contribution.IActionContribution;
+import org.flowframe.ui.services.contribution.ITaskActionContribution;
+import org.flowframe.ui.services.contribution.IViewContribution;
+import org.flowframe.ui.services.factory.IEntityEditorFactory;
+
+import com.vaadin.ui.Component;
+import com.vaadin.ui.VerticalLayout;
+
+public abstract class FeatureView extends VerticalLayout implements IFeatureView {
+	private static final long serialVersionUID = 47832919823L;
+
+	private Feature currentFeature;
+	private Component currentComponent;
+
+	private Map<String, Object> config;
+
+	public FeatureView(Map<String, Object> config) {
+		assert (config != null) : "The config map was null.";
+
+		setSizeFull();
+		setStyleName("ff-feature-view");
+
+		this.config = config;
+	}
+
+	public abstract IActionContribution findActionContributionByCode(String code);
+
+	public abstract IViewContribution findViewContributionByCode(String code);
+
+	public abstract Component createComponent(AbstractComponent component, Map<String, Object> config);
+
+	public void setFeature(Feature feature) {
+		if (this.currentFeature != feature) {
+			assert (feature != null) : "Feature was null.";
+			Component featureComponent = null;
+			try {
+				featureComponent = buildFeatureComponent(feature);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("There was a " + e.getClass().getName() + " while building the feature component.");
+			}
+
+			assert (featureComponent == null) : "Could not create a component for feature. Feature component was null.";
+			featureComponent.setSizeFull();
+
+			this.currentFeature = feature;
+			this.currentComponent = featureComponent;
+
+			this.removeAllComponents();
+			this.addComponent(featureComponent);
+		}
+	}
+	
+	public Feature getCurrentFeature() {
+		return this.currentFeature;
+	}
+	
+	public Component getCurrentFeatureComponent() {
+		return this.currentComponent;
+	}
+
+	public void clearFeatureComponent() {
+		this.currentFeature = null;
+		this.currentComponent = null;
+		this.removeAllComponents();
+	}
+
+	private Component buildFeatureComponent(Feature feature) throws Exception {
+		assert (feature != null) : "Feature was null.";
+
+		Component view = null;
+		String viewCode = feature.getExternalCode();
+		assert (viewCode != null) : "This feature's view code was null.";
+
+		Map<String, Object> props = new HashMap<String, Object>(this.config);
+		props.put("feature", feature);
+		props.put("onCompletionFeature", feature.getOnCompletionFeature());
+
+		if (feature.isTaskFeature()) {
+			String processId = feature.getCode();
+			assert (processId != null) : "This feature's process id was null.";
+
+			ITaskActionContribution ac = (ITaskActionContribution) findActionContributionByCode(viewCode);
+			assert (ac != null) : "Could not find the action contribution for this feature.";
+
+			props.put("processId", processId);
+			view = ac.execute(props);
+		} else {
+			IViewContribution viewContribution = findViewContributionByCode(viewCode);
+			assert (viewContribution != null) : "Could not find the view contribution for this feature.";
+
+			VerticalLayout viewContainer = new VerticalLayout();
+			viewContainer.setSizeFull();
+
+			props.put(IEntityEditorFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER, viewContainer);
+			AbstractComponent componentModel = viewContribution.getComponentModel(props);
+			view = createComponent(componentModel, props);
+		}
+
+		return view;
+	}
+}

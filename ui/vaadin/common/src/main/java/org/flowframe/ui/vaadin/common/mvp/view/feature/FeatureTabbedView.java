@@ -154,7 +154,7 @@ public class FeatureTabbedView extends TabSheet implements IFeatureView {
 				props.put("appPresenter", this.viewPresenter);
 
 				try {
-					view = ac.execute(this.app, props);
+					view = ac.execute(props);
 					viewCache.put(feature, view);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -169,7 +169,8 @@ public class FeatureTabbedView extends TabSheet implements IFeatureView {
 				IViewContribution vc = app.getViewContributionByCode(viewCode);
 				if (vc != null) {
 					try {
-						AbstractComponent componentModel = vc.getComponentModel(this.app, feature);
+						// FIXME: getComponentModel needs a real props map
+						AbstractComponent componentModel = vc.getComponentModel(null);
 						if (Validator.isNotNull(componentModel)) {
 							VerticalLayout viewContainer = new VerticalLayout();
 							viewContainer.setSizeFull();

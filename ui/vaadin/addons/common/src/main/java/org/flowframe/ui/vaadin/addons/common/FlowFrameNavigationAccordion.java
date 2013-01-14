@@ -14,19 +14,16 @@ import com.vaadin.ui.VerticalLayout;
 
 public class FlowFrameNavigationAccordion extends VerticalLayout implements ValueChangeListener {
 	private static final long serialVersionUID = 3370715870286189986L;
-	private static final String DEFAULT_NAME_PROPERTY_ID = "Name";
 
 	private Accordion accordion;
 	private HashSet<ValueChangeListener> navigationListeners;
 	private Object currentValue;
-	private Object namePropertyId;
 
 	public FlowFrameNavigationAccordion() {
 		setSizeFull();
 		setMargin(false, false, true, false);
 
 		navigationListeners = new HashSet<ValueChangeListener>();
-		namePropertyId = DEFAULT_NAME_PROPERTY_ID;
 		accordion = new Accordion();
 		accordion.setStyleName("conx-navigation-accordion");
 		accordion.setSizeFull();
@@ -46,10 +43,10 @@ public class FlowFrameNavigationAccordion extends VerticalLayout implements Valu
 		for (Object id : ids) {
 			Item currentItem = container.getItem(id);
 			if (currentItem != null) {
-				nameProperty = currentItem.getItemProperty(namePropertyId);
+				nameProperty = currentItem.getItemProperty("Name");
 				if (nameProperty != null && nameProperty.getValue() instanceof String) {
 					FlowFrameNavigationTree tree = new FlowFrameNavigationTree();
-					tree.setNamePropertyId(namePropertyId);
+					tree.setNamePropertyId("Name");
 					tree.setNavigationContainer(container, id);
 					addCategory(tree, (String) nameProperty.getValue());
 				}
@@ -64,10 +61,10 @@ public class FlowFrameNavigationAccordion extends VerticalLayout implements Valu
 		for (Object id : ids) {
 			Item currentItem = jpaContainer.getItem(id);
 			if (currentItem != null) {
-				nameProperty = currentItem.getItemProperty(namePropertyId);
+				nameProperty = currentItem.getItemProperty("Name");
 				if (nameProperty != null && nameProperty.getValue() instanceof String) {
 					FlowFrameNavigationTree tree = new FlowFrameNavigationTree();
-					tree.setNamePropertyId(namePropertyId);
+					tree.setNamePropertyId("Name");
 					tree.setNavigationContainer(jpaContainer, id);
 					addCategory(tree, (String) nameProperty.getValue());
 				}
@@ -99,10 +96,10 @@ public class FlowFrameNavigationAccordion extends VerticalLayout implements Valu
 	}
 
 	public Object getNamePropertyId() {
-		return namePropertyId;
+		return "Name";
 	}
 
 	public void setNamePropertyId(Object namePropertyId) {
-		this.namePropertyId = namePropertyId;
+//		this.namePropertyId = namePropertyId;
 	}
 }

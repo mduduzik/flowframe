@@ -2,6 +2,7 @@ package org.flowframe.ui.vaadin.common.mvp;
 
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.ui.services.contribution.IMainApplication;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.annotation.Event;
 
@@ -12,9 +13,9 @@ import org.vaadin.mvp.eventbus.annotation.Event;
  * 
  * @author Sandile
  */
-public interface StartableApplicationEventBus extends EventBus {
+public interface ApplicationEventBus extends EventBus {
 	@Event(handlers = { MainPresenter.class })
-	public void start(MainMVPApplication app);
+	public void start(IMainApplication app);
 
 	@Event(handlers = { MainPresenter.class })
 	public void openDocument(FileEntry fileEntry);

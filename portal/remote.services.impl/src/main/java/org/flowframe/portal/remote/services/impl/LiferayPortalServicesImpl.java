@@ -481,5 +481,17 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		User user = provideUserByEmailAddress(emailAddress);
 		Boolean hasRole = userHasRole(Long.toString(user.getUserId()), roleName);
 		return hasRole;
+	}
+
+	@Override
+	public List<Organization> getOrganizationsByUserId(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Organization getUserDefaultOrganization(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

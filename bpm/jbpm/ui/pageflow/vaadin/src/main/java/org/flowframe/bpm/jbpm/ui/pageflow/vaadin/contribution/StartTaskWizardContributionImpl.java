@@ -41,8 +41,7 @@ public class StartTaskWizardContributionImpl implements ITaskActionContribution 
 	}
 
 	@Override
-	public Component execute(Application application,
-			Map<String, Object> properties) throws Exception {
+	public Component execute(Map<String, Object> properties) throws Exception {
 		return (Component)pageFlowservice.createTaskWizard(properties);
 	}
 

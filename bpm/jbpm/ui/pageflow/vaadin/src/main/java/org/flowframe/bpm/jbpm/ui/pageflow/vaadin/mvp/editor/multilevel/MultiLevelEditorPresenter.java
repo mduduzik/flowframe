@@ -15,7 +15,7 @@ import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.ui.component.domain.editor.MultiLevelEntityEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
-import org.flowframe.ui.vaadin.common.mvp.StartableApplicationEventBus;
+import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -37,7 +37,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 	private Stack<MasterDetailComponent> editorStack;
 	private MasterDetailComponent originEditorComponent;
 	private Map<String, Object> config;
-	private StartableApplicationEventBus appEventBus;
+	private ApplicationEventBus appEventBus;
 
 	@Override
 	public void onConfigure(Map<String, Object> params) {
@@ -50,7 +50,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		this.componentModel = (MultiLevelEntityEditorComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
 		this.factory = (VaadinPageFactoryImpl) params.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
 		@SuppressWarnings("unchecked")
-		IPresenter<?, ? extends StartableApplicationEventBus> appPresenter = (IPresenter<?, ? extends StartableApplicationEventBus>) config
+		IPresenter<?, ? extends ApplicationEventBus> appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config
 				.get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
 		this.appEventBus = appPresenter.getEventBus();
 		this.originEditorComponent = this.componentModel.getContent();

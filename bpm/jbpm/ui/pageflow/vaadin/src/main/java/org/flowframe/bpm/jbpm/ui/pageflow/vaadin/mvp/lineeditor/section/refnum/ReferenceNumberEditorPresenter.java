@@ -23,10 +23,10 @@ import org.flowframe.kernel.common.mdm.dao.services.referencenumber.IReferenceNu
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
 import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
+import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
-import org.flowframe.ui.services.factory.data.IDAOProvider;
 import org.flowframe.ui.vaadin.forms.FormMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

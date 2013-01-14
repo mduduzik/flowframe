@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import org.flowframe.kernel.common.mdm.dao.services.IBaseEntityDAOService;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.utils.StringUtil;
-import org.flowframe.ui.services.factory.data.IDAOProvider;
+import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

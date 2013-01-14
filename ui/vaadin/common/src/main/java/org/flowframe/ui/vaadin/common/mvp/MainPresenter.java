@@ -5,13 +5,10 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
 import org.flowframe.kernel.common.mdm.domain.application.Application;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.utils.Validator;
-import org.flowframe.ui.services.contribution.IApplicationViewContribution;
+import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.vaadin.common.mvp.view.IMainView;
 import org.flowframe.ui.vaadin.common.mvp.view.MainView;
 import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
@@ -23,7 +20,6 @@ import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.IPresenterFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -39,21 +35,12 @@ import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.Window;
 
 @Presenter(view = MainView.class)
-public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
-		implements Property.ValueChangeListener {
+public class MainPresenter extends BasePresenter<IMainView, MainEventBus> implements Property.ValueChangeListener {
+	private static final long serialVersionUID = 1090909332333L;
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private MainMVPApplication application;
-
-	private IPresenter<?, ? extends EventBus> contentPresenter;
-
-	private EntityManagerFactory kernelSystemEntityManagerFactory;
-
-	private EntityManager kernelSystemEntityManager;
-
-	private JPAContainer<Application> launchableAppsContainer;
-
 	private Map<String, Tab> appName2TabMap = new HashMap<String, Tab>();
 	private Map<String, Class<? extends BasePresenter<?, ? extends EventBus>>> appName2PresenterMap = new HashMap<String, Class<? extends BasePresenter<?, ? extends EventBus>>>();
 
@@ -70,49 +57,25 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 		try {
 			// keep a reference to the application instance
 			this.application = app;
-
-			/**
-			 * this.kernelSystemEntityManagerFactory =
-			 * this.application.getKernelSystemEntityManagerFactory();
-			 * this.kernelSystemEntityManager =
-			 * this.kernelSystemEntityManagerFactory.createEntityManager();
-			 * 
-			 * this.launchableAppsContainer =
-			 * JPAContainerFactory.make(Application
-			 * .class,this.kernelSystemEntityManager);
-			 * this.view.getAppSelection(
-			 * ).setContainerDataSource(this.launchableAppsContainer);
-			 */
 			this.view.addAppSelectionListener(MainPresenter.this);
 			// set the applications main windows (the view)
 			this.application.setMainWindow((Window) this.view);
 
-			// load the workspace presenter
-			
-			//By default, add workspace
-			IApplicationViewContribution ac = app.getApplicationContributionByCode("KERNEL.WORKSPACE");
-			if (Validator.isNotNull(ac))
-			{
-				Class<? extends BasePresenter<?, ? extends EventBus>> acClass = ac.getPresenterClass();
-				onOpenApplication(acClass,ac.getName(),ac.getIcon(),false);
-			}
-			
 			initialized = true;
-			//AppMenuEntry[] entries = createAppMenuEntries();
-			//mainEventBus.updateAppContributions(entries);	
-			appSelectionContainer = new IndexedContainer();			
+			// AppMenuEntry[] entries = createAppMenuEntries();
+			// mainEventBus.updateAppContributions(entries);
+			appSelectionContainer = new IndexedContainer();
 			appSelectionContainer.addContainerProperty("code", String.class, null);
 			appSelectionContainer.addContainerProperty("name", String.class, null);
 			appSelectionContainer.addContainerProperty("id", String.class, null);
 			appSelectionContainer.addContainerProperty("icon", Resource.class, null);
-			appSelectionContainer.addContainerProperty("launchable", Component.class, null);
 			appSelectionContainer.addContainerProperty("presenterClass", Object.class, null);
-			Filter filter = new Not(new SimpleStringFilter("id","KERNEL.WORKSPACE", true, false));
+			Filter filter = new Not(new SimpleStringFilter("id", "KERNEL.WORKSPACE", true, false));
 			appSelectionContainer.addContainerFilter(filter);
-			AppMenuEntry[] menuEntries = this.application.createAppMenuEntries();	
+			AppMenuEntry[] menuEntries = this.application.createAppMenuEntries();
 			updateAppSelectContainer(menuEntries);
 			this.view.setAppSelectionContainer(appSelectionContainer, "id", "name", "icon");
-			this.initialized  = true;
+			this.initialized = true;
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
@@ -124,8 +87,8 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 	/**
 	 * 
 	 * App tab callback methods
-	 *
-	 */	
+	 * 
+	 */
 	public void onUpdateAppContributions(AppMenuEntry[] appMenuEntries) {
 		try {
 			updateAppSelectContainer(appMenuEntries);
@@ -135,17 +98,14 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void onAddAppContribution(AppMenuEntry appMenuEntry) {
-		if (initialized)
-		{
+		if (initialized) {
 			String id = appMenuEntry.getCode();
 			String name = appMenuEntry.getCaption();
-			if (!appSelectionContainer.containsId(id))
-			{
+			if (!appSelectionContainer.containsId(id)) {
 				try {
 					Item item = this.appSelectionContainer.addItem(id);
-					item.getItemProperty("launchable").setValue(appMenuEntry.getLaunchableAppComponent());
 					item.getItemProperty("name").setValue(name);
 					item.getItemProperty("id").setValue(id);
 					item.getItemProperty("icon").setValue(new ThemeResource(appMenuEntry.getIconPath()));
@@ -155,22 +115,20 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 				} catch (Error e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} 
+				}
 			}
 		}
-	}	
-	
+	}
+
 	public void onRemoveAppContribution(AppMenuEntry appMenuEntry) {
-		if (initialized)
-		{
+		if (initialized) {
 			String id = appMenuEntry.getCode();
-			if (appSelectionContainer.containsId(id))
-			{
+			if (appSelectionContainer.containsId(id)) {
 				appSelectionContainer.removeItem(id);
 				removeAppComponent(appMenuEntry.getCaption());
 			}
 		}
-	}		
+	}
 
 	private void removeAppComponent(String caption) {
 		Tab tab = appName2TabMap.get(caption);
@@ -180,46 +138,33 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 	/**
 	 * 
 	 * Local methods
-	 *
+	 * 
 	 */
-	public IndexedContainer updateAppSelectContainer(
-			AppMenuEntry[] appMenuEntries) {
+	public IndexedContainer updateAppSelectContainer(AppMenuEntry[] appMenuEntries) {
 		fillAppSelectContainer(appSelectionContainer, appMenuEntries);
 		return appSelectionContainer;
 	}
 
-	private void fillAppSelectContainer(IndexedContainer container,
-			AppMenuEntry[] appMenuEntries) {
+	private void fillAppSelectContainer(IndexedContainer container, AppMenuEntry[] appMenuEntries) {
 		for (int i = 0; i < appMenuEntries.length; i++) {
 			String name = appMenuEntries[i].getCaption();
 			String id = appMenuEntries[i].getCode();
 			Item item = container.addItem(id);
-			item.getItemProperty("launchable").setValue(
-					appMenuEntries[i].getLaunchableAppComponent());
-			item.getItemProperty("presenterClass").setValue(
-					appMenuEntries[i].getAppPresenterClass());			
+			item.getItemProperty("presenterClass").setValue(appMenuEntries[i].getAppPresenterClass());
 			item.getItemProperty("name").setValue(name);
 			item.getItemProperty("id").setValue(id);
-			item.getItemProperty("icon").setValue(
-					new ThemeResource(appMenuEntries[i].getIconPath()));
+			item.getItemProperty("icon").setValue(new ThemeResource(appMenuEntries[i].getIconPath()));
 		}
-		appSelectionContainer.sort(new Object[] { "name" }, new boolean[] { true });		
+		appSelectionContainer.sort(new Object[] { "name" }, new boolean[] { true });
 	}
 
-	public void onOpenModule(
-			Class<? extends BasePresenter<?, ? extends EventBus>> presenter) {
-		// load the menu presenter
-		IPresenterFactory pf = application.getPresenterFactory();
-		this.contentPresenter = pf.createPresenter(presenter);
-		// this.view.setContent((Component) this.contentPresenter.getView());
+	public void onOpenModule(Class<? extends BasePresenter<?, ? extends EventBus>> presenter) {
 	}
 
-	public void onOpenApplication(
-			Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass,
-			String name, String iconPath,
+	public void onOpenApplication(Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass, String name, String iconPath,
 			boolean closable) {
 		try {
-			openApplicationTab(appPresenterClass,name,iconPath,true);
+			openApplicationTab(appPresenterClass, name, iconPath, true);
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
@@ -227,28 +172,24 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 			logger.error(stacktrace);
 		}
 	}
-	
+
 	public void onOpenApplicationFeature(Feature appFeature) {
 		try {
 			Application app = appFeature.getParentApplication();
-			IApplicationViewContribution ac = application.getApplicationContributionByCode(app.getCode());
+			IApplicationContribution ac = application.getApplicationContributionByCode(app.getCode());
 			IPresenter<?, ? extends EventBus> appPresenter = null;
-			StartableApplicationEventBus wsEventBus = null;
-			if (Validator.isNotNull(ac))
-			{
-				if (appName2TabMap.containsKey(ac.getName()))
-				{
+			ApplicationEventBus wsEventBus = null;
+			if (Validator.isNotNull(ac)) {
+				if (appName2TabMap.containsKey(ac.getName())) {
 					Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass = appName2PresenterMap.get(ac.getName());
 					IPresenterFactory pf = application.getPresenterFactory();
 					appPresenter = pf.createPresenter(appPresenterClass);
-					wsEventBus = (StartableApplicationEventBus) appPresenter.getEventBus();					
-				}
-				else
-				{
+					wsEventBus = (ApplicationEventBus) appPresenter.getEventBus();
+				} else {
 					appPresenter = openApplicationTab(ac.getPresenterClass(), ac.getName(), ac.getIcon(), true);
-					wsEventBus = (StartableApplicationEventBus)appPresenter.getEventBus();
+					wsEventBus = (ApplicationEventBus) appPresenter.getEventBus();
 				}
-				
+
 				wsEventBus.openFeatureView(appFeature);
 			}
 		} catch (Exception e) {
@@ -257,53 +198,46 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
 		}
-	}	
-	
-	private IPresenter<?, ? extends EventBus> openApplicationTab(
-			Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass,
-			String name, String iconPath,
-			boolean closable) {
+	}
+
+	private IPresenter<?, ? extends EventBus> openApplicationTab(Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass,
+			String name, String iconPath, boolean closable) {
 		IPresenter<?, ? extends EventBus> appPresenter = null;
 		try {
 			appPresenter = createAndStartApplication(appPresenterClass, name, iconPath, closable);
 			Component ws = (Component) appPresenter.getView();
 			((Layout) ws).setSizeFull();
-			onOpenApplicationComponent(ws,name,iconPath,appPresenterClass,closable);			
+			onOpenApplicationComponent(ws, name, iconPath, appPresenterClass, closable);
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
 		}
-		
+
 		return appPresenter;
-	}	
-	
+	}
+
 	private IPresenter<?, ? extends EventBus> createAndStartApplication(Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass,
-			String name, String iconPath,
-			boolean closable)
-	{
+			String name, String iconPath, boolean closable) {
 		IPresenter<?, ? extends EventBus> appPresenter = null;
 		try {
 			IPresenterFactory pf = application.getPresenterFactory();
-			appPresenter = pf
-					.createPresenter(appPresenterClass);
-			StartableApplicationEventBus wsEventBus = (StartableApplicationEventBus) appPresenter
-					.getEventBus();
+			appPresenter = pf.createPresenter(appPresenterClass);
+			ApplicationEventBus wsEventBus = (ApplicationEventBus) appPresenter.getEventBus();
 			wsEventBus.start(this.application);
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
-		}	
-		
+		}
+
 		return appPresenter;
 	}
-	
 
-	public void onOpenApplicationComponent(Component appComponent,
-			String name, String iconPath,Class<? extends BasePresenter<?, ? extends EventBus>> presenterClass, boolean closable) {
+	public void onOpenApplicationComponent(Component appComponent, String name, String iconPath,
+			Class<? extends BasePresenter<?, ? extends EventBus>> presenterClass, boolean closable) {
 		try {
 			if (appName2TabMap.containsKey(name)) {
 				Tab selectedTab = appName2TabMap.get(name);
@@ -335,15 +269,31 @@ public class MainPresenter extends BasePresenter<IMainView, MainEventBus>
 	/**
 	 * OnApplicationSelection changed
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void valueChange(ValueChangeEvent event) {
 		String id = event.getProperty().toString();
 		Item menuEntry = (Item) this.appSelectionContainer.getItem(id);
-		onOpenApplicationComponent(
-				(Component) menuEntry.getItemProperty("launchable").getValue(),
-				(String) menuEntry.getItemProperty("name").getValue(),
-				((ThemeResource) menuEntry.getItemProperty("icon").getValue()).getResourceId(),
-				(Class<? extends BasePresenter<?, ? extends EventBus>>)menuEntry.getItemProperty("presenterClass").getValue(),
-				true);
+
+		assert (menuEntry.getItemProperty("name").getValue() instanceof String) : "This application must have a \"name\" property of type String.";
+		String appName = (String) menuEntry.getItemProperty("name").getValue();
+		assert (menuEntry.getItemProperty("icon").getValue() instanceof ThemeResource) : "This application must have a \"icon\" property of type ThemeResource.";
+		ThemeResource appIcon = (ThemeResource) menuEntry.getItemProperty("icon").getValue();
+		assert (menuEntry.getItemProperty("presenterClass").getValue() instanceof Class<?>) : "This application must have a \"presenterClass\" property of type Class<? implements IPresenter<?, ? extends EventBus>>.";
+		Class<? extends BasePresenter<?, ? extends EventBus>> appPresenterClass = null;
+		try {
+			appPresenterClass = (Class<? extends BasePresenter<?, ? extends EventBus>>) menuEntry.getItemProperty("presenterClass").getValue();
+		} catch (ClassCastException e) {
+			throw new RuntimeException("The application presenter class was not of type Class<? extends BasePresenter<?, ? extends EventBus>>.");
+		}
+		
+		IPresenter<?, ? extends EventBus> appPresenter = this.application.getPresenterFactory().createPresenter(appPresenterClass);
+		if (appPresenter.getEventBus() instanceof ApplicationEventBus) {
+			((ApplicationEventBus) appPresenter.getEventBus()).start(this.application);
+		}
+		assert (appPresenter.getView() instanceof Component) : "The application presenter must have a view that implements com.vaadin.ui.Component.";
+		Component appView = (Component) appPresenter.getView();
+		
+		onOpenApplicationComponent(appView, appName, appIcon.getResourceId(), appPresenterClass, true);
 	}
 }

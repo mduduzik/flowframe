@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.kernel.jpa.container.services.impl;versi
+ on="0.0.1";uses:="javax.persistence,org.flowframe.kernel.jpa.containe
+ r.services"
+Build-Jdk: 1.6.0_37
+Built-By: Sandile
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF JPA Container Services Impl
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: org.flowframe.kernel.jpa.container.services.impl
+Import-Package: javax.persistence;version="0",org.flowframe.kernel.jpa
+ .container.services;version="[0.0.1, 1.0.0)",org.osgi.framework;versi
+ on="0"
+

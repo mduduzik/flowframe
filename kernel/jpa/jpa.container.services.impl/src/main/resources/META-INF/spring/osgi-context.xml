@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+	<osgi:service ref="emfManager" interface="org.flowframe.kernel.jpa.container.services.IEntityManagerFactoryManager">	
+	</osgi:service>
+	
+	<osgi:service ref="defaultDaoProvider" interface="org.flowframe.kernel.jpa.container.services.IDAOProvider">	
+	</osgi:service>
+	
+	<osgi:reference id="kernelSystemEntityManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)" cardinality="0..1">
+		<osgi:listener ref="emfManager" bind-method="bindKernelSystemEntityManagerFactory" unbind-method="unbindKernelSystemEntityManagerFactory"/>
+	</osgi:reference>	
+	
+	<osgi:reference id="conxJbpmEntityManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL.SYSTEM.BPM)" cardinality="0..1">
+		<osgi:listener ref="emfManager" bind-method="bindConxJbpmEntityManagerFactory" unbind-method="unbindConxJbpmEntityManagerFactory"/>
+	</osgi:reference>	
+	
+	<osgi:reference id="conxHumanTaskEntityManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL.SYSTEM.BPM.TASK)" cardinality="0..1">
+		<osgi:listener ref="emfManager" bind-method="bindConxHumanTaskEntityManagerFactory" unbind-method="unbindConxHumanTaskEntityManagerFactory"/>
+	</osgi:reference>
+</beans>

@@ -7,7 +7,7 @@ import java.util.Map;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.ui.services.IUIContributionManager;
 import org.flowframe.ui.services.contribution.IActionContribution;
-import org.flowframe.ui.services.contribution.IApplicationViewContribution;
+import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +18,8 @@ public class ContributionManager implements IUIContributionManager {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private final Map<String, IApplicationViewContribution> appContributions = Collections
-			.synchronizedMap(new HashMap<String, IApplicationViewContribution>());
+	private final Map<String, IApplicationContribution> appContributions = Collections
+			.synchronizedMap(new HashMap<String, IApplicationContribution>());
 	private final Map<String, IViewContribution> viewContributions = Collections.synchronizedMap(new HashMap<String, IViewContribution>());
 	private final Map<String, IActionContribution> actionContributions = Collections.synchronizedMap(new HashMap<String, IActionContribution>());
 
@@ -63,7 +63,7 @@ public class ContributionManager implements IUIContributionManager {
 		}
 	}
 
-	public void bindApplicationContribution(IApplicationViewContribution appContribution, Map<?, ?> properties) {
+	public void bindApplicationContribution(IApplicationContribution appContribution, Map<?, ?> properties) {
 		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
 		if (Validator.isNotNull(code)) {
 			logger.info("bindApplicationContribution(" + code + ")");
@@ -73,7 +73,7 @@ public class ContributionManager implements IUIContributionManager {
 		}
 	}
 
-	public void unbindApplicationContribution(IApplicationViewContribution appContribution, Map<?, ?> properties) {
+	public void unbindApplicationContribution(IApplicationContribution appContribution, Map<?, ?> properties) {
 		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
 		if (Validator.isNotNull(code)) {
 			logger.info("unbindApplicationContribution(" + code + ")");
@@ -84,8 +84,8 @@ public class ContributionManager implements IUIContributionManager {
 	}
 
 	@Override
-	public IApplicationViewContribution getApplicationContributionByCode(Application application, String code) {
-		IApplicationViewContribution ac = (IApplicationViewContribution) appContributions.get(code);
+	public IApplicationContribution getApplicationContributionByCode(Application application, String code) {
+		IApplicationContribution ac = (IApplicationContribution) appContributions.get(code);
 		return ac;
 	}
 
@@ -96,8 +96,8 @@ public class ContributionManager implements IUIContributionManager {
 	}
 
 	@Override
-	public IApplicationViewContribution[] getCurrentApplicationContributions() {
-		return appContributions.values().toArray(new IApplicationViewContribution[] {});
+	public IApplicationContribution[] getCurrentApplicationContributions() {
+		return appContributions.values().toArray(new IApplicationContribution[] {});
 	}
 
 	@Override
