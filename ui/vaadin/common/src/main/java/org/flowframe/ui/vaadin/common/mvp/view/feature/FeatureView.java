@@ -6,9 +6,13 @@ import java.util.Map;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.services.contribution.IActionContribution;
+import org.flowframe.ui.services.contribution.IComponentModelViewContribution;
+import org.flowframe.ui.services.contribution.IMVPViewContribution;
 import org.flowframe.ui.services.contribution.ITaskActionContribution;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.presenter.IPresenter;
 
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
@@ -34,6 +38,8 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 
 	public abstract IViewContribution findViewContributionByCode(String code);
 
+	public abstract IPresenter<?, ? extends EventBus> createPresenter(Class<?> presenterClass);
+
 	public abstract Component createComponent(AbstractComponent component, Map<String, Object> config);
 
 	public void setFeature(Feature feature) {
@@ -57,11 +63,11 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 			this.addComponent(featureComponent);
 		}
 	}
-	
+
 	public Feature getCurrentFeature() {
 		return this.currentFeature;
 	}
-	
+
 	public Component getCurrentFeatureComponent() {
 		return this.currentComponent;
 	}
@@ -100,8 +106,21 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 			viewContainer.setSizeFull();
 
 			props.put(IEntityEditorFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER, viewContainer);
-			AbstractComponent componentModel = viewContribution.getComponentModel(props);
-			view = createComponent(componentModel, props);
+			if (viewContribution instanceof IMVPViewContribution) {
+				Class<?> presenterClass = ((IMVPViewContribution) viewContribution).getPresenterClass();
+				assert (presenterClass != null) : "The presenter class of view contribution for this feature was null.";
+				IPresenter<?, ? extends EventBus> featurePresenter = createPresenter(presenterClass);
+				assert (featurePresenter != null) : "Could not create a presenter for this feature's view contribution. The presenter wass null.";
+				assert (featurePresenter.getView() instanceof Component) : "The view for the presenter of this feature's view contribution was not of type Component.";
+				view = (Component) featurePresenter.getView();
+			} else if (viewContribution instanceof IComponentModelViewContribution) {
+				AbstractComponent componentModel = ((IComponentModelViewContribution) viewContribution).getComponentModel(props);
+				assert (componentModel != null) : "The omponent model of the view contribution for this feature was null.";
+				view = createComponent(componentModel, props);
+			} else {
+				throw new RuntimeException(
+						"The view contribution for this feature was not of type IMVPViewContribution or IComponentModelViewContribution.");
+			}
 		}
 
 		return view;

@@ -1,0 +1,6 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Vaadin Component Factory
+Bundle-SymbolicName: org.flowframe.ui.vaadin.factory
+Import-Package:  org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.services.factory;version="[0.0.1, 1.0.0)"

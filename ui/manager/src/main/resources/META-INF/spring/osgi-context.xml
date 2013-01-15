@@ -12,7 +12,10 @@
 	<osgi:list id="appContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IApplicationContribution" >
 		<osgi:listener ref="uiContributionManager" bind-method="bindApplicationContribution" unbind-method="unbindApplicationContribution"/>
 	</osgi:list>	
-	<osgi:list id="viewContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IViewContribution" >
+	<osgi:list id="mvpViewContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IMVPViewContribution" >
+		<osgi:listener ref="uiContributionManager" bind-method="bindViewContribution" unbind-method="unbindViewContribution"/>
+	</osgi:list>
+	<osgi:list id="cmViewContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IComponentModelViewContribution" >
 		<osgi:listener ref="uiContributionManager" bind-method="bindViewContribution" unbind-method="unbindViewContribution"/>
 	</osgi:list>
 	<osgi:list id="actionContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IActionContribution" >

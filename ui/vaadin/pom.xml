@@ -15,5 +15,6 @@
 		<module>addons</module>
 		<module>forms</module>
 		<module>editors</module>
+		<module>factory</module>
 	</modules>
 </project>
