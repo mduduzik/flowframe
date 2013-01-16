@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,9 +65,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 public class Prefmap
     implements Equals, HashCode
 {
-
+    @OneToMany(targetEntity = Prefentry.class, cascade = {
+        CascadeType.ALL
+    },fetch=FetchType.EAGER)
+    @JoinColumn(name = "PREFENTRY_PREFMAP_HJID")
     protected List<Prefentry> prefentry;
+    
     @XmlAttribute(name = "Hjid")
+    @Id
+    @Column(name = "HJID")
+    @GeneratedValue(strategy = GenerationType.AUTO)    
     protected Long hjid;
 
     /**
@@ -91,10 +99,6 @@ public class Prefmap
      * 
      * 
      */
-    @OneToMany(targetEntity = Prefentry.class, cascade = {
-        CascadeType.ALL
-    })
-    @JoinColumn(name = "PREFENTRY_PREFMAP_HJID")
     public List<Prefentry> getPrefentry() {
         if (prefentry == null) {
             prefentry = new ArrayList<Prefentry>();
@@ -118,9 +122,6 @@ public class Prefmap
      *     {@link Long }
      *     
      */
-    @Id
-    @Column(name = "HJID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getHjid() {
         return hjid;
     }

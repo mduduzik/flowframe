@@ -77,4 +77,5 @@
 	<bean id="prefDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.preferences.PreferencesDAOImpl" init-method="init"/>
 	<bean id="noteDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.note.NoteDAOImpl"/>
 	<bean id="unlocoDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.UnlocoDAOImpl"/>
+	<bean id="userDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.user.UserDAOImpl"/>
 </beans>

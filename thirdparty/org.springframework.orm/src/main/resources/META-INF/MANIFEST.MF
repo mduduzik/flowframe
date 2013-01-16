@@ -1,0 +1,171 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 17.0-b16 (Sun Microsystems Inc.)
+Export-Package: org.springframework.orm;version="3.0.5.RELEASE";uses:=
+ "org.springframework.dao",org.springframework.orm.hibernate3;version=
+ "3.0.5.RELEASE";uses:="javax.sql,javax.transaction,org.aopalliance.in
+ tercept,org.hibernate,org.hibernate.cache,org.hibernate.cache.access,
+ org.hibernate.cfg,org.hibernate.classic,org.hibernate.connection,org.
+ hibernate.context,org.hibernate.criterion,org.hibernate.engine,org.hi
+ bernate.jdbc,org.hibernate.transaction,org.springframework.beans,org.
+ springframework.beans.factory,org.springframework.core,org.springfram
+ ework.core.io,org.springframework.dao,org.springframework.dao.support
+ ,org.springframework.jdbc.datasource,org.springframework.jdbc.support
+ ,org.springframework.jdbc.support.lob,org.springframework.orm,org.spr
+ ingframework.transaction,org.springframework.transaction.support",org
+ .springframework.orm.hibernate3.annotation;version="3.0.5.RELEASE";us
+ es:="org.hibernate,org.hibernate.cfg,org.springframework.context,org.
+ springframework.core.io,org.springframework.core.type.filter,org.spri
+ ngframework.orm.hibernate3",org.springframework.orm.hibernate3.suppor
+ t;version="3.0.5.RELEASE";uses:="javax.servlet,javax.servlet.http,jav
+ ax.transaction,org.hibernate,org.hibernate.event,org.hibernate.event.
+ def,org.hibernate.usertype,org.springframework.dao,org.springframewor
+ k.dao.support,org.springframework.jdbc.support.lob,org.springframewor
+ k.orm.hibernate3,org.springframework.ui,org.springframework.web.conte
+ xt.request,org.springframework.web.filter",org.springframework.orm.ib
+ atis;version="3.0.5.RELEASE";uses:="com.ibatis.sqlmap.client,com.ibat
+ is.sqlmap.client.event,com.ibatis.sqlmap.engine.builder.xml,com.ibati
+ s.sqlmap.engine.transaction,javax.sql,org.springframework.beans.facto
+ ry,org.springframework.core.io,org.springframework.dao,org.springfram
+ ework.jdbc.support,org.springframework.jdbc.support.lob",org.springfr
+ amework.orm.ibatis.support;version="3.0.5.RELEASE";uses:="com.ibatis.
+ sqlmap.client,com.ibatis.sqlmap.engine.type,javax.sql,org.springframe
+ work.dao.support,org.springframework.jdbc.support.lob,org.springframe
+ work.orm.ibatis,org.springframework.transaction.support",org.springfr
+ amework.orm.jdo;version="3.0.5.RELEASE";uses:="javax.jdo,javax.sql,or
+ g.aopalliance.intercept,org.springframework.beans.factory,org.springf
+ ramework.core,org.springframework.core.io,org.springframework.dao,org
+ .springframework.dao.support,org.springframework.jdbc.datasource,org.
+ springframework.jdbc.support,org.springframework.orm,org.springframew
+ ork.transaction,org.springframework.transaction.support",org.springfr
+ amework.orm.jdo.support;version="3.0.5.RELEASE";uses:="javax.jdo,java
+ x.servlet,javax.servlet.http,org.springframework.beans.factory,org.sp
+ ringframework.dao,org.springframework.dao.support,org.springframework
+ .orm.jdo,org.springframework.ui,org.springframework.web.context.reque
+ st,org.springframework.web.filter",org.springframework.orm.jpa;versio
+ n="3.0.5.RELEASE";uses:="javax.persistence,javax.persistence.spi,java
+ x.sql,org.aopalliance.intercept,org.springframework.beans.factory,org
+ .springframework.context,org.springframework.context.weaving,org.spri
+ ngframework.core,org.springframework.core.io,org.springframework.dao,
+ org.springframework.dao.support,org.springframework.instrument.classl
+ oading,org.springframework.jdbc.datasource,org.springframework.orm,or
+ g.springframework.orm.jpa.persistenceunit,org.springframework.transac
+ tion,org.springframework.transaction.support",org.springframework.orm
+ .jpa.persistenceunit;version="3.0.5.RELEASE";uses:="javax.persistence
+ .spi,javax.sql,javax.xml.parsers,org.springframework.beans.factory,or
+ g.springframework.context,org.springframework.context.weaving,org.spr
+ ingframework.core.io,org.springframework.core.io.support,org.springfr
+ amework.instrument.classloading,org.springframework.jdbc.datasource.l
+ ookup,org.w3c.dom,org.xml.sax",org.springframework.orm.jpa.support;ve
+ rsion="3.0.5.RELEASE";uses:="javax.persistence,javax.servlet,javax.se
+ rvlet.http,org.springframework.beans,org.springframework.beans.factor
+ y,org.springframework.beans.factory.annotation,org.springframework.be
+ ans.factory.config,org.springframework.beans.factory.support,org.spri
+ ngframework.core,org.springframework.dao,org.springframework.dao.supp
+ ort,org.springframework.orm.jpa,org.springframework.ui,org.springfram
+ ework.web.context.request,org.springframework.web.filter",org.springf
+ ramework.orm.jpa.vendor;version="3.0.5.RELEASE";uses:="javax.persiste
+ nce,javax.persistence.spi,oracle.toplink.essentials.sessions,org.apac
+ he.openjpa.persistence,org.eclipse.persistence.sessions,org.hibernate
+ ,org.springframework.dao,org.springframework.jdbc.datasource,org.spri
+ ngframework.orm.jpa,org.springframework.transaction"
+Bundle-Vendor: SpringSource
+Bundle-Version: 3.0.5.RELEASE
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: Spring ORM
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.orm
+Import-Package: com.ibatis.common.xml;version="[2.3.0, 3.0.0)";resolut
+ ion:="optional",com.ibatis.sqlmap.client;version="[2.3.0, 3.0.0)";res
+ olution:="optional",com.ibatis.sqlmap.client.event;version="[2.3.0, 3
+ .0.0)";resolution:="optional",com.ibatis.sqlmap.engine.builder.xml;ve
+ rsion="[2.3.0, 3.0.0)";resolution:="optional",com.ibatis.sqlmap.engin
+ e.impl;version="[2.3.0, 3.0.0)";resolution:="optional",com.ibatis.sql
+ map.engine.transaction;version="[2.3.0, 3.0.0)";resolution:="optional
+ ",com.ibatis.sqlmap.engine.transaction.external;version="[2.3.0, 3.0.
+ 0)";resolution:="optional",com.ibatis.sqlmap.engine.type;version="[2.
+ 3.0, 3.0.0)";resolution:="optional",javax.jdo;version="[2.0.0, 3.0.0)
+ ";resolution:="optional",javax.jdo.datastore;version="[2.0.0, 3.0.0)"
+ ;resolution:="optional",javax.persistence;version="[1.0.0, 3.0.0)";re
+ solution:="optional",javax.persistence.criteria;version="[1.0.0, 3.0.
+ 0)";resolution:="optional",javax.persistence.spi;version="[1.0.0, 3.0
+ .0)";resolution:="optional",javax.servlet;version="[2.4.0, 4.0.0)";re
+ solution:="optional",javax.servlet.http;version="[2.4.0, 4.0.0)";reso
+ lution:="optional",javax.sql;version="0";resolution:="optional",javax
+ .transaction;version="[1.0.1, 2.0.0)";resolution:="optional",javax.xm
+ l.parsers;version="0";resolution:="optional",oracle.toplink.essential
+ s.ejb.cmp3;version="[2.0.0, 3.0.0)";resolution:="optional",oracle.top
+ link.essentials.expressions;version="[2.0.0, 3.0.0)";resolution:="opt
+ ional",oracle.toplink.essentials.internal.databaseaccess;version="[2.
+ 0.0, 3.0.0)";resolution:="optional",oracle.toplink.essentials.interna
+ l.sessions;version="[2.0.0, 3.0.0)";resolution:="optional",oracle.top
+ link.essentials.sessions;version="[2.0.0, 3.0.0)";resolution:="option
+ al",org.aopalliance.intercept;version="[1.0.0, 2.0.0)",org.apache.com
+ mons.logging;version="[1.1.1, 2.0.0)",org.apache.openjpa.persistence;
+ version="[1.0.0, 3.0.0)";resolution:="optional",org.eclipse.persisten
+ ce.expressions;version="[1.0.0, 3.0.0)";resolution:="optional",org.ec
+ lipse.persistence.internal.databaseaccess;version="[1.0.0, 3.0.0)";re
+ solution:="optional",org.eclipse.persistence.internal.sessions;versio
+ n="[1.0.0, 3.0.0)";resolution:="optional",org.eclipse.persistence.jpa
+ ;version="[1.0.0, 3.0.0)";resolution:="optional",org.eclipse.persiste
+ nce.sessions;version="[1.0.0, 3.0.0)";resolution:="optional",org.hibe
+ rnate;version="[3.2.0, 4.0.0)";resolution:="optional",org.hibernate.a
+ nnotations;version="[3.2.0, 4.0.0)";resolution:="optional",org.hibern
+ ate.cache;version="[3.2.0, 4.0.0)";resolution:="optional",org.hiberna
+ te.cache.access;version="[3.2.0, 4.0.0)";resolution:="optional",org.h
+ ibernate.cfg;version="[3.2.0, 4.0.0)";resolution:="optional",org.hibe
+ rnate.classic;version="[3.2.0, 4.0.0)";resolution:="optional",org.hib
+ ernate.connection;version="[3.2.0, 4.0.0)";resolution:="optional",org
+ .hibernate.context;version="[3.2.0, 4.0.0)";resolution:="optional",or
+ g.hibernate.criterion;version="[3.2.0, 4.0.0)";resolution:="optional"
+ ,org.hibernate.dialect;version="[3.2.0, 4.0.0)";resolution:="optional
+ ",org.hibernate.ejb;version="[3.2.0, 4.0.0)";resolution:="optional",o
+ rg.hibernate.engine;version="[3.2.0, 4.0.0)";resolution:="optional",o
+ rg.hibernate.event;version="[3.2.0, 4.0.0)";resolution:="optional",or
+ g.hibernate.event.def;version="[3.2.0, 4.0.0)";resolution:="optional"
+ ,org.hibernate.exception;version="[3.2.0, 4.0.0)";resolution:="option
+ al",org.hibernate.impl;version="[3.2.0, 4.0.0)";resolution:="optional
+ ",org.hibernate.jdbc;version="[3.2.0, 4.0.0)";resolution:="optional",
+ org.hibernate.persister.entity;version="[3.2.0, 4.0.0)";resolution:="
+ optional",org.hibernate.tool.hbm2ddl;version="[3.2.0, 4.0.0)";resolut
+ ion:="optional",org.hibernate.transaction;version="[3.2.0, 4.0.0)";re
+ solution:="optional",org.hibernate.transform;version="[3.2.0, 4.0.0)"
+ ;resolution:="optional",org.hibernate.type;version="[3.2.0, 4.0.0)";r
+ esolution:="optional",org.hibernate.usertype;version="[3.2.0, 4.0.0)"
+ ;resolution:="optional",org.hibernate.util;version="[3.2.0, 4.0.0)";r
+ esolution:="optional",org.springframework.aop.scope;version="[3.0.5,3
+ .0.6)",org.springframework.aop.support;version="[3.0.5,3.0.6)",org.sp
+ ringframework.beans;version="[3.0.5,3.0.6)",org.springframework.beans
+ .factory;version="[3.0.5,3.0.6)",org.springframework.beans.factory.an
+ notation;version="[3.0.5,3.0.6)",org.springframework.beans.factory.co
+ nfig;version="[3.0.5,3.0.6)",org.springframework.beans.factory.suppor
+ t;version="[3.0.5,3.0.6)",org.springframework.context;version="[3.0.5
+ ,3.0.6)",org.springframework.context.weaving;version="[3.0.5,3.0.6)",
+ org.springframework.core;version="[3.0.5,3.0.6)",org.springframework.
+ core.io;version="[3.0.5,3.0.6)",org.springframework.core.io.support;v
+ ersion="[3.0.5,3.0.6)",org.springframework.core.type;version="[3.0.5,
+ 3.0.6)",org.springframework.core.type.classreading;version="[3.0.5,3.
+ 0.6)",org.springframework.core.type.filter;version="[3.0.5,3.0.6)",or
+ g.springframework.dao;version="[3.0.5,3.0.6)",org.springframework.dao
+ .support;version="[3.0.5,3.0.6)",org.springframework.instrument.class
+ loading;version="[3.0.5,3.0.6)";resolution:="optional",org.springfram
+ ework.jdbc;version="[3.0.5,3.0.6)",org.springframework.jdbc.datasourc
+ e;version="[3.0.5,3.0.6)",org.springframework.jdbc.datasource.lookup;
+ version="[3.0.5,3.0.6)",org.springframework.jdbc.support;version="[3.
+ 0.5,3.0.6)",org.springframework.jdbc.support.lob;version="[3.0.5,3.0.
+ 6)",org.springframework.jndi;version="[3.0.5,3.0.6)";resolution:="opt
+ ional",org.springframework.transaction;version="[3.0.5,3.0.6)",org.sp
+ ringframework.transaction.jta;version="[3.0.5,3.0.6)",org.springframe
+ work.transaction.support;version="[3.0.5,3.0.6)",org.springframework.
+ ui;version="[3.0.5,3.0.6)";resolution:="optional",org.springframework
+ .util;version="[3.0.5,3.0.6)",org.springframework.util.xml;version="[
+ 3.0.5,3.0.6)",org.springframework.web.context;version="[3.0.5,3.0.6)"
+ ;resolution:="optional",org.springframework.web.context.request;versi
+ on="[3.0.5,3.0.6)";resolution:="optional",org.springframework.web.con
+ text.support;version="[3.0.5,3.0.6)";resolution:="optional",org.sprin
+ gframework.web.filter;version="[3.0.5,3.0.6)";resolution:="optional",
+ org.w3c.dom;version="0";resolution:="optional",org.xml.sax;version="0
+ ";resolution:="optional",javax.persistence.metamodel;version="[1.0.0,3.0.0)"
+Bundle-Creator: bamboo
+Implementation-Title: org.springframework.orm
+Implementation-Version: 3.0.5.RELEASE

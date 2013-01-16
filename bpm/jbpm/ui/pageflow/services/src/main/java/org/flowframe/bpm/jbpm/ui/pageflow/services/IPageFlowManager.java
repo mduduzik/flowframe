@@ -55,4 +55,11 @@ public interface IPageFlowManager {
 	public IBPMService getBPMService();
 	public IEntityTypeDAOService getEntityTypeDAOService();
 	public UserTransaction getUserTransaction();
+	
+	/**
+	 * 
+	 * Pages
+	 * 
+	 */
+	public Map<String,IPageFlowPage> getPagesByProcessId(String processId);
 }

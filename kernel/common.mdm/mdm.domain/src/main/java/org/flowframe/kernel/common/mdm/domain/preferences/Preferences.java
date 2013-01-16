@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -65,7 +66,7 @@ public class Preferences
     @XmlElement(required = true)
     @ManyToOne(targetEntity = Prefroot.class, cascade = {
         CascadeType.ALL
-    })
+    },fetch=FetchType.EAGER)
     @JoinColumn(name = "PREFROOT_PREFERENCES_HJID")    
     protected Prefroot prefroot;
     @XmlAttribute(name = "EXTERNAL_XML_VERSION")

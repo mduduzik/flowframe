@@ -86,6 +86,7 @@
                             <configuration>
                                 <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
                                 <outputPath>${basedir}/src/main/resources</outputPath>
+                                <bundleVersion>1.2.1</bundleVersion>
                                 <!-- used to properly set-up versions for system packages -->
                                 <osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
                             </configuration>

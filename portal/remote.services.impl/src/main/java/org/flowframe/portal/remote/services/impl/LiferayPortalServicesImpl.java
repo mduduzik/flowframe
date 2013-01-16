@@ -113,6 +113,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		    response = EntityUtils.toString(resp.getEntity());
 		}
 		
+		EntityUtils.consume(resp.getEntity());
+		
 		return response;
 	}	
 	
@@ -170,6 +172,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		JSONDeserializer<Integer> deserializer = new JSONDeserializer<Integer>();
 		Integer count = deserializer.deserialize(response,Integer.class);
 		
+		EntityUtils.consume(resp.getEntity());
+		
 		return count;
 	}	
 
@@ -206,6 +210,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 			    .use("values", User.class)
 			    .deserialize(response);
 
+		EntityUtils.consume(resp.getEntity());
 		
 		return users;
 	}
@@ -285,6 +290,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 			user = deserializer.deserialize(response,User.class);
 		}		
 		
+		EntityUtils.consume(resp.getEntity());
+		
 		return user;
 	}
 
@@ -325,7 +332,9 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		{
 			JSONDeserializer<Role> deserializer = new JSONDeserializer<Role>();
 			role = deserializer.deserialize(response,Role.class);
-		}		
+		}	
+		
+		EntityUtils.consume(resp.getEntity());
 		
 		return role;
 	}		
@@ -362,6 +371,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		JSONDeserializer<Role> deserializer = new JSONDeserializer<Role>();
 		role = deserializer.deserialize(response,FileEntry.class);
 
+		EntityUtils.consume(resp.getEntity());
+		
 		return role;
 	}
 	
@@ -403,6 +414,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		ArrayList<Role> roles = new JSONDeserializer<ArrayList<Role>>()
 			    .use("values", Role.class)
 			    .deserialize(response);
+		
+		EntityUtils.consume(resp.getEntity());
 
 		return roles;
 	}
@@ -435,6 +448,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 
 		JSONDeserializer<Boolean> deserializer = new JSONDeserializer<Boolean>();
 		Boolean hasRole = deserializer.deserialize(response,Boolean.class);
+		
+		EntityUtils.consume(resp.getEntity());
 
 		return hasRole;
 	}
@@ -462,6 +477,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		    response = EntityUtils.toString(resp.getEntity());
 		}
 		System.out.println("setUserRole Res:["+response+"]");
+		
+		EntityUtils.consume(resp.getEntity());
 	}
 
 	@Override
@@ -506,7 +523,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		ArrayList<Organization> orgs = new JSONDeserializer<ArrayList<Organization>>()
 			    .use("values", Organization.class)
 			    .deserialize(response);
-
+		
+		EntityUtils.consume(resp.getEntity());
 		
 		return orgs;
 	}

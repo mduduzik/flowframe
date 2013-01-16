@@ -64,37 +64,35 @@ public class EntityTypeDAOImpl implements IEntityTypeDAOService {
 
 	@Override
 	public List<EntityType> getAll() {
-		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel.metadata.EntityType o record by o.id", EntityType.class).getResultList();
+		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel.metadata.EntityType o record by o.id").getResultList();
 	}
 
 	@Override
 	public List<AbstractAttribute> getAllAttributesByEntityType(EntityType parentEntityType) {
-		TypedQuery<AbstractAttribute> q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel.AbstractAttribute o WHERE o.parentEntityType = :parentEntityType",
-				AbstractAttribute.class);
+		Query q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel.AbstractAttribute o WHERE o.parentEntityType = :parentEntityType");
 		q.setParameter("parentEntityType", parentEntityType);
 		return q.getResultList();
 	}
 
 	@Override
 	public List<org.flowframe.kernel.common.mdm.domain.metamodel.SingularAttribute> getAllSingularAttributesByEntityType(EntityType parentEntityType) {
-		TypedQuery<org.flowframe.kernel.common.mdm.domain.metamodel.SingularAttribute> q = em.createQuery(
-				"select o from org.flowframe.kernel.common.mdm.domain.metamodel.SingularAttribute o WHERE o.parentEntityType = :parentEntityType",
-				org.flowframe.kernel.common.mdm.domain.metamodel.SingularAttribute.class);
+		Query q = em.createQuery(
+				"select o from org.flowframe.kernel.common.mdm.domain.metamodel.SingularAttribute o WHERE o.parentEntityType = :parentEntityType");
 		q.setParameter("parentEntityType", parentEntityType);
 		return q.getResultList();
 	}
 
 	@Override
 	public List<org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute> getAllPluralAttributesByEntityType(EntityType parentEntityType) {
-		TypedQuery<org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute> q = em.createQuery(
-				"select o from org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute o WHERE o.parentEntityType = :parentEntityType", org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute.class);
+		Query q = em.createQuery(
+				"select o from org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute o WHERE o.parentEntityType = :parentEntityType");
 		q.setParameter("parentEntityType", parentEntityType);
 		return q.getResultList();
 	}
 
 	@Override
 	public List<BasicAttribute> getAllBasicAttributesByEntityType(EntityType parentEntityType) {
-		TypedQuery<BasicAttribute> q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel.BasicAttribute o WHERE o.parentEntityType = :parentEntityType", BasicAttribute.class);
+		Query q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.metamodel.BasicAttribute o WHERE o.parentEntityType = :parentEntityType");
 		q.setParameter("parentEntityType", parentEntityType);
 
 		return q.getResultList();
@@ -125,7 +123,7 @@ public class EntityTypeDAOImpl implements IEntityTypeDAOService {
 	@Override
 	public EntityType getByClass(Class entityClass) throws Exception {
 		EntityType record = null;
-		TypedQuery<EntityType> typedQuery = null;
+		Query typedQuery = null;
 		try {
 			logger.debug("getByClass(" + entityClass.getName() + ")");
 			/*
@@ -142,12 +140,12 @@ public class EntityTypeDAOImpl implements IEntityTypeDAOService {
 			 * 
 			 * return typedQuery.getSingleResult();
 			 */
-			typedQuery = em.createQuery("select DISTINCT o from org.flowframe.kernel.common.mdm.domain.metamodel.EntityType o WHERE o.entityJavaSimpleType = :entityJavaSimpleType", EntityType.class);
+			typedQuery = em.createQuery("select DISTINCT o from org.flowframe.kernel.common.mdm.domain.metamodel.EntityType o WHERE o.entityJavaSimpleType = :entityJavaSimpleType");
 			typedQuery.setParameter("entityJavaSimpleType", entityClass.getSimpleName());
-			record = typedQuery.getSingleResult();
+			record = (EntityType)typedQuery.getSingleResult();
 		} catch (NoResultException e) {
 		} catch (NonUniqueResultException e) {
-			record = typedQuery.getResultList().get(0);
+			record = (EntityType)typedQuery.getResultList().get(0);
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
@@ -615,10 +613,10 @@ public class EntityTypeDAOImpl implements IEntityTypeDAOService {
 			ParameterExpression<String> p = builder.parameter(String.class);
 			query.select(rootEntity).where(builder.equal(rootEntity.get("name"), p));
 
-			TypedQuery<AbstractAttribute> typedQuery = em.createQuery(query);
+			Query typedQuery = em.createQuery(query);
 			typedQuery.setParameter(p, name);
 
-			return typedQuery.getSingleResult();
+			return (AbstractAttribute)typedQuery.getSingleResult();
 		} catch (NoResultException e) {
 		}
 

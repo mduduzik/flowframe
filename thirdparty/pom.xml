@@ -47,5 +47,6 @@
 		<module>commons-compress</module>
 		<module>commons-exec</module>
 		<module>gwt-console-server-integration</module>
+		<module>org.springframework.orm</module>
 	</modules>
 </project>
