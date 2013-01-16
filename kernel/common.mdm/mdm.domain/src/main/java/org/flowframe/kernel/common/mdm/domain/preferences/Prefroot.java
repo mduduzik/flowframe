@@ -10,7 +10,10 @@ package org.flowframe.kernel.common.mdm.domain.preferences;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -88,7 +91,7 @@ public class Prefroot
 	private static final long serialVersionUID = 7869822230680505449L;
 	@XmlElement(required = true)
     protected Prefmap prefmap;
-    protected List<Prefnode> prefnode;
+    protected Set<Prefnode> prefnode;
     @XmlAttribute(name = "type", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String type;
@@ -105,7 +108,7 @@ public class Prefroot
      */
     @ManyToOne(targetEntity = Prefmap.class, cascade = {
         CascadeType.ALL
-    },fetch=FetchType.EAGER)
+    })
     @JoinColumn(name = "PREFMAP_PREFROOT_HJID")
     public Prefmap getPrefmap() {
         return prefmap;
@@ -149,9 +152,9 @@ public class Prefroot
         CascadeType.ALL
     },fetch=FetchType.EAGER)
     @JoinColumn(name = "PREFNODE_PREFROOT_HJID")
-    public List<Prefnode> getPrefnode() {
+    public Set<Prefnode> getPrefnode() {
         if (prefnode == null) {
-            prefnode = new ArrayList<Prefnode>();
+            prefnode = new HashSet<Prefnode>();
         }
         return this.prefnode;
     }
@@ -160,7 +163,7 @@ public class Prefroot
      * 
      * 
      */
-    public void setPrefnode(List<Prefnode> prefnode) {
+    public void setPrefnode(Set<Prefnode> prefnode) {
         this.prefnode = prefnode;
     }
 
@@ -235,9 +238,9 @@ public class Prefroot
             }
         }
         {
-            List<Prefnode> lhsPrefnode;
+            Set<Prefnode> lhsPrefnode;
             lhsPrefnode = this.getPrefnode();
-            List<Prefnode> rhsPrefnode;
+            Set<Prefnode> rhsPrefnode;
             rhsPrefnode = that.getPrefnode();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "prefnode", lhsPrefnode), LocatorUtils.property(thatLocator, "prefnode", rhsPrefnode), lhsPrefnode, rhsPrefnode)) {
                 return false;
@@ -268,7 +271,7 @@ public class Prefroot
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefmap", thePrefmap), currentHashCode, thePrefmap);
         }
         {
-            List<Prefnode> thePrefnode;
+            Set<Prefnode> thePrefnode;
             thePrefnode = this.getPrefnode();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefnode", thePrefnode), currentHashCode, thePrefnode);
         }

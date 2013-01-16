@@ -9,7 +9,10 @@
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -66,7 +69,7 @@ public class Prefmap
     implements Equals, HashCode
 {
 
-    protected List<Prefentry> prefentry;
+    protected Set<Prefentry> prefentry;
     @XmlAttribute(name = "Hjid")
     protected Long hjid;
 
@@ -96,9 +99,9 @@ public class Prefmap
         CascadeType.ALL
     },fetch=FetchType.EAGER)
     @JoinColumn(name = "PREFENTRY_PREFMAP_HJID")
-    public List<Prefentry> getPrefentry() {
+    public Set<Prefentry> getPrefentry() {
         if (prefentry == null) {
-            prefentry = new ArrayList<Prefentry>();
+            prefentry = new HashSet<Prefentry>();
         }
         return this.prefentry;
     }
@@ -107,7 +110,7 @@ public class Prefmap
      * 
      * 
      */
-    public void setPrefentry(List<Prefentry> prefentry) {
+    public void setPrefentry(Set<Prefentry> prefentry) {
         this.prefentry = prefentry;
     }
 
@@ -147,9 +150,9 @@ public class Prefmap
         }
         final Prefmap that = ((Prefmap) object);
         {
-            List<Prefentry> lhsPrefentry;
+            Set<Prefentry> lhsPrefentry;
             lhsPrefentry = this.getPrefentry();
-            List<Prefentry> rhsPrefentry;
+            Set<Prefentry> rhsPrefentry;
             rhsPrefentry = that.getPrefentry();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "prefentry", lhsPrefentry), LocatorUtils.property(thatLocator, "prefentry", rhsPrefentry), lhsPrefentry, rhsPrefentry)) {
                 return false;
@@ -166,7 +169,7 @@ public class Prefmap
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            List<Prefentry> thePrefentry;
+            Set<Prefentry> thePrefentry;
             thePrefentry = this.getPrefentry();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefentry", thePrefentry), currentHashCode, thePrefentry);
         }

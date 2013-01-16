@@ -9,7 +9,10 @@
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -83,7 +86,7 @@ public class Prefnode
         CascadeType.ALL
     },fetch=FetchType.EAGER)
     @JoinColumn(name = "PREFNODE_PREFNODE_HJID")    
-    protected List<Prefnode> prefnode;
+    protected Set<Prefnode> prefnode;
     
     @XmlAttribute(name = "name", required = true)
     @Basic
@@ -142,9 +145,9 @@ public class Prefnode
      * 
      * 
      */
-    public List<Prefnode> getPrefnode() {
+    public Set<Prefnode> getPrefnode() {
         if (prefnode == null) {
-            prefnode = new ArrayList<Prefnode>();
+            prefnode = new HashSet<Prefnode>();
         }
         return this.prefnode;
     }
@@ -153,7 +156,7 @@ public class Prefnode
      * 
      * 
      */
-    public void setPrefnode(List<Prefnode> prefnode) {
+    public void setPrefnode(Set<Prefnode> prefnode) {
         this.prefnode = prefnode;
     }
 
@@ -223,9 +226,9 @@ public class Prefnode
             }
         }
         {
-            List<Prefnode> lhsPrefnode;
+            Set<Prefnode> lhsPrefnode;
             lhsPrefnode = this.getPrefnode();
-            List<Prefnode> rhsPrefnode;
+            Set<Prefnode> rhsPrefnode;
             rhsPrefnode = that.getPrefnode();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "prefnode", lhsPrefnode), LocatorUtils.property(thatLocator, "prefnode", rhsPrefnode), lhsPrefnode, rhsPrefnode)) {
                 return false;
@@ -256,7 +259,7 @@ public class Prefnode
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefmap", thePrefmap), currentHashCode, thePrefmap);
         }
         {
-            List<Prefnode> thePrefnode;
+            Set<Prefnode> thePrefnode;
             thePrefnode = this.getPrefnode();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefnode", thePrefnode), currentHashCode, thePrefnode);
         }

@@ -72,7 +72,7 @@
 										<file
 											name="org.flowframe.thirdparty.hibernate.entitymanager-3.6.0.Final.jar" />
 										<file name="org.flowframe.thirdparty.com.google.protobuf-2.4.1.jar" />
-										<file name="org.flowframe.thirdparty.javax.security.jacc-0.0.1.jar" />
+										<file name="org.flowframe.thirdparty.javax.security.jacc-1.0.jar" />
 										<file name="org.flowframe.thirdparty.jboss-arrai-all-1.1-M1.jar" />
 										<file name="org.flowframe.thirdparty.hornetq-2.2.5.Final.jar" />
 										<file name="org.flowframe.thirdparty.netty-3.2.7.Final.jar" />
@@ -411,7 +411,7 @@
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.javax.security.jacc</artifactId>
-			<version>0.0.1</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
