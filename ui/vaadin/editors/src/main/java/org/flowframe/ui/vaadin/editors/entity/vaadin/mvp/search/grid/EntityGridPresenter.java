@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.contribution.IMainApplication;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IDepletedListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
@@ -82,9 +82,9 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 
 	@Override
 	public void configure() {
-		this.tableComponent = (GridComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
-		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
+		this.tableComponent = (GridComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+		this.mainApplication = (IMainApplication) getConfig().get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
 		this.entityEditorEventListener = multiLevelEntityEditorPresenter.getEventBus();
 		try {
 			this.entityClass = this.tableComponent.getDataSource().getEntityType().getJavaType();

@@ -14,7 +14,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.multilevel.view.Mult
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.ui.component.domain.editor.MultiLevelEntityEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.BasePresenter;
@@ -47,11 +47,11 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		this.editorStack = new Stack<MasterDetailComponent>();
 
 		this.config = params;
-		this.componentModel = (MultiLevelEntityEditorComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
+		this.componentModel = (MultiLevelEntityEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		@SuppressWarnings("unchecked")
 		IPresenter<?, ? extends ApplicationEventBus> appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config
-				.get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
+				.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
 		this.appEventBus = appPresenter.getEventBus();
 		this.originEditorComponent = this.componentModel.getContent();
 
@@ -70,7 +70,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 	 */
 	private Map<String, Object> adaptLocalizedFactoryConfig(Map<String, Object> factoryConfig) {
 		factoryConfig = new HashMap<String, Object>(factoryConfig);
-		factoryConfig.put(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
+		factoryConfig.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
 		return factoryConfig;
 	}
 

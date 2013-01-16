@@ -44,7 +44,7 @@ import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorCo
 import org.flowframe.ui.component.domain.search.SearchGridComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.component.domain.table.MatchGridComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search.EntitySearchGrid;
@@ -142,8 +142,8 @@ public class VaadinPageFactoryImpl {
 	}
 
 	public IPresenter<?, ? extends EventBus> createPresenter(AbstractComponent componentModel, Map<String, Object> params) throws Exception {
-		params.put(IEntityEditorFactory.COMPONENT_MODEL, componentModel);
-		params.put(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY, this);
+		params.put(IComponentFactory.COMPONENT_MODEL, componentModel);
+		params.put(IComponentFactory.VAADIN_COMPONENT_FACTORY, this);
 
 		IPresenter<?, ? extends EventBus> presenter = null;
 		if (componentModel instanceof LineEditorContainerComponent) {
@@ -175,8 +175,8 @@ public class VaadinPageFactoryImpl {
 	}
 
 	public IPresenter<?, ? extends EventBus> createMasterSectionContentPresenter(AbstractComponent componentModel, Map<String, Object> params) throws Exception {
-		params.put(IEntityEditorFactory.COMPONENT_MODEL, componentModel);
-		params.put(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY, this);
+		params.put(IComponentFactory.COMPONENT_MODEL, componentModel);
+		params.put(IComponentFactory.VAADIN_COMPONENT_FACTORY, this);
 
 		IPresenter<?, ? extends EventBus> presenter = null;
 		if (FormComponent.class.isAssignableFrom(componentModel.getClass())) {
@@ -192,8 +192,8 @@ public class VaadinPageFactoryImpl {
 
 	public IPresenter<?, ? extends EventBus> createLineEditorSectionContentPresenter(AbstractComponent componentModel, Map<String, Object> params)
 			throws Exception {
-		params.put(IEntityEditorFactory.COMPONENT_MODEL, componentModel);
-		params.put(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY, this);
+		params.put(IComponentFactory.COMPONENT_MODEL, componentModel);
+		params.put(IComponentFactory.VAADIN_COMPONENT_FACTORY, this);
 
 		IPresenter<?, ? extends EventBus> presenter = null;
 		if (componentModel instanceof AttachmentEditorComponent) {

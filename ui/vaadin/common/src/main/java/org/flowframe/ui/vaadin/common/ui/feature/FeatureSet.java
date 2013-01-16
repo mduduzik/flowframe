@@ -1,156 +1,70 @@
 package org.flowframe.ui.vaadin.common.ui.feature;
 
-import java.util.HashMap;
-
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.HierarchicalContainer;
+import com.vaadin.terminal.Resource;
+import com.vaadin.terminal.ThemeResource;
 
-/**
- * Contains the FeatureSet implementation and the structure for the feature
- * 'tree'.
- * <p>
- * Each set is implemented as it's own class to facilitate linking to sets in
- * the same way as linking to individual features.
- * </p>
- * 
- */
-@SuppressWarnings("serial")
 public class FeatureSet extends Feature {
+	private static final long serialVersionUID = 253233879821431L;
 
-    @Override
-    public Version getSinceVersion() {
-        return Version.OLD;
-    }
+	private Feature[] features = null;
 
+	public FeatureSet() {
+	}
 
-    // ----------------------------------------------------------
-    /*
-     * FeatureSet implementation follows.
-     */
+	public FeatureSet(String code, String name, String description, Feature[] content) {
+		super(code, name, description);
+		this.features = content;
+	}
 
-    private  HashMap<String, Feature> pathnameToFeature = null;
+	public Feature[] getFeatures() {
+		return features;
+	}
 
-    private  String pathname = "";
+	public static HierarchicalContainer toContainer(Feature[] features) {
+		assert (features != null) : "Feature[] features was null.";
 
-    private  String name = "";
+		HierarchicalContainer container = new HierarchicalContainer();
+		container.addContainerProperty(PROPERTY_NAME, String.class, "");
+		container.addContainerProperty(PROPERTY_DESCRIPTION, String.class, "");
+		container.addContainerProperty(PROPERTY_ICON, Resource.class, "");
+		addFeatures(null, features, container);
+		return container;
+	}
 
-    private  String desc = "";
+	private static void addFeatures(FeatureSet parentFeatureSet, Feature[] features, HierarchicalContainer container) {
+		for (Feature feature : features) {
+			assert (feature != null) : "Feature must be non-null to be shown in a Tree.";
+			// Add this feature to the container right off the bat
+			Item featureItem = container.addItem(feature);
+			// Only add a new feature if it hasn't been added yet
+			if (featureItem != null) {
+				// Set the name property to the right value
+				Property nameProperty = featureItem.getItemProperty(PROPERTY_NAME);
+				assert (nameProperty != null) : "The name property id + \"" + PROPERTY_NAME + "\" is invalid.";
+				nameProperty.setValue(feature.getName());
+				// Set the icon property to the right value
+				if (feature.getIcon() != null) {
+					Property iconProperty = featureItem.getItemProperty(PROPERTY_ICON);
+					assert (iconProperty != null) : "The icon property id + \"" + PROPERTY_ICON + "\" is invalid.";
+					iconProperty.setValue(new ThemeResource(feature.getIcon()));
+				}
+				// Set the description property to the right value
+				Property descriptionProperty = featureItem.getItemProperty(PROPERTY_DESCRIPTION);
+				assert (descriptionProperty != null) : "The description property id + \"" + PROPERTY_DESCRIPTION + "\" is invalid.";
+				descriptionProperty.setValue(feature.getDescription());
 
-    private  String icon = "folder.gif";
-
-    private  Feature[] content = null;
-
-    private HierarchicalContainer container = null;
-
-    private final boolean containerRecursive = false;
-
-
-    public FeatureSet()
-    {
-    }
-
-    public FeatureSet(String pathname, String name, Feature[] content) {
-        this(pathname, name, "", content);
-    }
-
-    public FeatureSet(String pathname, String name, String desc, Feature[] content) {
-        this.pathname = pathname;
-        this.name = name;
-        this.desc = desc;
-        this.content = content;
-        addFeature(this);
-        if (content != null) {
-            for (Feature f : content) {
-                f.setParentFeature(this);
-                if (f instanceof FeatureSet) {
-                    continue;
-                }
-                addFeature(f);
-            }
-        }
-    }
-
-    private void addFeature(Feature f) {
-        if (pathnameToFeature == null) {
-            pathnameToFeature = new HashMap<String, Feature>();
-        }
-        if (pathnameToFeature.containsKey(f.getName())) {
-            throw new IllegalArgumentException("Duplicate pathname for "
-                    + f.getName() + ": "
-                    + pathnameToFeature.get(f.getFragmentName()).getClass()
-                    + " / " + f.getClass());
-        }
-        pathnameToFeature.put(f.getName(), f);
-    }
-
-    public Feature getFeature(String pathname) {
-        return pathnameToFeature.get(pathname);
-    }
-
-    public Feature[] getFeatures() {
-        return content;
-    }
-
-    public HierarchicalContainer getContainer(boolean recurse) {
-        if (container == null || containerRecursive != recurse) {
-            container = new HierarchicalContainer();
-            container.addContainerProperty(PROPERTY_NAME, String.class, "");
-            container.addContainerProperty(PROPERTY_DESCRIPTION, String.class,
-                    "");
-            // fill
-            addFeatures(this, container, recurse);
-        }
-        return container;
-    }
-
-    private void addFeatures(FeatureSet f, HierarchicalContainer c,
-            boolean recurse) {
-        Feature[] features = f.getFeatures();
-        for (int i = 0; i < features.length; i++) {
-            Item item = c.addItem(features[i]);
-            if (item != null)
-            {
-	            Property property = item.getItemProperty(PROPERTY_NAME);
-	            property.setValue(features[i].getName());
-	            property = item.getItemProperty(PROPERTY_DESCRIPTION);
-	            property.setValue(features[i].getDescription());
-	            if (recurse) {
-	                c.setParent(features[i], f);
-	                if (features[i] instanceof FeatureSet) {
-	                    addFeatures((FeatureSet) features[i], c, recurse);
-	                }
-	            }
-	            if (!(features[i] instanceof FeatureSet)) {
-	                c.setChildrenAllowed(features[i], false);
-	            }
-            }
-        }
-    }
-
-    @Override
-    public String getDescription() {
-        return desc;
-    }
-
-    @Override
-    public String getFragmentName() {
-        return pathname;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getIconName() {
-        return icon;
-    }
-
-    @Override
-    public Class<? extends Feature>[] getRelatedFeatures() {
-        return null;
-    }
-
+				if (parentFeatureSet != null) {
+					// Set the parent is it exists
+					container.setParent(feature, parentFeatureSet);
+				}
+				if (feature instanceof FeatureSet) {
+					// This feature is a parent, so add its children
+					addFeatures((FeatureSet) feature, ((FeatureSet) feature).getFeatures(), container);
+				}
+			}
+		}
+	}
 }

@@ -1,7 +1,7 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.header;
 
 import org.flowframe.ui.services.contribution.IMainApplication;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
@@ -80,8 +80,8 @@ public class EntityLineEditorGridHeaderPresenter extends ConfigurableBasePresent
 
 	@Override
 	public void configure() {
-		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
-		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
+		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+		this.mainApplication = (IMainApplication) getConfig().get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
 		this.entityEditorEventListener = multiLevelEntityEditorPresenter.getEventBus();
 	}
 }

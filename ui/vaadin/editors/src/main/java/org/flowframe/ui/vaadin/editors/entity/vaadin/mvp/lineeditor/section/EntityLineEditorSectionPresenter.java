@@ -6,7 +6,7 @@ import org.flowframe.ui.component.domain.form.CollapseableSectionFormComponent;
 import org.flowframe.ui.component.domain.form.SimpleFormComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
 import org.flowframe.ui.component.domain.table.DetailGridComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -59,12 +59,12 @@ public class EntityLineEditorSectionPresenter extends ConfigurableBasePresenter<
 
 	@Override
 	public void configure() {
-		this.componentModel = (LineEditorComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.componentModel = (LineEditorComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 
 		if (componentModel != null) {
-			ConfigurablePresenterFactory presenterFactory = (ConfigurablePresenterFactory) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
+			ConfigurablePresenterFactory presenterFactory = (ConfigurablePresenterFactory) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
 			
-			getConfig().put(IEntityEditorFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER, this);
+			getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER, this);
 			if (componentModel.getContent() instanceof CollapseableSectionFormComponent ||
 					componentModel.getContent() instanceof SimpleFormComponent) {
 				IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityLineEditorFormHeaderPresenter.class);

@@ -15,7 +15,7 @@ import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorContainerComponent;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -147,11 +147,11 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 
 	@Override
 	public void configure() {
-		getConfig().put(IEntityEditorFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER, this);
+		getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER, this);
 
 		Map<String, Object> config = super.getConfig();
-		LineEditorContainerComponent componentModel = (LineEditorContainerComponent) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		ConfigurablePresenterFactory presenterFactory = (ConfigurablePresenterFactory) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
+		LineEditorContainerComponent componentModel = (LineEditorContainerComponent) config.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		ConfigurablePresenterFactory presenterFactory = (ConfigurablePresenterFactory) config.get(IComponentFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
 
 		// 1. Get LineEditor models
 		Set<LineEditorComponent> lecs = componentModel.getLineEditors();
@@ -177,7 +177,7 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 			}
 		}
 
-		this.itemDataSource = (Item) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_ITEM_DATASOURCE);
+		this.itemDataSource = (Item) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_ITEM_DATASOURCE);
 	}
 
 	public void onSetItemDataSource(Item item) {

@@ -14,7 +14,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.view.IMasterSectionV
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.view.MasterSectionView;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.EntityLineEditorEventBus;
 import org.flowframe.ui.component.domain.AbstractComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,8 +77,8 @@ public class MasterSectionPresenter extends BasePresenter<IMasterSectionView, Ma
 	@Override
 	public void onConfigure(Map<String, Object> params) throws Exception {
 		this.config = params;
-		this.componentModel = (AbstractComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
+		this.componentModel = (AbstractComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		// This map is used for shallow copying the parameters for child
 		// components
 		HashMap<String, Object> childParams = null;

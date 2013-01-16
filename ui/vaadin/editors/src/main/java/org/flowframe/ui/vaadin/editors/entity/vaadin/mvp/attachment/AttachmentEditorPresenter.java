@@ -19,7 +19,7 @@ import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
 import org.flowframe.ui.services.contribution.IMainApplication;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.attachment.view.AttachmentEditorView;
@@ -154,14 +154,14 @@ public class AttachmentEditorPresenter extends ConfigurableBasePresenter<IAttach
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void configure() {
-		this.mlEntityPresenter = (ConfigurableBasePresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+		this.mlEntityPresenter = (ConfigurableBasePresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
 
-		this.docRepo = (IRemoteDocumentRepository) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE);
-		this.docFolderDAOService = (IFolderDAOService) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_IFOLDER_SERVICE);
+		this.docRepo = (IRemoteDocumentRepository) getConfig().get(IComponentFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE);
+		this.docFolderDAOService = (IFolderDAOService) getConfig().get(IComponentFactory.FACTORY_PARAM_IFOLDER_SERVICE);
 
-		this.attachmentComponent = (AttachmentEditorComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.attachmentComponent = (AttachmentEditorComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 
-		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
+		this.mainApplication = (IMainApplication) getConfig().get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
 	}
 
 	public void onSaveForm(DocType attachmentType, String sourceFileName, String mimeType, String title, String description) throws Exception {

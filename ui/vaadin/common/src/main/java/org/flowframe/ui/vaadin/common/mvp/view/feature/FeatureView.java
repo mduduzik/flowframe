@@ -10,7 +10,7 @@ import org.flowframe.ui.services.contribution.IComponentModelViewContribution;
 import org.flowframe.ui.services.contribution.IMVPViewContribution;
 import org.flowframe.ui.services.contribution.ITaskActionContribution;
 import org.flowframe.ui.services.contribution.IViewContribution;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.IPresenter;
 
@@ -105,7 +105,7 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 			VerticalLayout viewContainer = new VerticalLayout();
 			viewContainer.setSizeFull();
 
-			props.put(IEntityEditorFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER, viewContainer);
+			props.put(IComponentFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER, viewContainer);
 			if (viewContribution instanceof IMVPViewContribution) {
 				Class<?> presenterClass = ((IMVPViewContribution) viewContribution).getPresenterClass();
 				assert (presenterClass != null) : "The presenter class of view contribution for this feature was null.";

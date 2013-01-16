@@ -10,9 +10,11 @@ import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.services.contribution.IComponentModelViewContribution;
+import org.flowframe.ui.services.contribution.IMVPViewContribution;
 import org.flowframe.ui.services.contribution.ITaskActionContribution;
 import org.flowframe.ui.services.contribution.IViewContribution;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.mvp.LaunchableViewEventBus;
 import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
 import org.flowframe.ui.vaadin.common.mvp.docviewer.DocViewerPresenter;
@@ -170,13 +172,14 @@ public class FeatureTabbedView extends TabSheet implements IFeatureView {
 				if (vc != null) {
 					try {
 						// FIXME: getComponentModel needs a real props map
-						AbstractComponent componentModel = vc.getComponentModel(null);
-						if (Validator.isNotNull(componentModel)) {
+						if (vc instanceof IComponentModelViewContribution) {
+							AbstractComponent componentModel = ((IComponentModelViewContribution) vc).getComponentModel(null);
+							
 							VerticalLayout viewContainer = new VerticalLayout();
 							viewContainer.setSizeFull();
 
-							this.entityFactoryPresenterParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER, this.viewPresenter);
-							this.entityFactoryPresenterParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER, viewContainer);
+							this.entityFactoryPresenterParams.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER, this.viewPresenter);
+							this.entityFactoryPresenterParams.put(IComponentFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER, viewContainer);
 							Map<IPresenter<?, ? extends EventBus>, EventBus> mvp = (Map<IPresenter<?, ? extends EventBus>, EventBus>) this.app
 									.getEntityEditorFactory().create(componentModel, this.entityFactoryPresenterParams);
 							IPresenter<?, ? extends EventBus> viewPresenter = mvp.keySet().iterator().next();
@@ -186,9 +189,9 @@ public class FeatureTabbedView extends TabSheet implements IFeatureView {
 							viewContainer.setExpandRatio(newView, 1.0f);
 
 							view = viewContainer;
-						} else {
+						} else if (vc instanceof IMVPViewContribution) {
 							IPresenterFactory pf = this.app.getPresenterFactory();
-							IPresenter<?, ? extends EventBus> viewPresenter = pf.createPresenter(vc.getPresenterClass());
+							IPresenter<?, ? extends EventBus> viewPresenter = pf.createPresenter(((IMVPViewContribution) vc).getPresenterClass());
 							((LaunchableViewEventBus) viewPresenter.getEventBus()).launch(this.app);
 
 							view = (Component) viewPresenter.getView();

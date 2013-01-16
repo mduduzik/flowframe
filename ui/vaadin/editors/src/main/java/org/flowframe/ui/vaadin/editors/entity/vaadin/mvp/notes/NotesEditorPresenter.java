@@ -18,7 +18,7 @@ import org.flowframe.kernel.common.mdm.domain.note.NoteItem;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
 import org.flowframe.ui.services.contribution.IMainApplication;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.INotesEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.view.NotesEditorView;
@@ -109,9 +109,9 @@ public class NotesEditorPresenter extends ConfigurableBasePresenter<INotesEditor
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void configure() {
-		this.multiLevelEntityEditorPresenter = (ConfigurableBasePresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
-		this.noteEditorComponent = (NoteEditorComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
+		this.multiLevelEntityEditorPresenter = (ConfigurableBasePresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+		this.noteEditorComponent = (NoteEditorComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.mainApplication = (IMainApplication) getConfig().get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
 	}
 
 	private void updateQueryFilter() {

@@ -26,7 +26,7 @@ import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.forms.FormMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -146,8 +146,8 @@ public class ReferenceNumberEditorPresenter extends BasePresenter<IReferenceNumb
 
 	@Override
 	public void onConfigure(Map<String, Object> params) {
-		this.refNumComponent = (ReferenceNumberEditorComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.entityContainerProvider = (IEntityContainerProvider) params.get(IEntityEditorFactory.CONTAINER_PROVIDER);
+		this.refNumComponent = (ReferenceNumberEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.entityContainerProvider = (IEntityContainerProvider) params.get(IComponentFactory.CONTAINER_PROVIDER);
 		this.daoProvider = (IDAOProvider) params.get(IPageComponent.DAO_PROVIDER);
 	}
 

@@ -14,7 +14,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.view.IEntityLine
 import org.flowframe.ui.component.domain.masterdetail.CreateNewLineEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorContainerComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.BasePresenter;
@@ -40,8 +40,8 @@ public class EntityLineEditorPresenter extends BasePresenter<IEntityLineEditorVi
 
 	@Override
 	public void onConfigure(Map<String, Object> params) {
-		this.componentModel = (LineEditorContainerComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.presenterFactory = (VaadinPageFactoryImpl) params.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
+		this.componentModel = (LineEditorContainerComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.presenterFactory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.config = params;
 		this.lineEditorSectionCache = new HashMap<LineEditorComponent, EntityLineEditorSectionPresenter>();
 		this.createNewLineEditorSectionCache = new HashMap<CreateNewLineEditorComponent, EntityLineEditorSectionPresenter>();

@@ -21,7 +21,7 @@ import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.component.domain.table.GridComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
 import org.slf4j.Logger;
@@ -155,11 +155,11 @@ public class EditorGridPresenter extends
 	@Override
 	public void onConfigure(Map<String, Object> params) {
 		this.tableComponent = (GridComponent) params
-				.get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+				.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.mainApplication = (IEntityContainerProvider) params
 				.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 		this.factory = (VaadinPageFactoryImpl) params
-				.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
+				.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.daoProvider = (IDAOProvider) params
 				.get(IPageComponent.DAO_PROVIDER);
 		this.entityTypeDao = (IEntityTypeDAOService) params

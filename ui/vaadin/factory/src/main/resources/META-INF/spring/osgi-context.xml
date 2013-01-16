@@ -6,5 +6,5 @@
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 
 	<!-- export the userProfileBasicView bean to OSGi under the IViewContribution interface -->
-	<osgi:service ref="componentFactory"  interface="org.flowframe.ui.services.factory.IEntityEditorFactory"/>
+	<osgi:service ref="componentFactory"  interface="org.flowframe.ui.services.factory.IComponentFactory"/>
 </beans>

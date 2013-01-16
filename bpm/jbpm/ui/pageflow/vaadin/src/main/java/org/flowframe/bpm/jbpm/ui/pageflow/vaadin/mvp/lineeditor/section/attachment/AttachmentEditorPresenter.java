@@ -27,7 +27,7 @@ import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.forms.FormMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -150,8 +150,8 @@ public class AttachmentEditorPresenter extends BasePresenter<IAttachmentEditorVi
 	@Override
 	public void onConfigure(Map<String, Object> params) {
 		this.daoProvider = (IDAOProvider) params.get(IPageComponent.DAO_PROVIDER);
-		this.attachmentComponent = (AttachmentEditorComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.entityContainerProvider = (IEntityContainerProvider) params.get(IEntityEditorFactory.CONTAINER_PROVIDER);
+		this.attachmentComponent = (AttachmentEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.entityContainerProvider = (IEntityContainerProvider) params.get(IComponentFactory.CONTAINER_PROVIDER);
 
 		getView().addItemClickListener(new ItemClickListener() {
 			private static final long serialVersionUID = -7680485120452162721L;

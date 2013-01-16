@@ -28,7 +28,7 @@ import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.component.domain.search.SearchGridComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search.EntitySearchGrid;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid;
@@ -515,7 +515,7 @@ public class VaadinPageDataBuilder {
 			Map<String, Object> config, Object... parentInstances) throws Exception {
 		if (instance instanceof BaseEntity && ((BaseEntity) instance).getId() == null) {
 			MultiLevelEditorPresenter mlePresenter = (MultiLevelEditorPresenter) config
-					.get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+					.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
 			if (mlePresenter == null) {
 				throw new Exception("The MLE presenter was null, so the entity could not be saved.");
 			}

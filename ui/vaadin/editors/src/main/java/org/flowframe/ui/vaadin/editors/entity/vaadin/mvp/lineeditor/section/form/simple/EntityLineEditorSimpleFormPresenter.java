@@ -2,7 +2,7 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.for
 
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.ui.component.domain.form.SimpleFormComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionPresenter;
@@ -63,8 +63,8 @@ public class EntityLineEditorSimpleFormPresenter extends ConfigurableBasePresent
 
 	@Override
 	public void configure() {
-		this.lineEditorSectionPresenter = (EntityLineEditorSectionPresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER);
-		this.formComponent = (SimpleFormComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.lineEditorSectionPresenter = (EntityLineEditorSectionPresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER);
+		this.formComponent = (SimpleFormComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.lineEditorSectionEventBus = lineEditorSectionPresenter.getEventBus();
 	}
 

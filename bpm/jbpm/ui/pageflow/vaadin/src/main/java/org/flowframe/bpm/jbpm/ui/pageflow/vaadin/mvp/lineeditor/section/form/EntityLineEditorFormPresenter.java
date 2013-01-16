@@ -12,7 +12,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.form.vie
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.form.view.IEntityLineEditorFormView;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.ui.component.domain.form.FormComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.forms.impl.VaadinForm;
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.slf4j.Logger;
@@ -50,8 +50,8 @@ public class EntityLineEditorFormPresenter extends BasePresenter<IEntityLineEdit
 	@Override
 	public void onConfigure(Map<String, Object> params) throws Exception {
 		this.config = params;
-		this.formComponent = (FormComponent) params.get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
+		this.formComponent = (FormComponent) params.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.daoProvider = (IDAOProvider) params.get(IPageComponent.DAO_PROVIDER);
 
 		if (this.sectionEventBusManager != null) {

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
@@ -102,7 +102,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	}
 
 	public void onShowPresenter(ConfigurableBasePresenter<?, ? extends EventBus> presenter) {
-		VerticalLayout editorContainer = (VerticalLayout) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER);
+		VerticalLayout editorContainer = (VerticalLayout) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER);
 		Component childEditorView = (Component) presenter.getView();
 		editorContainer.removeAllComponents();
 		editorContainer.addComponent(childEditorView);
@@ -110,7 +110,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	}
 
 	public void onEditItem(Item item, MasterDetailComponent componentModel) {
-		getConfig().put(IEntityEditorFactory.FACTORY_PARAM_MVP_ITEM_DATASOURCE, item);
+		getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_ITEM_DATASOURCE, item);
 
 		if (childEditorPresenterMap == null) {
 			childEditorPresenterMap = new HashMap<MasterDetailComponent, MultiLevelEntityEditorPresenter>();
@@ -118,7 +118,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 
 		MultiLevelEntityEditorPresenter childEditorPresenter = childEditorPresenterMap.get(componentModel);
 		if (childEditorPresenter == null) {
-			getConfig().put(IEntityEditorFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
+			getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
 			Map<IPresenter<?, ? extends EventBus>, EventBus> res = this.entityFactory.create(componentModel, getConfig());
 			childEditorPresenter = (MultiLevelEntityEditorPresenter) res.keySet().iterator().next();
 			childEditorPresenterMap.put(componentModel, childEditorPresenter);
@@ -131,19 +131,19 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	@Override
 	public void configure() {
 		Map<String, Object> config = super.getConfig();
-		this.parentEditor = (MultiLevelEntityEditorPresenter) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_PARENT_EDITOR);
-		this.metaData = (MasterDetailComponent) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		this.presenterFactory = (ConfigurablePresenterFactory) config.get(IEntityEditorFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
+		this.parentEditor = (MultiLevelEntityEditorPresenter) config.get(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR);
+		this.metaData = (MasterDetailComponent) config.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.presenterFactory = (ConfigurablePresenterFactory) config.get(IComponentFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
 		this.ebm = this.presenterFactory.getEventBusManager();
 		this.appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config
-				.get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
+				.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
 		this.appEventBus = appPresenter.getEventBus();
 
 		this.presenterFactory.getCustomizer().getConfig()
-				.put(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
+				.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
 		this.entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
 
-		config.put(IEntityEditorFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
+		config.put(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
 		IMultiLevelEntityEditorView localView = this.getView();
 		localView.init();
 		localView.addSplitPositionChangeListener(this);
@@ -165,7 +165,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		this.masterPresenter = (ConfigurableBasePresenter<?, ? extends EventBus>) res.keySet().iterator().next();
 		localView.setMaster((Component) this.masterPresenter.getView());
 
-		config.put(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, this.metaData.getLineEditorPanel());
+		config.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, this.metaData.getLineEditorPanel());
 		lineEditorPresenter = (ConfigurableBasePresenter<?, ? extends EventBus>) this.presenterFactory
 				.createPresenter(EntityLineEditorPresenter.class);
 		lineEditorBus = (EntityLineEditorEventBus) lineEditorPresenter.getEventBus();
@@ -182,7 +182,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		if (isDetailEditor()) {
 			// editorTab.setIcon(new
 			// ThemeResource("toolstrip/img/conx-bread-crumb-record-highlighted.png"));
-			onSetItemDataSource((Item) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_ITEM_DATASOURCE));
+			onSetItemDataSource((Item) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_ITEM_DATASOURCE));
 		} else {
 			// editorTab.setIcon(new
 			// ThemeResource("breadcrumb/img/conx-bread-crumb-grid-highlighted.png"));

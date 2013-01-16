@@ -27,7 +27,7 @@ import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.contribution.IViewContribution;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;
 import org.slf4j.Logger;
@@ -67,8 +67,8 @@ public class MainMVPApplication extends Application implements IMainApplication,
 	private IPortalRoleService portalRoleService;
 	@Autowired
 	private IPortalOrganizationService portalOrganizationService;
-	// @Autowired
-	private IEntityEditorFactory entityEditorFactory;
+	@Autowired
+	private IComponentFactory componentFactory;
 	@Autowired
 	private IEntityManagerFactoryManager entityManagerFactoryManager;
 	@Autowired
@@ -106,19 +106,19 @@ public class MainMVPApplication extends Application implements IMainApplication,
 		if (this.entityEditorFactoryParams == null) {
 			this.entityEditorFactoryParams = new HashMap<String, Object>();
 			this.entityEditorFactoryParams = new HashMap<String, Object>();
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_EVENTBUS_MANAGER, this.presenterFactory.getEventBusManager());
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_LOCALE, getLocale());
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_ENTITYMANAGERPERREQUESTHELPER,
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_MVP_EVENTBUS_MANAGER, this.presenterFactory.getEventBusManager());
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_MVP_LOCALE, getLocale());
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_MVP_ENTITYMANAGERPERREQUESTHELPER,
 					this.entityManagerPerRequestHelper);
 
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_ENTITY_MANAGER_FACTORY,
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_MANAGER_FACTORY,
 					this.entityManagerFactoryManager.getKernelSystemEmf());
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE,
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE,
 					this.daoProvider.provideByDAOClass(IRemoteDocumentRepository.class));
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IFOLDER_SERVICE,
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_IFOLDER_SERVICE,
 					this.daoProvider.provideByDAOClass(IFolderDAOService.class));
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP, this);
-			this.entityEditorFactoryParams.put(IEntityEditorFactory.FACTORY_PARAM_IENTITY_METADATA_SERVICE,
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_MAIN_APP, this);
+			this.entityEditorFactoryParams.put(IComponentFactory.FACTORY_PARAM_IENTITY_METADATA_SERVICE,
 					this.daoProvider.provideByDAOClass(IEntityMetadataDAOService.class));
 		}
 
@@ -315,8 +315,8 @@ public class MainMVPApplication extends Application implements IMainApplication,
 		return this.contributionManager.getActionContributionByCode(this, code);
 	}
 
-	public IEntityEditorFactory getEntityEditorFactory() {
-		return entityEditorFactory;
+	public IComponentFactory getEntityEditorFactory() {
+		return componentFactory;
 	}
 
 	public IEntityManagerFactoryManager getEntityManagerFactoryManager() {
@@ -352,5 +352,10 @@ public class MainMVPApplication extends Application implements IMainApplication,
 		}
 
 		return this.reportingGenerator.getUrlPathForPDFGenerator(baseUrl);
+	}
+
+	@Override
+	public IComponentFactory getComponentFactory() {
+		return this.componentFactory;
 	}
 }

@@ -27,7 +27,7 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
@@ -77,7 +77,7 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 		this.pageComponentMap = new HashMap<IPageFlowPage, IPageComponent>();
 
 		HashMap<String, Object> config = new HashMap<String, Object>();
-		config.put(IEntityEditorFactory.CONTAINER_PROVIDER, this);
+		config.put(IComponentFactory.CONTAINER_PROVIDER, this);
 		this.pageFactory = new VaadinPageFactoryImpl(config);
 
 		getNextButton().setImmediate(true);
@@ -100,7 +100,7 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 		}
 
 		HashMap<String, Object> config = new HashMap<String, Object>();
-		config.put(IEntityEditorFactory.CONTAINER_PROVIDER, this);
+		config.put(IComponentFactory.CONTAINER_PROVIDER, this);
 		this.pageFactory = new VaadinPageFactoryImpl(config);
 
 		getNextButton().setImmediate(true);
@@ -132,7 +132,7 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 			initParams.put(IPageComponent.DAO_PROVIDER, this.daoProvider);
 			initParams.put(IPageComponent.PAGE_FLOW_PAGE_CHANGE_EVENT_HANDLER, this);
 			initParams.put(IPageComponent.ENTITY_CONTAINER_PROVIDER, this);
-			initParams.put(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER, this.appPresenter);
+			initParams.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER, this.appPresenter);
 			initParams.put(IPageComponent.ENTITY_TYPE_DAO_SERVICE, this.engine.getEntityTypeDAOService());
 		}
 		if (session.getPages() != null) {

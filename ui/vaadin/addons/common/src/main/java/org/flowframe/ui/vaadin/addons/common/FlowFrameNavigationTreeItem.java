@@ -19,7 +19,7 @@ public class FlowFrameNavigationTreeItem extends HorizontalLayout {
 	public FlowFrameNavigationTreeItem(String caption, String url, TreeTable tree, int itemId) {
 		addStyleName("conx-navigation-tree-item");
 		setHeight("16px");
-		setWidth("80px");
+		setWidth("150px");
 		parent = tree;
 		this.id = itemId;
 		icon = new Embedded();

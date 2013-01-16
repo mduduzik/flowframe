@@ -18,7 +18,7 @@ import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
 import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.services.contribution.IMainApplication;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.IReferenceNumberEditorView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.ReferenceNumberEditorView;
@@ -130,10 +130,10 @@ public class ReferenceNumberEditorPresenter extends ConfigurableBasePresenter<IR
 		// getConfig().get("ientityMetadataDAOService");
 		// this.entityContainer =
 		// JPAContainerFactory.make(ReferenceNumber.class, entityManager);
-		this.multiLevelEntityEditorPresenter = (ConfigurableBasePresenter) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
-		this.refNumComponent = (ReferenceNumberEditorComponent) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		this.mainApplication = (IMainApplication) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MAIN_APP);
-		this.entityMetadataDAO = (IEntityMetadataDAOService) getConfig().get(IEntityEditorFactory.FACTORY_PARAM_IENTITY_METADATA_SERVICE);
+		this.multiLevelEntityEditorPresenter = (ConfigurableBasePresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+		this.refNumComponent = (ReferenceNumberEditorComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
+		this.mainApplication = (IMainApplication) getConfig().get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
+		this.entityMetadataDAO = (IEntityMetadataDAOService) getConfig().get(IComponentFactory.FACTORY_PARAM_IENTITY_METADATA_SERVICE);
 	}
 
 	private void updateQueryFilter() {

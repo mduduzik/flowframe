@@ -26,7 +26,7 @@ import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.forms.FormMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -158,8 +158,8 @@ public class NotesEditorPresenter extends BasePresenter<INotesEditorView, NotesE
 
 	@Override
 	public void onConfigure(Map<String, Object> params) {
-		this.noteComponent = (NoteEditorComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.entityContainerProvider = (IEntityContainerProvider) params.get(IEntityEditorFactory.CONTAINER_PROVIDER);
+		this.noteComponent = (NoteEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.entityContainerProvider = (IEntityContainerProvider) params.get(IComponentFactory.CONTAINER_PROVIDER);
 		this.daoProvider = (IDAOProvider) params.get(IPageComponent.DAO_PROVIDER);
 	}
 

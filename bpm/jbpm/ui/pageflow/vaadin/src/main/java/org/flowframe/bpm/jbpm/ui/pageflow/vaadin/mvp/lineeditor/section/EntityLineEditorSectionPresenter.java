@@ -13,7 +13,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.view.Ent
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.view.IEntityLineEditorSectionView;
 import org.flowframe.ui.component.domain.masterdetail.CreateNewLineEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
-import org.flowframe.ui.services.factory.IEntityEditorFactory;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.EventBus;
@@ -36,8 +36,8 @@ public class EntityLineEditorSectionPresenter extends BasePresenter<IEntityLineE
 
 	@Override
 	public void onConfigure(Map<String, Object> params) throws Exception {
-		this.componentModel = (LineEditorComponent) params.get(IEntityEditorFactory.COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IEntityEditorFactory.VAADIN_COMPONENT_FACTORY);
+		this.componentModel = (LineEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
+		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 
 		HashMap<String, Object> childParams = null;
 
