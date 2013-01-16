@@ -87,28 +87,12 @@ public class Prefroot
 	 */
 	private static final long serialVersionUID = 7869822230680505449L;
 	@XmlElement(required = true)
-    @ManyToOne(targetEntity = Prefmap.class, cascade = {
-        CascadeType.ALL
-    },fetch=FetchType.EAGER)
-    @JoinColumn(name = "PREFMAP_PREFROOT_HJID")	
     protected Prefmap prefmap;
-	
-    @OneToMany(targetEntity = Prefnode.class, cascade = {
-        CascadeType.ALL
-    },fetch=FetchType.EAGER)
-    @JoinColumn(name = "PREFNODE_PREFROOT_HJID")
     protected List<Prefnode> prefnode;
-    
     @XmlAttribute(name = "type", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @Basic
-    @Column(name = "TYPE_")    
     protected String type;
-    
     @XmlAttribute(name = "Hjid")
-    @Id
-    @Column(name = "HJID")
-    @GeneratedValue(strategy = GenerationType.AUTO)    
     protected Long hjid;
 
     /**
@@ -119,6 +103,10 @@ public class Prefroot
      *     {@link Prefmap }
      *     
      */
+    @ManyToOne(targetEntity = Prefmap.class, cascade = {
+        CascadeType.ALL
+    },fetch=FetchType.EAGER)
+    @JoinColumn(name = "PREFMAP_PREFROOT_HJID")
     public Prefmap getPrefmap() {
         return prefmap;
     }
@@ -157,6 +145,10 @@ public class Prefroot
      * 
      * 
      */
+    @OneToMany(targetEntity = Prefnode.class, cascade = {
+        CascadeType.ALL
+    },fetch=FetchType.EAGER)
+    @JoinColumn(name = "PREFNODE_PREFROOT_HJID")
     public List<Prefnode> getPrefnode() {
         if (prefnode == null) {
             prefnode = new ArrayList<Prefnode>();
@@ -180,6 +172,8 @@ public class Prefroot
      *     {@link String }
      *     
      */
+    @Basic
+    @Column(name = "TYPE_")
     public String getType() {
         return type;
     }
@@ -204,6 +198,9 @@ public class Prefroot
      *     {@link Long }
      *     
      */
+    @Id
+    @Column(name = "HJID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getHjid() {
         return hjid;
     }
