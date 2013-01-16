@@ -53,6 +53,8 @@ public interface IRemoteDocumentRepository {
 	
 	public 	String getFileAsURL(String fileEntryId, String version) throws Exception;
 	
+	public InputStream getFileEntryInputStreamWithURL(String fileEntryId,String version) throws Exception;	
+	
 	public boolean fileEntryExists(String parentFolderId, String name) throws Exception;
 	
 	public FileEntry addFileEntry(String folderId, String sourceFileName, String mimeType, String title, String description) throws Exception;

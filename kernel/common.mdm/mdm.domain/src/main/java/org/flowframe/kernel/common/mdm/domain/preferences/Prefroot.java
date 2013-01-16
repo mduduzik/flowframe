@@ -15,6 +15,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -104,7 +105,7 @@ public class Prefroot
      */
     @ManyToOne(targetEntity = Prefmap.class, cascade = {
         CascadeType.ALL
-    })
+    },fetch=FetchType.EAGER)
     @JoinColumn(name = "PREFMAP_PREFROOT_HJID")
     public Prefmap getPrefmap() {
         return prefmap;
@@ -146,7 +147,7 @@ public class Prefroot
      */
     @OneToMany(targetEntity = Prefnode.class, cascade = {
         CascadeType.ALL
-    })
+    },fetch=FetchType.EAGER)
     @JoinColumn(name = "PREFNODE_PREFROOT_HJID")
     public List<Prefnode> getPrefnode() {
         if (prefnode == null) {

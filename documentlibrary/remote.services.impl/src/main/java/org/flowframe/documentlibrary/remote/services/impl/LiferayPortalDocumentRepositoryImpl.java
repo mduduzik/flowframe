@@ -1,5 +1,7 @@
 package org.flowframe.documentlibrary.remote.services.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,20 +37,19 @@ import org.apache.http.params.SyncBasicHttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.util.EntityUtils;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import org.flowframe.kernel.common.utils.HTTPUtil;
-import org.flowframe.kernel.common.utils.StringUtil;
-import org.flowframe.kernel.common.utils.Validator;
-import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
+import org.flowframe.kernel.common.utils.HTTPUtil;
+import org.flowframe.kernel.common.utils.StringUtil;
+import org.flowframe.kernel.common.utils.Validator;
+import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import flexjson.JSONDeserializer;
 
@@ -258,16 +259,18 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		BasicHttpContext ctx = new BasicHttpContext();
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 
-		HttpGet get = new HttpGet("/api/secure/jsonws/dlfileentry/get-file-as-stream");
-
+		HttpGet get = new HttpGet("/api/secure/jsonws/dlfileentry/get-file-as-stream?fileEntryId="+fileEntryId+"&version="+version);
+		
 		HttpParams params = new SyncBasicHttpParams();
 		params.setParameter("fileEntryId", fileEntryId);
 		params.setParameter("version", version);
+		 
 		get.setParams(params);
 
 		HttpResponse resp = httpclient.execute(targetHost, get, ctx);
 		System.out.println("getFileAsStream Status:[" + resp.getStatusLine() + "]");
-
+		
+	
 		InputStream is = resp.getEntity().getContent();
 
 		return is;
@@ -283,6 +286,31 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 				+ HTTPUtil.encodeURL(fe.getTitle(), true) + "/" + fe.getUuid();
 		return encodedUrl;
 	}
+	
+	@Override
+	public InputStream getFileEntryInputStreamWithURL(String fileEntryId, String version) throws Exception {
+		FileEntry fe = getFileEntryById(fileEntryId);
+		// TODO Auto-generated method stub
+		// http://localhost:8080/documents/10180/16279/Bill+Of+Laden/7b30b6bd-4174-40e3-aadb-63f2cbadd8fe
+		// http://<host>:<port>/documents/<groupd.id>/<folder.id>/<url_encode_title>/<uuid>
+		String encodedUrl = targetHost.toString() + "/documents/" + loginGroupId + "/" + fe.getFolderId() + "/"
+				+ HTTPUtil.encodeURL(fe.getTitle(), true) + "/" + fe.getUuid();
+		
+		BasicHttpContext ctx = new BasicHttpContext();
+		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+		HttpGet get = new HttpGet(encodedUrl);
+
+
+		HttpResponse resp = httpclient.execute(targetHost, get, ctx);
+		System.out.println("getFileAsStream Status:[" + resp.getStatusLine() + "]");
+		
+	
+		InputStream is = resp.getEntity().getContent();
+		
+		return is;
+	}	
+	
 
 	@Override
 	public FileEntry deleteFileEntryById(String folderId, String fileEntryId) throws Exception {

@@ -1,13 +1,20 @@
 package org.flowframe.documentlibrary.remote.services.impl.tests;
 
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
+import org.apache.commons.io.IOUtils;
+import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.metamodel.dao.services.impl.EntityTypeDAOImpl;
@@ -20,10 +27,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl;
-
 @ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml",
-        "/META-INF/flowframe/jpa.lob.jpacontainer.springdm-module-context.xml",
+		"/META-INF/jpa.lob.jpacontainer.springdm-module-context.xml",
         "/META-INF/flowframe/dao.services.impl-module-context.xml",
         "/META-INF/flowframe/metamodel.dao.services.impl-module-context.xml",        
         "/META-INF/core.dao.datasource.mysql-module-context.xml",
@@ -45,6 +50,8 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
 	
 	@Autowired
 	private LiferayPortalDocumentRepositoryImpl docRepoRemoteService;
+
+	private FileEntry bolFileEntry;
 	
 	@BeforeClass
 	public void setUp() throws Exception {
@@ -104,7 +111,7 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
     	if (!res)
     	{
     		InputStream is = new ByteArrayInputStream("test string".getBytes());
-    		FileEntry fe = docRepoRemoteService.addFileEntry(Long.toString(fldr.getFolderId()), "src/test/resources/bol.pdf", "application/pdf", "BoL", "BoL");
+    		bolFileEntry = docRepoRemoteService.addFileEntry(Long.toString(fldr.getFolderId()), "src/test/resources/bol.pdf", "application/pdf", "BoL", "BoL");
 /*	    	fldr = docRepoRemoteService.addFolder(docRepoRemoteService.getConxlogiFolderId(),"Receive123", "Receive123");
 	    	Assert.assertNotNull(fldr);
 	    	
@@ -142,5 +149,48 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
 	    	res = docRepoRemoteService.folderExists(docRepoRemoteService.getConxlogiFolderId(),"Receive123");
 	    	Assert.assertFalse(res);    		
     	}
-    }    
+    }   
+    @Test(enabled=true)
+    public void testDownloadFileEntryAsStream() throws Exception {
+    	Folder fldr = docRepoRemoteService.getFolderByName(docRepoRemoteService.getConxlogiFolderId(),"Receive123");
+    	Assert.assertNotNull(fldr);    	
+    	
+
+    	bolFileEntry = docRepoRemoteService.getFileEntryByTitle(Long.toString(fldr.getFolderId()),"BoL");
+    	Assert.assertNotNull(bolFileEntry);
+    	
+    	InputStream reportStream = docRepoRemoteService.getFileAsStream(Long.toString(bolFileEntry.getFileEntryId()), "1.0");
+    	Assert.assertNotNull(reportStream);
+    	
+    	try {
+    		BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("BoL.pdf"));
+    	    try {
+    	        IOUtils.copy(reportStream, output);
+    	    } finally {
+    	    	reportStream.close();
+    	    	output.close();
+    	    }
+    	} finally {
+    	}
+    }   
+    
+    public static byte[] getBytes(InputStream is) throws IOException {
+
+        int len;
+        int size = 1024;
+        byte[] buf;
+
+        if (is instanceof ByteArrayInputStream) {
+          size = is.available();
+          buf = new byte[size];
+          len = is.read(buf, 0, size);
+        } else {
+          ByteArrayOutputStream bos = new ByteArrayOutputStream();
+          buf = new byte[size];
+          while ((len = is.read(buf, 0, size)) != -1)
+            bos.write(buf, 0, len);
+          buf = bos.toByteArray();
+        }
+        return buf;
+      }    
 }

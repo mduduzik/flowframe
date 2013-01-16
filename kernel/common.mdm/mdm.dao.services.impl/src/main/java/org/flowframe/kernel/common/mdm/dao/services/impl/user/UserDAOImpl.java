@@ -44,7 +44,7 @@ public class UserDAOImpl implements IUserDAOService {
 
 	@Override
 	public List<User> getAll() {
-		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.user.User o record by o.id",User.class).getResultList();
+		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.user.User o order by o.id",User.class).getResultList();
 	}
 	
 	@Override

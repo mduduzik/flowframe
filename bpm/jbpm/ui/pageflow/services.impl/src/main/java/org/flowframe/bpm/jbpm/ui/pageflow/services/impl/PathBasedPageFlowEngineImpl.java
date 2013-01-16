@@ -143,7 +143,7 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 			IModelDrivenPageFlowPage page, Map<String, Object> properties) {
 		String processId = (String)properties.get(IPageFlowPage.PROCESS_ID);
 		String taskName = (String)properties.get(IPageFlowPage.TASK_NAME);
-		logger.debug("registerModelDrivenPageFlowPage("+processId+","+taskName+")");		
+		logger.info("registerModelDrivenPageFlowPage("+processId+","+taskName+")");		
 		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
 		if (map == null) {
 			map = new HashMap<String,IPageFlowPage>();
@@ -155,9 +155,9 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	public void unregisterModelDrivenPageFlowPage(
 			IModelDrivenPageFlowPage page, Map<String, Object> properties) {
 		String processId = (String)properties.get(IPageFlowPage.PROCESS_ID);
-		logger.debug("unregisterModelDrivenPageFlowPage("+processId+")");	
-		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
 		String taskName = (String)properties.get(IPageFlowPage.TASK_NAME);
+		logger.info("uregisterModelDrivenPageFlowPage("+processId+","+taskName+")");	
+		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
 		if (map != null) {
 			map.remove(taskName);
 		}
@@ -486,5 +486,14 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	@Override
 	public UserTransaction getUserTransaction() {
 		return this.userTransaction;
+	}
+	
+	/**
+	 * 
+	 * Pages
+	 * 
+	 */
+	public Map<String,IPageFlowPage> getPagesByProcessId(String processId) {
+		return pageCache.get(processId);
 	}
 }

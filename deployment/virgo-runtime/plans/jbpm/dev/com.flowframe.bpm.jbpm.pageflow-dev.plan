@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plan name="com.flowframe.bpm.jbpm.pageflow-dev.plan" version="0.0.1" scoped="false" atomic="true"
+        xmlns="http://www.eclipse.org/virgo/schema/plan"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+		        http://www.eclipse.org/virgo/schema/plan 
+		        http://www.eclipse.org/virgo/schema/plan/eclipse-virgo-plan.xsd">
+	<!-- Bootstraping Bundles : Stage 1 -->
+	<artifact type="bundle" name="org.flowframe.kernel.datasource.mysql" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.tm.jta" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.kernel.common.utils" version="0.0.1"/>	
+	<artifact type="bundle" name="org.flowframe.kernel.jpa.container.services" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm" version="0.0.1"/>
+	
+	<!-- Bootstraping Bundles : Stage 2 -->
+	<!--
+	<artifact type="bundle" name="org.flowframe.kernel.datasource.mysql" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.tm.jta" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.kernel.common.utils" version="0.0.1"/>	
+	<artifact type="bundle" name="org.flowframe.kernel.jpa.container.services" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm" version="0.0.1"/>
+	-->
+</plan>

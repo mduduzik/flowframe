@@ -2,13 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.flowframe.distribution</artifactId>
+		<artifactId>org.flowframe.distribution.ui</artifactId>
 		<groupId>org.flowframe</groupId>
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>org.flowframe.distribution.ui</artifactId>
-	<name>org.flowframe.distribution.ui</name>
+	<artifactId>org.flowframe.distribution.ui.component</artifactId>
+	<name>org.flowframe.distribution.ui.component</name>
 	<packaging>pom</packaging>
 	<build>
 		<plugins>
@@ -59,16 +59,11 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy todir="../virgo-bundles/repository/flowframe/ui">
+								<copy todir="../../virgo-bundles/repository/flowframe/ui/component">
 									<filelist dir="dependencies">
-										<file name="org.flowframe.ui.services-0.0.1.jar" />
-										<file name="org.flowframe.ui.manager-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.editors-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.forms-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.factory-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.common-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.addons.common-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.addons.filtertable-0.0.1.jar" />
+										<file name="org.flowframe.ui.component.dao.services-0.0.1.jar" />
+										<file name="org.flowframe.ui.component.dao.services.impl-0.0.1.jar" />
+										<file name="org.flowframe.ui.component.domain-0.0.1.jar" />
 									</filelist>
 								</copy>
 							</tasks>
@@ -84,46 +79,18 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.services</artifactId>
+			<artifactId>org.flowframe.ui.component.dao.services</artifactId>
 			<version>0.0.1</version>
-		</dependency>
+		</dependency>		
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.forms</artifactId>
+			<artifactId>org.flowframe.ui.component.dao.services.impl</artifactId>
 			<version>0.0.1</version>
-		</dependency>
+		</dependency>	
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.editors</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.factory</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.common</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.addons.common</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.addons.filtertable</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.manager</artifactId>
+			<artifactId>org.flowframe.ui.component.domain</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
-	<modules>
-		<module>component</module>
-	</modules>
 </project>

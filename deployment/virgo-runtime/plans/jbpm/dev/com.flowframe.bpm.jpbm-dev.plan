@@ -39,15 +39,6 @@
 	<artifact type="bundle" name="org.flowframe.portal.remote.services" version="0.0.1"/>
 	<artifact type="bundle" name="org.flowframe.portal.remote.services.impl" version="0.0.1"/>
 	
-	<!-- JBPM -->	        
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.shared" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.services" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.persistence.datasource" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver.persistence" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.bpmserver.persistence" version="0.0.1"/>
-	<artifact type="bundle" name="org.flowframe.bpm.jbpm.bpmserver" version="0.0.1"/> 
-	
 	<!-- JBPM Common -->
 	<artifact name="org.jbpm.persistence" type="bundle" version="5.3.0.Final"/>
 	<artifact name="org.jbpm.human-task-core" type="bundle" version="5.3.0.Final"/>
@@ -57,4 +48,15 @@
 	<artifact name="org.drools.compiler" type="bundle" version="5.4.0.Final"/>
 	<artifact name="org.drools.core" type="bundle" version="5.4.0.Final"/>
 	<artifact name="com.google.protobuf" type="bundle" version="2.4.1"/>
+	
+	<!-- JBPM : CORE -->	        
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.shared" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.services" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.persistence.datasource" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver.persistence" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.taskserver" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.bpmserver.persistence" version="0.0.1"/>
+	<artifact type="bundle" name="org.flowframe.bpm.jbpm.bpmserver" version="0.0.1"/>
+	
+	<!-- JBPM : Pageflow -->	
 </plan>

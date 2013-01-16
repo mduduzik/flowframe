@@ -14,8 +14,8 @@ Import-Bundle: org.flowframe.thirdparty.hibernate.core;version="3.6.0.
  Final";import-scope:="application",org.flowframe.thirdparty.hibernate
  .annotations.commons;version="3.2.0.Final";import-scope:="application
  "
-Build-Jdk: 1.6.0_37
-Built-By: Sandile
+Build-Jdk: 1.6.0_29
+Built-By: Developer
 Bundle-Version: 0.0.1
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: FF LoB MultiPU JPAContainer for SpringDM

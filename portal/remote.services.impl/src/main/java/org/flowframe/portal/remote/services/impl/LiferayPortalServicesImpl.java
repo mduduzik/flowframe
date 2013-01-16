@@ -75,22 +75,18 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		loginEmail = liferayProperties.getProperty(FFPORTAL_USER_EMAIL);
 		loginPassword = liferayProperties.getProperty(FFPORTAL_USER_PASSWORD);
 		
-		try {
-			targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
-			httpclient = new DefaultHttpClient();
-			httpclient.getCredentialsProvider().setCredentials(
-					new AuthScope(targetHost.getHostName(), targetHost.getPort()),
-					new UsernamePasswordCredentials(loginEmail, loginPassword));
+		targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
+		httpclient = new DefaultHttpClient();
+		httpclient.getCredentialsProvider().setCredentials(
+				new AuthScope(targetHost.getHostName(), targetHost.getPort()),
+				new UsernamePasswordCredentials(loginEmail, loginPassword));
 
-			// Create AuthCache instance
-			this.authCache = new BasicAuthCache();
-			// Generate BASIC scheme object and add it to the local
-			// auth cache
-			BasicScheme basicAuth = new BasicScheme();
-			authCache.put(targetHost, basicAuth);
-		} catch (NumberFormatException e) {
-			throw new RuntimeException("The provided port was not a number: " + port);
-		}	
+		// Create AuthCache instance
+		this.authCache = new BasicAuthCache();
+		// Generate BASIC scheme object and add it to the local
+		// auth cache
+		BasicScheme basicAuth = new BasicScheme();
+		authCache.put(targetHost, basicAuth);	
 	}	
 	
 	private String getLoginUserId() throws ParseException, IOException
@@ -116,6 +112,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		if(resp.getEntity()!=null) {
 		    response = EntityUtils.toString(resp.getEntity());
 		}
+		
+		EntityUtils.consume(resp.getEntity());
 		
 		return response;
 	}	
@@ -174,6 +172,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		JSONDeserializer<Integer> deserializer = new JSONDeserializer<Integer>();
 		Integer count = deserializer.deserialize(response,Integer.class);
 		
+		EntityUtils.consume(resp.getEntity());
+		
 		return count;
 	}	
 
@@ -210,6 +210,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 			    .use("values", User.class)
 			    .deserialize(response);
 
+		EntityUtils.consume(resp.getEntity());
 		
 		return users;
 	}
@@ -289,6 +290,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 			user = deserializer.deserialize(response,User.class);
 		}		
 		
+		EntityUtils.consume(resp.getEntity());
+		
 		return user;
 	}
 
@@ -329,7 +332,9 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		{
 			JSONDeserializer<Role> deserializer = new JSONDeserializer<Role>();
 			role = deserializer.deserialize(response,Role.class);
-		}		
+		}	
+		
+		EntityUtils.consume(resp.getEntity());
 		
 		return role;
 	}		
@@ -366,6 +371,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		JSONDeserializer<Role> deserializer = new JSONDeserializer<Role>();
 		role = deserializer.deserialize(response,FileEntry.class);
 
+		EntityUtils.consume(resp.getEntity());
+		
 		return role;
 	}
 	
@@ -407,6 +414,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		ArrayList<Role> roles = new JSONDeserializer<ArrayList<Role>>()
 			    .use("values", Role.class)
 			    .deserialize(response);
+		
+		EntityUtils.consume(resp.getEntity());
 
 		return roles;
 	}
@@ -439,6 +448,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 
 		JSONDeserializer<Boolean> deserializer = new JSONDeserializer<Boolean>();
 		Boolean hasRole = deserializer.deserialize(response,Boolean.class);
+		
+		EntityUtils.consume(resp.getEntity());
 
 		return hasRole;
 	}
@@ -466,6 +477,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		    response = EntityUtils.toString(resp.getEntity());
 		}
 		System.out.println("setUserRole Res:["+response+"]");
+		
+		EntityUtils.consume(resp.getEntity());
 	}
 
 	@Override
@@ -484,14 +497,46 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 	}
 
 	@Override
-	public List<Organization> getOrganizationsByUserId(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Organization> getOrganizationsByUserId(String portalUserId) throws Exception {
+		// Add AuthCache to the execution context
+		BasicHttpContext ctx = new BasicHttpContext();
+		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+		
+		HttpPost post = new HttpPost(
+				"/api/secure/jsonws//organization/get-user-organizations");
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("userId",portalUserId));
+		
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+		post.setEntity(entity);
+		
+		
+		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+		System.out.println("getOrganizationsByUserId Status:["+resp.getStatusLine()+"]");
+		
+		String response = null;
+		if(resp.getEntity()!=null) {
+		    response = EntityUtils.toString(resp.getEntity());
+		}
+		System.out.println("getOrganizationsByUserId Res:["+response+"]");
+		
+		ArrayList<Organization> orgs = new JSONDeserializer<ArrayList<Organization>>()
+			    .use("values", Organization.class)
+			    .deserialize(response);
+		
+		EntityUtils.consume(resp.getEntity());
+		
+		return orgs;
 	}
 
 	@Override
-	public Organization getUserDefaultOrganization(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}	
+	public Organization getUserDefaultOrganization(String portalUserId)
+			throws Exception {
+		List<Organization> orgs = getOrganizationsByUserId(portalUserId);
+		if (Validator.isNull(orgs) || orgs.isEmpty())
+			return null;
+		else
+			return orgs.get(0);
+	}
+	
 }
