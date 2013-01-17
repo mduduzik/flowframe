@@ -88,7 +88,7 @@ public class Prefroot
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 7869822230680505449L;
+	private static final long serialVersionUID = 7869822230680505779L;
 	@XmlElement(required = true)
     protected Prefmap prefmap;
     protected Set<Prefnode> prefnode;

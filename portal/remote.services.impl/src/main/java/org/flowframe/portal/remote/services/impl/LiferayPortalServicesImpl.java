@@ -22,6 +22,8 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.impl.conn.SchemeRegistryFactory;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.util.EntityUtils;
@@ -76,7 +78,11 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		loginPassword = liferayProperties.getProperty(FFPORTAL_USER_PASSWORD);
 		
 		targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
-		httpclient = new DefaultHttpClient();
+		PoolingClientConnectionManager cxMgr = new PoolingClientConnectionManager( SchemeRegistryFactory.createDefault());
+		cxMgr.setMaxTotal(100);
+		cxMgr.setDefaultMaxPerRoute(20);		
+		httpclient = new DefaultHttpClient(cxMgr);
+		
 		httpclient.getCredentialsProvider().setCredentials(
 				new AuthScope(targetHost.getHostName(), targetHost.getPort()),
 				new UsernamePasswordCredentials(loginEmail, loginPassword));

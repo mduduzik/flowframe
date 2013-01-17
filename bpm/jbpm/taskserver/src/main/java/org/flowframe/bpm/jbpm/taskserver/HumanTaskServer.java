@@ -222,6 +222,8 @@ public class HumanTaskServer implements IBPMTaskService {
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
+			
+			throw new RuntimeException(stacktrace);
 		}				
 	}	
 }

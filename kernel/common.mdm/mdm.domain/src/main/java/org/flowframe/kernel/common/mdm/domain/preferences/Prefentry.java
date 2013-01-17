@@ -8,6 +8,8 @@
 
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,10 +57,17 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "ffprefentry")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Prefentry
-    implements Equals, HashCode
+    implements Equals, HashCode, Serializable
 {
 
-    @XmlAttribute(name = "key", required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7869822230680505119L;
+	/**
+	 * 
+	 */
+	@XmlAttribute(name = "key", required = true)
     protected String key;
     @XmlAttribute(name = "value", required = true)
     protected String value;

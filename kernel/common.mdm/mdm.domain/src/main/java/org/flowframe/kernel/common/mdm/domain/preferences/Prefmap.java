@@ -8,6 +8,7 @@
 
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -66,10 +67,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "ffprefmap")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Prefmap
-    implements Equals, HashCode
+    implements Equals, HashCode, Serializable
 {
 
-    protected Set<Prefentry> prefentry;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7869822230680505669L;
+	protected Set<Prefentry> prefentry;
     @XmlAttribute(name = "Hjid")
     protected Long hjid;
 

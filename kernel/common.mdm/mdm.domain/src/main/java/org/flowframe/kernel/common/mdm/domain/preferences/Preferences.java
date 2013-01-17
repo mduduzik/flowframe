@@ -8,6 +8,8 @@
 
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,10 +62,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "ffpreferences")
 public class Preferences
     extends MultitenantBaseEntity
-    implements Equals, HashCode
+    implements Equals, HashCode, Serializable
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7869822230680505559L;
+	@XmlElement(required = true)
     @ManyToOne(targetEntity = Prefroot.class, cascade = {
         CascadeType.ALL
     },fetch=FetchType.EAGER)

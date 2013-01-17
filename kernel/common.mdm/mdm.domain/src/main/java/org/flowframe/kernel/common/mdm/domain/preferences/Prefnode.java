@@ -8,6 +8,7 @@
 
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -72,10 +73,15 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @Table(name = "ffprefnode")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Prefnode
-    implements Equals, HashCode
+    implements Equals, HashCode, Serializable
 {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7869822230680505669L;
+
+	@XmlElement(required = true)
     @ManyToOne(targetEntity = Prefmap.class, cascade = {
         CascadeType.ALL
     },fetch=FetchType.EAGER)
