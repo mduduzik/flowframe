@@ -16,5 +16,6 @@
 		<module>forms</module>
 		<module>editors</module>
 		<module>factory</module>
+		<module>expressions</module>
 	</modules>
 </project>
