@@ -1,5 +1,6 @@
 package org.flowframe.ui.vaadin.expressions.utils.tests;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,27 +32,20 @@ public class SPUtilTests {
 	}
 	
 	@Test
-	public void testSimple() {
-/*		StandardEvaluationContext context = new StandardEvaluationContext();
-		context.setVariable("myname", "World");
-		
-		SpelExpressionParser expressionParser = new SpelExpressionParser();
-		Expression expr = expressionParser.parseExpression("name == #myname");
-		SpelNode ast = ((SpelExpression)expr).getAST();
-		
-		PropertyOrFieldReference prop = (PropertyOrFieldReference)ast.getChild(0);
-		VariableReference var = (VariableReference)ast.getChild(1);
-		ExpressionState varState = new ExpressionState(context);
-		Object value = var.getValue(varState);
-		Class valueType = var.getTypedValue(varState).getTypeDescriptor().getType();
-		
-		Class<? extends SpelNode> cls = ast.getClass();
-		int count = ast.getChildCount();
-		Assert.assertEquals(1, count);*/
+	public void testCompoundWithParams() {
+		StandardEvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("tenant",new Object());
+		context.setVariable("id",1L);
+		context.setVariable("code","test");
+		context.setVariable("dateCreated",new Date());
 		
 		Map<String,Object> paramMap = new HashMap<String,Object>();
-		paramMap.put("myname", "World");
-		Filter fltr = SPELUtil.toContainerFilter("name == #myname", paramMap);
-		Assert.assertNotNull(fltr);
+		paramMap.put("tenant",new Object());	
+		paramMap.put("id",1L);
+		paramMap.put("code","test");
+		paramMap.put("dateCreated",new Date());
+		
+		Filter filter = SPELUtil.toContainerFilter("tenant.id == #id AND tenant.code == #code AND tenant.dateCreated > #dateCreated", paramMap);
+		Assert.assertNotNull(filter);
 	}
 }
