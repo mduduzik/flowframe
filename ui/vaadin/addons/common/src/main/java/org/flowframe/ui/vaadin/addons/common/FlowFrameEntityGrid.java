@@ -1,8 +1,8 @@
 package org.flowframe.ui.vaadin.addons.common;
 
-import org.flowframe.ui.vaadin.addons.filtertable.FilterDecorator;
-import org.flowframe.ui.vaadin.addons.filtertable.FilterGenerator;
-import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterDecorator;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterGenerator;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterTable;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Filter;

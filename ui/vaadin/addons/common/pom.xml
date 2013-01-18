@@ -132,11 +132,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>
-				org.flowframe.ui.vaadin.addons.filtertable
-			</artifactId>
-			<version>0.0.1</version>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>popupbutton</artifactId>
+			<version>1.2.1</version>
 		</dependency>
 	</dependencies>
 </project>

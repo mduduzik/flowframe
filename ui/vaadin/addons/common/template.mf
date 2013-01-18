@@ -2,21 +2,29 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF UI Common Vaadin Addons
 Bundle-SymbolicName: org.flowframe.ui.vaadin.addons.common
+Fragment-Host: com.vaadin
 Vaadin-Widgetsets: org.flowframe.ui.vaadin.addons.common.gwt.CommonWidgetset
 Import-Package: com.vaadin.addon.jpacontainer;version="2.0.0",
-  com.vaadin.data;version="6.8.6",
-  com.vaadin.data.util;version="6.8.6",
-  com.vaadin.event;version="6.8.6",
-  com.vaadin.terminal;version="6.8.6",
-  com.vaadin.terminal.gwt.client;version="6.8.6",
-  com.vaadin.terminal.gwt.client.ui;version="6.8.6",
-  com.vaadin.tools;version="6.8.6",
-  com.vaadin.ui;version="6.8.6",
-  org.flowframe.ui.vaadin.addons.filtertable;version="[0.0.1, 1.0.0)"
+  org.vaadin.hene.popupbutton;version="1.2.1"
 Excluded-Imports: com.google.gwt.core.client,
   com.google.gwt.dom.client,
   com.google.gwt.event.dom.client,
   com.google.gwt.event.logical.shared,
   com.google.gwt.event.shared,
   com.google.gwt.user.client,
-  com.google.gwt.user.client.ui
+  com.google.gwt.user.client.ui,
+  com.vaadin.ui,
+  com.vaadin.terminal.gwt.client.ui,
+  com.vaadin,
+  com.vaadin.terminal,
+  com.vaadin.terminal.gwt.client,
+  com.vaadin.terminal.gwt.client.ui,
+  com.vaadin.ui,
+  com.vaadin.tools,
+  com.vaadin.data,
+  com.vaadin.data.util,
+  com.vaadin.event,
+  com.vaadin.data.util.filter,
+  com.vaadin.event.dd,
+  com.vaadin.event.dd.acceptcriteria,
+  com.vaadin.terminal.gwt.client.ui.dd

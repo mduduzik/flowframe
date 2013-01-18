@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.flowframe.ui.vaadin.expressions.utils;version="0.0
  .1";uses:="com.vaadin.data,org.springframework.expression,org.springf
- ramework.expression.spel.ast"
+ ramework.expression.spel,org.springframework.expression.spel.ast"
 Bundle-Version: 0.0.1
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: FF UI Vaadin Expressions
