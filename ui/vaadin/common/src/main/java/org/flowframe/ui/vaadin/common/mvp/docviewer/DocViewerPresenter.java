@@ -7,7 +7,8 @@ import java.io.InputStream;
 
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
-import org.flowframe.ui.vaadin.common.mvp.MainMVPApplication;
+import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.mvp.docviewer.view.DocViewerView;
 import org.flowframe.ui.vaadin.common.mvp.docviewer.view.IDocViewerView;
 import org.slf4j.Logger;
@@ -30,8 +31,9 @@ public class DocViewerPresenter extends BasePresenter<IDocViewerView, DocViewerE
 			String fileEntryId = Long.toString(DocViewerPresenter.this.fileEntry.getFileEntryId());
 			String version = fileEntry.getVersion();
 			
-			MainMVPApplication mvpApp = (MainMVPApplication)super.getApplication();
-			IRemoteDocumentRepository docLibRepository = mvpApp.getDaoProvider().provideByDAOClass(IRemoteDocumentRepository.class);
+			IMainApplication mvpApp = (IMainApplication) super.getApplication();
+			IRemoteDocumentRepository docLibRepository = (IRemoteDocumentRepository) mvpApp.getApplicationConfiguration().get(IComponentFactory.FACTORY_PARAM_IDOCLIB_REPO_SERVICE);
+			assert (docLibRepository != null) : "The IRemoteDocumentRepository in the application configuration was null.";
 			
 			String docUrl = docLibRepository.getFileAsURL(fileEntryId,version);
 			ExternalResource eress = new ExternalResource(docUrl, fileEntry.getMimeType()); 

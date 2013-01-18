@@ -12,13 +12,13 @@ public class ReportViewFeature extends Feature {
 	public ReportViewFeature(String reportUrl) {
 		super();
 		this.setReportUrl(reportUrl);
-		setCaption("Report");
+		setName("Report");
 	}
 	
 	public ReportViewFeature(String reportUrl, String caption) {
 		super();
 		this.setReportUrl(reportUrl);
-		setCaption(caption);
+		setName(caption);
 	}
 
 	public String getReportUrl() {

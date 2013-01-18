@@ -14,24 +14,25 @@ import org.flowframe.ui.services.factory.IComponentFactory;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.IPresenter;
 
+import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 
-public abstract class FeatureView extends VerticalLayout implements IFeatureView {
-	private static final long serialVersionUID = 47832919823L;
+public abstract class MultiFeatureView extends TabSheet implements IFeatureView {
+	private static final long serialVersionUID = 321645322135L;
 
-	private Feature currentFeature;
-	private Component currentComponent;
-
+	private HashMap<Feature, Tab> featureMap;
 	private Map<String, Object> config;
 
-	public FeatureView(Map<String, Object> config) {
+	public MultiFeatureView(Map<String, Object> config) {
 		assert (config != null) : "The config map was null.";
 
 		setSizeFull();
-		setStyleName("ff-feature-view");
+		setStyleName("ff-multi-feature-view");
 
 		this.config = config;
+		this.featureMap = new HashMap<Feature, TabSheet.Tab>();
 	}
 
 	public abstract IActionContribution findActionContributionByCode(String code);
@@ -42,8 +43,8 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 
 	public abstract Component createComponent(AbstractComponent component, Map<String, Object> config);
 
-	public void setFeature(Feature feature) {
-		if (this.currentFeature != feature) {
+	public void openFeature(Feature feature) {
+		if (!isFeatureOpen(feature)) {
 			assert (feature != null) : "Feature was null.";
 			Component featureComponent = null;
 			try {
@@ -55,34 +56,29 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 
 			assert (featureComponent != null) : "Could not create a component for feature. Feature component was null.";
 			featureComponent.setSizeFull();
-
-			this.currentFeature = feature;
-			this.currentComponent = featureComponent;
-
-			this.removeAllComponents();
-			this.addComponent(featureComponent);
+			
+			Tab featureTab = null;
+			if (feature.getIconUrl() == null) {
+				featureTab = addTab(featureComponent, feature.getName(), new ThemeResource(feature.getIconUrl()));
+			} else {
+				featureTab = addTab(featureComponent, feature.getName());
+			}
+			assert (featureTab != null) : "Could not add a tab for this feature.";
+			
+			this.featureMap.put(feature, featureTab);
+			this.setSelectedTab(featureTab);
 		}
 	}
-
-	public Feature getCurrentFeature() {
-		return this.currentFeature;
-	}
-
-	public Component getCurrentFeatureComponent() {
-		return this.currentComponent;
-	}
-
-	public void clearFeatureComponent() {
-		this.currentFeature = null;
-		this.currentComponent = null;
-		this.removeAllComponents();
+	
+	private boolean isFeatureOpen(Feature feature) {
+		return this.featureMap.containsKey(feature);
 	}
 
 	private Component buildFeatureComponent(Feature feature) throws Exception {
 		assert (feature != null) : "Feature was null.";
 
 		Component view = null;
-		String viewCode = feature.getExternalCode();
+		String viewCode = feature.getCode();
 		assert (viewCode != null) : "This feature's view code was null.";
 
 		Map<String, Object> props = new HashMap<String, Object>(this.config);

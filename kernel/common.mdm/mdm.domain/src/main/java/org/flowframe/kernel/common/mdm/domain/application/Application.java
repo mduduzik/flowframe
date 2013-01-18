@@ -1,35 +1,32 @@
 package org.flowframe.kernel.common.mdm.domain.application;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity
-@Table(name="ffsysapplication")
+@Table(name = "ffsysapplication")
 public class Application extends BaseEntity {
-	
-    private String themeIconPath;
-    
+	private static final long serialVersionUID = 100984377L;
 
-    @OneToMany(targetEntity = Feature.class, mappedBy="parentApplication", cascade=CascadeType.ALL)
-    private List<Feature> features = new ArrayList<Feature>();  
+	private String themeIconPath;
 
-    public Application()
-    {
-    }
-    
-    public Application(String ddAppPrefix)//e.g. APP.WHSE
-    {
-    	setCode(ddAppPrefix);
-    }
+	@OneToMany(targetEntity = Feature.class, mappedBy = "parentApplication", cascade = CascadeType.ALL)
+	private Set<Feature> features = new HashSet<Feature>();
+
+	public Application() {
+	}
+
+	public Application(String ddAppPrefix)// e.g. APP.WHSE
+	{
+		setCode(ddAppPrefix);
+	}
 
 	public String getThemeIconPath() {
 		return themeIconPath;
@@ -39,11 +36,11 @@ public class Application extends BaseEntity {
 		this.themeIconPath = themeIconPath;
 	}
 
-	public List<Feature> getFeatures() {
+	public Set<Feature> getFeatures() {
 		return features;
 	}
 
-	public void setFeatures(List<Feature> features) {
+	public void setFeatures(Set<Feature> features) {
 		this.features = features;
 	}
 }

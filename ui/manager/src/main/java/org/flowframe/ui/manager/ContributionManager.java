@@ -1,7 +1,9 @@
 package org.flowframe.ui.manager;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.flowframe.kernel.common.utils.Validator;
@@ -11,8 +13,6 @@ import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vaadin.Application;
 
 public class ContributionManager implements IUIContributionManager {
 
@@ -84,25 +84,47 @@ public class ContributionManager implements IUIContributionManager {
 	}
 
 	@Override
-	public IApplicationContribution getApplicationContributionByCode(Application application, String code) {
+	public IApplicationContribution getApplicationContributionByCode(String code) {
 		IApplicationContribution ac = (IApplicationContribution) appContributions.get(code);
 		return ac;
 	}
 
 	@Override
-	public IViewContribution getViewContributionByCode(Application application, String code) {
+	public IViewContribution getViewContributionByCode(String code) {
 		IViewContribution vc = (IViewContribution) viewContributions.get(code);
 		return vc;
 	}
-
+	
 	@Override
-	public IApplicationContribution[] getCurrentApplicationContributions() {
-		return appContributions.values().toArray(new IApplicationContribution[] {});
+	public IActionContribution getActionContributionByCode(String code) {
+		IActionContribution ac = (IActionContribution) actionContributions.get(code);
+		return ac;
 	}
 
 	@Override
-	public IActionContribution getActionContributionByCode(Application application, String code) {
-		IActionContribution ac = (IActionContribution) actionContributions.get(code);
-		return ac;
+	public Collection<IViewContribution> getAllViewContributions() {
+		HashSet<IViewContribution> viewContributionSet = new HashSet<IViewContribution>();
+		for (String code : this.viewContributions.keySet()) {
+			viewContributionSet.add(this.viewContributions.get(code));
+		}
+		return viewContributionSet;
+	}
+
+	@Override
+	public Collection<IActionContribution> getAllActionContributions() {
+		HashSet<IActionContribution> actionContributionSet = new HashSet<IActionContribution>();
+		for (String code : this.actionContributions.keySet()) {
+			actionContributionSet.add(this.actionContributions.get(code));
+		}
+		return actionContributionSet;
+	}
+
+	@Override
+	public Collection<IApplicationContribution> getAllApplicationContributions() {
+		HashSet<IApplicationContribution> applicationContributionSet = new HashSet<IApplicationContribution>();
+		for (String code : this.appContributions.keySet()) {
+			applicationContributionSet.add(this.appContributions.get(code));
+		}
+		return applicationContributionSet;
 	}
 }

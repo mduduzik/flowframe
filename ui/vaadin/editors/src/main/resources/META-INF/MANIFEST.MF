@@ -196,7 +196,8 @@ Import-Package: com.vaadin;version="6.8.2",com.vaadin.addon.jpacontain
  ="2.0.0",com.vaadin.addon.jpacontainer.util;version="2.0.0",com.vaadi
  n.data;version="6.8.2",com.vaadin.data.util;version="6.8.2",com.vaadi
  n.event;version="6.8.2",com.vaadin.terminal;version="6.8.2",com.vaadi
- n.ui;version="6.8.2",org.flowframe.documentlibrary.remote.services;ve
+ n.ui;version="6.8.2",javax.persistence;version="0",javax.persistence.
+ criteria;version="0",org.flowframe.documentlibrary.remote.services;ve
  rsion="[0.0.1, 1.0.0)",org.flowframe.ds.domain;version="[0.0.1, 1.0.0
  )",org.flowframe.kernel.common.mdm.dao.services;version="[0.0.1, 1.0.
  0)",org.flowframe.kernel.common.mdm.dao.services.documentlibrary;vers

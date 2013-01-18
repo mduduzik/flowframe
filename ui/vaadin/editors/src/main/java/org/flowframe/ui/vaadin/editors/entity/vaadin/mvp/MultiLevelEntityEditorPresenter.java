@@ -31,7 +31,6 @@ import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.PresenterFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.vaadin.Application;
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
@@ -51,7 +50,6 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	private MasterDetailComponent metaData;
 	private ApplicationEventBus appEventBus;
 	private MultiLevelEntityEditorPresenter parentEditor;
-	private IPresenter<?, ? extends ApplicationEventBus> appPresenter;
 	private Map<MasterDetailComponent, MultiLevelEntityEditorPresenter> childEditorPresenterMap;
 	private VaadinEntityEditorFactoryImpl entityFactory;
 	private ConfigurableBasePresenter<?, ? extends EventBus> masterPresenter;
@@ -77,7 +75,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 
 	public void onReportItem(Object itemEntity) {
 		// FIXME: MLE should not need whse.im
-		Application app = ((Component) this.getView()).getApplication();
+//		Application app = ((Component) this.getView()).getApplication();
 //		if (app instanceof MainMVPApplication && itemEntity instanceof StockItem) {
 //			String url = ((MainMVPApplication) app).getDaoProvider().provideByDAOClass(IStockItemDAOService.class)
 //					.getStockItemLabelUrl((StockItem) itemEntity, ((MainMVPApplication) app).getReportingUrl());
@@ -127,7 +125,6 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		onShowPresenter(childEditorPresenter);
 	}
 
-	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void configure() {
 		Map<String, Object> config = super.getConfig();
@@ -135,9 +132,6 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		this.metaData = (MasterDetailComponent) config.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.presenterFactory = (ConfigurablePresenterFactory) config.get(IComponentFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
 		this.ebm = this.presenterFactory.getEventBusManager();
-		this.appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config
-				.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
-		this.appEventBus = appPresenter.getEventBus();
 
 		this.presenterFactory.getCustomizer().getConfig()
 				.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
