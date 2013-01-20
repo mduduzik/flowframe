@@ -69,7 +69,6 @@
 										<file name="org.flowframe.ui.vaadin.expressions-0.0.1.jar" />
 										<file name="org.flowframe.ui.vaadin.common-0.0.1.jar" />
 										<file name="org.flowframe.ui.vaadin.addons.common-0.0.1.jar" />
-										<file name="org.flowframe.ui.vaadin.addons.filtertable-0.0.1.jar" />
 									</filelist>
 								</copy>
 							</tasks>
@@ -116,11 +115,6 @@
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.ui.vaadin.addons.common</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.addons.filtertable</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>

@@ -51,6 +51,8 @@ public class DataSource extends MultitenantBaseEntity {
 
 	@Transient
 	private List<String> visibleFieldTitles;
+	
+	private String defaultFilterExpression;
 
 	public EntityType getEntityType() {
 		return entityType;
@@ -235,5 +237,13 @@ public class DataSource extends MultitenantBaseEntity {
 
 	public void setSuperDataSource(DataSource superDataSource) {
 		this.superDataSource = superDataSource;
+	}
+
+	public String getDefaultFilterExpression() {
+		return defaultFilterExpression;
+	}
+
+	public void setDefaultFilterExpression(String requiredFilterExpression) {
+		this.defaultFilterExpression = requiredFilterExpression;
 	}
 }

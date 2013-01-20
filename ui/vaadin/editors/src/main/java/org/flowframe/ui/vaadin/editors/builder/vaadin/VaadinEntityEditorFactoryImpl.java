@@ -13,6 +13,7 @@ import org.flowframe.ui.component.domain.form.SimpleFormComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
+import org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.component.domain.table.DetailGridComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
@@ -28,6 +29,7 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.simple.EntityLineEditorSimpleFormPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.EntityLineEditorGridPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.NotesEditorPresenter;
+import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.preferences.PreferencesEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.ReferenceNumberEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.EntityGridPresenter;
 import org.springframework.stereotype.Repository;
@@ -66,6 +68,13 @@ public class VaadinEntityEditorFactoryImpl implements IComponentFactory {
 		} else if (componentModel instanceof NoteEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
 			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(NotesEditorPresenter.class);
+			EventBus eventBus = presenter.getEventBus();
+
+			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
+			res.put(presenter, eventBus);
+		} else if (componentModel instanceof PreferencesEditorComponent) {
+			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
+			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(PreferencesEditorPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();

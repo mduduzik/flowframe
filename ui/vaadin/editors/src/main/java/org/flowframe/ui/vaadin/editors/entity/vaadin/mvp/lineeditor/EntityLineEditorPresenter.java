@@ -1,7 +1,5 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -14,6 +12,7 @@ import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorContainerComponent;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
+import org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
@@ -47,6 +46,7 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 	private IPresenter<?, ? extends EventBus> attachmentsPresenter;
 	private IPresenter<?, ? extends EventBus> refNumPresenter;
 	private IPresenter<?, ? extends EventBus> notesPresenter;
+	private IPresenter<?, ? extends EventBus> preferencesPresenter;
 
 	private Item itemDataSource;
 
@@ -59,15 +59,7 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 	 */
 	public void onStart(MultiLevelEntityEditorPresenter parentPresenter, AbstractEntityEditorEventBus entityEditorEventListener, AbstractComponent aec, EntityManager em,
 			HashMap<String, Object> extraParams) {
-		try {
-			this.getView().init();
-
-		} catch (Exception e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String stacktrace = sw.toString();
-			logger.error(stacktrace);
-		}
+		this.getView().init();
 	}
 
 	// MultiLevelEntityEditorEventBus implementation
@@ -87,6 +79,9 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 		// - Notes
 		if (notesPresenter != null)
 			((AbstractEntityEditorEventBus) notesPresenter.getEventBus()).entityItemEdit(item);
+		// - Preferences
+		if (preferencesPresenter != null)
+			((AbstractEntityEditorEventBus) preferencesPresenter.getEventBus()).entityItemEdit(item);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -104,6 +99,9 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 		// - Notes
 		if (notesPresenter != null)
 			((AbstractEntityEditorEventBus) notesPresenter.getEventBus()).entityItemAdded(item);
+		// - Preferences
+		if (preferencesPresenter != null)
+			((AbstractEntityEditorEventBus) preferencesPresenter.getEventBus()).entityItemAdded(item);
 	}
 
 	@Override
@@ -123,6 +121,9 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 		// - Notes
 		if (notesPresenter != null)
 			((IEntityLineEditorView) getView()).getMainLayout().addTab((Component) notesPresenter.getView(), "Notes");
+		// - Preferences
+		if (preferencesPresenter != null)
+			((IEntityLineEditorView) getView()).getMainLayout().addTab((Component) preferencesPresenter.getView(), "Preferences");
 
 		if (!initialized) {
 			if (this.itemDataSource != null) {
@@ -170,6 +171,8 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 					this.notesPresenter = presenter;
 				} else if (lec.getContent() instanceof ReferenceNumberEditorComponent) {
 					this.refNumPresenter = presenter;
+				} else if (lec.getContent() instanceof PreferencesEditorComponent) {
+					this.preferencesPresenter = presenter;
 				} else {
 					linePresenter2CaptionCache.put(presenter, lec.getCaption());
 					mvpCache.add(presenter);

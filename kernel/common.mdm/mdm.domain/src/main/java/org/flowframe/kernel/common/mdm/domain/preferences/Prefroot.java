@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 01:46:20 PM EST 
 //
 
-
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
 import java.io.Serializable;
@@ -44,11 +43,13 @@ import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
-
 /**
- * <p>Java class for prefroot complex type.
+ * <p>
+ * Java class for prefroot complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="prefroot">
@@ -74,218 +75,200 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "prefroot", propOrder = {
-    "prefmap",
-    "prefnode"
-})
+@XmlType(name = "prefroot", propOrder = { "prefmap", "prefnode" })
 @Entity(name = "Prefroot")
 @Table(name = "ffprefroot")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Prefroot
-    implements Equals, HashCode, Serializable
-{
+public class Prefroot implements Equals, HashCode, Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7869822230680505779L;
 	@XmlElement(required = true)
-    protected Prefmap prefmap;
-    protected Set<Prefnode> prefnode;
-    @XmlAttribute(name = "type", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String type;
-    @XmlAttribute(name = "Hjid")
-    protected Long hjid;
+	protected Prefmap prefmap;
+	protected Set<Prefnode> prefnode;
+	@XmlAttribute(name = "type", required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	protected String type;
+	@XmlAttribute(name = "Hjid")
+	protected Long hjid;
 
-    /**
-     * Gets the value of the prefmap property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Prefmap }
-     *     
-     */
-    @ManyToOne(targetEntity = Prefmap.class, cascade = {
-        CascadeType.ALL
-    })
-    @JoinColumn(name = "PREFMAP_PREFROOT_HJID")
-    public Prefmap getPrefmap() {
-        return prefmap;
-    }
+	/**
+	 * Gets the value of the prefmap property.
+	 * 
+	 * @return possible object is {@link Prefmap }
+	 * 
+	 */
+	@ManyToOne(targetEntity = Prefmap.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "PREFMAP_PREFROOT_HJID")
+	public Prefmap getPrefmap() {
+		return prefmap;
+	}
 
-    /**
-     * Sets the value of the prefmap property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Prefmap }
-     *     
-     */
-    public void setPrefmap(Prefmap value) {
-        this.prefmap = value;
-    }
+	/**
+	 * Sets the value of the prefmap property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Prefmap }
+	 * 
+	 */
+	public void setPrefmap(Prefmap value) {
+		this.prefmap = value;
+	}
 
-    /**
-     * Gets the value of the prefnode property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the prefnode property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getPrefnode().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Prefnode }
-     * 
-     * 
-     */
-    @OneToMany(targetEntity = Prefnode.class, cascade = {
-        CascadeType.ALL
-    },fetch=FetchType.EAGER)
-    @JoinColumn(name = "PREFNODE_PREFROOT_HJID")
-    public Set<Prefnode> getPrefnode() {
-        if (prefnode == null) {
-            prefnode = new HashSet<Prefnode>();
-        }
-        return this.prefnode;
-    }
+	/**
+	 * Gets the value of the prefnode property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the prefnode property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getPrefnode().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Prefnode }
+	 * 
+	 * 
+	 */
+	@OneToMany(targetEntity = Prefnode.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "PREFNODE_PREFROOT_HJID")
+	public Set<Prefnode> getPrefnode() {
+		if (prefnode == null) {
+			prefnode = new HashSet<Prefnode>();
+		}
+		return this.prefnode;
+	}
 
-    /**
+	/**
      * 
      * 
      */
-    public void setPrefnode(Set<Prefnode> prefnode) {
-        this.prefnode = prefnode;
-    }
+	public void setPrefnode(Set<Prefnode> prefnode) {
+		this.prefnode = prefnode;
+	}
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    @Basic
-    @Column(name = "TYPE_")
-    public String getType() {
-        return type;
-    }
+	/**
+	 * Gets the value of the type property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	@Basic
+	@Column(name = "TYPE_")
+	public String getType() {
+		return type;
+	}
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+	/**
+	 * Sets the value of the type property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setType(String value) {
+		this.type = value;
+	}
 
-    /**
-     * Gets the value of the hjid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    @Id
-    @Column(name = "HJID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getHjid() {
-        return hjid;
-    }
+	/**
+	 * Gets the value of the hjid property.
+	 * 
+	 * @return possible object is {@link Long }
+	 * 
+	 */
+	@Id
+	@Column(name = "HJID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getHjid() {
+		return hjid;
+	}
 
-    /**
-     * Sets the value of the hjid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setHjid(Long value) {
-        this.hjid = value;
-    }
+	/**
+	 * Sets the value of the hjid property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Long }
+	 * 
+	 */
+	public void setHjid(Long value) {
+		this.hjid = value;
+	}
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof Prefroot)) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final Prefroot that = ((Prefroot) object);
-        {
-            Prefmap lhsPrefmap;
-            lhsPrefmap = this.getPrefmap();
-            Prefmap rhsPrefmap;
-            rhsPrefmap = that.getPrefmap();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "prefmap", lhsPrefmap), LocatorUtils.property(thatLocator, "prefmap", rhsPrefmap), lhsPrefmap, rhsPrefmap)) {
-                return false;
-            }
-        }
-        {
-            Set<Prefnode> lhsPrefnode;
-            lhsPrefnode = this.getPrefnode();
-            Set<Prefnode> rhsPrefnode;
-            rhsPrefnode = that.getPrefnode();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "prefnode", lhsPrefnode), LocatorUtils.property(thatLocator, "prefnode", rhsPrefnode), lhsPrefnode, rhsPrefnode)) {
-                return false;
-            }
-        }
-        {
-            String lhsType;
-            lhsType = this.getType();
-            String rhsType;
-            rhsType = that.getType();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "type", lhsType), LocatorUtils.property(thatLocator, "type", rhsType), lhsType, rhsType)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+		if (!(object instanceof Prefroot)) {
+			return false;
+		}
+		if (this == object) {
+			return true;
+		}
+		final Prefroot that = ((Prefroot) object);
+		{
+			Prefmap lhsPrefmap;
+			lhsPrefmap = this.getPrefmap();
+			Prefmap rhsPrefmap;
+			rhsPrefmap = that.getPrefmap();
+			if (!strategy.equals(LocatorUtils.property(thisLocator, "prefmap", lhsPrefmap), LocatorUtils.property(thatLocator, "prefmap", rhsPrefmap), lhsPrefmap, rhsPrefmap)) {
+				return false;
+			}
+		}
+		{
+			Set<Prefnode> lhsPrefnode;
+			lhsPrefnode = this.getPrefnode();
+			Set<Prefnode> rhsPrefnode;
+			rhsPrefnode = that.getPrefnode();
+			if (!strategy.equals(LocatorUtils.property(thisLocator, "prefnode", lhsPrefnode), LocatorUtils.property(thatLocator, "prefnode", rhsPrefnode), lhsPrefnode, rhsPrefnode)) {
+				return false;
+			}
+		}
+		{
+			String lhsType;
+			lhsType = this.getType();
+			String rhsType;
+			rhsType = that.getType();
+			if (!strategy.equals(LocatorUtils.property(thisLocator, "type", lhsType), LocatorUtils.property(thatLocator, "type", rhsType), lhsType, rhsType)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    public boolean equals(Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	public boolean equals(Object object) {
+		final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
+		return equals(null, null, object, strategy);
+	}
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Prefmap thePrefmap;
-            thePrefmap = this.getPrefmap();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefmap", thePrefmap), currentHashCode, thePrefmap);
-        }
-        {
-            Set<Prefnode> thePrefnode;
-            thePrefnode = this.getPrefnode();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefnode", thePrefnode), currentHashCode, thePrefnode);
-        }
-        {
-            String theType;
-            theType = this.getType();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "type", theType), currentHashCode, theType);
-        }
-        return currentHashCode;
-    }
+	public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
+		int currentHashCode = 1;
+		{
+			Prefmap thePrefmap;
+			thePrefmap = this.getPrefmap();
+			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefmap", thePrefmap), currentHashCode, thePrefmap);
+		}
+		{
+			Set<Prefnode> thePrefnode;
+			thePrefnode = this.getPrefnode();
+			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefnode", thePrefnode), currentHashCode, thePrefnode);
+		}
+		{
+			String theType;
+			theType = this.getType();
+			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "type", theType), currentHashCode, theType);
+		}
+		return currentHashCode;
+	}
 
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	public int hashCode() {
+		final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
+		return this.hashCode(null, strategy);
+	}
 
 }

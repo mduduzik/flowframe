@@ -59,6 +59,7 @@
 		<class>org.flowframe.ui.component.domain.table.DetailGridComponent</class>
 		<class>org.flowframe.ui.component.domain.table.GridComponent</class>
 		<class>org.flowframe.ui.component.domain.table.MatchGridComponent</class>
+		<class>org.flowframe.ui.component.domain.table.PropertyEditorGridComponent</class>
 		
 		<class>org.flowframe.ui.component.domain.types.Alignment</class>
 		
@@ -69,5 +70,7 @@
 		<class>org.flowframe.ui.component.domain.ComponentExpandRatio</class>
 		<class>org.flowframe.ui.component.domain.MarginInfo</class>
 		<class>org.flowframe.ui.component.domain.Sizeable</class>
+		
+		<class>org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent</class>
 	</persistence-unit>
 </persistence>

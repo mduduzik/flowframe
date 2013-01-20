@@ -10,7 +10,7 @@ import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
-import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterTable;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.attachment.AttachmentEditorToolStrip;

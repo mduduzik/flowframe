@@ -2,8 +2,8 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table;
 
 import java.util.Locale;
 
-import org.flowframe.ui.vaadin.addons.filtertable.FilterDecorator;
-import org.flowframe.ui.vaadin.addons.filtertable.FilterGenerator;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterDecorator;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterGenerator;
 
 import com.vaadin.data.Container.Filter;
 import com.vaadin.terminal.Resource;

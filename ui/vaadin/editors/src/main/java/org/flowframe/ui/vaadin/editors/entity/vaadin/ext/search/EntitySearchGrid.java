@@ -2,7 +2,7 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search;
 
 import org.flowframe.ui.component.domain.search.SearchGridComponent;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
-import org.flowframe.ui.vaadin.addons.filtertable.FilterTable;
+import org.flowframe.ui.vaadin.addons.filteredtable.FilterTable;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityGridFilterManager;

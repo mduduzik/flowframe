@@ -2,7 +2,9 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.gri
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -22,6 +24,7 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorE
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.view.EntityLineEditorGridView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.grid.view.IEntityLineEditorGridView;
+import org.flowframe.ui.vaadin.expressions.utils.SPELUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
@@ -30,6 +33,7 @@ import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;
 import com.vaadin.addon.jpacontainer.util.DefaultQueryModifierDelegate;
+import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Item;
 
 @Presenter(view = EntityLineEditorGridView.class)
@@ -44,6 +48,7 @@ public class EntityLineEditorGridPresenter extends ConfigurableBasePresenter<IEn
 	private MultiLevelEntityEditorPresenter multiLevelEntityEditorPresenter;
 	private Class<?> entityClass;
 	private EntityItem<?> parentEntityItem;
+	private Filter defaultFilter;
 
 	public EntityLineEditorGridPresenter() {
 	}
@@ -97,23 +102,23 @@ public class EntityLineEditorGridPresenter extends ConfigurableBasePresenter<IEn
 	}
 
 	private void updateQueryFilter() {
-		this.entityContainer.getEntityProvider().setQueryModifierDelegate(new DefaultQueryModifierDelegate() {
-			@Override
-			public void filtersWillBeAdded(CriteriaBuilder criteriaBuilder, CriteriaQuery<?> query, List<Predicate> predicates) {
-				Root<?> lineEntityRoot = query.getRoots().iterator().next();
-				Path<Object> ownerIdPath = lineEntityRoot.get("ownerEntityId");
-//				String fkPath = EntityLineEditorGridPresenter.this.tableComponent.getDataSource().getForeignKeyPath();
-//				Path<?> fkParentIdPath = null;
-//				String[] fkPathTokens = StringUtil.split(fkPath, ".");
-//				for (String token : fkPathTokens) {
-//					if (fkParentIdPath == null)
-//						fkParentIdPath = lineEntityRoot.get(token);
-//					else
-//						fkParentIdPath = fkParentIdPath.get(token);
-//				}
-				predicates.add(criteriaBuilder.equal(ownerIdPath, ((BaseEntity) EntityLineEditorGridPresenter.this.parentEntityItem.getEntity()).getId()));
-			}
-		});
+		if (this.tableComponent.getDataSource().getDefaultFilterExpression() == null) {
+			this.entityContainer.getEntityProvider().setQueryModifierDelegate(new DefaultQueryModifierDelegate() {
+				@Override
+				public void filtersWillBeAdded(CriteriaBuilder criteriaBuilder, CriteriaQuery<?> query, List<Predicate> predicates) {
+					Root<?> lineEntityRoot = query.getRoots().iterator().next();
+					Path<Object> ownerIdPath = lineEntityRoot.get("ownerEntityId");
+					predicates.add(criteriaBuilder.equal(ownerIdPath, ((BaseEntity) EntityLineEditorGridPresenter.this.parentEntityItem.getEntity()).getId()));
+				}
+			});
+		} else {
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("id", ((BaseEntity) EntityLineEditorGridPresenter.this.parentEntityItem.getEntity()).getId());
+			params.put("instance", EntityLineEditorGridPresenter.this.parentEntityItem.getEntity());
+			
+			this.defaultFilter = SPELUtil.toContainerFilter(this.tableComponent.getDataSource().getDefaultFilterExpression(), params);
+			this.entityContainer.addContainerFilter(this.defaultFilter);
+		}
 		this.entityContainer.applyFilters();
 	}
 

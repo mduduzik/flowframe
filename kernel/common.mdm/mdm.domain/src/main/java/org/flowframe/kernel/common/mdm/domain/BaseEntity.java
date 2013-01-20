@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,8 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.note.Note;
-import org.jvnet.hyperjaxb3.xml.bind.annotation.adapters.XMLGregorianCalendarAsDate;
-import org.jvnet.hyperjaxb3.xml.bind.annotation.adapters.XmlAdapterUtils;
+import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreference;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.HashCode;
@@ -195,6 +193,10 @@ public abstract class BaseEntity
     @JoinColumn
     private Note note; 
     
+    @XmlTransient
+    @ManyToOne(targetEntity = Note.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn
+    private EntityPreference preferences;
 
     public Folder getDocFolder() {
 		return docFolder;
@@ -376,7 +378,11 @@ public abstract class BaseEntity
         return externalName;
     }
 
-    /**
+    public EntityPreference getPreferences() {
+		return preferences;
+	}
+
+	/**
      * Sets the value of the externalName property.
      * 
      * @param value

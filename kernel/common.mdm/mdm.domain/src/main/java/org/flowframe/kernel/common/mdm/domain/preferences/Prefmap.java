@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 01:46:20 PM EST 
 //
 
-
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
 import java.io.Serializable;
@@ -39,11 +38,13 @@ import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
-
 /**
- * <p>Java class for prefmap complex type.
+ * <p>
+ * Java class for prefmap complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="prefmap">
@@ -60,130 +61,122 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "prefmap", propOrder = {
-    "prefentry"
-})
+@XmlType(name = "prefmap", propOrder = { "prefentry" })
 @Entity(name = "Prefmap")
 @Table(name = "ffprefmap")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Prefmap
-    implements Equals, HashCode, Serializable
-{
+public class Prefmap implements Equals, HashCode, Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7869822230680505669L;
 	protected Set<Prefentry> prefentry;
-    @XmlAttribute(name = "Hjid")
-    protected Long hjid;
+	@XmlAttribute(name = "Hjid")
+	protected Long hjid;
 
-    /**
-     * Gets the value of the prefentry property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the prefentry property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getPrefentry().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Prefentry }
+	/**
+	 * Gets the value of the prefentry property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the prefentry property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getPrefentry().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link Prefentry }
+	 * 
+	 * 
+	 */
+	@OneToMany(targetEntity = Prefentry.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "PREFENTRY_PREFMAP_HJID")
+	public Set<Prefentry> getPrefentry() {
+		if (prefentry == null) {
+			prefentry = new HashSet<Prefentry>();
+		}
+		return this.prefentry;
+	}
+
+	/**
      * 
      * 
      */
-    @OneToMany(targetEntity = Prefentry.class, cascade = {
-        CascadeType.ALL
-    },fetch=FetchType.EAGER)
-    @JoinColumn(name = "PREFENTRY_PREFMAP_HJID")
-    public Set<Prefentry> getPrefentry() {
-        if (prefentry == null) {
-            prefentry = new HashSet<Prefentry>();
-        }
-        return this.prefentry;
-    }
+	public void setPrefentry(Set<Prefentry> prefentry) {
+		this.prefentry = prefentry;
+	}
 
-    /**
-     * 
-     * 
-     */
-    public void setPrefentry(Set<Prefentry> prefentry) {
-        this.prefentry = prefentry;
-    }
+	/**
+	 * Gets the value of the hjid property.
+	 * 
+	 * @return possible object is {@link Long }
+	 * 
+	 */
+	@Id
+	@Column(name = "HJID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getHjid() {
+		return hjid;
+	}
 
-    /**
-     * Gets the value of the hjid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    @Id
-    @Column(name = "HJID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getHjid() {
-        return hjid;
-    }
+	/**
+	 * Sets the value of the hjid property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Long }
+	 * 
+	 */
+	public void setHjid(Long value) {
+		this.hjid = value;
+	}
 
-    /**
-     * Sets the value of the hjid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setHjid(Long value) {
-        this.hjid = value;
-    }
+	public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+		if (!(object instanceof Prefmap)) {
+			return false;
+		}
+		if (this == object) {
+			return true;
+		}
+		final Prefmap that = ((Prefmap) object);
+		{
+			Set<Prefentry> lhsPrefentry;
+			lhsPrefentry = this.getPrefentry();
+			Set<Prefentry> rhsPrefentry;
+			rhsPrefentry = that.getPrefentry();
+			if (!strategy.equals(LocatorUtils.property(thisLocator, "prefentry", lhsPrefentry), LocatorUtils.property(thatLocator, "prefentry", rhsPrefentry), lhsPrefentry, rhsPrefentry)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof Prefmap)) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        final Prefmap that = ((Prefmap) object);
-        {
-            Set<Prefentry> lhsPrefentry;
-            lhsPrefentry = this.getPrefentry();
-            Set<Prefentry> rhsPrefentry;
-            rhsPrefentry = that.getPrefentry();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "prefentry", lhsPrefentry), LocatorUtils.property(thatLocator, "prefentry", rhsPrefentry), lhsPrefentry, rhsPrefentry)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	public boolean equals(Object object) {
+		final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
+		return equals(null, null, object, strategy);
+	}
 
-    public boolean equals(Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
+	public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
+		int currentHashCode = 1;
+		{
+			Set<Prefentry> thePrefentry;
+			thePrefentry = this.getPrefentry();
+			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefentry", thePrefentry), currentHashCode, thePrefentry);
+		}
+		return currentHashCode;
+	}
 
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
-        {
-            Set<Prefentry> thePrefentry;
-            thePrefentry = this.getPrefentry();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefentry", thePrefentry), currentHashCode, thePrefentry);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
+	public int hashCode() {
+		final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
+		return this.hashCode(null, strategy);
+	}
 
 }
