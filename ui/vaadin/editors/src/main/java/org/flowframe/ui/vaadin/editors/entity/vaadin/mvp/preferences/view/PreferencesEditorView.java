@@ -1,5 +1,6 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.preferences.view;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
@@ -17,14 +18,15 @@ import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
 public class PreferencesEditorView extends VerticalLayout implements IPreferencesEditorView {
 	private static final long serialVersionUID = 1L;
 	
+	@SuppressWarnings("unused")
 	@UiField
 	private VerticalLayout mainLayout;
+	// FIXME: This is null all the time for some reason, it should be instantiated by MVP
 
 	private FlowFrameVerticalSplitPanel splitPanel;
 	private VerticalLayout masterLayout;
@@ -47,9 +49,16 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 	private Set<IEditPreferenceListener> editPreferenceItemListenerSet;
 	private Set<IDeletePreferenceListener> deletePreferenceItemListenerSet;
 	
+	public PreferencesEditorView() {
+		this.createPreferenceItemListenerSet = new HashSet<PreferencesEditorView.ICreatePreferenceListener>();
+		this.savePreferenceItemListenerSet = new HashSet<PreferencesEditorView.ISavePreferenceListener>();
+		this.editPreferenceItemListenerSet = new HashSet<PreferencesEditorView.IEditPreferenceListener>();
+		this.deletePreferenceItemListenerSet = new HashSet<PreferencesEditorView.IDeletePreferenceListener>();
+	}
+	
 	private void buildMasterLayout() {
 		this.gridToolStrip = new EntityEditorToolStrip();
-		this.createButton = this.gridToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_CAPTION_CREATE);
+		this.createButton = this.gridToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_IMG_CREATE_PNG);
 		this.createButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -58,8 +67,8 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 				PreferencesEditorView.this.onCreatePreferenceItem();
 			}
 		});
-		this.editButton = this.gridToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_CAPTION_CREATE);
-		this.editButton.setEnabled(true);
+		this.editButton = this.gridToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_IMG_EDIT_PNG);
+		this.editButton.setEnabled(false);
 		this.editButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -68,8 +77,8 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 				PreferencesEditorView.this.onEditPreferenceItem(PreferencesEditorView.this.currentItem);
 			}
 		});
-		this.deleteButton = this.gridToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_CAPTION_DELETE);
-		this.deleteButton.setEnabled(true);
+		this.deleteButton = this.gridToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_IMG_DELETE_PNG);
+		this.deleteButton.setEnabled(false);
 		this.deleteButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -116,7 +125,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 	
 	private void buildDetailLayout() {
 		this.formToolStrip = new EntityEditorToolStrip();
-		this.validateButton = this.formToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_CAPTION_VERIFY);
+		this.validateButton = this.formToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_IMG_VERIFY_PNG);
 		this.validateButton.setEnabled(false);
 		this.validateButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
@@ -129,14 +138,14 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 				}
 			}
 		});
-		this.saveButton = this.formToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_CAPTION_SAVE);
+		this.saveButton = this.formToolStrip.addToolStripButton(EntityEditorToolStrip.TOOLSTRIP_IMG_SAVE_PNG);
 		this.saveButton.setEnabled(false);
 		this.saveButton.addListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				PreferencesEditorView.this.onEditPreferenceItem(PreferencesEditorView.this.form.getItemDataSource());
+				PreferencesEditorView.this.onSavePreferenceItem(PreferencesEditorView.this.form.getItemDataSource());
 			}
 		});
 		
@@ -165,6 +174,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 		this.splitPanel = new FlowFrameVerticalSplitPanel();
 		this.splitPanel.setFirstComponent(this.masterLayout);
 		this.splitPanel.setSecondComponent(this.detailLayout);
+		this.splitPanel.setSplitPosition(100);
 		this.splitPanel.setLocked(true);
 	}
 	
@@ -173,11 +183,8 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 		if (this.splitPanel == null) {
 			buildView();
 		}
-		this.mainLayout.addComponent(this.splitPanel);
-	}
-
-	public Layout getMainLayout() {
-		return mainLayout;
+		// FIXME: It must add to the MVP bound view
+		this.addComponent(this.splitPanel);
 	}
 	
 	public void onCreatePreferenceItem() {
@@ -242,6 +249,8 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 
 	@Override
 	public void setContainerDataSource(Container container, String[] visibleGridColumnPropertyIds, String[] visibleGridColumnNames) {
+		assert (this.grid != null) : "showContent() must be called first.";
+		
 		this.grid.setContainerDataSource(container);
 		this.grid.setVisibleColumns(visibleGridColumnPropertyIds);
 		this.grid.setColumnTitles(visibleGridColumnNames);
@@ -253,7 +262,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 		
 		this.form.setItemDataSource(item);
 		this.form.setActionCaption("Creating");
-		this.splitPanel.setSplitPosition(100);
+		this.splitPanel.setSplitPosition(0);
 	}
 
 	@Override
@@ -267,7 +276,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 
 		this.form.setItemDataSource(item);
 		this.form.setActionCaption("Editing");
-		this.splitPanel.setSplitPosition(100);
+		this.splitPanel.setSplitPosition(0);
 	}
 
 	@Override
@@ -275,6 +284,6 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 		assert (this.splitPanel != null) : "showContent() must be called first.";
 		
 		this.form.commit();
-		this.splitPanel.setSplitPosition(0);
+		this.splitPanel.setSplitPosition(100);
 	}
 }

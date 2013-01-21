@@ -194,7 +194,7 @@ public abstract class BaseEntity
     private Note note; 
     
     @XmlTransient
-    @ManyToOne(targetEntity = Note.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = EntityPreference.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn
     private EntityPreference preferences;
 
@@ -377,6 +377,10 @@ public abstract class BaseEntity
     public String getExternalName() {
         return externalName;
     }
+    
+    public void setPreferences(EntityPreference preferences) {
+		this.preferences = preferences;
+	}
 
     public EntityPreference getPreferences() {
 		return preferences;

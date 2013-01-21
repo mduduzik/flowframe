@@ -1,5 +1,6 @@
 package org.flowframe.kernel.common.mdm.domain.preferences;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,33 +15,36 @@ import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 public class EntityPreferenceItem extends MultitenantBaseEntity {
 	private static final long serialVersionUID = 1886230028L;
 
-	@ManyToOne(targetEntity = EntityPreference.class)
+	@ManyToOne(targetEntity = EntityPreference.class, cascade = CascadeType.ALL)
 	private EntityPreference parentEntityPreference;
 	
-	private String key;
-	private String value;
+	private String preferenceKey;
+	private String preferenceValue;
+	
+	public EntityPreferenceItem() {
+	}
 	
 	public EntityPreference getParentEntityPreference() {
 		return parentEntityPreference;
 	}
 	
-	public String getKey() {
-		return key;
-	}
-	
-	public String getValue() {
-		return value;
-	}
-	
 	public void setParentEntityPreference(EntityPreference parentEntityPreference) {
 		this.parentEntityPreference = parentEntityPreference;
 	}
-	
-	public void setKey(String key) {
-		this.key = key;
+
+	public String getPreferenceKey() {
+		return preferenceKey;
 	}
-	
-	public void setValue(String value) {
-		this.value = value;
+
+	public void setPreferenceKey(String preferenceKey) {
+		this.preferenceKey = preferenceKey;
+	}
+
+	public String getPreferenceValue() {
+		return preferenceValue;
+	}
+
+	public void setPreferenceValue(String preferenceValue) {
+		this.preferenceValue = preferenceValue;
 	}
 }

@@ -20,6 +20,13 @@ public class EntityPreference extends MultitenantBaseEntity {
 	@OneToMany(mappedBy = "parentEntityPreference", cascade = CascadeType.ALL, targetEntity = EntityPreferenceItem.class)
     private Set<EntityPreferenceItem> items = new java.util.HashSet<EntityPreferenceItem>();
 
+	public EntityPreference() {
+	}
+	
+	public void setItems(Set<EntityPreferenceItem> items) {
+		this.items = items;
+	}
+
 	public Set<EntityPreferenceItem> getItems() {
 		return items;
 	}

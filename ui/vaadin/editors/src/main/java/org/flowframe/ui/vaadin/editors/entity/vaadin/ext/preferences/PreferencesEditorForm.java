@@ -92,7 +92,7 @@ public class PreferencesEditorForm extends Form {
 		assert (propertyId != null) : "The provided propertyId was null.";
 		assert (field != null) : "The provided propertyId was null.";
 
-		if ("value".equals(propertyId)) {
+		if ("preferenceValue".equals(propertyId)) {
 			field.setWidth("100%");
 			field.setCaption("Value");
 			field.setHeight("75px");
@@ -107,7 +107,7 @@ public class PreferencesEditorForm extends Form {
 				}
 			});
 			innerLayout.addComponent(field);
-		} else if ("key".equals(propertyId)) {
+		} else if ("preferenceKey".equals(propertyId)) {
 			field.setWidth("30%");
 			field.setCaption("Name");
 			assert (field instanceof TextField) : "The \"value\" field must be a TextField.";

@@ -59,7 +59,6 @@
 		<class>org.flowframe.ui.component.domain.table.DetailGridComponent</class>
 		<class>org.flowframe.ui.component.domain.table.GridComponent</class>
 		<class>org.flowframe.ui.component.domain.table.MatchGridComponent</class>
-		<class>org.flowframe.ui.component.domain.table.PropertyEditorGridComponent</class>
 		
 		<class>org.flowframe.ui.component.domain.types.Alignment</class>
 		

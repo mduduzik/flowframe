@@ -2,7 +2,6 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.preferences;
 
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem;
-import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -32,7 +31,7 @@ public class PreferencesEditorPresenter extends ConfigurableBasePresenter<IPrefe
 
 	@SuppressWarnings("unchecked")
 	private void initialize() {
-		this.container = (JPAContainer<EntityPreferenceItem>) this.mainApplication.createPersistenceContainer(ReferenceNumber.class);
+		this.container = (JPAContainer<EntityPreferenceItem>) this.mainApplication.createPersistenceContainer(EntityPreferenceItem.class);
 
 		ICreatePreferenceListener createListener = new ICreatePreferenceListener() {
 
@@ -64,16 +63,16 @@ public class PreferencesEditorPresenter extends ConfigurableBasePresenter<IPrefe
 			}
 		};
 
-		String[] columnPropertyIds = new String[] { "key", "value", "dateCreated" };
-		String[] columnNames = new String[] { "Name", "Value", "Date Created" };
-
 		this.getView().addCreatePreferenceListener(createListener);
 		this.getView().addDeletePreferenceListener(deleteListener);
 		this.getView().addSavePreferenceListener(saveListener);
 		this.getView().addEditPreferenceListener(editListener);
 		
-		this.getView().setContainerDataSource(container, columnPropertyIds, columnNames);
+		String[] columnPropertyIds = new String[] { "preferenceKey", "preferenceValue", "dateCreated" };
+		String[] columnNames = new String[] { "Name", "Value", "Date Created" };
+		
 		this.getView().showContent();
+		this.getView().setContainerDataSource(this.container, columnPropertyIds, columnNames);
 
 		this.initialized = true;
 	}
@@ -108,8 +107,10 @@ public class PreferencesEditorPresenter extends ConfigurableBasePresenter<IPrefe
 	}
 
 	private void applyFilter() {
-		Equal filter = new Equal("parentEntityPreference.id", this.bean.getPreferences().getId());
-		this.container.addContainerFilter(filter);
-		this.container.applyFilters();
+		if (this.bean.getPreferences() != null) {
+			Equal filter = new Equal("parentEntityPreference.id", this.bean.getPreferences().getId());
+			this.container.addContainerFilter(filter);
+			this.container.applyFilters();
+		}
 	}
 }
