@@ -86,6 +86,29 @@ public class PreferencesEditorForm extends Form {
 			return true;
 		}
 	}
+	
+	public boolean saveForm() {
+		boolean firstErrorFound = false;
+		for (Field field : this.fields) {
+			try {
+				field.commit();
+				field.removeStyleName("conx-form-field-error");
+			} catch (InvalidValueException e) {
+				field.addStyleName("conx-form-field-error");
+				if (!firstErrorFound) {
+					this.alertPanel.setMessage(e.getMessage());
+					this.alertPanel.setVisible(true);
+					firstErrorFound = true;
+				}
+			}
+		}
+		if (firstErrorFound) {
+			return false;
+		} else {
+			this.alertPanel.setVisible(false);
+			return true;
+		}
+	}
 
 	@Override
 	protected void attachField(Object propertyId, com.vaadin.ui.Field field) {
@@ -107,6 +130,7 @@ public class PreferencesEditorForm extends Form {
 				}
 			});
 			innerLayout.addComponent(field);
+			this.fields.add(field);
 		} else if ("preferenceKey".equals(propertyId)) {
 			field.setWidth("30%");
 			field.setCaption("Name");
@@ -121,6 +145,7 @@ public class PreferencesEditorForm extends Form {
 			});
 			
 			innerLayout.addComponentAsFirst(field);
+			this.fields.add(field);
 		}
 	}
 

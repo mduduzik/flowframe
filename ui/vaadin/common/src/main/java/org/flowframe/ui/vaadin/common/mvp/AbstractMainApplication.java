@@ -114,7 +114,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 
 	@Override
 	public Object createPersistenceContainer(Class<?> entityClass) {
-		return this.getContainerProvider().createPersistenceContainer(entityClass);
+		return this.getContainerProvider().createNonCachingPersistenceContainer(entityClass);
 	}
 
 	public IPageFlowManager getPageFlowEngine() {
