@@ -74,6 +74,7 @@
 	<bean id="entityMetadataDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.EntityMetadataDAOImpl"/>
 	<bean id="folderDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.documentlibrary.FolderDAOImpl"/>
 	<bean id="orgDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.OrganizationDAOImpl" init-method="init"/>
+	<bean id="entityPrefDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.preferences.EntityPreferenceDAOImpl"/>
 	<bean id="prefDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.preferences.PreferencesDAOImpl" init-method="init"/>
 	<bean id="noteDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.note.NoteDAOImpl"/>
 	<bean id="unlocoDao" class="org.flowframe.kernel.common.mdm.dao.services.impl.UnlocoDAOImpl"/>

@@ -14,9 +14,9 @@ public interface IPreferencesEditorView {
 	public void showContent();
 	
 	public void create(Item item);
-	public void delete(Item item);
+	public void delete();
 	public void edit(Item item);
-	public void save(Item item);
+	public void save();
 	
 	public void addCreatePreferenceListener(ICreatePreferenceListener listener);
 	public void addSavePreferenceListener(ISavePreferenceListener listener);

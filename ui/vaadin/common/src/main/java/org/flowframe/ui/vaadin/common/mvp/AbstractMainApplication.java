@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
+import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityManagerFactoryManager;
 import org.flowframe.ui.services.IUIContributionManager;
@@ -17,9 +18,14 @@ import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.services.transaction.ITransactionCompletionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -30,6 +36,7 @@ import com.vaadin.Application;
 import com.vaadin.addon.jpacontainer.util.EntityManagerPerRequestHelper;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.Notification;
 
 @SuppressWarnings("serial")
 public abstract class AbstractMainApplication extends Application implements IMainApplication, HttpServletRequestListener {
@@ -48,6 +55,8 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	protected IComponentFactory componentFactory;
 	@Autowired
 	protected IEntityManagerFactoryManager emfManager;
+	@Autowired
+	protected PlatformTransactionManager transactionManager;
 
 	@Override
 	public void init() {
@@ -66,10 +75,12 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	}
 
 	public abstract Map<String, Object> getApplicationConfiguration();
-	
+
 	public abstract User getUser(String emailAddress);
-	
+
 	public abstract IEntityContainerProvider getContainerProvider();
+	
+	public abstract IDAOProvider getDAOProvider();
 
 	@Override
 	public void onRequestStart(HttpServletRequest request, HttpServletResponse response) {
@@ -111,10 +122,20 @@ public abstract class AbstractMainApplication extends Application implements IMa
 			this.entityManagerPerRequestHelper.requestEnd();
 		}
 	}
+	
+	@Override
+	public <T> T findDAOByClass(Class<T> daoClass) {
+		return this.getDAOProvider().provideByDAOClass(daoClass);
+	}
 
 	@Override
 	public Object createPersistenceContainer(Class<?> entityClass) {
 		return this.getContainerProvider().createNonCachingPersistenceContainer(entityClass);
+	}
+	
+	@Override
+	public Object createCachedPersistenceContainer(Class<?> entityClass) {
+		return this.getContainerProvider().createPersistenceContainer(entityClass);
 	}
 
 	public IPageFlowManager getPageFlowEngine() {
@@ -128,12 +149,12 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public void setContributionManager(IUIContributionManager contributionManager) {
 		this.contributionManager = contributionManager;
 	}
-	
+
 	@Override
 	public Collection<IApplicationContribution> getAllApplicationContributions() {
 		return this.contributionManager.getAllApplicationContributions();
 	}
-	
+
 	@Override
 	public IApplicationContribution getApplicationContributionByCode(String code) {
 		return this.contributionManager.getApplicationContributionByCode(code);
@@ -143,7 +164,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public Collection<IViewContribution> getAllViewContributions() {
 		return this.contributionManager.getAllViewContributions();
 	}
-	
+
 	@Override
 	public IViewContribution getViewContributionByCode(String code) {
 		return this.contributionManager.getViewContributionByCode(code);
@@ -153,7 +174,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public Collection<IActionContribution> getAllActionContributions() {
 		return this.contributionManager.getAllActionContributions();
 	}
-	
+
 	@Override
 	public IActionContribution getActionContributionByCode(String code) {
 		return this.contributionManager.getActionContributionByCode(code);
@@ -163,9 +184,69 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public IComponentFactory getComponentFactory() {
 		return this.componentFactory;
 	}
-	
+
 	@Override
 	public IPresenterFactory getPresenterFactory() {
 		return this.presenterFactory;
+	}
+
+	@Override
+	public void runInTransaction(String name, Runnable runnable) throws Exception {
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setName(name);
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = this.transactionManager.getTransaction(def);
+		try {
+			runnable.run();
+		} catch (Exception e) {
+			this.transactionManager.rollback(status);
+			throw e;
+		} catch (Error e) {
+			e.printStackTrace();
+			this.transactionManager.rollback(status);
+			throw new RuntimeException("An Internal Error occurred: " + e.getMessage());
+		}
+		this.transactionManager.commit(status);
+	}
+	
+	@Override
+	public void runInTransaction(String name, Runnable runnable, final ITransactionCompletionListener completionListener) throws Exception {
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setName(name);
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = this.transactionManager.getTransaction(def);
+		try {
+			runnable.run();
+		} catch (Exception e) {
+			this.transactionManager.rollback(status);
+			throw e;
+		} catch (Error e) {
+			e.printStackTrace();
+			this.transactionManager.rollback(status);
+			throw new RuntimeException("An Internal Error occurred: " + e.getMessage());
+		}
+		this.transactionManager.commit(status);
+		completionListener.onTransactionCompleted();
+	}
+	
+	@Override
+	public void showAlert(String caption, String message) {
+		if (this.getMainWindow() != null) {
+			this.getMainWindow().showNotification(caption, message, Notification.TYPE_WARNING_MESSAGE);
+		}
+	}
+	
+	@Override
+	public void showNotification(String caption, String message) {
+		if (this.getMainWindow() != null) {
+			this.getMainWindow().showNotification(caption, message, Notification.TYPE_TRAY_NOTIFICATION);
+		}
+	}
+	
+	@Override
+	public void showError(String caption, String message, String stackTrace) {
+		if (this.getMainWindow() != null) {
+			this.getMainWindow().showNotification(caption, message + "<br/>" + stackTrace, Notification.TYPE_ERROR_MESSAGE);
+		}
 	}
 }

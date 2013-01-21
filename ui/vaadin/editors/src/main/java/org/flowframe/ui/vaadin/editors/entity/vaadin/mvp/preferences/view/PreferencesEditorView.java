@@ -3,6 +3,7 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.preferences.view;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
@@ -14,9 +15,9 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.VerticalLayout;
@@ -86,7 +87,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				PreferencesEditorView.this.onDeletePreferenceItem(PreferencesEditorView.this.currentItem);
+				PreferencesEditorView.this.onDeletePreferenceItem((EntityPreferenceItem) ((BeanItem<?>) PreferencesEditorView.this.form.getItemDataSource()).getBean());
 			}
 		});
 
@@ -147,7 +148,9 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				PreferencesEditorView.this.onSavePreferenceItem(PreferencesEditorView.this.form.getItemDataSource());
+				if (PreferencesEditorView.this.form.saveForm()) {
+					PreferencesEditorView.this.onSavePreferenceItem((EntityPreferenceItem) ((BeanItem<?>) PreferencesEditorView.this.form.getItemDataSource()).getBean());
+				}
 			}
 		});
 
@@ -157,7 +160,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 			@Override
 			public void onFormChanged() {
 				PreferencesEditorView.this.validateButton.setEnabled(true);
-				PreferencesEditorView.this.saveButton.setEnabled(true);
+				PreferencesEditorView.this.saveButton.setEnabled(false);
 			}
 		});
 
@@ -195,9 +198,9 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 		}
 	}
 
-	public void onSavePreferenceItem(Item item) {
+	public void onSavePreferenceItem(EntityPreferenceItem preferenceItem) {
 		for (ISavePreferenceListener listener : savePreferenceItemListenerSet) {
-			listener.onSavePreference(item);
+			listener.onSavePreference(preferenceItem);
 		}
 	}
 
@@ -207,9 +210,9 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 		}
 	}
 
-	public void onDeletePreferenceItem(Item item) {
+	public void onDeletePreferenceItem(EntityPreferenceItem preferenceItem) {
 		for (IDeletePreferenceListener listener : deletePreferenceItemListenerSet) {
-			listener.onDeletePreference(item);
+			listener.onDeletePreference(preferenceItem);
 		}
 	}
 
@@ -242,11 +245,11 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 	}
 
 	public interface IDeletePreferenceListener {
-		public void onDeletePreference(Item item);
+		public void onDeletePreference(EntityPreferenceItem preferenceItem);
 	}
 
 	public interface ISavePreferenceListener {
-		public void onSavePreference(Item item);
+		public void onSavePreference(EntityPreferenceItem preferenceItem);
 	}
 
 	@Override
@@ -268,7 +271,7 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 	}
 
 	@Override
-	public void delete(Item item) {
+	public void delete() {
 		assert (this.splitPanel != null) : "showContent() must be called first.";
 	}
 
@@ -282,15 +285,10 @@ public class PreferencesEditorView extends VerticalLayout implements IPreference
 	}
 
 	@Override
-	public void save(Item item) {
+	public void save() {
 		assert (this.splitPanel != null) : "showContent() must be called first.";
 
-		if (this.form.saveForm()) {
-			if (this.grid.getContainerDataSource() instanceof JPAContainer<?>) {
-				((JPAContainer<?>) this.grid.getContainerDataSource()).refresh();
-			}
-			this.splitPanel.setSplitPosition(100);
-		}
+		this.splitPanel.setSplitPosition(100);
 		this.saveButton.setEnabled(false);
 		this.validateButton.setEnabled(false);
 	}

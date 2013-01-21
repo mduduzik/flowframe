@@ -125,13 +125,13 @@ public abstract class BaseEntity
     @Basic
     @Column(name = "datecreated")
     @Temporal(TemporalType.DATE)
-    protected Date dateCreated;
+    protected Date dateCreated = new Date();
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     @Basic
     @Column(name = "datelastupdated")
     @Temporal(TemporalType.DATE)
-    protected Date dateLastUpdated;
+    protected Date dateLastUpdated = new Date();
     @Basic
     @Column(name = "ownerentityid", precision = 20, scale = 0)
     protected long ownerEntityId;

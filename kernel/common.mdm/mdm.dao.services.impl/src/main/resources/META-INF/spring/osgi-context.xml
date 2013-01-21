@@ -38,6 +38,7 @@
 	<osgi:service ref="noteDao" interface="org.flowframe.kernel.common.mdm.dao.services.note.INoteDAOService"/>
 	<osgi:service ref="orgDao" interface="org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService"/>
 	<osgi:service ref="prefDao" interface="org.flowframe.kernel.common.mdm.dao.services.preferences.IPreferencesDAOService"/>
+	<osgi:service ref="entityPrefDao" interface="org.flowframe.kernel.common.mdm.dao.services.preferences.IEntityPreferenceDAOService"/>
 	<osgi:service ref="unlocoDao" interface="org.flowframe.kernel.common.mdm.dao.services.IUnlocoDAOService"/>
 	<osgi:service ref="userDao" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
 </beans>
