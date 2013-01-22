@@ -1,6 +1,5 @@
 package org.flowframe.ui.vaadin.expressions.utils;
 
-
 import java.util.Map;
 
 import org.springframework.expression.EvaluationContext;
@@ -31,19 +30,25 @@ import com.vaadin.data.util.filter.Compare.LessOrEqual;
 import com.vaadin.data.util.filter.Or;
 
 public class SPELUtil {
-	public static Filter toContainerFilter(String spelWhereExpression, Map<String,Object> paramMap) {
+	private static void putDefaults(StandardEvaluationContext context) {
+		context.setVariable("true", true);
+		context.setVariable("false", true);
+		context.setVariable("null", null);
+	}
+
+	public static Filter toContainerFilter(String spelWhereExpression, Map<String, Object> paramMap) {
 		StandardEvaluationContext context = new StandardEvaluationContext();
-		for (String key : paramMap.keySet())
-		{
-			context.setVariable(key,paramMap.get(key));
+		putDefaults(context);
+		for (String key : paramMap.keySet()) {
+			context.setVariable(key, paramMap.get(key));
 		}
-		
+
 		SpelExpressionParser expressionParser = new SpelExpressionParser();
 		Expression expr = expressionParser.parseExpression(spelWhereExpression);
-		
-		SpelNode node = ((SpelExpression)expr).getAST();
-		
-		return translateOp(node,context);
+
+		SpelNode node = ((SpelExpression) expr).getAST();
+
+		return translateOp(node, context);
 	}
 
 	private static Filter translateOp(SpelNode node, EvaluationContext context) {
@@ -51,146 +56,130 @@ public class SPELUtil {
 		 * Comparisons
 		 */
 		// EQ
-		if (node instanceof OpEQ)
-		{
-			return translate((OpEQ)node,context);
+		if (node instanceof OpEQ) {
+			return translate((OpEQ) node, context);
 		}
 		// GT/GE
-		else if (node instanceof OpGT)
-		{
-			return translate((OpGT)node,context);
-		}		
-		else if (node instanceof OpGE)
-		{
-			return translate((OpGE)node,context);
-		}	
+		else if (node instanceof OpGT) {
+			return translate((OpGT) node, context);
+		} else if (node instanceof OpGE) {
+			return translate((OpGE) node, context);
+		}
 		// LT/LE
-		else if (node instanceof OpLT)
-		{
-			return translate((OpLT)node,context);
-		}		
-		else if (node instanceof OpLE)
-		{
-			return translate((OpLE)node,context);
-		}	
+		else if (node instanceof OpLT) {
+			return translate((OpLT) node, context);
+		} else if (node instanceof OpLE) {
+			return translate((OpLE) node, context);
+		}
 		/**
 		 * Logical
 		 */
-		else if (node instanceof OpAnd)
-		{
-			return translate((OpAnd)node,context);
-		}
-		else if (node instanceof OpOr)
-		{
-			return translate((OpOr)node,context);
-		}		
-		else
+		else if (node instanceof OpAnd) {
+			return translate((OpAnd) node, context);
+		} else if (node instanceof OpOr) {
+			return translate((OpOr) node, context);
+		} else
 			return null;
 	}
 
-	
 	/**
 	 * 
-	 *
+	 * 
 	 * Logical methods
 	 * 
 	 * 
-	*/	
-	private static Filter translate(OpAnd node,
-			EvaluationContext context) {
+	 */
+	private static Filter translate(OpAnd node, EvaluationContext context) {
 		SpelNode left = node.getLeftOperand();
 		SpelNode right = node.getRightOperand();
-		
+
 		Filter leftFilter = translateOp(left, context);
 		Filter rightFilter = translateOp(right, context);
-		
-		And op = new And(leftFilter,rightFilter);
-		
+
+		And op = new And(leftFilter, rightFilter);
+
 		return op;
 	}
 
-	private static Filter translate(OpOr node,
-			EvaluationContext context) {
+	private static Filter translate(OpOr node, EvaluationContext context) {
 		SpelNode left = node.getLeftOperand();
 		SpelNode right = node.getRightOperand();
-		
+
 		Filter leftFilter = translateOp(left, context);
 		Filter rightFilter = translateOp(right, context);
-		
-		Or op = new Or(leftFilter,rightFilter);
-		
-		return op;
-	}	
 
-	
+		Or op = new Or(leftFilter, rightFilter);
+
+		return op;
+	}
+
 	/**
 	 * 
-	 *
+	 * 
 	 * Comparison methods
 	 * 
 	 * 
-	*/
-	public static Filter  translate(OpEQ op, EvaluationContext context) {
+	 */
+	public static Filter translate(OpEQ op, EvaluationContext context) {
 		SpelNode left = op.getLeftOperand();
 		SpelNode right = op.getRightOperand();
-		
+
 		Object leftOprnd = translatePForV(left, context);
 		Object rightOprnd = translatePForV(right, context);
-		
-		Equal eqOp = new Equal(leftOprnd,rightOprnd);
-		
+
+		Equal eqOp = new Equal(leftOprnd, rightOprnd);
+
 		return eqOp;
 	}
-	
+
 	private static Filter translate(OpGT node, EvaluationContext context) {
 		SpelNode left = node.getLeftOperand();
 		SpelNode right = node.getRightOperand();
-		
+
 		Object leftOprnd = translatePForV(left, context);
 		Object rightOprnd = translatePForV(right, context);
-		
-		Greater op = new Greater(leftOprnd,rightOprnd);
-		
+
+		Greater op = new Greater(leftOprnd, rightOprnd);
+
 		return op;
 	}
-	
+
 	private static Filter translate(OpGE node, EvaluationContext context) {
 		SpelNode left = node.getLeftOperand();
 		SpelNode right = node.getRightOperand();
-		
+
 		Object leftOprnd = translatePForV(left, context);
 		Object rightOprnd = translatePForV(right, context);
-		
-		GreaterOrEqual op = new GreaterOrEqual(leftOprnd,rightOprnd);
-		
+
+		GreaterOrEqual op = new GreaterOrEqual(leftOprnd, rightOprnd);
+
 		return op;
-	}	
-	
+	}
+
 	private static Filter translate(OpLT node, EvaluationContext context) {
 		SpelNode left = node.getLeftOperand();
 		SpelNode right = node.getRightOperand();
-		
+
 		Object leftOprnd = translatePForV(left, context);
 		Object rightOprnd = translatePForV(right, context);
-		
-		Less op = new Less(leftOprnd,rightOprnd);
-		
+
+		Less op = new Less(leftOprnd, rightOprnd);
+
 		return op;
 	}
-	
+
 	private static Filter translate(OpLE node, EvaluationContext context) {
 		SpelNode left = node.getLeftOperand();
 		SpelNode right = node.getRightOperand();
-		
+
 		Object leftOprnd = translatePForV(left, context);
 		Object rightOprnd = translatePForV(right, context);
-		
-		LessOrEqual op = new LessOrEqual(leftOprnd,rightOprnd);
-		
-		return op;
-	}		
 
-	
+		LessOrEqual op = new LessOrEqual(leftOprnd, rightOprnd);
+
+		return op;
+	}
+
 	/**
 	 * 
 	 * 
@@ -198,24 +187,17 @@ public class SPELUtil {
 	 * 
 	 * 
 	 */
-	private static Object translatePForV(SpelNode node,
-			EvaluationContext context) {
+	private static Object translatePForV(SpelNode node, EvaluationContext context) {
 		Object pfOrV = null;
-		if (node instanceof PropertyOrFieldReference)
-		{
-			pfOrV = ((PropertyOrFieldReference)node).getName();
-		}
-		else if (node instanceof VariableReference)
-		{
-			pfOrV = getVariableValue(((VariableReference)node),context);
-		}
-		else if (node instanceof CompoundExpression)
-		{
-			pfOrV = ((CompoundExpression)node).toStringAST();
-		}		
-		else
-			throw new IllegalArgumentException("Node("+node.toString()+" is neither VariableReference or PropertyOrFieldReference");
-		
+		if (node instanceof PropertyOrFieldReference) {
+			pfOrV = ((PropertyOrFieldReference) node).getName();
+		} else if (node instanceof VariableReference) {
+			pfOrV = getVariableValue(((VariableReference) node), context);
+		} else if (node instanceof CompoundExpression) {
+			pfOrV = ((CompoundExpression) node).toStringAST();
+		} else
+			throw new IllegalArgumentException("Node(" + node.toString() + " is neither VariableReference or PropertyOrFieldReference");
+
 		return pfOrV;
 	}
 

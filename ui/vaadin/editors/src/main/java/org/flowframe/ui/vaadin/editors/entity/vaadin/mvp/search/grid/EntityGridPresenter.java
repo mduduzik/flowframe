@@ -1,5 +1,6 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid;
 
+import java.util.HashMap;
 import java.util.Set;
 
 import org.flowframe.ui.component.domain.table.GridComponent;
@@ -13,6 +14,7 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorE
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.view.EntityGridView;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.view.IEntityGridView;
+import org.flowframe.ui.vaadin.expressions.utils.SPELUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
@@ -20,6 +22,7 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;
+import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
 
@@ -49,7 +52,7 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 	private void initialize() {
 		String[] visibleFieldNames = this.tableComponent.getDataSource().getVisibleFieldNames().toArray(new String[0]);
 		String[] visibleFieldTitles = this.tableComponent.getDataSource().getVisibleFieldTitles().toArray(new String[0]);
-		
+
 		this.getView().init();
 		this.getView().setContainerDataSource(this.entityContainer);
 		this.getView().setVisibleColumns(visibleFieldNames);
@@ -57,6 +60,17 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 		this.getView().addEditListener(this);
 		this.getView().addSelectListener(this);
 		this.getView().addDepletedListener(this);
+
+		if (this.tableComponent.getDataSource().getDefaultFilterExpression() != null) {
+			this.entityContainer.removeAllContainerFilters();
+			Filter defaultFilter = SPELUtil.toContainerFilter(this.tableComponent.getDataSource().getDefaultFilterExpression(), new HashMap<String, Object>());
+			if (defaultFilter != null) {
+				this.entityContainer.addContainerFilter(defaultFilter);
+				this.entityContainer.applyFilters();
+			} else {
+				this.mainApplication.showAlert("Filter Not Added", "Could not add the default filter since it was null.");
+			}
+		}
 
 		// -- Done
 		this.setInitialized(true);
@@ -127,7 +141,7 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 			entityEditorEventListener.editItem(item, this.tableComponent.getRecordEditor());
 		}
 	}
-	
+
 	public void onReportItem() {
 		Item item = this.getView().getSelectedItem();
 		if (this.tableComponent != null && item != null) {
@@ -146,7 +160,7 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 			try {
 				this.getView().deleteItem(item);
 			} catch (Exception e) {
-				//TODO Handle Exception
+				// TODO Handle Exception
 				e.printStackTrace();
 			}
 		}
