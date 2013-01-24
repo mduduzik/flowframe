@@ -78,8 +78,10 @@ public class EntityLineEditorSectionPresenter extends ConfigurableBasePresenter<
 				}
 			}
 			
-			VaadinEntityEditorFactoryImpl entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
-			Map<IPresenter<?, ? extends EventBus>, EventBus> resultMap = entityFactory.create(this.componentModel.getContent(), getConfig());
+			IComponentFactory entityFactory = (IComponentFactory)getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY);
+			
+			//VaadinEntityEditorFactoryImpl entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
+			Map<IPresenter<?, ? extends EventBus>, EventBus> resultMap = (Map<IPresenter<?, ? extends EventBus>, EventBus>)entityFactory.create(this.componentModel.getContent(), getConfig());
 			if (resultMap != null) {
 				this.contentPresenter = resultMap.keySet().iterator().next();
 			}

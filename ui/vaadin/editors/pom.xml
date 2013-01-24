@@ -75,6 +75,20 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.ui.services
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.kernel.metamodel.dao.services
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.ui.component.domain</artifactId>
 			<version>0.0.1</version>
 		</dependency>

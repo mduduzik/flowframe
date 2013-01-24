@@ -35,23 +35,26 @@ import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.IPresenter;
 
+import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
+
+
 public class VaadinComponentFactory implements IComponentFactory {
 
-	private ConfigurablePresenterFactory factory;
+	protected ConfigurablePresenterFactory factory;
+	
+	protected IComponentFactory createEntityEditorFactory(ConfigurablePresenterFactory factory)
+	{
+		return new VaadinEntityEditorFactoryImpl(factory);
+	}
+	
 
 	@Override
 	public Map<IPresenter<?, ? extends EventBus>, EventBus> create(AbstractComponent componentModel, Map<String, Object> params) {
 		Map<IPresenter<?, ? extends EventBus>, EventBus> res = null;
 
-		if (this.factory == null) {
-			if (params.get(IComponentFactory.FACTORY_PARAM_MVP_LOCALE) instanceof Locale) {
-				this.factory = new ConfigurablePresenterFactory(new EventBusManager(),
-						(Locale) params.get(IComponentFactory.FACTORY_PARAM_MVP_LOCALE));
-			} else {
-				throw new RuntimeException(
-						"Cannot create a new ConfigurablePresenterFactory without a parameter IComponentFactory.FACTORY_PARAM_MVP_LOCALE.");
-			}
-		}
+		ensureConfigurablePresenterFactory(params);
+		
+		params.put(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY,createEntityEditorFactory(this.factory));
 
 		if (componentModel instanceof AttachmentEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
@@ -147,4 +150,19 @@ public class VaadinComponentFactory implements IComponentFactory {
 		return res;
 	}
 
+	protected void ensureConfigurablePresenterFactory(Map<String, Object> params) {	
+		if (this.factory == null) {
+			if (params.get(IComponentFactory.FACTORY_PARAM_MVP_LOCALE) instanceof Locale) {
+				this.factory = new ConfigurablePresenterFactory(new EventBusManager(),
+						(Locale) params.get(IComponentFactory.FACTORY_PARAM_MVP_LOCALE));
+			} else {
+				throw new RuntimeException(
+						"Cannot create a new ConfigurablePresenterFactory without a parameter IComponentFactory.FACTORY_PARAM_MVP_LOCALE.");
+			}
+		}
+	}
+
+	protected ConfigurablePresenterFactory getFactory() {
+		return factory;
+	}
 }

@@ -43,15 +43,20 @@ import org.vaadin.mvp.presenter.IPresenter;
 public class VaadinEntityEditorFactoryImpl implements IComponentFactory {
 
 	@SuppressWarnings("unused")
-	private IRemoteDocumentRepository remoteDocumentRepository;
+	protected IRemoteDocumentRepository remoteDocumentRepository;
 
-	private ConfigurablePresenterFactory factory;
+	protected ConfigurablePresenterFactory factory;
 
 	public VaadinEntityEditorFactoryImpl() {
 	}
 
 	public VaadinEntityEditorFactoryImpl(ConfigurablePresenterFactory factory) {
 		this.factory = factory;
+	}
+	
+	@Override
+	public void setConfigurablePresenterFactory(Object factory) {
+		this.factory = (ConfigurablePresenterFactory)factory;
 	}
 
 	@Override

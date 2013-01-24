@@ -19,6 +19,7 @@ public interface IComponentFactory {
 	public final static String FACTORY_PARAM_MVP_ENTITY_MANAGER = "ENTITY_MANAGER";
 	public final static String FACTORY_PARAM_MVP_EXTRA_PARAMS_MAP = "EXTRA_PARAMS_MAP";
 	public final static String FACTORY_PARAM_MVP_PRESENTER_FACTORY = "PRESENTER_FACTORY";
+	public final static String FACTORY_PARAM_MVP_ENTITY_FACTORY = "ENTITY_FACTORY";
 	public final static String FACTORY_PARAM_MVP_EVENTBUS_MANAGER = "EVENTBUS_MANAGER";
 	public final static String FACTORY_PARAM_MVP_COMPONENT_MODEL = "COMPONENT_MODEL";
 	public final static String FACTORY_PARAM_MVP_LOCALE = "LOCALE";
@@ -38,4 +39,5 @@ public interface IComponentFactory {
 	public final static String FACTORY_PARAM_MAIN_APP = "MAIN_APP";
 	
 	public Object create(AbstractComponent component, Map<String,Object> params);
+	public void setConfigurablePresenterFactory(Object factory);
 }

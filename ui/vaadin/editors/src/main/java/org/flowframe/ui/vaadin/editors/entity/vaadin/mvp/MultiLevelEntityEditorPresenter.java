@@ -51,7 +51,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	private ApplicationEventBus appEventBus;
 	private MultiLevelEntityEditorPresenter parentEditor;
 	private Map<MasterDetailComponent, MultiLevelEntityEditorPresenter> childEditorPresenterMap;
-	private VaadinEntityEditorFactoryImpl entityFactory;
+	private IComponentFactory entityFactory;
 	private ConfigurableBasePresenter<?, ? extends EventBus> masterPresenter;
 	private ConfigurableBasePresenter<?, ? extends EventBus> headerPresenter;
 
@@ -117,7 +117,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		MultiLevelEntityEditorPresenter childEditorPresenter = childEditorPresenterMap.get(componentModel);
 		if (childEditorPresenter == null) {
 			getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
-			Map<IPresenter<?, ? extends EventBus>, EventBus> res = this.entityFactory.create(componentModel, getConfig());
+			Map<IPresenter<?, ? extends EventBus>, EventBus> res = (Map<IPresenter<?, ? extends EventBus>, EventBus>) this.entityFactory.create(componentModel, getConfig());
 			childEditorPresenter = (MultiLevelEntityEditorPresenter) res.keySet().iterator().next();
 			childEditorPresenterMap.put(componentModel, childEditorPresenter);
 		}
@@ -135,7 +135,8 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 
 		this.presenterFactory.getCustomizer().getConfig()
 				.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
-		this.entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
+		this.entityFactory = (IComponentFactory)config.get(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY);
+		this.entityFactory.setConfigurablePresenterFactory(presenterFactory);
 
 		config.put(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
 		IMultiLevelEntityEditorView localView = this.getView();
@@ -155,7 +156,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 			localView.setHeader((Component) headerPresenter.getView());
 		}
 
-		Map<IPresenter<?, ? extends EventBus>, EventBus> res = this.entityFactory.create(this.metaData.getMasterComponent(), getConfig());
+		Map<IPresenter<?, ? extends EventBus>, EventBus> res = (Map<IPresenter<?, ? extends EventBus>, EventBus>) this.entityFactory.create(this.metaData.getMasterComponent(), getConfig());
 		this.masterPresenter = (ConfigurableBasePresenter<?, ? extends EventBus>) res.keySet().iterator().next();
 		localView.setMaster((Component) this.masterPresenter.getView());
 
@@ -183,6 +184,12 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		}
 
 		this.setInitialized(true);
+	}
+	
+	
+	protected IComponentFactory createComponentFactory() {
+		this.entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
+		return this.entityFactory;
 	}
 
 	@Override
