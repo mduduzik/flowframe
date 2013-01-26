@@ -44,6 +44,7 @@
 		<class>org.flowframe.ui.component.domain.note.NoteEditorComponent</class>
 		
 		<class>org.flowframe.ui.component.domain.page.TaskPageComponent</class>
+		<class>org.flowframe.ui.component.domain.viewer.ViewerComponent</class>
 		
 		<class>org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent</class>
 		

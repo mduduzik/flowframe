@@ -8,6 +8,7 @@ import org.flowframe.ds.domain.DataSource;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.component.domain.form.FormComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
+import org.flowframe.ui.component.domain.viewer.ViewerComponent;
 
 @Entity
 public class MasterDetailComponent extends AbstractComponent {
@@ -59,6 +60,12 @@ public class MasterDetailComponent extends AbstractComponent {
 		this.setDataSource(getDataSource());
 		this.setHasGrid(false);
 	}
+	
+	public void setMasterComponent(ViewerComponent masterComponent) {
+		this.masterComponent = masterComponent;
+		//this.setDataSource(getDataSource());
+		this.setHasGrid(false);
+	}	
 
 	public LineEditorContainerComponent getLineEditorPanel() {
 		return lineEditorPanel;

@@ -81,7 +81,9 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public abstract IEntityContainerProvider getContainerProvider();
 	
 	public abstract IDAOProvider getDAOProvider();
-
+	
+	public abstract String getReportingUrl();
+	
 	@Override
 	public void onRequestStart(HttpServletRequest request, HttpServletResponse response) {
 		Map<?, ?> pns = request.getParameterMap();
