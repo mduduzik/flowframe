@@ -1,5 +1,7 @@
 package org.flowframe.kernel.common.mdm.domain.application;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,6 +42,9 @@ public class Feature extends BaseEntity {
 	protected boolean taskFeature;
 
 	private String iconUrl;
+	
+	@Transient
+	private Map<String,Object> params = new HashMap<String, Object>();
 
 	public Feature() {
 	}
@@ -119,4 +124,12 @@ public class Feature extends BaseEntity {
 	public boolean isFeatureSet() {
 		return this.childFeatures.size() > 0;
 	}
+	
+	public void addParam(String paramKey, Object paramValue) {
+		this.params.put(paramKey, paramValue);
+	}
+	
+	public Object getParam(String paramKey) {
+		return this.params.get(paramKey);
+	}	
 }

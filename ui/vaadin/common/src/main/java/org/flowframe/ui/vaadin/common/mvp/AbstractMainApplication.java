@@ -191,6 +191,11 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public IPresenterFactory getPresenterFactory() {
 		return this.presenterFactory;
 	}
+	
+	@Override
+	public IPresenter<?, ? extends EventBus> getMainPresenter() {
+		return this.mainPresenter;
+	}
 
 	@Override
 	public void runInTransaction(String name, Runnable runnable) throws Exception {

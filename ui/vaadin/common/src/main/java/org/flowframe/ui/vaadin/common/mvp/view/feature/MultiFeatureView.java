@@ -22,8 +22,8 @@ import com.vaadin.ui.VerticalLayout;
 public abstract class MultiFeatureView extends TabSheet implements IFeatureView {
 	private static final long serialVersionUID = 321645322135L;
 
-	private HashMap<Feature, Tab> featureMap;
-	private Map<String, Object> config;
+	protected HashMap<Feature, Tab> featureMap;
+	protected Map<String, Object> config;
 
 	public MultiFeatureView(Map<String, Object> config) {
 		assert (config != null) : "The config map was null.";
