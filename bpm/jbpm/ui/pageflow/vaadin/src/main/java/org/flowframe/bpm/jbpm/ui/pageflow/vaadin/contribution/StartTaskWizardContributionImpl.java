@@ -3,12 +3,12 @@ package org.flowframe.bpm.jbpm.ui.pageflow.vaadin.contribution;
 import java.util.Map;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
-import org.flowframe.ui.services.contribution.ITaskActionContribution;
+import org.flowframe.ui.services.contribution.ITaskViewContribution;
 
 import com.vaadin.Application;
 import com.vaadin.ui.Component;
 
-public class StartTaskWizardContributionImpl implements ITaskActionContribution {
+public class StartTaskWizardContributionImpl implements ITaskViewContribution {
 	
 	private IPageFlowManager pageFlowservice;
 

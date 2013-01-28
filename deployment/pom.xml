@@ -10,7 +10,7 @@
 	<artifactId>org.flowframe.deployment</artifactId>
 	<packaging>pom</packaging>
 	<properties>
-		<virgo.runtime.repository>d:\dev\workspaces\conxbi2\Runtimes\virgo-tomcat-server-3.0.3.RELEASE-DEV\repository\flowframe</virgo.runtime.repository>
+		<virgo.runtime.repository>E:\dev\workspaces\conxbi2\Runtimes\virgo-tomcat-server-3.0.3.RELEASE-DEV\repository\flowframe</virgo.runtime.repository>
 	</properties>
 	<build>
 		<plugins>

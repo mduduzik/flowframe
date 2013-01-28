@@ -165,4 +165,12 @@ public class VaadinComponentFactory implements IComponentFactory {
 	protected ConfigurablePresenterFactory getFactory() {
 		return factory;
 	}
+
+
+	@Override
+	public void setConfigurablePresenterFactory(Object factory) {
+		assert (factory != null) : "Factory parameter was null.";
+		assert (!(factory instanceof ConfigurablePresenterFactory)) : "Factory parameter was not of type ConfigurablePresenterFactory.";
+		this.factory = (ConfigurablePresenterFactory) factory;
+	}
 }

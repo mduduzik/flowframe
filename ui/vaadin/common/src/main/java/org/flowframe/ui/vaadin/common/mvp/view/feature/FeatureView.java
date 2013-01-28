@@ -8,7 +8,7 @@ import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IComponentModelViewContribution;
 import org.flowframe.ui.services.contribution.IMVPViewContribution;
-import org.flowframe.ui.services.contribution.ITaskActionContribution;
+import org.flowframe.ui.services.contribution.ITaskViewContribution;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.vaadin.mvp.eventbus.EventBus;
@@ -93,7 +93,7 @@ public abstract class FeatureView extends VerticalLayout implements IFeatureView
 			String processId = feature.getCode();
 			assert (processId != null) : "This feature's process id was null.";
 
-			ITaskActionContribution ac = (ITaskActionContribution) findActionContributionByCode(viewCode);
+			ITaskViewContribution ac = (ITaskViewContribution) findActionContributionByCode(viewCode);
 			assert (ac != null) : "Could not find the action contribution for this feature.";
 
 			props.put("processId", processId);

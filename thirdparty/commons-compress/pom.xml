@@ -8,7 +8,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>org.flowframe.thirdparty.commons-compress</artifactId>
-	<name>org.flowframe.thirdparty.commons-compress</name>
 	<version>1.0.0</version>
 	<repositories>
 		<repository>

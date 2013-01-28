@@ -1,20 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>org.flowframe.thirdparty</artifactId>
 		<groupId>org.flowframe</groupId>
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-  <artifactId>org.flowframe.thirdparty.javax.security.jacc</artifactId>
-  <version>1.0</version>
-  <dependencies>
+	<artifactId>org.flowframe.thirdparty.javax.security.jacc</artifactId>
+	<version>1.0</version>
+	<dependencies>
 		<dependency>
 			<groupId>javax.security</groupId>
 			<artifactId>jacc</artifactId>
 			<version>1.0</version>
-		</dependency>	
-  </dependencies>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -76,7 +77,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>			
+			</plugin>
 			<plugin>
 				<groupId>com.springsource.bundlor</groupId>
 				<artifactId>com.springsource.bundlor.maven</artifactId>
@@ -98,5 +99,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build>  
+	</build>
 </project>
