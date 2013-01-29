@@ -50,7 +50,6 @@ public class PathBasedPageFlowSessionImpl implements IPageFlowSession {
 	private String userId;
 
 	private Feature onCompletionFeature;
-	private IPresenter<?, ? extends EventBus> onCompletionViewPresenter;	
 
 	private IPageFlowManager engine;
 
@@ -61,10 +60,8 @@ public class PathBasedPageFlowSessionImpl implements IPageFlowSession {
 			ProcessInstanceRef pi,
 			IPageFlowManager engine,
 			PageFlowPathAssessor pathAssessor,
-			Feature onCompletionFeature, 
-			IPresenter<?, ? extends EventBus> onCompletionViewPresenter) throws Exception {
+			Feature onCompletionFeature) throws Exception {
 		this.onCompletionFeature = onCompletionFeature;
-		this.onCompletionViewPresenter = onCompletionViewPresenter;
 		this.engine  = engine;
 		this.processInstance = pi;
 		this.userId = userId;

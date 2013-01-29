@@ -18,68 +18,85 @@ public class ContributionManager implements IUIContributionManager {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private final Map<String, IApplicationContribution> appContributions = Collections
-			.synchronizedMap(new HashMap<String, IApplicationContribution>());
+	private final Map<String, IApplicationContribution> appContributions = Collections.synchronizedMap(new HashMap<String, IApplicationContribution>());
 	private final Map<String, IViewContribution> viewContributions = Collections.synchronizedMap(new HashMap<String, IViewContribution>());
 	private final Map<String, IActionContribution> actionContributions = Collections.synchronizedMap(new HashMap<String, IActionContribution>());
 
 	public void bindViewContribution(IViewContribution viewContribution, Map<?, ?> properties) {
-		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
-		if (Validator.isNotNull(code)) {
-			logger.info("bindViewContribution(" + code + ")");
-			viewContributions.put(code, viewContribution);
-		} else {
-			logger.error("bindViewContribution has no code associated with it. Registration failed.");
+		if (viewContribution != null) {
+			String code = (String) viewContribution.getCode();
+
+			if (Validator.isNotNull(code)) {
+				logger.info("bindViewContribution(" + code + ")");
+				viewContributions.put(code, viewContribution);
+			} else {
+				logger.error("bindViewContribution has no code associated with it. Registration failed.");
+			}
 		}
 	}
 
 	public void unbindViewContribution(IViewContribution viewContribution, Map<?, ?> properties) {
-		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
-		if (Validator.isNotNull(code)) {
-			logger.info("unbindViewContribution(" + code + ")");
-			viewContributions.remove(code);
-		} else {
-			logger.error("unbindViewContribution has no code associated with it. Deregistration failed.");
+		if (viewContribution != null) {
+			String code = (String) viewContribution.getCode();
+
+			if (Validator.isNotNull(code)) {
+				logger.info("unbindViewContribution(" + code + ")");
+				viewContributions.remove(code);
+			} else {
+				logger.error("unbindViewContribution has no code associated with it. Unregistration failed.");
+			}
 		}
 	}
 
 	public void bindActionContribution(IActionContribution actionContribution, Map<?, ?> properties) {
-		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
-		if (Validator.isNotNull(code)) {
-			logger.info("bindActionContribution(" + code + ")");
-			actionContributions.put(code, actionContribution);
-		} else {
-			logger.error("bindActionContribution has no code associated with it. Registration failed.");
+		if (actionContribution != null) {
+			String code = (String) actionContribution.getCode();
+
+			if (Validator.isNotNull(code)) {
+				logger.info("bindActionContribution(" + code + ")");
+				actionContributions.put(code, actionContribution);
+			} else {
+				logger.error("bindActionContribution has no code associated with it. Registration failed.");
+			}
 		}
 	}
 
 	public void unbindActionContribution(IActionContribution actionContribution, Map<?, ?> properties) {
-		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
-		if (Validator.isNotNull(code)) {
-			logger.info("unbindActionContribution(" + code + ")");
-			actionContributions.remove(code);
-		} else {
-			logger.error("unbindActionContribution has no code associated with it. Deregistration failed.");
+		if (actionContribution != null) {
+			String code = (String) actionContribution.getCode();
+
+			if (Validator.isNotNull(code)) {
+				logger.info("unbindActionContribution(" + code + ")");
+				actionContributions.remove(code);
+			} else {
+				logger.error("unbindActionContribution has no code associated with it. Unregistration failed.");
+			}
 		}
 	}
 
 	public void bindApplicationContribution(IApplicationContribution appContribution, Map<?, ?> properties) {
-		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
-		if (Validator.isNotNull(code)) {
-			logger.info("bindApplicationContribution(" + code + ")");
-			appContributions.put(code, appContribution);
-		} else {
-			logger.error("bindApplicationContribution has no code associated with it. Registration failed.");
+		if (appContribution != null) {
+			String code = (String) appContribution.getCode();
+
+			if (Validator.isNotNull(code)) {
+				logger.info("bindAppContribution(" + code + ")");
+				appContributions.put(code, appContribution);
+			} else {
+				logger.error("bindAppContribution has no code associated with it. Registration failed.");
+			}
 		}
 	}
 
 	public void unbindApplicationContribution(IApplicationContribution appContribution, Map<?, ?> properties) {
-		String code = (String) properties.get(IUIContributionManager.UISERVICE_PROPERTY_CODE);
-		if (Validator.isNotNull(code)) {
-			logger.info("unbindApplicationContribution(" + code + ")");
-			appContributions.remove(code);
-		} else {
-			logger.error("unbindApplicationContribution has no code associated with it. Deregistration failed.");
+		if (appContribution != null) {
+			String code = (String) appContribution.getCode();
+
+			if (Validator.isNotNull(code)) {
+				logger.info("unbindAppContribution(" + code + ")");
+				appContributions.put(code, appContribution);
+			} else {
+				logger.error("unbindAppContribution has no code associated with it. Unregistration failed.");
+			}
 		}
 	}
 
@@ -94,7 +111,7 @@ public class ContributionManager implements IUIContributionManager {
 		IViewContribution vc = (IViewContribution) viewContributions.get(code);
 		return vc;
 	}
-	
+
 	@Override
 	public IActionContribution getActionContributionByCode(String code) {
 		IActionContribution ac = (IActionContribution) actionContributions.get(code);

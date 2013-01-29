@@ -7,9 +7,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
 import org.flowframe.bpm.jbpm.services.IBPMService;
+import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.task.TaskDefinition;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
+import org.flowframe.ui.services.contribution.IMainApplication;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.presenter.IPresenter;
 
 public interface IPageFlowManager {
 	/**
@@ -22,7 +26,7 @@ public interface IPageFlowManager {
 	/**
 	 * Given a TaskDefinition and UserId, createPageFlowSession
 	 */
-	public ITaskWizard createTaskWizard(Map<String, Object> properties) throws Exception;
+	public ITaskWizard createTaskWizard(IPresenter<?, ? extends EventBus> appPresenter, String processId, String userId, Feature onCompletionFeature, IMainApplication app) throws Exception;
 	/**
 	 * Given a TaskDefinition and UserId, createPageFlowSession
 	 */

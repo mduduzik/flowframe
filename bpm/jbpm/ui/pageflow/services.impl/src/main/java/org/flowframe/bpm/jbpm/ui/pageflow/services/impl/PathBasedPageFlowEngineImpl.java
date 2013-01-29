@@ -11,6 +11,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.naming.Context;
+import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
@@ -48,11 +49,10 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 
 	private JndiTemplate jndiTemplate;
 	private UserTransaction userTransaction;
-	
+
 	private IEntityTypeDAOService entityTypeDao;
 	/** EntityManagerFactories */
-	private final Map<String, Map<String,IPageFlowPage>> pageCache = Collections
-			.synchronizedMap(new HashMap<String, Map<String,IPageFlowPage>>());
+	private final Map<String, Map<String, IPageFlowPage>> pageCache = Collections.synchronizedMap(new HashMap<String, Map<String, IPageFlowPage>>());
 	private IMainApplication mainApp;
 
 	public PathBasedPageFlowEngineImpl() {
@@ -62,13 +62,11 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	public void setJndiTemplate(JndiTemplate jndiTemplate) {
 		this.jndiTemplate = jndiTemplate;
 	}
-	
 
 	public void setUserTransaction(UserTransaction userTransaction) {
 		this.userTransaction = userTransaction;
 	}
 
-	
 	public IBPMService getBpmService() {
 		return bpmService;
 	}
@@ -77,30 +75,26 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	public void setBpmService(IBPMService bpmService) {
 		try {
 			this.bpmService = bpmService;
-			//bpmService.startNewProcess("","");
+			// bpmService.startNewProcess("","");
 			System.out.println("Test");
-		} 
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
-		}	
-		catch (Error e)
-		{
+		} catch (Error e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
-		}		
+		}
 	}
 
 	public void start() {
-		try 
-		{
-			//ProcessInstanceRef pi = bpmService.newInstance("defaultPackage.goat1");
+		try {
+			// ProcessInstanceRef pi =
+			// bpmService.newInstance("defaultPackage.goat1");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 
 	}
 
@@ -111,24 +105,22 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		return mainApp;
 	}
 
-	private Map<String,IPageFlowPage> getPages(String processId) {
+	private Map<String, IPageFlowPage> getPages(String processId) {
 		return pageCache.get(processId);
 	}
 
 	@Override
-	public IPageFlowSession closePageFlowSession(String userid,
-			Long pageFlowSessionId) {
+	public IPageFlowSession closePageFlowSession(String userid, Long pageFlowSessionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public IPageFlowSession resumePageFlowSession(String userid,
-			Long pageFlowSessionId) {
+	public IPageFlowSession resumePageFlowSession(String userid, Long pageFlowSessionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public void bindEntityTypeDAOService(IEntityTypeDAOService entityTypeDAOService, Map properties) {
 		logger.debug("bindEntityTypeDAOService()");
 		this.entityTypeDao = entityTypeDAOService;
@@ -139,49 +131,45 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		this.entityTypeDao = null;
 	}
 
-	public void registerModelDrivenPageFlowPage(
-			IModelDrivenPageFlowPage page, Map<String, Object> properties) {
-		String processId = (String)properties.get(IPageFlowPage.PROCESS_ID);
-		String taskName = (String)properties.get(IPageFlowPage.TASK_NAME);
-		logger.info("registerModelDrivenPageFlowPage("+processId+","+taskName+")");		
-		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
+	public void registerModelDrivenPageFlowPage(IModelDrivenPageFlowPage page, Map<String, Object> properties) {
+		String processId = (String) properties.get(IPageFlowPage.PROCESS_ID);
+		String taskName = (String) properties.get(IPageFlowPage.TASK_NAME);
+		logger.info("registerModelDrivenPageFlowPage(" + processId + "," + taskName + ")");
+		Map<String, IPageFlowPage> map = this.pageCache.get(processId);
 		if (map == null) {
-			map = new HashMap<String,IPageFlowPage>();
+			map = new HashMap<String, IPageFlowPage>();
 			pageCache.put(processId, map);
-		} 
-		map.put(taskName,page);	
+		}
+		map.put(taskName, page);
 	}
 
-	public void unregisterModelDrivenPageFlowPage(
-			IModelDrivenPageFlowPage page, Map<String, Object> properties) {
-		String processId = (String)properties.get(IPageFlowPage.PROCESS_ID);
-		String taskName = (String)properties.get(IPageFlowPage.TASK_NAME);
-		logger.info("uregisterModelDrivenPageFlowPage("+processId+","+taskName+")");	
-		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
+	public void unregisterModelDrivenPageFlowPage(IModelDrivenPageFlowPage page, Map<String, Object> properties) {
+		String processId = (String) properties.get(IPageFlowPage.PROCESS_ID);
+		String taskName = (String) properties.get(IPageFlowPage.TASK_NAME);
+		logger.info("uregisterModelDrivenPageFlowPage(" + processId + "," + taskName + ")");
+		Map<String, IPageFlowPage> map = this.pageCache.get(processId);
 		if (map != null) {
 			map.remove(taskName);
 		}
 	}
-	
-	public void registerCustomDrivenPageFlowPage(
-			ICustomDrivenPageFlowPage page, Map<String, Object> properties) {
-		String processId = (String)properties.get(IPageFlowPage.PROCESS_ID);
-		String taskName = (String)properties.get(IPageFlowPage.TASK_NAME);
-		logger.debug("registerCustomDrivenPageFlowPage("+processId+","+taskName+")");		
-		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
+
+	public void registerCustomDrivenPageFlowPage(ICustomDrivenPageFlowPage page, Map<String, Object> properties) {
+		String processId = (String) properties.get(IPageFlowPage.PROCESS_ID);
+		String taskName = (String) properties.get(IPageFlowPage.TASK_NAME);
+		logger.debug("registerCustomDrivenPageFlowPage(" + processId + "," + taskName + ")");
+		Map<String, IPageFlowPage> map = this.pageCache.get(processId);
 		if (map == null) {
-			map = new HashMap<String,IPageFlowPage>();
+			map = new HashMap<String, IPageFlowPage>();
 			pageCache.put(processId, map);
-		} 
-		map.put(taskName,page);	
+		}
+		map.put(taskName, page);
 	}
 
-	public void unregisterCustomDrivenPageFlowPage(
-			ICustomDrivenPageFlowPage page, Map<String, Object> properties) {
-		String processId = (String)properties.get(IPageFlowPage.PROCESS_ID);
-		logger.debug("unregisterCustomDrivenPageFlowPage("+processId+")");	
-		Map<String,IPageFlowPage> map = this.pageCache.get(processId);
-		String taskName = (String)properties.get(IPageFlowPage.TASK_NAME);
+	public void unregisterCustomDrivenPageFlowPage(ICustomDrivenPageFlowPage page, Map<String, Object> properties) {
+		String processId = (String) properties.get(IPageFlowPage.PROCESS_ID);
+		logger.debug("unregisterCustomDrivenPageFlowPage(" + processId + ")");
+		Map<String, IPageFlowPage> map = this.pageCache.get(processId);
+		String taskName = (String) properties.get(IPageFlowPage.TASK_NAME);
 		if (map != null) {
 			map.remove(taskName);
 		}
@@ -189,9 +177,10 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 
 	@Override
 	public IPageFlowSession startPageFlowSession(String userId, TaskDefinition td) {
-		//		ProcessInstanceRef pi = bpmService.newInstance(td.getProcessId());
-		//IPageFlowSession session = new PageFlowSessionImpl(null, userId, getPages(td.getProcessId()), this.bpmService, conxlogisticsEMF);
-		//sessions.add(session);
+		// ProcessInstanceRef pi = bpmService.newInstance(td.getProcessId());
+		// IPageFlowSession session = new PageFlowSessionImpl(null, userId,
+		// getPages(td.getProcessId()), this.bpmService, conxlogisticsEMF);
+		// sessions.add(session);
 		return null;
 	}
 
@@ -207,254 +196,182 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		return globalTransactionManager;
 	}
 
-	public void setGlobalTransactionManager(
-			PlatformTransactionManager globalTransactionManager) {
+	public void setGlobalTransactionManager(PlatformTransactionManager globalTransactionManager) {
 		this.globalTransactionManager = globalTransactionManager;
 	}
 
 	@Override
-	public ITaskWizard createTaskWizard(Map<String, Object> properties) throws Exception {
+	public ITaskWizard createTaskWizard(IPresenter<?, ? extends EventBus> appPresenter, String processId, String userId, Feature onCompletionFeature, IMainApplication app) throws Exception {
 		ProcessInstanceRef pi = null;
 		IPageFlowSession session = null;
 
-		String processId = (String)properties.get("processId");
-		String userId = (String)properties.get("userId");
-		Feature   onCompletionFeature = (Feature)properties.get("onCompletionFeature");
-		@SuppressWarnings("unchecked")
-		IPresenter<?, ? extends EventBus> onCompletionCompletionViewPresenter = (IPresenter<?, ? extends EventBus>)properties.get("onCompletionViewPresenter");
-		
-		
-		Context ctx = jndiTemplate.getContext();
-		UserTransaction ut = this.userTransaction;//(UserTransaction)ctx.lookup( "java:comp/UserTransaction" );
+		UserTransaction ut = this.userTransaction;
 
-		// 1. Create process instance		
-		try
-		{
+		// 1. Create process instance
+		try {
 			ut.begin();
-			
+
 			Map<String, Object> input = new HashMap<String, Object>();
 			Map<String, Object> paramsMap = new HashMap<String, Object>();
 			paramsMap.put("onCompletionFeatureId", onCompletionFeature.getId());
 			input.put("paramsMap", paramsMap);
-			pi = bpmService.newInstance(processId,input);
-			
+			pi = bpmService.newInstance(processId, input);
 
 			ut.commit();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
-			logger.error(stacktrace);				 
+			logger.error(stacktrace);
 			ut.rollback();
 			throw e;
 		}
 
 		// 2. Create session
-		PageFlowPathAssessor pathAssessor = null;	
-		try
-		{
+		PageFlowPathAssessor pathAssessor = null;
+		try {
 			ut.begin();
 
-			//Get registered pages
-			Map<String,IPageFlowPage> pageList = pageCache.get(processId);
-			Map<String,WorkItemHandler> wihCache = this.bpmService.getRegisteredWIHByDefinitionId(processId);			
-			
-			//All process paths
+			// Get registered pages
+			Map<String, IPageFlowPage> pageList = pageCache.get(processId);
+			Map<String, WorkItemHandler> wihCache = this.bpmService.getRegisteredWIHByDefinitionId(processId);
+
+			// All process paths
 			Map<String, List<Node>> paths = this.bpmService.findAllNodePaths(processId);
 
-			
-			//Create start path
-			if (paths.size() == 1)//No splits
+			// Create start path
+			if (paths.size() == 1)// No splits
 			{
-				pathAssessor = new PageFlowPathAssessor(
-										 pi.getId(),
-										 bpmService,
-										 paths.keySet().iterator().next(),
-									     paths.values().iterator().next(),
-									     paths,
-									     pageCache.get(processId));
-			}
-			else //At least one split is in the process
+				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, paths.keySet().iterator().next(), paths.values().iterator().next(), paths, pageCache.get(processId));
+			} else // At least one split is in the process
 			{
 				SortedSet<String> orderedPathSet = new TreeSet<String>(paths.keySet());
-				String startPathKey = orderedPathSet.iterator().next();//Get smallest
-				pathAssessor = new PageFlowPathAssessor(
-						 pi.getId(),
-						 bpmService,
-						 startPathKey,
-					     paths.get(startPathKey),
-					     paths,
-					     pageCache.get(processId));				
+				String startPathKey = orderedPathSet.iterator().next();// Get
+																		// smallest
+				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, startPathKey, paths.get(startPathKey), paths, pageCache.get(processId));
 			}
-			
-			session = new PathBasedPageFlowSessionImpl(userId,
-													   pi,
-													   this, 
-													   pathAssessor,
-													   onCompletionFeature,
-													   onCompletionCompletionViewPresenter);
 
-			sessions.add(session);	
+			session = new PathBasedPageFlowSessionImpl(userId, pi, this, pathAssessor, onCompletionFeature);
+
+			sessions.add(session);
 
 			ut.commit();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			ut.rollback();
 			throw e;
-		}		 
+		}
 
 		// 3. Start first task in process
-		try
-		{
+		try {
 			ut.begin();
 
 			session.start();
 
 			ut.commit();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			ut.rollback();
 			throw e;
-		}		
-		
-		
-		// 4. Create wizard
-		TaskWizard wizard = new TaskWizard(session, properties);
-		wizard.setSizeFull();
+		}
 
+		// 4. Create wizard
+		TaskWizard wizard = new TaskWizard(session, app.getApplicationConfiguration());
+		wizard.setSizeFull();
 
 		return wizard;
 	}
-	
+
 	@Override
 	public ITaskWizard resumeProcessInstanceTaskWizard(String processInstanceId, Map<String, Object> properties) throws Exception {
 		ProcessInstanceRef pi = null;
 		IPageFlowSession session = null;
 
-		String processId = (String)properties.get("processId");
-		String userId = (String)properties.get("userId");
-		
-		Feature   onCompletionFeature = (Feature)properties.get("onCompletionFeature");
-		IPresenter<?, ? extends EventBus>   onCompletionCompletionViewPresenter = (IPresenter<?, ? extends EventBus>)properties.get("onCompletionViewPresenter");
-		
+		String processId = (String) properties.get("processId");
+		String userId = (String) properties.get("userId");
+
+		Feature onCompletionFeature = (Feature) properties.get("onCompletionFeature");
+		IPresenter<?, ? extends EventBus> onCompletionCompletionViewPresenter = (IPresenter<?, ? extends EventBus>) properties.get("onCompletionViewPresenter");
 
 		Context ctx = jndiTemplate.getContext();
-		UserTransaction ut = this.userTransaction;//(UserTransaction)ctx.lookup( "java:comp/UserTransaction" );
+		UserTransaction ut = this.userTransaction;// (UserTransaction)ctx.lookup(
+													// "java:comp/UserTransaction"
+													// );
 
-		// 1. Create process instance		
-		try
-		{
+		// 1. Create process instance
+		try {
 			ut.begin();
 
 			pi = bpmService.getProcessInstance(processInstanceId);
 
 			ut.commit();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
-			logger.error(stacktrace);				 
+			logger.error(stacktrace);
 			ut.rollback();
 			throw e;
 		}
 
 		// 2. Create session
-		PageFlowPathAssessor pathAssessor = null;	
-		try
-		{
+		PageFlowPathAssessor pathAssessor = null;
+		try {
 			ut.begin();
 
-			//Get registered pages
-			Map<String,IPageFlowPage> pageList = pageCache.get(processId);
-			Map<String,WorkItemHandler> wihCache = this.bpmService.getRegisteredWIHByDefinitionId(processId);			
-			
-			//All process paths
+			// Get registered pages
+			Map<String, IPageFlowPage> pageList = pageCache.get(processId);
+			Map<String, WorkItemHandler> wihCache = this.bpmService.getRegisteredWIHByDefinitionId(processId);
+
+			// All process paths
 			Map<String, List<Node>> paths = this.bpmService.findAllNodePaths(processId);
 
-			
-			//Create start path
-			if (paths.size() == 1)//No splits
+			// Create start path
+			if (paths.size() == 1)// No splits
 			{
-				pathAssessor = new PageFlowPathAssessor(
-										 pi.getId(),
-										 bpmService,						
-										 paths.keySet().iterator().next(),
-									     paths.values().iterator().next(),
-									     paths,
-									     pageCache.get(processId));
-			}
-			else //At least one split is in the process
+				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, paths.keySet().iterator().next(), paths.values().iterator().next(), paths, pageCache.get(processId));
+			} else // At least one split is in the process
 			{
 				SortedSet<String> orderedPathSet = new TreeSet<String>(paths.keySet());
-				String startPathKey = orderedPathSet.iterator().next();//Get smallest
-				pathAssessor = new PageFlowPathAssessor(
-						 pi.getId(),
-						 bpmService,						
-						 startPathKey,
-					     paths.get(startPathKey),
-					     paths,
-					     pageCache.get(processId));				
+				String startPathKey = orderedPathSet.iterator().next();// Get
+																		// smallest
+				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, startPathKey, paths.get(startPathKey), paths, pageCache.get(processId));
 			}
-	
-			
-			session = new PathBasedPageFlowSessionImpl(userId,
-													   pi,
-													   this, 
-													   pathAssessor,
-													   onCompletionFeature,
-													   onCompletionCompletionViewPresenter);
-			
-			//-- Reset session to instance state
-			session.getNextTaskAndUpdatePagesPath(ut);			
 
-			sessions.add(session);	
+			session = new PathBasedPageFlowSessionImpl(userId, pi, this, pathAssessor, onCompletionFeature);
+
+			// -- Reset session to instance state
+			session.getNextTaskAndUpdatePagesPath(ut);
+
+			sessions.add(session);
 
 			ut.commit();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			ut.rollback();
 			throw e;
-		}		 
-		
-		
+		}
+
 		// 3. Create wizard
 		TaskWizard wizard = new TaskWizard(session, properties);
 		wizard.setSizeFull();
-		
 
 		return wizard;
 	}
-	
 
 	@Override
 	public ITaskWizard executeTaskWizard(ITaskWizard tw, Object data) throws Exception {
-		if (((TaskWizard)tw).currentStepIsLastStep())
-		{
-			((TaskWizard)tw).getSession().completeProcess(this.userTransaction,data);
-		}
-		else
-		{
-			boolean pagesChanged = ((TaskWizard)tw).getSession().executeNext(this.userTransaction,data);
-			if (pagesChanged)
-			{
-				((TaskWizard)tw).onPagesChanged();
+		if (((TaskWizard) tw).currentStepIsLastStep()) {
+			((TaskWizard) tw).getSession().completeProcess(this.userTransaction, data);
+		} else {
+			boolean pagesChanged = ((TaskWizard) tw).getSession().executeNext(this.userTransaction, data);
+			if (pagesChanged) {
+				((TaskWizard) tw).onPagesChanged();
 			}
 		}
 		return tw;
 	}
-	
 
 	@Override
-	public Map<String, Object> updateProcessInstanceVariables(ITaskWizard tw,
-			Map<String, Object> varsToUpdate) throws Exception {
-		Map<String, Object> procInstVars = ((TaskWizard)tw).getSession().updateProcessInstanceVariables(this.userTransaction,varsToUpdate);
+	public Map<String, Object> updateProcessInstanceVariables(ITaskWizard tw, Map<String, Object> varsToUpdate) throws Exception {
+		Map<String, Object> procInstVars = ((TaskWizard) tw).getSession().updateProcessInstanceVariables(this.userTransaction, varsToUpdate);
 		((TaskWizard) tw).fireOnPageFlowChanged(new PageFlowPageChangedEvent(procInstVars));
 		return procInstVars;
 	}
@@ -487,13 +404,13 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	public UserTransaction getUserTransaction() {
 		return this.userTransaction;
 	}
-	
+
 	/**
 	 * 
 	 * Pages
 	 * 
 	 */
-	public Map<String,IPageFlowPage> getPagesByProcessId(String processId) {
+	public Map<String, IPageFlowPage> getPagesByProcessId(String processId) {
 		return pageCache.get(processId);
 	}
 }

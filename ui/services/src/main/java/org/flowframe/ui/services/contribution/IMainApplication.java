@@ -3,6 +3,7 @@ package org.flowframe.ui.services.contribution;
 import java.util.Collection;
 import java.util.Map;
 
+import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.transaction.ITransactionCompletionListener;
 import org.vaadin.mvp.eventbus.EventBus;
@@ -28,6 +29,7 @@ public interface IMainApplication {
 	public void runInTransaction(String name, Runnable runnable, ITransactionCompletionListener completionListener) throws Exception;
 	
 	public Map<String, Object> getApplicationConfiguration();
+	public User getCurrentUser();
 	
 	public void showNotification(String caption, String message);
 	public void showAlert(String caption, String message);

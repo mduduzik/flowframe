@@ -13,6 +13,8 @@ public interface IComponentFactory {
 	public final static String COMPONENT_MODEL = "COMPONENT_MODEL";
 	public final static String CONTAINER_PROVIDER = "CONTAINER_PROVIDER";
 	public final static String VAADIN_COMPONENT_FACTORY = "VAADIN_COMPONENT_FACTORY";
+	public final static String PAGE_FLOW_MANAGER = "PAGE_FLOW_MANAGER";
+	public final static String EMF_MANAGER = "EMF_MANAGER";
 	//-- Params
 	public final static String FACTORY_PARAM_MVP_MAIN_APP = "MAIN_APP";
 	public final static String FACTORY_PARAM_MVP_ENTITY_MANAGER_FACTORY = "ENTITY_MANAGER_FACTORY";

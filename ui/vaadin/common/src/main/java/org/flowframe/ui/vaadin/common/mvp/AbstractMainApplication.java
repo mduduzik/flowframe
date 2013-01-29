@@ -1,6 +1,7 @@
 package org.flowframe.ui.vaadin.common.mvp;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	private IPresenter<?, ? extends EventBus> mainPresenter;
 	private User currentUser = null;
 	private EntityManagerPerRequestHelper entityManagerPerRequestHelper;
+	private Map<String, Object> applicationConfig;
 
 	@Autowired
 	protected IUIContributionManager contributionManager;
@@ -74,16 +76,33 @@ public abstract class AbstractMainApplication extends Application implements IMa
 		this.setMainWindow((Window) this.mainPresenter.getView());
 	}
 
-	public abstract Map<String, Object> getApplicationConfiguration();
+	public Map<String, Object> getApplicationConfiguration() {
+		if (this.applicationConfig == null) {
+			this.applicationConfig = getConfiguration();
+			if (this.applicationConfig == null) {
+				this.applicationConfig = new HashMap<String, Object>();
+			}
+			this.applicationConfig.put(IComponentFactory.PAGE_FLOW_MANAGER, this.pageFlowEngine);
+			this.applicationConfig.put(IComponentFactory.EMF_MANAGER, this.emfManager);
+		}
+		return this.applicationConfig;
+	}
+	
+	@Override
+	public User getCurrentUser() {
+		return this.currentUser;
+	}
+
+	protected abstract Map<String, Object> getConfiguration();
 
 	public abstract User getUser(String emailAddress);
 
 	public abstract IEntityContainerProvider getContainerProvider();
-	
+
 	public abstract IDAOProvider getDAOProvider();
-	
+
 	public abstract String getReportingUrl();
-	
+
 	@Override
 	public void onRequestStart(HttpServletRequest request, HttpServletResponse response) {
 		Map<?, ?> pns = request.getParameterMap();
@@ -124,7 +143,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 			this.entityManagerPerRequestHelper.requestEnd();
 		}
 	}
-	
+
 	@Override
 	public <T> T findDAOByClass(Class<T> daoClass) {
 		return this.getDAOProvider().provideByDAOClass(daoClass);
@@ -134,7 +153,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public Object createPersistenceContainer(Class<?> entityClass) {
 		return this.getContainerProvider().createNonCachingPersistenceContainer(entityClass);
 	}
-	
+
 	@Override
 	public Object createCachedPersistenceContainer(Class<?> entityClass) {
 		return this.getContainerProvider().createPersistenceContainer(entityClass);
@@ -191,7 +210,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public IPresenterFactory getPresenterFactory() {
 		return this.presenterFactory;
 	}
-	
+
 	@Override
 	public IPresenter<?, ? extends EventBus> getMainPresenter() {
 		return this.mainPresenter;
@@ -215,7 +234,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 		}
 		this.transactionManager.commit(status);
 	}
-	
+
 	@Override
 	public void runInTransaction(String name, Runnable runnable, final ITransactionCompletionListener completionListener) throws Exception {
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
@@ -235,21 +254,21 @@ public abstract class AbstractMainApplication extends Application implements IMa
 		this.transactionManager.commit(status);
 		completionListener.onTransactionCompleted();
 	}
-	
+
 	@Override
 	public void showAlert(String caption, String message) {
 		if (this.getMainWindow() != null) {
 			this.getMainWindow().showNotification(caption, message, Notification.TYPE_WARNING_MESSAGE);
 		}
 	}
-	
+
 	@Override
 	public void showNotification(String caption, String message) {
 		if (this.getMainWindow() != null) {
 			this.getMainWindow().showNotification(caption, message, Notification.TYPE_TRAY_NOTIFICATION);
 		}
 	}
-	
+
 	@Override
 	public void showError(String caption, String message, String stackTrace) {
 		if (this.getMainWindow() != null) {

@@ -81,6 +81,7 @@ public abstract class MultiFeatureView extends TabSheet implements IFeatureView 
 				assert (processId != null) : "The process id of the task view contribution for this feature was null.";
 				ITaskWizard taskWizard = createTaskWizard(processId, props);
 				assert (taskWizard != null) : "Could not create task wizard for process id: " + processId;
+				featureComponent = taskWizard.getComponent();
 			} else {
 				throw new RuntimeException("The view contribution for this feature was naked (is not a sub-implementation of IViewContribution).");
 			}
