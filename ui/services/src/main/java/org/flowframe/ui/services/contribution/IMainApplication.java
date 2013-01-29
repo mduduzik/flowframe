@@ -30,6 +30,7 @@ public interface IMainApplication {
 	
 	public Map<String, Object> getApplicationConfiguration();
 	public User getCurrentUser();
+	public String getReportingUrl();
 	
 	public void showNotification(String caption, String message);
 	public void showAlert(String caption, String message);

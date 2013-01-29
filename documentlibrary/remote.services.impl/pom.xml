@@ -120,11 +120,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.thirdparty.org.jvnet.hyperjaxb3</artifactId>
-			<version>0.5.7.SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</artifactId>
 			<version>0.6.4.SNAPSHOT</version>
 		</dependency>
@@ -193,20 +188,6 @@
 			<version>2.1</version>
 		</dependency>
 
-
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.5.2</version>
-		</dependency>
-
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.5.2</version>
-		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.tests.common</artifactId>

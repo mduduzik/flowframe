@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 2.1.7
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: itext
+Archiver-Version: Plexus Archiver
+Excluded-Imports: org.bouncycastle.asn1,
+ org.bouncycastle.asn1.cmp,
+ org.bouncycastle.asn1.cms,
+ org.bouncycastle.asn1.ocsp,
+ org.bouncycastle.asn1.pkcs,
+ org.bouncycastle.asn1.tsp,
+ org.bouncycastle.asn1.x509,
+ org.bouncycastle.cms,
+ org.bouncycastle.crypto,
+ org.bouncycastle.crypto.engines,
+ org.bouncycastle.crypto.modes,
+ org.bouncycastle.crypto.paddings,
+ org.bouncycastle.crypto.params,
+ org.bouncycastle.jce.provider,
+ org.bouncycastle.ocsp,
+ org.bouncycastle.tsp

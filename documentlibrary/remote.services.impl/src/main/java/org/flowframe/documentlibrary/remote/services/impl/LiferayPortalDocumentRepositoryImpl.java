@@ -3,6 +3,7 @@ package org.flowframe.documentlibrary.remote.services.impl;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -14,6 +15,7 @@ import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -49,6 +51,7 @@ import org.flowframe.kernel.common.utils.HTTPUtil;
 import org.flowframe.kernel.common.utils.StringUtil;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,28 +74,32 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	static public final String FFDOCREPO_USER_PASSWORD = "ffdocrepo.user.password";// test
 	static public final String FFDOCREPO_USER_GROUP_ID = "ffdocrepo.user.group.id";// 10180
 
-	private Properties liferayProperties = new Properties();
+	static public Properties liferayProperties = new Properties();
 
-	private BasicAuthCache authCache;
-	private DefaultHttpClient httpclient;
-	private HttpHost targetHost;
-	private String repositoryId;
-	private String companyId;
-	private String fflogiFolderId;
-	private String loginEmail;
-	private String loginPassword;
-	private String hostname;
-	private String port;
-	private String loginGroupId;
+	public static BasicAuthCache authCache;
+	public static DefaultHttpClient httpclient;
+	public static HttpHost targetHost;
+	public static String repositoryId;
+	public static String companyId;
+	public static String fflogiFolderId;
+	public static String loginEmail;
+	public static String loginPassword;
+	public static String hostname;
+	public static String port;
+	public static String loginGroupId;
 
 	@Autowired
 	private IFolderDAOService folderDAOService;
 
 	@Autowired
 	private IEntityTypeDAOService entityTypeDAOService;
-
+	
 	@Override
 	public void init() {
+		initProperties();
+	}
+
+	public static void initProperties() {
 		loadLiferayProperties();
 
 		hostname = liferayProperties.getProperty(FFDOCREPO_SERVER_HOSTNAME);
@@ -113,7 +120,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 				new UsernamePasswordCredentials(loginEmail, loginPassword));
 
 		// Create AuthCache instance
-		this.authCache = new BasicAuthCache();
+		authCache = new BasicAuthCache();
 		// Generate BASIC scheme object and add it to the local
 		// auth cache
 		BasicScheme basicAuth = new BasicScheme();
@@ -260,25 +267,25 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 	@Override
 	public InputStream getFileAsStream(String fileEntryId, String version) throws Exception {
-		// Add AuthCache to the execution context
 		BasicHttpContext ctx = new BasicHttpContext();
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 
-		HttpGet get = new HttpGet("/api/secure/jsonws/dlfileentry/get-file-as-stream?fileEntryId="+fileEntryId+"&version="+version);
-		
-		HttpParams params = new SyncBasicHttpParams();
-		params.setParameter("fileEntryId", fileEntryId);
-		params.setParameter("version", version);
-		 
-		get.setParams(params);
+		HttpPost post = new HttpPost("/api/secure/jsonws/dlfileentry/get-file-as-stream");
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("fileEntryId", fileEntryId));
+		params.add(new BasicNameValuePair("version", version));
 
-		HttpResponse resp = httpclient.execute(targetHost, get, ctx);
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+		post.setEntity(entity);
+
+		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
 		System.out.println("getFileAsStream Status:[" + resp.getStatusLine() + "]");
+		System.out.println("getFileAsStream Res:[" + resp + "]");
 		
-	
-		InputStream is = resp.getEntity().getContent();
+		InputStream in = resp.getEntity().getContent();
+		byte[] contentByteArray = EntityUtils.toByteArray(resp.getEntity());
 
-		return is;
+		return new ByteArrayInputStream(contentByteArray);
 	}
 
 	@Override
@@ -323,7 +330,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return null;
 	}
 
-	protected Properties loadLiferayProperties() {
+	public static Properties loadLiferayProperties() {
 		if (!liferayProperties.isEmpty()) {
 			return liferayProperties;
 		}

@@ -18,14 +18,16 @@ import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentR
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.metamodel.dao.services.impl.EntityTypeDAOImpl;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+
 
 @ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml",
 		"/META-INF/jpa.lob.jpacontainer.springdm-module-context.xml",
@@ -33,7 +35,7 @@ import org.testng.annotations.Test;
         "/META-INF/flowframe/metamodel.dao.services.impl-module-context.xml",        
         "/META-INF/core.dao.datasource.mysql-module-context.xml",
         "/META-INF/doclib-module-context.xml"})
-public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringContextTests {
+public class LiferayPortalDocumentRepositoryTests {
 	@Autowired
     private ApplicationContext applicationContext;
 	
@@ -75,9 +77,8 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
 		em.close();
 	}
 	
-	
-	
-    @Test(enabled=false)
+	@Ignore
+    @Test
     public void testEnsureFolder() throws Exception {
     	Folder fldr = null;
     	boolean isAvailable = docRepoRemoteService.isAvailable();
@@ -97,8 +98,8 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
     	}
     }
     
-    
-    @Test(dependsOnMethods={"testEnsureFolder"},enabled=false)
+    @Ignore
+    @Test
     public void testAddAndDeleteFile() throws Exception {
     	Folder fldr = null;
     	boolean isAvailable = docRepoRemoteService.isAvailable();
@@ -135,7 +136,8 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
     	}
     }   
     
-    @Test(dependsOnMethods={"testAddAndDeleteFile"},enabled=false)
+    @Ignore
+    @Test
     public void testDeleteFolder() throws Exception {
     	Folder fldr = null;
     	boolean isAvailable = docRepoRemoteService.isAvailable();
@@ -150,7 +152,9 @@ public class LiferayPortalDocumentRepositoryTests extends AbstractTestNGSpringCo
 	    	Assert.assertFalse(res);    		
     	}
     }   
-    @Test(enabled=true)
+    
+    @Ignore
+    @Test
     public void testDownloadFileEntryAsStream() throws Exception {
     	Folder fldr = docRepoRemoteService.getFolderByName(docRepoRemoteService.getConxlogiFolderId(),"Receive123");
     	Assert.assertNotNull(fldr);    	

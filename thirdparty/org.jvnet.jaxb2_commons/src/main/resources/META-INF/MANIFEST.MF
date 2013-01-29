@@ -35,7 +35,7 @@ Export-Package: org.jvnet.jaxb2_commons.i18n;version="0.6.4.SNAPSHOT",
  rsion="0.6.4.SNAPSHOT";uses:="javax.xml.namespace,javax.xml.namespace
  "
 Build-Jdk: 1.6.0_37
-Built-By: Sandile
+Built-By: Mduduzi
 Bundle-Version: 0.6.4.SNAPSHOT
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-ManifestVersion: 2
