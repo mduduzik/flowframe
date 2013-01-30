@@ -32,7 +32,7 @@ import com.vaadin.data.util.filter.Or;
 public class SPELUtil {
 	private static void putDefaults(StandardEvaluationContext context) {
 		context.setVariable("true", true);
-		context.setVariable("false", true);
+		context.setVariable("false", false);
 		context.setVariable("null", null);
 	}
 
