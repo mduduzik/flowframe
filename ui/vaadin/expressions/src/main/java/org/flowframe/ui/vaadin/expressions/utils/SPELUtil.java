@@ -2,6 +2,9 @@ package org.flowframe.ui.vaadin.expressions.utils;
 
 import java.util.Map;
 
+import org.flowframe.kernel.common.mdm.domain.constants.RoleCustomCONSTANTS;
+import org.flowframe.kernel.common.mdm.domain.user.User;
+import org.flowframe.portal.remote.services.IPortalRoleService;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.ExpressionState;
@@ -35,6 +38,48 @@ public class SPELUtil {
 		context.setVariable("false", false);
 		context.setVariable("null", null);
 	}
+	
+	public static Filter toContainerFilter(User tenantUser, IPortalRoleService portalRoleService,String spelWhereExpression, Map<String, Object> paramMap) {
+		boolean hasRole = false;
+		Filter filter = null;
+		try
+		{
+			hasRole = portalRoleService.userHasRole(Long.toString(tenantUser.getUserId()),RoleCustomCONSTANTS.ROLE_CONX_ADMIN_CODE);
+		}
+		catch(Exception e) {
+			throw new RuntimeException("Error obtaining role for user("+tenantUser.getScreenName()+")",e);
+		}
+		
+		StandardEvaluationContext context = new StandardEvaluationContext();
+		putDefaults(context);
+		
+		for (String key : paramMap.keySet()) {
+			context.setVariable(key, paramMap.get(key));
+		}
+
+		SpelExpressionParser expressionParser = new SpelExpressionParser();
+		if (!hasRole)
+		{
+			context.setVariable("tenantid", tenantUser.getId());
+			if (spelWhereExpression != null)
+				spelWhereExpression += " and tenant.id == #tenantid";
+			else
+				spelWhereExpression = "tenant.id == #tenantid";
+		}
+		else
+		{
+			
+		}
+			
+		if (spelWhereExpression != null)
+		{
+			Expression expr = expressionParser.parseExpression(spelWhereExpression);
+			SpelNode node = ((SpelExpression) expr).getAST();
+			filter = translateOp(node, context);
+		}
+
+		return filter;
+	}	
 
 	public static Filter toContainerFilter(String spelWhereExpression, Map<String, Object> paramMap) {
 		StandardEvaluationContext context = new StandardEvaluationContext();

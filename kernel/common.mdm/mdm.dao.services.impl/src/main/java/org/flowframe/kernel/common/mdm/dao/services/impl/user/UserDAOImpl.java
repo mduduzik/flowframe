@@ -165,12 +165,12 @@ public class UserDAOImpl implements IUserDAOService {
 	@Override
 	public void provideDefaults()
 	{
-		User testUser = new User();
+/*		User testUser = new User();
 		testUser.setEmailAddress("test@liferay.com");
 		testUser.setScreenName("test");
 		testUser.setFirstName("ConX");
 		testUser.setLastName("User");
-		add(testUser);
+		add(testUser);*/
 	}
 
 	@Override

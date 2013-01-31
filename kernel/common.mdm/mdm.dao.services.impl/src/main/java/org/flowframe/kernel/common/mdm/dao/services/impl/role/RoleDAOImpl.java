@@ -119,15 +119,12 @@ public class RoleDAOImpl implements IRoleDAOService {
 		return res;
 	}	
 	
+	
+	
+	
 	@Override
 	public void provideDefaults()
-	{
-		Role role = new Role(RoleCustomCONSTANTS.ROLE_CONX_ADMIN);
-		add(role);
-		role = new Role(RoleCustomCONSTANTS.ROLE_CONX_POWER_USER);
-		add(role);
-		role = new Role(RoleCustomCONSTANTS.ROLE_CONX_USER);
-		add(role);		
+	{	
 	}
 
 	@Override

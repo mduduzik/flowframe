@@ -13,6 +13,7 @@ import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityManagerFactoryManager;
+import org.flowframe.portal.remote.services.IPortalRoleService;
 import org.flowframe.ui.services.IUIContributionManager;
 import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IApplicationContribution;
@@ -44,10 +45,10 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	protected PresenterFactory presenterFactory = null;
-	private IPresenter<?, ? extends EventBus> mainPresenter;
-	private User currentUser = null;
-	private EntityManagerPerRequestHelper entityManagerPerRequestHelper;
-	private Map<String, Object> applicationConfig;
+	protected IPresenter<?, ? extends EventBus> mainPresenter;
+	protected User currentUser = null;
+	protected EntityManagerPerRequestHelper entityManagerPerRequestHelper;
+	protected Map<String, Object> applicationConfig;
 
 	@Autowired
 	protected IUIContributionManager contributionManager;
@@ -59,6 +60,9 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	protected IEntityManagerFactoryManager emfManager;
 	@Autowired
 	protected PlatformTransactionManager transactionManager;
+	
+	@Autowired
+	protected IPortalRoleService portalRoleService;	
 
 	@Override
 	public void init() {
@@ -84,6 +88,8 @@ public abstract class AbstractMainApplication extends Application implements IMa
 			}
 			this.applicationConfig.put(IComponentFactory.PAGE_FLOW_MANAGER, this.pageFlowEngine);
 			this.applicationConfig.put(IComponentFactory.EMF_MANAGER, this.emfManager);
+			this.applicationConfig.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_USER, this.currentUser);
+			this.applicationConfig.put(IComponentFactory.FACTORY_PARAM_IPORTAL_ROLE_SERVICE, this.portalRoleService);
 		}
 		return this.applicationConfig;
 	}

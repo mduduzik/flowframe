@@ -18,5 +18,6 @@
 		<module>documentlibrary</module>
 		<module>ui</module>
 		<!--<module>distribution</module>-->
+		<module>permissions</module>
 	</modules>
 </project>

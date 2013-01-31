@@ -9,16 +9,24 @@
 package org.flowframe.kernel.common.mdm.domain;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+
+import org.flowframe.kernel.common.mdm.domain.note.Note;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.HashCode;
@@ -57,26 +65,32 @@ public abstract class MultitenantBaseEntity
     extends BaseEntity
     implements Equals, HashCode
 {
-
+    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn
+	protected Organization tenant;
+    
+    @Transient
     protected long tenantId;
 
     /**
      * Gets the value of the tenantId property.
      * 
      */
-    @Basic
-    @Column(name = "TENANTID", precision = 20, scale = 0)
     public long getTenantId() {
-        return tenantId;
+    	if (this.tenant != null)
+    		return this.tenant.getId();
+    	else
+    		return 0;
     }
 
-    /**
-     * Sets the value of the tenantId property.
-     * 
-     */
-    public void setTenantId(long value) {
-        this.tenantId = value;
+    
+    public Organization getTenant() {
+    	return this.tenant;
     }
+    
+    public void setTenant(Organization tenant) {
+    	this.tenant = tenant;
+    }    
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof MultitenantBaseEntity)) {

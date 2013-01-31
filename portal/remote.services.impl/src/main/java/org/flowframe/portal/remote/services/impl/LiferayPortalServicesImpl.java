@@ -432,7 +432,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		BasicHttpContext ctx = new BasicHttpContext();
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 		
-		HttpPost post = new HttpPost("/api/secure/jsonws/role/get-user-roles");
+		HttpPost post = new HttpPost("/api/secure/jsonws/role/has-user-role");
 		MultipartEntity entity = new MultipartEntity(
 				HttpMultipartMode.BROWSER_COMPATIBLE);
 

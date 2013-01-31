@@ -3,6 +3,7 @@ package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.flowframe.portal.remote.services.IPortalRoleService;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
@@ -37,6 +38,7 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 	private GridComponent tableComponent;
 	private MultiLevelEntityEditorPresenter multiLevelEntityEditorPresenter;
 	private Class<?> entityClass;
+	private IPortalRoleService portalRoleService;
 
 	public EntityGridPresenter() {
 	}
@@ -61,19 +63,21 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 		this.getView().addSelectListener(this);
 		this.getView().addDepletedListener(this);
 
-		if (this.tableComponent.getDataSource().getDefaultFilterExpression() != null) {
-			this.entityContainer.removeAllContainerFilters();
-			Filter defaultFilter = SPELUtil.toContainerFilter(this.tableComponent.getDataSource().getDefaultFilterExpression(), new HashMap<String, Object>());
-			if (defaultFilter != null) {
-				this.entityContainer.addContainerFilter(defaultFilter);
-				this.entityContainer.applyFilters();
-			} else {
-				this.mainApplication.showAlert("Filter Not Added", "Could not add the default filter since it was null.");
-			}
-		}
+		applyRequiredFilterToContainer(this.tableComponent.getDataSource().getDefaultFilterExpression());
 
 		// -- Done
 		this.setInitialized(true);
+	}
+
+	private void applyRequiredFilterToContainer(String filterExpression) {
+		this.entityContainer.removeAllContainerFilters();
+		Filter defaultFilter = SPELUtil.toContainerFilter(this.mainApplication.getCurrentUser(),this.portalRoleService,filterExpression, new HashMap<String, Object>());
+		if (defaultFilter != null) {
+			this.entityContainer.addContainerFilter(defaultFilter);
+			this.entityContainer.applyFilters();
+		} else {
+			this.mainApplication.showAlert("Filter Not Added", "Could not add the default filter since it was null.");
+		}
 	}
 
 	@Override
@@ -96,6 +100,8 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 
 	@Override
 	public void configure() {
+		this.portalRoleService = (IPortalRoleService) getConfig().get(IComponentFactory.FACTORY_PARAM_IPORTAL_ROLE_SERVICE);
+		
 		this.tableComponent = (GridComponent) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.multiLevelEntityEditorPresenter = (MultiLevelEntityEditorPresenter) getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
 		this.mainApplication = (IMainApplication) getConfig().get(IComponentFactory.FACTORY_PARAM_MAIN_APP);

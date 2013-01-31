@@ -15,6 +15,7 @@ public interface IComponentFactory {
 	public final static String VAADIN_COMPONENT_FACTORY = "VAADIN_COMPONENT_FACTORY";
 	public final static String PAGE_FLOW_MANAGER = "PAGE_FLOW_MANAGER";
 	public final static String EMF_MANAGER = "EMF_MANAGER";
+	
 	//-- Params
 	public final static String FACTORY_PARAM_MVP_MAIN_APP = "MAIN_APP";
 	public final static String FACTORY_PARAM_MVP_ENTITY_MANAGER_FACTORY = "ENTITY_MANAGER_FACTORY";
@@ -31,11 +32,12 @@ public interface IComponentFactory {
 	public final static String FACTORY_PARAM_MVP_PARENT_EDITOR = "MVP_PARENT_EDITOR";
 	public final static String FACTORY_PARAM_MVP_ITEM_DATASOURCE = "MVP_ITEM_DATASOURCE";
 	public final static String FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER = "MVP_LINE_EDITOR_SECTION_PRESENTER";
-	
 	public final static String FACTORY_PARAM_MVP_ENTITYMANAGERPERREQUESTHELPER = "ENTITYMANAGERPERREQUESTHELPER";
+	public final static String FACTORY_PARAM_MVP_CURRENT_USER= "CURRENT_USER";
 	
 	//-- Services
 	public final static String FACTORY_PARAM_IDOCLIB_REPO_SERVICE = "IDOCLIB_REPO_SERVICE";
+	public final static String FACTORY_PARAM_IPORTAL_ROLE_SERVICE = "IPORTAL_ROLE_SERVICE";
 	public final static String FACTORY_PARAM_IFOLDER_SERVICE = "IFOLDER_SERVICE";
 	public final static String FACTORY_PARAM_IENTITY_METADATA_SERVICE = "IENTITY_METADATA_SERVICE";
 	public final static String FACTORY_PARAM_MAIN_APP = "MAIN_APP";
