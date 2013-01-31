@@ -40,6 +40,10 @@ public class SPELUtil {
 	}
 	
 	public static Filter toContainerFilter(User tenantUser, IPortalRoleService portalRoleService,String spelWhereExpression, Map<String, Object> paramMap) {
+		
+		assert (tenantUser != null) : "User cannot be null";
+		
+		
 		boolean hasRole = false;
 		Filter filter = null;
 		try
@@ -60,16 +64,14 @@ public class SPELUtil {
 		SpelExpressionParser expressionParser = new SpelExpressionParser();
 		if (!hasRole)
 		{
-			context.setVariable("tenantid", tenantUser.getId());
+			assert (tenantUser.getTenant() != null) : "Null tenant for user("+tenantUser.getScreenName()+")";
+			context.setVariable("tenantid", tenantUser.getTenant().getId());
 			if (spelWhereExpression != null)
 				spelWhereExpression += " and tenant.id == #tenantid";
 			else
 				spelWhereExpression = "tenant.id == #tenantid";
 		}
-		else
-		{
-			
-		}
+
 			
 		if (spelWhereExpression != null)
 		{

@@ -90,6 +90,11 @@ public abstract class MultitenantBaseEntity
     
     public void setTenant(Organization tenant) {
     	this.tenant = tenant;
+    }   
+    
+    @Transient
+    public String getTenantName() {
+    	return this.tenant != null?this.tenant.getName():null;
     }    
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {

@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.flowframe.ui.vaadin.expressions
 Import-Package:   
   org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
   org.flowframe.portal.remote.services;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
   com.vaadin.addon.jpacontainer;version="2.0.0",
   com.vaadin.addon.jpacontainer.fieldfactory;version="2.0.0",
   com.vaadin.addon.jpacontainer.metadata;version="2.0.0",
