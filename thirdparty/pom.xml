@@ -41,12 +41,12 @@
 		<module>vaadin-addon-tableexport</module>
 		<module>vaadin-addon-toolbar</module>
 		<module>vaadin686</module>
-		<module>vaadin-addon-wizard-customized</module>
 		<module>org.jvnet.hyperjaxb3</module>
 		<module>org.jvnet.jaxb2_commons</module>
 		<module>commons-compress</module>
 		<module>commons-exec</module>
 		<module>gwt-console-server-integration</module>
 		<module>org.springframework.orm</module>
+		<module>itext</module>
 	</modules>
 </project>

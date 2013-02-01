@@ -55,4 +55,6 @@
     
 
     <inherits name="org.flowframe.ui.vaadin.addons.filteredtable.gwt.FilteredTableWidgetset" />
+
+    <inherits name="org.flowframe.ui.vaadin.addons.wizards.WizardsforvaadinWidgetset" />
 </module>

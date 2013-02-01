@@ -28,15 +28,15 @@ import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.vaadin.addons.wizards.Wizard;
+import org.flowframe.ui.vaadin.addons.wizards.WizardStep;
+import org.flowframe.ui.vaadin.addons.wizards.event.WizardCompletedEvent;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.IPresenter;
-import org.vaadin.teemu.wizards.Wizard;
-import org.vaadin.teemu.wizards.WizardStep;
-import org.vaadin.teemu.wizards.event.WizardCompletedEvent;
 
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;

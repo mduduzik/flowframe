@@ -11,7 +11,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.naming.Context;
-import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
@@ -213,7 +212,9 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 
 			Map<String, Object> input = new HashMap<String, Object>();
 			Map<String, Object> paramsMap = new HashMap<String, Object>();
-			paramsMap.put("onCompletionFeatureId", onCompletionFeature.getId());
+			if (onCompletionFeature != null) {
+				paramsMap.put("onCompletionFeatureId", onCompletionFeature.getId());
+			}
 			input.put("paramsMap", paramsMap);
 			pi = bpmService.newInstance(processId, input);
 
@@ -232,27 +233,21 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		try {
 			ut.begin();
 
-			// Get registered pages
-			Map<String, IPageFlowPage> pageList = pageCache.get(processId);
-			Map<String, WorkItemHandler> wihCache = this.bpmService.getRegisteredWIHByDefinitionId(processId);
-
 			// All process paths
 			Map<String, List<Node>> paths = this.bpmService.findAllNodePaths(processId);
 
 			// Create start path
-			if (paths.size() == 1)// No splits
-			{
+			// No splits
+			if (paths.size() == 1) {
 				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, paths.keySet().iterator().next(), paths.values().iterator().next(), paths, pageCache.get(processId));
-			} else // At least one split is in the process
-			{
+			} else {
+				// At least one split is in the process
 				SortedSet<String> orderedPathSet = new TreeSet<String>(paths.keySet());
-				String startPathKey = orderedPathSet.iterator().next();// Get
-																		// smallest
+				String startPathKey = orderedPathSet.iterator().next();// Get smallest
 				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, startPathKey, paths.get(startPathKey), paths, pageCache.get(processId));
 			}
 
 			session = new PathBasedPageFlowSessionImpl(userId, pi, this, pathAssessor, onCompletionFeature);
-
 			sessions.add(session);
 
 			ut.commit();
@@ -264,9 +259,7 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		// 3. Start first task in process
 		try {
 			ut.begin();
-
 			session.start();
-
 			ut.commit();
 		} catch (Exception e) {
 			ut.rollback();
