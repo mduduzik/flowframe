@@ -25,7 +25,6 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.container.VaadinBeanIt
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.container.VaadinJPAContainer;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
-import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.wizards.Wizard;
@@ -55,8 +54,7 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	private HashMap<IPageFlowPage, IPageComponent> pageComponentMap;
 	private VaadinPageFactoryImpl pageFactory;
 	private Feature onCompletionCompletionFeature, feature;
-	private final Set<IPageFlowPageChangedListener> pageFlowPageChangedListenerCache = Collections
-			.synchronizedSet(new HashSet<IPageFlowPageChangedListener>());
+	private final Set<IPageFlowPageChangedListener> pageFlowPageChangedListenerCache = Collections.synchronizedSet(new HashSet<IPageFlowPageChangedListener>());
 
 	private boolean nextButtonBlocked = false;
 	private boolean backButtonBlocked = false;
@@ -67,7 +65,6 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	private HashMap<String, Object> initParams;
 	private UserTransaction userTransaction;
 
-	private IDAOProvider daoProvider;
 	private IPresenter<?, ?> appPresenter;
 
 	public TaskWizard(IPageFlowSession session) {
@@ -90,7 +87,6 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	public TaskWizard(IPageFlowSession session, Map<String, Object> properties) {
 		this.session = session;
 		this.engine = session.getPageFlowEngine();
-		this.daoProvider = (IDAOProvider) properties.get("daoProvider");
 		this.userTransaction = this.engine.getUserTransaction();
 		this.appPresenter = (IPresenter<?, ?>) properties.get("appPresenter");
 		this.pageComponentMap = new HashMap<IPageFlowPage, IPageComponent>();
@@ -101,6 +97,9 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 
 		HashMap<String, Object> config = new HashMap<String, Object>();
 		config.put(IComponentFactory.CONTAINER_PROVIDER, this);
+		if (properties != null) {
+			config.putAll(properties);
+		}
 		this.pageFactory = new VaadinPageFactoryImpl(config);
 
 		getNextButton().setImmediate(true);
@@ -114,8 +113,7 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	@Override
 	public Object createPersistenceContainer(Class<?> entityClass) {
 		if (this.userTransaction != null) {
-			CustomCachingMutableLocalEntityProvider provider = new CustomCachingMutableLocalEntityProvider(entityClass,
-					this.session.getConXEntityManagerfactory(), this.userTransaction);
+			CustomCachingMutableLocalEntityProvider provider = new CustomCachingMutableLocalEntityProvider(entityClass, this.session.getConXEntityManagerfactory(), this.userTransaction);
 			JPAContainer<?> container = new VaadinJPAContainer(entityClass, provider);
 			return container;
 		} else {
@@ -129,7 +127,6 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 			initParams.put(IPageComponent.CONX_ENTITY_MANAGER_FACTORY, session.getConXEntityManagerfactory());
 			initParams.put(IPageComponent.JTA_GLOBAL_TRANSACTION_MANAGER, session.getJTAGlobalTransactionManager());
 			initParams.put(IPageComponent.TASK_WIZARD, this);
-			initParams.put(IPageComponent.DAO_PROVIDER, this.daoProvider);
 			initParams.put(IPageComponent.PAGE_FLOW_PAGE_CHANGE_EVENT_HANDLER, this);
 			initParams.put(IPageComponent.ENTITY_CONTAINER_PROVIDER, this);
 			initParams.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER, this.appPresenter);
@@ -211,8 +208,8 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 			completeCurrentTaskAndAdvanceToNext();
 		} catch (Exception e) {
 			e.printStackTrace();
-			getWindow().showNotification("There was an unexpected error on the next page",
-					"</br>Try to continue again. If the problem persists, contact your Administrator", Notification.TYPE_ERROR_MESSAGE);
+			getWindow().showNotification("There was an unexpected error on the next page", "</br>Try to continue again. If the problem persists, contact your Administrator",
+					Notification.TYPE_ERROR_MESSAGE);
 			return;
 		}
 
@@ -365,8 +362,7 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	@Override
 	public Object createNonCachingPersistenceContainer(Class<?> entityClass) {
 		if (this.userTransaction != null) {
-			CustomNonCachingMutableLocalEntityProvider provider = new CustomNonCachingMutableLocalEntityProvider(entityClass, this.getEmf(),
-					this.userTransaction);
+			CustomNonCachingMutableLocalEntityProvider provider = new CustomNonCachingMutableLocalEntityProvider(entityClass, this.getEmf(), this.userTransaction);
 			JPAContainer<?> container = new VaadinJPAContainer(entityClass, provider);
 			return container;
 		} else {

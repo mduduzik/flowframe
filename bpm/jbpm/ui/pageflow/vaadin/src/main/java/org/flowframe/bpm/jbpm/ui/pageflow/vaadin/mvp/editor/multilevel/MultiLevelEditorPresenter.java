@@ -27,8 +27,7 @@ import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
 
 @Presenter(view = MultiLevelEditorView.class)
-public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorView, MultiLevelEditorEventBus> implements
-		IVaadinDataComponent, IConfigurablePresenter, IContainerItemPresenter {
+public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorView, MultiLevelEditorEventBus> implements IVaadinDataComponent, IConfigurablePresenter, IContainerItemPresenter {
 	private VaadinPageFactoryImpl factory;
 	private MultiLevelEntityEditorComponent componentModel;
 	private Map<MasterDetailComponent, Component> editorCache;
@@ -46,13 +45,14 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		this.itemDataSourceCache = new HashMap<MasterDetailComponent, Item>();
 		this.editorStack = new Stack<MasterDetailComponent>();
 
-		this.config = params;
+		this.config = new HashMap<String, Object>(params);
 		this.componentModel = (MultiLevelEntityEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
 		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		@SuppressWarnings("unchecked")
-		IPresenter<?, ? extends ApplicationEventBus> appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config
-				.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
-		this.appEventBus = appPresenter.getEventBus();
+		IPresenter<?, ? extends ApplicationEventBus> appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
+		if (appPresenter != null) {
+			this.appEventBus = appPresenter.getEventBus();
+		}
 		this.originEditorComponent = this.componentModel.getContent();
 
 		this.getView().init();
@@ -96,8 +96,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		// componentModel
 		if (this.editorStack.contains(componentModel)) {
 			MasterDetailComponent highestEditorComponent = this.editorStack.peek();
-			while (highestEditorComponent != null && !highestEditorComponent.equals(componentModel)
-					&& !highestEditorComponent.equals(this.originEditorComponent)) {
+			while (highestEditorComponent != null && !highestEditorComponent.equals(componentModel) && !highestEditorComponent.equals(this.originEditorComponent)) {
 				this.editorStack.pop();
 				highestEditorComponent = this.editorStack.peek();
 			}
@@ -123,8 +122,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 	public void onRenderEditor(MasterDetailComponent componentModel, Item item, Container itemContainer) throws Exception {
 		Component editorComponent = prepareEditor(componentModel);
 		this.itemDataSourceCache.put(componentModel, item);
-		VaadinPageDataBuilder.applyItemDataSource(editorComponent, itemContainer, item, provideLocalizedFactory(componentModel)
-				.getPresenterFactory(), this.config);
+		VaadinPageDataBuilder.applyItemDataSource(editorComponent, itemContainer, item, provideLocalizedFactory(componentModel).getPresenterFactory(), this.config);
 		this.getView().setContent(editorComponent);
 	}
 
@@ -147,8 +145,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 			MasterDetailComponent mdc = getCurrentEditorComponentModel();
 			Component editorComponent = this.editorCache.get(mdc);
 			this.itemDataSourceCache.put(mdc, item);
-			VaadinPageDataBuilder.applyItemDataSource(editorComponent, containers[0], item, provideLocalizedFactory(mdc)
-					.getPresenterFactory(), this.config);
+			VaadinPageDataBuilder.applyItemDataSource(editorComponent, containers[0], item, provideLocalizedFactory(mdc).getPresenterFactory(), this.config);
 		} else {
 			throw new Exception("Multi Level Editor supports one and only one container for onSetItemDataSource(Item, Container...)");
 		}
@@ -166,9 +163,11 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 	 * Show a document tab with its content provided by the url. This is
 	 * intended for use with reporting.
 	 * 
-	 * @param url the url of the document
-	 * @param caption the caption of the feature
-	 * @throws Exception 
+	 * @param url
+	 *            the url of the document
+	 * @param caption
+	 *            the caption of the feature
+	 * @throws Exception
 	 */
 	public void onViewDocument(String url, String caption) throws Exception {
 		if (this.appEventBus == null) {
