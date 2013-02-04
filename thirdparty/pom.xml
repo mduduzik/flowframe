@@ -48,5 +48,6 @@
 		<module>commons-exec</module>
 		<module>gwt-console-server-integration</module>
 		<module>org.springframework.orm</module>
+		<module>itext</module>
 	</modules>
 </project>
