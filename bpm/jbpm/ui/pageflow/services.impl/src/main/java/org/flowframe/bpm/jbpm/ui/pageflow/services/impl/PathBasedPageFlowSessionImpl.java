@@ -29,8 +29,6 @@ import org.jbpm.task.Task;
 import org.jbpm.task.query.TaskSummary;
 import org.jbpm.task.service.ContentData;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.presenter.IPresenter;
 
 import com.vaadin.ui.Component;
 

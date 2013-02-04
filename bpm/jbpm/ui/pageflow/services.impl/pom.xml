@@ -68,11 +68,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.thirdparty.org.vaadin.addons.wizard-customized</artifactId>
-			<version>0.4.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.bpm.jbpm.services</artifactId>
 			<version>0.0.1</version>
 		</dependency>
@@ -106,6 +101,13 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>
 				org.flowframe.bpm.jbpm.ui.pageflow.vaadin
+			</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.ui.vaadin.addons.common
 			</artifactId>
 			<version>0.0.1</version>
 		</dependency>

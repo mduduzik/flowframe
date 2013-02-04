@@ -3,6 +3,7 @@ package org.flowframe.bpm.jbpm.ui.pageflow.services.impl.path;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,15 +38,19 @@ public class PageFlowPathAssessor {
 	public PageFlowPathAssessor() {
 	}
 
-	public PageFlowPathAssessor(String processInstanceId, IBPMService bpmService, String name, List<Node> nodePath,
-			Map<String, List<Node>> possibleNextPaths, Map<String, IPageFlowPage> pageCache) {
+	public PageFlowPathAssessor(String processInstanceId, IBPMService bpmService, String name, List<Node> nodePath, Map<String, List<Node>> possibleNextPaths, Map<String, IPageFlowPage> pageCache) {
 		super();
 		this.processInstanceId = processInstanceId;
 		this.bpmService = bpmService;
 		this.name = name;
 		this.nodePath = nodePath;
 		this.possibleNextPaths = possibleNextPaths;
-		this.pageCache = pageCache;
+		
+		if (pageCache == null) {
+			this.pageCache = new HashMap<String, IPageFlowPage>();
+		} else {
+			this.pageCache = pageCache;
+		}
 
 		createOrderedPageList();// Use nodeList for TS
 		updateCurrentPageInfo(null);

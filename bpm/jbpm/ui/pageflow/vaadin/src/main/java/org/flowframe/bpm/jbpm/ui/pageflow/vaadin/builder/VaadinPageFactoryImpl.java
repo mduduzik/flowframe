@@ -26,6 +26,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.form.hea
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.grid.EntityLineEditorGridPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.grid.header.EntityLineEditorGridHeaderPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.notes.NotesEditorPresenter;
+import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.preferences.PreferencesEditorPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.refnum.ReferenceNumberEditorPresenter;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
@@ -40,6 +41,7 @@ import org.flowframe.ui.component.domain.masterdetail.LineEditorContainerCompone
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
 import org.flowframe.ui.component.domain.page.TaskPageComponent;
+import org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.component.domain.search.SearchGridComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
@@ -50,6 +52,8 @@ import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search.EntitySearchGrid;
 import org.flowframe.ui.vaadin.forms.impl.VaadinCollapsibleSectionForm;
 import org.flowframe.ui.vaadin.forms.impl.VaadinSimpleForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -59,7 +63,8 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
 public class VaadinPageFactoryImpl {
-
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	private PresenterFactory presenterFactory;
 	private Map<String, Object> config;
 
@@ -200,6 +205,8 @@ public class VaadinPageFactoryImpl {
 			presenter = presenterFactory.createPresenter(AttachmentEditorPresenter.class);
 		} else if (componentModel instanceof ReferenceNumberEditorComponent) {
 			presenter = presenterFactory.createPresenter(ReferenceNumberEditorPresenter.class);
+		} else if (componentModel instanceof PreferencesEditorComponent) {
+			presenter = presenterFactory.createPresenter(PreferencesEditorPresenter.class);
 		} else if (componentModel instanceof NoteEditorComponent) {
 			presenter = presenterFactory.createPresenter(NotesEditorPresenter.class);
 		} else if (GridComponent.class.isAssignableFrom(componentModel.getClass())) {

@@ -2,7 +2,7 @@ package org.flowframe.bpm.jbpm.ui.pageflow.services;
 
 import java.util.Map;
 
-import org.vaadin.teemu.wizards.WizardStep;
+import org.flowframe.ui.vaadin.addons.wizards.WizardStep;
 
 public interface IPageComponent extends WizardStep {
 	public static final String CONX_ENTITY_MANAGER_FACTORY = "CONX_ENTITY_MANAGER_FACTORY";

@@ -35,6 +35,8 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
 import org.flowframe.ui.vaadin.forms.impl.VaadinCollapsibleSectionForm;
 import org.flowframe.ui.vaadin.forms.impl.VaadinForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.PresenterFactory;
 
@@ -50,6 +52,8 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
 
 public class VaadinPageDataBuilder {
+	private static Logger logger = LoggerFactory.getLogger(VaadinPageDataBuilder.class);
+	
 	public static Set<Object> buildResultData(Component component) {
 		HashSet<Object> dataSet = new HashSet<Object>();
 		if (component instanceof IVaadinDataComponent) {
@@ -152,6 +156,7 @@ public class VaadinPageDataBuilder {
 						.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 
 				if (daoProvider == null) {
+					logger.error("[[[<<<((()))>>>]]] " +config.toString());
 					throw new Exception("IDAOProvider was not supplied by the config map.");
 				} else if (containerProvider == null) {
 					throw new Exception("IEntityContainerProvider was not supplied by the config map.");

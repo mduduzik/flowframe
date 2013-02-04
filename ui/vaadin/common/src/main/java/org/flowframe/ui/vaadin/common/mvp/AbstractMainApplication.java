@@ -90,6 +90,8 @@ public abstract class AbstractMainApplication extends Application implements IMa
 			this.applicationConfig.put(IComponentFactory.EMF_MANAGER, this.emfManager);
 			this.applicationConfig.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_USER, this.currentUser);
 			this.applicationConfig.put(IComponentFactory.FACTORY_PARAM_IPORTAL_ROLE_SERVICE, this.portalRoleService);
+			// FIXME: We need to get rid of this - its just for pageflow vaadin
+			this.applicationConfig.put("DAO_PROVIDER", getDAOProvider());
 		}
 		return this.applicationConfig;
 	}
