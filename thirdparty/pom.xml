@@ -48,5 +48,6 @@
 		<module>gwt-console-server-integration</module>
 		<module>org.springframework.orm</module>
 		<module>itext</module>
+		<module>mvp</module>
 	</modules>
 </project>
