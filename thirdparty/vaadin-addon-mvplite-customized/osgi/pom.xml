@@ -16,6 +16,12 @@
 			org.flowframe.thirdparty.vaadin-addon-mvplite-customized-common
 			</artifactId>
 			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.flowframe</groupId>
+					<artifactId>org.flowframe.thirdparty.vaadin-addon-refresher</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<build>
