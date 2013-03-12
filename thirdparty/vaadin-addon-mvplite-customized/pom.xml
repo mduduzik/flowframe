@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.flowframe.thirdparty</artifactId>
+		<groupId>org.flowframe</groupId>
+		<version>0.0.1</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>org.flowframe.thirdparty.vaadin-addon-mvplite-customized</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+	<name>org.flowframe.thirdparty.vaadin-addon-mvplite-customized</name>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:https://github.com/sockeqwe/Vaadin-MVP-Lite.git</connection>
+	</scm>
+	<modules>
+		<module>common</module>
+		<module>osgi</module>
+	</modules>
+</project>

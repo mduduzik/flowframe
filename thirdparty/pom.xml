@@ -48,6 +48,7 @@
 		<module>gwt-console-server-integration</module>
 		<module>org.springframework.orm</module>
 		<module>itext</module>
-		<module>mvp</module>
+		<module>vaadin-addon-mvplite-customized</module>
+		<module>vaadin-addon-refresher</module>
 	</modules>
 </project>

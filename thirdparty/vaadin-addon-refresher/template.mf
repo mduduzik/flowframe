@@ -1,0 +1,10 @@
+Bundle-SymbolicName: vaadin-addon-refresher
+Bundle-Name: Refresher for Vaadin
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.1.1
+Import-Package:  com.google.gwt.dom.client;version="[6.8, 7.0)",
+  com.google.gwt.user.client;version="[6.8, 7.0)",
+  com.google.gwt.user.client.ui;version="[6.8, 7.0)",
+  com.vaadin.terminal;version="[6.8, 7.0)",
+  com.vaadin.terminal.gwt.client;version="[6.8, 7.0)",
+  com.vaadin.ui;version="[6.8, 7.0)"

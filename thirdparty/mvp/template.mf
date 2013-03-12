@@ -1,5 +1,0 @@
-Bundle-ManifestVersion: 2
-Bundle-Version: 0.0.1
-Bundle-Name: FF MVP Customized Implementation
-Bundle-SymbolicName: org.flowframe.thirdparty.mvp
-Import-Package: com.vaadin.ui;version="6.8.2"

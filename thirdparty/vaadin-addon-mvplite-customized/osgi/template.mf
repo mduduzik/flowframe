@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: vaadin-addon-mvplite
+Import-Package:  com.google.gwt.dom.client;version="[6.8, 7.0)",
+  com.google.gwt.user.client;version="[6.8, 7.0)",
+  com.google.gwt.user.client.ui;version="[6.8, 7.0)",
+  com.vaadin.terminal;version="[6.8, 7.0)",
+  com.vaadin.terminal.gwt.client;version="[6.8, 7.0)",
+  com.vaadin.ui;version="[6.8, 7.0)"
