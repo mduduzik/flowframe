@@ -38,6 +38,7 @@ class EventBusHandler implements InvocationHandler {
 	 */
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		Object res = null;
 		// handle toString()
 		if ("toString".equals(method.getName())) {
 			return "EventBus<" + busName + ">";
@@ -70,7 +71,7 @@ class EventBusHandler implements InvocationHandler {
 				}
 				try {
 					if (handlerMethod != null) {
-						handlerMethod.invoke(handler, args);
+						res = handlerMethod.invoke(handler, args);
 					}
 				} catch (Throwable t) {
 					logger.error("Failed to propagate event {} to handler {}", eventName, handlerType.getName());
@@ -93,7 +94,7 @@ class EventBusHandler implements InvocationHandler {
 		 * (Throwable t) { logger.error("Failed to invoke parent event bus", t);
 		 * } }
 		 */
-		return null;
+		return res;
 	}
 
 }

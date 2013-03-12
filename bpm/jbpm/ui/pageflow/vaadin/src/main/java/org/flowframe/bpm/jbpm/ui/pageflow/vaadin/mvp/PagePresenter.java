@@ -14,7 +14,9 @@ import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOSe
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.BasePresenter;
+import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.vaadin.ui.Component;
@@ -36,6 +38,16 @@ public class PagePresenter extends BasePresenter<IPageView, PageEventBus> implem
 	private IRemoteDocumentRepository docRepo;
 	private Map<String, Object> config;
 	
+	private IPresenter<?, ? extends EventBus> contentPresenter = null;
+	
+	public IPresenter<?, ? extends EventBus> getContentPresenter() {
+		return contentPresenter;
+	}
+
+	public void setContentPresenter(IPresenter<?, ? extends EventBus> contentPresenter) {
+		this.contentPresenter = contentPresenter;
+	}
+
 	public void setPageContent(Component content) {
 		this.getView().setContent(content);
 	}

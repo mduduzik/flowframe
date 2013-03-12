@@ -197,6 +197,7 @@ public class PathBasedPageFlowSessionImpl implements IPageFlowSession {
 
 	@Override
 	public void abort() {
+		bpmService.deleteInstance(processInstance.getId());		
 	}
 
 	public TaskWizard getWizard() {

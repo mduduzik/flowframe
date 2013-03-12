@@ -7,7 +7,6 @@ import org.flowframe.ui.component.domain.form.SimpleFormComponent;
 import org.flowframe.ui.component.domain.masterdetail.LineEditorComponent;
 import org.flowframe.ui.component.domain.table.DetailGridComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
-import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurablePresenterFactory;
@@ -35,7 +34,17 @@ public class EntityLineEditorSectionPresenter extends ConfigurableBasePresenter<
 
 	@SuppressWarnings("rawtypes")
 	public void onEntityItemEdit(EntityItem item) {
-		if (this.contentPresenter != null) {
+		if (this.contentPresenter == null) {
+			getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_DATA_ITEM, item);
+			IComponentFactory entityFactory = (IComponentFactory)getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY);
+			
+			//VaadinEntityEditorFactoryImpl entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
+			Map<IPresenter<?, ? extends EventBus>, EventBus> resultMap = (Map<IPresenter<?, ? extends EventBus>, EventBus>)entityFactory.create(this.componentModel.getContent(), getConfig());
+			if (resultMap != null) {
+				this.contentPresenter = resultMap.keySet().iterator().next();
+			}			
+		}
+		else {
 			((AbstractEntityEditorEventBus) this.contentPresenter.getEventBus()).entityItemEdit(item);
 		}
 	}
@@ -76,14 +85,6 @@ public class EntityLineEditorSectionPresenter extends ConfigurableBasePresenter<
 				if (presenter != null) {
 					this.headerPresenter = presenter;
 				}
-			}
-			
-			IComponentFactory entityFactory = (IComponentFactory)getConfig().get(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY);
-			
-			//VaadinEntityEditorFactoryImpl entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
-			Map<IPresenter<?, ? extends EventBus>, EventBus> resultMap = (Map<IPresenter<?, ? extends EventBus>, EventBus>)entityFactory.create(this.componentModel.getContent(), getConfig());
-			if (resultMap != null) {
-				this.contentPresenter = resultMap.keySet().iterator().next();
 			}
 		}
 	}

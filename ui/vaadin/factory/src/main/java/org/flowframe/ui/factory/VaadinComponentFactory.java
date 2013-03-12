@@ -16,7 +16,9 @@ import org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.component.domain.table.DetailGridComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
+import org.flowframe.ui.services.contribution.IComponentFactoryContributionManager;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.services.factory.IComponentFactoryManager;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurablePresenterFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
@@ -31,6 +33,7 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.NotesEditorPresen
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.preferences.PreferencesEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.ReferenceNumberEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.EntityGridPresenter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -40,11 +43,24 @@ import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryI
 
 public class VaadinComponentFactory implements IComponentFactory {
 
-	protected ConfigurablePresenterFactory factory;
+	protected ConfigurablePresenterFactory presenterFactory;
 	
+	
+	protected IComponentFactoryContributionManager componentFactoryContributionManager;
+	
+	public IComponentFactoryContributionManager getComponentFactoryContributionManagerManager() {
+		return componentFactoryContributionManager;
+	}
+
+	public void setComponentFactoryContributionManager(IComponentFactoryContributionManager componentFactoryContributionManager) {
+		this.componentFactoryContributionManager = componentFactoryContributionManager;
+	}
+
+
+
 	protected IComponentFactory createEntityEditorFactory(ConfigurablePresenterFactory factory)
 	{
-		return new VaadinEntityEditorFactoryImpl(factory);
+		return new VaadinEntityEditorFactoryImpl(componentFactoryContributionManager,factory);
 	}
 	
 
@@ -54,32 +70,32 @@ public class VaadinComponentFactory implements IComponentFactory {
 
 		ensureConfigurablePresenterFactory(params);
 		
-		params.put(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY,createEntityEditorFactory(this.factory));
+		params.put(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY,createEntityEditorFactory(this.presenterFactory));
 
 		if (componentModel instanceof AttachmentEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			final IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(AttachmentEditorPresenter.class);
+			final IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(AttachmentEditorPresenter.class);
 			final EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof NoteEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(NotesEditorPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(NotesEditorPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof PreferencesEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(PreferencesEditorPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(PreferencesEditorPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof ReferenceNumberEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(ReferenceNumberEditorPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(ReferenceNumberEditorPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
@@ -106,42 +122,42 @@ public class VaadinComponentFactory implements IComponentFactory {
 			res.put(mainPresenter, mainEventBus);
 		} else if (componentModel instanceof DetailFormComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityFormPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityFormPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof CollapseableSectionFormComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorCollapsibleFormPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityLineEditorCollapsibleFormPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof SimpleFormComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorSimpleFormPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityLineEditorSimpleFormPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof DetailGridComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorGridPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityLineEditorGridPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof GridComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityGridPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityGridPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
 			res.put(presenter, eventBus);
 		} else if (componentModel instanceof LineEditorComponent) {
 			params.put(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL, componentModel);
-			IPresenter<?, ? extends EventBus> presenter = factory.createPresenter(EntityLineEditorSectionPresenter.class);
+			IPresenter<?, ? extends EventBus> presenter = presenterFactory.createPresenter(EntityLineEditorSectionPresenter.class);
 			EventBus eventBus = presenter.getEventBus();
 
 			res = new HashMap<IPresenter<?, ? extends EventBus>, EventBus>();
@@ -151,9 +167,9 @@ public class VaadinComponentFactory implements IComponentFactory {
 	}
 
 	protected void ensureConfigurablePresenterFactory(Map<String, Object> params) {	
-		if (this.factory == null) {
+		if (this.presenterFactory == null) {
 			if (params.get(IComponentFactory.FACTORY_PARAM_MVP_LOCALE) instanceof Locale) {
-				this.factory = new ConfigurablePresenterFactory(new EventBusManager(),
+				this.presenterFactory = new ConfigurablePresenterFactory(new EventBusManager(),
 						(Locale) params.get(IComponentFactory.FACTORY_PARAM_MVP_LOCALE));
 			} else {
 				throw new RuntimeException(
@@ -163,7 +179,7 @@ public class VaadinComponentFactory implements IComponentFactory {
 	}
 
 	protected ConfigurablePresenterFactory getFactory() {
-		return factory;
+		return presenterFactory;
 	}
 
 
@@ -171,6 +187,6 @@ public class VaadinComponentFactory implements IComponentFactory {
 	public void setConfigurablePresenterFactory(Object factory) {
 		assert (factory != null) : "Factory parameter was null.";
 		assert (!(factory instanceof ConfigurablePresenterFactory)) : "Factory parameter was not of type ConfigurablePresenterFactory.";
-		this.factory = (ConfigurablePresenterFactory) factory;
+		this.presenterFactory = (ConfigurablePresenterFactory) factory;
 	}
 }

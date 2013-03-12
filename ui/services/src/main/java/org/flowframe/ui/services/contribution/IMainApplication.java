@@ -5,13 +5,14 @@ import java.util.Map;
 
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.services.factory.IComponentModelFactory;
 import org.flowframe.ui.services.transaction.ITransactionCompletionListener;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.IPresenterFactory;
 
 public interface IMainApplication {
-	public IComponentFactory getComponentFactory();
+	public IComponentModelFactory getComponentFactory();
 	public IPresenterFactory getPresenterFactory();
 	public IPresenter<?, ? extends EventBus> getMainPresenter();
 	

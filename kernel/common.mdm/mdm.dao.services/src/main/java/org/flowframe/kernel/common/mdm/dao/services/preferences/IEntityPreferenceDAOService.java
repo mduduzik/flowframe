@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreference;
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem;
+import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItemOption;
 
 public interface IEntityPreferenceDAOService {
 	public EntityPreference get(long id);
@@ -29,4 +30,17 @@ public interface IEntityPreferenceDAOService {
 	public EntityPreference update(EntityPreference record);
 	
 	public EntityPreferenceItem updateItem(EntityPreferenceItem record);
+	
+	
+	public EntityPreferenceItemOption addOption(EntityPreferenceItemOption record);
+	
+	public EntityPreferenceItemOption provideOption(EntityPreferenceItemOption record);
+
+	public EntityPreferenceItemOption getOptionByCode(String code);
+	
+	public EntityPreferenceItemOption getOptionByName(String code);
+	
+	public void deleteOption(EntityPreferenceItemOption record);
+	
+	public EntityPreferenceItemOption updateOption(EntityPreferenceItemOption record);
 }

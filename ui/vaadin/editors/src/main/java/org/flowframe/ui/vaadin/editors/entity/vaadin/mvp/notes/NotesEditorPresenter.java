@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -39,7 +40,7 @@ public class NotesEditorPresenter extends ConfigurableBasePresenter<INotesEditor
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	private boolean initialized = false;
 	private JPAContainer<NoteItem> entityContainer;
-	private Set<String> visibleFieldNames;
+	private Collection<String> visibleFieldNames;
 	private AbstractComponent noteEditorComponent;
 	private Note note;
 	// private ConfigurableBasePresenter<IMultiLevelEntityEditorView,

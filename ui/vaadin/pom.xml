@@ -14,6 +14,7 @@
 		<module>common</module>
 		<module>addons</module>
 		<module>forms</module>
+		<module>common.editors</module>
 		<module>editors</module>
 		<module>factory</module>
 		<module>expressions</module>

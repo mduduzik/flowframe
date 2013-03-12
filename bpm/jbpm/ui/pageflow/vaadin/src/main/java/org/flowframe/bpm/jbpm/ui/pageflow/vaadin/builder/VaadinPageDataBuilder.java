@@ -4,11 +4,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageDataBuilder;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.VaadinCollapsibleConfirmActualsForm;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.VaadinConfirmActualsForm;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.grid.VaadinMatchGrid;
@@ -24,16 +24,20 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityTypeAttribute;
 import org.flowframe.kernel.common.mdm.domain.metamodel.PluralAttribute;
+import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreference;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
+import org.flowframe.kernel.metamodel.dao.services.IBasicTypeDAOService;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.component.domain.search.SearchGridComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
+import org.flowframe.ui.vaadin.common.item.PreferenceItem;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search.EntitySearchGrid;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
 import org.flowframe.ui.vaadin.forms.impl.VaadinCollapsibleSectionForm;
+import org.flowframe.ui.vaadin.forms.impl.VaadinEntityPreferenceForm;
 import org.flowframe.ui.vaadin.forms.impl.VaadinForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,10 +55,11 @@ import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
 
-public class VaadinPageDataBuilder {
-	private static Logger logger = LoggerFactory.getLogger(VaadinPageDataBuilder.class);
+public class VaadinPageDataBuilder implements IPageDataBuilder {
+	private Logger logger = LoggerFactory.getLogger(VaadinPageDataBuilder.class);
 	
-	public static Set<Object> buildResultData(Component component) {
+	@Override
+	public Set<Object> buildResultData(Component component) {
 		HashSet<Object> dataSet = new HashSet<Object>();
 		if (component instanceof IVaadinDataComponent) {
 			Object data = ((IVaadinDataComponent) component).getData();
@@ -84,13 +89,27 @@ public class VaadinPageDataBuilder {
 					dataSet.addAll(buildResultData(nextComponent));
 				}
 			}
+			else if (component instanceof TabSheet) {
+				Iterator<Component> tabIt = ((TabSheet) component).getComponentIterator();
+				Component nextComponent = null;
+				while (tabIt.hasNext())
+				{
+					nextComponent = tabIt.next();
+					dataSet.addAll(buildResultData(nextComponent));
+				}
+			}			
+			else
+			{
+				logger.warn("Component "+component.getClass().getName()+"not covered by VaadinPageDataBuilder.buildResultData");
+			}
 		}
 
 		return dataSet;
 	}
 
+	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static Map<String, Object> buildResultDataMap(Map<String, Object> parameterData, Collection<?> data,
+	public Map<String, Object> buildResultDataMap(Map<String, Object> parameterData, Collection<?> data,
 			Map<Class<?>, String> resultKeyMap) {
 		Set<String> parameterDataKeySet = parameterData.keySet();
 		for (String parameterDataKey : parameterDataKeySet) {
@@ -112,7 +131,8 @@ public class VaadinPageDataBuilder {
 		return resultMap;
 	}
 
-	public static void applyParamData(Map<String, Object> config, Component component, Map<String, Object> params,
+	@Override
+	public void applyParamData(Map<String, Object> config, Component component, Map<String, Object> params,
 			PresenterFactory presenterFactory) throws Exception {
 		if (component instanceof EntitySearchGrid) {
 			applyParamDataToEntitySearchGrid(config, params, (EntitySearchGrid) component, presenterFactory);
@@ -137,19 +157,27 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	public static void applyItemDataSource(Component component, Container itemContainer, Item item,
+	@Override
+	public void applyItemDataSource(Component component, Container itemContainer, Item item,
 			final PresenterFactory presenterFactory, Map<String, Object> config) throws Exception {
 		applyItemDataSource(true, component, itemContainer, item, presenterFactory, config);
 	}
 
-	public static void applyItemDataSource(boolean isEventDeclaritive, Component component, Container itemContainer, Item item,
+	public void applyItemDataSource(boolean isEventDeclaritive, Component component, Container itemContainer, Item item,
 			final PresenterFactory presenterFactory, Map<String, Object> config) throws Exception {
 		if (component instanceof FlowFrameVerticalSplitPanel) {
 			applyItemDataSource(isEventDeclaritive, ((FlowFrameVerticalSplitPanel) component).getFirstComponent(), itemContainer, item,
 					presenterFactory, config);
 			applyItemDataSource(isEventDeclaritive, ((FlowFrameVerticalSplitPanel) component).getSecondComponent(), itemContainer, item,
 					presenterFactory, config);
-		} else if (component instanceof VaadinForm) {
+		} else if (component instanceof VaadinEntityPreferenceForm)
+		{
+			VaadinEntityPreferenceForm form = (VaadinEntityPreferenceForm)component;
+			IDAOProvider daoProvider = (IDAOProvider) config.get(IPageComponent.DAO_PROVIDER);
+			PreferenceItem ids = new PreferenceItem(((BeanItem<EntityPreference>) item).getBean(),daoProvider.provideByDAOClass(IBasicTypeDAOService.class));
+			form.setItemDataSource(ids);	
+		}
+		else if (component instanceof VaadinForm) {
 			if (item instanceof BeanItem && itemContainer instanceof BeanItemContainer) {
 				IDAOProvider daoProvider = (IDAOProvider) config.get(IPageComponent.DAO_PROVIDER);
 				IEntityContainerProvider containerProvider = (IEntityContainerProvider) config
@@ -221,7 +249,7 @@ public class VaadinPageDataBuilder {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static void applyItemDataSourceToVaadinMatchGrid(Item item, Component component, final PresenterFactory presenterFactory,
+	private void applyItemDataSourceToVaadinMatchGrid(Item item, Component component, final PresenterFactory presenterFactory,
 			IEntityContainerProvider containerProvider, final IDAOProvider daoProvider) throws ClassNotFoundException {
 		@SuppressWarnings({ "rawtypes" })
 		final Object itemBean = (item instanceof JPAContainerItem<?>) ? ((JPAContainerItem) item).getEntity()
@@ -291,7 +319,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToMultiLevelEditorView(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToMultiLevelEditorView(Map<String, Object> config, Map<String, Object> params,
 			MultiLevelEditorView view) throws Exception {
 		IEntityContainerProvider provider = (IEntityContainerProvider) config.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 
@@ -313,7 +341,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToVaadinCollapsibleSectionForm(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToVaadinCollapsibleSectionForm(Map<String, Object> config, Map<String, Object> params,
 			VaadinCollapsibleSectionForm form, PresenterFactory presenterFactory) throws Exception {
 		IEntityContainerProvider provider = (IEntityContainerProvider) config.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 
@@ -334,7 +362,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToAbstractComponentContainer(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToAbstractComponentContainer(Map<String, Object> config, Map<String, Object> params,
 			AbstractComponentContainer layout, PresenterFactory presenterFactory) throws Exception {
 		Iterator<Component> componentIterator = layout.getComponentIterator();
 		while (componentIterator.hasNext()) {
@@ -346,7 +374,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToTabSheet(Map<String, Object> config, Map<String, Object> params, TabSheet tabSheet,
+	private void applyParamDataToTabSheet(Map<String, Object> config, Map<String, Object> params, TabSheet tabSheet,
 			PresenterFactory presenterFactory) throws Exception {
 		Iterator<Component> componentIterator = tabSheet.getComponentIterator();
 		while (componentIterator.hasNext()) {
@@ -358,7 +386,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToEntitySearchGrid(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToEntitySearchGrid(Map<String, Object> config, Map<String, Object> params,
 			EntitySearchGrid searchGrid, PresenterFactory presenterFactory) throws Exception {
 		IEntityContainerProvider provider = (IEntityContainerProvider) config.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 
@@ -371,7 +399,7 @@ public class VaadinPageDataBuilder {
 		searchGrid.setContainerDataSource(container);
 	}
 
-	private static void applyParamDataToFlowFrameVerticalSplitPanel(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToFlowFrameVerticalSplitPanel(Map<String, Object> config, Map<String, Object> params,
 			FlowFrameVerticalSplitPanel splitPanel, PresenterFactory presenterFactory) throws Exception {
 		try {
 			applyParamData(config, splitPanel.getFirstComponent(), params, presenterFactory);
@@ -385,7 +413,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToVaadinConfirmActualsForm(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToVaadinConfirmActualsForm(Map<String, Object> config, Map<String, Object> params,
 			VaadinConfirmActualsForm form, PresenterFactory presenterFactory) throws Exception {
 		IEntityContainerProvider provider = (IEntityContainerProvider) config.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 
@@ -406,7 +434,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static void applyParamDataToVaadinCollapsibleConfirmActualsForm(Map<String, Object> config, Map<String, Object> params,
+	private void applyParamDataToVaadinCollapsibleConfirmActualsForm(Map<String, Object> config, Map<String, Object> params,
 			VaadinCollapsibleConfirmActualsForm form, PresenterFactory presenterFactory) throws Exception {
 		IEntityContainerProvider provider = (IEntityContainerProvider) config.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
 
@@ -430,7 +458,7 @@ public class VaadinPageDataBuilder {
 	/**************************************************************************/
 	/**************************** UTILITY METHODS *****************************/
 	/**************************************************************************/
-	private static void applyItemDataSourceToVaadinForm(boolean isEventDeclaritive, VaadinForm form, BeanItem<?> item,
+	private void applyItemDataSourceToVaadinForm(boolean isEventDeclaritive, VaadinForm form, BeanItem<?> item,
 			BeanItemContainer<?> container, Map<String, Object> config, EventBusManager ebm) throws Exception {
 		IDAOProvider daoProvider = (IDAOProvider) config.get(IPageComponent.DAO_PROVIDER);
 		IEntityContainerProvider containerProvider = (IEntityContainerProvider) config.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
@@ -463,7 +491,7 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	private static Object getParameterByClass(Map<String, Object> params, Class<?> type) {
+	private Object getParameterByClass(Map<String, Object> params, Class<?> type) {
 		Collection<String> paramKeys = params.keySet();
 		Object paramEntry = null;
 		for (String paramKey : paramKeys) {
@@ -478,7 +506,8 @@ public class VaadinPageDataBuilder {
 		return null;
 	}
 
-	private static Map<Class<?>, Collection<Object>> buildParamInstanceMap(Object[] parentInstances) {
+	/*
+	private Map<Class<?>, Collection<Object>> buildParamInstanceMap(Object[] parentInstances) {
 		HashMap<Class<?>, Collection<Object>> paramInstanceMap = new HashMap<Class<?>, Collection<Object>>();
 		for (Object parentInstance : parentInstances) {
 			if (parentInstance != null) {
@@ -495,10 +524,11 @@ public class VaadinPageDataBuilder {
 		}
 		return paramInstanceMap;
 	}
+	*/
 
 	// FIXME Add an applyItemDataSource impl for master section grids
 	@SuppressWarnings("unused")
-	private static PluralAttribute provideGridAttribute(Class<?> propertyType, Object bean, IDAOProvider daoProvider) throws Exception {
+	private PluralAttribute provideGridAttribute(Class<?> propertyType, Object bean, IDAOProvider daoProvider) throws Exception {
 		PluralAttribute gridAttribute = null;
 		EntityType beanEntityType = daoProvider.provideByDAOClass(IEntityTypeDAOService.class).provide(bean.getClass()), attributeType = null;
 		Set<EntityTypeAttribute> beanAttributes = beanEntityType.getAllDeclaredAttributes();
@@ -516,7 +546,7 @@ public class VaadinPageDataBuilder {
 		return gridAttribute;
 	}
 
-	public static void saveNewInstance(Object instance, IDAOProvider daoProvider, EventBusManager eventBusManager,
+	public void saveNewInstance(Object instance, IDAOProvider daoProvider, EventBusManager eventBusManager,
 			Map<String, Object> config, Object... parentInstances) throws Exception {
 		if (instance instanceof BaseEntity && ((BaseEntity) instance).getId() == null) {
 			MultiLevelEditorPresenter mlePresenter = (MultiLevelEditorPresenter) config
@@ -550,11 +580,11 @@ public class VaadinPageDataBuilder {
 		}
 	}
 
-	public static <T> T saveInstance(T instance, IDAOProvider daoProvider, Object... parentInstances) throws Exception {
+	public <T> T saveInstance(T instance, IDAOProvider daoProvider, Object... parentInstances) throws Exception {
 		throw new UnsupportedOperationException("saveInstance has not been implemented for FlowFrame yet.");
 	}
 
-	private static String typeToTitle(Class<?> type) {
+	private String typeToTitle(Class<?> type) {
 		String simpleName = type.getSimpleName(), title = "";
 		String[] sections = simpleName.split("(?=\\p{Upper})");
 		boolean isFirst = true;

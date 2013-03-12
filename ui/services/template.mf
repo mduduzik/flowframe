@@ -2,8 +2,9 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF UI Services
 Bundle-SymbolicName: org.flowframe.ui.services
-Import-Package:  com.vaadin;version="6.8.2",
-  com.vaadin.ui;version="6.8.2",
+Import-Package:  com.vaadin;version="[6.8.0,7.0.0)",
+  com.vaadin.ui;version="[6.8.0,7.0.0)",
+  com.vaadin.data;version="[6.8.0,7.0.0)",
   org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1, 1.0.0)",
   org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
   org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1, 1.0.0)",

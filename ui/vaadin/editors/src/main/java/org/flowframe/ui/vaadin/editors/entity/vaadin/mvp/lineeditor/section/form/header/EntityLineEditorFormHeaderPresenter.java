@@ -1,5 +1,6 @@
 package org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.form.header;
 
+import java.util.Map;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.lineeditor.section.EntityLineEditorSectionEventBus;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.EntityLineEditorSectionPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.view.EntityLineEditorView;
@@ -34,14 +34,14 @@ public class EntityLineEditorPresenter extends BasePresenter<IEntityLineEditorVi
 	private List<LineEditorComponent> lineEditorSectionOrdinalCache;
 	private List<CreateNewLineEditorComponent> createNewLineEditorSectionOrdinalCache;
 
-	private VaadinPageFactoryImpl presenterFactory;
+	private IPageFactory presenterFactory;
 	private LineEditorContainerComponent componentModel;
 	private Map<String, Object> config;
 
 	@Override
 	public void onConfigure(Map<String, Object> params) {
 		this.componentModel = (LineEditorContainerComponent) params.get(IComponentFactory.COMPONENT_MODEL);
-		this.presenterFactory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
+		this.presenterFactory = (IPageFactory) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.config = params;
 		this.lineEditorSectionCache = new HashMap<LineEditorComponent, EntityLineEditorSectionPresenter>();
 		this.createNewLineEditorSectionCache = new HashMap<CreateNewLineEditorComponent, EntityLineEditorSectionPresenter>();

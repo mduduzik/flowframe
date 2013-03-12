@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collection;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -50,7 +51,7 @@ public class ReferenceNumberEditorPresenter extends BasePresenter<IReferenceNumb
 		ICreateReferenceNumberListener, ISaveReferenceNumberListener, ILineEditorSectionContentPresenter, IConfigurablePresenter {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	private boolean initialized = false;
-	private Set<String> visibleFieldNames;
+	private Collection<String> visibleFieldNames;
 	private DefaultEntityMetadata defaultMetadata;
 	private List<String> formVisibleFieldNames;
 	private Item newEntityItem;

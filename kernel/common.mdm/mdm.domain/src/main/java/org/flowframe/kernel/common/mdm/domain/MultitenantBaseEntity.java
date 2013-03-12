@@ -65,13 +65,16 @@ public abstract class MultitenantBaseEntity
     extends BaseEntity
     implements Equals, HashCode
 {
-    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER, cascade={CascadeType.REFRESH})
     @JoinColumn
 	protected Organization tenant;
     
     @Transient
     protected long tenantId;
 
+    
+    protected boolean tenantWide = false;
+    
     /**
      * Gets the value of the tenantId property.
      * 
@@ -95,9 +98,17 @@ public abstract class MultitenantBaseEntity
     @Transient
     public String getTenantName() {
     	return this.tenant != null?this.tenant.getName():null;
-    }    
+    }  
 
-    public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
+    public boolean isTenantWide() {
+		return tenantWide;
+	}
+
+	public void setTenantWide(boolean tenantWide) {
+		this.tenantWide = tenantWide;
+	}
+
+	public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof MultitenantBaseEntity)) {
             return false;
         }

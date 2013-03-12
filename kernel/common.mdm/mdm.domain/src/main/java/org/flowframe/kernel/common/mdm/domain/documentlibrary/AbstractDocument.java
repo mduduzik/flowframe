@@ -2,6 +2,7 @@ package org.flowframe.kernel.common.mdm.domain.documentlibrary;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class AbstractDocument implements Serializable {
 	@Column(name = "id")
 	protected Long id;
 	
-    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER, cascade=CascadeType.REFRESH)
     @JoinColumn
     private Organization tenant;
 

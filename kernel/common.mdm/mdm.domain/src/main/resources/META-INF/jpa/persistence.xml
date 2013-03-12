@@ -52,5 +52,6 @@
 		<class>org.flowframe.kernel.common.mdm.domain.preferences.Prefroot</class>
 		<class>org.flowframe.kernel.common.mdm.domain.preferences.EntityPreference</class>
 		<class>org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem</class>
+		<class>org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItemOption</class>
 	</persistence-unit>
 </persistence>

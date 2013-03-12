@@ -55,8 +55,9 @@ public class VaadinMatchGrid extends VerticalLayout {
 	private Object itemBean;
 	private IDAOProvider daoProvider;
 	private PresenterFactory factory;
+	private VaadinPageDataBuilder pageDataBuilder;
 
-	public VaadinMatchGrid(MatchGridComponent componentModel) {
+	public VaadinMatchGrid(MatchGridComponent componentModel, VaadinPageDataBuilder vaadinPageDataBuilder) {
 		this.componentModel = componentModel;
 		this.unmatchedToolStrip = new EntityEditorToolStrip();
 		this.matchedToolStrip = new EntityEditorToolStrip();
@@ -67,6 +68,8 @@ public class VaadinMatchGrid extends VerticalLayout {
 		this.content = new FlowFrameVerticalSplitPanel();
 		this.unmatchedAlertPanel = new VaadinFormAlertPanel();
 		this.matchedAlertPanel = new VaadinFormAlertPanel();
+		
+		this.pageDataBuilder = vaadinPageDataBuilder;
 
 		initialize();
 	}
@@ -93,7 +96,7 @@ public class VaadinMatchGrid extends VerticalLayout {
 	private void match(Item item) throws Exception {
 		Object unmatchedBean = getUnmatchedBeanById(item);
 		if (unmatchedBean != null) {
-			Object matchedBean = VaadinPageDataBuilder.saveInstance(getMatchedContainerType().newInstance(), this.daoProvider, unmatchedBean, itemBean);
+			Object matchedBean = this.pageDataBuilder.saveInstance(getMatchedContainerType().newInstance(), this.daoProvider, unmatchedBean, itemBean);
 			if (matchedBean != null) {
 				Container matchedContainer = this.matchedGrid.getContainerDataSource();
 				Item matchedItem = null;

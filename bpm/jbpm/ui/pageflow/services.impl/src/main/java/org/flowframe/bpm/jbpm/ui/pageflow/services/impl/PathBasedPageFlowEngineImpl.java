@@ -19,6 +19,8 @@ import org.drools.process.instance.WorkItemHandler;
 import org.flowframe.bpm.jbpm.services.IBPMService;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.ICustomDrivenPageFlowPage;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IModelDrivenPageFlowPage;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryManager;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowSession;
@@ -26,8 +28,10 @@ import org.flowframe.bpm.jbpm.ui.pageflow.services.ITaskWizard;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.event.PageFlowPageChangedEvent;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.impl.path.PageFlowPathAssessor;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.wizard.TaskWizard;
+import org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.task.TaskDefinition;
+import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.jboss.bpm.console.client.model.ProcessInstanceRef;
@@ -53,6 +57,8 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	/** EntityManagerFactories */
 	private final Map<String, Map<String, IPageFlowPage>> pageCache = Collections.synchronizedMap(new HashMap<String, Map<String, IPageFlowPage>>());
 	private IMainApplication mainApp;
+	
+	private IPageFactoryManager pageFactoryManager;
 
 	public PathBasedPageFlowEngineImpl() {
 		this.sessions = new ArrayList<IPageFlowSession>();
@@ -198,9 +204,15 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	public void setGlobalTransactionManager(PlatformTransactionManager globalTransactionManager) {
 		this.globalTransactionManager = globalTransactionManager;
 	}
+	
+	@Override
+	public ITaskWizard createTaskWizard(Map<String, Object> params)
+			throws Exception {
+		return createTaskWizard((IPresenter<?, ? extends EventBus>)null,(String)params.get("processId"),(String)params.get("userId"),(Feature)null,(IMainApplication)null);
+	}		
 
 	@Override
-	public ITaskWizard createTaskWizard(IPresenter<?, ? extends EventBus> appPresenter, String processId, String userId, Feature onCompletionFeature, IMainApplication app) throws Exception {
+	public ITaskWizard createTaskWizard(IPresenter<?, ? extends EventBus> appPresenter, String processId, String userId, Feature feature, IMainApplication app) throws Exception {
 		ProcessInstanceRef pi = null;
 		IPageFlowSession session = null;
 
@@ -209,14 +221,14 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		// 1. Create process instance
 		try {
 			ut.begin();
-
-			Map<String, Object> input = new HashMap<String, Object>();
+			
+			//Map<String, Object> input = new HashMap<String, Object>();
 			Map<String, Object> paramsMap = new HashMap<String, Object>();
-			if (onCompletionFeature != null) {
-				paramsMap.put("onCompletionFeatureId", onCompletionFeature.getId());
-			}
-			input.put("paramsMap", paramsMap);
-			pi = bpmService.newInstance(processId, input);
+			paramsMap.put("tenantUserId",userId);
+			//if (feature != null && feature.getOnCompletionFeature() != null) {
+			//	paramsMap.put("onCompletionFeatureId", feature.getOnCompletionFeature().getId());
+			//}
+			pi = bpmService.newInstance(processId,paramsMap);
 
 			ut.commit();
 		} catch (Exception e) {
@@ -227,6 +239,26 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 			ut.rollback();
 			throw e;
 		}
+		
+		//1b. Update procInstance vars
+/*		try {
+			ut.begin();
+			
+			Map<String, Object> paramsMap = new HashMap<String, Object>();
+			paramsMap.put("tenantUserId",userId);
+			
+			bpmService.setProcessInstanceVariables(pi.getId(),paramsMap);
+
+			ut.commit();
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+			ut.rollback();
+			throw e;
+		}
+		*/
 
 		// 2. Create session
 		PageFlowPathAssessor pathAssessor = null;
@@ -247,7 +279,7 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 				pathAssessor = new PageFlowPathAssessor(pi.getId(), bpmService, startPathKey, paths.get(startPathKey), paths, pageCache.get(processId));
 			}
 
-			session = new PathBasedPageFlowSessionImpl(userId, pi, this, pathAssessor, onCompletionFeature);
+			session = new PathBasedPageFlowSessionImpl(userId, pi, this, pathAssessor, feature.getOnCompletionFeature());
 			sessions.add(session);
 
 			ut.commit();
@@ -267,10 +299,14 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		}
 
 		// 4. Create wizard
+		app.getApplicationConfiguration().put("appPresenter", appPresenter);
+		app.getApplicationConfiguration().put("feature", feature);
+		if (feature != null)
+			app.getApplicationConfiguration().put("onCompletionFeature", feature.getOnCompletionFeature());
 		TaskWizard wizard = new TaskWizard(session, app.getApplicationConfiguration());
 		wizard.setSizeFull();
 
-		return wizard;
+		return (ITaskWizard)wizard;
 	}
 
 	@Override
@@ -346,7 +382,7 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		TaskWizard wizard = new TaskWizard(session, properties);
 		wizard.setSizeFull();
 
-		return wizard;
+		return (ITaskWizard)wizard;
 	}
 
 	@Override
@@ -361,6 +397,27 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 		}
 		return tw;
 	}
+	
+	@Override
+	public ITaskWizard abortTaskWizard(ITaskWizard tw, Object data) throws Exception {
+		UserTransaction ut = this.userTransaction;
+		try {
+			ut.begin();
+
+			((TaskWizard) tw).getSession().abort();
+
+			ut.commit();
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+			ut.rollback();
+			throw e;
+		}
+
+		return tw;
+	}	
 
 	@Override
 	public Map<String, Object> updateProcessInstanceVariables(ITaskWizard tw, Map<String, Object> varsToUpdate) throws Exception {
@@ -406,4 +463,14 @@ public class PathBasedPageFlowEngineImpl implements IPageFlowManager {
 	public Map<String, IPageFlowPage> getPagesByProcessId(String processId) {
 		return pageCache.get(processId);
 	}
+	
+	public IPageFactoryManager getPageFactoryManager() {
+		return pageFactoryManager;
+	}
+	
+	public void setPageFactoryManager(IPageFactoryManager pageFactoryManager) {
+		this.pageFactoryManager = pageFactoryManager;
+	}
+
+
 }

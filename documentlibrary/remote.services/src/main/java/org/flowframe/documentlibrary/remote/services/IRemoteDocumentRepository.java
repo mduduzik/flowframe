@@ -28,11 +28,13 @@ public interface IRemoteDocumentRepository {
 	
 	public Folder getFolderByName(String parentFolderId, String folderId)  throws Exception;
 	
+	public Folder addFolder(String name, String description)  throws Exception;
+	
 	public Folder addFolder(String parentFolderId, String name, String description)  throws Exception;
 	
 	public Folder provideFolderForEntity(EntityType entityType, Long entityId) throws Exception;
 	
-	public Folder provideFolderForEntity(Class entityJavaClass, Long id) throws Exception;
+	public Folder ensureFolderByName(String parentFolderId, String folderName) throws Exception;
 	
 	public void deleteFolderById(String folderId)  throws Exception;
 	
@@ -63,27 +65,14 @@ public interface IRemoteDocumentRepository {
 	
 	public FileEntry addorUpdateFileEntry(String folderId, String sourceFileName, String mimeType, String title, String description) throws Exception;	
 	
-	public FileEntry addorUpdateFileEntry(BaseEntity entity, DocType attachmentType, String sourceFileName, String mimeType, String title, String description) throws Exception;
-	
 	public FileEntry addorUpdateFileEntry(String folderId, File sourceFile,String mimeType, String title, String description) throws Exception;	
-	
-	public FileEntry addorUpdateFileEntry(Folder folder, 
-			DocType attachmentType,
-			String sourceFileName, 
-			String mimeType, 
-			String title,
-			String description) throws Exception;
 	
 	public FileEntry addorUpdateFileEntryOnRepoOnly(Folder folder, 
 			DocType attachmentType,
 			String sourceFileName, 
 			String mimeType, 
 			String title,
-			String description) throws Exception;	
-	
-	public FileEntry addorUpdateFileEntry(BaseEntity entity, DocType attachmentType,
-			File source, String mimeType, String title, String description)
-			throws Exception;	
+			String description) throws Exception;		
 	
 	public FileEntry deleteFileEntryById(String folderId, String fileEntryId)  throws Exception;
 	
@@ -94,5 +83,4 @@ public interface IRemoteDocumentRepository {
 	 * @return
 	 */
 	public String getConxlogiFolderId();
-
 }

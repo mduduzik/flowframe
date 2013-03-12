@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collection;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.lineeditor.section.ILineEditorSectionContentPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.attachment.view.AttachmentEditorView;
@@ -20,6 +22,7 @@ import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.attachme
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.attachment.view.AttachmentEditorView.ISaveAttachmentListener;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.attachment.view.IAttachmentEditorView;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
+import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
@@ -56,7 +59,7 @@ public class AttachmentEditorPresenter extends BasePresenter<IAttachmentEditorVi
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	private boolean initialized = false;
 	private JPAContainer<FileEntry> entityContainer;
-	private Set<String> visibleFieldNames;
+	private Collection<String> visibleFieldNames;
 	private Folder docFolder;
 	private List<String> formVisibleFieldNames;
 	private EntityItem<FileEntry> newEntityItem;
@@ -64,6 +67,7 @@ public class AttachmentEditorPresenter extends BasePresenter<IAttachmentEditorVi
 	private IEntityContainerProvider entityContainerProvider;
 	private IDAOProvider daoProvider;
 	private EventBusManager sectionEventBusManager;
+	private VaadinPageDataBuilder pageDataBuilder;
 
 	@SuppressWarnings("unchecked")
 	private void initialize() {
@@ -80,6 +84,9 @@ public class AttachmentEditorPresenter extends BasePresenter<IAttachmentEditorVi
 		this.getView().addInspectAttachmentListener(this);
 		this.getView().setContainerDataSource(entityContainer, visibleFieldNames, formVisibleFieldNames);
 		this.getView().showContent();
+		
+		this.pageDataBuilder = new VaadinPageDataBuilder();
+		
 		this.setInitialized(true);
 	}
 
@@ -179,7 +186,7 @@ public class AttachmentEditorPresenter extends BasePresenter<IAttachmentEditorVi
 	}
 
 	public void onSaveForm(DocType attachmentType, String sourceFileName, String mimeType, String title, String description) throws Exception {
-		this.daoProvider.provideByDAOClass(IRemoteDocumentRepository.class).addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName,
+		this.daoProvider.provideByDAOClass(IFolderDAOService.class).addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName,
 				mimeType, title, description);
 		this.entityContainer.refresh();
 	}
@@ -205,7 +212,7 @@ public class AttachmentEditorPresenter extends BasePresenter<IAttachmentEditorVi
 				mimeType = "";
 			}
 
-			this.daoProvider.provideByDAOClass(IRemoteDocumentRepository.class).addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName,
+			this.daoProvider.provideByDAOClass(IFolderDAOService.class).addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName,
 					mimeType, title, description);
 			this.entityContainer.refresh();
 			// this.onEntityItemAdded((EntityItem<?>) item);

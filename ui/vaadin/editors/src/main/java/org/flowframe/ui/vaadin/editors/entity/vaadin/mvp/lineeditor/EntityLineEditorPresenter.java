@@ -15,6 +15,8 @@ import org.flowframe.ui.component.domain.note.NoteEditorComponent;
 import org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.services.factory.IComponentFactoryManager;
+import org.flowframe.ui.vaadin.common.mvp.AbstractMainApplication;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
@@ -49,6 +51,10 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 	private IPresenter<?, ? extends EventBus> preferencesPresenter;
 
 	private Item itemDataSource;
+
+	private AbstractMainApplication mainApplication;
+
+	private IComponentFactoryManager componentFactoryManager;
 
 	public EntityLineEditorPresenter() {
 		super();
@@ -146,6 +152,7 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 		this.initialized = initialized;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void configure() {
 		getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_LINE_EDITOR_SECTION_PRESENTER, this);
@@ -154,14 +161,17 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 		LineEditorContainerComponent componentModel = (LineEditorContainerComponent) config.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		ConfigurablePresenterFactory presenterFactory = (ConfigurablePresenterFactory) config.get(IComponentFactory.FACTORY_PARAM_MVP_PRESENTER_FACTORY);
 
+		this.mainApplication = (AbstractMainApplication)config.get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
+		this.componentFactoryManager = (IComponentFactoryManager)this.mainApplication.getComponentFactoryManager();
+		
 		// 1. Get LineEditor models
 		Set<LineEditorComponent> lecs = componentModel.getLineEditors();
 
 		// 2. For each, create LineEditorSection presenters
-		VaadinEntityEditorFactoryImpl entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
+		IComponentFactory entityFactory = componentFactoryManager.create(new HashMap<String,Object>(),presenterFactory);
 		Map<IPresenter<?, ? extends EventBus>, EventBus> entityMVP = null;
 		for (LineEditorComponent lec : lecs) {
-			entityMVP = entityFactory.create(lec, getConfig());
+			entityMVP = (Map<IPresenter<?, ? extends EventBus>, EventBus>) entityFactory.create(lec, getConfig());
 			if (entityMVP != null) {
 				IPresenter<?, ? extends EventBus> presenter = entityMVP.keySet().iterator().next();
 

@@ -3,8 +3,8 @@ package org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.form;
 import java.util.Map;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.lineeditor.section.ILineEditorSectionContentPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.lineeditor.section.form.header.EntityLineEditorFormHeaderEventBus;
@@ -31,16 +31,17 @@ public class EntityLineEditorFormPresenter extends BasePresenter<IEntityLineEdit
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private FormComponent formComponent;
-	private VaadinPageFactoryImpl factory;
+	private IPageFactory factory;
 	private EventBusManager sectionEventBusManager;
 	private IDAOProvider daoProvider;
 	private Map<String, Object> config;
 	private boolean isNewLineEditor;
+	private VaadinPageDataBuilder pageDataBuilder;
 
 	@Override
 	public void onSetItemDataSource(Item item, Container... container) throws Exception {
 		if (container.length == 1) {
-			VaadinPageDataBuilder.applyItemDataSource(false, this.getView().getForm(), container[0], item,
+			this.pageDataBuilder.applyItemDataSource(false, this.getView().getForm(), container[0], item,
 					this.factory.getPresenterFactory(), this.config);
 		} else {
 			throw new Exception("Could not set item datasource. Expected one container, but got " + container.length);
@@ -51,7 +52,7 @@ public class EntityLineEditorFormPresenter extends BasePresenter<IEntityLineEdit
 	public void onConfigure(Map<String, Object> params) throws Exception {
 		this.config = params;
 		this.formComponent = (FormComponent) params.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
+		this.factory = (IPageFactory) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.daoProvider = (IDAOProvider) params.get(IPageComponent.DAO_PROVIDER);
 
 		if (this.sectionEventBusManager != null) {
@@ -60,6 +61,8 @@ public class EntityLineEditorFormPresenter extends BasePresenter<IEntityLineEdit
 
 		this.getView().setForm((VaadinForm) this.factory.createComponent(this.formComponent));
 		this.getView().addListener(this);
+		
+		this.pageDataBuilder = new VaadinPageDataBuilder();
 	}
 
 	@Override
@@ -86,9 +89,9 @@ public class EntityLineEditorFormPresenter extends BasePresenter<IEntityLineEdit
 			if (this.getView().getForm().getItemDataSource() instanceof BeanItem<?>) {
 				Object bean = ((BeanItem<?>) this.getView().getForm().getItemDataSource()).getBean();
 				if (!isNewLineEditor) {
-					VaadinPageDataBuilder.saveInstance(bean, this.daoProvider);
+					this.pageDataBuilder.saveInstance(bean, this.daoProvider);
 				} else {
-					VaadinPageDataBuilder.saveNewInstance(bean, this.daoProvider, this.factory.getPresenterFactory().getEventBusManager(), this.config);
+					this.pageDataBuilder.saveNewInstance(bean, this.daoProvider, this.factory.getPresenterFactory().getEventBusManager(), this.config);
 				}
 			}
 

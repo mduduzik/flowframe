@@ -71,7 +71,12 @@ public class EntityGridPresenter extends ConfigurableBasePresenter<IEntityGridVi
 
 	private void applyRequiredFilterToContainer(String filterExpression) {
 		this.entityContainer.removeAllContainerFilters();
-		Filter defaultFilter = SPELUtil.toContainerFilter(this.mainApplication.getCurrentUser(),this.portalRoleService,filterExpression, new HashMap<String, Object>());
+		Filter defaultFilter = null;
+		if (this.tableComponent.getDataSource().isTenantWide())
+			defaultFilter = SPELUtil.toContainerFilter(filterExpression, new HashMap<String, Object>());
+		else
+			defaultFilter = SPELUtil.toContainerFilter(this.mainApplication.getCurrentUser(),this.portalRoleService,filterExpression, new HashMap<String, Object>());
+			
 		if (defaultFilter != null) {
 			this.entityContainer.addContainerFilter(defaultFilter);
 			this.entityContainer.applyFilters();

@@ -18,6 +18,8 @@ public interface IPortalUserService {
 	
 	public User provideUserByEmailAddress(String emailAddress) throws Exception;
 	
+	public User provideUserByScreenName(String screenName) throws Exception;	
+	
 	public void syncUsersFromPortal() throws Exception;
 	
 	public Boolean isAvailable() throws Exception;

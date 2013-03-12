@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IContainerItemPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IVaadinDataComponent;
@@ -28,26 +28,27 @@ import com.vaadin.ui.Component;
 
 @Presenter(view = MultiLevelEditorView.class)
 public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorView, MultiLevelEditorEventBus> implements IVaadinDataComponent, IConfigurablePresenter, IContainerItemPresenter {
-	private VaadinPageFactoryImpl factory;
+	private IPageFactory factory;
 	private MultiLevelEntityEditorComponent componentModel;
 	private Map<MasterDetailComponent, Component> editorCache;
-	private Map<MasterDetailComponent, VaadinPageFactoryImpl> factoryCache;
+	private Map<MasterDetailComponent, IPageFactory> factoryCache;
 	private Map<MasterDetailComponent, Item> itemDataSourceCache;
 	private Stack<MasterDetailComponent> editorStack;
 	private MasterDetailComponent originEditorComponent;
 	private Map<String, Object> config;
 	private ApplicationEventBus appEventBus;
+	private IPageFlowManager pageFlowManager;
 
 	@Override
 	public void onConfigure(Map<String, Object> params) {
 		this.editorCache = new HashMap<MasterDetailComponent, Component>();
-		this.factoryCache = new HashMap<MasterDetailComponent, VaadinPageFactoryImpl>();
+		this.factoryCache = new HashMap<MasterDetailComponent, IPageFactory>();
 		this.itemDataSourceCache = new HashMap<MasterDetailComponent, Item>();
 		this.editorStack = new Stack<MasterDetailComponent>();
-
 		this.config = new HashMap<String, Object>(params);
 		this.componentModel = (MultiLevelEntityEditorComponent) params.get(IComponentFactory.COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
+		this.factory = (IPageFactory) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
+		this.pageFlowManager = (IPageFlowManager) params.get(IComponentFactory.PAGE_FLOW_MANAGER);
 		@SuppressWarnings("unchecked")
 		IPresenter<?, ? extends ApplicationEventBus> appPresenter = (IPresenter<?, ? extends ApplicationEventBus>) config.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_APP_PRESENTER);
 		if (appPresenter != null) {
@@ -74,8 +75,8 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		return factoryConfig;
 	}
 
-	private VaadinPageFactoryImpl provideLocalizedFactory(MasterDetailComponent componentModel) {
-		VaadinPageFactoryImpl localizedFactory = this.factoryCache.get(componentModel);
+	private IPageFactory provideLocalizedFactory(MasterDetailComponent componentModel) {
+		IPageFactory localizedFactory = this.factoryCache.get(componentModel);
 		if (localizedFactory == null) {
 			PresenterFactory externalPresenterFactory = this.factory.getPresenterFactory(), localPresenterFactory = null;
 			EventBusManager localEventBusManager = new EventBusManager();
@@ -83,7 +84,7 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 			// bus manager
 			localEventBusManager.register(MultiLevelEditorEventBus.class, this);
 			localPresenterFactory = new PresenterFactory(localEventBusManager, externalPresenterFactory.getLocale());
-			localizedFactory = new VaadinPageFactoryImpl(adaptLocalizedFactoryConfig(this.factory.getConfig()), localPresenterFactory);
+			localizedFactory = this.pageFlowManager.getPageFactoryManager().create(config, localPresenterFactory);
 			// Store this localized factory in the cache
 			this.factoryCache.put(componentModel, localizedFactory);
 		}
@@ -122,15 +123,17 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 	public void onRenderEditor(MasterDetailComponent componentModel, Item item, Container itemContainer) throws Exception {
 		Component editorComponent = prepareEditor(componentModel);
 		this.itemDataSourceCache.put(componentModel, item);
-		VaadinPageDataBuilder.applyItemDataSource(editorComponent, itemContainer, item, provideLocalizedFactory(componentModel).getPresenterFactory(), this.config);
+		IPageFactory localizedFactory = provideLocalizedFactory(componentModel);
+		localizedFactory.getDataBuilder().applyItemDataSource(editorComponent, itemContainer, item, localizedFactory.getPresenterFactory(), this.config);
 		this.getView().setContent(editorComponent);
 	}
 
 	@Override
 	public Object getData() {
 		Component originalEditor = this.editorCache.get(this.componentModel.getContent());
-		if (originalEditor != null) {
-			return VaadinPageDataBuilder.buildResultData(originalEditor);
+		IPageFactory originalFactory = provideLocalizedFactory(this.componentModel.getContent());
+		if (originalEditor != null && originalFactory != null) {
+			return originalFactory.getDataBuilder().buildResultData(originalEditor);
 		}
 		return null;
 	}
@@ -144,8 +147,9 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		if (containers.length == 1) {
 			MasterDetailComponent mdc = getCurrentEditorComponentModel();
 			Component editorComponent = this.editorCache.get(mdc);
+			IPageFactory factory = provideLocalizedFactory(mdc);
 			this.itemDataSourceCache.put(mdc, item);
-			VaadinPageDataBuilder.applyItemDataSource(editorComponent, containers[0], item, provideLocalizedFactory(mdc).getPresenterFactory(), this.config);
+			factory.getDataBuilder().applyItemDataSource(editorComponent, containers[0], item, provideLocalizedFactory(mdc).getPresenterFactory(), this.config);
 		} else {
 			throw new Exception("Multi Level Editor supports one and only one container for onSetItemDataSource(Item, Container...)");
 		}

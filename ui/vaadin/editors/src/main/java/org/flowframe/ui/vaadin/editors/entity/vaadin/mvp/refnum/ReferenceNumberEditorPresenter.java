@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -39,7 +40,7 @@ public class ReferenceNumberEditorPresenter extends ConfigurableBasePresenter<IR
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	private boolean initialized = false;
 	// private JPAContainer<ReferenceNumber> entityContainer;
-	private Set<String> visibleFieldNames;
+	private Collection<String> visibleFieldNames;
 	// private AbstractComponent refNumEditorComponent;
 	// private EntityManager entityManager;
 	private DefaultEntityMetadata defaultMetadata;

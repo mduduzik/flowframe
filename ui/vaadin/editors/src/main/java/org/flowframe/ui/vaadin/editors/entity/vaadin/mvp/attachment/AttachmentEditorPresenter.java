@@ -165,7 +165,7 @@ public class AttachmentEditorPresenter extends ConfigurableBasePresenter<IAttach
 	}
 
 	public void onSaveForm(DocType attachmentType, String sourceFileName, String mimeType, String title, String description) throws Exception {
-		this.docRepo.addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName, mimeType, title, description);
+		//this.docRepo.addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName, mimeType, title, description);
 		this.onEntityItemAdded(null);
 	}
 	
@@ -179,7 +179,7 @@ public class AttachmentEditorPresenter extends ConfigurableBasePresenter<IAttach
 	@Override
 	public boolean onSaveAttachment(Item item, DocType attachmentType, String sourceFileName, String mimeType, String title, String description) {
 		try {
-			this.docRepo.addorUpdateFileEntry(this.docFolder, attachmentType, sourceFileName, mimeType, title, description);
+			//this.docRepo.addorUpdateFileEntry(Long.toString(this.docFolder.getFolderId()), attachmentType, sourceFileName, mimeType, title, description);
 			this.onEntityItemAdded((EntityItem<?>) item);
 			this.getView().hideDetail();
 			return true;

@@ -1,6 +1,9 @@
 package org.flowframe.ds.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -32,7 +35,7 @@ public class DataSource extends MultitenantBaseEntity {
 	private Set<String> nestedFieldNames = null;
 
 	@Transient
-	private Set<String> visibleFieldNames = null;
+	private Collection<String> visibleFieldNames = null;
 
 	@Transient
 	private String foreignKeyPath = null;
@@ -108,7 +111,7 @@ public class DataSource extends MultitenantBaseEntity {
 	public List<String> getVisibleFieldTitles() {
 		if (this.visibleFieldTitles == null) {
 			this.visibleFieldTitles = new LinkedList<String>();
-			Set<String> visibleFieldNames = getVisibleFieldNames();
+			Collection<String> visibleFieldNames = getVisibleFieldNames();
 			Map<String, DataSourceField> fieldMap = this.visibleDataSourceFieldMap;
 
 			DataSourceField dsf = null;
@@ -132,14 +135,25 @@ public class DataSource extends MultitenantBaseEntity {
 		return this.visibleFieldTitles;
 	}
 
-	public Set<String> getVisibleFieldNames() {
+	public Collection<String> getVisibleFieldNames() {
 		if (visibleFieldNames == null) {
-			visibleFieldNames = new HashSet<String>();
+			Comparator<DataSourceField> ordinalComparator = new Comparator<DataSourceField>() {
+			    @Override
+			    public int compare(DataSourceField o1, DataSourceField o2) {
+			        return (o1.getOrdinal() > o2.getOrdinal() ? 1 : (o1.getOrdinal() == o2.getOrdinal() ? 0 : -1));
+			    }
+			};
+			Set<DataSourceField> dsFields = getAllDSFields();
+			List<DataSourceField> dsFieldsList = new ArrayList<DataSourceField>(dsFields);
+			Collections.sort(dsFieldsList,ordinalComparator);
+			
+			
+			visibleFieldNames = new ArrayList<String>();
 			nestedFieldNames = new HashSet<String>();
 			visibleDataSourceFieldMap = new HashMap<String, DataSourceField>();
-			Set<DataSourceField> dsFields = getAllDSFields();
+
 			String derivedFieldName;
-			for (DataSourceField dsf : dsFields) {
+			for (DataSourceField dsf : dsFieldsList) {
 				if (!dsf.getHidden()) {
 					if (dsf.isNestedAttribute()) {
 						derivedFieldName = dsf.getJPAPath();

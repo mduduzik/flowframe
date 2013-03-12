@@ -2623,7 +2623,7 @@
 				<updatePolicy>daily</updatePolicy>
 			</snapshots>
 		</repository>
-		<repository>
+<!-- 		<repository>
 			<id>conx nexus repo</id>	
 			<url>http://conxbuild.bconv.com:8081/nexus/content/groups/public/</url>
 			<releases>
@@ -2632,7 +2632,7 @@
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>			
-		</repository>		
+		</repository>	 -->	
 		<repository>
 			<id>jboss-deprecated</id>
 			<name>JBoss Deprecated</name>

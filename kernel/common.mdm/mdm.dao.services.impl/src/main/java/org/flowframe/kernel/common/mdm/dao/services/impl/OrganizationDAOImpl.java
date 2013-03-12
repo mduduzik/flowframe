@@ -26,6 +26,8 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService;
+import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 
 @Transactional
@@ -38,6 +40,9 @@ public class OrganizationDAOImpl implements IOrganizationDAOService {
 
 	@Autowired
 	private PlatformTransactionManager globalTransactionManager;
+	
+	@Autowired
+	private IFolderDAOService folderDAOService;
 
 	/**
 	 * Spring will inject a managed JPA {@link EntityManager} into this field.
@@ -102,10 +107,57 @@ public class OrganizationDAOImpl implements IOrganizationDAOService {
 
 		return org;
 	}
+	
+	@Override
+	public Organization getByName(String name) {
+		Organization org = null;
+
+		try {
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<Organization> query = builder
+					.createQuery(Organization.class);
+			Root<Organization> rootEntity = query.from(Organization.class);
+			ParameterExpression<String> p = builder.parameter(String.class);
+			query.select(rootEntity).where(
+					builder.equal(rootEntity.get("name"), p));
+
+			TypedQuery<Organization> typedQuery = em.createQuery(query);
+			typedQuery.setParameter(p, name);
+
+			org = typedQuery.getSingleResult();
+			/*
+			 * TypedQuery<Organization> q = em.createQuery(
+			 * "select o from org.flowframe.kernel.common.mdm.domain.organization.Organization o WHERE o.code = :code"
+			 * ,Organization.class); q.setParameter("code", code);
+			 * 
+			 * org = q.getSingleResult();
+			 */
+		} catch (NoResultException e) {
+		} catch (EntityNotFoundException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+
+		return org;
+	}	
 
 	@Override
-	public Organization add(Organization record) {
-		record = em.merge(record);
+	public Organization add(Organization record) throws Exception{
+		
+		record = em.merge(record);//to get id
+		
+		Folder folder = folderDAOService.provideFolderForEntity(Organization.class, record.getId());
+		record.setDocFolder(folder);
+		
+		record = em.merge(record);//update
 
 		return record;
 	}
@@ -121,22 +173,16 @@ public class OrganizationDAOImpl implements IOrganizationDAOService {
 	}
 
 	@Override
-	public Organization provide(Organization record) {
-		Organization existingRecord = getByCode(record.getCode());
+	public Organization provide(Organization record) throws Exception {
+		Organization existingRecord = getByName(record.getName());
 		if (Validator.isNull(existingRecord)) {
-			record = update(record);
-			try {
-				// em.flush();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			existingRecord = add(record);
 		}
-		return record;
+		return existingRecord;
 	}
 
 	@Override
-	public Organization provideDefault() {
+	public Organization provideDefault() throws Exception {
 		Organization org = getByCode(DEFAULT_ORGANIZATION_CODE);
 		if (org == null) {
 			org = new Organization();

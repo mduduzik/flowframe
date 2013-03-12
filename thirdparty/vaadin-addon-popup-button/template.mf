@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Export-Package: org.vaadin.hene.popupbutton;version="1.2.1";uses:="co
  m.vaadin.terminal,com.vaadin.ui"
-Bundle-Version: 1.2.1
+Bundle-Version: 0.5.1
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: vaadin-addon-popup-button
+Bundle-SymbolicName: vaadin-addon-easyuploads
 Import-Package: com.vaadin.data;version="[6.7.4,7.0.0)",com.vaadin.dat
  a.util;version="[6.7.4,7.0.0)",com.vaadin.data.util.filter;version="[
  6.7.4,7.0.0)",com.vaadin.event;version="[6.7.4,7.0.0)",com.vaadin.ter

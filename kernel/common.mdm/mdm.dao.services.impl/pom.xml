@@ -11,6 +11,11 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.documentlibrary.remote.services</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>		

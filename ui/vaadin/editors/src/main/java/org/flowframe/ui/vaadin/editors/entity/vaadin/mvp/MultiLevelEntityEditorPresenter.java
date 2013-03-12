@@ -6,10 +6,13 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.kernel.common.mdm.domain.metamodel.AbstractManagedType;
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.services.factory.IComponentFactoryManager;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
+import org.flowframe.ui.vaadin.common.mvp.AbstractMainApplication;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.breadcrumb.EntityBreadCrumbEventBus;
@@ -54,6 +57,8 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	private IComponentFactory entityFactory;
 	private ConfigurableBasePresenter<?, ? extends EventBus> masterPresenter;
 	private ConfigurableBasePresenter<?, ? extends EventBus> headerPresenter;
+	private AbstractMainApplication mainApplication;
+	private IComponentFactoryManager componentFactoryManager;
 
 	public void onInit(EventBusManager ebm, PresenterFactory presenterFactory, MasterDetailComponent md, EntityManager em,
 			HashMap<String, Object> extraParams) {
@@ -117,6 +122,8 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 		MultiLevelEntityEditorPresenter childEditorPresenter = childEditorPresenterMap.get(componentModel);
 		if (childEditorPresenter == null) {
 			getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
+			getConfig().put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_DATA_ITEM, item);
+			
 			Map<IPresenter<?, ? extends EventBus>, EventBus> res = (Map<IPresenter<?, ? extends EventBus>, EventBus>) this.entityFactory.create(componentModel, getConfig());
 			childEditorPresenter = (MultiLevelEntityEditorPresenter) res.keySet().iterator().next();
 			childEditorPresenterMap.put(componentModel, childEditorPresenter);
@@ -170,6 +177,8 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 				.createPresenter(EntityTableFooterPresenter.class);
 		localView.setFooter((Component) footerPresenter.getView());
 
+		this.mainApplication = (AbstractMainApplication)config.get(IComponentFactory.FACTORY_PARAM_MAIN_APP);
+		this.componentFactoryManager = (IComponentFactoryManager)this.mainApplication.getComponentFactoryManager();
 		// VerticalLayout editorContainer = (VerticalLayout)
 		// getConfig().get(IEntityEditorFactory.FACTORY_PARAM_MVP_EDITOR_CONTAINER);
 		// Tab editorTab = (Tab) editorContainer.getParent();
@@ -188,7 +197,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	
 	
 	protected IComponentFactory createComponentFactory() {
-		this.entityFactory = new VaadinEntityEditorFactoryImpl(presenterFactory);
+		this.entityFactory = this.componentFactoryManager.create(new HashMap<String,Object>(), presenterFactory);//new VaadinEntityEditorFactoryImpl(presenterFactory);
 		return this.entityFactory;
 	}
 

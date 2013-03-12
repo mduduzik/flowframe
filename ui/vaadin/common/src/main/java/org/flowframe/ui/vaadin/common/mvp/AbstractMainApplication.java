@@ -20,6 +20,8 @@ import org.flowframe.ui.services.contribution.IApplicationContribution;
 import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.services.factory.IComponentFactoryManager;
+import org.flowframe.ui.services.factory.IComponentModelFactory;
 import org.flowframe.ui.services.transaction.ITransactionCompletionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +57,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	@Autowired
 	protected IPageFlowManager pageFlowEngine;
 	@Autowired
-	protected IComponentFactory componentFactory;
+	protected IComponentModelFactory componentFactory;
 	@Autowired
 	protected IEntityManagerFactoryManager emfManager;
 	@Autowired
@@ -63,6 +65,9 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	
 	@Autowired
 	protected IPortalRoleService portalRoleService;	
+	
+	@Autowired
+	private IComponentFactoryManager componentFactoryManager;
 
 	@Override
 	public void init() {
@@ -175,6 +180,14 @@ public abstract class AbstractMainApplication extends Application implements IMa
 		this.pageFlowEngine = pageFlowEngine;
 	}
 
+	public IComponentFactoryManager getComponentFactoryManager() {
+		return componentFactoryManager;
+	}
+
+	public void setComponentFactoryManager(IComponentFactoryManager componentFactoryManager) {
+		this.componentFactoryManager = componentFactoryManager;
+	}
+
 	public void setContributionManager(IUIContributionManager contributionManager) {
 		this.contributionManager = contributionManager;
 	}
@@ -210,7 +223,7 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	}
 
 	@Override
-	public IComponentFactory getComponentFactory() {
+	public IComponentModelFactory getComponentFactory() {
 		return this.componentFactory;
 	}
 

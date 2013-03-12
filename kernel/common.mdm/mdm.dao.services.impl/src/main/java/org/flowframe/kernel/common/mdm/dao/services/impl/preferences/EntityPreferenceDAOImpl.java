@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
 import org.flowframe.kernel.common.mdm.dao.services.preferences.IEntityPreferenceDAOService;
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreference;
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem;
+import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItemOption;
 
 public class EntityPreferenceDAOImpl implements IEntityPreferenceDAOService {
 
@@ -113,6 +114,72 @@ public class EntityPreferenceDAOImpl implements IEntityPreferenceDAOService {
 	@Override
 	public EntityPreferenceItem updateItem(EntityPreferenceItem record) {
 		return em.merge(record);
+	}
+
+	@Override
+	public EntityPreferenceItemOption addOption(EntityPreferenceItemOption record) {
+		return em.merge(record);
+	}
+
+	@Override
+	public EntityPreferenceItemOption getOptionByCode(String code) {
+		EntityPreferenceItemOption option = null;
+
+		try {
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<EntityPreferenceItemOption> query = builder.createQuery(EntityPreferenceItemOption.class);
+			Root<EntityPreferenceItemOption> rootEntity = query.from(EntityPreferenceItemOption.class);
+			ParameterExpression<String> p = builder.parameter(String.class);
+			query.select(rootEntity).where(builder.equal(rootEntity.get("code"), p));
+
+			TypedQuery<EntityPreferenceItemOption> typedQuery = em.createQuery(query);
+			typedQuery.setParameter(p, code);
+
+			option = typedQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+
+		return option;
+	}
+
+	@Override
+	public EntityPreferenceItemOption getOptionByName(String name) {
+		EntityPreferenceItemOption option = null;
+
+		try {
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<EntityPreferenceItemOption> query = builder.createQuery(EntityPreferenceItemOption.class);
+			Root<EntityPreferenceItemOption> rootEntity = query.from(EntityPreferenceItemOption.class);
+			ParameterExpression<String> p = builder.parameter(String.class);
+			query.select(rootEntity).where(builder.equal(rootEntity.get("name"), p));
+
+			TypedQuery<EntityPreferenceItemOption> typedQuery = em.createQuery(query);
+			typedQuery.setParameter(p, name);
+
+			option = typedQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+
+		return option;
+	}
+
+	@Override
+	public void deleteOption(EntityPreferenceItemOption record) {
+		em.remove(record);
+	}
+
+	@Override
+	public EntityPreferenceItemOption updateOption(EntityPreferenceItemOption record) {
+		return em.merge(record);
+	}
+
+	@Override
+	public EntityPreferenceItemOption provideOption(EntityPreferenceItemOption record) {
+		EntityPreferenceItemOption option = getOptionByCode(record.getCode());
+		if (option == null)
+			return addOption(record);
+		else
+			return option;
 	}
 
 }

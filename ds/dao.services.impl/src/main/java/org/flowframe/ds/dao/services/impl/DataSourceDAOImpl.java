@@ -78,7 +78,7 @@ public class DataSourceDAOImpl implements IDataSourceDAOService {
 	@Override
 	public List<DataSourceField> getFields(DataSource parentDataSource) {
 		TypedQuery<DataSourceField> q = em.createQuery(
-				"select o from org.flowframe.ds.domain.DataSourceField o WHERE o.parentDataSource = :parentDataSource",
+				"select o from org.flowframe.ds.domain.DataSourceField o WHERE o.parentDataSource = :parentDataSource order by o.ordinal",
 				DataSourceField.class);
 		q.setParameter("parentDataSource", parentDataSource);
 		return q.getResultList();

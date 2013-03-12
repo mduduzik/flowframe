@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Export-Package: org.vaadin.teemu.wizards;version="0.4.4";uses:="com.va
+ adin.terminal,com.vaadin.ui,org.vaadin.teemu.wizards.event,org.vaadin
+ .teemu.wizards.event.custom",org.vaadin.teemu.wizards.client.ui;versi
+ on="0.4.4";uses:="com.google.gwt.user.client.ui,com.vaadin.terminal.g
+ wt.client",org.vaadin.teemu.wizards.event;version="0.4.4";uses:="com.
+ vaadin.ui,org.vaadin.teemu.wizards",org.vaadin.teemu.wizards.event.cu
+ stom;version="0.4.4";uses:="com.vaadin.ui,org.vaadin.teemu.wizards"
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: vaadin-addon-wizard
+Import-Package: com.vaadin.data;version="[6.7.4,7.0.0)",com.vaadin.dat
+ a.util;version="[6.7.4,7.0.0)",com.vaadin.data.util.filter;version="[
+ 6.7.4,7.0.0)",com.vaadin.event;version="[6.7.4,7.0.0)",com.vaadin.ter
+ minal;version="[6.7.4,7.0.0)",com.vaadin.terminal.gwt.client;version=
+ "[6.7.4,7.0.0)",com.vaadin.terminal.gwt.client.ui;version="[6.7.4,7.0
+ .0)",com.vaadin.ui;version="[6.7.4,7.0.0)",javax.xml.bind;version="0"
+ ,javax.xml.bind.annotation.adapters;version="0",javax.xml.datatype;ve
+ rsion="0",javax.xml.namespace;version="0",javax.xml.parsers;version="
+ 0",javax.xml.transform;version="0",javax.xml.transform.dom;version="0
+ ",javax.xml.transform.stream;version="0",org.apache.commons.lang;vers
+ ion="[2.0,3.0)",org.w3c.dom;version="0",org.xml.sax;version="0"
+Archiver-Version: Plexus Archiver
+

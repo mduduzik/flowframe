@@ -1,5 +1,6 @@
 package org.flowframe.kernel.common.mdm.dao.services.impl.documentlibrary;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -10,11 +11,14 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
+import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
@@ -27,7 +31,10 @@ public class FolderDAOImpl implements IFolderDAOService {
 	 * Spring will inject a managed JPA {@link EntityManager} into this field.
 	 */
 	@PersistenceContext
-	private EntityManager em;
+	protected EntityManager em;
+	
+	@Autowired
+	protected IRemoteDocumentRepository remoteDocumentRepository;
 
 	public void setEm(EntityManager em) {
 		this.em = em;
@@ -51,6 +58,8 @@ public class FolderDAOImpl implements IFolderDAOService {
 			return (Folder) query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -62,8 +71,25 @@ public class FolderDAOImpl implements IFolderDAOService {
 			return (Folder) query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
+	
+	private Folder getByFolderIdAndName(Long folderId, String name)  {
+		try {
+			Query query = em
+					.createQuery("select o from org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder o WHERE o.folderId = :folderId AND o.name = :name");
+			query.setParameter("folderId", folderId);
+			query.setParameter("name", name);
+			return (Folder) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+	}	
 
 	@Override
 	public Folder getByFolderIdOrName(Long folderId, String name) {
@@ -88,9 +114,17 @@ public class FolderDAOImpl implements IFolderDAOService {
 
 	@Override
 	public Folder add(Folder record) {
-		record = em.merge(record);
+		Folder res = null;
+		if ((res = getByFolderIdAndName(record.getFolderId(), record.getName())) == null) {
+			res = new Folder();
 
-		return record;
+			res.setFolderId(record.getFolderId());
+			res.setName(record.getName());
+		}		
+
+		res = em.merge(record);
+		
+		return res;
 	}
 
 	@Override
@@ -105,44 +139,66 @@ public class FolderDAOImpl implements IFolderDAOService {
 
 	@Override
 	public Folder provide(Folder record) {
-		Folder existingRecord = getByFolderIdOrName(record.getFolderId(), record.getName());
-		if (Validator.isNull(existingRecord)) {
-			record = update(record);
-		}
-		return record;
+		return add(record);
 	}
 
 	@Override
 	public Folder provide(Long folderId, String name) {
-		Folder res = null;
-		if ((res = getByFolderIdOrName(folderId, name)) == null) {
-			Folder unit = new Folder();
+		Folder folder = new Folder();
 
-			unit.setFolderId(folderId);
-			unit.setName(name);
+		folder.setFolderId(folderId);
+		folder.setName(name);		
 
-			res = add(unit);
-		}
-		return res;
+		return add(folder);
 	}
+	
+	@Override
+	public Folder provideFolderByJavaTypeName(String folderName) throws Exception {
+		// -- Create remote
+		Folder fldr = remoteDocumentRepository.addFolder(folderName, "Attachments for Record[" + folderName + "]");
+
+		// -- Create local
+		fldr.setName(folderName);
+		fldr = provide(fldr);
+		return fldr;
+	}	
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Folder provideFolderForEntity(Class entityJavaClass, Long entityId) throws Exception {
+		String st = entityJavaClass.getSimpleName();
+		String folderName = st + "-" + entityId;
+
+		return provideFolderByJavaTypeName(folderName);
+	}	
 
 	@Override
 	public void provideDefaults() {
 	}
+	
+	/**
+	 * 
+	 * FileEntry
+	 * 
+	 */
+	private FileEntry getFileEntryByFileEntryId(Long fileEntryId) throws Exception {
+		try {
+			Query query = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry o WHERE o.fileEntryId = :fileEntryId");
+			query.setParameter("fileEntryId", fileEntryId);
+			return (FileEntry) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}	
 
 	@Override
 	public FileEntry addFileEntry(Long folderId, DocType attachmentType, FileEntry fileEntry) {
 		Folder res = getByFolderIdOrName(folderId, null);
-		if (res != null) {
-			attachmentType = em.merge(attachmentType);
-			fileEntry.setDocType(attachmentType);
-			fileEntry.setFolder(res);
-			fileEntry = em.merge(fileEntry);
-			res.getFiles().add(fileEntry);
-			res = em.merge(res);
-			return fileEntry;
-		}
-		return null;
+		fileEntry.setFolder(res);
+		attachmentType = em.merge(attachmentType);
+		fileEntry.setDocType(attachmentType);	
+		fileEntry = em.merge(fileEntry);
+		return fileEntry;
 	}
 
 	@Override
@@ -169,4 +225,31 @@ public class FolderDAOImpl implements IFolderDAOService {
 		}
 		return getByFolderIdOrName(folderId, null);
 	}
+	
+
+	@Override
+	public FileEntry addorUpdateFileEntry(BaseEntity entity, DocType attachmentType, File sourceFile, String mimeType, String title,
+			String description) throws Exception {
+		FileEntry fe = null;
+		Folder df = entity.getDocFolder();//remoteDocumentRepository.provideFolderForEntity(entity).getDocFolder();
+
+		fe = remoteDocumentRepository.addorUpdateFileEntry(Long.toString(df.getFolderId()), sourceFile, mimeType, title, description);
+
+		if (getFileEntryByFileEntryId(fe.getFileEntryId()) == null)
+			fe = addFileEntry(df.getFolderId(), attachmentType, fe);
+/*		else
+			fe = em.merge(fe);*/
+
+		return fe;
+	}
+
+	@Override
+	public FileEntry addorUpdateFileEntry(Folder folder, DocType attachmentType, String sourceFileName, String mimeType, String title,
+			String description) throws Exception {
+		FileEntry fe = remoteDocumentRepository.addorUpdateFileEntryOnRepoOnly(folder, attachmentType, sourceFileName, mimeType, title, description);
+
+		fe = addFileEntry(folder.getFolderId(), attachmentType, fe);
+
+		return fe;
+	}	
 }

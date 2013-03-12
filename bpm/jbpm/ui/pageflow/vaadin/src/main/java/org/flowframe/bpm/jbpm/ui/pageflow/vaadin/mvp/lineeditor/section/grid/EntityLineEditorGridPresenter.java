@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.lineeditor.section.ILineEditorSectionContentPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor.multilevel.MultiLevelEditorEventBus;
@@ -50,11 +50,12 @@ public class EntityLineEditorGridPresenter extends BasePresenter<IEntityLineEdit
 	private IEntityTypeDAOService entityTypeDao;
 	private Class<?> entityClass;
 	private PluralAttribute gridAttribute;
-	private VaadinPageFactoryImpl factory;
+	private IPageFactory factory;
 	private Object bean;
 	private Item selectedItem;
 	private EventBusManager sectionEventBusManager;
 	private IDAOProvider daoProvider;
+	private VaadinPageDataBuilder pageDataBuilder;
 
 	private void initialize() {
 		String[] visibleFieldNames = this.tableComponent.getDataSource().getVisibleFieldNames().toArray(new String[0]);
@@ -147,7 +148,7 @@ public class EntityLineEditorGridPresenter extends BasePresenter<IEntityLineEdit
 	public void onConfigure(Map<String, Object> params) {
 		this.tableComponent = (GridComponent) params.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.mainApplication = (IEntityContainerProvider) params.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
-		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
+		this.factory = (IPageFactory) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.daoProvider = (IDAOProvider) params.get(IPageComponent.DAO_PROVIDER);
 		this.entityTypeDao = (IEntityTypeDAOService) params.get(IPageComponent.ENTITY_TYPE_DAO_SERVICE);
 
@@ -163,6 +164,8 @@ public class EntityLineEditorGridPresenter extends BasePresenter<IEntityLineEdit
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		this.pageDataBuilder = new VaadinPageDataBuilder();
 	}
 
 	public void onDelete(Item item) throws Exception {
@@ -211,7 +214,7 @@ public class EntityLineEditorGridPresenter extends BasePresenter<IEntityLineEdit
 
 	public void onCreate() throws Exception {
 		if (this.tableComponent.getRecordEditor() != null) {
-			Object newInstance = VaadinPageDataBuilder.saveInstance(this.entityClass.newInstance(), this.daoProvider, this.bean);
+			Object newInstance = this.pageDataBuilder.saveInstance(this.entityClass.newInstance(), this.daoProvider, this.bean);
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			Item item = ((BeanItemContainer) this.entityContainer).addBean(newInstance);
 			MultiLevelEditorEventBus eventBus = this.factory.getPresenterFactory().getEventBusManager()

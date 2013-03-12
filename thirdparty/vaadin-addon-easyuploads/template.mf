@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: vaadin-addon-easyuploads
+Import-Package:   
+  com.vaadin;version="[6.7.4,7.0.0)",
+  com.vaadin.data;version="[6.7.4,7.0.0)",
+  com.vaadin.event;version="[6.7.4,7.0.0)",
+  com.vaadin.event.dd;version="[6.7.4,7.0.0)",
+  com.vaadin.event.dd.acceptcriteria;version="[6.7.4,7.0.0)",
+  com.vaadin.service;version="[6.7.4,7.0.0)",
+  com.vaadin.terminal;version="[6.7.4,7.0.0)",
+  com.vaadin.terminal.gwt.client;version="[6.7.4,7.0.0)",
+  com.vaadin.terminal.gwt.client.ui;version="[6.7.4,7.0.0)",
+  com.vaadin.terminal.gwt.client.ui.dd;version="[6.7.4,7.0.0)",
+  com.vaadin.terminal.gwt.server;version="[6.7.4,7.0.0)",
+  com.vaadin.ui;version="[6.7.4,7.0.0)"
+Excluded-Imports: com.google.gwt.core.client,
+  com.google.gwt.dom.client,
+  com.google.gwt.event.dom.client,
+  com.google.gwt.event.shared,
+  com.google.gwt.user.client,
+  com.google.gwt.user.client.ui,
+  com.google.gwt.xhr.client
+Excluded-Exports: 
+  VAADIN.*
+Archiver-Version: Plexus Archiver

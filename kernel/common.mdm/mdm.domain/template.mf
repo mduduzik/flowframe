@@ -5,6 +5,8 @@ Bundle-SymbolicName: org.flowframe.kernel.common.mdm.domain
 Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Export-Template: org.flowframe.kernel.common.mdm.domain.*;version="0.0.1",
  org.flowframe.kernel.common.mdm.constants;version="0.0.1"
+Import-Package: 
+  org.apache.commons.beanutils;version="[1.8,2.0.0)"
 Excluded-Imports:  org.flowframe.kernel.common.utils,
   javax.persistence,
   javax.persistence.metamodel,

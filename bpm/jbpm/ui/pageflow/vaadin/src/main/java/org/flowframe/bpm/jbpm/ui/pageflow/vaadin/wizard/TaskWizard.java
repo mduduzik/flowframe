@@ -13,6 +13,7 @@ import javax.transaction.UserTransaction;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.BasePageFlowPage;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryManager;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowSession;
@@ -20,9 +21,10 @@ import org.flowframe.bpm.jbpm.ui.pageflow.services.ITaskWizard;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.event.IPageFlowPageChangedEventHandler;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.event.IPageFlowPageChangedListener;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.event.PageFlowPageChangedEvent;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.container.VaadinBeanItemContainer;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.form.container.VaadinJPAContainer;
+import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.factory.VaadinPageFactoryImpl;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
@@ -33,6 +35,7 @@ import org.flowframe.ui.vaadin.addons.wizards.event.WizardCompletedEvent;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.entityprovider.jta.CustomNonCachingMutableLocalEntityProvider;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
+import org.flowframe.ui.vaadin.common.ui.dialog.ConfirmDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -52,8 +55,8 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	private IPageFlowManager engine;
 
 	private HashMap<IPageFlowPage, IPageComponent> pageComponentMap;
-	private VaadinPageFactoryImpl pageFactory;
-	private Feature onCompletionCompletionFeature, feature;
+	private IPageFactoryManager pageFactoryManager;
+	private Feature onCompletionFeature, feature;
 	private final Set<IPageFlowPageChangedListener> pageFlowPageChangedListenerCache = Collections.synchronizedSet(new HashSet<IPageFlowPageChangedListener>());
 
 	private boolean nextButtonBlocked = false;
@@ -67,6 +70,8 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 
 	private IPresenter<?, ?> appPresenter;
 
+	private IPageFactory pageFactory;
+
 	public TaskWizard(IPageFlowSession session) {
 		this.session = session;
 		this.engine = session.getPageFlowEngine();
@@ -75,7 +80,8 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 
 		HashMap<String, Object> config = new HashMap<String, Object>();
 		config.put(IComponentFactory.CONTAINER_PROVIDER, this);
-		this.pageFactory = new VaadinPageFactoryImpl(config);
+		this.pageFactoryManager = this.engine.getPageFactoryManager();
+		this.pageFactory = this.pageFactoryManager.create(config, null);
 
 		getNextButton().setImmediate(true);
 		getBackButton().setImmediate(true);
@@ -91,16 +97,14 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 		this.appPresenter = (IPresenter<?, ?>) properties.get("appPresenter");
 		this.pageComponentMap = new HashMap<IPageFlowPage, IPageComponent>();
 		this.feature = (Feature) properties.get("feature");
-		if (feature != null) {
-			this.onCompletionCompletionFeature = this.feature.getOnCompletionFeature();
-		}
+		this.onCompletionFeature = (Feature) properties.get("onCompletionFeature");
 
 		HashMap<String, Object> config = new HashMap<String, Object>();
 		config.put(IComponentFactory.CONTAINER_PROVIDER, this);
 		if (properties != null) {
 			config.putAll(properties);
 		}
-		this.pageFactory = new VaadinPageFactoryImpl(config);
+		this.pageFactory = this.engine.getPageFactoryManager().create(config, null);
 
 		getNextButton().setImmediate(true);
 		getBackButton().setImmediate(true);
@@ -214,19 +218,46 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 		}
 
 		if (isLastStep) {
-			fireEvent(new WizardCompletedEvent(this));
-			if (this.appPresenter instanceof IPresenter<?, ?>) {
-				if (this.appPresenter.getEventBus() instanceof ApplicationEventBus) {
-					if (this.onCompletionCompletionFeature != null) {
-						((ApplicationEventBus) this.appPresenter.getEventBus()).openFeatureView(this.onCompletionCompletionFeature);
-						((ApplicationEventBus) this.appPresenter.getEventBus()).closeFeatureView(this.feature);
-					}
-				}
-			}
+			completeTaskAndFinish();
 		} else {
 			int currentIndex = steps.indexOf(currentStep);
 			activateStep(steps.get(currentIndex + 1));
 		}
+	}
+
+	private void completeTaskAndFinish() {
+		fireEvent(new WizardCompletedEvent(this));
+		if (this.appPresenter instanceof IPresenter<?, ?>) {
+			if (this.appPresenter.getEventBus() instanceof ApplicationEventBus) {
+				if (this.onCompletionFeature != null) {
+					((ApplicationEventBus) this.appPresenter.getEventBus()).openFeatureView(this.onCompletionFeature);
+					((ApplicationEventBus) this.appPresenter.getEventBus()).closeFeatureView(this.feature);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void cancel() {
+		ConfirmDialog.show(getWindow(), "Are you sure?",
+		        new ConfirmDialog.Listener() {
+		            public void onClose(ConfirmDialog dialog) {
+		                if (dialog.isConfirmed()) {
+			                try {
+			                	TaskWizard.this.engine.abortTaskWizard(TaskWizard.this, null);
+			        		} catch (Exception e) {
+			        			e.printStackTrace();
+			        			getWindow().showNotification("There was an unexpected error on cancelling this task", "</br>Try to continue again. If the problem persists, contact your Administrator",
+			        					Notification.TYPE_ERROR_MESSAGE);
+			        			return;
+			        		}	
+			    			completeTaskAndFinish();		                
+		                } else {
+		                    // User did not confirm
+							// CANCEL STUFF
+		                }
+		            }
+		        });		
 	}
 
 	@Override

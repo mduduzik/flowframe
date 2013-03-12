@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IContainerItemPresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.ILocalizedEventSubscriber;
@@ -48,11 +48,12 @@ public class EditorGridPresenter extends
 	private IEntityTypeDAOService entityTypeDao;
 	private Class<?> entityClass;
 	private PluralAttribute gridAttribute;
-	private VaadinPageFactoryImpl factory;
+	private IPageFactory factory;
 	private Object bean;
 	private Item selectedItem;
 	private EventBusManager sectionEventBusManager;
 	private IDAOProvider daoProvider;
+	private VaadinPageDataBuilder pageDataBuilder;
 
 	private void initialize() {
 		String[] visibleFieldNames = this.tableComponent.getDataSource()
@@ -63,6 +64,8 @@ public class EditorGridPresenter extends
 		this.getView().setVisibleColumns(visibleFieldNames);
 		this.getView().addEditListener(this);
 		this.getView().addSelectListener(this);
+		
+		this.pageDataBuilder = new VaadinPageDataBuilder();
 
 		// -- Done
 		this.setInitialized(true);
@@ -158,7 +161,7 @@ public class EditorGridPresenter extends
 				.get(IComponentFactory.FACTORY_PARAM_MVP_COMPONENT_MODEL);
 		this.mainApplication = (IEntityContainerProvider) params
 				.get(IPageComponent.ENTITY_CONTAINER_PROVIDER);
-		this.factory = (VaadinPageFactoryImpl) params
+		this.factory = (IPageFactory) params
 				.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.daoProvider = (IDAOProvider) params
 				.get(IPageComponent.DAO_PROVIDER);
@@ -213,7 +216,7 @@ public class EditorGridPresenter extends
 
 	private void doCreate() throws InstantiationException,
 			IllegalAccessException, Exception {
-		Object newInstance = VaadinPageDataBuilder.saveInstance(
+		Object newInstance = this.pageDataBuilder.saveInstance(
 				this.entityClass.newInstance(), this.daoProvider, this.bean);
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		Item item = ((BeanItemContainer) this.entityContainer)

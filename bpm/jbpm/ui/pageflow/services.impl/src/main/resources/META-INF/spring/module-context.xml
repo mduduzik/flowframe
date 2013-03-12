@@ -16,5 +16,6 @@
 		<property name="globalTransactionManager" ref="globalTransManager"></property>
 		<property name="jndiTemplate" ref="tmJndiTemplate"/>
 		<property name="userTransaction" ref="userTransaction"/>
+		<property name="pageFactoryManager" ref="pageFactoryManager"/>
 	</bean>
 </beans>

@@ -1,9 +1,7 @@
 package org.flowframe.documentlibrary.remote.services.impl;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -15,7 +13,6 @@ import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -36,12 +33,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.impl.conn.SchemeRegistryFactory;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.SyncBasicHttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.util.EntityUtils;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
-import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
@@ -51,7 +45,6 @@ import org.flowframe.kernel.common.utils.HTTPUtil;
 import org.flowframe.kernel.common.utils.StringUtil;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,8 +81,8 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	public static String port;
 	public static String loginGroupId;
 
-	@Autowired
-	private IFolderDAOService folderDAOService;
+	//@Autowired
+	//private IFolderDAOService folderDAOService;
 
 	@Autowired
 	private IEntityTypeDAOService entityTypeDAOService;
@@ -365,6 +358,11 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		}
 
 		return response;
+	}
+	
+	@Override
+	public Folder addFolder(String name, String description) throws Exception {
+		return addFolder(fflogiFolderId,name,description);
 	}
 
 	@Override
@@ -672,7 +670,8 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return fldr;
 	}
 
-	private Folder ensureFolderByName(String parentFolderId, String folderName) throws Exception {
+	@Override
+	public Folder ensureFolderByName(String parentFolderId, String folderName) throws Exception {
 		Folder res = getFolderByName(parentFolderId, folderName);
 		if (Validator.isNull(res)) {
 			res = addFolder(parentFolderId, folderName, folderName);
@@ -680,60 +679,6 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return res;
 	}
 
-	private Folder provideFolderByJavaTypeName(String folderName) throws Exception {
-		// -- Create remote
-		Folder fldr = addFolder(fflogiFolderId, folderName, "Attachments for Record[" + folderName + "]");
-
-		// -- Create local
-		fldr.setName(folderName);
-		fldr = folderDAOService.provide(fldr);
-		return fldr;
-	}
-
-	@SuppressWarnings("rawtypes")
-	@Override
-	public Folder provideFolderForEntity(Class entityJavaClass, Long entityId) throws Exception {
-		String st = entityJavaClass.getSimpleName();
-		String folderName = st + "-" + entityId;
-
-		return provideFolderByJavaTypeName(folderName);
-	}
-
-	@Override
-	public FileEntry addorUpdateFileEntry(BaseEntity entity, DocType attachmentType, String sourceFileName, String mimeType, String title,
-			String description) throws Exception {
-		FileEntry fe = null;
-		Folder df = entity.getDocFolder();
-
-		fe = addorUpdateFileEntry(Long.toString(df.getFolderId()), sourceFileName, mimeType, title, description);
-
-		fe = folderDAOService.addFileEntry(df.getFolderId(), attachmentType, fe);
-
-		return fe;
-	}
-
-	@Override
-	public FileEntry addorUpdateFileEntry(BaseEntity entity, DocType attachmentType, File sourceFile, String mimeType, String title,
-			String description) throws Exception {
-		FileEntry fe = null;
-		Folder df = provideFolderForEntity(entity).getDocFolder();
-
-		fe = addorUpdateFileEntry(Long.toString(df.getFolderId()), sourceFile, mimeType, title, description);
-
-		fe = folderDAOService.addFileEntry(df.getFolderId(), attachmentType, fe);
-
-		return fe;
-	}
-
-	@Override
-	public FileEntry addorUpdateFileEntry(Folder folder, DocType attachmentType, String sourceFileName, String mimeType, String title,
-			String description) throws Exception {
-		FileEntry fe = addorUpdateFileEntryOnRepoOnly(folder, attachmentType, sourceFileName, mimeType, title, description);
-
-		fe = folderDAOService.addFileEntry(folder.getFolderId(), attachmentType, fe);
-
-		return fe;
-	}
 
 	@Override
 	public FileEntry addorUpdateFileEntryOnRepoOnly(Folder folder, DocType attachmentType, String sourceFileName, String mimeType,
@@ -750,11 +695,13 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		EntityType entityType = this.entityTypeDAOService.provide(entity.getClass());
 		assert (entityType != null) : "Could not provide an EntityType for this entity";
 		Folder newFolder = this.provideFolderForEntity(entityType, entity.getId());
-		newFolder = em.merge(newFolder);
+		//newFolder = em.merge(newFolder);
 		assert (newFolder != null) : "Could not create a folder for this entity";
 		entity.setDocFolder(newFolder);
 		
-		return em.merge(entity);
+		entity = em.merge(entity);
+		
+		return entity;
 	}
 
 	public IEntityTypeDAOService getEntityTypeDAOService() {

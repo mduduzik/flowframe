@@ -68,6 +68,16 @@ public abstract class MultiFeatureView extends TabSheet implements IFeatureView 
 				this.setSelectedTab(featureTab);
 		}
 	}
+	
+	
+	public void closeFeature(Feature feature) {
+		Tab featureTab = this.featureMap.get(feature);
+		if (featureTab != null)
+		{
+			removeTab(featureTab);
+			this.featureMap.remove(feature);
+		}
+	}	
 
 
 

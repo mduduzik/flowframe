@@ -191,7 +191,7 @@ public abstract class BaseEntity
     protected String repositoryid;
     
     @XmlTransient
-    @ManyToOne(targetEntity = Folder.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = Folder.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn
     private Folder docFolder;
     

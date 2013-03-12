@@ -45,4 +45,6 @@
     <inherits name="org.flowframe.ui.vaadin.addons.common.gwt.CommonWidgetset" />
 
     <inherits name="org.flowframe.ui.vaadin.addons.wizards.WizardsforvaadinWidgetset" />
+
+    <inherits name="org.vaadin.easyuploads.EasyuploadsWidgetset" />
 </module>

@@ -27,10 +27,10 @@
 			<props>
 				<prop key="user">root</prop>
 				<prop key="password">root</prop>
-				<prop key="databaseName">flowframe</prop>
+				<prop key="databaseName">conxbitest</prop>
 				<prop key="serverName">localhost</prop>
 				<prop key="portNumber">3306</prop>
-				<prop key="url">jdbc:mysql://localhost/flowframe?autoReconnect=true</prop>
+				<prop key="url">jdbc:mysql://localhost/conxbitest?autoReconnect=true</prop>
 			</props>
 		</property>
 	</bean>

@@ -28,10 +28,18 @@ public interface IPageFlowManager {
 	 */
 	public ITaskWizard createTaskWizard(IPresenter<?, ? extends EventBus> appPresenter, String processId, String userId, Feature onCompletionFeature, IMainApplication app) throws Exception;
 	/**
+	 * Given a params
+	 */
+	public ITaskWizard createTaskWizard(Map<String,Object> params) throws Exception;
+	
+	/**
 	 * Given a TaskDefinition and UserId, createPageFlowSession
 	 */
-	public ITaskWizard executeTaskWizard(ITaskWizard tw, Object data) throws Exception;	
-	
+	public ITaskWizard executeTaskWizard(ITaskWizard tw, Object data) throws Exception;
+	/**
+	 * 
+	 */
+	public ITaskWizard abortTaskWizard(ITaskWizard tw, Object data) throws Exception;	
 	/**
 	 * 
 	 */
@@ -66,4 +74,5 @@ public interface IPageFlowManager {
 	 * 
 	 */
 	public Map<String,IPageFlowPage> getPagesByProcessId(String processId);
+	public IPageFactoryManager getPageFactoryManager();
 }

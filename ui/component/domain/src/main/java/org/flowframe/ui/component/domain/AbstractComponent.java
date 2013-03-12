@@ -1,6 +1,8 @@
 package org.flowframe.ui.component.domain;
 
 import java.util.Set;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -253,7 +255,7 @@ public class AbstractComponent extends MultitenantBaseEntity implements Sizeable
 	public Set<String> getVisiblePropertyIds()
 	{
 		DataSource ds = getDataSource();
-		Set<String> visiblePropertyids = ds.getVisibleFieldNames();
-		return visiblePropertyids;
+		Collection<String> visiblePropertyids = ds.getVisibleFieldNames();
+		return new HashSet<String>(visiblePropertyids);
 	}	
 }

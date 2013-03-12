@@ -11,6 +11,7 @@ import java.util.Set;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.utils.StringUtil;
 import org.flowframe.ui.vaadin.forms.FormMode;
+import org.flowframe.ui.vaadin.forms.listeners.IAttachmentFormChangeListener;
 
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerItem;
@@ -47,6 +48,7 @@ public class VaadinAttachmentForm extends Form implements Receiver {
 	private Upload upload;
 	private Property.ValueChangeListener listener;
 	private Set<Property.ValueChangeListener> subscribers;
+	private Set<IAttachmentFormChangeListener> attachmentListeners;
 
 	protected String sourceFileName;
 	protected String mimeType;
@@ -69,6 +71,7 @@ public class VaadinAttachmentForm extends Form implements Receiver {
 		this.upload = new Upload();
 		this.fileDescription = new TextArea();
 		this.subscribers = new HashSet<Property.ValueChangeListener>();
+		this.attachmentListeners = new HashSet<IAttachmentFormChangeListener>();
 		this.listener = new ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -88,6 +91,14 @@ public class VaadinAttachmentForm extends Form implements Receiver {
 	public void removeListener(Property.ValueChangeListener listener) {
 		this.subscribers.remove(listener);
 	}
+	
+	public void addListener(IAttachmentFormChangeListener listener) {
+		this.attachmentListeners.add(listener);
+	}	
+	
+	public void removeListener(IAttachmentFormChangeListener listener) {
+		attachmentListeners.remove(listener);
+	}		
 
 	private void onFormChanged(Property.ValueChangeEvent event) {
 		for (Property.ValueChangeListener subscriber : subscribers) {
@@ -297,6 +308,10 @@ public class VaadinAttachmentForm extends Form implements Receiver {
 		}
 
 		setTempSourceFile(tempFile.getAbsolutePath());
+		
+		for (IAttachmentFormChangeListener attachmentListener : attachmentListeners) {
+			attachmentListener.onFileUploadAvailable(tempFile.getAbsolutePath());
+		}		
 
 		return fos;
 	}

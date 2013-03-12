@@ -3,8 +3,8 @@ package org.flowframe.bpm.jbpm.ui.pageflow.vaadin.mvp.editor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.builder.VaadinPageFactoryImpl;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.grid.VaadinMatchGrid;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.ext.mvp.IContainerItemPresenter;
@@ -46,9 +46,10 @@ public class MasterSectionPresenter extends BasePresenter<IMasterSectionView, Ma
 	private IPresenter<?, ? extends EventBus> headerPresenter;
 	private IPresenter<?, ? extends EventBus> contentPresenter;
 	private AbstractComponent componentModel;
-	private VaadinPageFactoryImpl factory;
+	private IPageFactory factory;
 	private EventBusManager sectionEventBusManager;
 	private Map<String, Object> config;
+	private VaadinPageDataBuilder pageDataBuilder;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onAddNewBeanItem(Object newBean) throws Exception {
@@ -78,7 +79,7 @@ public class MasterSectionPresenter extends BasePresenter<IMasterSectionView, Ma
 	public void onConfigure(Map<String, Object> params) throws Exception {
 		this.config = params;
 		this.componentModel = (AbstractComponent) params.get(IComponentFactory.COMPONENT_MODEL);
-		this.factory = (VaadinPageFactoryImpl) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
+		this.factory = (IPageFactory) params.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		// This map is used for shallow copying the parameters for child
 		// components
 		HashMap<String, Object> childParams = null;
@@ -156,6 +157,8 @@ public class MasterSectionPresenter extends BasePresenter<IMasterSectionView, Ma
 				this.getView().setContent(contentComponent);
 			}
 		}
+		
+		this.pageDataBuilder = new VaadinPageDataBuilder();
 	}
 
 	@Override
@@ -169,7 +172,7 @@ public class MasterSectionPresenter extends BasePresenter<IMasterSectionView, Ma
 		} else {
 			if (this.getView().getContent() != null) {
 				if (containers.length == 1) {
-					VaadinPageDataBuilder.applyItemDataSource(this.getView().getContent(), containers[0], item,
+					this.pageDataBuilder.applyItemDataSource(this.getView().getContent(), containers[0], item,
 							this.factory.getPresenterFactory(), this.config);
 				} else {
 					throw new Exception("One container is needed to set item datasource with a content presenter.");

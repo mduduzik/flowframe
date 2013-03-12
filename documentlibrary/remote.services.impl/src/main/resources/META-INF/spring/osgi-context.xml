@@ -17,7 +17,6 @@
 	</osgi:reference>	
 	
 	<!-- import external interfaces -->
-	<osgi:reference id="folderDao" interface="org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService"/>
 	<osgi:reference id="basicTypeDao" interface="org.flowframe.kernel.metamodel.dao.services.IBasicTypeDAOService"/>
 	<osgi:reference id="entityTypeDao" interface="org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService"/>
 	

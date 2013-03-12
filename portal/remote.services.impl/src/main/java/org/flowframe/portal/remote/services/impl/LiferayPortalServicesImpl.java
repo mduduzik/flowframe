@@ -300,6 +300,44 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		
 		return user;
 	}
+	
+	@Override
+	public User provideUserByScreenName(String screenName) throws Exception {
+		// Add AuthCache to the execution context
+		BasicHttpContext ctx = new BasicHttpContext();
+		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+		
+		HttpPost post = new HttpPost(
+				"/api/secure/jsonws/user/get-user-by-screen-name");
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("companyId", companyId));
+		params.add(new BasicNameValuePair("screenName", screenName));
+	
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+		post.setEntity(entity);
+		
+		
+		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+		System.out.println(resp.getStatusLine());
+		
+		String response = null;
+		if(resp.getEntity()!=null) {
+		    response = EntityUtils.toString(resp.getEntity());
+		}
+		
+		User user = null;
+		if (!StringUtil.contains(response, "NoSuch", "") 
+			|| !StringUtil.contains(response, "Exception", ""))
+		{
+			JSONDeserializer<User> deserializer = new JSONDeserializer<User>();
+			user = deserializer.deserialize(response,User.class);
+		}		
+		
+		EntityUtils.consume(resp.getEntity());
+		
+		return user;
+	}
+	
 
 	
 	/*
