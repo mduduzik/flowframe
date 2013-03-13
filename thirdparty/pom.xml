@@ -42,13 +42,17 @@
 		<module>vaadin-addon-toolbar</module>
 		<module>vaadin686</module>
 		<module>org.jvnet.hyperjaxb3</module>
-		<module>org.jvnet.jaxb2_commons</module>
+		<!-- FIXME: I should not be commented out, 
+					but I was because public maven 
+					repositories are dumb -->
+		<!-- <module>org.jvnet.jaxb2_commons</module> -->
 		<module>commons-compress</module>
 		<module>commons-exec</module>
 		<module>gwt-console-server-integration</module>
 		<module>org.springframework.orm</module>
 		<module>itext</module>
 		<module>vaadin-addon-mvplite-customized</module>
+		<module>vaadin-addon-easyuploads</module>
 		<module>vaadin-addon-refresher</module>
 	</modules>
 </project>
