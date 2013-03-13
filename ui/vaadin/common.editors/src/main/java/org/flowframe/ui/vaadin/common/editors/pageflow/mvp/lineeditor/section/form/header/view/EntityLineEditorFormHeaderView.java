@@ -2,8 +2,8 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.f
 
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.VerticalLayout;
 

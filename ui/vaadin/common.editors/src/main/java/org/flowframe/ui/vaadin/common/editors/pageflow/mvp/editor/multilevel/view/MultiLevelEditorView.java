@@ -2,8 +2,8 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor.multilevel.vi
 
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor.multilevel.MultiLevelEditorPresenter;
 import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.header.EntityEditorBreadCrumb;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.header.EntityEditorBreadCrumbItem;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.header.EntityEditorBreadCrumb;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.header.EntityEditorBreadCrumbItem;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.uibinder.annotation.UiField;

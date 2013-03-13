@@ -16,6 +16,7 @@ import org.flowframe.ui.component.domain.preferences.PreferencesEditorComponent;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.factory.IComponentFactoryManager;
+import org.flowframe.ui.services.factory.IComponentModelFactory;
 import org.flowframe.ui.vaadin.common.mvp.AbstractMainApplication;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.AbstractEntityEditorEventBus;
@@ -168,7 +169,7 @@ public class EntityLineEditorPresenter extends ConfigurableBasePresenter<IEntity
 		Set<LineEditorComponent> lecs = componentModel.getLineEditors();
 
 		// 2. For each, create LineEditorSection presenters
-		IComponentFactory entityFactory = componentFactoryManager.create(new HashMap<String,Object>(),presenterFactory);
+		IComponentModelFactory entityFactory = componentFactoryManager.create(new HashMap<String,Object>(),presenterFactory);
 		Map<IPresenter<?, ? extends EventBus>, EventBus> entityMVP = null;
 		for (LineEditorComponent lec : lecs) {
 			entityMVP = (Map<IPresenter<?, ? extends EventBus>, EventBus>) entityFactory.create(lec, getConfig());

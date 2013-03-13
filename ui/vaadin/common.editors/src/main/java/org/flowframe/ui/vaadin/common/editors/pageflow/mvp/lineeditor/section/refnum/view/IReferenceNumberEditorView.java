@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.refnum.view.ReferenceNumberEditorView.ICreateReferenceNumberListener;
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.refnum.view.ReferenceNumberEditorView.ISaveReferenceNumberListener;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentView;
+import org.flowframe.ui.vaadin.common.editors.entity.mvp.IEntityEditorComponentView;
 import org.flowframe.ui.vaadin.forms.FormMode;
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 

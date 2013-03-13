@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.notes.view.NotesEditorView.ICreateNotesListener;
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.notes.view.NotesEditorView.ISaveNotesListener;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.IEntityEditorComponentView;
+import org.flowframe.ui.vaadin.common.editors.entity.mvp.IEntityEditorComponentView;
 import org.flowframe.ui.vaadin.forms.FormMode;
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 

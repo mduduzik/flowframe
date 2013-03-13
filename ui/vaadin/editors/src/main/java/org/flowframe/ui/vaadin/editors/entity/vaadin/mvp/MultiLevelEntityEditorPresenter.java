@@ -11,6 +11,7 @@ import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.factory.IComponentFactoryManager;
+import org.flowframe.ui.services.factory.IComponentModelFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
 import org.flowframe.ui.vaadin.common.mvp.AbstractMainApplication;
 import org.flowframe.ui.vaadin.common.mvp.ApplicationEventBus;
@@ -54,7 +55,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	private ApplicationEventBus appEventBus;
 	private MultiLevelEntityEditorPresenter parentEditor;
 	private Map<MasterDetailComponent, MultiLevelEntityEditorPresenter> childEditorPresenterMap;
-	private IComponentFactory entityFactory;
+	private IComponentModelFactory entityFactory;
 	private ConfigurableBasePresenter<?, ? extends EventBus> masterPresenter;
 	private ConfigurableBasePresenter<?, ? extends EventBus> headerPresenter;
 	private AbstractMainApplication mainApplication;
@@ -142,8 +143,8 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 
 		this.presenterFactory.getCustomizer().getConfig()
 				.put(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER, this);
-		this.entityFactory = (IComponentFactory)config.get(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY);
-		this.entityFactory.setConfigurablePresenterFactory(presenterFactory);
+		this.entityFactory = (IComponentModelFactory)config.get(IComponentFactory.FACTORY_PARAM_MVP_ENTITY_FACTORY);
+		//this.entityFactory.setConfigurablePresenterFactory(presenterFactory);
 
 		config.put(IComponentFactory.FACTORY_PARAM_MVP_PARENT_EDITOR, this);
 		IMultiLevelEntityEditorView localView = this.getView();
@@ -196,7 +197,7 @@ public class MultiLevelEntityEditorPresenter extends ConfigurableBasePresenter<I
 	}
 	
 	
-	protected IComponentFactory createComponentFactory() {
+	protected IComponentModelFactory createComponentFactory() {
 		this.entityFactory = this.componentFactoryManager.create(new HashMap<String,Object>(), presenterFactory);//new VaadinEntityEditorFactoryImpl(presenterFactory);
 		return this.entityFactory;
 	}

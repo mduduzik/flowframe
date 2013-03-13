@@ -55,7 +55,7 @@ import org.flowframe.ui.component.domain.table.MatchGridComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameAbstractSplitPanel.ISplitPositionChangeListener;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.search.EntitySearchGrid;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.search.EntitySearchGrid;
 import org.flowframe.ui.vaadin.forms.impl.VaadinCollapsibleSectionForm;
 import org.flowframe.ui.vaadin.forms.impl.VaadinEntityPreferenceForm;
 import org.flowframe.ui.vaadin.forms.impl.VaadinSimpleForm;

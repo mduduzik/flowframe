@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.factory.IComponentFactoryManager;
+import org.flowframe.ui.services.factory.IComponentModelFactory;
 import org.flowframe.ui.vaadin.editors.builder.vaadin.contribution.ComponentFactoryContributionManager;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurablePresenterFactory;
 import org.slf4j.Logger;
@@ -16,8 +17,8 @@ public class VaadinEditorFactoryManagerImpl implements IComponentFactoryManager 
 	protected ComponentFactoryContributionManager componentFactoryContributionManager;	
 
 	@Override
-	public IComponentFactory create(Map<String, Object> config, AbstractPresenterFactory factory) {
-		return new VaadinEntityEditorFactoryImpl(componentFactoryContributionManager,(ConfigurablePresenterFactory)factory);
+	public IComponentModelFactory create(Map<String, Object> config, AbstractPresenterFactory factory) {
+		return null;//new VaadinEntityEditorFactoryImpl(componentFactoryContributionManager,(ConfigurablePresenterFactory)factory);
 	}
 
 	@Override

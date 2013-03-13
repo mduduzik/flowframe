@@ -5,13 +5,13 @@ import java.util.Set;
 
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.preferences.PreferencesEditorForm;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IDepletedListener;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.preferences.PreferencesEditorForm;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.IDepletedListener;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.IEditListener;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.ISelectListener;
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 

@@ -1,7 +1,7 @@
 package org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor.grid.header.view;
 
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
 import com.vaadin.ui.Button.ClickListener;

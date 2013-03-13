@@ -15,7 +15,7 @@ import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor.view.MasterSec
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.EntityLineEditorEventBus;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip.EntityEditorToolStripButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.EventBus;

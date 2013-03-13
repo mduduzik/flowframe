@@ -1,7 +1,7 @@
 package org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor.grid.view;
 
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.IEditListener;
-import org.flowframe.ui.vaadin.editors.entity.vaadin.ext.table.EntityEditorGrid.ISelectListener;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.IEditListener;
+import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.ISelectListener;
 import org.vaadin.mvp.uibinder.IUiBindable;
 
 import com.vaadin.data.Container;
