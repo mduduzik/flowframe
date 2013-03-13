@@ -1,0 +1,14 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Vaadin Converter Manager
+Bundle-SymbolicName: org.flowframe.ui.vaadin.converters.manager
+Import-Package:  com.vaadin;version="[6.8.0,7.0.0)",
+  com.vaadin.ui;version="[6.8.0,7.0.0)",
+  com.vaadin.data;version="[6.8.0,7.0.0)",
+  org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.vaadin.converters.services;version="[0.0.1, 1.0.0)",
+  org.slf4j;version="[1.6.0, 1.7.0)"
+Excluded-Imports:  javax.persistence,javax.validation.constraints,
+  org.springframework.format.annotation
