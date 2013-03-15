@@ -7,7 +7,7 @@
 	<osgi:service ref="pageFactoryManager" interface="org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryManager"/>
 	
 	<!-- Listen to IPageFactoryContribution registrations -->
-	<osgi:list id="pageFactoryContributionManagerRegistrations" cardinality="1..N" interface="org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryContribution" >
+	<osgi:list id="pageFactoryContributionManagerRegistrations" cardinality="0..N" interface="org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryContribution" >
 		<osgi:listener ref="pageFactoryContributionManager" bind-method="registerPageFactoryContribution" unbind-method="unregisterPageFactoryContribution"/>
 	</osgi:list>
 </beans>
