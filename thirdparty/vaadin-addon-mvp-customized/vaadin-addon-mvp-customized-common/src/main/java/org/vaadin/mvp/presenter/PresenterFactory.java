@@ -26,6 +26,9 @@ public class PresenterFactory extends AbstractPresenterFactory {
   /** View factory */
   private IViewFactory viewFactory = new DefaultViewFactory();
   
+  public PresenterFactory() {
+  }
+  
   public PresenterFactory(EventBusManager ebm, Locale locale) {
     this.eventBusManager = ebm;
     this.locale = locale;

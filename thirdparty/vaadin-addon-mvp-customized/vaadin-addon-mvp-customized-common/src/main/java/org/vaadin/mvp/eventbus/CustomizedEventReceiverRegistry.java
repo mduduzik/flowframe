@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,22 +28,6 @@ public class CustomizedEventReceiverRegistry extends EventReceiverRegistry {
 	 */
 	private Map<Class<?>, Set<Object>> receivers = new HashMap<Class<?>, Set<Object>>();
 
-	@Override
-	public void addReceiver(Object receiver) {
-		Set<Object> referenceSet = receivers.get(receiver.getClass());
-		if (referenceSet == null) {
-			if (receiver != null) {
-				referenceSet = new HashSet<Object>();
-				referenceSet.add(receiver);
-				receivers.put(receiver.getClass(), referenceSet);
-			}
-		} else {
-			if (!referenceSet.contains(receiver)) {
-				referenceSet.add(receiver);
-			}
-		}
-	}
-
 	/**
 	 * Lookup all receivers of a given type.
 	 * 
@@ -58,6 +43,7 @@ public class CustomizedEventReceiverRegistry extends EventReceiverRegistry {
 	@SuppressWarnings("unchecked")
 	public <T> Set<T> lookupReceivers(Class<T> receiverType) {
 		if (receivers.containsKey(receiverType)) {
+			// Is a tree set
 			Set<Object> referenceSet = receivers.get(receiverType);
 			if (referenceSet == null) {
 				return null;
@@ -72,5 +58,21 @@ public class CustomizedEventReceiverRegistry extends EventReceiverRegistry {
 			}
 		}
 		return null;
+	}
+	
+	@Override
+	public void newReceiver(Object receiver) {
+		Set<Object> referenceSet = receivers.get(receiver.getClass());
+		if (referenceSet == null) {
+			if (receiver != null) {
+				referenceSet = new TreeSet<Object>();
+				referenceSet.add(receiver);
+				receivers.put(receiver.getClass(), referenceSet);
+			}
+		} else {
+			if (!referenceSet.contains(receiver)) {
+				referenceSet.add(receiver);
+			}
+		}
 	}
 }

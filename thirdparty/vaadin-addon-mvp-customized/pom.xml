@@ -53,6 +53,7 @@
 	<modules>
 		<module>vaadin-addon-mvp-customized-common</module>
 		<module>vaadin-addon-mvp-customized-common-osgi</module>
+		<module>vaadin-addon-mvp-customized-common-tests</module>
 	</modules>
 
 	<properties>

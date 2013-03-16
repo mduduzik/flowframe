@@ -35,7 +35,7 @@ public class EventReceiverRegistry {
    * 
    * @param receiver Instance of the event receiver.
    */
-  public void addReceiver(Object receiver) {
+  public void newReceiver(Object receiver) {
     // clear collected receivers from our map first
     // create a "copy" of the maps keyset to allow modification while looping
     Set<Class<?>> keySet = new HashSet<Class<?>>(receivers.keySet());

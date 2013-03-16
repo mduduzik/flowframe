@@ -42,7 +42,7 @@ public class EventBusManager {
 		if (!eventBusses.containsKey(busType)) {
 			eventBusses.put(busType, create(busType));
 		}
-		this.handlerRegistry.addReceiver(subscriber);
+		this.handlerRegistry.newReceiver(subscriber);
 		EventBus eventBus = eventBusses.get(busType);
 		return (T) eventBus;
 	}
@@ -108,7 +108,7 @@ public class EventBusManager {
 	 * @param subscriber
 	 */
 	public void addSubscriber(Object subscriber) {
-		this.handlerRegistry.addReceiver(subscriber);
+		this.handlerRegistry.newReceiver(subscriber);
 	}
 
 	/**
