@@ -1,0 +1,13 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Vaadin MVP Editors
+Bundle-SymbolicName: org.flowframe.ui.vaadin.mvp.editors
+Import-Package:  com.vaadin.ui;version="[6.8, 7.0)",
+  org.vaadin.mvp.eventbus;version="0.9.2.SNAPSHOT",
+  org.vaadin.mvp.eventbus.annotation;version="0.9.2.SNAPSHOT",
+  org.vaadin.mvp.presenter;version="0.9.2.SNAPSHOT",
+  org.vaadin.mvp.presenter.annotation;version="0.9.2.SNAPSHOT",
+  org.vaadin.mvp.uibinder;version="0.9.2.SNAPSHOT",
+  org.vaadin.mvp.uibinder.annotation;version="0.9.2.SNAPSHOT"
+Excluded-Imports:  javax.persistence,javax.validation.constraints,
+  org.springframework.format.annotation

@@ -18,5 +18,7 @@
 		<module>editors</module>
 		<module>factory</module>
 		<module>expressions</module>
+		<module>converters</module>
+		<module>mvp</module>
 	</modules>
 </project>

@@ -66,6 +66,11 @@
 			<artifactId>vaadin</artifactId>
 			<version>6.8.6</version>
 			<scope>provided</scope>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.mvp.editors</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

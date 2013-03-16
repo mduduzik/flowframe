@@ -1,11 +1,10 @@
 package org.flowframe.ui.vaadin.converters.services;
 
 import org.flowframe.ui.component.domain.AbstractComponent;
-
-import com.mvplite.presenter.Presenter;
-import com.mvplite.view.View;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.presenter.IPresenter;
 
 
 public interface IComponentModelConverter {
-	public Presenter<? extends View> convert(AbstractComponent componentModel);
+	public IPresenter<?, ? extends EventBus> convert(AbstractComponent componentModel);
 }
