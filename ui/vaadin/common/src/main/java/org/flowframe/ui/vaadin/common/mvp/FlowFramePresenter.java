@@ -8,11 +8,7 @@ import org.vaadin.mvp.eventbus.EventBus;
 public abstract class FlowFramePresenter<V, E extends EventBus> extends BasePresenter<V, E> {
 	@Autowired
 	protected AbstractMainApplication app;
-	
-	protected AbstractComponent componentModel;
 
-	public void setComponentModel(AbstractComponent componentModel) {
-		this.componentModel = componentModel;
-	}
+	public abstract void setComponentModel(AbstractComponent componentModel);
 	
 }
