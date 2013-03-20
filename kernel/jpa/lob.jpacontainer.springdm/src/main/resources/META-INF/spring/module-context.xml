@@ -12,6 +12,11 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	<context:load-time-weaver aspectj-weaving="on" />
+	<!-- 
+	
+	CORE EMF
+	
+	 -->
 	<!-- hibernateProperties Properties -->
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -63,5 +68,63 @@
     <bean id="persistenceUnitPostProcessor" class="org.flowframe.kernel.jpa.multipu.JtaPersistenceUnitPostProcessor">
         <property name="dataSource" ref="kernelPersistenceJpaDataSource"/>
         <property name="jtaEnabled" value="true"/>
-    </bean>       	
+    </bean>  
+    
+	<!-- 
+	
+	CORE CACHE EMF
+	
+	 -->
+	<!-- hibernateProperties Properties -->
+	<bean id="inMemoryHibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+	            <prop key="hibernate.transaction.manager_lookup_class">org.flowframe.kernel.jpa.dynaconfig.hibernate.CustomBTMTransactionManagerLookup</prop>
+	            <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+	            <prop key="hibernate.current_session_context_class">jta</prop>
+	            <prop key="hibernate.connection.release_mode">after_statement</prop>
+	            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>	
+	            <prop key="hibernate.connection.autocommit">false</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+
+    <bean id="ffLoBInMemoryEntityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" depends-on="globalBitronixTransactionManagerConfig">
+        <property name="persistenceUnitName" value="pu"/>
+        <property name="persistenceUnitManager" ref="inMemoryPusPersistenceUnitManager"/>
+        <property name="jpaVendorAdapter" ref="inMemoryVendorAdapter"/>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <property name="jpaProperties" ref="inMemoryHibernateProperties"/>
+    </bean>  
+    
+	<bean id="inMemoryVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+		p:databasePlatform="org.hibernate.dialect.HSQLDialect" p:showSql="true">
+		<property name="generateDdl" value="false" />
+	</bean> 
+	
+    <bean id="inMemoryPusPersistenceUnitManager"
+          class="org.flowframe.kernel.jpa.multipu.MultiConfigAwarePersistenceUnitManager">
+        <property name="persistenceXmlLocations">
+            <list>
+                <value>classpath:/bootstrapping/bootstrap-persistence.xml</value>
+                <value>classpath*:META-INF/jpa/persistence.xml</value>
+            </list>
+        </property>
+        <property name="defaultDataSource" ref="kernelInMemoryPersistenceJpaDataSource"/>
+        <property name="persistenceUnitPostProcessors" ref="inMemoryPersistenceUnitPostProcessor"/>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>	
+    
+    <bean id="inMemoryPersistenceUnitPostProcessor" class="org.flowframe.kernel.jpa.multipu.JtaPersistenceUnitPostProcessor">
+        <property name="dataSource" ref="kernelInMemoryPersistenceJpaDataSource"/>
+        <property name="jtaEnabled" value="true"/>
+    </bean>       	         	
 </beans>

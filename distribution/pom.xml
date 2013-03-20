@@ -163,6 +163,8 @@
 										<file name="com.springsource.org.apache.commons.collections-3.2.1.jar" />
 										<file name="com.springsource.org.apache.commons.digester-1.8.1.jar" />
 										<file name="com.springsource.org.codehaus.groovy-1.7.3.jar"/>
+										
+										<file name="com.springsource.org.hsqldb-1.8.0.9.jar"/>
 									</filelist>
 								</copy>
 							</tasks>

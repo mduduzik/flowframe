@@ -13,12 +13,24 @@
 	<osgi:reference id="kernelPersistenceJpaDataSource" interface="javax.sql.DataSource" filter="(module=KERNEL.MAIN)">
 	</osgi:reference>		
 	
+	<osgi:reference id="kernelInMemoryPersistenceJpaDataSource" interface="javax.sql.DataSource" filter="(module=KERNEL.MAIN.CACHE)">
+	</osgi:reference>	
+	
 	<!-- KERNEL EntityManagerFactory -->
 	<osgi:service ref = "ffLoBEntityManagerFactory" context-class-loader="service-provider" interface="javax.persistence.EntityManagerFactory">
 		<osgi:service-properties>
 		    <entry key="module" value="KERNEL"/>
 		</osgi:service-properties>		
 	</osgi:service>	
+	
+	<!-- KERNEL Cache EntityManagerFactory -->
+	<osgi:service ref = "ffLoBInMemoryEntityManagerFactory" context-class-loader="service-provider" interface="javax.persistence.EntityManagerFactory">
+		<osgi:service-properties>
+		    <entry key="module" value="KERNEL.CACHE"/>
+		</osgi:service-properties>		
+	</osgi:service>		
+	
+	
 	
 	<!-- Listen to PersistenceBundle registrations -->
 	<!-- 

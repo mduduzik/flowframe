@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+	<groupId>org.flowframe</groupId>
+	<artifactId>org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized</artifactId>
+	<version>0.9.3-SNAPSHOT</version>
+	<relativePath>../</relativePath>
+  </parent>
+
+  <artifactId>org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.example</artifactId>
+  <name>MVP for Vaadin Example</name>
+  <packaging>war</packaging>
+
+  <dependencies>
+    <!-- Compile dependencies -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.spring</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <configuration>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <stopKey>foo</stopKey>
+          <stopPort>9999</stopPort>
+          <webAppConfig>
+            <descriptor>${basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
+          </webAppConfig>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>mysql</module>
+  	<module>hsqldb</module>
   </modules>
 	<build>
 		<plugins>
