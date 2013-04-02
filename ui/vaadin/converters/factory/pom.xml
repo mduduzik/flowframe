@@ -59,6 +59,20 @@
 
 
 		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.common
+			</artifactId>
+			<version>0.9.3-SNAPSHOT</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.spring
+			</artifactId>
+			<version>0.9.3-SNAPSHOT</version>
+		</dependency>	
+		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin</artifactId>
 			<version>6.8.6</version>

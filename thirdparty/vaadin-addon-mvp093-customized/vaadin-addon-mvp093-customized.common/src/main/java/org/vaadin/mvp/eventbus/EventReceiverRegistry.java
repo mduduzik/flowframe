@@ -3,6 +3,7 @@ package org.vaadin.mvp.eventbus;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,4 +61,15 @@ public class EventReceiverRegistry implements IEventReceiverRegistry {
     return null;
   }
 
+	@Override
+	public <T> Set<T> allReceivers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<Class<?>> allReceiverTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

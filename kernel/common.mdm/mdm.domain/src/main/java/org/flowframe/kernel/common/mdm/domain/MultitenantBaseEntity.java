@@ -8,24 +8,13 @@
 
 package org.flowframe.kernel.common.mdm.domain;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
 
-import org.flowframe.kernel.common.mdm.domain.note.Note;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -37,29 +26,6 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
-/**
- * <p>Java class for MultitenantBaseEntity complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="MultitenantBaseEntity">
- *   &lt;complexContent>
- *     &lt;extension base="{http://floframe.org/kernel/common/mdm/domain}BaseEntity">
- *       &lt;sequence>
- *         &lt;element name="tenantId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *       &lt;/sequence>
- *     &lt;/extension>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MultitenantBaseEntity", propOrder = {
-    "tenantId"
-})
 @MappedSuperclass
 public abstract class MultitenantBaseEntity
     extends BaseEntity

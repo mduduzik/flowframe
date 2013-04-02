@@ -1,0 +1,43 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Vaadin MVP App Components
+Bundle-SymbolicName: org.flowframe.ui.vaadin.mvp.app
+Import-Package:  
+  org.flowframe.ui.component.domain;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.component.domain.editor;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.component.domain.masterdetail;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.services.contribution;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.services.transaction;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
+  org.flowframe.bpm.jbpm.ui.pageflow.services;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.jpa.container.services;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.services;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.mvp.core.eventbus;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.mvp.core.events.application;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.addons.common;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.converters.services;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.mvp.core.view;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.mvp.core.presenter;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.common.ui.menu.app;version="[0.0.1,1.0.0)",
+  org.flowframe.ui.vaadin.mvp.core.events;version="[0.0.1,1.0.0)",
+  com.vaadin.data;version="[6.8,7.0)",
+  com.vaadin.data.util;version="[6.8,7.0)",
+  com.vaadin.terminal;version="[6.8,7.0)",
+  org.vaadin.mvp.presenter.spring;version="0.9.3.SNAPSHOT",
+  org.slf4j;version="[1.6,1.7)",
+  com.vaadin.terminal.gwt.server;version="[6.8,7.0)",
+  com.vaadin;version="[6.8, 7.0)",
+  com.vaadin.ui;version="[6.8, 7.0)",
+  org.vaadin.mvp.eventbus;version="0.9.3.SNAPSHOT",
+  org.vaadin.mvp.eventbus.annotation;version="0.9.3.SNAPSHOT",
+  org.vaadin.mvp.presenter;version="0.9.3.SNAPSHOT",
+  org.vaadin.mvp.presenter.annotation;version="0.9.3.SNAPSHOT",
+  org.vaadin.mvp.uibinder;version="0.9.3.SNAPSHOT",
+  org.vaadin.mvp.uibinder.annotation;version="0.9.3.SNAPSHOT",
+  org.springframework.beans.factory.annotation;version="[3.0,3.1)",
+  org.springframework.transaction;version="[3.0,3.1)",
+  org.springframework.transaction.support;version="[3.0,3.1)"  
+Excluded-Imports:  javax.persistence,javax.validation.constraints,
+  org.springframework.format.annotation

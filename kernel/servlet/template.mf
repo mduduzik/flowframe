@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF Common Servlets
+Bundle-SymbolicName: org.flowframe.kernel.servlet
+Bundle-Vendor: FF
+Bundle-Version: 0.0.1
+Import-Package:   org.flowframe.kernel.common.utils;version="[0.0.1,1.0.0)",
+  org.slf4j;version="[1.6,1.7)"
+Excluded-Imports: 
+ org.springframework.test.*,
+ org.junit.*

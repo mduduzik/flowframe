@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF Common Services
+Bundle-SymbolicName: org.flowframe.kernel.services
+Bundle-Vendor: FF
+Bundle-Version: 0.0.1
+Import-Package:   org.flowframe.kernel.common.utils;version="[0.0.1,1.0.0)"
+Excluded-Imports: 
+ org.springframework.test.*,
+ org.junit.*

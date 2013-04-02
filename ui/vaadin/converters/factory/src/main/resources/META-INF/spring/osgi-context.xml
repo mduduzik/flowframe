@@ -7,4 +7,5 @@
 	<osgi:service ref="componentModelPresenterFactoryImpl" interface="org.flowframe.ui.vaadin.converters.services.IComponentModelPresenterFactory"/>
 
 	<osgi:reference id="componentModelConverterContributionsManager" interface="org.flowframe.ui.vaadin.converters.services.IComponentModelConverterContributionsManager"/>
+	<osgi:reference id="presenterFactory" interface="org.vaadin.mvp.presenter.spring.CustomSpringPresenterFactory"/>
 </beans>

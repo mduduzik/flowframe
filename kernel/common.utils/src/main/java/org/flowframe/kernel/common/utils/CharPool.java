@@ -80,6 +80,26 @@ public class CharPool {
 	public static final char LOWER_CASE_Y = 'y';
 
 	public static final char LOWER_CASE_Z = 'z';
+	
+	public static final char NUMBER_0 = '0';
+
+	public static final char NUMBER_1 = '1';
+
+	public static final char NUMBER_2 = '2';
+
+	public static final char NUMBER_3 = '3';
+
+	public static final char NUMBER_4 = '4';
+
+	public static final char NUMBER_5 = '5';
+
+	public static final char NUMBER_6 = '6';
+
+	public static final char NUMBER_7 = '7';
+
+	public static final char NUMBER_8 = '8';
+
+	public static final char NUMBER_9 = '9';	
 
 	public static final char MINUS = '-';
 

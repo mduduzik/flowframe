@@ -10,4 +10,6 @@
 	<osgi:list id="componentFactoryContributionManagerListener" cardinality="0..N" interface="org.flowframe.ui.vaadin.converters.services.IComponentModelConverterContributions" >
 		<osgi:listener ref="componentFactoryContributionManager" bind-method="registerComponentModelConverterContributions" unbind-method="unregisterComponentModelConverterContributions"/>
 	</osgi:list>
+	
+	
 </beans>

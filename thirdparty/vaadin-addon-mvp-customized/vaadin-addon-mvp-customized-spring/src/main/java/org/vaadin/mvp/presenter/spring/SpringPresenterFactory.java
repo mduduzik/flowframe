@@ -41,7 +41,7 @@ public class SpringPresenterFactory extends AbstractPresenterFactory implements 
     this.applicationContext = applicationContext;
   }
 
-  @SuppressWarnings("unchecked")
+/*  @SuppressWarnings("unchecked")
   public IPresenter<?, ? extends EventBus> create(Object name,EventBus parentEventBus) {
     if (!(name instanceof String)) {
       throw new IllegalArgumentException("Argument is expected to be a bean name (string)");
@@ -71,11 +71,17 @@ public class SpringPresenterFactory extends AbstractPresenterFactory implements 
       return p;
     }
     throw new IllegalArgumentException("No presenter is defined for name: " + name);
-  }
+  }*/
 
   @Override
   public IViewFactory getViewFactory() {
     return this.viewFactory;
   }
+
+	@Override
+	protected IPresenter<?, ? extends EventBus> create(Object arg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

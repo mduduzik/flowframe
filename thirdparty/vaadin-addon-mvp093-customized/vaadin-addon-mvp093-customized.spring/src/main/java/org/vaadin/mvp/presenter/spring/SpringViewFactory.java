@@ -33,7 +33,7 @@ import org.vaadin.mvp.uibinder.UiBinder;
  * if it's capable to bind the view. The {@link SpringUiBinderViewFactory} is
  * actually a wrapper around {@link UiBinder} which uses an XML definition (named
  * after the view class. Note that the view class must implement a marker interface
- * {@link IUiBindable}.
+ * {@link IView}.
  * </p>
  * 
  * <p>

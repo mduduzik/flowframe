@@ -1,6 +1,6 @@
 package org.flowframe.ui.vaadin.mvp.editors.multilevel.event;
 
-import org.vaadin.mvp.eventbus.EventBus;
+import org.flowframe.ui.vaadin.mvp.core.eventbus.IBaseEventBus;
 
-public interface IMultiLevelEntityEditorEventBus extends EventBus {
+public interface IMultiLevelEntityEditorEventBus extends IBaseEventBus {
 }

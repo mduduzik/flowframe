@@ -1,11 +1,14 @@
 package org.vaadin.mvp.eventbus;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.annotation.Event;
+import org.vaadin.mvp.presenter.BasePresenter;
 
 
 /**
@@ -55,6 +58,11 @@ class EventBusHandler implements InvocationHandler {
     String eventHandlerName = buildExpectedEventHandlerMethodName(eventName);
 
     Class<?>[] handlerTypes = eventDef.handlers();
+    if (handlerTypes.length == 1 && handlerTypes[0] == BasePresenter.class)//Send to all listening
+    {
+    	Set<Class<?>> types = handlerRegistry.allReceiverTypes();
+    	handlerTypes = types.toArray(new Class<?>[0]);
+    }
     for (Class<?> handlerType : handlerTypes) {
       Object handler = handlerRegistry.lookupReceiver(handlerType);
       if (handler == null) {
@@ -88,7 +96,11 @@ class EventBusHandler implements InvocationHandler {
   }
 
   private String buildExpectedEventHandlerMethodName(String eventName) {
-    return "on" + eventName.substring(0, 1).toUpperCase() + eventName.substring(1);
+	if (eventName.startsWith("fire")) {
+		return "on" + eventName.substring("fire".length());
+	}
+	else
+		return "on" + eventName.substring(0, 1).toUpperCase() + eventName.substring(1);
   }
 
   private Method lookupHandlerMethod(Method method, String eventName, String eventHandlerName, Object handler) {

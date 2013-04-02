@@ -1,5 +1,7 @@
 package org.vaadin.mvp.eventbus;
 
+import java.util.Set;
+
 /**
  * Classes that implements the event receiver registry interface will handle the registration and the lookup
  * of event receivers
@@ -25,4 +27,21 @@ public interface IEventReceiverRegistry {
    *         <code>null</code>
    */
   <T> T lookupReceiver(Class<T> receiverType);
+  
+  
+  /**
+   * Get all receivers
+   *
+   * @return the receiver instance if present in the registry or
+   *         <code>null</code>
+   */
+  <T> Set<T> allReceivers(); 
+  
+  /**
+   * Get all receiver types
+   *
+   * @return the receiver types if present in the registry or
+   *         <code>null</code>
+   */
+  Set<Class<?>> allReceiverTypes();   
 }

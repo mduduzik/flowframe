@@ -38,6 +38,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- FF -->
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.vaadin.mvp.editors</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.ui.vaadin.converters.common</artifactId>
@@ -60,7 +66,8 @@
 			</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		
+
+		<!-- Misc -->				
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin</artifactId>
@@ -68,9 +75,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.vaadin.mvp.editors</artifactId>
-			<version>0.0.1</version>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>jpacontainer-addon-agpl-3.0</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 	</dependencies>
 </project>

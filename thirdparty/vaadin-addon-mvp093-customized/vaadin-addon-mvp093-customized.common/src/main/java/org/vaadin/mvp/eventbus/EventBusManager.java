@@ -15,9 +15,9 @@ public class EventBusManager {
   // FIXME: check if needed, otherwise remove to not keep more references.
   // private Map<EventBus, EventBusHandler> busHandlers;
 
-  private Map<Class<? extends EventBus>, EventBus> eventBusses;
+  protected Map<Class<? extends EventBus>, EventBus> eventBusses;
 
-  private IEventReceiverRegistry handlerRegistry = new EventReceiverRegistry();
+  protected IEventReceiverRegistry handlerRegistry = new EventReceiverRegistry();
 
   public EventBusManager() {
     // busHandlers = new HashMap<EventBus, EventBusHandler>();

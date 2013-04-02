@@ -1,0 +1,8 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Web Common
+Bundle-SymbolicName: org.flowframe.web.common
+Import-Package: 
+  javax.servlet;version="0",
+  javax.servlet.http;version="0",
+  org.slf4j;version="[1.6,1.7)"

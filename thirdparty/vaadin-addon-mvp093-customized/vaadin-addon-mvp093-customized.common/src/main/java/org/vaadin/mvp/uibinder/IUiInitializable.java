@@ -2,7 +2,7 @@ package org.vaadin.mvp.uibinder;
 
 /**
  * Interface for UiBinder type views which should be additionally initialized.
- * Implicitly adds the IUiBindable interface.
+ * Implicitly adds the IView interface.
  * 
  * @author silvan
  */

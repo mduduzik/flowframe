@@ -56,7 +56,7 @@ public class UiBinder {
 
   /**
    * Checks if a view class given is bindable (i.e. implments
-   * {@link IUiBindable} interface)
+   * {@link IView} interface)
    * 
    * @param viewClass
    * @return
@@ -80,7 +80,7 @@ public class UiBinder {
       return isBindable(viewClass);
     }
     // no view class; check if a template is available
-    InputStream resource = findUiResource(viewName);
+    InputStream resource = findUiResource(viewName,(Class)viewClass);
     boolean b = resource != null;
     logger.debug("isBindable: {} = {}", viewName, b);
     return b;
@@ -181,7 +181,7 @@ public class UiBinder {
    */
   private <T extends Component> T bind(String viewName, T view, Locale locale, IEventBinder eventBinder) throws UiBinderException {
     logger.info("Binding view: {}", viewName);
-    InputStream resource = findUiResource(viewName);
+    InputStream resource = findUiResource(viewName,view.getClass());
     SAXParser parser;
     try {
       parser = spf.newSAXParser();
@@ -222,12 +222,25 @@ public class UiBinder {
    * 
    * @param viewName
    * @return
+ * @throws UiBinderException 
    */
-  private InputStream findUiResource(String viewName) {
-    String viewDefinitionFile = viewName.replace('.', '/') + ".xml";
-    logger.info("Lookup of XML UI resource: {}", viewDefinitionFile);
-    InputStream resource = Thread.currentThread().getContextClassLoader().getResourceAsStream(viewDefinitionFile);
-    return resource;
+  private InputStream findUiResource(String viewName, Class viewClass) {
+	    String viewDefinitionFile = viewName.replace('.', '/') + ".xml";
+	    logger.info("Lookup of XML UI resource: {}", viewDefinitionFile);
+	    InputStream resource = null;
+	    try
+	    {
+	    	resource = Thread.currentThread().getContextClassLoader().getResourceAsStream(viewDefinitionFile);
+	    }
+	    catch (Exception e) {
+			resource = Thread.currentThread().getContextClassLoader().getResourceAsStream("/"+viewDefinitionFile);
+		}
+	    
+	    if (resource == null)
+	    	resource = viewClass.getClassLoader().getResourceAsStream("/"+viewDefinitionFile);
+	    
+
+	    return resource;
   }
 
   /**

@@ -14,7 +14,7 @@
 	<!-- Main Contribution -->
 	<bean id="mainComponentModelConverterContributions" class="org.flowframe.ui.vaadin.converters.common.ComponentModelConverterContributionsImpl">
 		<property name="contributionName" value="Main Converters" />
-		<property name="componentToPresenterMappings">
+		<property name="componentModelClassToEditorPresenterClassMap">
 			<map key-type="java.lang.Class" value-type="org.flowframe.ui.vaadin.converters.services.IComponentModelConverter">
 				<entry key="org.flowframe.ui.component.domain.editor.MultiLevelEntityEditorComponent" value-ref="multiLevelEntityEditorConverterImpl" />
 				<entry key="org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent" value-ref="entityEditorConverterImpl" />

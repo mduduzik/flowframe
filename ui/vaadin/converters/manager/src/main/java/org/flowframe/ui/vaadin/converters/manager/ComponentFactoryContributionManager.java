@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class ComponentFactoryContributionManager  implements IComponentModelConverterContributionsManager {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	
 	private final Map<Class,IComponentModelConverter>  componentFactoryContributionsMap = Collections.synchronizedMap(new HashMap<Class,IComponentModelConverter>());
 
 	public void registerComponentModelConverterContributions(IComponentModelConverterContributions pageFactoryContribution, Map<String, Object> properties) {

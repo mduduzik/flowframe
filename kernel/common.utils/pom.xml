@@ -9,6 +9,17 @@
   <artifactId>org.flowframe.kernel.common.utils</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.json</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>	
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet</artifactId>
+			<scope>provided</scope>
+		</dependency>	
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.instrument</artifactId>
 			<scope>test</scope>
@@ -17,6 +28,16 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-wot</artifactId>
+			<version>3.3.1</version>
+		</dependency>				
 	</dependencies>
 	<build>
 		<plugins>

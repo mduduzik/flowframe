@@ -31,10 +31,10 @@ public class SpringPresenterFactory extends AbstractPresenterFactory implements 
   private static final Logger logger = LoggerFactory.getLogger(SpringPresenterFactory.class);
 
   /** Spring application context. */
-  private ApplicationContext applicationContext;
+  protected ApplicationContext applicationContext;
 
   @Autowired(required = true)
-  private SpringViewFactory viewFactory;
+  protected SpringViewFactory viewFactory;
 
   @Override
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

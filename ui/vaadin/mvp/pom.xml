@@ -8,8 +8,9 @@
 	</parent>
 	<artifactId>org.flowframe.ui.vaadin.mvp</artifactId>
 	<packaging>pom</packaging>
-	<name>org.flowframe.ui.vaadinmvp</name>
+	<name>org.flowframe.ui.vaadin.mvp</name>
 	<modules>
+		<module>core</module>
 		<module>editors</module>
 	</modules>
 </project>

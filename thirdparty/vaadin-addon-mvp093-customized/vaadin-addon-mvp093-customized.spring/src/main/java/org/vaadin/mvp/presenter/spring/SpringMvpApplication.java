@@ -21,7 +21,7 @@ public abstract class SpringMvpApplication extends Application {
 
   protected IUiMessageSource messageSource; 
   
-  private EventBusManager eventBusManager = new EventBusManager();
+  protected EventBusManager eventBusManager = new EventBusManager();
 
   @Override
   public final void init() {

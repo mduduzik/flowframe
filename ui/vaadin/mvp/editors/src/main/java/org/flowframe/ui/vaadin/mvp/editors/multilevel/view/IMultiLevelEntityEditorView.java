@@ -1,6 +1,6 @@
 package org.flowframe.ui.vaadin.mvp.editors.multilevel.view;
 
-import org.vaadin.mvp.uibinder.IUiBindable;
+import org.flowframe.ui.vaadin.mvp.editors.view.IUIBindableEntityEditorView;
 
-public interface IMultiLevelEntityEditorView extends IUiBindable {
+public interface IMultiLevelEntityEditorView extends IUIBindableEntityEditorView {
 }

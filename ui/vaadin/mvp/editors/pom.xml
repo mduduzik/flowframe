@@ -11,16 +11,29 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>
-				org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized
-			</artifactId>
-			<version>0.9.2-SNAPSHOT</version>
-		</dependency>
+			<artifactId>org.flowframe.ui.vaadin.mvp.core</artifactId>
+			<version>0.0.1</version>
+		</dependency>	
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.ui.vaadin.common</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.common
+			</artifactId>
+			<version>0.9.3-SNAPSHOT</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>
+				org.flowframe.thirdparty.org.vaadin.addons.mvp093-customized.spring
+			</artifactId>
+			<version>0.9.3-SNAPSHOT</version>
+		</dependency>		
 	</dependencies>
 	<build>
 		<plugins>

@@ -2,12 +2,14 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF Vaadin Converter Services
 Bundle-SymbolicName: org.flowframe.ui.vaadin.converters.services
-Import-Package:  com.vaadin;version="[6.8.0,7.0.0)",
-  com.vaadin.ui;version="[6.8.0,7.0.0)",
-  com.vaadin.data;version="[6.8.0,7.0.0)",
-  com.mvplite.presenter;version="[1.0.0,2.0.0)",
+Import-Package:  
   org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1, 1.0.0)",
   org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
-  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1, 1.0.0)"
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1, 1.0.0)",
+  org.flowframe.ds.domain;version="[0.0.1, 1.0.0)",
+  com.vaadin;version="[6.8.0,7.0.0)",
+  com.vaadin.ui;version="[6.8.0,7.0.0)",
+  com.vaadin.data;version="[6.8.0,7.0.0)",
+  org.vaadin.mvp.presenter;version="[0.0.1, 1.0.0)"
 Excluded-Imports:  javax.persistence,javax.validation.constraints,
   org.springframework.format.annotation

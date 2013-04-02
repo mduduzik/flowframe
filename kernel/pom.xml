@@ -14,5 +14,8 @@
   	<module>datasource</module>
   	<module>jpa</module>
   	<module>metamodel</module>
+  	<module>json</module>
+  	<module>services</module>
+  	<module>servlet</module>
   </modules>
 </project>
