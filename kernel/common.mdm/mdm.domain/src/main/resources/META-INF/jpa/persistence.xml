@@ -20,6 +20,8 @@
 		<class>org.flowframe.kernel.common.mdm.domain.geolocation.Unloco</class>
 		<class>org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata</class>
 		<class>org.flowframe.kernel.common.mdm.domain.organization.Contact</class>
+		<class>org.flowframe.kernel.common.mdm.domain.organization.ContactGroup</class>
+		<class>org.flowframe.kernel.common.mdm.domain.organization.ContactGroupContact</class>
 		<class>org.flowframe.kernel.common.mdm.domain.organization.ContactType</class>
 		<class>org.flowframe.kernel.common.mdm.domain.organization.ContactTypeContact</class>
 		<class>org.flowframe.kernel.common.mdm.domain.organization.Organization</class>
