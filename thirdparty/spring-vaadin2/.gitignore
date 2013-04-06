@@ -1,0 +1,9 @@
+
+/.idea/libraries
+/.idea/workspace.xml
+/target
+.classpath
+
+.project
+
+*.prefs
