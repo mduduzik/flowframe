@@ -12,5 +12,7 @@ public interface IPortalOrganizationService {
 	
 	public Organization getUserDefaultOrganization(String userId) throws Exception;	
 	
-	public Organization provideOrganization(String portalOrganizationId);	
+	public Organization provideOrganization(String portalOrganizationName) throws Exception;	
+	
+	public Organization addOrganizationUserIds(String portalOrganizationName, String[] userIds) throws Exception;
 }

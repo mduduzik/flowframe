@@ -34,7 +34,7 @@
 
 		<mvel.dep.version>2.1.0.drools10</mvel.dep.version>
 		<camel.version>2.9.0</camel.version>
-		<cxf.version>2.4.4</cxf.version>
+		<cxf.version>2.5.2</cxf.version>
 		<gwt.version>2.3.0</gwt.version>
 		<weld.version>1.1.6.Final</weld.version>
 

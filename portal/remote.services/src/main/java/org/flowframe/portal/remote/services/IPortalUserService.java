@@ -16,7 +16,11 @@ public interface IPortalUserService {
 	
 	public User provideUserByEmailAddress(String portalOrganizationId, String emailAddress) throws Exception;
 	
-	public User provideUserByEmailAddress(String emailAddress) throws Exception;
+	public User provideUserByEmailAddress(String firstName, String lastName, String emailAddress) throws Exception;
+	
+	public User provideUserByEmailAddress(String firstName, String lastName, String emailAddress,String portalOrganizationId) throws Exception;
+
+	public User getUserByEmailAddress(String emailAddress) throws Exception;
 	
 	public User provideUserByScreenName(String screenName) throws Exception;	
 	
@@ -25,4 +29,6 @@ public interface IPortalUserService {
 	public Boolean isAvailable() throws Exception;
 
 	public int getUserCountByCompanyId(String companyId) throws Exception;
+	
+	public String generateUnencryptedTemporaryPassword(String userEmailAddress) throws Exception;
 }

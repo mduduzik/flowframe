@@ -17,6 +17,11 @@ import org.flowframe.kernel.common.mdm.domain.geolocation.AddressTypeAddress;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Table(name="ffreforganization")
 public class Organization extends MultitenantBaseEntity {
+	
+	private long organizationId;
+	private long parentOrganizationId;
+	private String type;
+	
 	@OneToMany(targetEntity = AddressTypeAddress.class)
     private Set<AddressTypeAddress> addressTypeAddresses = new HashSet<AddressTypeAddress>();
     
@@ -37,5 +42,29 @@ public class Organization extends MultitenantBaseEntity {
 
 	public void setContactTypeContacts(Set<ContactTypeContact> contactTypeContacts) {
 		this.contactTypeContacts = contactTypeContacts;
+	}
+
+	public long getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(long organizationId) {
+		this.organizationId = organizationId;
+	}
+
+	public long getParentOrganizationId() {
+		return parentOrganizationId;
+	}
+
+	public void setParentOrganizationId(long parentOrganizationId) {
+		this.parentOrganizationId = parentOrganizationId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}	
 }
