@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -41,6 +42,7 @@ public class LiferayPortalUserServiceImplTests  {
 	@Autowired
 	private LiferayPortalServicesImpl lplUserRemoteService;
 	
+	
 	@Before
 	public void setUp() throws Exception {
         Assert.assertNotNull(applicationContext);
@@ -73,7 +75,7 @@ public class LiferayPortalUserServiceImplTests  {
     	Assert.assertTrue(users.size() > 0);
     }
     
-    @Test
+    //@Test
     public void testAddUser() throws Exception {
     	Folder fldr = null;
     	boolean isAvailable = lplUserRemoteService.isAvailable();
@@ -82,5 +84,4 @@ public class LiferayPortalUserServiceImplTests  {
     	User user = lplUserRemoteService.provideUserByEmailAddress("Test", "User1", "test.user1@com.com");
     	Assert.assertNotNull(user);
     }    
-    
 }

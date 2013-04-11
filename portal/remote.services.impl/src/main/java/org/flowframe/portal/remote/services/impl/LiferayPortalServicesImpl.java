@@ -313,10 +313,14 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 
 	@Override
 	public Organization provideOrganization(String portalOrganizationName) throws Exception {
+		Organization org = null;
 		String orgId = getOrganizationIdByName(portalOrganizationName);
-		Organization org = getOrganizationById(orgId);
-		if (Validator.isNull(org))
-			org = addOrganization(portalOrganizationName, null);
+		if (!Validator.isNull(orgId)) {
+			org = getOrganizationById(orgId);
+		}
+		else {
+			org = addOrganization(portalOrganizationName, "0");
+		}
 		return org;
 	}
 	
@@ -329,11 +333,8 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 				"/api/secure/jsonws//user/add-organization-users");
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
-		JSONSerializer serializer = new JSONSerializer();
-		String userIdsStr = serializer.serialize(userIds);
-		
-		params.add(new BasicNameValuePair("organizationId", portalOrganizationId));
-		params.add(new BasicNameValuePair("userIds",userIdsStr));
+		params.add(new BasicNameValuePair("organizationId",portalOrganizationId));
+		params.add(new BasicNameValuePair("userIds",userIds[0]));
 		
 		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
 		post.setEntity(entity);
@@ -357,7 +358,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
 		params.add(new BasicNameValuePair("companyId", companyId));
-		params.add(new BasicNameValuePair("parentOrganizationId","0"));
+		params.add(new BasicNameValuePair("parentOrganizationId",parentPortalOrganizationId));
 		params.add(new BasicNameValuePair("name",organizationName));
 		params.add(new BasicNameValuePair("type",type));
 		params.add(new BasicNameValuePair("recursable","false"));
@@ -398,7 +399,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 		
 		HttpPost post = new HttpPost(
-				"/api/secure/jsonws/organization/get-organization-id");
+				"/com.conx.bi.portal.liferay.common-portlet/api/secure/jsonws/conxbiorganizationutils/get-organization-id");
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
 		params.add(new BasicNameValuePair("companyId", companyId));
@@ -417,9 +418,10 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		}
 		
 		String id = null;
-		if (!StringUtil.contains(response, "Exception", ""))
+		if (!StringUtil.contains(response, "Exception", "") && Validator.isNumber(response))
 		{
-			id = response;
+			if (!Validator.isNull(Long.valueOf(response)))
+				id = response;
 		}		
 		
 		EntityUtils.consume(resp.getEntity());
@@ -453,44 +455,16 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 		
 		HttpPost post = new HttpPost(
-				"/api/secure/jsonws/user/update-user");
+				"/user/update-organizations");
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		
 		JSONSerializer serializer = new JSONSerializer();
 		String orgIds = serializer.serialize(new String[]{portalOrganizationId});
 		
-		params.add(new BasicNameValuePair("companyId", companyId));
-		params.add(new BasicNameValuePair("autoPassword","true"));
-		params.add(new BasicNameValuePair("password1","password1"));
-		params.add(new BasicNameValuePair("password2","password2"));
-		params.add(new BasicNameValuePair("autoScreenName","true"));
-		params.add(new BasicNameValuePair("screenName",null));
-		params.add(new BasicNameValuePair("emailAddress",user.getEmailAddress()));
-		params.add(new BasicNameValuePair("facebookId","0"));
-		params.add(new BasicNameValuePair("openId","0"));
-		params.add(new BasicNameValuePair("locale",null));
-		params.add(new BasicNameValuePair("firstName",user.getFirstName()));
-		params.add(new BasicNameValuePair("middleName",null));
-		params.add(new BasicNameValuePair("lastName",user.getLastName()));
-		params.add(new BasicNameValuePair("prefixId","0"));
-		params.add(new BasicNameValuePair("suffixId","0"));
-		params.add(new BasicNameValuePair("male","true"));
-		params.add(new BasicNameValuePair("birthdayMonth","0"));
-		params.add(new BasicNameValuePair("birthdayDay","1"));
-		params.add(new BasicNameValuePair("birthdayYear","1971"));
-		params.add(new BasicNameValuePair("jobTitle","Tenant"));
-		params.add(new BasicNameValuePair("groupIds",null));//long[]
+		params.add(new BasicNameValuePair("userId", Long.toString(user.getUserId())));
 		params.add(new BasicNameValuePair("organizationIds",orgIds));
-		params.add(new BasicNameValuePair("roleIds",null));
-		params.add(new BasicNameValuePair("userGroupIds",null));
-		params.add(new BasicNameValuePair("addresses","[]"));
-		params.add(new BasicNameValuePair("emailAddresses","[]"));
-		params.add(new BasicNameValuePair("phones","[]"));
-		params.add(new BasicNameValuePair("websites","[]"));
-		params.add(new BasicNameValuePair("announcementsDelivers","[]"));
-		params.add(new BasicNameValuePair("sendEmail","false"));
 		params.add(new BasicNameValuePair("serviceContext",null));
-		
+	
 		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
 		post.setEntity(entity);
 		

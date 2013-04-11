@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -69,4 +70,14 @@ public class LiferayPortalUserServiceImpl3Tests  {
     	String upwd = lplUserRemoteService.generateUnencryptedTemporaryPassword("test.user3@com.com");
     	Assert.assertNotNull(upwd);
     }    
+    
+    //@Test
+    public void testGetOrganization() throws Exception {
+    	Folder fldr = null;
+    	boolean isAvailable = lplUserRemoteService.isAvailable();
+    	Assert.assertTrue(isAvailable); 
+    	
+    	Organization org = lplUserRemoteService.provideOrganization("UnknownOrg");
+    	Assert.assertNotNull(org);
+    }  
 }
