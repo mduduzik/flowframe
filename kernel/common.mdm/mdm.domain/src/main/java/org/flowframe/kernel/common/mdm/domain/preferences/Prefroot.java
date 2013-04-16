@@ -27,71 +27,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
-/**
- * <p>
- * Java class for prefroot complex type.
- * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
- * 
- * <pre>
- * &lt;complexType name="prefroot">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://flowframe.org/kernel/common/mdm/domain/preferences}prefmap"/>
- *         &lt;element ref="{http://flowframe.org/kernel/common/mdm/domain/preferences}prefnode" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="type" use="required">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}NMTOKEN">
- *             &lt;enumeration value="system"/>
- *             &lt;enumeration value="user"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "prefroot", propOrder = { "prefmap", "prefnode" })
 @Entity(name = "Prefroot")
 @Table(name = "ffprefroot")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Prefroot implements Equals, HashCode, Serializable {
+public class Prefroot implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7869822230680505779L;
-	@XmlElement(required = true)
 	protected Prefmap prefmap;
 	protected Set<Prefnode> prefnode;
-	@XmlAttribute(name = "type", required = true)
-	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
 	protected String type;
-	@XmlAttribute(name = "Hjid")
 	protected Long hjid;
 
 	/**
@@ -202,73 +150,4 @@ public class Prefroot implements Equals, HashCode, Serializable {
 	public void setHjid(Long value) {
 		this.hjid = value;
 	}
-
-	public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-		if (!(object instanceof Prefroot)) {
-			return false;
-		}
-		if (this == object) {
-			return true;
-		}
-		final Prefroot that = ((Prefroot) object);
-		{
-			Prefmap lhsPrefmap;
-			lhsPrefmap = this.getPrefmap();
-			Prefmap rhsPrefmap;
-			rhsPrefmap = that.getPrefmap();
-			if (!strategy.equals(LocatorUtils.property(thisLocator, "prefmap", lhsPrefmap), LocatorUtils.property(thatLocator, "prefmap", rhsPrefmap), lhsPrefmap, rhsPrefmap)) {
-				return false;
-			}
-		}
-		{
-			Set<Prefnode> lhsPrefnode;
-			lhsPrefnode = this.getPrefnode();
-			Set<Prefnode> rhsPrefnode;
-			rhsPrefnode = that.getPrefnode();
-			if (!strategy.equals(LocatorUtils.property(thisLocator, "prefnode", lhsPrefnode), LocatorUtils.property(thatLocator, "prefnode", rhsPrefnode), lhsPrefnode, rhsPrefnode)) {
-				return false;
-			}
-		}
-		{
-			String lhsType;
-			lhsType = this.getType();
-			String rhsType;
-			rhsType = that.getType();
-			if (!strategy.equals(LocatorUtils.property(thisLocator, "type", lhsType), LocatorUtils.property(thatLocator, "type", rhsType), lhsType, rhsType)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public boolean equals(Object object) {
-		final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-		return equals(null, null, object, strategy);
-	}
-
-	public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-		int currentHashCode = 1;
-		{
-			Prefmap thePrefmap;
-			thePrefmap = this.getPrefmap();
-			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefmap", thePrefmap), currentHashCode, thePrefmap);
-		}
-		{
-			Set<Prefnode> thePrefnode;
-			thePrefnode = this.getPrefnode();
-			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "prefnode", thePrefnode), currentHashCode, thePrefnode);
-		}
-		{
-			String theType;
-			theType = this.getType();
-			currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "type", theType), currentHashCode, theType);
-		}
-		return currentHashCode;
-	}
-
-	public int hashCode() {
-		final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-		return this.hashCode(null, strategy);
-	}
-
 }

@@ -12,10 +12,6 @@ Excluded-Imports:  org.flowframe.kernel.common.utils,
   javax.persistence.metamodel,
   javax.validation.constraints,
   org.springframework.format.annotation,
-  org.jvnet.jaxb2_commons.lang,
-  org.jvnet.jaxb2_commons.locator,
-  org.jvnet.jaxb2_commons.locator.util,
-  org.jvnet.hyperjaxb3.xml.bind.annotation.adapters,
   org.springframework.transaction,
   org.springframework.transaction.annotation
   

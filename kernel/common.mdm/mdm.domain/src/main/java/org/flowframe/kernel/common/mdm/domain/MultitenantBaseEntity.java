@@ -16,20 +16,11 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
-import org.jvnet.jaxb2_commons.lang.Equals;
-import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.HashCode;
-import org.jvnet.jaxb2_commons.lang.HashCodeStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
-import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
-import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 @MappedSuperclass
 public abstract class MultitenantBaseEntity
     extends BaseEntity
-    implements Equals, HashCode
 {
     @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER, cascade={CascadeType.REFRESH})
     @JoinColumn
@@ -73,48 +64,4 @@ public abstract class MultitenantBaseEntity
 	public void setTenantWide(boolean tenantWide) {
 		this.tenantWide = tenantWide;
 	}
-
-	public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof MultitenantBaseEntity)) {
-            return false;
-        }
-        if (this == object) {
-            return true;
-        }
-        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
-            return false;
-        }
-        final MultitenantBaseEntity that = ((MultitenantBaseEntity) object);
-        {
-            long lhsTenantId;
-            lhsTenantId = this.getTenantId();
-            long rhsTenantId;
-            rhsTenantId = that.getTenantId();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "tenantId", lhsTenantId), LocatorUtils.property(thatLocator, "tenantId", rhsTenantId), lhsTenantId, rhsTenantId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean equals(Object object) {
-        final EqualsStrategy strategy = JAXBEqualsStrategy.INSTANCE;
-        return equals(null, null, object, strategy);
-    }
-
-    public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = super.hashCode(locator, strategy);
-        {
-            long theTenantId;
-            theTenantId = this.getTenantId();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "tenantId", theTenantId), currentHashCode, theTenantId);
-        }
-        return currentHashCode;
-    }
-
-    public int hashCode() {
-        final HashCodeStrategy strategy = JAXBHashCodeStrategy.INSTANCE;
-        return this.hashCode(null, strategy);
-    }
-
 }

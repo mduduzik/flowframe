@@ -25,12 +25,6 @@
 			<version>0.5.7.SNAPSHOT</version>
 		</dependency>		
 		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</artifactId>
-			<version>0.6.4.SNAPSHOT</version>
-		</dependency>
-				
-		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
@@ -56,21 +50,13 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jvnet.hyperjaxb3</groupId>
-			<artifactId>hyperjaxb3-ejb-runtime</artifactId>
-			<version>0.5.5</version>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>com.springsource.org.apache.commons.beanutils</artifactId>
+		    <version>1.8.0</version>
 		</dependency>
 
 		<!-- Roundtrip -->
-		<dependency>
-			<groupId>org.jvnet.hyperjaxb3</groupId>
-			<artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
-			<version>0.5.5</version>
-		</dependency>
+
 
 		<!-- Hibernate Dependencies -->
 		<dependency>

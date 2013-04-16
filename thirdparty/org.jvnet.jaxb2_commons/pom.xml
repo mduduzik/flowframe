@@ -9,15 +9,15 @@
 	</parent>
 	<artifactId>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</artifactId>
 	<name>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</name>
-	<version>0.6.4.SNAPSHOT</version>
+	<version>0.6.4</version>
 	<properties>
-		<wrapped.version>0.6.4-SNAPSHOT</wrapped.version>
+		<wrapped.version>0.6.4</wrapped.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.jvnet.jaxb2_commons</groupId>
 			<artifactId>jaxb2-basics-runtime</artifactId>
-			<version>0.6.4-SNAPSHOT</version>
+			<version>0.6.4</version>
 		</dependency>
 	</dependencies>
 

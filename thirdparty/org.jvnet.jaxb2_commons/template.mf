@@ -1,32 +1,32 @@
 Bundle-SymbolicName: org.flowframe.thirdparty.jvnet.jaxb2_commons
 Bundle-ManifestVersion: 2
-Bundle-Version: 0.6.4.SNAPSHOT
-Export-Package: org.jvnet.jaxb2_commons.i18n;version="0.6.4.SNAPSHOT",
+Bundle-Version: 0.6.4
+Export-Package: org.jvnet.jaxb2_commons.i18n;version="0.6.4",
  org.jvnet.jaxb2_commons.lang;uses:="javax.xml.bind,org.jvnet.jaxb2_co
  mmons.locator,org.jvnet.jaxb2_commons.locator.util,org.w3c.dom,javax.
- xml.namespace";version="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.locat
+ xml.namespace";version="0.6.4",org.jvnet.jaxb2_commons.locat
  or;uses:="org.w3c.dom,org.jvnet.jaxb2_commons.i18n,javax.xml.bind";ve
- rsion="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.locator.util;uses:="or
- g.jvnet.jaxb2_commons.locator,org.xml.sax";version="0.6.4.SNAPSHOT",o
- rg.jvnet.jaxb2_commons.xml.bind;uses:="javax.xml.bind";version="0.6.4
- .SNAPSHOT",org.jvnet.jaxb2_commons.xml.bind.annotation.adapters;uses:
+ rsion="0.6.4",org.jvnet.jaxb2_commons.locator.util;uses:="or
+ g.jvnet.jaxb2_commons.locator,org.xml.sax";version="0.6.4",o
+ rg.jvnet.jaxb2_commons.xml.bind;uses:="javax.xml.bind";version="0.6.4",
+ org.jvnet.jaxb2_commons.xml.bind.annotation.adapters;uses:
  ="javax.xml.bind.annotation.adapters,org.jvnet.jaxb2_commons.lang";ve
- rsion="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.xml.bind.model;uses:="
+ rsion="0.6.4",org.jvnet.jaxb2_commons.xml.bind.model;uses:="
  javax.xml.namespace,org.jvnet.jaxb2_commons.xml.bind.model.origin";ve
- rsion="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.xml.bind.model.concret
+ rsion="0.6.4",org.jvnet.jaxb2_commons.xml.bind.model.concret
  e;uses:="org.jvnet.jaxb2_commons.xml.bind.model.origin,org.jvnet.jaxb
  2_commons.xml.bind.model,org.jvnet.jaxb2_commons.lang,javax.xml.names
  pace,com.sun.xml.bind.v2.model.core,org.jvnet.jaxb2_commons.xml.bind.
- model.concrete.origin,javax.activation";version="0.6.4.SNAPSHOT",org.
+ model.concrete.origin,javax.activation";version="0.6.4",org.
  jvnet.jaxb2_commons.xml.bind.model.concrete.origin;uses:="org.jvnet.j
  axb2_commons.xml.bind.model,org.jvnet.jaxb2_commons.xml.bind.model.or
  igin,com.sun.xml.bind.v2.model.core,org.jvnet.jaxb2_commons.lang";ver
- sion="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.xml.bind.model.origin;v
- ersion="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.xml.bind.model.util;u
+ sion="0.6.4",org.jvnet.jaxb2_commons.xml.bind.model.origin;v
+ ersion="0.6.4",org.jvnet.jaxb2_commons.xml.bind.model.util;u
  ses:="org.jvnet.jaxb2_commons.xml.bind.model,javax.xml.namespace,org.
- jvnet.jaxb2_commons.lang";version="0.6.4.SNAPSHOT",org.jvnet.jaxb2_co
- mmons.xmlschema;uses:="javax.xml.namespace";version="0.6.4.SNAPSHOT"
-Import-Package: com.sun.xml.bind.v2.model.core;version="0",
+ jvnet.jaxb2_commons.lang";version="0.6.4",org.jvnet.jaxb2_co
+ mmons.xmlschema;uses:="javax.xml.namespace";version="0.6.4"
+Import-Package: com.sun.xml.bind.v2.model.core;version="2.1.7",
  javax.activation;version=0,
  javax.xml.bind;version=0,
  javax.xml.bind.annotation.adapters;version=0,
