@@ -277,6 +277,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		if(resp.getEntity()!=null) {
 		    response = EntityUtils.toString(resp.getEntity());
 		}
+		System.out.println("generateUnencryptedTemporaryPassword Status:["+response+"]");
 		
 		String upwd = null;
 		if (!StringUtil.contains(response, "Exception", ""))
@@ -315,6 +316,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 	public Organization provideOrganization(String portalOrganizationName) throws Exception {
 		Organization org = null;
 		String orgId = getOrganizationIdByName(portalOrganizationName);
+		System.out.println("provideOrganization orgId:["+orgId+"]");		
 		if (!Validator.isNull(orgId)) {
 			org = getOrganizationById(orgId);
 		}
@@ -342,6 +344,12 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		
 		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
 		System.out.println("updateOrganizationUserIds Status:["+resp.getStatusLine()+"]");
+		
+		String response = null;
+		if(resp.getEntity()!=null) {
+		    response = EntityUtils.toString(resp.getEntity());
+		}		
+		System.out.println("updateOrganizationUserIds Resp:["+response+"]");
 		
 		
 		EntityUtils.consume(resp.getEntity());
@@ -381,6 +389,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		    response = EntityUtils.toString(resp.getEntity());
 		}
 		
+		System.out.println("addOrganization Resp:["+response+"]");
 		Organization org = null;
 		if (!StringUtil.contains(response, "Exception", ""))
 		{
@@ -418,6 +427,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		}
 		
 		String id = null;
+		System.out.println("getOrganizationByName Resp:["+response+"]");
 		if (!StringUtil.contains(response, "Exception", "") && Validator.isNumber(response))
 		{
 			if (!Validator.isNull(Long.valueOf(response)))
@@ -446,7 +456,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		User user = provideUserByEmailAddress(firstName,lastName,emailAddress);
 		updateDefaultOrganizationId(user,Long.toString(org.getOrganizationId()));
 
-		addOrganizationUserIds(org.getName(), new String[]{Long.toString(user.getUserId())});
+		//addOrganizationUserIds(org.getName(), new String[]{Long.toString(user.getUserId())});
 		return user;
 	}	
 	
@@ -472,6 +482,12 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
 		System.out.println("updateDefaultOrganizationId Status:["+resp.getStatusLine()+"]");
 
+
+		String response = null;
+		if(resp.getEntity()!=null) {
+		    response = EntityUtils.toString(resp.getEntity());
+		}		
+		System.out.println("getOrganizationByName Resp:["+response+"]");
 		
 		EntityUtils.consume(resp.getEntity());
 	}
