@@ -1,21 +1,17 @@
-package com.conx.bi.kernel.core.domain.service;
+package org.flowframe.erp.app.contractmanagement.domain.service;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.flowframe.erp.app.salesmanagement.domain.rates.CalculatableRate;
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
-import org.flowframe.kernel.common.mdm.domain.organization.Contact;
-import org.flowframe.kernel.common.mdm.domain.organization.ContactGroup;
-
-import com.conx.bi.kernel.core.domain.rates.CalculatableRate;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name = "biserviceprovisiongrouprate")
+@Table(name = "fferpserviceprovisiongrouprate")
 public class ServiceProvisionGroupRate extends MultitenantBaseEntity {
 	@ManyToOne
     private CalculatableRate rate;

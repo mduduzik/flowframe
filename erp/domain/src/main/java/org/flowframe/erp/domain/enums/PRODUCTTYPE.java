@@ -1,12 +1,12 @@
-package com.conx.bi.kernel.core.enums;
+package org.flowframe.erp.domain.enums;
 
 
-public enum CALCULATORTYPE {
-	BASE("BASE"),
-	CUSTOM("CUSTOM");
+public enum PRODUCTTYPE {
+	SERVICE("SERVICE"),
+	COMMODITY("COMMODITY");
     private final String value;
 
-    CALCULATORTYPE(String v) {
+    PRODUCTTYPE(String v) {
         value = v;
     }
 
@@ -14,8 +14,8 @@ public enum CALCULATORTYPE {
         return value;
     }
 
-    public static CALCULATORTYPE fromValue(String v) {
-        for (CALCULATORTYPE c: CALCULATORTYPE.values()) {
+    public static PRODUCTTYPE fromValue(String v) {
+        for (PRODUCTTYPE c: PRODUCTTYPE.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

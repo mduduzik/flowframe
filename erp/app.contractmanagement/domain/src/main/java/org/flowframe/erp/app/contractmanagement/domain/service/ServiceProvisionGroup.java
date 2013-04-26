@@ -1,4 +1,4 @@
-package com.conx.bi.kernel.core.domain.service;
+package org.flowframe.erp.app.contractmanagement.domain.service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +17,7 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name = "biserviceprovisiongroup")
+@Table(name = "fferpserviceprovisiongroup")
 public class ServiceProvisionGroup extends BaseEntity {
 	private static final long serialVersionUID = 8879530775716567234L;
 	

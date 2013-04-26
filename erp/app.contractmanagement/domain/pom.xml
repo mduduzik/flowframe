@@ -128,10 +128,22 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.salesmanagement.domain</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>			
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.financialmanagement.domain</artifactId>
 			<version>0.0.1</version>
 			<scope>provided</scope>
-		</dependency>		
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.domain</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>			
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.mdm.domain</artifactId>

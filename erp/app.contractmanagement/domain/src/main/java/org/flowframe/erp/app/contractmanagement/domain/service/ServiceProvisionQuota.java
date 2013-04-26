@@ -1,21 +1,22 @@
-package com.conx.bi.kernel.core.domain.service;
+package org.flowframe.erp.app.contractmanagement.domain.service;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.flowframe.erp.app.contractmanagement.type.SERVICEJOBTYPE;
+import org.flowframe.erp.app.salesmanagement.domain.rates.CalculatableRate;
+import org.flowframe.erp.domain.enums.ITEMUNIT;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
-
-import com.conx.bi.kernel.core.enums.CALCULATORUNIT;
-import com.conx.bi.kernel.core.enums.SERVICEJOBTYPE;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name = "biserviceprovisionquota")
+@Table(name = "fferpserviceprovisionquota")
 public class ServiceProvisionQuota extends BaseEntity {
 	@OneToOne
 	private ServiceProvision service;
@@ -24,18 +25,24 @@ public class ServiceProvisionQuota extends BaseEntity {
     private SERVICEJOBTYPE type;
     
     @Enumerated(EnumType.STRING)
-    private CALCULATORUNIT unit;  
+    private ITEMUNIT unit;  
     
-    private Double amount;
+	@ManyToOne
+    private CalculatableRate overrageRate;    
+    
+    private Double limit;
+    
+    private Double totalUsage;    
     
     public ServiceProvisionQuota(){
     	super();
     }
 
-	public ServiceProvisionQuota(SERVICEJOBTYPE type, CALCULATORUNIT unit, Double amount) {
+	public ServiceProvisionQuota(SERVICEJOBTYPE type, ITEMUNIT unit, Double limit, CalculatableRate overrageRate) {
 		super();
 		this.type = type;
 		this.unit = unit;
-		this.amount = amount;
+		this.limit = limit;
+		this.overrageRate = overrageRate;
 	}
 }
