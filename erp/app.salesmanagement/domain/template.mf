@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-Vendor: ConX
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Sales Domain
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: org.flowframe.erp.app.salesmanagement.domain
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
+Excluded-Imports: javax.persistence,
+  org.flowframe.kernel.common.mdm.domain,
+  org.flowframe.kernel.common.mdm.domain.currency,
+  org.flowframe.erp.domain.enums,
+  org.flowframe.kernel.common.mdm.domain.organization
+ 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd
+http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <persistence-unit name="pu-conxbi-core">
+    	<class>com.conx.bi.kernel.core.domain.audit.AuditRecord</class>
+    	<class>com.conx.bi.kernel.core.domain.audit.AuditRecordItem</class>
+    	<class>com.conx.bi.kernel.core.domain.audit.ETLJobInstanceAuditRecord</class>
+    	<class>com.conx.bi.kernel.core.domain.audit.ETLJobInstanceAuditRecordItem</class>
+    	<class>com.conx.bi.kernel.core.domain.audit.JobInstanceAuditRecord</class>
+    	<class>com.conx.bi.kernel.core.domain.audit.ReportingJobInstanceAuditRecord</class>
+    	<class>com.conx.bi.kernel.core.domain.audit.ReportingJobInstanceAuditRecordItem</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Step</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.StepMeta</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.InputFieldMeta</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Stepfields</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Stepfieldsfield</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Stepfieldsmeta</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Stepgui</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Steppartition</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Stepremotesteps</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Transformation</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Transformation$Info</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Transformation$Info$Log</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Transformation$Info$Maxdate</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Transformation$Order</class>
+        <class>com.conx.bi.kernel.core.domain.etl.trans.Transformation$Order$Hop</class>
+        <class>com.conx.bi.kernel.core.domain.etl.ref.trans.steps.StepMetaRef</class>
+        <class>com.conx.bi.kernel.core.domain.job.ComponentType</class>
+        <class>com.conx.bi.kernel.core.domain.job.Endpoint</class>
+        <class>com.conx.bi.kernel.core.domain.job.EndpointMetaJobInputMappingStep</class>
+        <class>com.conx.bi.kernel.core.domain.job.EndpointMetaStep</class>
+        <class>com.conx.bi.kernel.core.domain.job.ETLJobDefinition</class>
+        <class>com.conx.bi.kernel.core.domain.job.ETLJobMetaReference</class>        
+        <class>com.conx.bi.kernel.core.domain.job.JDBCDriverType</class>
+        <class>com.conx.bi.kernel.core.domain.job.Job</class>
+        <class>com.conx.bi.kernel.core.domain.job.JobMeta</class>
+        <class>com.conx.bi.kernel.core.domain.job.ReportingJobDefinition</class>
+        <class>com.conx.bi.kernel.core.domain.job.ServiceJobDefinition</class>
+        <class>com.conx.bi.kernel.core.domain.job.ServiceJobInstance</class>
+        <class>com.conx.bi.kernel.core.domain.notification.SubscriberEmailNotification</class> 
+        <class>com.conx.bi.kernel.core.domain.notification.SubscriberNotification</class>
+        <class>com.conx.bi.kernel.core.domain.notification.SubscriberNotificationTemplate</class>
+        <class>com.conx.bi.kernel.core.domain.rates.CalculatableRate</class>
+        <class>com.conx.bi.kernel.core.domain.rates.calculator.BaseRateCalculator</class>
+        <class>com.conx.bi.kernel.core.domain.rates.calculator.RateCalculator</class>
+        <class>com.conx.bi.kernel.core.domain.reporting.ReportJob</class>
+        <class>com.conx.bi.kernel.core.domain.reporting.ReportTemplate</class>
+        <class>com.conx.bi.kernel.core.domain.service.CustomServiceProvision</class>   
+        <class>com.conx.bi.kernel.core.domain.service.ETLServiceProvision</class> 
+        <class>com.conx.bi.kernel.core.domain.service.ReportingServiceProvision</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvision</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvisionGroup</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvisionGroupRate</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvisionGroupService</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvisionQuota</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvisionRate</class>
+        <class>com.conx.bi.kernel.core.domain.service.ServiceProvisionSubscriptionPlan</class>
+        <class>com.conx.bi.kernel.core.domain.tenant.Tenant</class>  
+        <class>com.conx.bi.kernel.core.domain.tenant.TenantUser</class>     
+        <class>com.conx.bi.kernel.core.domain.tenant.registration.Registration</class> 
+        <class>com.conx.bi.kernel.core.domain.tenant.subscription.ServiceSubscription</class> 
+      </persistence-unit>
+</persistence>
