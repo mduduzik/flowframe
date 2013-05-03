@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.erp.app.salesmanagement.domain.invoice;v
+ ersion="0.0.1";uses:="javax.persistence,org.flowframe.kernel.common.m
+ dm.domain",org.flowframe.erp.app.salesmanagement.domain.rates;version
+ ="0.0.1";uses:="javax.persistence,org.flowframe.erp.app.mdm.domain.cu
+ rrency,org.flowframe.erp.app.salesmanagement.domain.rates.calculator,
+ org.flowframe.kernel.common.mdm.domain",org.flowframe.erp.app.salesma
+ nagement.domain.rates.calculator;version="0.0.1";uses:="javax.persist
+ ence,org.flowframe.erp.app.mdm.domain.enums,org.flowframe.kernel.comm
+ on.mdm.domain",org.flowframe.erp.app.salesmanagement.enums;version="0
+ .0.1"
+Bundle-Vendor: ConX
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Sales Domain
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: org.flowframe.erp.app.salesmanagement.domain
+

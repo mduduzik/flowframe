@@ -454,6 +454,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 	public User provideUserByEmailAddress(String firstName, String lastName, String emailAddress, String portalOrganizationName) throws Exception {
 		Organization org = provideOrganization(portalOrganizationName);
 		User user = provideUserByEmailAddress(firstName,lastName,emailAddress);
+		user.setTenant(org);
 		updateDefaultOrganizationId(user,Long.toString(org.getOrganizationId()));
 
 		//addOrganizationUserIds(org.getName(), new String[]{Long.toString(user.getUserId())});
@@ -676,6 +677,42 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		return role;
 	}		
 	
+	private Role getRoleByName(String name) throws ParseException, IOException
+	{
+		// Add AuthCache to the execution context
+		BasicHttpContext ctx = new BasicHttpContext();
+		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+		
+		HttpPost post = new HttpPost(
+				"/api/secure/jsonws//role/get-role");
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("companyId", companyId));
+		params.add(new BasicNameValuePair("name", name));
+	
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+		post.setEntity(entity);
+		
+		
+		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+		System.out.println("getRoleById Status:["+resp.getStatusLine()+"]");
+		
+		String response = null;
+		if(resp.getEntity()!=null) {
+		    response = EntityUtils.toString(resp.getEntity());
+		}
+		
+		Role role = null;
+		if (!StringUtil.contains(response, "NoSuch", "") && !StringUtil.contains(response, "exception", ""))
+		{
+			JSONDeserializer<Role> deserializer = new JSONDeserializer<Role>();
+			role = deserializer.deserialize(response,Role.class);
+		}	
+		
+		EntityUtils.consume(resp.getEntity());
+		
+		return role;
+	}		
+	
 	@Override
 	public Role addRole(String roleName)
 			throws Exception {
@@ -683,7 +720,18 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		BasicHttpContext ctx = new BasicHttpContext();
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 		
-		HttpPost post = new HttpPost("/api/secure/jsonws/role/add-role");
+		HttpPost post = new HttpPost(
+				"/api/secure/jsonws/role/add-role");
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("name", roleName));
+		params.add(new BasicNameValuePair("descriptionMap", "{}"));
+		params.add(new BasicNameValuePair("titleMap", "{}"));
+		params.add(new BasicNameValuePair("type", "0"));
+	
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+		post.setEntity(entity);		
+		
+/*		HttpPost post = new HttpPost("/api/secure/jsonws/role/add-role");
 		MultipartEntity entity = new MultipartEntity(
 				HttpMultipartMode.BROWSER_COMPATIBLE);
 
@@ -693,7 +741,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		entity.addPart("titleMap",null);
 		entity.addPart("type", new StringBody("0",Charset.forName("UTF-8")));
 	
-		post.setEntity(entity);
+		post.setEntity(entity);*/
 
 		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
 		System.out.println("addRole Status:["+resp.getStatusLine()+"]");
@@ -706,7 +754,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 
 		Role role = null;
 		JSONDeserializer<Role> deserializer = new JSONDeserializer<Role>();
-		role = deserializer.deserialize(response,FileEntry.class);
+		role = deserializer.deserialize(response,Role.class);
 
 		EntityUtils.consume(resp.getEntity());
 		
@@ -717,7 +765,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 
 	@Override
 	public Role provideRole(String roleId, String roleName) throws Exception {
-		Role role = getRoleById(roleId);
+		Role role = getRoleByName(roleName);
 		if (Validator.isNull(role))
 		{
 			role = addRole(roleName);

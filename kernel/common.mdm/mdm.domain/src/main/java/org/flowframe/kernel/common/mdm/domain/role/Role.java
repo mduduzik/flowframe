@@ -29,6 +29,9 @@ public class Role extends AbstractRole{
 	private String originalSubtype;
 	private long columnBitmask;
 	
+	public Role(){
+	}
+	
 	public Role(String name)
 	{
 		this.name = name;

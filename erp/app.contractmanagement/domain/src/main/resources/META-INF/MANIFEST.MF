@@ -1,21 +1,25 @@
 Manifest-Version: 1.0
 Export-Package: org.flowframe.erp.app.contractmanagement.domain;versio
- n="0.0.1";uses:="javax.persistence,org.flowframe.kernel.common.mdm.do
- main,org.flowframe.kernel.common.mdm.domain.organization",org.flowfra
- me.erp.app.contractmanagement.domain.service;version="0.0.1";uses:="j
- avax.persistence,org.flowframe.erp.app.contractmanagement.type,org.fl
- owframe.erp.app.salesmanagement.domain.rates,org.flowframe.erp.domain
- .enums,org.flowframe.erp.domain.product,org.flowframe.kernel.common.m
- dm.domain",org.flowframe.erp.app.contractmanagement.type;version="0.0
- .1"
+ n="0.0.1";uses:="javax.persistence,org.flowframe.erp.app.contractmana
+ gement.domain.service,org.flowframe.erp.app.contractmanagement.type,o
+ rg.flowframe.erp.app.financialmanagement.domain.payment,org.flowframe
+ .erp.app.salesmanagement.domain.rates,org.flowframe.kernel.common.mdm
+ .domain,org.flowframe.kernel.common.mdm.domain.organization,org.flowf
+ rame.kernel.common.mdm.domain.role,org.flowframe.kernel.common.mdm.do
+ main.user",org.flowframe.erp.app.contractmanagement.domain.service;ve
+ rsion="0.0.1";uses:="javax.persistence,org.flowframe.erp.app.contract
+ management.type,org.flowframe.erp.app.mdm.domain.enums,org.flowframe.
+ erp.app.mdm.domain.product,org.flowframe.erp.app.salesmanagement.doma
+ in.rates,org.flowframe.kernel.common.mdm.domain",org.flowframe.erp.ap
+ p.contractmanagement.type;version="0.0.1"
 Bundle-Vendor: ConX
 Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Build-Jdk: 1.6.0_29
 Built-By: Developer
 Bundle-Version: 0.0.1
 Tool: Bundlor 1.0.0.RELEASE
-Bundle-Name: ConX BI Metadata Doamin
+Bundle-Name: FF ERP Contract Management Bundle
 Bundle-ManifestVersion: 2
 Created-By: Maven Integration for Eclipse
-Bundle-SymbolicName: com.conx.bi.kernel.core.domain
+Bundle-SymbolicName: org.flowframe.erp.app.contractmanagement.domain
 

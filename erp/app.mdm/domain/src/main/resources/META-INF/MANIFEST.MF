@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.erp.app.mdm.domain.constants;version="0.
+ 0.1";uses:="org.flowframe.kernel.common.mdm.domain.constants",org.flo
+ wframe.erp.app.mdm.domain.currency;version="0.0.1";uses:="javax.persi
+ stence,org.flowframe.kernel.common.mdm.domain,org.flowframe.kernel.co
+ mmon.mdm.domain.geolocation",org.flowframe.erp.app.mdm.domain.enums;v
+ ersion="0.0.1",org.flowframe.erp.app.mdm.domain.product;version="0.0.
+ 1";uses:="javax.persistence,org.flowframe.kernel.common.mdm.domain"
+Bundle-Vendor: ConX
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Master Data Management Domain
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: org.flowframe.erp.app.mdm.domain
+

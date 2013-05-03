@@ -1,14 +1,15 @@
 package org.flowframe.erp.app.salesmanagement.domain.rates;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.flowframe.erp.app.mdm.domain.currency.CurrencyUnit;
 import org.flowframe.erp.app.salesmanagement.domain.rates.calculator.BaseRateCalculator;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
-import org.flowframe.kernel.common.mdm.domain.currency.CurrencyUnit;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -21,7 +22,7 @@ public class CalculatableRate extends BaseEntity {
 	
 	private Double discount = 0.0;
 	
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private BaseRateCalculator calculator;		
 		
 	

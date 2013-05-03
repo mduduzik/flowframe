@@ -4,10 +4,10 @@ Build-Jdk: 1.6.0_29
 Built-By: Developer
 Bundle-Version: 1.0.0
 Tool: Bundlor 1.0.0.RELEASE
-Bundle-Name: ConX BI Metadata Doamin
+Bundle-Name: FF ERP Contract Management Bundle
 Bundle-ManifestVersion: 2
 Created-By: Maven Integration for Eclipse
-Bundle-SymbolicName: com.conx.bi.kernel.core.domain
+Bundle-SymbolicName: org.flowframe.erp.app.contractmanagement.domain
 Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Excluded-Imports: javax.persistence,
   org.flowframe.kernel.common.mdm.domain,
@@ -18,6 +18,6 @@ Excluded-Imports: javax.persistence,
   org.flowframe.kernel.common.mdm.domain.currency,
   org.flowframe.erp.app.financialmanagement.domain.payment,
   org.flowframe.erp.app.salesmanagement.domain.rates,
-  org.flowframe.erp.domain.enums,
-  org.flowframe.erp.domain.product
- 
+  org.flowframe.erp.app.mdm.domain.enums,
+  org.flowframe.erp.app.mdm.domain.product,
+  org.flowframe.kernel.common.mdm.domain.role

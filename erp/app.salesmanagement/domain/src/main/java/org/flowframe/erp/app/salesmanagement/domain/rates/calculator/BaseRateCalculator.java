@@ -3,7 +3,7 @@ package org.flowframe.erp.app.salesmanagement.domain.rates.calculator;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-import org.flowframe.erp.domain.enums.ITEMUNIT;
+import org.flowframe.erp.app.mdm.domain.enums.ITEMUNIT;
 
 @Entity
 public class BaseRateCalculator extends RateCalculator {

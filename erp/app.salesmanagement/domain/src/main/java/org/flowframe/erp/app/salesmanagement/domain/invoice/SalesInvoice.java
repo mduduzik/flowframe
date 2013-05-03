@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.flowframe.kernel.common.mdm.domain.currency.CurrencyUnit;
+import org.flowframe.erp.app.mdm.domain.currency.CurrencyUnit;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 
 @Entity

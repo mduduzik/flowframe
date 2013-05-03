@@ -5,6 +5,10 @@ import java.util.List;
 import org.flowframe.kernel.common.mdm.domain.role.Role;
 
 public interface IRoleDAOService {
+	
+	public static final String FF_ROLE_TENANT_ADMIN_NAME="FFTenantAdministrator";
+	public static final String FF_ROLE_TENANT_USER_NAME="FFTenantUser";	
+	
 	public Role get(long id);
 	
 	public List<Role> getAll();

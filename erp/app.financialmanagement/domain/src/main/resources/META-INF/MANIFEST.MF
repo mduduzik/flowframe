@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.erp.app.financialmanagement.domain;versi
+ on="0.0.1";uses:="javax.persistence,org.flowframe.kernel.common.mdm.d
+ omain",org.flowframe.erp.app.financialmanagement.domain.payment;versi
+ on="0.0.1";uses:="javax.persistence,org.flowframe.kernel.common.mdm.d
+ omain,org.flowframe.kernel.common.mdm.domain.geolocation,org.flowfram
+ e.kernel.common.mdm.domain.organization",org.flowframe.erp.app.financ
+ ialmanagement.domain.receivable;version="0.0.1";uses:="javax.persiste
+ nce,org.flowframe.erp.app.financialmanagement.domain",org.flowframe.e
+ rp.app.financialmanagement.enums;version="0.0.1"
+Bundle-Vendor: ConX
+Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Financial Management Domain
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: org.flowframe.erp.app.financialmanagement.domain
+

@@ -8,7 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.flowframe.erp.domain.enums.ITEMUNIT;
+import org.flowframe.erp.app.mdm.domain.enums.ITEMUNIT;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
 @Entity

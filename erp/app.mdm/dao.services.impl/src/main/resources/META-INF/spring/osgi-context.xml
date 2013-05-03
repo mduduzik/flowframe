@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+
+	<osgi:reference id="ffLoBEntityManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
+	</osgi:reference>		
+	
+		<osgi:reference id="remoteDocumentRepository" interface="org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository"/>
+	
+	<!-- KERNEL.TM.JTA Transaction Manager -->
+	<osgi:reference id="globalJtaTransactionManager" interface="org.springframework.transaction.PlatformTransactionManager" filter="(module=KERNEL.TM.JTA)">
+	</osgi:reference>	
+	<tx:annotation-driven transaction-manager="globalJtaTransactionManager"/>		
+	
+	<!-- KERNEL.TM Transaction Manager -->
+	<osgi:reference id="globalTransactionManager" interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
+	</osgi:reference>
+	
+	<osgi:reference id="countryDAOService" interface="org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService">
+	</osgi:reference>
+			
+	<!-- export internal interfaces -->
+	<osgi:service ref="currencyUnitDAOImpl" interface="org.flowframe.erp.app.mdm.dao.services.ICurrencyUnitDAOService"/>
+</beans>

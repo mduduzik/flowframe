@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-Vendor: FF
+Fragment-Host: org.flowframe.erp.integration.adaptors.stripe
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Stripe Adaptor config fragment
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.erp.integration.adaptors.stripe.con
+ fig.fragment
+

@@ -140,7 +140,7 @@
 		</dependency>	
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.erp.domain</artifactId>
+			<artifactId>org.flowframe.erp.app.mdm.domain</artifactId>
 			<version>0.0.1</version>
 			<scope>provided</scope>
 		</dependency>			

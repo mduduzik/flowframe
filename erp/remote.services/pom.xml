@@ -11,6 +11,11 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.contractmanagement.domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.mdm.domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>

@@ -43,4 +43,5 @@
 	<osgi:service ref="entityPrefDao" interface="org.flowframe.kernel.common.mdm.dao.services.preferences.IEntityPreferenceDAOService"/>
 	<osgi:service ref="unlocoDao" interface="org.flowframe.kernel.common.mdm.dao.services.IUnlocoDAOService"/>
 	<osgi:service ref="userDao" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
+	<osgi:service ref="roleDao" interface="org.flowframe.kernel.common.mdm.dao.services.role.IRoleDAOService"/>
 </beans>

@@ -13,6 +13,7 @@
   	<module>app.financialmanagement</module>
   	<module>app.salesmanagement</module>
   	<module>domain</module>
+  	<module>integration</module>
   	<module>remote.services</module>
   	<module>remote.services.impl</module>
   	<module>remote.services.impl.config.fragment</module>

@@ -2,7 +2,6 @@ package org.flowframe.kernel.common.mdm.dao.services.impl.preferences;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,27 +12,16 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.namespace.QName;
 
 import org.flowframe.kernel.common.mdm.dao.services.IEntityMetadataDAOService;
 import org.flowframe.kernel.common.mdm.dao.services.preferences.IPreferencesDAOService;
-import org.flowframe.kernel.common.mdm.domain.preferences.ObjectFactory;
-import org.flowframe.kernel.common.mdm.domain.preferences.Prefentry;
 import org.flowframe.kernel.common.mdm.domain.preferences.Preferences;
-import org.flowframe.kernel.common.mdm.domain.preferences.Prefmap;
-import org.flowframe.kernel.common.mdm.domain.preferences.Prefroot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 @Transactional
 @Repository

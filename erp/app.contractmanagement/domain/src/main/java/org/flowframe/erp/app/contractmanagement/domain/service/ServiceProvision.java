@@ -9,8 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.flowframe.erp.app.mdm.domain.product.Product;
 import org.flowframe.erp.app.salesmanagement.domain.rates.CalculatableRate;
-import org.flowframe.erp.domain.product.Product;
 
 @Entity
 public class ServiceProvision extends Product {
@@ -19,4 +19,20 @@ public class ServiceProvision extends Product {
 	
 	@ManyToOne
     private CalculatableRate rate;
+
+	public Set<ServiceProvisionQuota> getQuotas() {
+		return quotas;
+	}
+
+	public void setQuotas(Set<ServiceProvisionQuota> quotas) {
+		this.quotas = quotas;
+	}
+
+	public CalculatableRate getRate() {
+		return rate;
+	}
+
+	public void setRate(CalculatableRate rate) {
+		this.rate = rate;
+	}
 }
