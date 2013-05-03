@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stockItemSingleLabelByPK" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="afb4b626-8e3d-4810-bed6-c71b83c336f4">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="18"/>
+	<parameter name="jrpStockItemId" class="java.lang.String">
+		<defaultValueExpression><![CDATA['RCV000003-RL005-SKI001']]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     whstock_item.`id` AS whstock_item_id,
+     whstock_item.`code` AS whstock_item_code,
+     whstock_item.`dateCreated` AS whstock_item_dateCreated,
+     whstock_item.`dateLastUpdated` AS whstock_item_dateLastUpdated,
+     whstock_item.`name` AS whstock_item_name,
+     whstock_item.`status` AS whstock_item_status,
+     whstock_item.`volumeUnit_id` AS whstock_item_vol_unit,
+     whstock_item.`weightUnit_id` AS whstock_item_weight_unit,
+     whstock_item.`innerPackUnit_id` AS whstock_item_stock_unit,
+     whstock_item.`volume` AS whstock_item_volume,
+     whstock_item.`weight` AS whstock_item_weight,
+     whstock_item.`width` AS whstock_item_width,
+     whstock_item.`length` AS whstock_item_len,
+     whstock_item.`height` AS whstock_item_height,
+     whstock_item.`version` AS whstock_item_version,
+     whstock_item.`location_id` AS whstock_item_location,
+     ShipperOrg.`code` AS shipper_organization_code,
+     ShipperOrg.`name` AS shipper_organization_name,
+     ShipperOrgAddress.`id` AS shipper_address_id,
+     ShipperOrgAddress.`phone` AS shipper_address_phone,
+     ShipperOrgAddress.`state` AS shipper_address_state,
+     ShipperOrgAddress.`street1` AS shipper_address_street1,
+     ShipperOrgAddress.`street2` AS shipper_address_street2,
+     ShipperOrgAddress.`zipCode` AS shipper_address_zip_code,
+     ShipperOrg.`name` AS shipper_address_company,
+     ShipperOrgAddress.`country_id` AS shipper_address_country,
+     ShipperOrgAddress.`countryState_id` AS shipper_address_region,
+     ShipperOrgAddress.`unloco_id` AS shipper_address_unloco,
+     ShipperOrgAddressCountry.`code` AS shipper_address_country_code,
+     ShipperOrgAddressCountry.`name` AS shipper_address_country_name,
+     ShipperOrgAddressUnloco.`code` AS shipper_address_ref_unloco_code,
+     ShipperOrgAddressUnloco.`name` AS shipper_address_ref_unloco_name,
+     ShipperOrgAddressUnloco.`portCity` AS shipper_address_ref_unloco_port_city,
+     ConsigneeOrg.`code` AS consignee_organization_code,
+     ConsigneeOrg.`name` AS consignee_organization_name,
+     ConsigneeOrgAddress.`id` AS consignee_address_id,
+     ConsigneeOrgAddress.`phone` AS consignee_address_phone,
+     ConsigneeOrgAddress.`state` AS consignee_address_state,
+     ConsigneeOrgAddress.`street1` AS consignee_address_street1,
+     ConsigneeOrgAddress.`street2` AS consignee_address_street2,
+     ConsigneeOrgAddress.`zipCode` AS consignee_address_zip_code,
+     ConsigneeOrg.`name` AS consignee_address_company,
+     ConsigneeOrgAddress.`country_id` AS consignee_address_country,
+     ConsigneeOrgAddress.`countryState_id` AS consignee_address_region,
+     ConsigneeOrgAddress.`unloco_id` AS consignee_address_unloco,
+     ConsigneeOrgAddressCountry.`code` AS consignee_address_country_code,
+     ConsigneeOrgAddressCountry.`name` AS consignee_address_country_name,
+     ConsigneeOrgAddressUnloco.`code` AS consignee_address_ref_unloco_code,
+     ConsigneeOrgAddressUnloco.`name` AS consignee_address_ref_unloco_name,
+     ConsigneeOrgAddressUnloco.`portCity` AS consignee_address_ref_unloco_port_city,
+     WeightUnit.`code` AS weight_unit_code,
+     WeightUnit.`name` AS weight_unit_name,
+     DimUnit.`code` AS dim_unit_code,
+     DimUnit.`name` AS dim_unit_name,
+     VolUnit.`code` AS vol_unit_code,
+     VolUnit.`name` AS vol_unit_name,
+     InnerPackUnit.`code` AS inner_pack_unit_code,
+     InnerPackUnit.`name` AS inner_pack_unit_name
+FROM
+	 `whstockitem` whstock_item
+     LEFT OUTER JOIN  `whreceivelinestockitemset_whstockitem` whreceivelinestockitemset_whstockitem ON whreceivelinestockitemset_whstockitem.`stockItems_id` = whstock_item.`id`
+     LEFT OUTER JOIN  `whreceivelinestockitemset` whreceivelinestockitemset ON whreceivelinestockitemset_whstockitem.`whreceivelinestockitemset_id` = whreceivelinestockitemset.`id`
+     LEFT OUTER JOIN  `whreceiveline` wh ON whreceivelinestockitemset.`receiveLine_id` = wh.`id`
+     LEFT OUTER JOIN `wharrivalreceiptline` wharrival_receipt_line ON wh.`id` = wharrival_receipt_line.`receiveLine_id`
+     LEFT OUTER JOIN `wharrivalreceipt` wharrival_receipt ON wharrival_receipt_line.`parentArrivalReceipt_id` = wharrival_receipt.`id`
+     LEFT OUTER JOIN `reforganization` ShipperOrg ON whstock_item.`shipper_id` = ShipperOrg.`id`
+     LEFT OUTER JOIN `reforganization` ConsigneeOrg ON whstock_item.`consignee_id` = ConsigneeOrg.`id`
+     LEFT OUTER JOIN `sysmmtype` OrgType ON OrgType.`entityJavaSimpleType` = "Organization"
+     LEFT OUTER JOIN `refaddresstype` MainAddressType ON MainAddressType.`code` = "MAIN"
+     LEFT OUTER JOIN `refaddresstypeaddress` ConsigneeOrgAddressType ON MainAddressType.id = ConsigneeOrgAddressType.`type_id`
+     AND  OrgType.id = ConsigneeOrgAddressType.`ownerEntityTypeId`
+     AND  ConsigneeOrg.id = ConsigneeOrgAddressType.`ownerEntityId`
+     LEFT OUTER JOIN `refaddress` ConsigneeOrgAddress ON ConsigneeOrgAddress.id = ConsigneeOrgAddressType.`address_id`
+     LEFT OUTER JOIN `refcountry` ConsigneeOrgAddressCountry ON ConsigneeOrgAddress.`country_id` = ConsigneeOrgAddressCountry.`id`
+     LEFT OUTER JOIN `refunloco` ConsigneeOrgAddressUnloco ON ConsigneeOrgAddress.`unloco_id` = ConsigneeOrgAddressUnloco.`id`
+     LEFT OUTER JOIN `refaddresstypeaddress` ShipperOrgAddressType ON MainAddressType.id = ShipperOrgAddressType.`type_id`
+     AND  OrgType.id = ShipperOrgAddressType.`ownerEntityTypeId`
+     AND  ConsigneeOrg.id = ShipperOrgAddressType.`ownerEntityId`
+     LEFT OUTER JOIN `refaddress` ShipperOrgAddress ON ShipperOrgAddress.id = ShipperOrgAddressType.`address_id`
+     LEFT OUTER JOIN `refcountry` ShipperOrgAddressCountry ON ShipperOrgAddress.`country_id` = ShipperOrgAddressCountry.`id`
+     LEFT OUTER JOIN `refunloco` ShipperOrgAddressUnloco ON ShipperOrgAddress.`unloco_id` = ShipperOrgAddressUnloco.`id`
+     LEFT OUTER JOIN `refweightunit` WeightUnit ON whstock_item.`weightUnit_id` = WeightUnit.`id`
+     LEFT OUTER JOIN `refdimunit` DimUnit ON whstock_item.`widthUnit_id` = DimUnit.`id`
+     LEFT OUTER JOIN `refdimunit` VolUnit ON whstock_item.`volumeUnit_id` = VolUnit.`id`
+     LEFT OUTER JOIN `refpackunit` InnerPackUnit ON whstock_item.`innerPackUnit_id` = InnerPackUnit.`id`
+
+
+WHERE
+     whstock_item.`code` = $P{jrpStockItemId}]]>
+	</queryString>
+	<field name="whstock_item_id" class="java.lang.Long"/>
+	<field name="whstock_item_code" class="java.lang.String"/>
+	<field name="whstock_item_dateCreated" class="java.sql.Timestamp"/>
+	<field name="whstock_item_dateLastUpdated" class="java.sql.Timestamp"/>
+	<field name="whstock_item_name" class="java.lang.String"/>
+	<field name="whstock_item_status" class="java.lang.String"/>
+	<field name="whstock_item_vol_unit" class="java.lang.Long"/>
+	<field name="whstock_item_weight_unit" class="java.lang.Long"/>
+	<field name="whstock_item_stock_unit" class="java.lang.Long"/>
+	<field name="whstock_item_volume" class="java.lang.Double"/>
+	<field name="whstock_item_weight" class="java.lang.Double"/>
+	<field name="whstock_item_width" class="java.lang.Double"/>
+	<field name="whstock_item_len" class="java.lang.Double"/>
+	<field name="whstock_item_height" class="java.lang.Double"/>
+	<field name="whstock_item_version" class="java.lang.Integer"/>
+	<field name="whstock_item_location" class="java.lang.Long"/>
+	<field name="shipper_organization_code" class="java.lang.String"/>
+	<field name="shipper_organization_name" class="java.lang.String"/>
+	<field name="shipper_address_id" class="java.lang.Long"/>
+	<field name="shipper_address_phone" class="java.lang.String"/>
+	<field name="shipper_address_state" class="java.lang.String"/>
+	<field name="shipper_address_street1" class="java.lang.String"/>
+	<field name="shipper_address_street2" class="java.lang.String"/>
+	<field name="shipper_address_zip_code" class="java.lang.String"/>
+	<field name="shipper_address_company" class="java.lang.String"/>
+	<field name="shipper_address_country" class="java.lang.Long"/>
+	<field name="shipper_address_region" class="java.lang.Long"/>
+	<field name="shipper_address_unloco" class="java.lang.Long"/>
+	<field name="shipper_address_country_code" class="java.lang.String"/>
+	<field name="shipper_address_country_name" class="java.lang.String"/>
+	<field name="shipper_address_ref_unloco_code" class="java.lang.String"/>
+	<field name="shipper_address_ref_unloco_name" class="java.lang.String"/>
+	<field name="shipper_address_ref_unloco_port_city" class="java.lang.String"/>
+	<field name="consignee_organization_code" class="java.lang.String"/>
+	<field name="consignee_organization_name" class="java.lang.String"/>
+	<field name="consignee_address_id" class="java.lang.Long"/>
+	<field name="consignee_address_phone" class="java.lang.String"/>
+	<field name="consignee_address_state" class="java.lang.String"/>
+	<field name="consignee_address_street1" class="java.lang.String"/>
+	<field name="consignee_address_street2" class="java.lang.String"/>
+	<field name="consignee_address_zip_code" class="java.lang.String"/>
+	<field name="consignee_address_company" class="java.lang.String"/>
+	<field name="consignee_address_country" class="java.lang.Long"/>
+	<field name="consignee_address_region" class="java.lang.Long"/>
+	<field name="consignee_address_unloco" class="java.lang.Long"/>
+	<field name="consignee_address_country_code" class="java.lang.String"/>
+	<field name="consignee_address_country_name" class="java.lang.String"/>
+	<field name="consignee_address_ref_unloco_code" class="java.lang.String"/>
+	<field name="consignee_address_ref_unloco_name" class="java.lang.String"/>
+	<field name="consignee_address_ref_unloco_port_city" class="java.lang.String"/>
+	<field name="weight_unit_code" class="java.lang.String"/>
+	<field name="weight_unit_name" class="java.lang.String"/>
+	<field name="dim_unit_code" class="java.lang.String"/>
+	<field name="dim_unit_name" class="java.lang.String"/>
+	<field name="vol_unit_code" class="java.lang.String"/>
+	<field name="vol_unit_name" class="java.lang.String"/>
+	<field name="inner_pack_unit_code" class="java.lang.String"/>
+	<field name="inner_pack_unit_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="281" splitType="Stretch">
+			<line>
+				<reportElement uuid="48fef378-6289-462a-9ab0-6fa21f9b135a" x="0" y="0" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="81a30f98-74e0-43d3-92dd-d8dde2cd15e3" x="0" y="253" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="a57f0143-12ae-4500-aad6-a520d043336a" x="0" y="129" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="375553cf-f95c-45b8-898c-4a8056184d87" x="0" y="206" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="cb249ea9-7c99-466f-847f-ce78558acec7" x="0" y="0" width="1" height="253"/>
+			</line>
+			<line>
+				<reportElement uuid="29ce0980-0a56-4b87-9a53-e1d1103c8d03" x="554" y="1" width="1" height="253"/>
+			</line>
+			<line>
+				<reportElement uuid="19e3880f-c970-449b-94ca-2d29087f1472" x="277" y="1" width="1" height="129"/>
+			</line>
+			<line>
+				<reportElement uuid="ad89716a-8139-4f73-a669-990332ac69ff" x="0" y="231" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="b8738f43-5b29-4807-a03c-8485f8dd6092" x="1" y="1" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Shipper:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f079899f-c395-4b71-b32a-2ef2df3ba51f" x="278" y="1" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ba0ad68-bc6b-4306-a4b3-95e7783bb0ff" x="1" y="130" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Warehouse:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="591ee742-2628-4b4d-8206-9f35ebc583f4" x="0" y="150" width="555" height="1"/>
+			</line>
+			<componentElement>
+				<reportElement uuid="1a730dcb-823f-4a77-8bc7-47c663cd29a2" x="289" y="154" width="255" height="34"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false" barHeight="80">
+					<jr:codeExpression><![CDATA[$F{whstock_item_code}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement uuid="793662b6-d852-4f9f-a484-fb09b5fa4204" x="289" y="193" width="255" height="18"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{whstock_item_code}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="6061a28c-fcae-4f6c-b5f9-c98f362cbf44" x="277" y="151" width="1" height="55"/>
+			</line>
+			<line>
+				<reportElement uuid="10c1ef3b-7e1a-4169-b2de-1dd8d1bcb158" x="1" y="178" width="277" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="b7092b17-96f8-4eb6-80a7-658259cd43d5" x="1" y="151" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Weight:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="28d8d1c7-5109-43ae-8993-4be935dfaba2" x="1" y="179" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dims LxWxH:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="338637b6-524e-4068-a7ec-01e39157b2a4" x="55" y="163" width="207" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{whstock_item_weight}+" ("+$F{weight_unit_code}+")"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5f6a8d28-6c68-42c1-b830-6de70804f271" x="55" y="191" width="169" height="20"/>
+				<textElement>
+					<font size="11" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{whstock_item_len}+"x"+$F{whstock_item_width}+"x"+$F{whstock_item_height}+"("+$F{dim_unit_code}+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f2773944-f688-44de-9392-2f4918931e5a" x="1" y="231" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Printed:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c3d2ce36-3b76-43c5-8f3b-cb721ffa9b4c" x="278" y="233" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Printed By:]]></text>
+			</staticText>
+			<textField pattern="EEE, d MMM yyyy HH:mm:ss z" isBlankWhenNull="false">
+				<reportElement uuid="3327f76b-e7c7-41eb-9c3a-31c89bf21d96" x="68" y="240" width="187" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="be104da4-b7d3-43b7-86ea-96e7d1e83cb4" x="30" y="21" width="247" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shipper_organization_name}+"("+$F{shipper_organization_code}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc1f0159-b4f4-426f-a6b1-3e0aaeddeb5d" x="30" y="41" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{shipper_address_street1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6da4be28-a639-42b5-92b0-61c7e0d914ae" x="30" y="61" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{shipper_address_ref_unloco_port_city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c859fd35-15aa-41c0-a022-6c2ae1a2e19e" x="30" y="81" width="225" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shipper_address_country_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d428ebc-1a8a-4008-b638-658ca0860f26" x="300" y="61" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{consignee_address_ref_unloco_port_city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cad5926c-e53f-4ca6-b6cc-515c0878e2a2" x="300" y="81" width="225" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consignee_address_country_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b66867b4-9771-4ae8-bb51-606f5540a1a8" x="300" y="41" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{consignee_address_street1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4792d844-d335-4457-bd56-086685a215fd" x="300" y="21" width="247" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consignee_organization_name}+"("+$F{consignee_organization_code}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

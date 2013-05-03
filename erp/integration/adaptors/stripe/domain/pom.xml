@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.flowframe.erp.integration.adaptors.stripe</artifactId>
+		<groupId>org.flowframe</groupId>
+		<version>0.0.1</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>org.flowframe.erp.integration.adaptors.stripe.domain</artifactId>
+	<dependencies>
+		<!-- FF -->
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.mdm.domain</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.common.mdm.domain</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.common.utils</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>com.springsource.javax.persistence</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.spring-library</artifactId>
+			<type>libd</type>
+		</dependency>
+		<dependency>
+			<groupId>org.junit</groupId>
+			<artifactId>com.springsource.org.junit</artifactId>
+			<scope>test</scope>
+		</dependency>	
+	</dependencies>
+</project>

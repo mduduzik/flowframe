@@ -11,7 +11,6 @@
   <modules>
   	<module>remote.services</module>
   	<module>stripe</module>
-  	<module>stripe.config.fragment</module>
   </modules>
 	<build>
 		<plugins>
