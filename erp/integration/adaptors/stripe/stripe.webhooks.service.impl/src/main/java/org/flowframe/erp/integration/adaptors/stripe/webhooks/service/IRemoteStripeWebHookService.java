@@ -1,5 +1,6 @@
 package org.flowframe.erp.integration.adaptors.stripe.webhooks.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.flowframe.erp.integration.adaptors.stripe.domain.event.Event;
@@ -16,7 +17,7 @@ public interface IRemoteStripeWebHookService {
 	/**
 	 * CRUD
 	 */
-	public Set<Event> getAllActiveEvents() throws Exception;
+	public List<Event> getAllActiveEvents() throws Exception;
 
 	public Event getEventById(String eventId) throws Exception;
 

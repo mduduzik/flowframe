@@ -10,9 +10,11 @@
 	<artifactId>org.flowframe.erp.integration.adaptors.stripe</artifactId>
 	<packaging>pom</packaging>
 	<modules>
+		<module>domain</module>
 		<module>stripe.service.impl</module>
 		<module>stripe.service.impl.config.fragment</module>
 		<module>stripe.webhooks.service.impl</module>
+		<module>datasource.mysql</module>
 	</modules>
 	<build>
 		<plugins>

@@ -3,7 +3,7 @@ package org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -74,9 +74,8 @@ public class StripeWebhooksServiceImpl implements IRemoteStripeWebHookService {
 	}
 
 	@Override
-	public Set<org.flowframe.erp.integration.adaptors.stripe.domain.event.Event> getAllActiveEvents() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<org.flowframe.erp.integration.adaptors.stripe.domain.event.Event> getAllActiveEvents() {
+		return em.createQuery("select o from org.flowframe.erp.integration.adaptors.stripe.domain.event.Event o record by o.id", org.flowframe.erp.integration.adaptors.stripe.domain.event.Event.class).getResultList();
 	}
 	
 	@Override
