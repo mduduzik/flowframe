@@ -30,7 +30,9 @@ public class Event extends MultitenantBaseEntity {
     
     private Date dateResponsedWithSuccess;
     
-    private Boolean actionedWithSuccess;
+    private Boolean actionedWithSuccess = false;
+    
+    private Integer processingTries = 0;
     
     private Date eventCreated;
     private Boolean livemode = false;
@@ -124,5 +126,13 @@ public class Event extends MultitenantBaseEntity {
 
 	public void setDateResponsedWithSuccess(Date dateResponsedWithSuccess) {
 		this.dateResponsedWithSuccess = dateResponsedWithSuccess;
+	}
+
+	public Integer getProcessingTries() {
+		return processingTries;
+	}
+
+	public void setProcessingTries(Integer processingTries) {
+		this.processingTries = processingTries;
 	}
 }

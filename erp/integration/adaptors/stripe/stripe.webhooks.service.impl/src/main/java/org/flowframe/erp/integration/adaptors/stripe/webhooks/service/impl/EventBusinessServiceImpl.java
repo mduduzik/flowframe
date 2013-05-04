@@ -1,5 +1,7 @@
 package org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Date;
 
 import org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.JsonSyntaxException;
 import com.stripe.model.Event;
 
 @Transactional
@@ -26,20 +29,33 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 		
 		int httpResponseStatus = 302;//Found
 		
-		Event evt = Event.gson.fromJson(eventInJson, Event.class);
-		org.flowframe.erp.integration.adaptors.stripe.domain.event.Event ffEvent = eventDAoService.getEventById(evt.getId());
-		if (Validator.isNull(ffEvent)) {
-			ffEvent = toFFEvent(evt,eventInJson);
-			ffEvent = eventDAoService.add(ffEvent);
-		}
-		else
-		{
-			if (ffEvent.getActionedWithSuccess() && ffEvent.getDateResponsedWithSuccess() == null)
-			{
-				ffEvent.setDateResponsedWithSuccess(new Date());
-				ffEvent = eventDAoService.update(ffEvent);
-				httpResponseStatus = 200;//OK
+		try {
+			Event evt = Event.gson.fromJson(eventInJson, Event.class);
+			org.flowframe.erp.integration.adaptors.stripe.domain.event.Event ffEvent = eventDAoService.getEventById(evt.getId());
+			if (Validator.isNull(ffEvent)) {
+				ffEvent = toFFEvent(evt,eventInJson);
+				ffEvent = eventDAoService.add(ffEvent);
 			}
+			else
+			{
+				if (ffEvent.getActionedWithSuccess() && ffEvent.getDateResponsedWithSuccess() == null)
+				{
+					ffEvent.setDateResponsedWithSuccess(new Date());
+					ffEvent = eventDAoService.update(ffEvent);
+					httpResponseStatus = 200;//OK
+				}
+				else
+				{
+					ffEvent.setProcessingTries(ffEvent.getProcessingTries()+1);
+					ffEvent.setDateLastTried(new Date());
+					ffEvent = eventDAoService.update(ffEvent);
+				}
+			}
+		} catch (JsonSyntaxException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
 		}
 
 		return httpResponseStatus;
@@ -47,6 +63,7 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 
 	private org.flowframe.erp.integration.adaptors.stripe.domain.event.Event toFFEvent(Event evt, String eventInJson) {
 		org.flowframe.erp.integration.adaptors.stripe.domain.event.Event ffEvent = new org.flowframe.erp.integration.adaptors.stripe.domain.event.Event();
+		ffEvent.setCode(evt.getId());
 		ffEvent.setStripeId(evt.getId());
 		ffEvent.setEventType(evt.getType());
 		ffEvent.setActive(true);
