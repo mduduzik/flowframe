@@ -1,0 +1,53 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.erp.integration.adaptors.stripe.webhooks
+ .service.servlet;version="0.0.1";uses:="javax.servlet,javax.servlet.h
+ ttp,org.springframework.beans.factory.annotation,org.springframework.
+ stereotype"
+Bundle-ClassPath: .,WEB-INF/classes
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Stripe WebHook Web Server
+Import-Library: org.springframework.spring;version="[3.1,3.2)"
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.erp.integration.adaptors.stripe.web
+ hooks.webapp
+Web-ContextPath: stripe
+Import-Package: com.google.gson;version="[2.0.0,3.0.0]",com.stripe;ver
+ sion="1.2.2",com.stripe.model;version="1.2.2",flexjson;version="[2.0,
+ 3.0)",flexjson.transformer;version="[2.0,3.0)",javax.persistence;vers
+ ion="0",javax.persistence.criteria;version="0",javax.persistence.meta
+ model;version="0",javax.servlet;version="[3.0.0, 3.1.0)",javax.servle
+ t.http;version="[3.0.0,3.1.0)",javax.servlet.jsp.jstl.core;version="[
+ 1.2.0,2.0.0)",net.sf.cglib.core;version="2.2.0",net.sf.cglib.proxy;ve
+ rsion="2.2.0",net.sf.cglib.reflect;version="2.2.0",org.aopalliance.ao
+ p;version="1.0.0",org.apache.http;version="[4.0,5.0)",org.apache.http
+ .auth;version="[4.0,5.0)",org.apache.http.client;version="[4.0,5.0)",
+ org.apache.http.client.entity;version="[4.0,5.0)",org.apache.http.cli
+ ent.methods;version="[4.0,5.0)",org.apache.http.conn;version="[4.0,5.
+ 0)",org.apache.http.conn.scheme;version="[4.0,5.0)",org.apache.http.e
+ ntity.mime;version="[4.0,5.0)",org.apache.http.entity.mime.content;ve
+ rsion="[4.0,5.0)",org.apache.http.impl.auth;version="[4.0,5.0)",org.a
+ pache.http.impl.client;version="[4.0,5.0)",org.apache.http.impl.conn;
+ version="[4.0,5.0)",org.apache.http.message;version="[4.0,5.0)",org.a
+ pache.http.params;version="[4.0,5.0)",org.apache.http.protocol;versio
+ n="[4.0,5.0)",org.apache.http.util;version="[4.0,5.0)",org.codehaus.j
+ ettison.json;version="[1.0.0,2.0.0)",org.eclipse.virgo.web.dm;version
+ ="[3.0.0, 4.0.0)",org.flowframe.erp.integration.adaptors.stripe.domai
+ n.event;version="[0.0.1,1.0.0)",org.flowframe.erp.integration.adaptor
+ s.stripe.services;version="[0.0.1,1.0.0)",org.flowframe.kernel.common
+ .mdm.domain;version="[0.0.1,1.0.0)",org.flowframe.kernel.common.mdm.d
+ omain.documentlibrary;version="[0.0.1,1.0.0)",org.flowframe.kernel.co
+ mmon.mdm.domain.geolocation;version="[0.0.1,1.0.0)",org.flowframe.ker
+ nel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",org.flowfr
+ ame.kernel.common.mdm.domain.role;version="[0.0.1,1.0.0)",org.flowfra
+ me.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",org.flowfram
+ e.kernel.common.utils;version="[0.0.1,1.0.0)",org.slf4j;version="[1.6
+ ,1.8)",org.springframework.aop.framework;version="[3.1,3.2)",org.spri
+ ngframework.beans.factory.annotation;version="[3.1,3.2)",org.springfr
+ amework.core.io;version="[3.1,3.2)",org.springframework.orm.jpa.suppo
+ rt;version="[3.1,3.2)",org.springframework.stereotype;version="[3.1, 
+ 3.2)",org.springframework.web.bind.annotation;version="[3.1,3.2)",org
+ .springframework.web.context;version="[3.1,3.2)",org.springframework.
+ web.servlet;version="[3.1,3.2)",org.springframework.web.servlet.mvc.a
+ nnotation;version="[3.1,3.2)"
+
