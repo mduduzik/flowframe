@@ -98,7 +98,7 @@ public class EventDAOServiceImpl implements IEventDAOService {
 
 	@Override
 	public List<Event> getAll() {
-		return em.createQuery("select o from Event o record by o.id", Event.class).getResultList();
+		return em.createQuery("select o from org.flowframe.erp.integration.adaptors.stripe.domain.event.Event o order by o.id", Event.class).getResultList();
 	}
 
 	@Override
@@ -127,5 +127,20 @@ public class EventDAOServiceImpl implements IEventDAOService {
 		}
 
 		return rec;
+	}
+
+	@Override
+	public List<Event> getAllInvoiceEventsCreated() {
+		return em.createQuery("select o from org.flowframe.erp.integration.adaptors.stripe.domain.event.Event o where o.objectType = 'invoice' and o.eventType = 'invoice.created' and o.dateResponsedWithSuccess is null and o.active = TRUE order by o.id", Event.class).getResultList();
+	}
+
+	@Override
+	public List<Event> getAllInvoiceEventsWithSuccessfulPayment() {
+		return em.createQuery("select o from org.flowframe.erp.integration.adaptors.stripe.domain.event.Event o where o.objectType = 'invoice' and o.eventType = 'invoice.payment_succeeded' and o.dateResponsedWithSuccess is null and o.active = TRUE order by o.id", Event.class).getResultList();
+	}
+
+	@Override
+	public List<Event> getAllInvoiceEventsWithFailedPayment() {
+		return em.createQuery("select o from org.flowframe.erp.integration.adaptors.stripe.domain.event.Event o where o.objectType = 'invoice' and o.eventType = 'invoice.payment_failed' and o.dateResponsedWithSuccess is null and o.active = TRUE order by o.id", Event.class).getResultList();
 	}
 }

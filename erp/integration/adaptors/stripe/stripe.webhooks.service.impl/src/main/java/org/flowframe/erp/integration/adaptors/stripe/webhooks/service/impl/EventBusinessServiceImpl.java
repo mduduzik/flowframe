@@ -2,7 +2,11 @@ package org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.Map;
 
 import org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService;
 import org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOService;
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.JsonSyntaxException;
 import com.stripe.model.Event;
+import com.stripe.model.StripeObject;
 
 @Transactional
 @Service
@@ -63,6 +68,10 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 
 	private org.flowframe.erp.integration.adaptors.stripe.domain.event.Event toFFEvent(Event evt, String eventInJson) {
 		org.flowframe.erp.integration.adaptors.stripe.domain.event.Event ffEvent = new org.flowframe.erp.integration.adaptors.stripe.domain.event.Event();
+		Object objectId = getIdString(evt.getData().getObject());
+		Object objectType = getTypeString(evt.getData().getObject());
+		ffEvent.setObjectId(objectId.toString());
+		ffEvent.setObjectType(objectType.toString());
 		ffEvent.setCode(evt.getId());
 		ffEvent.setStripeId(evt.getId());
 		ffEvent.setEventType(evt.getType());
@@ -71,6 +80,29 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 		ffEvent.setBody(eventInJson);
 		return ffEvent;
 	}
+	
+	private Object getIdString(StripeObject so) {
+		try {
+			Method getIdMethod = so.getClass().getDeclaredMethod("getId");
+			return getIdMethod.invoke(so);
+		} catch (SecurityException e) {
+			return "";
+		} catch (NoSuchMethodException e) {
+			return "";
+		} catch (InvocationTargetException e) {
+			return "";
+		} catch (IllegalAccessException e) {
+			return "";
+		}
+	}
+	
+	private Object getTypeString(StripeObject so) {
+		try {
+			return so.getClass().getSimpleName().toLowerCase();
+		} catch (SecurityException e) {
+			return "";
+		}
+	}	
 
 	@Override
 	public void greenLightEvent(String eventId) {

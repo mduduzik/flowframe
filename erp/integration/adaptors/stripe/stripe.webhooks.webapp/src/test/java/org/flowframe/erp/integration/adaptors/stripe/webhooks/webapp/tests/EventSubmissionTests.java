@@ -46,6 +46,7 @@ public class EventSubmissionTests  {
 	public void testEventSubmission(){
 		try {
 			HttpHost targetHost = new HttpHost("stage.conxbi.com", Integer.valueOf(8082), "http");
+			//HttpHost targetHost = new HttpHost("localhost", Integer.valueOf(8082), "http");
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpPost post = new HttpPost(
 					"/stripe/webhook");

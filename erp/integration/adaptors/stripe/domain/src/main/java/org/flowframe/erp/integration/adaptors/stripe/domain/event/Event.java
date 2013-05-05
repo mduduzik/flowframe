@@ -22,6 +22,10 @@ public class Event extends MultitenantBaseEntity {
     
     private String eventType;
     
+    private String objectType;
+    
+    private String objectId;
+    
     private Integer pendingWebhooks;
     
     private Date dateLastTried;
@@ -134,5 +138,21 @@ public class Event extends MultitenantBaseEntity {
 
 	public void setProcessingTries(Integer processingTries) {
 		this.processingTries = processingTries;
+	}
+
+	public String getObjectType() {
+		return objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public String getObjectId() {
+		return objectId;
+	}
+
+	public void setObjectId(String objectId) {
+		this.objectId = objectId;
 	}
 }

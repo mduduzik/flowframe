@@ -24,4 +24,15 @@ public interface IEventDAOService {
 	public List<Event> getAllActiveEvents();
 
 	public Event getEventById(String eventId);
+	
+	/**
+	 * 
+	 * Invoices
+	 * 
+	 */
+	public List<Event> getAllInvoiceEventsCreated();
+	
+	public List<Event> getAllInvoiceEventsWithSuccessfulPayment();
+	
+	public List<Event> getAllInvoiceEventsWithFailedPayment();
 }
