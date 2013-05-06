@@ -34,4 +34,31 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="quartzSchedulingDataSource" class="bitronix.tm.resource.jdbc.PoolingDataSource"
+		init-method="init" destroy-method="close">
+		<property name="className"
+			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+		<property name="uniqueName" value="jdbc/quartzSchedulingDS" />
+		<property name="minPoolSize" value="2" />
+		<property name="maxPoolSize" value="32" />
+		<property name="acquisitionInterval" value="1" />
+		<property name="acquisitionTimeout" value="15" />
+		<property name="maxIdleTime" value="15" />
+		<property name="useTmJoin" value="true" />
+		<property name="deferConnectionRelease" value="true" />
+		<property name="automaticEnlistingEnabled" value="true" />
+		<property name="allowLocalTransactions" value="true" />
+		<property name="testQuery" value="SELECT current_timestamp" />
+		<property name="driverProperties">
+			<props>
+				<prop key="user">root</prop>
+				<prop key="password">root</prop>
+				<prop key="databaseName">ffscheduling</prop>
+				<prop key="serverName">localhost</prop>
+				<prop key="portNumber">3306</prop>
+				<prop key="url">jdbc:mysql://localhost/ffscheduling?autoReconnect=true</prop>
+			</props>
+		</property>
+	</bean>	
+	
 </beans>

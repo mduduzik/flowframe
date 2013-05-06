@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF Scheduling Remote Services
+Bundle-SymbolicName: org.flowframe.scheduling.remote.services
+Bundle-Vendor: FF
+Bundle-Version: 0.0.1
+Import-Package: org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.metamodel.dao.services;version="[0.0.1,1.0.0)",
+  org.springframework.transaction;version="[3.1,3.2)",
+  org.springframework.transaction.aspectj;version="[3.1,3.2)",
+  javax.persistence;version="0",
+  javax.persistence.metamodel;version="0",
+  org.quartz;version="[2.0,3.0)"

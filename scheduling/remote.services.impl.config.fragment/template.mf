@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF Scheduling Remote Services Impl config fragment
+Bundle-SymbolicName: org.flowframe.scheduling.remote.services.impl.config.fragment
+Fragment-Host: org.flowframe.scheduling.remote.services.impl
+Bundle-Vendor: FF
+Bundle-Version: 0.0.1
