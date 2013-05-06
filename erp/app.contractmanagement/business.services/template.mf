@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF ContractManagement Business Services
+Bundle-SymbolicName: org.flowframe.erp.app.contractmanagement.business.services
+Bundle-Vendor: ConX
+Bundle-Version: 1.0.0
+Import-Package: javax.persistence.metamodel;version="0",
+  com.conx.bi.kernel.core.domain.job;version="[1.0.0,2.0.0)",
+  com.conx.bi.kernel.core.domain.reporting;version="[1.0.0,2.0.0)",
+  com.conx.bi.kernel.core.domain.tenant.registration;version="[1.0.0,2.0.0)",
+  com.conx.bi.kernel.core.domain.service;version="[1.0.0,2.0.0)",
+  org.flowframe.exception;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.services;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)"

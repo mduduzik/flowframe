@@ -9,6 +9,10 @@
   <artifactId>org.flowframe.erp.app.contractmanagement</artifactId>
   <packaging>pom</packaging>
   <modules>
+    <module>business.services</module>
+    <module>business.services.impl</module>
+  	<module>dao.services</module>
+  	<module>dao.services.impl</module>
   	<module>domain</module>
   </modules>
 	<build>
@@ -20,7 +24,7 @@
 				<configuration>
 					<failOnWarnings>true</failOnWarnings>
 					<!-- used to properly set-up versions for system packages -->
-					<osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
+					<osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
 					<bundleVersion>${project.version}</bundleVersion>
 					<!-- point to a different output path - so manifest will be regenerated 
 						on each build and can be eyeballed if desired. Also for eclipse use, where 

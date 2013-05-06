@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+
+	<!-- KERNEL.TM.JTA Transaction Manager -->
+	<osgi:reference id="globalJtaTransactionManager"
+		interface="org.springframework.transaction.PlatformTransactionManager"
+		filter="(module=KERNEL.TM.JTA)">
+	</osgi:reference>
+
+	<!-- KERNEL.TM Transaction Manager -->
+	<osgi:reference id="globalTransactionManager"
+		interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
+	</osgi:reference>
+
+	<osgi:reference id="conxLogisticsManagerFactory"
+		interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
+	</osgi:reference>
+
+	<!-- import external interfaces -->
+	<osgi:reference id="portalUserService" cardinality="1..1" interface="org.flowframe.portal.remote.services.IPortalUserService"/>
+	<osgi:reference id="portalOrganizationService" cardinality="1..1" interface="org.flowframe.portal.remote.services.IPortalOrganizationService"/>
+	<osgi:reference id="subscriptionDAOService" cardinality="1..1" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService"/>
+	<osgi:reference id="roleDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.role.IRoleDAOService"/>
+	
+	
+	<osgi:reference id="userDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
+	
+	<!-- export internal interfaces -->
+	<osgi:service auto-export="class-hierarchy" ref="contractManagementJobServicesImpl"
+		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementJobServices"
+		/>
+</beans>
