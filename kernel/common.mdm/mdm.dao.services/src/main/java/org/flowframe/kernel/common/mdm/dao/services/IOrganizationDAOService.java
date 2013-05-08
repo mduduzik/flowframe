@@ -12,6 +12,8 @@ public interface IOrganizationDAOService {
 	
 	public Organization getByCode(String code);	
 	
+	public Organization getByExternalRefId(String externalRefId);
+	
 	public Organization getByName(String name);
 
 	public Organization add(Organization record) throws Exception;

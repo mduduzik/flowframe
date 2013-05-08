@@ -6,6 +6,8 @@ import org.flowframe.erp.app.contractmanagement.domain.Customer;
 import org.flowframe.erp.app.contractmanagement.domain.Subscription;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.erp.app.financialmanagement.domain.payment.CreditCardToken;
+import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt;
+import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceiptLine;
 
 
 public interface ICCRemotePaymentProcessorService extends IRemotePaymentProcessorService {
@@ -52,5 +54,20 @@ public interface ICCRemotePaymentProcessorService extends IRemotePaymentProcesso
 	
 	/**
 	 * Invoice
-	 */		
+	 */	
+	public ARReceipt getInvoice(String invoiceId) throws Exception;	
+	
+	public Set<ARReceipt> getAllInvoices() throws Exception;	
+	
+	public ARReceipt createInvoice(ARReceipt invoice) throws Exception;
+	
+	public ARReceipt deleteInvoice(ARReceipt invoice) throws Exception;		
+	
+	public ARReceiptLine getInvoiceLine(String invoiceLineId) throws Exception;	
+	
+	public Set<ARReceiptLine> getAllInvoiceLines(String invoiceId) throws Exception;	
+	
+	public ARReceiptLine createInvoiceLine(ARReceiptLine invoiceLine) throws Exception;
+	
+	public ARReceiptLine deleteInvoiceLine(ARReceiptLine invoiceLine) throws Exception;		
 }

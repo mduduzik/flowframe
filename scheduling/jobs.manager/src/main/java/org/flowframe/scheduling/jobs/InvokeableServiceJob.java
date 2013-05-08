@@ -24,11 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Service
-public abstract class  AbstractInvokableInterfaceJob implements Job {
+public class  InvokeableServiceJob implements Job {
 	
 	private static final String APPLICATION_CONTEXT_KEY = "applicationContext";
 	
@@ -48,12 +49,13 @@ public abstract class  AbstractInvokableInterfaceJob implements Job {
 	
 	private String[] parameterValues;
 
-	private IJobsManager jobManager;
+	protected IJobsManager jobManager;
+	protected PlatformTransactionManager transactionManager;
 	
-	public AbstractInvokableInterfaceJob(){
+	public InvokeableServiceJob(){
 	}
 	
-	public AbstractInvokableInterfaceJob(String fullJavaInterfaceClassName, String methodName, String[] parameterNames, String[] parameterTypes, String[] parameterValues) {
+	public InvokeableServiceJob(String fullJavaInterfaceClassName, String methodName, String[] parameterNames, String[] parameterTypes, String[] parameterValues) {
 		super();
 		this.fullJavaInterfaceClassName = fullJavaInterfaceClassName;
 		this.methodName = methodName;
@@ -94,7 +96,7 @@ public abstract class  AbstractInvokableInterfaceJob implements Job {
 							" with args " + Arrays.toString(args));
 				}
 
-				Object returnObj = method.invoke(clazz, args);
+				Object returnObj = method.invoke(service, args);
 			}
 			catch (Exception e) {
 				if (logger.isDebugEnabled()) {
@@ -109,8 +111,14 @@ public abstract class  AbstractInvokableInterfaceJob implements Job {
 
 	private IJobsManager getJobManager(JobExecutionContext jobCtx) throws SchedulerException {
 		ApplicationContext app = getApplicationContext(jobCtx);
-		this.jobManager = (IJobsManager)app.getBean(IJobsManager.class.getName());
+		this.jobManager = (IJobsManager)app.getBean(IJobsManager.class);
 		return this.jobManager;
+	}
+	
+	private PlatformTransactionManager getTransactionManager(JobExecutionContext jobCtx) throws SchedulerException {
+		ApplicationContext app = getApplicationContext(jobCtx);
+		this.transactionManager = (PlatformTransactionManager)app.getBean(PlatformTransactionManager.class);
+		return this.transactionManager;
 	}
 	
     private ApplicationContext getApplicationContext(JobExecutionContext context )

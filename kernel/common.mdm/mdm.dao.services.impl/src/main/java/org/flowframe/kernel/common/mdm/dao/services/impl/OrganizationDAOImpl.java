@@ -109,6 +109,47 @@ public class OrganizationDAOImpl implements IOrganizationDAOService {
 	}
 	
 	@Override
+	public Organization getByExternalRefId(String externalRefId) {
+		Organization org = null;
+
+		try {
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<Organization> query = builder
+					.createQuery(Organization.class);
+			Root<Organization> rootEntity = query.from(Organization.class);
+			ParameterExpression<String> p = builder.parameter(String.class);
+			query.select(rootEntity).where(
+					builder.equal(rootEntity.get("externalRefId"), p));
+
+			TypedQuery<Organization> typedQuery = em.createQuery(query);
+			typedQuery.setParameter(p, externalRefId);
+
+			org = typedQuery.getSingleResult();
+			/*
+			 * TypedQuery<Organization> q = em.createQuery(
+			 * "select o from org.flowframe.kernel.common.mdm.domain.organization.Organization o WHERE o.code = :code"
+			 * ,Organization.class); q.setParameter("code", code);
+			 * 
+			 * org = q.getSingleResult();
+			 */
+		} catch (NoResultException e) {
+		} catch (EntityNotFoundException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+
+		return org;
+	}	
+	
+	@Override
 	public Organization getByName(String name) {
 		Organization org = null;
 

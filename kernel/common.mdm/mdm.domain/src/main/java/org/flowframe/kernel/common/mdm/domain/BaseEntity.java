@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,17 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.note.Note;
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreference;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @MappedSuperclass
 public abstract class BaseEntity
@@ -93,6 +89,9 @@ public abstract class BaseEntity
     @Basic
     @Column(name = "portalid", length = 255)    
     protected String portalId;
+    @Basic
+    @Column(name = "schedulerjobid", length = 255)    
+    protected String schedulerJobId;    
     @Basic
     @Column(name = "repositoryid", length = 255)    
     protected String repositoryid;
@@ -524,4 +523,12 @@ public abstract class BaseEntity
     public void setRepositoryid(String value) {
         this.repositoryid = value;
     }
+
+	public String getSchedulerJobId() {
+		return schedulerJobId;
+	}
+
+	public void setSchedulerJobId(String schedulerJobId) {
+		this.schedulerJobId = schedulerJobId;
+	}
 }

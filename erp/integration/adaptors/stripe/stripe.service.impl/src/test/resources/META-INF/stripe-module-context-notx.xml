@@ -6,10 +6,12 @@
 		xmlns:p="http://www.springframework.org/schema/p"
 		xmlns:context="http://www.springframework.org/schema/context"
 		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jaxws="http://cxf.apache.org/jaxws"
 		xsi:schemaLocation="
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
 	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
 
@@ -28,5 +30,10 @@
 		EntityManager will be auto-injected due to @PersistenceContext.
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
-	<bean id="stripeService" class="org.flowframe.erp.integration.adaptors.stripe.StripeServicesImpl" init-method="init"/>
+	<bean id="stripeService" class="org.flowframe.erp.integration.adaptors.stripe.StripeServicesImpl"/>
+	
+	<jaxws:client id="eventDAOService" serviceClass="org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOServicePortType"
+		address="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
+	<jaxws:client id="eventBusinessService" serviceClass="org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessServicePortType"
+		address="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
 </beans>

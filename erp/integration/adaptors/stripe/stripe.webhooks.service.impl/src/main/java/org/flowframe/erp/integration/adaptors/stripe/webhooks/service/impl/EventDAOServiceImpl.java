@@ -74,6 +74,12 @@ public class EventDAOServiceImpl implements IEventDAOService {
 	public void delete(Event record) {
 		em.remove(record);
 	}
+	
+	@Override
+	public void delete(String recordId) {
+		Event evt = getByCode(recordId);
+		delete(evt);
+	}	
 
 	@Override
 	public Event update(Event record) {
@@ -142,5 +148,13 @@ public class EventDAOServiceImpl implements IEventDAOService {
 	@Override
 	public List<Event> getAllInvoiceEventsWithFailedPayment() {
 		return em.createQuery("select o from org.flowframe.erp.integration.adaptors.stripe.domain.event.Event o where o.objectType = 'invoice' and o.eventType = 'invoice.payment_failed' and o.dateResponsedWithSuccess is null and o.active = TRUE order by o.id", Event.class).getResultList();
+	}
+
+	@Override
+	public void resetDB() {
+		List<Event> events = getAll();
+		for (Event event : events) {
+			em.remove(event);
+		}
 	}
 }

@@ -78,75 +78,21 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.jvnet.hyperjaxb3</groupId>
-				<artifactId>maven-hyperjaxb3-plugin</artifactId>
-				<version>0.5.5</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<phase>none</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<extension>true</extension>
-					<roundtripTestClassName>RoundtripTest</roundtripTestClassName>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<excludes>
-								<exclude>**/database.properties</exclude>
-								<exclude>**/applicationContext.xml</exclude>
-								<exclude>**/aop-ajc.xml</exclude>
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<inherited>true</inherited>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.mdm.domain</artifactId>
+			<version>0.0.1</version>
+			<scope>provided</scope>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.mdm.domain</artifactId>
 			<version>0.0.1</version>
 			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>
-						org.flowframe.thirdparty.org.jvnet.hyperjaxb3
-					</artifactId>
-					<groupId>org.flowframe</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>hyperjaxb3-ejb-runtime</artifactId>
-					<groupId>org.jvnet.hyperjaxb3</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
-					<groupId>org.jvnet.hyperjaxb3</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -172,28 +118,6 @@
 			<artifactId>com.springsource.org.junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>2.2.4-1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jvnet.hyperjaxb3</groupId>
-			<artifactId>hyperjaxb3-ejb-runtime</artifactId>
-			<version>0.5.5</version>
-		</dependency>
-
-		Roundtrip
-		<dependency>
-			<groupId>org.jvnet.hyperjaxb3</groupId>
-			<artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
-			<version>0.5.5</version>
-		</dependency> -->
 
 		<!-- Hibernate Dependencies -->
 		<dependency>

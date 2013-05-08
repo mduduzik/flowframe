@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.erp.integration.adaptors.stripe.services
+ ;version="0.0.1";uses:="javax.jws,javax.xml.bind,javax.xml.bind.annot
+ ation,javax.xml.datatype,javax.xml.namespace,javax.xml.ws"
+Bundle-Vendor: ConX
+Build-Jdk: 1.6.0_37
+Built-By: Mduduzi
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF ERP Stripe Webhooks Server SOAP Client
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: org.flowframe.erp.integration.adaptors.stripe.web
+ hooks.soap.client
+Import-Package: javax.jws;version="0",javax.xml.bind;version="0",javax
+ .xml.bind.annotation;version="0",javax.xml.datatype;version="0",javax
+ .xml.namespace;version="0",javax.xml.ws;version="0"
+

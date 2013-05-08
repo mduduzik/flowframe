@@ -15,6 +15,21 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client</artifactId>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-test</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.financialmanagement.domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>		
@@ -25,12 +40,22 @@
 		</dependency>		
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.contractmanagement.dao.services</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.salesmanagement.domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>	
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.mdm.domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>			
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.mdm.dao.services</artifactId>
 			<version>${project.version}</version>
 		</dependency>				
 		<dependency>
@@ -45,6 +70,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.common.mdm.dao.services</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.stripe.service.impl.config.fragment</artifactId>
 			<version>${project.version}</version>
 		</dependency>		
@@ -56,11 +86,6 @@
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.remote.services</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.kernel.common.mdm.dao.services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
@@ -87,7 +112,33 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.2</version>
-		</dependency>		
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-api</artifactId>
+			<version>2.5.2</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.5.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.5.2</version>
+		</dependency>	
 
 		<!-- Testing -->
 		<dependency>

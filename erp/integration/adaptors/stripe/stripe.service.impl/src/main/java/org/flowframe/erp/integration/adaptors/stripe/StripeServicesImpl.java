@@ -5,22 +5,54 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService;
 import org.flowframe.erp.app.contractmanagement.domain.Subscription;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.erp.app.contractmanagement.type.INTERVALTYPE;
+import org.flowframe.erp.app.contractmanagement.type.SUBSCRIPTIONSTATUS;
 import org.flowframe.erp.app.financialmanagement.domain.payment.CreditCardPayment;
 import org.flowframe.erp.app.financialmanagement.domain.payment.CreditCardToken;
+import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt;
+import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceiptLine;
+import org.flowframe.erp.app.mdm.dao.services.ICurrencyUnitDAOService;
+import org.flowframe.erp.app.mdm.domain.constants.CurrencyUnitCustomCONSTANTS;
+import org.flowframe.erp.app.mdm.domain.currency.CurrencyUnit;
 import org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService;
+import org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stripe.model.Customer;
+import com.stripe.model.InvoiceItem;
 import com.stripe.model.Plan;
-import com.stripe.model.Token;
 
 @Transactional
 @Service
 public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements ICCRemotePaymentProcessorService {
+	
+	@Autowired(required=false)
+	private ICurrencyUnitDAOService currencyUnitDAOService;
+	
+	@Autowired(required=false)
+	private ISubscriptionDAOService subscriptionDAOService;
+	
+	@Autowired(required=false)
+	private IOrganizationDAOService organizationDAOService;	
+	
+	private CurrencyUnit usd = null;
+	
+	public void init() {
+		usd = currencyUnitDAOService.getByCode(CurrencyUnitCustomCONSTANTS.CURRENCY_USD_CODE);
+	}
+
+	public CurrencyUnit getUsd() {
+		return usd;
+	}
+
+	public void setUsd(CurrencyUnit usd) {
+		this.usd = usd;
+	}
 
 	/**
 	 * 
@@ -183,8 +215,43 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 
 	@Override
 	public Subscription createSubscription(Subscription subData) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Customer customer = Customer.retrieve(subData.getCustomer().getExternalRefId());
+		Map<String, Object> subscriptionParams = new HashMap<String, Object>();
+		subscriptionParams.put("plan", subData.getSubscribedPlan().getExternalRefId());
+		com.stripe.model.Subscription sub = customer.updateSubscription(subscriptionParams);
+		subData = toFFSubscription(sub);
+		return subData;
+	}
+
+	private Subscription toFFSubscription(com.stripe.model.Subscription subData) {
+		SubscriptionPlan plan = subscriptionDAOService.getPlanByExternalRefId(subData.getPlan().getId());
+		org.flowframe.erp.app.contractmanagement.domain.Customer customer = (org.flowframe.erp.app.contractmanagement.domain.Customer)organizationDAOService.getByExternalRefId(subData.getCustomer());
+		Subscription ffSubscription = new Subscription(plan,customer);
+		ffSubscription.setStart(new Date(subData.getStart()));
+		SUBSCRIPTIONSTATUS status = SUBSCRIPTIONSTATUS.ACTIVE;
+		if ("trialing".equals(subData.getStatus())) {
+			status = SUBSCRIPTIONSTATUS.TRAILING;
+		}
+		else if ("past_due".equals(subData.getStatus())) {
+			status = SUBSCRIPTIONSTATUS.PASTDUE;			
+		}		
+		else if ("canceled".equals(subData.getStatus())) {
+			status = SUBSCRIPTIONSTATUS.CANCELLED;
+		}	
+		else if ("unpaid".equals(subData.getStatus())) {
+			status = SUBSCRIPTIONSTATUS.UNPAID;
+		}	
+		ffSubscription.setStatus(status);
+		ffSubscription.setCancelAtPeriodEnd(subData.getCancelAtPeriodEnd());
+		ffSubscription.setCurrentPeriodStart(new Date(subData.getCurrentPeriodStart()));
+		ffSubscription.setCurrentPeriodEnd(new Date(subData.getCurrentPeriodEnd()));
+		ffSubscription.setEndedAt(new Date(subData.getEndedAt()));
+		ffSubscription.setTrialStart(new Date(subData.getTrialStart()));
+		ffSubscription.setTrialEnd(new Date(subData.getTrialEnd()));
+		ffSubscription.setCancelAt(new Date(subData.getCanceledAt()));
+		ffSubscription.setQuantity(subData.getQuantity());
+		
+		return ffSubscription;
 	}
 
 	@Override
@@ -192,4 +259,91 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private Map<String,Object> toParamsMap(Subscription sub) {
+		final Map<String,Object> defaultSubParams = new HashMap<String, Object>();
+		defaultSubParams.put("plan", sub.getSubscribedPlan().getExternalRefId());
+		defaultSubParams.put("start", sub.getStart().getTime());
+		defaultSubParams.put("current_period_start", sub.getCurrentPeriodStart().getTime());
+		defaultSubParams.put("current_period_end", sub.getCurrentPeriodEnd().getTime());
+		defaultSubParams.put("trial_end", sub.getTrialEnd());
+		defaultSubParams.put("customer", sub.getCustomer().getExternalRefId());
+
+		return defaultSubParams;
+	}		
+	
+	/**
+	 * 
+	 * 
+	 * Invoices
+	 * 
+	 * 
+	 */	
+
+	@Override
+	public ARReceipt getInvoice(String invoiceId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<ARReceipt> getAllInvoices() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ARReceipt createInvoice(ARReceipt invoice) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ARReceipt deleteInvoice(ARReceipt invoice) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ARReceiptLine getInvoiceLine(String invoiceLineId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<ARReceiptLine> getAllInvoiceLines(String invoiceId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ARReceiptLine createInvoiceLine(ARReceiptLine invoiceLine) throws Exception {
+		Map<String, Object> invLineParams = toParamsMap(invoiceLine);
+		InvoiceItem invItem = InvoiceItem.create(invLineParams);
+		ARReceiptLine invoiceLine_ = toFFARReceiptLine(invoiceLine,invItem);
+		return invoiceLine_;
+	}
+
+	@Override
+	public ARReceiptLine deleteInvoiceLine(ARReceiptLine invoiceLine) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}	
+	
+	private ARReceiptLine toFFARReceiptLine(ARReceiptLine invoiceLine, InvoiceItem invoiceItem) {
+		ARReceiptLine invoiceLine_ = new ARReceiptLine((ARReceipt)invoiceLine.getReceipt(),null, invoiceItem.getId(), null, false, invoiceLine.getAmount(), usd, false, 1, invoiceLine.getDescription());
+		return invoiceLine_;
+	}
+	
+	private Map<String,Object> toParamsMap(ARReceiptLine line) {
+		ARReceipt rcpt = (ARReceipt)line.getReceipt();
+		final Map<String,Object> invoiceItemParams = new HashMap<String, Object>();
+		invoiceItemParams.put("amount", line.getAmount());
+		invoiceItemParams.put("currency", rcpt.getCurrency().getCode().toLowerCase());
+		invoiceItemParams.put("customer", rcpt.getDebtor().getExternalRefId());
+		invoiceItemParams.put("description", line.getDescription());
+		invoiceItemParams.put("invoice", rcpt.getExternalRefId());
+		
+		return invoiceItemParams;
+	}	
 }

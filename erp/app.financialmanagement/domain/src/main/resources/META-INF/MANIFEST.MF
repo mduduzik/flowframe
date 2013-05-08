@@ -6,8 +6,10 @@ Export-Package: org.flowframe.erp.app.financialmanagement.domain;versi
  omain,org.flowframe.kernel.common.mdm.domain.geolocation,org.flowfram
  e.kernel.common.mdm.domain.organization",org.flowframe.erp.app.financ
  ialmanagement.domain.receivable;version="0.0.1";uses:="javax.persiste
- nce,org.flowframe.erp.app.financialmanagement.domain",org.flowframe.e
- rp.app.financialmanagement.enums;version="0.0.1"
+ nce,org.flowframe.erp.app.financialmanagement.domain,org.flowframe.er
+ p.app.mdm.domain.currency,org.flowframe.erp.app.mdm.domain.product,or
+ g.flowframe.kernel.common.mdm.domain.organization",org.flowframe.erp.
+ app.financialmanagement.enums;version="0.0.1"
 Bundle-Vendor: ConX
 Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Build-Jdk: 1.6.0_29

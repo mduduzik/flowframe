@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.flowframe</groupId>
+		<artifactId>org.flowframe.erp.integration.adaptors.stripe</artifactId>
+		<version>0.0.1</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client</artifactId>
+	<dependencies>
+		<!-- Compile dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<!-- Apache CXF for webservices -->
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-api</artifactId>
+			<version>2.5.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.5.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.5.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<resources>
+		<resource>
+		        <directory>src/main/java</directory>
+		        <includes>
+		            <include>**/*.java</include>
+		        </includes>
+		</resource>	
+		<resource>
+		        <directory>target/generated/cxf</directory>
+		        <includes>
+		            <include>**/*.java</include>
+		        </includes>
+		</resource>				
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>2.5.2</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<!-- <phase>generate-sources</phase>-->
+						<phase>none</phase>
+						<configuration>
+							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService?wsdl</wsdl>
+									<serviceName>IEventDAOService</serviceName>
+								</wsdlOption>
+								<wsdlOption>
+									<wsdl>http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService?wsdl</wsdl>
+									<serviceName>IEventBusinessService</serviceName>
+								</wsdlOption>									
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-source-plugin</artifactId>
+			<version>2.2.1</version>
+			<executions>
+				<execution>
+					<id>attach-sources</id>
+					<phase>verify</phase>
+					<goals>
+						<goal>jar-no-fork</goal>
+					</goals>
+				</execution>
+			</executions>
+			</plugin>			
+		</plugins>
+	</build>
+</project>

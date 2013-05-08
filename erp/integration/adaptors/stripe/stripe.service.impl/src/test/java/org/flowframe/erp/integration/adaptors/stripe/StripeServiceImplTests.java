@@ -3,9 +3,11 @@ package org.flowframe.erp.integration.adaptors.stripe;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.flowframe.erp.app.contractmanagement.domain.Subscription;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.erp.app.contractmanagement.type.INTERVALTYPE;
 import org.flowframe.erp.app.financialmanagement.domain.payment.CreditCardToken;
@@ -27,7 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.stripe.Stripe;
 import com.stripe.model.Token;
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/stripe-module-context-notx.xml"})
 public class StripeServiceImplTests  {
@@ -47,11 +49,18 @@ public class StripeServiceImplTests  {
 	@Autowired
 	private StripeServicesImpl stripeRemoteService;
 	
+	private String customerId = "cus_1mpMvZKCOBfCWF";
+	private String planId = "3665521649061538913";
+	
+	@Ignore
 	@Before
 	public void setUp() throws Exception {
         Assert.assertNotNull(applicationContext);
+        
         Assert.assertNotNull(stripeRemoteService);
-        stripeRemoteService.init();
+        CurrencyUnit usd = new CurrencyUnit();
+        usd.setCode("USD");
+        stripeRemoteService.setUsd(usd);
         
         Stripe.apiKey = "sk_test_IMyuftgRuAaqPdR66twbmylE";
         
@@ -152,15 +161,23 @@ public class StripeServiceImplTests  {
 
 		assertEquals(ffPlan != null, true);
 		
-		
+		//1. Create customer - registration
 		org.flowframe.erp.app.contractmanagement.domain.Customer cust = new org.flowframe.erp.app.contractmanagement.domain.Customer();
 		Token token = Token.create(defaultTokenParams);
 		CreditCardToken cct = new CreditCardToken(token.getId());
-		cust.setActivePayment(cct);
 		cust.setName("Mike Burns");
+		cust = stripeRemoteService.createCustomer(cust);
 		
-		cust = stripeRemoteService.createCustomerWithPlan(cust, ffPlan);
-		assertEquals(cust != null, true);		
+		//2. Upgrade to paid-for plan
+		cust = stripeRemoteService.updateCustomer(cust, cct);
+		Subscription ffSubscription = new Subscription(ffPlan, cust);
+		ffSubscription.setStart(new Date(System.currentTimeMillis()));
+		ffSubscription.setCurrentPeriodStart(new Date(System.currentTimeMillis()));
+		ffSubscription.setCurrentPeriodEnd(new Date(System.currentTimeMillis()));
+		ffSubscription.setTrialEnd(new Date(System.currentTimeMillis()));
+		
+		ffSubscription = stripeRemoteService.createSubscription(ffSubscription);
+		assertEquals(ffSubscription != null, true);		
     }      
     
     private Long randomId(){

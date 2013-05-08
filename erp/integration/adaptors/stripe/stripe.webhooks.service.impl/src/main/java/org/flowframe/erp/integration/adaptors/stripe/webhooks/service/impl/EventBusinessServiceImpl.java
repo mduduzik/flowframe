@@ -43,6 +43,8 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 			}
 			else
 			{
+				ffEvent.setProcessingTries(ffEvent.getProcessingTries()+1);
+				ffEvent.setDateLastTried(new Date());					
 				if (ffEvent.getActionedWithSuccess() && ffEvent.getDateResponsedWithSuccess() == null)
 				{
 					ffEvent.setDateResponsedWithSuccess(new Date());
@@ -51,8 +53,7 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 				}
 				else
 				{
-					ffEvent.setProcessingTries(ffEvent.getProcessingTries()+1);
-					ffEvent.setDateLastTried(new Date());
+					ffEvent.setLastReturnCode(httpResponseStatus);
 					ffEvent = eventDAoService.update(ffEvent);
 				}
 			}
@@ -75,9 +76,11 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 		ffEvent.setCode(evt.getId());
 		ffEvent.setStripeId(evt.getId());
 		ffEvent.setEventType(evt.getType());
+		ffEvent.setEventCreated(new Date(evt.getCreated()));
 		ffEvent.setActive(true);
 		ffEvent.setLivemode(evt.getLivemode());
 		ffEvent.setBody(eventInJson);
+		ffEvent.setDateCreated(new Date());
 		return ffEvent;
 	}
 	

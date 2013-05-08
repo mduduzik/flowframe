@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FF ERP Stripe Webhooks Server SOAP Client
+Bundle-SymbolicName: org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client
+Bundle-Vendor: ConX
+Bundle-Version: 0.0.1
+Excluded-Imports: 
+ org.springframework.test.*,
+ org.junit.*

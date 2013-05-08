@@ -30,6 +30,8 @@ public class Event extends MultitenantBaseEntity {
     
     private Date dateLastTried;
     
+    private Integer lastReturnCode;
+    
     private Date dateResponseSuccessReady;
     
     private Date dateResponsedWithSuccess;
@@ -154,5 +156,13 @@ public class Event extends MultitenantBaseEntity {
 
 	public void setObjectId(String objectId) {
 		this.objectId = objectId;
+	}
+
+	public Integer getLastReturnCode() {
+		return lastReturnCode;
+	}
+
+	public void setLastReturnCode(Integer lastReturnCode) {
+		this.lastReturnCode = lastReturnCode;
 	}
 }

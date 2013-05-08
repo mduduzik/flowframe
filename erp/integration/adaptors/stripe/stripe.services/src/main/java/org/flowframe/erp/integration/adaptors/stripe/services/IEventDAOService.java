@@ -7,6 +7,19 @@ import org.flowframe.erp.integration.adaptors.stripe.domain.event.Event;
 
 public interface IEventDAOService {
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	public void resetDB();
+	
+	
+	/**
+	 * 
+	 * General
+	 * 
+	 */
 	public Event get(long id);
 	
 	public List<Event> getAll();
@@ -16,6 +29,8 @@ public interface IEventDAOService {
 	public Event add(Event record);
 
 	public void delete(Event record);
+	
+	public void delete(String recordId);
 
 	public Event update(Event record);
 	

@@ -34,4 +34,10 @@
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
 	<bean id="contractManagementJobServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementJobServicesImpl"/>
+	
+	<jaxws:client id="eventDAOService" serviceClass="IEventDAOService"
+		address="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
+	<jaxws:client id="eventBusinessService" serviceClass="IEventBusinessService"
+		address="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
+	
 </beans>

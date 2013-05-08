@@ -10,28 +10,48 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean lazy-init="true" id="mysqlScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+			</list>
+		</property>
+		<property name="dataSource" ref="quartzSchedulingDataSource"/>
+		<property name="transactionManager" ref="globalJtaTransactionManager"/>
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz.plugin.triggHistory.class">org.quartz.plugins.history.LoggingTriggerHistoryPlugin
+				</prop>
+				<prop key="org.quartz.plugin.triggHistory.triggerFiredMessage">Trigger {1}.{0} fired job {6}.{5} at: {4, date,
+					HH:mm:ss dd/MM/yyyy}</prop>
+				<prop key="org.quartz.plugin.triggHistory.triggerCompleteMessage">Trigger {1}.{0} completed firing job {6}.{5} at {4,
+					date, HH:mm:ss dd/MM/yyyy} with resulting trigger instruction code:
+					{9}</prop>
+				<prop key="org.quartz.plugin.jobHistory.class">org.quartz.plugins.history.LoggingJobHistoryPlugin
+				</prop>
+				<prop key="org.quartz.plugin.jobHistory.jobSuccessMessage">Job {1}.{0} fired at: {2, date, dd/MM/yyyy HH:mm:ss}
+					result=OK</prop>
+				<prop key="org.quartz.plugin.jobHistory.jobFailedMessage">Job {1}.{0} fired at: {2, date, dd/MM/yyyy HH:mm:ss}
+					result=ERROR</prop>
 
-	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
-
-	<!--
-		Activates various annotations to be detected in bean classes: Spring's
-		@Required and @Autowired, as well as JSR 250's @PostConstruct,
-		@PreDestroy and @Resource (if available) and JPA's @PersistenceContext
-		and @PersistenceUnit (if available).
-	-->
-	<!-- <context:annotation-config/> -->
-
-	<!--
-		Instruct Spring to perform declarative transaction management
-		automatically on annotated classes.
-	-->
-	<tx:annotation-driven mode="aspectj" transaction-manager="globalJtaTransactionManager"/>
-
-
-	<!--
-		Will automatically be transactional due to @Transactional.
-		EntityManager will be auto-injected due to @PersistenceContext.
-		PersistenceExceptions will be auto-translated due to @Repository.
-	-->
-	<bean id="quartzSchedulingServicesImpl" class="org.flowframe.portal.remote.services.impl.QuartzSchedulingServicesImpl"/>
+				<!-- Only change the following settings if you know what you are doing! -->
+				<prop key="org.quartz.scheduler.classLoadHelper.class">org.quartz.simpl.CascadingClassLoadHelper</prop>
+				<prop key="org.quartz.jobStore.class">org.springframework.scheduling.quartz.LocalDataSourceJobStore
+				</prop>
+				<prop key="org.quartz.jobStore.driverDelegateClass">org.quartz.impl.jdbcjobstore.StdJDBCDelegate</prop>
+				<prop key="org.quartz.jobStore.lockHandler.class">org.quartz.impl.jdbcjobstore.SimpleSemaphore</prop>
+				<prop key="org.quartz.jobStore.misfireThreshold">60000</prop>
+				<prop key="org.quartz.jobStore.selectWithLockSQL">SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?
+				</prop>
+			</props>
+		</property>
+		<property name="overwriteExistingJobs" value="true" />
+		<property name="startupDelay" value="1" />
+		<property name="applicationContextSchedulerContextKey">
+			<value>applicationContext</value>
+		</property>
+	</bean>
+	<bean id="quartzSchedulingServicesImpl" class="org.flowframe.portal.remote.services.impl.QuartzSchedulingServicesImpl" init-method="init"/>
+	<bean id="contractManagementJobServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementJobServicesImpl"/>
+	<bean id="jobsManagerImpl" class="org.flowframe.scheduling.jobs.manager.JobsManagerImpl" scope="singleton"/>
 </beans>

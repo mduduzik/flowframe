@@ -24,5 +24,22 @@ public interface ISubscriptionDAOService {
 	
 	public Subscription provide(Subscription record);
 	
+	
+	public SubscriptionPlan getPlan(long id);
+	
+	public List<SubscriptionPlan> getAllPlans();
+	
+	public SubscriptionPlan getPlanByCode(String code);	
+	
+	public SubscriptionPlan getPlanByExternalRefId(String externalRefId);
+
+	public SubscriptionPlan addPlan(SubscriptionPlan record);
+
+	public void deletePlan(SubscriptionPlan record);
+
+	public SubscriptionPlan updatePlan(SubscriptionPlan record);
+	
+	public SubscriptionPlan providePlan(SubscriptionPlan record);	
+	
 	public SubscriptionPlan getFreePlan();
 }

@@ -14,6 +14,47 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.scheduling.remote.services</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.scheduling.remote.services.impl</artifactId>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>testng</artifactId>
+					<groupId>org.testng</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.contractmanagement.business.services</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.contractmanagement.business.services.impl</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.contractmanagement.domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.financialmanagement.domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.salesmanagement.domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>			
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>		
@@ -51,11 +92,6 @@
 		</dependency>
 		
 		<!-- Testing -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.5.2</version>
-		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.tests.common</artifactId>
@@ -118,6 +154,10 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>com.springsource.org.hibernate.validator</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>		
 							
 		
 		<!-- Spring and AspectJ -->

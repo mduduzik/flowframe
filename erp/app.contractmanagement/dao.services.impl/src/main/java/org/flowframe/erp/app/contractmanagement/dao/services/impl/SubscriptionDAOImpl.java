@@ -153,9 +153,90 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		}
 		return record;
 	}
+	
+	/**
+	 * 
+	 * Plans
+	 * 
+	 */
 
 	@Override
 	public SubscriptionPlan getFreePlan() {
 		return getPlanByCode(ISubscriptionDAOService.FREE_TRIAL_PLAN_NAME);
+	}
+
+	@Override
+	public SubscriptionPlan getPlan(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SubscriptionPlan> getAllPlans() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SubscriptionPlan getPlanByExternalRefId(String externalRefId) {
+		SubscriptionPlan plan = null;
+		
+		try
+		{
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<SubscriptionPlan> query = builder.createQuery(SubscriptionPlan.class);
+			Root<SubscriptionPlan> rootEntity = query.from(SubscriptionPlan.class);
+			ParameterExpression<String> p = builder.parameter(String.class);
+			query.select(rootEntity).where(builder.equal(rootEntity.get("externalRefId"), p));
+
+			TypedQuery<SubscriptionPlan> typedQuery = em.createQuery(query);
+			typedQuery.setParameter(p, externalRefId);
+			
+			plan = typedQuery.getSingleResult();				
+			//TypedQuery<SubscriptionPlan> q = em.createQuery("select o from plan.flowframe.kernel.common.mdm.domain.currency.SubscriptionPlan o WHERE o.code = :code",SubscriptionPlan.class);
+			//q.setParameter("code", code);
+						
+			//plan = q.getSingleResult();
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return plan;
+	}
+
+	@Override
+	public SubscriptionPlan addPlan(SubscriptionPlan record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deletePlan(SubscriptionPlan record) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public SubscriptionPlan updatePlan(SubscriptionPlan record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SubscriptionPlan providePlan(SubscriptionPlan record) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
+	
+	
 }
