@@ -1,5 +1,6 @@
 package org.flowframe.erp.integration.adaptors.remote.services.payments;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.flowframe.erp.app.contractmanagement.domain.Customer;
@@ -14,9 +15,11 @@ public interface ICCRemotePaymentProcessorService extends IRemotePaymentProcesso
 	/**
 	 * Customer
 	 */
-	public Customer getCustomer(String serviceId) throws Exception;	
+	public Customer getCustomer(String externalId) throws Exception;	
 	
-	public Set<Customer> getAllCustomers() throws Exception;	
+	public Customer getCustomerByDesription(String description) throws Exception;	
+	
+	public Map<String, Customer> getAllCustomers() throws Exception;	
 	
 	public Customer createCustomer(Customer customerData) throws Exception;
 	
@@ -26,13 +29,17 @@ public interface ICCRemotePaymentProcessorService extends IRemotePaymentProcesso
 	
 	public Customer deleteCustomer(Customer customer) throws Exception;	
 	
+	public Customer cancelCustomerSubscription(Customer customer) throws Exception;
+	
 	
 	/**
 	 * Subscription Plan
 	 */	
-	public SubscriptionPlan getSubscriptionPlan(String serviceId) throws Exception;	
+	public SubscriptionPlan getSubscriptionPlan(String externalId) throws Exception;	
 	
-	public Set<SubscriptionPlan> getAllSubscriptionPlans() throws Exception;	
+	public SubscriptionPlan getSubscriptionPlanByName(String name) throws Exception;		
+	
+	public Map<String, SubscriptionPlan> getAllSubscriptionPlans() throws Exception;	
 	
 	public SubscriptionPlan createPlan(SubscriptionPlan planData) throws Exception;
 	
@@ -69,5 +76,5 @@ public interface ICCRemotePaymentProcessorService extends IRemotePaymentProcesso
 	
 	public ARReceiptLine createInvoiceLine(ARReceiptLine invoiceLine) throws Exception;
 	
-	public ARReceiptLine deleteInvoiceLine(ARReceiptLine invoiceLine) throws Exception;		
+	public ARReceiptLine deleteInvoiceLine(ARReceiptLine invoiceLine) throws Exception;
 }

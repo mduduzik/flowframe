@@ -2,6 +2,8 @@ package org.flowframe.erp.integration.adaptors.stripe;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,10 +21,12 @@ import org.flowframe.erp.app.mdm.domain.constants.CurrencyUnitCustomCONSTANTS;
 import org.flowframe.erp.app.mdm.domain.currency.CurrencyUnit;
 import org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService;
 import org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService;
+import org.flowframe.kernel.common.utils.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.stripe.Stripe;
 import com.stripe.model.Customer;
 import com.stripe.model.InvoiceItem;
 import com.stripe.model.Plan;
@@ -43,6 +47,7 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	private CurrencyUnit usd = null;
 	
 	public void init() {
+		super.init();
 		usd = currencyUnitDAOService.getByCode(CurrencyUnitCustomCONSTANTS.CURRENCY_USD_CODE);
 	}
 
@@ -64,11 +69,18 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public org.flowframe.erp.app.contractmanagement.domain.Customer getCustomerByDesription(String description) throws Exception {
+		return getAllCustomers().get(description);
+	}	
 
 	@Override
-	public Set<org.flowframe.erp.app.contractmanagement.domain.Customer> getAllCustomers() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String,org.flowframe.erp.app.contractmanagement.domain.Customer> getAllCustomers() throws Exception {
+		Map<String, Object> listParams = new HashMap<String, Object>();
+		listParams.put("count", 1);
+		List<Customer> customers = Customer.all(listParams).getData();
+		return toFFCustomers(customers);
 	}
 
 	@Override
@@ -108,17 +120,48 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	}	
 
 	@Override
+	public org.flowframe.erp.app.contractmanagement.domain.Customer cancelCustomerSubscription(org.flowframe.erp.app.contractmanagement.domain.Customer customer) throws Exception {
+		Customer createdCustomer = Customer.retrieve(customer.getExternalRefId());
+		try {
+			createdCustomer.cancelSubscription();
+			customer.setSubscription(null);
+		} catch (com.stripe.exception.InvalidRequestException e) {
+		}
+		
+		return customer;
+	}	
+	
+	@Override
 	public org.flowframe.erp.app.contractmanagement.domain.Customer deleteCustomer(org.flowframe.erp.app.contractmanagement.domain.Customer customer) throws Exception {
 		Customer createdCustomer = Customer.retrieve(customer.getExternalRefId());
 		createdCustomer.delete();
 		return customer;
 	}
 	
+	private Map<String,org.flowframe.erp.app.contractmanagement.domain.Customer> toFFCustomers(List<Customer> customers) {
+		Map<String,org.flowframe.erp.app.contractmanagement.domain.Customer> ffCustomers = new HashMap<String,org.flowframe.erp.app.contractmanagement.domain.Customer>();
+		for (Customer customer : customers) {
+			ffCustomers.put(customer.getDescription(),toFFCustomer(customer));
+		}
+		return ffCustomers;		
+	}
+	
 	private org.flowframe.erp.app.contractmanagement.domain.Customer toFFCustomer(Customer createdCustomer) {
 		org.flowframe.erp.app.contractmanagement.domain.Customer ffCustomer = new org.flowframe.erp.app.contractmanagement.domain.Customer();
+		ffCustomer.setCode(createdCustomer.getId());
+		ffCustomer.setName(createdCustomer.getDescription());
 		ffCustomer.setExternalRefId(createdCustomer.getId());
 		ffCustomer.setDateCreated(new Date(createdCustomer.getCreated()));
 		ffCustomer.setDelinquent(createdCustomer.getDelinquent());
+		
+		if (Validator.isNotNull(createdCustomer.getSubscription())) {
+			com.stripe.model.Subscription sub = createdCustomer.getSubscription();
+			Plan plan = sub.getPlan();
+			Subscription ffSub = toFFSubscription(sub);
+			SubscriptionPlan ffPlan = toFFSubscriptionPlan(plan);
+			ffSub.setSubscribedPlan(ffPlan);
+			ffCustomer.setSubscription(ffSub);
+		}
 		return ffCustomer;
 	}
 
@@ -152,20 +195,27 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	 * 
 	 */
 	@Override
-	public SubscriptionPlan getSubscriptionPlan(String serviceId) throws Exception {
-		// TODO Auto-generated method stub
+	public SubscriptionPlan getSubscriptionPlan(String stripeId) throws Exception {
 		return null;
 	}
 
 	@Override
-	public Set<SubscriptionPlan> getAllSubscriptionPlans() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public SubscriptionPlan getSubscriptionPlanByName(String name) throws Exception {
+		return getAllSubscriptionPlans().get(name);
+	}
+	
+	@Override
+	public Map<String,SubscriptionPlan> getAllSubscriptionPlans() throws Exception {
+		Map<String, Object> listParams = new HashMap<String, Object>();
+		listParams.put("count", 1);
+		List<Plan> plans = Plan.all(listParams).getData();
+		return toFFSubscriptionPlans(plans);
 	}
 
 	@Override
 	public SubscriptionPlan createPlan(SubscriptionPlan planData) throws Exception {
 		Plan plan = Plan.create(toParamsMap(planData));
+		planData.setCode(plan.getId());
 		planData.setExternalRefId(plan.getId());
 		return planData;
 	}
@@ -173,6 +223,22 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	@Override
 	public SubscriptionPlan deletePlan(SubscriptionPlan plan) throws Exception {
 		Plan.retrieve(plan.getExternalRefId());
+		return plan;
+	}
+	
+	private Map<String,SubscriptionPlan> toFFSubscriptionPlans(List<Plan> plans) {
+		Map<String,SubscriptionPlan> ffPlans = new HashMap<String,SubscriptionPlan>();
+		for (Plan plan : plans) {
+			ffPlans.put(plan.getName(),toFFSubscriptionPlan(plan));
+		}
+		return ffPlans;
+	}	
+	
+	private SubscriptionPlan toFFSubscriptionPlan(com.stripe.model.Plan planData) {
+		SubscriptionPlan plan = new SubscriptionPlan();
+		plan.setCode(planData.getId());
+		plan.setExternalRefId(planData.getId());
+		plan.setName(planData.getName());
 		return plan;
 	}
 	
@@ -245,13 +311,20 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 			status = SUBSCRIPTIONSTATUS.UNPAID;
 		}	
 		ffSubscription.setStatus(status);
-		ffSubscription.setCancelAtPeriodEnd(subData.getCancelAtPeriodEnd());
-		ffSubscription.setCurrentPeriodStart(new Date(subData.getCurrentPeriodStart()));
-		ffSubscription.setCurrentPeriodEnd(new Date(subData.getCurrentPeriodEnd()));
-		ffSubscription.setEndedAt(new Date(subData.getEndedAt()));
-		ffSubscription.setTrialStart(new Date(subData.getTrialStart()));
-		ffSubscription.setTrialEnd(new Date(subData.getTrialEnd()));
-		ffSubscription.setCancelAt(new Date(subData.getCanceledAt()));
+		if (Validator.isNotNull(subData.getCancelAtPeriodEnd()))
+			ffSubscription.setCancelAtPeriodEnd(subData.getCancelAtPeriodEnd());
+		if (Validator.isNotNull(subData.getCurrentPeriodStart()))
+			ffSubscription.setCurrentPeriodStart(new Date(subData.getCurrentPeriodStart()));
+		if (Validator.isNotNull(subData.getCurrentPeriodEnd()))
+			ffSubscription.setCurrentPeriodEnd(new Date(subData.getCurrentPeriodEnd()));
+		if (Validator.isNotNull(subData.getEndedAt()))
+		 ffSubscription.setEndedAt(new Date(subData.getEndedAt()));
+		if (Validator.isNotNull(subData.getTrialStart()))
+			ffSubscription.setTrialStart(new Date(subData.getTrialStart()));
+		if (Validator.isNotNull(subData.getTrialEnd()))
+			ffSubscription.setTrialEnd(new Date(subData.getTrialEnd()));
+		if (Validator.isNotNull(subData.getCanceledAt()))
+			ffSubscription.setCancelAt(new Date(subData.getCanceledAt()));
 		ffSubscription.setQuantity(subData.getQuantity());
 		
 		return ffSubscription;

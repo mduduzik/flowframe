@@ -33,7 +33,7 @@ public abstract class BaseStripeSONWSServicesImpl {
 		publicProdKey = stripeProperties.getProperty(STRIPE_PUB_PROD_KEY);
 		privateProdKey = stripeProperties.getProperty(STRIPE_PRIV_TPROD_KEY);
 		
-		Stripe.apiKey = publicTestKey;
+		Stripe.apiKey = privateTestKey;
 	}
 
 	protected Properties loadStripeProperties() {

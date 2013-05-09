@@ -87,10 +87,14 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	@Autowired
 	private IEntityTypeDAOService entityTypeDAOService;
 	
+	private Boolean initialized = false;
+	
 	@Override
 	public void init() {
 		initProperties();
+		initialized = true;
 	}
+	
 
 	public static void initProperties() {
 		loadLiferayProperties();
@@ -122,7 +126,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 	@Override
 	public Boolean isAvailable() throws Exception {
-		return getLoginUserId() != null;
+		return initialized;
 	}
 
 	@Override

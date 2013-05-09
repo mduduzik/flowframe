@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.stripe.Stripe;
 import com.stripe.model.Invoice;
 
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/stripe-module-context-notx.xml"})
 public class WebhookInvoicingTests  {

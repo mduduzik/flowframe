@@ -155,7 +155,12 @@ public class FolderDAOImpl implements IFolderDAOService {
 	@Override
 	public Folder provideFolderByJavaTypeName(String folderName) throws Exception {
 		// -- Create remote
-		Folder fldr = remoteDocumentRepository.addFolder(folderName, "Attachments for Record[" + folderName + "]");
+		Folder fldr = new Folder();
+		if (remoteDocumentRepository.isAvailable())
+			fldr = remoteDocumentRepository.addFolder(folderName, "Attachments for Record[" + folderName + "]");
+		else {
+			fldr.setFolderId(System.currentTimeMillis());
+		}
 
 		// -- Create local
 		fldr.setName(folderName);

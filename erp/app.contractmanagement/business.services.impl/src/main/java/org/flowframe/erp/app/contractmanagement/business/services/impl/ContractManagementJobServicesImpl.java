@@ -107,4 +107,13 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 		}
 		this.transactionManager.commit(status);
 	}
+
+	public IEventDAOServicePortType getEventDAOService() {
+		return eventDAOService;
+	}
+
+	public IEventBusinessServicePortType getEventBusinessService() {
+		return eventBusinessService;
+	}
+	
 }

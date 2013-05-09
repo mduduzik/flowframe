@@ -14,6 +14,12 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.remote.services</artifactId>
 			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
@@ -23,6 +29,14 @@
 				<exclusion>
 					<artifactId>spring-context</artifactId>
 					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>logback-classic</artifactId>
+					<groupId>ch.qos.logback</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -40,6 +54,11 @@
 					<groupId>org.apache.httpcomponents</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+			<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.integration.adaptors.stripe.service.impl.config.fragment</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
@@ -66,6 +85,16 @@
 			<artifactId>org.flowframe.erp.app.contractmanagement.dao.services.impl</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.mdm.dao.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.mdm.dao.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.mdm.dao.services</artifactId>
@@ -131,6 +160,16 @@
 			<artifactId>org.flowframe.portal.remote.services.impl.config.fragment</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.common.mdm.dao.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.metamodel.dao.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>			
 		<!-- Misc -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
@@ -140,6 +179,12 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.jpa.lob.jpacontainer.springdm</artifactId>
 			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
@@ -229,11 +274,28 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>	
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-osgi</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore-osgi</artifactId>
+			<version>4.2.1</version>
+		</dependency>				
 	</dependencies>
 </project>

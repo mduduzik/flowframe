@@ -254,27 +254,32 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 
 	@Override
 	public SubscriptionPlan addPlan(SubscriptionPlan record) {
-		// TODO Auto-generated method stub
-		return null;
+		record = em.merge(record);
+		
+		return record;
 	}
 
 	@Override
 	public void deletePlan(SubscriptionPlan record) {
-		// TODO Auto-generated method stub
-		
+		em.detach(record);
 	}
 
 	@Override
 	public SubscriptionPlan updatePlan(SubscriptionPlan record) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.merge(record);
 	}
 
 	@Override
 	public SubscriptionPlan providePlan(SubscriptionPlan record) {
-		// TODO Auto-generated method stub
-		return null;
+		SubscriptionPlan existingRecord = getPlanByCode(record.getCode());
+		if (Validator.isNull(existingRecord))
+		{		
+			record = updatePlan(record);
+		}
+		else
+		{
+			record = addPlan(record);
+		}
+		return record;
 	}	
-	
-	
 }
