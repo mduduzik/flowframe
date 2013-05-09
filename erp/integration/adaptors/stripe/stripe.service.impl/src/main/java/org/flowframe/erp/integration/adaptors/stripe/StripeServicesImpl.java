@@ -31,13 +31,13 @@ import com.stripe.model.Plan;
 @Service
 public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements ICCRemotePaymentProcessorService {
 	
-	@Autowired(required=false)
+	@Autowired
 	private ICurrencyUnitDAOService currencyUnitDAOService;
 	
-	@Autowired(required=false)
+	@Autowired
 	private ISubscriptionDAOService subscriptionDAOService;
 	
-	@Autowired(required=false)
+	@Autowired
 	private IOrganizationDAOService organizationDAOService;	
 	
 	private CurrencyUnit usd = null;
@@ -116,6 +116,9 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	
 	private org.flowframe.erp.app.contractmanagement.domain.Customer toFFCustomer(Customer createdCustomer) {
 		org.flowframe.erp.app.contractmanagement.domain.Customer ffCustomer = new org.flowframe.erp.app.contractmanagement.domain.Customer();
+		ffCustomer.setExternalRefId(createdCustomer.getId());
+		ffCustomer.setDateCreated(new Date(createdCustomer.getCreated()));
+		ffCustomer.setDelinquent(createdCustomer.getDelinquent());
 		return ffCustomer;
 	}
 

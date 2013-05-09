@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="dateResponsedWithSuccess" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="eventCreated" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="eventType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="lastReturnCode" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="livemode" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="objectId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="objectType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -48,6 +49,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "dateResponsedWithSuccess",
     "eventCreated",
     "eventType",
+    "lastReturnCode",
     "livemode",
     "objectId",
     "objectType",
@@ -70,6 +72,7 @@ public class Event
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar eventCreated;
     protected String eventType;
+    protected Integer lastReturnCode;
     protected Boolean livemode;
     protected String objectId;
     protected String objectType;
@@ -243,6 +246,30 @@ public class Event
      */
     public void setEventType(String value) {
         this.eventType = value;
+    }
+
+    /**
+     * Gets the value of the lastReturnCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getLastReturnCode() {
+        return lastReturnCode;
+    }
+
+    /**
+     * Sets the value of the lastReturnCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setLastReturnCode(Integer value) {
+        this.lastReturnCode = value;
     }
 
     /**

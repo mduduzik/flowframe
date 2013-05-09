@@ -2,6 +2,7 @@ package org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -83,6 +84,7 @@ public class EventDAOServiceImpl implements IEventDAOService {
 
 	@Override
 	public Event update(Event record) {
+		record.setDateLastUpdated(new Date());
 		return em.merge(record);
 	}
 

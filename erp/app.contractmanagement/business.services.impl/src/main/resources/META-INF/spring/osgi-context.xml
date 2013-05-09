@@ -28,7 +28,9 @@
 	
 	
 	<osgi:reference id="userDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
-	
+	<osgi:reference id="paymentProcessorService" cardinality="1..1" interface="org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService"/>
+	<osgi:reference id="receiptDAOService" cardinality="1..1" interface="org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOService"/>
+		
 	<!-- export internal interfaces -->
 	<osgi:service auto-export="class-hierarchy" ref="contractManagementJobServicesImpl"
 		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementJobServices"

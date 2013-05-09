@@ -6,6 +6,9 @@ http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistenc
         <class>org.flowframe.erp.app.financialmanagement.domain.payment.CreditCardToken</class>
         <class>org.flowframe.erp.app.financialmanagement.domain.payment.Payment</class>
         <class>org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt</class>
+        <class>org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceiptLine</class>
         <class>org.flowframe.erp.app.financialmanagement.domain.Receipt</class>
+        <class>org.flowframe.erp.app.financialmanagement.domain.ReceiptLine</class>
+        <class>org.flowframe.erp.app.financialmanagement.domain.ReceiptPeriod</class>
       </persistence-unit>
 </persistence>

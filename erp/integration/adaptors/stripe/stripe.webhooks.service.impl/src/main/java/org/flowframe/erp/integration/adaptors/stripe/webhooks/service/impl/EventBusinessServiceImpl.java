@@ -114,4 +114,18 @@ public class EventBusinessServiceImpl implements IEventBusinessService {
 		existingEvent.setDateResponseSuccessReady(new Date());
 		existingEvent = eventDAoService.update(existingEvent);
 	}
+
+	@Override
+	public void markInactive(String eventId) throws Exception {
+		org.flowframe.erp.integration.adaptors.stripe.domain.event.Event existingEvent = eventDAoService.getEventById(eventId);
+		existingEvent.setActive(false);
+		existingEvent = eventDAoService.update(existingEvent);
+	}
+	
+	@Override
+	public void markActive(String eventId) throws Exception {
+		org.flowframe.erp.integration.adaptors.stripe.domain.event.Event existingEvent = eventDAoService.getEventById(eventId);
+		existingEvent.setActive(false);
+		existingEvent = eventDAoService.update(existingEvent);
+	}	
 }

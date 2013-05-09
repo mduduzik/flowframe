@@ -11,6 +11,23 @@
 		that implements LoadTimeWeaverAware (such as LocalContainerEntityManagerFactoryBean) 
 		will receive a reference to the autodetected load-time weaver. -->
 	<context:load-time-weaver aspectj-weaving="on" />
+	
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+
+	<!--
+		Activates various annotations to be detected in bean classes: Spring's
+		@Required and @Autowired, as well as JSR 250's @PostConstruct,
+		@PreDestroy and @Resource (if available) and JPA's @PersistenceContext
+		and @PersistenceUnit (if available).
+	-->
+	<context:annotation-config/>
+
+	<!--
+		Instruct Spring to perform declarative transaction management
+		automatically on annotated classes.
+	-->
+	<tx:annotation-driven mode="aspectj" transaction-manager="globalJtaTransactionManager"/>
+	
 
 	<!-- Bitronix Transaction Manager embedded configuration -->
 	<bean id="globalBitronixTransactionManagerConfig" factory-method="getConfiguration"

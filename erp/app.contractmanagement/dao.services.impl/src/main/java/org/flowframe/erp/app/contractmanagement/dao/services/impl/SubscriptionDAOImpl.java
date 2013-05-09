@@ -14,6 +14,7 @@ import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService;
+import org.flowframe.erp.app.contractmanagement.domain.Customer;
 import org.flowframe.erp.app.contractmanagement.domain.Subscription;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.kernel.common.utils.Validator;
@@ -82,7 +83,44 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		}		
 		
 		return org;
-	}	
+	}
+	
+	@Override
+	public Subscription getByPlanIdAndCustomerId(Long planId, Long customerId) {
+		Subscription sub = null;
+		try
+		{
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<Subscription> query = builder.createQuery(Subscription.class);
+			Root<Subscription> rootEntity = query.from(Subscription.class);
+			
+			TypedQuery<Subscription> typedQuery = em.createQuery(query);
+			
+			ParameterExpression<Long> p1 = builder.parameter(Long.class);
+			ParameterExpression<Long> p2 = builder.parameter(Long.class);
+			
+			query.select(rootEntity).where(builder.and(builder.equal(builder.equal(rootEntity.get("subscribedPlan.id"), p1), p2),builder.equal(rootEntity.get("customer.id"), p2)));
+			typedQuery.setParameter(p1, planId);
+			typedQuery.setParameter(p2, customerId);			
+			
+			sub = typedQuery.getSingleResult();				
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return sub;		
+	}
+	
 	
 	public SubscriptionPlan getPlanByCode(String code) {
 		SubscriptionPlan rec = null;

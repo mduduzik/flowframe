@@ -19,4 +19,12 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 public class Receipt extends BaseEntity {
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="receipt")
 	private Set<ReceiptLine> lines = new HashSet<ReceiptLine>();
+
+	public Set<ReceiptLine> getLines() {
+		return lines;
+	}
+
+	public void setLines(Set<ReceiptLine> lines) {
+		this.lines = lines;
+	}
 }

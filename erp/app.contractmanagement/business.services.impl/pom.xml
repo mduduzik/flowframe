@@ -12,17 +12,58 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.integration.adaptors.remote.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client</artifactId>
 			<version>0.0.1</version>
-		</dependency>		
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.integration.adaptors.stripe.service.impl</artifactId>
+			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>httpclient-cache</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>httpclient-osgi</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.financialmanagement.dao.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.financialmanagement.dao.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.contractmanagement.business.services</artifactId>
 			<version>0.0.1</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.contractmanagement.dao.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.app.contractmanagement.dao.services.impl</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
@@ -32,8 +73,125 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.common.mdm.dao.services.impl</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.portal.remote.services</artifactId>
 			<version>0.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.documentlibrary.remote.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.documentlibrary.remote.services.impl</artifactId>
+			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>
+						com.springsource.org.apache.commons.logging
+					</artifactId>
+					<groupId>org.apache.commons</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>httpclient-osgi</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.documentlibrary.remote.services.impl.config.fragment</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.portal.remote.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.portal.remote.services.impl</artifactId>
+			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>httpclient-osgi</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.portal.remote.services.impl.config.fragment</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<!-- Misc -->
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.bitronix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.kernel.jpa.lob.jpacontainer.springdm</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.com.mysql.jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>com.springsource.org.h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.javassist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.asm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.annotations.commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.cglib</groupId>
+			<artifactId>com.springsource.net.sf.cglib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.logicalcobwebs</groupId>
+			<artifactId>com.springsource.org.logicalcobwebs.cglib.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.hibernate.entitymanager</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>com.springsource.org.aspectj.weaver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>com.springsource.org.aspectj.runtime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aopalliance</groupId>
+			<artifactId>com.springsource.org.aopalliance</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>com.springsource.org.hibernate.validator</artifactId>
 		</dependency>
 
 		<!-- Spring and AspectJ -->
@@ -66,5 +224,16 @@
 			<artifactId>org.springframework.context</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.2</version>
+		</dependency>	
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>		
 	</dependencies>
 </project>

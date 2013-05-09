@@ -19,14 +19,12 @@ public class ARReceiptLine extends ReceiptLine {
 	@ManyToOne
 	CurrencyUnit currency;	
 	
-	String id;
 	String lineType;
 	Boolean livemode;
 	Integer amount;
 
 	Boolean proration;
 	Integer quantity;
-	String description;
 	public ReceiptPeriod getPeriod() {
 		return period;
 	}
@@ -76,12 +74,7 @@ public class ARReceiptLine extends ReceiptLine {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+
 	public ARReceiptLine(ARReceipt receipt, Product product, String externalRefId, String lineType, Boolean livemode, Integer amount, CurrencyUnit currency, Boolean proration,
 			Integer quantity, String description) {
 		super();

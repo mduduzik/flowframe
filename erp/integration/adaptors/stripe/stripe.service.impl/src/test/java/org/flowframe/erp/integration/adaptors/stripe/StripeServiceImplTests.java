@@ -145,7 +145,7 @@ public class StripeServiceImplTests  {
     	
     	//Price
     	CalculatableRate rate = new CalculatableRate();
-    	BaseRateCalculator calc = new BaseRateCalculator(ITEMUNIT.STORAGEINMB, 10.0, 0.0);
+    	BaseRateCalculator calc = new BaseRateCalculator(ITEMUNIT.STORAGEINMB, 0.0, 0.0);
     	rate.setCalculator(calc);
     	CurrencyUnit curr = new CurrencyUnit();
     	curr.setCode("USD");

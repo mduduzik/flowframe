@@ -11,7 +11,6 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	<!-- <context:load-time-weaver aspectj-weaving="on" /> -->
 	<!-- hibernateProperties Properties -->
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -23,7 +22,7 @@
 	            <prop key="hibernate.connection.release_mode">after_statement</prop>
 	            <prop key="hibernate.hbm2ddl.auto">create</prop>	
 	            <prop key="hibernate.connection.autocommit">false</prop>
-	            <prop key="hibernate.show_sql">true</prop>
+	            <prop key="hibernate.show_sql">false</prop>
 			</props>
 		</property>
 	</bean>
@@ -42,7 +41,7 @@
     
 	<bean id="vendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-		p:databasePlatform="org.hibernate.dialect.MySQLDialect" p:showSql="true">
+		p:databasePlatform="org.hibernate.dialect.H2Dialect" p:showSql="true">
 		<property name="generateDdl" value="false" />
 	</bean> 
 	

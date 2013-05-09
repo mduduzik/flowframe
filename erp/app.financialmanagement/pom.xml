@@ -10,6 +10,8 @@
   <packaging>pom</packaging>
   <modules>
   	<module>domain</module>
+  	<module>dao.services</module>
+  	<module>dao.services.impl</module>
   </modules>
 	<build>
 		<plugins>

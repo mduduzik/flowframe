@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://services.stripe.adaptors.integration.erp.flowframe.org/}event" minOccurs="0"/>
+ *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Delete {
 
-    protected Event arg0;
+    protected String arg0;
 
     /**
      * Gets the value of the arg0 property.
      * 
      * @return
      *     possible object is
-     *     {@link Event }
+     *     {@link String }
      *     
      */
-    public Event getArg0() {
+    public String getArg0() {
         return arg0;
     }
 
@@ -50,10 +50,10 @@ public class Delete {
      * 
      * @param value
      *     allowed object is
-     *     {@link Event }
+     *     {@link String }
      *     
      */
-    public void setArg0(Event value) {
+    public void setArg0(String value) {
         this.arg0 = value;
     }
 

@@ -72,6 +72,9 @@ public abstract class BaseEntity
     @Column(name = "externalrefid", length = 255)    
     protected String externalRefId;
     @Basic
+    @Column(name = "synchonized")    
+    protected Boolean synchonized = false;    
+    @Basic
     @Column(name = "parentrefid", length = 255)    
     protected String parentRefId;
     @Basic
@@ -530,5 +533,13 @@ public abstract class BaseEntity
 
 	public void setSchedulerJobId(String schedulerJobId) {
 		this.schedulerJobId = schedulerJobId;
+	}
+
+	public Boolean getSynchonized() {
+		return synchonized;
+	}
+
+	public void setSynchonized(Boolean synchonized) {
+		this.synchonized = synchonized;
 	}
 }

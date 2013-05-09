@@ -15,6 +15,8 @@ public interface ISubscriptionDAOService {
 	public List<Subscription> getAll();
 	
 	public Subscription getByCode(String code);	
+	
+	public Subscription getByPlanIdAndCustomerId(Long planId, Long customerId);
 
 	public Subscription add(Subscription record);
 
