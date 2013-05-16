@@ -62,4 +62,5 @@
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
 	<bean id="receiptDAOImpl" class="org.flowframe.erp.app.financialmanagement.dao.services.impl.ARReceiptDAOImpl"/>
+	<bean id="paymentDAOImpl" class="org.flowframe.erp.app.financialmanagement.dao.services.impl.PaymentDAOImpl"/>
 </beans>

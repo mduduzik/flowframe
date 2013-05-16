@@ -92,7 +92,7 @@ public class WebhookInvoicingTests  {
     		rcpt.setExternalRefId(inv.getId());
     		rcpt.setCurrency(stripeRemoteService.getUsd());
     		rcpt.setDebtor(customer);
-    		ARReceiptLine rl = new ARReceiptLine(rcpt, prod, null, null, null, 533, stripeRemoteService.getUsd(), null, 1, "Bandwidth Usage");
+    		ARReceiptLine rl = new ARReceiptLine(prod, null, null, null, 533, stripeRemoteService.getUsd(), null, 1, "Bandwidth Usage");
     		rl = stripeRemoteService.createInvoiceLine(rl);
     		Assert.assertNotNull(rl);
     	}

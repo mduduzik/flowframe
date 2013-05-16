@@ -15,7 +15,7 @@ import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 
 @Entity
 public class Customer extends Organization {
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Subscription subscription;
 	
 	@OneToMany(targetEntity = Subscription.class,cascade = CascadeType.ALL,fetch=FetchType.EAGER)
@@ -24,7 +24,7 @@ public class Customer extends Organization {
 	@ManyToOne
     private Organization paymentProvider;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private Payment activePayment;	
 	
 	@OneToMany(targetEntity = Payment.class,cascade = CascadeType.ALL,fetch=FetchType.EAGER)

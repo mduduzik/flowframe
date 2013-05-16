@@ -19,20 +19,19 @@ public abstract class BaseStripeSONWSServicesImpl {
 
 	protected String publicTestKey = null;
 	protected String privateTestKey = null;
-
 	protected String publicProdKey = null;
 	protected String privateProdKey = null;
 
 	private Properties stripeProperties = new Properties();
 	
 	public void init() {
-		loadStripeProperties();
+/*		loadStripeProperties();
 
 		publicTestKey = stripeProperties.getProperty(STRIPE_PUB_TEST_KEY);
 		privateTestKey = stripeProperties.getProperty(STRIPE_PRIV_TEST_KEY);
 		publicProdKey = stripeProperties.getProperty(STRIPE_PUB_PROD_KEY);
 		privateProdKey = stripeProperties.getProperty(STRIPE_PRIV_TPROD_KEY);
-		
+		*/
 		Stripe.apiKey = privateTestKey;
 	}
 
@@ -56,5 +55,36 @@ public abstract class BaseStripeSONWSServicesImpl {
 	protected static String getUniqueCouponId() {
 		return String.format("FF-COUPON-%s", UUID.randomUUID());
 	}
-	
+
+	public String getPublicTestKey() {
+		return publicTestKey;
+	}
+
+	public void setPublicTestKey(String publicTestKey) {
+		this.publicTestKey = publicTestKey;
+	}
+
+	public String getPrivateTestKey() {
+		return privateTestKey;
+	}
+
+	public void setPrivateTestKey(String privateTestKey) {
+		this.privateTestKey = privateTestKey;
+	}
+
+	public String getPublicProdKey() {
+		return publicProdKey;
+	}
+
+	public void setPublicProdKey(String publicProdKey) {
+		this.publicProdKey = publicProdKey;
+	}
+
+	public String getPrivateProdKey() {
+		return privateProdKey;
+	}
+
+	public void setPrivateProdKey(String privateProdKey) {
+		this.privateProdKey = privateProdKey;
+	}
 }

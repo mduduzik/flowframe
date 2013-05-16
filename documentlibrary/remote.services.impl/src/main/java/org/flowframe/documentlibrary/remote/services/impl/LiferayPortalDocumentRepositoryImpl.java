@@ -72,6 +72,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	public static BasicAuthCache authCache;
 	public static DefaultHttpClient httpclient;
 	public static HttpHost targetHost;
+	
 	public static String repositoryId;
 	public static String companyId;
 	public static String fflogiFolderId;
@@ -97,7 +98,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	
 
 	public static void initProperties() {
-		loadLiferayProperties();
+/*		loadLiferayProperties();
 
 		hostname = liferayProperties.getProperty(FFDOCREPO_SERVER_HOSTNAME);
 		port = liferayProperties.getProperty(FFDOCREPO_SERVER_PORT);
@@ -107,7 +108,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		loginGroupId = liferayProperties.getProperty(FFDOCREPO_USER_GROUP_ID);
 		loginEmail = liferayProperties.getProperty(FFDOCREPO_USER_EMAIL);
 		loginPassword = liferayProperties.getProperty(FFDOCREPO_USER_PASSWORD);
-
+*/
 		targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
 		PoolingClientConnectionManager cxMgr = new PoolingClientConnectionManager( SchemeRegistryFactory.createDefault());
 		cxMgr.setMaxTotal(100);
@@ -715,4 +716,82 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	public void setEntityTypeDAOService(IEntityTypeDAOService entityTypeDAOService) {
 		this.entityTypeDAOService = entityTypeDAOService;
 	}
+	
+	public static String getRepositoryId() {
+		return repositoryId;
+	}
+
+
+	public static void setRepositoryId(String repositoryId) {
+		LiferayPortalDocumentRepositoryImpl.repositoryId = repositoryId;
+	}
+
+	public static String getCompanyId() {
+		return companyId;
+	}
+
+
+	public static void setCompanyId(String companyId) {
+		LiferayPortalDocumentRepositoryImpl.companyId = companyId;
+	}
+
+
+	public static String getFflogiFolderId() {
+		return fflogiFolderId;
+	}
+
+
+	public static void setFflogiFolderId(String fflogiFolderId) {
+		LiferayPortalDocumentRepositoryImpl.fflogiFolderId = fflogiFolderId;
+	}
+
+
+	public static String getLoginEmail() {
+		return loginEmail;
+	}
+
+
+	public static void setLoginEmail(String loginEmail) {
+		LiferayPortalDocumentRepositoryImpl.loginEmail = loginEmail;
+	}
+
+
+	public static String getLoginPassword() {
+		return loginPassword;
+	}
+
+
+	public static void setLoginPassword(String loginPassword) {
+		LiferayPortalDocumentRepositoryImpl.loginPassword = loginPassword;
+	}
+
+
+	public static String getHostname() {
+		return hostname;
+	}
+
+
+	public static void setHostname(String hostname) {
+		LiferayPortalDocumentRepositoryImpl.hostname = hostname;
+	}
+
+
+	public static String getPort() {
+		return port;
+	}
+
+
+	public static void setPort(String port) {
+		LiferayPortalDocumentRepositoryImpl.port = port;
+	}
+
+
+	public static String getLoginGroupId() {
+		return loginGroupId;
+	}
+
+
+	public static void setLoginGroupId(String loginGroupId) {
+		LiferayPortalDocumentRepositoryImpl.loginGroupId = loginGroupId;
+	}	
 }

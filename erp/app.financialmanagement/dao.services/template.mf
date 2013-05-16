@@ -20,5 +20,6 @@ Import-Package:
   org.flowframe.kernel.common.mdm.domain.preferences;version="[0.0.1,1.0.0)",
   org.flowframe.erp.app.mdm.domain.currency;version="[0.0.1,1.0.0)",
   org.flowframe.erp.app.financialmanagement.domain.receivable;version="[0.0.1,1.0.0)",
+  org.flowframe.erp.app.financialmanagement.domain.payment;version="[0.0.1,1.0.0)",
   javax.persistence;version="2.0.0",
   javax.persistence.metamodel;version="2.0.0"

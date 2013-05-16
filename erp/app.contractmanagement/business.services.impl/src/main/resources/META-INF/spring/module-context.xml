@@ -13,6 +13,8 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
+	<context:property-placeholder properties-ref="configAdminProperties"/>
+
 	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
 
 	<!--
@@ -38,8 +40,8 @@
 	<bean id="contractManagementJobServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementJobServicesImpl"/>
 	
 	<jaxws:client id="eventDAOService" serviceClass="IEventDAOService"
-		address="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
+		address="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
 	<jaxws:client id="eventBusinessService" serviceClass="IEventBusinessService"
-		address="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
+		address="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
 	
 </beans>

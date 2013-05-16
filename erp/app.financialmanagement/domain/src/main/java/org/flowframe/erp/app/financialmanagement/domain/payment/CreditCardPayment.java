@@ -20,6 +20,9 @@ public class CreditCardPayment extends Payment {
 	private Integer expYear;
 	private Integer cvc;
 	
+	public CreditCardPayment(){
+	}
+	
 	public CreditCardPayment(Contact holderContact, Address holderAddress, String hash, Integer number, Integer expMonth, Integer expYear, Integer cvc) {
 		super();
 		this.holderContact = holderContact;

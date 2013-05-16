@@ -11,6 +11,8 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
+	<context:property-placeholder properties-ref="configAdminProperties"/>
+	
 	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
 
 	<!--
@@ -33,5 +35,10 @@
 		EntityManager will be auto-injected due to @PersistenceContext.
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
-	<bean id="stripeService" class="org.flowframe.erp.integration.adaptors.stripe.StripeServicesImpl" init-method="init"/>
+	<bean id="stripeService" class="org.flowframe.erp.integration.adaptors.stripe.StripeServicesImpl" init-method="init">
+		<property name="publicTestKey" value="${ff.erp.integration.adaptors.stripe.pub.test.key}"/>
+		<property name="privateTestKey" value="${ff.erp.integration.adaptors.stripe.priv.test.key}"/>
+		<property name="publicProdKey" value="${ff.erp.integration.adaptors.stripe.pub.prod.key}"/>
+		<property name="privateProdKey" value="${ff.erp.integration.adaptors.stripe.priv.prod.key}"/>
+	</bean>
 </beans>

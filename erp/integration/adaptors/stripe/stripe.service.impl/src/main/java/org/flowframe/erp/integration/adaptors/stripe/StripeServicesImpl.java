@@ -21,6 +21,7 @@ import org.flowframe.erp.app.mdm.domain.constants.CurrencyUnitCustomCONSTANTS;
 import org.flowframe.erp.app.mdm.domain.currency.CurrencyUnit;
 import org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService;
 import org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.utils.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.stripe.Stripe;
 import com.stripe.model.Customer;
+import com.stripe.model.Invoice;
 import com.stripe.model.InvoiceItem;
+import com.stripe.model.InvoiceLineItem;
+import com.stripe.model.InvoiceLineItemCollection;
 import com.stripe.model.Plan;
 
 @Transactional
@@ -215,7 +219,6 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	@Override
 	public SubscriptionPlan createPlan(SubscriptionPlan planData) throws Exception {
 		Plan plan = Plan.create(toParamsMap(planData));
-		planData.setCode(plan.getId());
 		planData.setExternalRefId(plan.getId());
 		return planData;
 	}
@@ -358,8 +361,8 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 
 	@Override
 	public ARReceipt getInvoice(String invoiceId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Invoice inv = Invoice.retrieve(invoiceId);
+		return toFFARReceipt(inv);
 	}
 
 	@Override
@@ -394,10 +397,7 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 
 	@Override
 	public ARReceiptLine createInvoiceLine(ARReceiptLine invoiceLine) throws Exception {
-		Map<String, Object> invLineParams = toParamsMap(invoiceLine);
-		InvoiceItem invItem = InvoiceItem.create(invLineParams);
-		ARReceiptLine invoiceLine_ = toFFARReceiptLine(invoiceLine,invItem);
-		return invoiceLine_;
+		return null;
 	}
 
 	@Override
@@ -406,8 +406,50 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		return null;
 	}	
 	
-	private ARReceiptLine toFFARReceiptLine(ARReceiptLine invoiceLine, InvoiceItem invoiceItem) {
-		ARReceiptLine invoiceLine_ = new ARReceiptLine((ARReceipt)invoiceLine.getReceipt(),null, invoiceItem.getId(), null, false, invoiceLine.getAmount(), usd, false, 1, invoiceLine.getDescription());
+	private ARReceipt toFFARReceipt(Invoice invoice) {
+		Organization cust = organizationDAOService.getByExternalRefId(invoice.getCustomer());
+		ARReceipt invoice_ = new ARReceipt();
+		
+		invoice_.setDebtor(cust);
+		invoice_.setCurrency(usd);
+		invoice_.setSubtotal(invoice.getSubtotal());
+		invoice_.setTotal(invoice.getTotal());
+		invoice_.setAmountDue(invoice.getAmountDue());
+		invoice_.setStartingBalance(invoice.getStartingBalance());
+		invoice_.setEndingBalance(invoice.getEndingBalance());
+		invoice_.setExternalCode(invoice.getId());
+		if (Validator.isNotNull(invoice.getNextPaymentAttempt()))
+			invoice_.setNextPaymentAttempt(new Date(invoice.getNextPaymentAttempt()));
+		invoice_.setAttempted(invoice.getAttempted());
+		invoice_.setCharge(invoice.getCharge());
+		invoice_.setClosed(invoice.getClosed());
+		if (Validator.isNotNull(invoice.getDate()))
+			invoice_.setDate(new Date(invoice.getDate()));
+		invoice_.setPaid(invoice.getPaid());
+		if (Validator.isNotNull(invoice.getPeriodStart()))
+			invoice_.setPeriodStart(new Date(invoice.getPeriodStart()));
+		if (Validator.isNotNull(invoice.getPeriodEnd()))
+			invoice_.setPeriodEnd(new Date(invoice.getPeriodEnd()));
+		invoice_.setLivemode(invoice_.getLivemode());
+		invoice_.setAttemptCount(invoice.getAttemptCount());
+		
+		List<InvoiceLineItem> lines = invoice.getLines().getData();
+		ARReceiptLine line_;
+		for (InvoiceLineItem line : lines) {
+			line_ = toFFARReceiptLine(invoice_, line);
+			invoice_.getLines().add(line_);
+		}
+		
+		return invoice_;
+	}	
+	
+	private ARReceiptLine toFFARReceiptLine(ARReceipt invoice, InvoiceLineItem invoiceItem) {
+		String description = null;
+		if (Validator.isNotNull(invoiceItem.getPlan())) {
+			description = invoiceItem.getPlan().getName();
+		}
+		ARReceiptLine invoiceLine_ = new ARReceiptLine(null, invoiceItem.getId(), null, false, invoiceItem.getAmount(), usd, false, 1, description);
+		invoiceLine_.setSynchonized(true);
 		return invoiceLine_;
 	}
 	

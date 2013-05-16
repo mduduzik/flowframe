@@ -33,6 +33,12 @@
 		
 	<!-- export internal interfaces -->
 	<osgi:service auto-export="class-hierarchy" ref="contractManagementJobServicesImpl"
-		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementJobServices"
-		/>
+		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementJobServices">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/business/services/IContractManagementJobServices" />
+		</osgi:service-properties>		
+	</osgi:service>
 </beans>

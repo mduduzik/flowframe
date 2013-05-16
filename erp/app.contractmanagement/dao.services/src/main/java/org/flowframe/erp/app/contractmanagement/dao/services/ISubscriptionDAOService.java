@@ -8,7 +8,7 @@ import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 
 public interface ISubscriptionDAOService {
 	
-	final static public String FREE_TRIAL_PLAN_NAME ="Free Trial Plan";
+	final static public String FREE_TRIAL_PLAN_NAME ="FF Free Plan - $0";
 	
 	public Subscription get(long id);
 	

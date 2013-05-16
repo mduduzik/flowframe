@@ -90,6 +90,10 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		Subscription sub = null;
 		try
 		{
+			TypedQuery<Subscription> query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Subscription o where o.subscribedPlan.id = :planId and o.customer.id = :customerId",Subscription.class);
+			query.setParameter("planId", planId);
+			query.setParameter("customerId", customerId);
+	/*		
 			CriteriaBuilder builder = em.getCriteriaBuilder();
 			CriteriaQuery<Subscription> query = builder.createQuery(Subscription.class);
 			Root<Subscription> rootEntity = query.from(Subscription.class);
@@ -99,11 +103,11 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 			ParameterExpression<Long> p1 = builder.parameter(Long.class);
 			ParameterExpression<Long> p2 = builder.parameter(Long.class);
 			
-			query.select(rootEntity).where(builder.and(builder.equal(builder.equal(rootEntity.get("subscribedPlan.id"), p1), p2),builder.equal(rootEntity.get("customer.id"), p2)));
+			query.select(rootEntity).where(builder.and(builder.equal(rootEntity.get("subscribedPlan.id"), p1),builder.equal(rootEntity.get("customer.id"), p2)));
 			typedQuery.setParameter(p1, planId);
-			typedQuery.setParameter(p2, customerId);			
+			typedQuery.setParameter(p2, customerId);			*/
 			
-			sub = typedQuery.getSingleResult();				
+			sub = query.getSingleResult();				
 		}
 		catch(NoResultException e){}
 		catch(Exception e)

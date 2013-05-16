@@ -35,6 +35,7 @@ Import-Package:
   org.flowframe.erp.app.mdm.domain.currency;version="[0.0.1,1.0.0)",
   org.flowframe.erp.app.contractmanagement.dao.services;version="[0.0.1,1.0.0)",
   org.flowframe.erp.app.contractmanagement.domain;version="[0.0.1,1.0.0)",
+  org.flowframe.erp.app.contractmanagement.domain.service;version="[0.0.1,1.0.0)",
   org.hibernate.hql.ast;version="3.6.0.Final",
   javax.persistence;version="0",
   javax.persistence.criteria;version="0",

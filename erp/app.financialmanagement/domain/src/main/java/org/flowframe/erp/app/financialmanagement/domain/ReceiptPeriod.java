@@ -15,6 +15,10 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 public class ReceiptPeriod extends BaseEntity {
 	private Date start;
 	private Date end;
+	
+	public ReceiptPeriod(){
+	}
+	
 	public Date getStart() {
 		return start;
 	}

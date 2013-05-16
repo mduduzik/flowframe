@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 public class CreditCardToken extends Payment {
 	private String token;
 	private Date dateUsed;
+	
+	public CreditCardToken(){
+	}
+	
 	public String getToken() {
 		return token;
 	}

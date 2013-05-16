@@ -27,7 +27,7 @@ import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 public class SubscriptionPlan extends BaseEntity {
 	private static final long serialVersionUID = -3112539146151123146L;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private ServiceProvisionGroup serviceGroup;	
 
     @Enumerated(EnumType.STRING)

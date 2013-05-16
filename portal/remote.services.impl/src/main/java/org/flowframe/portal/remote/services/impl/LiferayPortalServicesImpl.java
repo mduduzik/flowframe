@@ -49,9 +49,7 @@ import flexjson.JSONSerializer;
 public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrganizationService, IPortalRoleService, IPortalCompanyService {
 	static public final String FFPORTAL_SERVER_HOSTNAME = "ffportal.server.hostname";//localhost
 	static public final String FFPORTAL_SERVER_PORT = "ffportal.server.port";//8080
-	static public final String FFPORTAL_REPOSITORY_ID = "ffportal.repository.id";//10180
 	static public final String FFPORTAL_REPOSITORY_COMPANYID = "ffportal.repository.companyid";//10154
-	static public final String FFPORTAL_REPOSITORY_MAIN_FOLDERID = "ffportal.repository.main.folderid";//10644
 	static public final String FFPORTAL_USER_EMAIL = "ffportal.user.email";//test@liferay.com
 	static public final String FFPORTAL_USER_PASSWORD = "ffportal.user.password";//test
 	static public final String FFPORTAL_USER_GROUP_ID = "ffportal.user.group.id";//10180
@@ -67,10 +65,14 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 	private String hostname;
 	private String port;
 	private String loginGroupId;
+	private String rootFolderId;
+	
 
 	
+
 	public void init()
 	{
+		/*
 		loadLiferayProperties();
 		
 		hostname = liferayProperties.getProperty(FFPORTAL_SERVER_HOSTNAME);
@@ -79,7 +81,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		loginGroupId = liferayProperties.getProperty(FFPORTAL_USER_GROUP_ID);
 		loginEmail = liferayProperties.getProperty(FFPORTAL_USER_EMAIL);
 		loginPassword = liferayProperties.getProperty(FFPORTAL_USER_PASSWORD);
-		
+		*/
 		targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
 		PoolingClientConnectionManager cxMgr = new PoolingClientConnectionManager( SchemeRegistryFactory.createDefault());
 		cxMgr.setMaxTotal(100);
@@ -958,5 +960,60 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 	public long getDefaultCompanyId() {
 		return Long.valueOf(companyId);
 	}
+	
+	public String getCompanyId() {
+		return companyId;
+	}
 
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getLoginEmail() {
+		return loginEmail;
+	}
+
+	public void setLoginEmail(String loginEmail) {
+		this.loginEmail = loginEmail;
+	}
+
+	public String getLoginPassword() {
+		return loginPassword;
+	}
+
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
+	}
+
+	public String getHostname() {
+		return hostname;
+	}
+
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+
+	public String getLoginGroupId() {
+		return loginGroupId;
+	}
+
+	public void setLoginGroupId(String loginGroupId) {
+		this.loginGroupId = loginGroupId;
+	}
+
+	public String getRootFolderId() {
+		return rootFolderId;
+	}
+
+	public void setRootFolderId(String rootFolderId) {
+		this.rootFolderId = rootFolderId;
+	}	
 }

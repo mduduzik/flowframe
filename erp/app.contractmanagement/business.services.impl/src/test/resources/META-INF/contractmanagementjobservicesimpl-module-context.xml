@@ -16,6 +16,7 @@
 		EntityManager will be auto-injected due to @PersistenceContext.
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
-	<bean id="subscriptionDAOImpl" class="org.flowframe.erp.app.contractmanagement.dao.services.impl.SubscriptionDAOImpl"/>	
+	<bean id="subscriptionDAOImpl" class="org.flowframe.erp.app.contractmanagement.dao.services.impl.SubscriptionDAOImpl"/>
+	<bean id="serviceProvisionDAOImpl" class="org.flowframe.erp.app.contractmanagement.dao.services.impl.ServiceProvisionDAOImpl"/>		
 	<bean id="contractManagementJobServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementJobServicesImpl"/>
 </beans>

@@ -80,12 +80,14 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 				SubscriptionPlan freePlan = subscriptionDAOService.getFreePlan();
 				for (Event evt : createdEvents) {
 					ffInv = paymentProcessorService.getInvoice(evt.getObjectId());
+					ffInv.setCode(ffInv.getExternalRefId());
 					ffSub = subscriptionDAOService.getByPlanIdAndCustomerId(freePlan.getId(), ffInv.getDebtor().getId());
 					if (Validator.isNotNull(ffSub)) {//if this is a free plan customer - simply import invoice and add two invoice lines
 						ffInv = receiptDAOService.provide(ffInv);
 						services = freePlan.getServiceGroup().getServices();
 						for (ServiceProvisionGroupService service : services) {
-							rl = new ARReceiptLine(ffInv,service.getService(),null,"Internal",ffInv.getLivemode(),0,ffInv.getCurrency(),true,1,service.getService().getName());
+							rl = new ARReceiptLine(service.getService(),null,"Internal",ffInv.getLivemode(),0,ffInv.getCurrency(),true,1,service.getService().getName());
+							rl.setReceipt(ffInv);
 							ffInv.getLines().add(rl);
 						}
 					}

@@ -16,4 +16,7 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 public class Payment extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PAYMENTTYPE type;	
+    
+	public Payment(){
+	}    
 }

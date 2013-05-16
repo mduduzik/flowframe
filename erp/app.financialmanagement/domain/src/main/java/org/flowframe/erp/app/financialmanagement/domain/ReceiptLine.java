@@ -14,6 +14,9 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 public class ReceiptLine extends BaseEntity {
 	@ManyToOne
 	private Receipt receipt;
+	
+	public ReceiptLine(){
+	}
 
 	public Receipt getReceipt() {
 		return receipt;

@@ -20,6 +20,9 @@ public class Receipt extends BaseEntity {
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="receipt")
 	private Set<ReceiptLine> lines = new HashSet<ReceiptLine>();
 
+	public Receipt(){
+	}
+	
 	public Set<ReceiptLine> getLines() {
 		return lines;
 	}

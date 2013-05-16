@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for GreenPages JPA. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+            
+    <context:property-placeholder properties-ref="configAdminProperties"/>
+
+	<bean id="kernelPersistenceJpaDataSource" class="bitronix.tm.resource.jdbc.PoolingDataSource"
+		init-method="init" destroy-method="close">
+		<property name="className"
+			value="${ff.kernel.datasource.jdbc.poolingdatasource.className}" />
+		<property name="uniqueName" value="jdbc/flowframeJPADS" />
+		<property name="minPoolSize" value="2" />
+		<property name="maxPoolSize" value="32" />
+		<property name="acquisitionInterval" value="1" />
+		<property name="acquisitionTimeout" value="15" />
+		<property name="maxIdleTime" value="15" />
+		<property name="useTmJoin" value="true" />
+		<property name="deferConnectionRelease" value="true" />
+		<property name="automaticEnlistingEnabled" value="true" />
+		<property name="allowLocalTransactions" value="true" />
+		<property name="testQuery" value="SELECT current_timestamp" />
+		<property name="driverProperties">
+			<props>
+				<prop key="user">${ff.kernel.datasource.jdbc.poolingdatasource.user}</prop>
+				<prop key="password">${ff.kernel.datasource.jdbc.poolingdatasource.password}</prop>
+				<prop key="databaseName">${ff.kernel.datasource.jdbc.poolingdatasource.databaseName}</prop>
+				<prop key="serverName">${ff.kernel.datasource.jdbc.poolingdatasource.serverName}</prop>
+				<prop key="portNumber">${ff.kernel.datasource.jdbc.poolingdatasource.portNumber}</prop>
+				<prop key="url">${ff.kernel.datasource.jdbc.poolingdatasource.url}</prop>
+			</props>		
+		</property>
+	</bean>
+	
+	<bean id="quartzSchedulingDataSource" class="bitronix.tm.resource.jdbc.PoolingDataSource"
+		init-method="init" destroy-method="close">
+		<property name="className"
+			value="${ff.scheduling.datasource.jdbc.poolingdatasource.className}" />
+		<property name="uniqueName" value="jdbc/quartzSchedulingDS" />
+		<property name="minPoolSize" value="2" />
+		<property name="maxPoolSize" value="32" />
+		<property name="acquisitionInterval" value="1" />
+		<property name="acquisitionTimeout" value="15" />
+		<property name="maxIdleTime" value="15" />
+		<property name="useTmJoin" value="true" />
+		<property name="deferConnectionRelease" value="true" />
+		<property name="automaticEnlistingEnabled" value="true" />
+		<property name="allowLocalTransactions" value="true" />
+		<property name="testQuery" value="SELECT current_timestamp" />
+		<property name="driverProperties">
+			<props>
+				<prop key="user">${ff.scheduling.datasource.jdbc.poolingdatasource.user}</prop>
+				<prop key="password">${ff.scheduling.datasource.jdbc.poolingdatasource.password}</prop>
+				<prop key="databaseName">${ff.scheduling.datasource.jdbc.poolingdatasource.databaseName}</prop>
+				<prop key="serverName">${ff.scheduling.datasource.jdbc.poolingdatasource.serverName}</prop>
+				<prop key="portNumber">${ff.scheduling.datasource.jdbc.poolingdatasource.portNumber}</prop>
+				<prop key="url">${ff.scheduling.datasource.jdbc.poolingdatasource.url}</prop>
+			</props>
+		</property>
+	</bean>		
+</beans>

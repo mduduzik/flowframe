@@ -25,6 +25,10 @@ public class ARReceiptLine extends ReceiptLine {
 
 	Boolean proration;
 	Integer quantity;
+	
+	public ARReceiptLine(){
+	}
+	
 	public ReceiptPeriod getPeriod() {
 		return period;
 	}
@@ -75,7 +79,7 @@ public class ARReceiptLine extends ReceiptLine {
 		this.quantity = quantity;
 	}
 
-	public ARReceiptLine(ARReceipt receipt, Product product, String externalRefId, String lineType, Boolean livemode, Integer amount, CurrencyUnit currency, Boolean proration,
+	public ARReceiptLine(Product product, String externalRefId, String lineType, Boolean livemode, Integer amount, CurrencyUnit currency, Boolean proration,
 			Integer quantity, String description) {
 		super();
 		this.product = product;
@@ -87,6 +91,5 @@ public class ARReceiptLine extends ReceiptLine {
 		this.proration = proration;
 		this.quantity = quantity;
 		this.description = description;
-		this.setReceipt(receipt);
 	}
 }

@@ -23,4 +23,5 @@
 			
 	<!-- export internal interfaces -->
 	<osgi:service ref="receiptDAOImpl" interface="org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOService"/>
+	<osgi:service ref="paymentDAOService" interface="org.flowframe.erp.app.financialmanagement.dao.services.IPaymentDAOService"/>
 </beans>
