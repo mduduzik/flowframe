@@ -2645,6 +2645,10 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+		  <id>eclipse-virgo-repository</id>
+		  <url>http://build.eclipse.org/rt/virgo/maven/bundles/release</url>
+		</repository>		
 	</repositories>
 
 	<pluginRepositories>

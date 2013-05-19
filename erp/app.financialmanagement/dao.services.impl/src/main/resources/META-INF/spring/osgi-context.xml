@@ -20,8 +20,11 @@
 	<!-- KERNEL.TM Transaction Manager -->
 	<osgi:reference id="globalTransactionManager" interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
 	</osgi:reference>
+	
+	<osgi:reference id="countryDAOService" interface="org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService"/>
+	
 			
 	<!-- export internal interfaces -->
 	<osgi:service ref="receiptDAOImpl" interface="org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOService"/>
-	<osgi:service ref="paymentDAOService" interface="org.flowframe.erp.app.financialmanagement.dao.services.IPaymentDAOService"/>
+	<osgi:service ref="paymentDAOImpl" interface="org.flowframe.erp.app.financialmanagement.dao.services.IPaymentDAOService"/>
 </beans>

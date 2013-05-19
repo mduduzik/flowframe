@@ -19,4 +19,9 @@
 	<osgi:reference id="globalTransactionManager"
 		interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
 	</osgi:reference>
+	
+	<!--  Scheduler DataSource -->
+	<osgi:reference id="quartzSchedulingDataSource"
+		interface="javax.sql.DataSource" filter="(module=KERNEL.SCHEDULER)">
+	</osgi:reference>	
 </beans>

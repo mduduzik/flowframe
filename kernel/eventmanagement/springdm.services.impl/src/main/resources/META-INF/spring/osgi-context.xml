@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+<!-- 	<osgi:service ref="eventAdminHandler" interface="org.osgi.service.event.EventHandler">
+		<osgi:service-properties>
+			<entry key="event.topics" value="org/osgi/service/blueprint/container/CREATED" />
+		</osgi:service-properties>
+	</osgi:service> -->
+
+	<osgi:service ref="installArtifactLifecycleHandler" interface="org.eclipse.virgo.kernel.install.artifact.InstallArtifactLifecycleListener" />
+</beans>

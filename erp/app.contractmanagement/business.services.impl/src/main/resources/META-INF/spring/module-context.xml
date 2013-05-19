@@ -6,12 +6,10 @@
 		xmlns:p="http://www.springframework.org/schema/p"
 		xmlns:context="http://www.springframework.org/schema/context"
 		xmlns:tx="http://www.springframework.org/schema/tx"
-		xmlns:jaxws="http://cxf.apache.org/jaxws"
 		xsi:schemaLocation="
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<context:property-placeholder properties-ref="configAdminProperties"/>
 
@@ -39,9 +37,9 @@
 	-->
 	<bean id="contractManagementJobServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementJobServicesImpl"/>
 	
-	<jaxws:client id="eventDAOService" serviceClass="IEventDAOService"
+<!-- 	<jaxws:client id="eventDAOService" serviceClass="IEventDAOService"
 		address="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
 	<jaxws:client id="eventBusinessService" serviceClass="IEventBusinessService"
 		address="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
-	
+	 -->
 </beans>

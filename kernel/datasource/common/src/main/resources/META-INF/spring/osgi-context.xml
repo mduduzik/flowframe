@@ -14,5 +14,12 @@
 		    <entry key="module" value="KERNEL.MAIN"/>
 		  </osgi:service-properties>			
 	</osgi:service>
-
+	<osgi:service ref="quartzSchedulingDataSource">
+		<osgi:interfaces>
+			<value>javax.sql.DataSource</value>
+		</osgi:interfaces>
+		<osgi:service-properties>
+		    <entry key="module" value="KERNEL.SCHEDULER"/>
+		  </osgi:service-properties>			
+	</osgi:service>
 </beans>

@@ -19,6 +19,14 @@
 	<osgi:reference id="globalTransactionManager"
 		interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
 	</osgi:reference>
+	
+	<osgi:reference id="globalTransactionManager"
+		interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
+	</osgi:reference>
+	
+	<osgi:reference id="currencyUnitDAOService" interface="org.flowframe.erp.app.mdm.dao.services.ICurrencyUnitDAOService"/>
+	<osgi:reference id="subscriptionDAOService" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService"/>
+	<osgi:reference id="organizationDAOService" interface="org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService"/>
 
 	<!-- export internal interfaces -->
 	<osgi:service ref="stripeService"

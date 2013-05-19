@@ -30,12 +30,13 @@ import org.flowframe.erp.app.mdm.domain.enums.ITEMUNIT;
 import org.flowframe.erp.app.salesmanagement.domain.rates.CalculatableRate;
 import org.flowframe.erp.app.salesmanagement.domain.rates.calculator.BaseRateCalculator;
 import org.flowframe.erp.integration.adaptors.stripe.StripeServicesImpl;
-import org.flowframe.erp.integration.adaptors.stripe.services.Event;
+import org.flowframe.erp.integration.adaptors.stripe.domain.event.Event;
 import org.flowframe.kernel.common.mdm.dao.services.impl.OrganizationDAOImpl;
 import org.flowframe.kernel.common.utils.Validator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.conx.bi.kernel.core.domain.service.ReportingServiceProvision;
 import com.stripe.model.Token;
 
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml", "/META-INF/core.dao.datasource.mysql-module-context.xml",
 		"/META-INF/flowframe/jpa.lob.jpacontainer.springdm.mysql-module-context.xml", "/META-INF/flowframe/dao.services.impl-module-context.xml",

@@ -30,7 +30,16 @@
 	<osgi:reference id="userDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
 	<osgi:reference id="paymentProcessorService" cardinality="1..1" interface="org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService"/>
 	<osgi:reference id="receiptDAOService" cardinality="1..1" interface="org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOService"/>
+	<osgi:reference id="organizationDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService"/>
 		
+	<osgi:reference id="eventDAOService" cardinality="0..1" interface="org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOService">
+		<osgi:listener ref="contractManagementJobServicesImpl" bind-method="setEventDAOService" unbind-method="unsetEventDAOService"/>
+	</osgi:reference>
+
+	<osgi:reference id="eventBusinessService" cardinality="0..1" interface="org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService">
+		<osgi:listener ref="contractManagementJobServicesImpl" bind-method="setEventBusinessService" unbind-method="unsetEventBusinessService"/>
+	</osgi:reference>
+			
 	<!-- export internal interfaces -->
 	<osgi:service auto-export="class-hierarchy" ref="contractManagementJobServicesImpl"
 		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementJobServices">

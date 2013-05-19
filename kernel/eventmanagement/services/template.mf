@@ -1,0 +1,7 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Event Management Services
+Bundle-SymbolicName: org.flowframe.kernel.eventmanagement.services
+Import-Package: org.osgi.framework;version="0",
+  javax.persistence;version="0"
+

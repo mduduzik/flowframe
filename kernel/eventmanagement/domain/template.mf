@@ -1,0 +1,4 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Event Management Domain Model
+Bundle-SymbolicName: org.flowframe.kernel.eventmanagement.domain

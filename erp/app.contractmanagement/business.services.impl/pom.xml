@@ -24,25 +24,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client</artifactId>
-			<version>0.0.1</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-context</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>logback-classic</artifactId>
-					<groupId>ch.qos.logback</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.stripe.service.impl</artifactId>
 			<version>0.0.1</version>
 			<exclusions>
@@ -54,13 +35,28 @@
 					<artifactId>httpclient-osgi</artifactId>
 					<groupId>org.apache.httpcomponents</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>
+						org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client
+					</artifactId>
+					<groupId>org.flowframe</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>cxf-rt-frontend-jaxws</artifactId>
+					<groupId>org.apache.cxf</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.erp.integration.adaptors.stripe.service.impl.config.fragment</artifactId>
+			<artifactId>org.flowframe.erp.integration.adaptors.stripe.services</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.integration.adaptors.stripe.domain</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.app.financialmanagement.dao.services</artifactId>

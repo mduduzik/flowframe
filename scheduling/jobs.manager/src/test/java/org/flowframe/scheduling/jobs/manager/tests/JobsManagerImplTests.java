@@ -13,6 +13,7 @@ import org.flowframe.scheduling.jobs.manager.JobsManagerImpl;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.quartz.JobBuilder;
@@ -30,7 +31,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml",
 /*        "/META-INF/flowframe/jpa.lob.jpacontainer.springdm-module-context.xml",*/

@@ -3,6 +3,7 @@ package org.flowframe.erp.app.contractmanagement.business.services.impl;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -17,9 +18,9 @@ import org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOServi
 import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt;
 import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceiptLine;
 import org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService;
-import org.flowframe.erp.integration.adaptors.stripe.services.Event;
-import org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessServicePortType;
-import org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOServicePortType;
+import org.flowframe.erp.integration.adaptors.stripe.domain.event.Event;
+import org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService;
+import org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOService;
 import org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService;
 import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
@@ -39,11 +40,10 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 	@Autowired(required=false)
 	protected PlatformTransactionManager transactionManager;
 	
-	@Autowired
-	protected IEventDAOServicePortType eventDAOService;
 	
-	@Autowired
-	protected IEventBusinessServicePortType eventBusinessService;	
+	protected IEventDAOService eventDAOService;
+	
+	protected IEventBusinessService eventBusinessService;	
 	
 	@Autowired
 	protected ICCRemotePaymentProcessorService paymentProcessorService;
@@ -110,12 +110,31 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 		this.transactionManager.commit(status);
 	}
 
-	public IEventDAOServicePortType getEventDAOService() {
+	public IEventDAOService getEventDAOService() {
 		return eventDAOService;
 	}
 
-	public IEventBusinessServicePortType getEventBusinessService() {
+	public IEventBusinessService getEventBusinessService() {
 		return eventBusinessService;
 	}
+
+	public void setEventDAOService(IEventDAOService eventDAOService, Map<String,Object> properties) {
+		logger.info("Wiring eventDAOService");
+		this.eventDAOService = eventDAOService;
+	}
 	
+	public void unsetEventDAOService(IEventDAOService eventDAOService, Map<String,Object> properties) {
+		logger.info("Unwiring eventDAOService");
+		this.eventDAOService = eventDAOService;
+	}	
+	
+	public void setEventBusinessService(IEventBusinessService eventBusinessService, Map<String,Object> properties) {
+		logger.info("Wiring eventBusinessService");
+		this.eventBusinessService = eventBusinessService;
+	}
+	
+	public void unsetEventBusinessService(IEventBusinessService eventBusinessService, Map<String,Object> properties) {
+		logger.info("Unwiring eventBusinessService");
+		this.eventBusinessService = eventBusinessService;
+	}		
 }
