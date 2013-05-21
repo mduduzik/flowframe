@@ -40,5 +40,17 @@
 		<property name="privateTestKey" value="${ff.erp.integration.adaptors.stripe.priv.test.key}"/>
 		<property name="publicProdKey" value="${ff.erp.integration.adaptors.stripe.pub.prod.key}"/>
 		<property name="privateProdKey" value="${ff.erp.integration.adaptors.stripe.priv.prod.key}"/>
+		
+		<property name="defaultsCCNumber" value="${ff.erp.integration.adaptors.stripe.defaults.cc.number}"/>
+		<property name="defaultsCCExpMonth" value="${ff.erp.integration.adaptors.stripe.defaults.cc.exp_month}"/>
+		<property name="defaultsCCExpYear" value="${ff.erp.integration.adaptors.stripe.defaults.cc.exp_year}"/>
+		<property name="defaultsCCCvc" value="${ff.erp.integration.adaptors.stripe.defaults.cc.cvc}"/>
+		<property name="defaultsCCName" value="${ff.erp.integration.adaptors.stripe.defaults.cc.name}"/>
+		<property name="defaultsCCAddressLine1" value="${ff.erp.integration.adaptors.stripe.defaults.cc.address_line1}"/>
+		<property name="defaultsCCAddressLine2" value="${ff.erp.integration.adaptors.stripe.defaults.cc.address_line2}"/>
+		<property name="defaultsCCAddressCity" value="${ff.erp.integration.adaptors.stripe.defaults.cc.address_city}"/>
+		<property name="defaultsCCAddressZip" value="${ff.erp.integration.adaptors.stripe.defaults.cc.address_zip}"/>
+		<property name="defaultsCCAddressState" value="${ff.erp.integration.adaptors.stripe.defaults.cc.address_state}"/>
+		<property name="defaultsCCAddressCountry" value="${ff.erp.integration.adaptors.stripe.defaults.cc.address_country}"/>
 	</bean>
 </beans>

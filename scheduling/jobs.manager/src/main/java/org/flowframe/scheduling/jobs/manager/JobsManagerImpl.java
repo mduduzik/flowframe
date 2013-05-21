@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.services.ISuperService;
 import org.flowframe.scheduling.remote.services.IJobsManager;
 import org.slf4j.Logger;
@@ -22,12 +23,17 @@ public class JobsManagerImpl implements IJobsManager {
 	
 	public void unregisterSuperService(
 			ISuperService service, Map<String, Object> properties) {
-		logger.info("Unregistering "+service.getClass().getName());
-		serviceCache.remove(service.getClass().getName());
+		logger.info("unregisterSuperService called with  "+service);
+		if (Validator.isNotNull(service))
+		{
+			logger.info("Unregistering "+service.getClass().getName());
+			serviceCache.remove(service.getClass().getName());
+		}
 	}
 	
 	public void registerSuperService(
 			ISuperService service, Map<String, Object> properties) {
+		logger.info("registerSuperService called with  "+service);
 		logger.info("Registering "+service.getClass().getName());		
 		serviceCache.put(service.getClass().getName(),service);
 	}

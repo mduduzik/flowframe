@@ -89,7 +89,23 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 
 	@Override
 	public org.flowframe.erp.app.contractmanagement.domain.Customer createCustomer(org.flowframe.erp.app.contractmanagement.domain.Customer customerData) throws Exception {
-		Customer createdCustomer = Customer.create(toParamsMap(customerData));
+		final Map<String,Object> defaultCardParams = new HashMap<String, Object>();
+		defaultCardParams.put("number", getDefaultsCCNumber());
+		defaultCardParams.put("exp_month", getDefaultsCCExpMonth());
+		defaultCardParams.put("exp_year", getDefaultsCCExpYear());
+		defaultCardParams.put("cvc", getDefaultsCCCvc());
+		defaultCardParams.put("name", getDefaultsCCName());
+		defaultCardParams.put("address_line1", getDefaultsCCAddressLine1());
+		defaultCardParams.put("address_line2", getDefaultsCCAddressLine2());
+		defaultCardParams.put("address_city", getDefaultsCCAddressCity());
+		defaultCardParams.put("address_zip", getDefaultsCCAddressZip());
+		defaultCardParams.put("address_state", getDefaultsCCAddressState());
+		defaultCardParams.put("address_country", getDefaultsCCAddressCountry());		
+	
+		Map<String, Object> customerParams = toParamsMap(customerData);
+		customerParams.put("card",defaultCardParams);
+		
+		Customer createdCustomer = Customer.create(customerParams);
 		org.flowframe.erp.app.contractmanagement.domain.Customer convertedCustomer = toFFCustomer(createdCustomer);
 		convertedCustomer.setExternalRefId(createdCustomer.getId());
 		return convertedCustomer;

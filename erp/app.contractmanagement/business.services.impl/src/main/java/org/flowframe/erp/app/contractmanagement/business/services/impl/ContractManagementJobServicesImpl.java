@@ -22,6 +22,7 @@ import org.flowframe.erp.integration.adaptors.stripe.domain.event.Event;
 import org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService;
 import org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOService;
 import org.flowframe.kernel.common.mdm.dao.services.IOrganizationDAOService;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +41,11 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 	@Autowired(required=false)
 	protected PlatformTransactionManager transactionManager;
 	
+	//@Autowired
+	protected IEventDAOService eventDAOService = null;
 	
-	protected IEventDAOService eventDAOService;
-	
-	protected IEventBusinessService eventBusinessService;	
+	//@Autowired
+	protected IEventBusinessService eventBusinessService = null;	
 	
 	@Autowired
 	protected ICCRemotePaymentProcessorService paymentProcessorService;
@@ -70,29 +72,63 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 			logger.info("ContractManagementJobServicesImpl.processNewInvoices...");
 			
 			//1. Check if Stripe has invoice.created
-			List<Event> createdEvents = eventDAOService.getAllInvoiceEventsCreated();
-			if (!createdEvents.isEmpty()) {
-				//For each: 1) Get invoice from PP 2) Get customer; 3) Find all unbilled job instances for customer
-				ARReceipt ffInv = null;
-				Subscription ffSub = null;
-				ARReceiptLine rl = null;
-				Set<ServiceProvisionGroupService> services = null;
-				SubscriptionPlan freePlan = subscriptionDAOService.getFreePlan();
-				for (Event evt : createdEvents) {
-					ffInv = paymentProcessorService.getInvoice(evt.getObjectId());
-					ffInv.setCode(ffInv.getExternalRefId());
-					ffSub = subscriptionDAOService.getByPlanIdAndCustomerId(freePlan.getId(), ffInv.getDebtor().getId());
-					if (Validator.isNotNull(ffSub)) {//if this is a free plan customer - simply import invoice and add two invoice lines
-						ffInv = receiptDAOService.provide(ffInv);
-						services = freePlan.getServiceGroup().getServices();
-						for (ServiceProvisionGroupService service : services) {
-							rl = new ARReceiptLine(service.getService(),null,"Internal",ffInv.getLivemode(),0,ffInv.getCurrency(),true,1,service.getService().getName());
-							rl.setReceipt(ffInv);
-							ffInv.getLines().add(rl);
+			//BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
+			/*eventDAOService = (IEventDAOService)bundleContext.getServiceReference(IEventDAOService.class);
+			OsgiServiceFactoryBean factory = new OsgiServiceFactoryBean();
+			factory.setBundleContext(bundleContext);
+			factory.setInterfaces(new Class[]{IEventDAOService.class});
+			factory.setContextClassLoader(ExportContextClassLoader.SERVICE_PROVIDER);
+			factory.afterPropertiesSet();
+			eventDAOService = (IEventDAOService)factory.getObject();*/
+			
+			if (Validator.isNotNull(eventDAOService)) {
+				List<Event> createdEvents = eventDAOService.getAllInvoiceEventsCreated();
+				if (Validator.isNotNull(createdEvents) && !createdEvents.isEmpty()) {
+					logger.info("ContractManagementJobServicesImpl.processNewInvoices "+createdEvents.size()+" new invoices were found");
+					//For each: 1) Get invoice from PP 2) Get customer; 3) Find all unbilled job instances for customer
+					ARReceipt ffInv = null;
+					Subscription ffSub = null;
+					ARReceiptLine rl = null;
+					Set<ServiceProvisionGroupService> services = null;
+					SubscriptionPlan freePlan = subscriptionDAOService.getFreePlan();
+					Organization customer = null;
+					for (Event evt : createdEvents) {
+						ffInv = paymentProcessorService.getInvoice(evt.getObjectId());
+						customer = organizationDAOService.getByExternalRefId(ffInv.getCustomer());
+						if (Validator.isNull(customer)) {//There's NO customer for this
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" was not found");
+							eventBusinessService.markInactive(evt.getStripeId());
+							continue;
+						}
+						else {
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" was found");
+							ffInv.setCode(ffInv.getExternalRefId());
+							ffSub = subscriptionDAOService.getByPlanIdAndCustomerId(freePlan.getId(), ffInv.getDebtor().getId());
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Processing Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" invoice");
+							if (Validator.isNotNull(ffSub)) {//if this is a free plan customer - simply import invoice and add two invoice lines
+								logger.info("ContractManagementJobServicesImpl.processNewInvoices Processing Free Plan Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" invoice");
+								ffInv = receiptDAOService.provide(ffInv);
+								services = freePlan.getServiceGroup().getServices();
+								for (ServiceProvisionGroupService service : services) {
+									rl = new ARReceiptLine(service.getService(),null,"Internal",ffInv.getLivemode(),0,ffInv.getCurrency(),true,1,service.getService().getName());
+									rl.setReceipt(ffInv);
+									ffInv.getLines().add(rl);
+								}
+							}
+							eventBusinessService.markInactive(evt.getStripeId());
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Invoice/"+evt.getObjectId()+" for Customer/"+ffInv.getCustomer()+" processed successfully");
 						}
 					}
-					eventBusinessService.markInactive(evt.getStripeId());
+					this.transactionManager.commit(status);
 				}
+				else
+				{
+					logger.info("ContractManagementJobServicesImpl.processNewInvoices No new invoices were found");					
+				}
+			}
+			else
+			{
+				logger.info("ContractManagementJobServicesImpl.processNewInvoices eventDAOService not available");
 			}
 		} catch (Exception e) {
 			this.transactionManager.rollback(status);
@@ -107,7 +143,6 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
 		}
-		this.transactionManager.commit(status);
 	}
 
 	public IEventDAOService getEventDAOService() {
@@ -117,6 +152,20 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 	public IEventBusinessService getEventBusinessService() {
 		return eventBusinessService;
 	}
+/*
+	@Autowired
+	public void setEventDAOService(IEventDAOService eventDAOService) {
+		logger.info("setEventDAOService...");
+		this.eventDAOService = eventDAOService;
+	}
+
+	@Autowired
+	public void setEventBusinessService(IEventBusinessService eventBusinessService) {
+		logger.info("setEventBusinessService...");
+		this.eventBusinessService = eventBusinessService;
+	}*/
+	
+	
 
 	public void setEventDAOService(IEventDAOService eventDAOService, Map<String,Object> properties) {
 		logger.info("Wiring eventDAOService");
@@ -136,5 +185,5 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 	public void unsetEventBusinessService(IEventBusinessService eventBusinessService, Map<String,Object> properties) {
 		logger.info("Unwiring eventBusinessService");
 		this.eventBusinessService = eventBusinessService;
-	}		
+	}	
 }

@@ -21,6 +21,17 @@ public abstract class BaseStripeSONWSServicesImpl {
 	protected String privateTestKey = null;
 	protected String publicProdKey = null;
 	protected String privateProdKey = null;
+	protected Long  defaultsCCNumber;
+	protected Integer  defaultsCCExpMonth;
+	protected Integer  defaultsCCExpYear;
+	protected Integer  defaultsCCCvc;
+	protected String  defaultsCCName;
+	protected String  defaultsCCAddressLine1;
+	protected String  defaultsCCAddressLine2;
+	protected String  defaultsCCAddressCity;
+	protected Integer  defaultsCCAddressZip;
+	protected String  defaultsCCAddressState;
+	protected String  defaultsCCAddressCountry;
 
 	private Properties stripeProperties = new Properties();
 	
@@ -86,5 +97,93 @@ public abstract class BaseStripeSONWSServicesImpl {
 
 	public void setPrivateProdKey(String privateProdKey) {
 		this.privateProdKey = privateProdKey;
+	}
+
+	public Long getDefaultsCCNumber() {
+		return defaultsCCNumber;
+	}
+
+	public void setDefaultsCCNumber(Long defaultsCCNumber) {
+		this.defaultsCCNumber = defaultsCCNumber;
+	}
+
+	public Integer getDefaultsCCExpMonth() {
+		return defaultsCCExpMonth;
+	}
+
+	public void setDefaultsCCExpMonth(Integer defaultsCCExpMonth) {
+		this.defaultsCCExpMonth = defaultsCCExpMonth;
+	}
+
+	public Integer getDefaultsCCExpYear() {
+		return defaultsCCExpYear;
+	}
+
+	public void setDefaultsCCExpYear(Integer defaultsCCExpYear) {
+		this.defaultsCCExpYear = defaultsCCExpYear;
+	}
+
+	public Integer getDefaultsCCCvc() {
+		return defaultsCCCvc;
+	}
+
+	public void setDefaultsCCCvc(Integer defaultsCCCvc) {
+		this.defaultsCCCvc = defaultsCCCvc;
+	}
+
+	public String getDefaultsCCName() {
+		return defaultsCCName;
+	}
+
+	public void setDefaultsCCName(String defaultsCCName) {
+		this.defaultsCCName = defaultsCCName;
+	}
+
+	public String getDefaultsCCAddressLine1() {
+		return defaultsCCAddressLine1;
+	}
+
+	public void setDefaultsCCAddressLine1(String defaultsCCAddressLine1) {
+		this.defaultsCCAddressLine1 = defaultsCCAddressLine1;
+	}
+
+	public String getDefaultsCCAddressLine2() {
+		return defaultsCCAddressLine2;
+	}
+
+	public void setDefaultsCCAddressLine2(String defaultsCCAddressLine2) {
+		this.defaultsCCAddressLine2 = defaultsCCAddressLine2;
+	}
+
+	public String getDefaultsCCAddressCity() {
+		return defaultsCCAddressCity;
+	}
+
+	public void setDefaultsCCAddressCity(String defaultsCCAddressCity) {
+		this.defaultsCCAddressCity = defaultsCCAddressCity;
+	}
+
+	public Integer getDefaultsCCAddressZip() {
+		return defaultsCCAddressZip;
+	}
+
+	public void setDefaultsCCAddressZip(Integer defaultsCCAddressZip) {
+		this.defaultsCCAddressZip = defaultsCCAddressZip;
+	}
+
+	public String getDefaultsCCAddressState() {
+		return defaultsCCAddressState;
+	}
+
+	public void setDefaultsCCAddressState(String defaultsCCAddressState) {
+		this.defaultsCCAddressState = defaultsCCAddressState;
+	}
+
+	public String getDefaultsCCAddressCountry() {
+		return defaultsCCAddressCountry;
+	}
+
+	public void setDefaultsCCAddressCountry(String defaultsCCAddressCountry) {
+		this.defaultsCCAddressCountry = defaultsCCAddressCountry;
 	}
 }
