@@ -11,6 +11,8 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
+	<context:property-placeholder properties-ref="configAdminProperties"/>
+
 	<!-- ========================= TRRANSCTION MANAGEMENT ========================= -->
 	<!-- 
 	<bean id="globalTransactionManagerId" class="org.springframework.transaction.jta.JtaTransactionManager">
@@ -62,4 +64,6 @@
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
 	<bean id="subscriptionDAOImpl" class="org.flowframe.erp.app.contractmanagement.dao.services.impl.SubscriptionDAOImpl"/>
+	<bean id="customerDAOImpl" class="org.flowframe.erp.app.contractmanagement.dao.services.impl.CustomerDAOImpl"/>
+	<bean id="serviceProvisionDAOImpl" class="org.flowframe.erp.app.contractmanagement.dao.services.impl.ServiceProvisionDAOImpl"/>
 </beans>

@@ -22,5 +22,28 @@
 	</osgi:reference>
 
 	<!-- export internal interfaces -->
-	<osgi:service ref="subscriptionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService"/>
+	<osgi:service ref="subscriptionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/services/ISubscriptionDAOService" />
+		</osgi:service-properties>		
+	</osgi:service>	
+	<osgi:service ref="customerDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.customer.ICustomerDAOService">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/customer/ICustomerDAOService" />
+		</osgi:service-properties>		
+	</osgi:service>
+	<osgi:service ref="serviceProvisionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.IServiceProvisionDAOService">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/services/IServiceProvisionDAOService" />
+		</osgi:service-properties>		
+	</osgi:service>	
 </beans>

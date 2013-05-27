@@ -18,6 +18,8 @@ import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt;
 import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceiptLine;
 import org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService;
 import org.flowframe.kernel.common.mdm.domain.geolocation.Country;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +54,33 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 	public List<ARReceipt> getAll() {
 		return em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o record order by o.id",ARReceipt.class).getResultList();
 	}
+	
+	@Override
+	public List<ARReceipt> getAllByCustomerId(Long customerId) {
+		List<ARReceipt> res = null;
+		try
+		{
+			TypedQuery<ARReceipt> query = em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o where o.debtor.id = :debtorId order by o.dateCreated desc",ARReceipt.class);
+			query.setParameter("debtorId", customerId);
+
+			
+			res = query.getResultList();				
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return res;		
+	}	
 	
 	@Override
 	public ARReceipt getByCode(String code) {
@@ -109,13 +138,10 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 		ARReceipt existingRecord = getByCode(record.getCode());
 		if (Validator.isNull(existingRecord))
 		{		
+			record = add(record);
+		}
+		else {
 			record = update(record);
-			try {
-				//em.flush();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		return record;
 	}
@@ -147,5 +173,5 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 		ar = update(ar);
 		em.refresh(record);
 		return record;
-	}	
+	}
 }

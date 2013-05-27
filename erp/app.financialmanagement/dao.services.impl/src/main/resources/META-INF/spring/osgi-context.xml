@@ -27,4 +27,14 @@
 	<!-- export internal interfaces -->
 	<osgi:service ref="receiptDAOImpl" interface="org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOService"/>
 	<osgi:service ref="paymentDAOImpl" interface="org.flowframe.erp.app.financialmanagement.dao.services.IPaymentDAOService"/>
+	
+	<osgi:service ref="receiptDAOImpl"
+		interface="org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOService">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/financialmanagement/dao/services/IARReceiptDAOService" />
+		</osgi:service-properties>		
+	</osgi:service>	
 </beans>

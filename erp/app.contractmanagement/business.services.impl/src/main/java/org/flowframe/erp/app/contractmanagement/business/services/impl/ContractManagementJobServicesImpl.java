@@ -94,32 +94,34 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 					Organization customer = null;
 					for (Event evt : createdEvents) {
 						ffInv = paymentProcessorService.getInvoice(evt.getObjectId());
-						customer = organizationDAOService.getByExternalRefId(ffInv.getCustomer());
+						customer = ffInv.getDebtor();
+						//customer = organizationDAOService.getByExternalRefId(ffInv.getCustomer());
 						if (Validator.isNull(customer)) {//There's NO customer for this
-							logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" was not found");
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer does not exist for Invoice/"+evt.getObjectId()+" was not found");
 							eventBusinessService.markInactive(evt.getStripeId());
 							continue;
 						}
 						else {
-							logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" was found");
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer/"+customer.getExternalRefId()+"for Invoice/"+evt.getObjectId()+" was found");
 							ffInv.setCode(ffInv.getExternalRefId());
 							ffSub = subscriptionDAOService.getByPlanIdAndCustomerId(freePlan.getId(), ffInv.getDebtor().getId());
-							logger.info("ContractManagementJobServicesImpl.processNewInvoices Processing Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" invoice");
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Processing Customer/"+customer.getExternalRefId()+"for Invoice/"+evt.getObjectId()+" invoice");
 							if (Validator.isNotNull(ffSub)) {//if this is a free plan customer - simply import invoice and add two invoice lines
-								logger.info("ContractManagementJobServicesImpl.processNewInvoices Processing Free Plan Customer/"+ffInv.getCustomer()+"for Invoice/"+evt.getObjectId()+" invoice");
-								ffInv = receiptDAOService.provide(ffInv);
+								logger.info("ContractManagementJobServicesImpl.processNewInvoices Processing Free Plan Customer/"+customer.getExternalRefId()+"for Invoice/"+evt.getObjectId()+" invoice");
+								ffInv = receiptDAOService.add(ffInv);
 								services = freePlan.getServiceGroup().getServices();
 								for (ServiceProvisionGroupService service : services) {
 									rl = new ARReceiptLine(service.getService(),null,"Internal",ffInv.getLivemode(),0,ffInv.getCurrency(),true,1,service.getService().getName());
 									rl.setReceipt(ffInv);
 									ffInv.getLines().add(rl);
 								}
+								ffInv = receiptDAOService.update(ffInv);
+								logger.info("ContractManagementJobServicesImpl.processNewInvoices Processed Free Plan Customer/"+customer.getExternalRefId()+"for Invoice/"+evt.getObjectId()+" invoice successfully");
 							}
 							eventBusinessService.markInactive(evt.getStripeId());
-							logger.info("ContractManagementJobServicesImpl.processNewInvoices Invoice/"+evt.getObjectId()+" for Customer/"+ffInv.getCustomer()+" processed successfully");
+							logger.info("ContractManagementJobServicesImpl.processNewInvoices Invoice/"+evt.getObjectId()+" for Customer/"+customer.getExternalRefId()+" processed successfully");
 						}
 					}
-					this.transactionManager.commit(status);
 				}
 				else
 				{
@@ -143,6 +145,7 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
 		}
+		this.transactionManager.commit(status);
 	}
 
 	public IEventDAOService getEventDAOService() {

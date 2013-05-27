@@ -2,6 +2,7 @@ package org.flowframe.erp.app.contractmanagement.dao.services.impl;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,8 +15,10 @@ import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.flowframe.erp.app.contractmanagement.dao.services.IServiceProvisionDAOService;
+import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision;
 import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionGroup;
+import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionGroupService;
 import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +49,18 @@ public class ServiceProvisionDAOImpl implements IServiceProvisionDAOService {
 	public List<ServiceProvision> getAll() {
 		return em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.ServiceProvision o record order by o.id",ServiceProvision.class).getResultList();
 	}
+	
+
+	@Override
+	public List<ServiceProvision> getAllByPlanId(Long planId) {
+		SubscriptionPlan plan = em.getReference(SubscriptionPlan.class, planId);
+		ServiceProvisionGroup sg = em.getReference(ServiceProvisionGroup.class, plan.getServiceGroup().getId());
+		List<ServiceProvision> res = new ArrayList<ServiceProvision>();
+		for (ServiceProvisionGroupService sp : sg.getServices()) {
+			res.add(sp.getService());
+		}
+		return res;
+	}	
 	
 	@Override
 	public ServiceProvision getByCode(String code) {
@@ -187,5 +202,6 @@ public class ServiceProvisionDAOImpl implements IServiceProvisionDAOService {
 			record = addGroup(record);
 		}
 		return record;
-	}	
+	}
+
 }

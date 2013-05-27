@@ -8,11 +8,16 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 import org.flowframe.kernel.common.mdm.domain.geolocation.AddressTypeAddress;
 
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Table(name="ffreforganization")
@@ -22,9 +27,11 @@ public class Organization extends MultitenantBaseEntity {
 	private long parentOrganizationId;
 	private String type;
 	
+	@XmlTransient
 	@OneToMany(targetEntity = AddressTypeAddress.class)
     private Set<AddressTypeAddress> addressTypeAddresses = new HashSet<AddressTypeAddress>();
     
+	@XmlTransient
     @OneToMany(targetEntity = ContactTypeContact.class)
     private Set<ContactTypeContact> contactTypeContacts = new HashSet<ContactTypeContact>();
     

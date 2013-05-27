@@ -58,4 +58,5 @@ Import-Package: org.osgi.framework;version="0",
   org.aopalliance.aop;version="1.0.0",
   org.jsoup;version="1.5.2",
   javassist.util.proxy;version="3.12.0.GA",
-  javax.naming;version="0"
+  javax.naming;version="0",
+  javax.xml.bind.annotation;version="0"

@@ -2,6 +2,7 @@ package org.flowframe.erp.app.contractmanagement.dao.services;
 
 import java.util.List;
 
+import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision;
 import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionGroup;
 
@@ -11,6 +12,8 @@ public interface IServiceProvisionDAOService {
 	public ServiceProvision get(long id);
 	
 	public List<ServiceProvision> getAll();
+
+	public List<ServiceProvision> getAllByPlanId(Long planId);
 	
 	public ServiceProvision getByCode(String code);	
 	

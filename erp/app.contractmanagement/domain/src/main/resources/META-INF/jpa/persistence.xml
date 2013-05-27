@@ -8,7 +8,8 @@ http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistenc
     	<class>org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionGroupService</class>
     	<class>org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionQuota</class>
     	<class>org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionRate</class>
-    	<class>org.flowframe.erp.app.contractmanagement.domain.Customer</class>    	  
+    	<class>org.flowframe.erp.app.contractmanagement.domain.Customer</class> 
+    	<class>org.flowframe.erp.app.contractmanagement.domain.CustomerUser</class>
     	<class>org.flowframe.erp.app.contractmanagement.domain.Subscription</class> 
     	<class>org.flowframe.erp.app.contractmanagement.domain.SubscriptionChange</class> 
     	<class>org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan</class>   	

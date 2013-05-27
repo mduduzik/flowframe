@@ -139,7 +139,10 @@
 			<scope>provided</scope>
 		</dependency>
 
-
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>com.springsource.javax.xml.bind</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>com.springsource.javax.persistence</artifactId>

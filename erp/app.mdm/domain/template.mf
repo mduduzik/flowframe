@@ -15,5 +15,6 @@ Excluded-Imports: javax.persistence,
   org.flowframe.erp.domain.enums,
   org.flowframe.kernel.common.mdm.domain.organization,
   org.flowframe.kernel.common.mdm.domain.constants,
-  org.flowframe.kernel.common.mdm.domain.geolocation 
+  org.flowframe.kernel.common.mdm.domain.geolocation,
+  javax.xml.bind.annotation
  

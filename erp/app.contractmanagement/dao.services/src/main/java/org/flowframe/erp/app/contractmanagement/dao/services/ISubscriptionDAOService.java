@@ -17,6 +17,8 @@ public interface ISubscriptionDAOService {
 	public Subscription getByCode(String code);	
 	
 	public Subscription getByPlanIdAndCustomerId(Long planId, Long customerId);
+	
+	public Subscription getByCustomerId(Long customerId);
 
 	public Subscription add(Subscription record);
 
@@ -44,4 +46,6 @@ public interface ISubscriptionDAOService {
 	public SubscriptionPlan providePlan(SubscriptionPlan record);	
 	
 	public SubscriptionPlan getFreePlan();
+
+	public Long getPlanIdByCustomerId(Long customerId);
 }

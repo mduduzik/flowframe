@@ -125,6 +125,39 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		return sub;		
 	}
 	
+	@Override
+	public Subscription getByCustomerId(Long customerId) {
+		Subscription sub = null;
+		try
+		{
+			TypedQuery<Subscription> query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Subscription o where o.customer.id = :customerId",Subscription.class);
+			query.setParameter("customerId", customerId);
+
+			sub = query.getSingleResult();				
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return sub;		
+	}	
+	
+	
+	@Override
+	public Long getPlanIdByCustomerId(Long customerId) {
+		Subscription sub = getByCustomerId(customerId);
+		SubscriptionPlan plan = sub.getSubscribedPlan();
+		return plan.getId();
+	}
 	
 	public SubscriptionPlan getPlanByCode(String code) {
 		SubscriptionPlan rec = null;
