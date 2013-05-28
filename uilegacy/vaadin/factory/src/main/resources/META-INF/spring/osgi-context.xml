@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+
+	<!-- export the userProfileBasicView bean to OSGi under the IViewContribution interface -->
+	<osgi:service ref="vaadinContributionsBasedComponentFactory"  interface="org.flowframe.ui.services.factory.IComponentModelFactory"/>
+	
+	<!-- import services -->
+	<osgi:reference id="componentFactoryContributionManager"  cardinality="1..1" interface="org.flowframe.ui.services.contribution.IComponentFactoryContributionManager"/>
+</beans>

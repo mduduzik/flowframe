@@ -93,6 +93,6 @@ Import-Package: javax.management;version="0",javax.naming;version="0",
  version="0",javax.swing.text;version="0",javax.swing.tree;version="0"
  ,javax.xml.parsers;version="0",org.mvel2;version="2.1",org.mvel2.temp
  lates;version="2.1",org.mvel2.util;version="2.1",org.slf4j;version="[
- 1.6.1,1.7.0)",org.w3c.dom;version="0",org.xml.sax;version="0",org.xml
+ 1.6.1,1.8.0)",org.w3c.dom;version="0",org.xml.sax;version="0",org.xml
  .sax.helpers;version="0"
 

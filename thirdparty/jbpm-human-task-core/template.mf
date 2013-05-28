@@ -77,20 +77,20 @@ Import-Package: javassist.util.proxy;version="3.12.0.GA",javax.activat
  ="2.1",org.mvel2.compiler;version="2.1",org.mvel2.integration;version
  ="2.1",org.mvel2.integration.impl;version="2.1",org.mvel2.templates;v
  ersion="2.1",org.osgi.framework;version="0",org.slf4j;version="[1.6.1
- ,1.7.0)",org.springframework.aop;version="[3.0, 3.1)",org.springframe
- work.aop.framework;version="[3.0, 3.1)",org.springframework.aop.scope
- ;version="[3.0, 3.1)",org.springframework.beans.factory;version="[3.0
- , 3.1)",org.springframework.beans.factory.annotation;version="[3.0, 3
- .1)",org.springframework.beans.factory.config;version="[3.0, 3.1)",or
- g.springframework.context;version="[3.0, 3.1)",org.springframework.co
- ntext.weaving;version="[3.0, 3.1)",org.springframework.core.io;versio
- n="[3.0, 3.1)",org.springframework.dao;version="[3.0, 3.1)",org.sprin
- gframework.dao.annotation;version="[3.0, 3.1)",org.springframework.jd
- bc.core;version="[3.0, 3.1)",org.springframework.orm.jpa;version="[3.
- 0, 3.1)",org.springframework.orm.jpa.persistenceunit;version="[3.0, 3
- .1)",org.springframework.orm.jpa.support;version="[3.0, 3.1)",org.spr
- ingframework.orm.jpa.vendor;version="[3.0, 3.1)",org.springframework.
- stereotype;version="[3.0, 3.1)",org.springframework.transaction;versi
- on="[3.0, 3.1)",org.springframework.transaction.annotation;version="[
- 3.0, 3.1)",org.springframework.transaction.aspectj;version="[3.0, 3.1
- )",org.springframework.transaction.jta;version="[3.0, 3.1)"
+ ,1.8.0)",org.springframework.aop;version="[3.0, 3.2)",org.springframe
+ work.aop.framework;version="[3.0, 3.2)",org.springframework.aop.scope
+ ;version="[3.0, 3.2)",org.springframework.beans.factory;version="[3.0
+ , 3.2)",org.springframework.beans.factory.annotation;version="[3.0, 3
+ .2)",org.springframework.beans.factory.config;version="[3.0, 3.2)",or
+ g.springframework.context;version="[3.0, 3.2)",org.springframework.co
+ ntext.weaving;version="[3.0, 3.2)",org.springframework.core.io;versio
+ n="[3.0, 3.2)",org.springframework.dao;version="[3.0, 3.2)",org.sprin
+ gframework.dao.annotation;version="[3.0, 3.2)",org.springframework.jd
+ bc.core;version="[3.0, 3.2)",org.springframework.orm.jpa;version="[3.
+ 0, 3.2)",org.springframework.orm.jpa.persistenceunit;version="[3.0, 3
+ .2)",org.springframework.orm.jpa.support;version="[3.0, 3.2)",org.spr
+ ingframework.orm.jpa.vendor;version="[3.0, 3.2)",org.springframework.
+ stereotype;version="[3.0, 3.2)",org.springframework.transaction;versi
+ on="[3.0, 3.2)",org.springframework.transaction.annotation;version="[
+ 3.0, 3.2)",org.springframework.transaction.aspectj;version="[3.0, 3.2
+ )",org.springframework.transaction.jta;version="[3.0, 3.2)"

@@ -1,0 +1,24 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF UI Vaadin Expressions
+Bundle-SymbolicName: org.flowframe.uilegacy.vaadin.expressions
+Import-Package:   
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
+  org.flowframe.portal.remote.services;version="[0.0.1,1.0.0)",
+  org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
+  com.vaadin.addon.jpacontainer;version="2.0.0",
+  com.vaadin.addon.jpacontainer.fieldfactory;version="2.0.0",
+  com.vaadin.addon.jpacontainer.metadata;version="2.0.0",
+  com.vaadin.addon.jpacontainer.util;version="2.0.0",
+  com.vaadin.data;version="[6.8.0,7.0.0)",
+  com.vaadin.data.util;version="[6.8.0,7.0.0)",
+  com.vaadin.data.util.filter;version="[6.8.0,7.0.0)",
+  com.vaadin.event;version="[6.8.0,7.0.0)",
+  com.vaadin.terminal;version="[6.8.0,7.0.0)",
+  com.vaadin.ui;version="[6.8.0,7.0.0)",
+  org.springframework.expression;version="[3.0, 3.1)",
+  org.springframework.expression.spel.standard;version="[3.0, 3.1)",
+  org.springframework.expression.spel.support;version="[3.0, 3.1)",
+  org.springframework.core.convert;version="[3.0, 3.1)",
+  org.springframework.expression.spel;version="[3.0, 3.1)",
+  org.springframework.expression.spel.ast;version="[3.0, 3.1)"

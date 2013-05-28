@@ -8,10 +8,12 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
+ 	<context:property-placeholder properties-ref="configAdminProperties"/>
+ 
 	<bean id="bpmPersistenceJpaDataSource" class="bitronix.tm.resource.jdbc.PoolingDataSource"
 		init-method="init" destroy-method="close">
 		<property name="className"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="${ff.jbpm.datasource.jdbc.poolingdatasource.className}" />
 		<property name="uniqueName" value="jdbc/ffbpmJPADS" />
 		<property name="minPoolSize" value="10" />
 		<property name="maxPoolSize" value="32" />
@@ -26,12 +28,12 @@
 		<property name="preparedStatementCacheSize" value="0"/>
 		<property name="driverProperties">
 			<props>
-				<prop key="user">root</prop>
-				<prop key="password">root</prop>
-				<prop key="databaseName">ffjbpm5</prop>
-				<prop key="serverName">localhost</prop>
-				<prop key="portNumber">3306</prop>
-				<prop key="url">jdbc:mysql://localhost/ffjbpm5?autoReconnect=true</prop>
+				<prop key="user">${ff.jbpm.datasource.jdbc.poolingdatasource.user}</prop>
+				<prop key="password">${ff.jbpm.datasource.jdbc.poolingdatasource.password}</prop>
+				<prop key="databaseName">${ff.jbpm.datasource.jdbc.poolingdatasource.databaseName}</prop>
+				<prop key="serverName">${ff.jbpm.datasource.jdbc.poolingdatasource.serverName}</prop>
+				<prop key="portNumber">${ff.jbpm.datasource.jdbc.poolingdatasource.portNumber}</prop>
+				<prop key="url">${ff.jbpm.datasource.jdbc.poolingdatasource.url}</prop>
 			</props>
 		</property>
 	</bean>

@@ -4,6 +4,7 @@ Bundle-Name: FF JTA TM
 Bundle-SymbolicName: org.flowframe.tm.jta
 Bundle-Vendor: FF
 Bundle-Version: 0.0.1
+DynamicImport-Package: *
 Import-Package: 
   org.apache.xerces.jaxp;version="2.9.1",
   bitronix.tm.journal;version="2.1.2",

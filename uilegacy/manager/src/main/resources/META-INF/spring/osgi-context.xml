@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+
+	<osgi:service ref="uiContributionManager"  interface="org.flowframe.ui.services.IUIContributionManager"/>
+	
+	<!--  Application Contributions -->
+	<osgi:list id="appContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IApplicationContribution" >
+		<osgi:listener ref="uiContributionManager" bind-method="bindApplicationContribution" unbind-method="unbindApplicationContribution"/>
+	</osgi:list>
+	<!--  View Contributions -->
+	<osgi:list id="mvpViewContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IMVPViewContribution" >
+		<osgi:listener ref="uiContributionManager" bind-method="bindViewContribution" unbind-method="unbindViewContribution"/>
+	</osgi:list>
+	<osgi:list id="cmViewContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IComponentModelViewContribution" >
+		<osgi:listener ref="uiContributionManager" bind-method="bindViewContribution" unbind-method="unbindViewContribution"/>
+	</osgi:list>
+	<osgi:list id="taskActionContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.ITaskViewContribution" >
+		<osgi:listener ref="uiContributionManager" bind-method="bindViewContribution" unbind-method="unbindViewContribution"/>
+	</osgi:list>
+	<!--  Action Contributions -->
+	<osgi:list id="actionContributions" cardinality="0..N" interface="org.flowframe.ui.services.contribution.IActionContribution" >
+		<osgi:listener ref="uiContributionManager" bind-method="bindActionContribution" unbind-method="unbindActionContribution"/>
+	</osgi:list>
+</beans>
