@@ -4,13 +4,13 @@ Export-Package: org.vaadin.hene.popupbutton;version="1.2.1";uses:="co
 Bundle-Version: 0.5.1
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: vaadin-addon-easyuploads
-Import-Package: com.vaadin.data;version="[6.7.4,7.0.0)",com.vaadin.dat
- a.util;version="[6.7.4,7.0.0)",com.vaadin.data.util.filter;version="[
- 6.7.4,7.0.0)",com.vaadin.event;version="[6.7.4,7.0.0)",com.vaadin.ter
- minal;version="[6.7.4,7.0.0)",com.vaadin.terminal.gwt.client;version=
- "[6.7.4,7.0.0)",com.vaadin.terminal.gwt.client.ui;version="[6.7.4,7.0
- .0)",com.vaadin.ui;version="[6.7.4,7.0.0)",com.vaadin.tools;version="[6.7.4,7.0.0)",
- com.vaadin.terminal.gwt.client.ui.richtextarea;version="[6.7.4,7.0.0)", 
+Import-Package: com.vaadin.data;version="[6.8.6,7.0.0)",com.vaadin.dat
+ a.util;version="[6.8.6,7.0.0)",com.vaadin.data.util.filter;version="[
+ 6.8.6,7.0.0)",com.vaadin.event;version="[6.8.6,7.0.0)",com.vaadin.ter
+ minal;version="[6.8.6,7.0.0)",com.vaadin.terminal.gwt.client;version=
+ "[6.8.6,7.0.0)",com.vaadin.terminal.gwt.client.ui;version="[6.8.6,7.0
+ .0)",com.vaadin.ui;version="[6.8.6,7.0.0)",com.vaadin.tools;version="[6.8.6,7.0.0)",
+ com.vaadin.terminal.gwt.client.ui.richtextarea;version="[6.8.6,7.0.0)", 
  javax.xml.bind;version="0"
  ,javax.xml.bind.annotation.adapters;version="0",javax.xml.datatype;ve
  rsion="0",javax.xml.namespace;version="0",javax.xml.parsers;version="

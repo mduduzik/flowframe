@@ -29,6 +29,9 @@ public class AbstractComponent extends MultitenantBaseEntity implements Sizeable
     @ManyToOne
     private DataSource dataSource;
     
+    public AbstractComponent() {
+    }
+    
     /**
      * 
      * Component name

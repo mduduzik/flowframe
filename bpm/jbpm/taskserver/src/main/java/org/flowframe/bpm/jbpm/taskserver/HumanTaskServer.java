@@ -69,6 +69,9 @@ public class HumanTaskServer implements IBPMTaskService {
 		try {
 
 			//ut.begin();
+			//ClassLoader tccl = Thread.currentThread().getContextClassLoader();
+			//Thread.currentThread().setContextClassLoader(HumanTaskServer.class.getClassLoader());
+			
 
 			taskService = new JTACustomTaskService(globalTransactionManager,
 					jndiTemplate, userTransaction,emfOrgJbpmTask,
@@ -81,10 +84,13 @@ public class HumanTaskServer implements IBPMTaskService {
 			// start server
 			minaServer = new MinaTaskServer(taskService);
 			minaServerThread = new Thread(minaServer);
-			minaServerThread.start();		
+			minaServerThread.start();	
+			
+			//Thread.currentThread().setContextClassLoader(tccl);
 			
 			// kernelSystemBPMTransManager.commit(status);
 		} catch (Exception e) {
+			e.printStackTrace();
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();

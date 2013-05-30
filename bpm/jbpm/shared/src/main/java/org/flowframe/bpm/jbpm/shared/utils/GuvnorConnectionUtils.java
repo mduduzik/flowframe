@@ -30,6 +30,7 @@ import org.apache.commons.codec.binary.Base64;
 public class GuvnorConnectionUtils {
     public static final String GUVNOR_PROTOCOL_KEY = "guvnor.protocol";
     public static final String GUVNOR_HOST_KEY = "guvnor.host";
+    public static final String GUVNOR_PORT_KEY = "guvnor.port";
     public static final String GUVNOR_USR_KEY = "guvnor.usr";
     public static final String GUVNOR_PWD_KEY = "guvnor.pwd";
     public static final String GUVNOR_PACKAGES_KEY = "guvnor.packages";
@@ -343,6 +344,10 @@ public class GuvnorConnectionUtils {
         return isEmpty(properties.getProperty(GUVNOR_PROTOCOL_KEY)) ? "" : properties.getProperty(GUVNOR_PROTOCOL_KEY).trim();
     }
     
+    public String getGuvnorPort() {
+        return isEmpty(properties.getProperty(GUVNOR_PORT_KEY)) ? "" : properties.getProperty(GUVNOR_PORT_KEY).trim();
+    }    
+    
     public String getGuvnorHost() {
         if(!isEmpty(properties.getProperty(GUVNOR_HOST_KEY))) {
             String retStr = properties.getProperty(GUVNOR_HOST_KEY).trim();
@@ -352,7 +357,7 @@ public class GuvnorConnectionUtils {
             if(retStr.endsWith("/")) {
                 retStr = retStr.substring(0,retStr.length() - 1);
             }
-            return retStr;
+            return retStr+":"+getGuvnorPort();
         } else {
             return "";
         }

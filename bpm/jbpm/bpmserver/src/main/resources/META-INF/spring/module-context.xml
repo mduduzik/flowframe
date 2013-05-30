@@ -10,6 +10,9 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<context:property-placeholder properties-ref="configAdminProperties"/>	
+	
 	<bean id="bpmServer" class="org.flowframe.bpm.jbpm.bpmserver.BPMServerImpl"  init-method="start" destroy-method="stop">
 		<property name="jbpmEMF" ref="jbpmEMF"/>
 		<property name="jbpmTaskEMF" ref="jbpmTaskEMF"/>
@@ -19,5 +22,19 @@
 		<property name="globalJPATransManager" ref="globalJPATransManager"/>
 		<property name="jndiTemplate" ref="tmJndiTemplate"/>
 		<property name="localHumanTaskServer" ref="bpmTaskService"/>
+		<property name="jbpmProperties">
+			<props>
+			  <prop key="guvnor.protocol">${ff.jbpm.guvnor.protocol}</prop>
+			  <prop key="guvnor.host">${ff.jbpm.guvnor.host}</prop>
+			  <prop key="guvnor.port">${ff.jbpm.guvnor.port}</prop>
+			  <prop key="guvnor.usr">${ff.jbpm.guvnor.usr}</prop>
+			  <prop key="guvnor.pwd">${ff.jbpm.guvnor.pwd}</prop>
+			  <prop key="guvnor.packages">${ff.jbpm.guvnor.packages}</prop>
+			  <prop key="guvnor.subdomain">${ff.jbpm.guvnor.subdomain}</prop>
+			  <prop key="guvnor.connect.timeout">${ff.jbpm.guvnor.connect.timeout}</prop>
+			  <prop key="guvnor.read.timeout">${ff.jbpm.guvnor.read.timeout}</prop>
+			  <prop key="guvnor.snapshot.name">${ff.jbpm.guvnor.snapshot.name}</prop>
+			</props>
+		</property>
 	</bean>
 </beans>

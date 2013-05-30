@@ -17,6 +17,7 @@
 		<module>shared</module>
 		<module>taskserver</module>
 		<module>taskserver.human-task-core.fragment</module>
+		<module>taskserver.jta.tm.fragment</module>
 		<module>taskserver.persistence</module>
 		<module>ui</module>
 	</modules>

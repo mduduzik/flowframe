@@ -86,6 +86,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.util.StringValueResolver;
 
 
 public class BPMServerImpl implements IBPMService {
@@ -100,7 +101,7 @@ public class BPMServerImpl implements IBPMService {
 
 	private EntityManagerFactory jbpmEMF;
 	private EntityManagerFactory jbpmTaskEMF;
-	private EntityManagerFactory flowframeEMF;
+	//private EntityManagerFactory flowframeEMF;
 	
 	private TransactionManager globalTransactionManager;
 	private UserTransaction globalUserTransaction;
@@ -148,13 +149,13 @@ public class BPMServerImpl implements IBPMService {
 	}
 	
 
-	public EntityManagerFactory getFlowframeEMF() {
+/*	public EntityManagerFactory getFlowframeEMF() {
 		return flowframeEMF;
 	}
 
 	public void setFlowframeEMF(EntityManagerFactory flowframeEMF) {
 		this.flowframeEMF = flowframeEMF;
-	}
+	}*/
 
 	public void setGlobalTransactionManager(
 			TransactionManager globalTransactionManager) {
@@ -209,7 +210,7 @@ public class BPMServerImpl implements IBPMService {
 
 	
 	private void start() {
-		jbpmProperties = loadJbpmProperties();
+		//jbpmProperties = loadJbpmProperties();
 		KnowledgeBase localKBase = loadKnowledgeBase(jbpmProperties);
 		
 		this.managementFactory = new ManagementFactory(this);
@@ -516,13 +517,13 @@ public class BPMServerImpl implements IBPMService {
 			
 			
 			//-- Configure for JPA Entity Persistence support when saving ProcessInstance's with JPA Entities as variables
-	        Environment domainEnv = EnvironmentFactory.newEnvironment();
+/*	        Environment domainEnv = EnvironmentFactory.newEnvironment();
 	        domainEnv.set(EnvironmentName.ENTITY_MANAGER_FACTORY, flowframeEMF);
 	        domainEnv.set(EnvironmentName.TRANSACTION_MANAGER, this.globalTransactionManager);
-/*	        env.set(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new ObjectMarshallingStrategy[]{
+	        env.set(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new ObjectMarshallingStrategy[]{
 	                    new JPAPlaceholderResolverStrategy(domainEnv),
 	                    new SerializablePlaceholderResolverStrategy(ClassObjectMarshallingStrategyAcceptor.DEFAULT)
-	                });	*/	
+	                });		*/
 			 try {
 				 Context ctx = jndiTemplate.getContext();
 				 UserTransaction ut = (UserTransaction)ctx.lookup( "java:comp/UserTransaction" );
@@ -857,6 +858,10 @@ public class BPMServerImpl implements IBPMService {
 		return jbpmProperties;
 	}
 	
+	public void setJbpmProperties(Properties jbpmProperties) {
+		this.jbpmProperties = jbpmProperties;
+	}
+	
 	@Override
 	public void addTaskComment(long taskId, String comment) {
 		taskManager.addTaskComment(taskId, comment);
@@ -1052,5 +1057,4 @@ public class BPMServerImpl implements IBPMService {
         logger.info(" >>> Object = "+readObject);
         return readObject;
     }
-		
 }

@@ -24,8 +24,8 @@
 	<osgi:reference id="jbpmTaskEMF" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL.SYSTEM.BPM.TASK)">
 	</osgi:reference>	
 	
-	<osgi:reference id="flowframeEMF" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
-	</osgi:reference>		
+<!-- 	<osgi:reference id="flowframeEMF" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
+	</osgi:reference>	 -->	
 	
 	<osgi:reference id="tmJndiTemplate" interface="org.springframework.jndi.JndiTemplate">
 	</osgi:reference>		
