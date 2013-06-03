@@ -83,11 +83,6 @@ public abstract class AbstractMainApplication extends Application implements IMa
 
 		// Create container manager/helper
 		this.entityManagerPerRequestHelper = new EntityManagerPerRequestHelper();
-
-/*		this.mainPresenter = this.presenterFactory.createPresenter(MainPresenter.class);
-		((MainEventBus) mainPresenter.getEventBus()).start(this);
-		assert (this.mainPresenter.getView() instanceof Window) : "The main presenter view must extend com.vaadin.ui.Window.";
-		this.setMainWindow((Window) this.mainPresenter.getView());*/
 	}
 
 	public Map<String, Object> getApplicationConfiguration() {
