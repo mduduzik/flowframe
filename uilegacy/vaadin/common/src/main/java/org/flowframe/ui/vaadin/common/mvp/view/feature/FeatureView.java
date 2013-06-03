@@ -3,9 +3,9 @@ package org.flowframe.ui.vaadin.common.mvp.view.feature;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.ITaskWizard;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.pageflow.services.ITaskWizard;
 import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IComponentModelViewContribution;
 import org.flowframe.ui.services.contribution.IMVPViewContribution;

@@ -2,8 +2,8 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.f
 
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageFactory;
 import org.flowframe.ui.vaadin.common.editors.pageflow.builder.VaadinPageDataBuilder;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.lineeditor.section.ILineEditorSectionContentPresenter;

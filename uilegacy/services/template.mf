@@ -8,6 +8,8 @@ Import-Package:  com.vaadin;version="[6.8.0,7.0.0)",
   org.flowframe.kernel.common.mdm.domain.application;version="[0.0.1, 1.0.0)",
   org.flowframe.ui.component.domain;version="[0.0.1, 1.0.0)",
   org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1, 1.0.0)",
+  org.flowframe.ui.pageflow.services;version="[0.0.1, 1.0.0)",
+  org.flowframe.kernel.jpa.container.services;version="[0.0.1, 1.0.0)",
   org.vaadin.mvp.presenter;version="[0.9.2.SNAPSHOT,0.9.4)",
   org.vaadin.mvp.uibinder;version="[0.9.2.SNAPSHOT,0.9.4)"
 Excluded-Imports:  javax.persistence,javax.validation.constraints,

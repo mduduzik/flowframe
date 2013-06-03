@@ -55,7 +55,7 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.uilegacy.component.domain</artifactId>
 			<version>0.0.1</version>
-		</dependency>
+		</dependency>	
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>

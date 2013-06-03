@@ -3,7 +3,7 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.factory;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryContribution;
+import org.flowframe.ui.pageflow.services.IPageFactoryContribution;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.vaadin.mvp.presenter.BasePresenter;
 

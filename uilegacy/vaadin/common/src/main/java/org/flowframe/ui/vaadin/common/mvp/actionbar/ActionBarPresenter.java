@@ -2,8 +2,8 @@ package org.flowframe.ui.vaadin.common.mvp.actionbar;
 
 import java.util.Collection;
 
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.contribution.IApplicationContribution;
-import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.vaadin.common.mvp.actionbar.view.ActionBarView;
 import org.flowframe.ui.vaadin.common.mvp.actionbar.view.ActionBarView.IActionBarNavigationListener;
 import org.flowframe.ui.vaadin.common.mvp.actionbar.view.IActionBarView;

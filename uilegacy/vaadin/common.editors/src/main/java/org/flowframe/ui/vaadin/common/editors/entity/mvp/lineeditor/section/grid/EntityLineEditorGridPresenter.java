@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.ui.component.domain.table.GridComponent;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.IEditListener;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.ISelectListener;

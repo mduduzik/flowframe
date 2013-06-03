@@ -18,7 +18,7 @@ import org.flowframe.ui.component.domain.table.DetailGridComponent;
 import org.flowframe.ui.component.domain.table.GridComponent;
 import org.flowframe.ui.services.contribution.IComponentFactoryContributionManager;
 import org.flowframe.ui.services.factory.IComponentFactory;
-import org.flowframe.ui.services.factory.IComponentFactoryManager;
+import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurablePresenterFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorEventBus;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
@@ -33,12 +33,9 @@ import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.notes.NotesEditorPresen
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.preferences.PreferencesEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.ReferenceNumberEditorPresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.search.grid.EntityGridPresenter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.IPresenter;
-
-import org.flowframe.ui.vaadin.editors.builder.vaadin.VaadinEntityEditorFactoryImpl;
 
 
 public class VaadinComponentFactory implements IComponentFactory {

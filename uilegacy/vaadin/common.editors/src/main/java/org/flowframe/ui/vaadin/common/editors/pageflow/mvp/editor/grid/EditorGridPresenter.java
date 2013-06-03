@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageFactory;
 import org.flowframe.ui.vaadin.common.editors.pageflow.builder.VaadinPageDataBuilder;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IContainerItemPresenter;

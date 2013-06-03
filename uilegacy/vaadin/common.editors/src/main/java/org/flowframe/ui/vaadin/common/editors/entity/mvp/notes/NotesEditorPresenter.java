@@ -1,11 +1,11 @@
 package org.flowframe.ui.vaadin.common.editors.entity.mvp.notes;
 
-import java.util.Map;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -19,7 +19,7 @@ import org.flowframe.kernel.common.mdm.domain.note.Note;
 import org.flowframe.kernel.common.mdm.domain.note.NoteItem;
 import org.flowframe.ui.component.domain.AbstractComponent;
 import org.flowframe.ui.component.domain.note.NoteEditorComponent;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.notes.view.INotesEditorView;

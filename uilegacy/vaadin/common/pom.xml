@@ -116,7 +116,18 @@
 				org.flowframe.thirdparty.vaadin-addon-easyuploads
 			</artifactId>
 			<version>0.5.1</version>
-		</dependency>		
+		</dependency>	
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.ui.pageflow.services</artifactId>
+			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.flowframe.ui.services</artifactId>
+					<groupId>org.flowframe</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>				
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.uilegacy.services</artifactId>
@@ -160,9 +171,15 @@
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>
-				org.flowframe.bpm.jbpm.ui.pageflow.services
+				org.flowframe.ui.pageflow.services
 			</artifactId>
 			<version>0.0.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.flowframe.ui.services</artifactId>
+					<groupId>org.flowframe</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

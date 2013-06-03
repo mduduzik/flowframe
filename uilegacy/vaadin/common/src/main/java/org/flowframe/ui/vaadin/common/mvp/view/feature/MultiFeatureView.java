@@ -3,9 +3,9 @@ package org.flowframe.ui.vaadin.common.mvp.view.feature;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.ITaskWizard;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.ui.component.domain.AbstractComponent;
+import org.flowframe.ui.pageflow.services.ITaskWizard;
 import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IComponentModelViewContribution;
 import org.flowframe.ui.services.contribution.IMVPViewContribution;
@@ -18,9 +18,7 @@ import org.vaadin.mvp.presenter.IPresenter;
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.TabSheet.CloseHandler;
 public abstract class MultiFeatureView extends TabSheet implements IFeatureView {
 	private static final long serialVersionUID = 321645322135L;
 

@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.contribution.IApplicationContribution;
-import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.vaadin.common.mvp.view.IMainView;
 import org.flowframe.ui.vaadin.common.mvp.view.MainView;
 import org.flowframe.ui.vaadin.common.ui.menu.app.AppMenuEntry;

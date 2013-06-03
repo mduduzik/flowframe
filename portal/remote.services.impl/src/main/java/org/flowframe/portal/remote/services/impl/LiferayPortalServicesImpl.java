@@ -728,7 +728,7 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		params.add(new BasicNameValuePair("name", roleName));
 		params.add(new BasicNameValuePair("descriptionMap", "{}"));
 		params.add(new BasicNameValuePair("titleMap", "{}"));
-		params.add(new BasicNameValuePair("type", "0"));
+		params.add(new BasicNameValuePair("type", "1"));
 	
 		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
 		post.setEntity(entity);		
@@ -848,13 +848,13 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 		
 		HttpPost post = new HttpPost("/api/secure/jsonws//user/set-role-users");
-		MultipartEntity entity = new MultipartEntity(
-				HttpMultipartMode.BROWSER_COMPATIBLE);
-
-		entity.addPart("roleId",new StringBody(roleId, Charset.forName("UTF-8")));
-		entity.addPart("userIds[]",new StringBody(userId, Charset.forName("UTF-8")));
-
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("roleId",roleId));
+		params.add(new BasicNameValuePair("userIds",userId));
+		
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
 		post.setEntity(entity);
+
 
 		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
 		System.out.println("getOrganizationsByUserId Status:["+resp.getStatusLine()+"]");

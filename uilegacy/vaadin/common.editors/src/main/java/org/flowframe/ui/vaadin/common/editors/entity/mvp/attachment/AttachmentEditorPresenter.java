@@ -19,7 +19,7 @@ import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.ui.component.domain.attachment.AttachmentEditorComponent;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.MultiLevelEntityEditorEventBus;

@@ -18,7 +18,7 @@ import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metadata.DefaultEntityMetadata;
 import org.flowframe.kernel.common.mdm.domain.referencenumber.ReferenceNumber;
 import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorComponent;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.refnum.view.IReferenceNumberEditorView;

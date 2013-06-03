@@ -3,10 +3,10 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.mvp;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.ITaskWizard;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.event.IPageFlowPageChangedEventHandler;
+import org.flowframe.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageFlowPage;
+import org.flowframe.ui.pageflow.services.ITaskWizard;
+import org.flowframe.ui.pageflow.services.event.IPageFlowPageChangedEventHandler;
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.view.IPageView;
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.view.PageView;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;

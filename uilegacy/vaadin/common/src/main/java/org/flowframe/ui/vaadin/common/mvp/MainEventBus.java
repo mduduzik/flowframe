@@ -1,6 +1,6 @@
 package org.flowframe.ui.vaadin.common.mvp;
 
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.annotation.Event;
 import org.vaadin.mvp.presenter.BasePresenter;

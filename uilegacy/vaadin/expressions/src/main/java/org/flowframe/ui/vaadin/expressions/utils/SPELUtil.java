@@ -48,7 +48,7 @@ public class SPELUtil {
 		Filter filter = null;
 		try
 		{
-			hasRole = portalRoleService.userHasRole(Long.toString(tenantUser.getUserId()),RoleCustomCONSTANTS.ROLE_CONX_ADMIN_CODE);
+			hasRole = portalRoleService.userHasRole(Long.toString(tenantUser.getUserId()),RoleCustomCONSTANTS.ROLE_CONX_TENANT_ADMIN_CODE);
 		}
 		catch(Exception e) {
 			throw new RuntimeException("Error obtaining role for user("+tenantUser.getScreenName()+")",e);

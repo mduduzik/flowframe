@@ -1,10 +1,13 @@
-package org.flowframe.ui.services.contribution;
+package org.flowframe.ui.pageflow.services;
 
 import java.util.Collection;
 import java.util.Map;
 
 import org.flowframe.kernel.common.mdm.domain.user.User;
-import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
+import org.flowframe.ui.services.contribution.IActionContribution;
+import org.flowframe.ui.services.contribution.IApplicationContribution;
+import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IComponentModelFactory;
 import org.flowframe.ui.services.transaction.ITransactionCompletionListener;
 import org.vaadin.mvp.eventbus.EventBus;
@@ -14,6 +17,7 @@ import org.vaadin.mvp.presenter.IPresenterFactory;
 public interface IMainApplication {
 	public IComponentModelFactory getComponentFactory();
 	public IPresenterFactory getPresenterFactory();
+	public IPageFactory getPageFactory();
 	public IPresenter<?, ? extends EventBus> getMainPresenter();
 	
 	public Collection<IViewContribution> getAllViewContributions();
@@ -36,4 +40,5 @@ public interface IMainApplication {
 	public void showNotification(String caption, String message);
 	public void showAlert(String caption, String message);
 	public void showError(String caption, String message, String stackTrace);
+	public IEntityContainerProvider getContainerProvider();
 }

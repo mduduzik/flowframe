@@ -7,17 +7,19 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.jpa.container.services.IEntityManagerFactoryManager;
 import org.flowframe.portal.remote.services.IPortalRoleService;
+import org.flowframe.ui.pageflow.services.IMainApplication;
+import org.flowframe.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageFactoryManager;
+import org.flowframe.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.ui.services.IUIContributionManager;
 import org.flowframe.ui.services.contribution.IActionContribution;
 import org.flowframe.ui.services.contribution.IApplicationContribution;
-import org.flowframe.ui.services.contribution.IMainApplication;
 import org.flowframe.ui.services.contribution.IViewContribution;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.factory.IComponentFactoryManager;
@@ -68,6 +70,9 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	
 	@Autowired
 	private IComponentFactoryManager componentFactoryManager;
+	
+	@Autowired
+	private IPageFactoryManager pageFactoryManager;	
 
 	@Override
 	public void init() {
@@ -79,10 +84,10 @@ public abstract class AbstractMainApplication extends Application implements IMa
 		// Create container manager/helper
 		this.entityManagerPerRequestHelper = new EntityManagerPerRequestHelper();
 
-		this.mainPresenter = this.presenterFactory.createPresenter(MainPresenter.class);
+/*		this.mainPresenter = this.presenterFactory.createPresenter(MainPresenter.class);
 		((MainEventBus) mainPresenter.getEventBus()).start(this);
 		assert (this.mainPresenter.getView() instanceof Window) : "The main presenter view must extend com.vaadin.ui.Window.";
-		this.setMainWindow((Window) this.mainPresenter.getView());
+		this.setMainWindow((Window) this.mainPresenter.getView());*/
 	}
 
 	public Map<String, Object> getApplicationConfiguration() {
@@ -231,6 +236,11 @@ public abstract class AbstractMainApplication extends Application implements IMa
 	public IPresenterFactory getPresenterFactory() {
 		return this.presenterFactory;
 	}
+	
+	@Override
+	public IPageFactory getPageFactory() {
+		return pageFactoryManager.create(getConfiguration(), presenterFactory);
+	}	
 
 	@Override
 	public IPresenter<?, ? extends EventBus> getMainPresenter() {

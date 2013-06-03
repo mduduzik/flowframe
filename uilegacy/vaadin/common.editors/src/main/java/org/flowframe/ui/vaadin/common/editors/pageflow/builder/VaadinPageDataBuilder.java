@@ -7,8 +7,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageDataBuilder;
 import org.flowframe.ds.domain.DataSource;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
@@ -20,11 +18,12 @@ import org.flowframe.kernel.jpa.container.services.IEntityContainerProvider;
 import org.flowframe.kernel.metamodel.dao.services.IBasicTypeDAOService;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.flowframe.ui.component.domain.search.SearchGridComponent;
+import org.flowframe.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageDataBuilder;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.search.EntitySearchGrid;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid;
-import org.flowframe.ui.vaadin.common.editors.entity.ext.table.EntityEditorGrid.ISelectListener;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.form.VaadinCollapsibleConfirmActualsForm;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.form.VaadinConfirmActualsForm;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.grid.VaadinMatchGrid;
@@ -588,5 +587,11 @@ public class VaadinPageDataBuilder implements IPageDataBuilder {
 			}
 		}
 		return title;
+	}
+
+	@Override
+	public void applyData(Map<String, Object> config, Component componentRoot) {
+		// TODO Auto-generated method stub
+		
 	}
 }

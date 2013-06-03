@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageFactory;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.section.EntityLineEditorSectionPresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.lineeditor.view.EntityLineEditorView;

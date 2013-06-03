@@ -88,7 +88,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#createComponent
+	 * org.flowframe.ui.pageflow.services.IPageFactory#createComponent
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
 	@Override
@@ -119,7 +119,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#createPresenter
+	 * org.flowframe.ui.pageflow.services.IPageFactory#createPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent, java.util.Map)
 	 */
 	@Override
@@ -173,7 +173,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createMasterSectionHeaderPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
@@ -192,7 +192,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createMasterSectionContentPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent, java.util.Map)
 	 */
@@ -225,7 +225,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createLineEditorSectionContentPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent, java.util.Map)
 	 */
@@ -270,7 +270,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createLineEditorSectionHeaderPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
@@ -300,7 +300,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * correspondsToPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
@@ -319,7 +319,7 @@ public class VaadinContributionsBasedComponentFactory implements IComponentModel
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#getPresenterFactory
+	 * org.flowframe.ui.pageflow.services.IPageFactory#getPresenterFactory
 	 * ()
 	 */
 	@Override

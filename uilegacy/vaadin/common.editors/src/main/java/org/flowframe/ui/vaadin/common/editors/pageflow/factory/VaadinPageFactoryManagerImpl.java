@@ -2,8 +2,8 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.factory;
 
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactoryManager;
+import org.flowframe.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageFactoryManager;
 import org.flowframe.ui.vaadin.common.editors.pageflow.contribution.PageFactoryContributionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

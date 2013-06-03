@@ -1,7 +1,8 @@
 package org.flowframe.ui.vaadin.common.editors.entity.mvp.breadcrumb;
 
 import java.util.Map;
-import org.flowframe.ui.services.contribution.IMainApplication;
+
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.header.EntityEditorBreadCrumbItem;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.ConfigurableBasePresenter;

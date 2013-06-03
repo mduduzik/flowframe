@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
+import org.flowframe.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageFlowManager;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IContainerItemPresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IVaadinDataComponent;

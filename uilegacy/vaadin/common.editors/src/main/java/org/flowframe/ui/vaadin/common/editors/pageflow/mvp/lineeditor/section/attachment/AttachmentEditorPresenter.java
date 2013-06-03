@@ -12,7 +12,7 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageComponent;
 import org.flowframe.ui.vaadin.common.editors.pageflow.builder.VaadinPageDataBuilder;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.lineeditor.section.ILineEditorSectionContentPresenter;

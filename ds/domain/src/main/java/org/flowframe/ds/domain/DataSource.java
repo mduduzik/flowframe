@@ -13,6 +13,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -20,6 +22,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.flowframe.ds.domain.type.CONTAINERTYPE;
 
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
@@ -51,6 +55,9 @@ public class DataSource extends MultitenantBaseEntity {
 
 	@OneToMany(mappedBy = "parentDataSource", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<DataSourceField> dSfields = new HashSet<DataSourceField>();
+	
+	@Enumerated(EnumType.STRING)
+	private CONTAINERTYPE containerType = CONTAINERTYPE.BEAN;
 
 	@Transient
 	private List<String> visibleFieldTitles;
@@ -260,4 +267,12 @@ public class DataSource extends MultitenantBaseEntity {
 	public void setDefaultFilterExpression(String requiredFilterExpression) {
 		this.defaultFilterExpression = requiredFilterExpression;
 	}
+	
+	public CONTAINERTYPE getContainerType() {
+		return containerType;
+	}
+
+	public void setContainerType(CONTAINERTYPE containerType) {
+		this.containerType = containerType;
+	}	
 }

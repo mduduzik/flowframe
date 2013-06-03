@@ -10,7 +10,6 @@ import org.flowframe.ui.component.domain.masterdetail.MasterDetailComponent;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.factory.IComponentFactoryManager;
 import org.flowframe.ui.services.factory.IComponentModelFactory;
-import org.flowframe.ui.vaadin.common.editors.entity.mvp.ConfigurablePresenterFactory;
 import org.flowframe.ui.vaadin.common.editors.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.vaadin.common.editors.ext.mvp.IContainerItemPresenter;
 import org.flowframe.ui.vaadin.common.editors.ext.mvp.IVaadinDataComponent;

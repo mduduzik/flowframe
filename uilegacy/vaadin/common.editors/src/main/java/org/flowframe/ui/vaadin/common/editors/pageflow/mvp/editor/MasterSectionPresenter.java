@@ -3,7 +3,7 @@ package org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageFactory;
 import org.flowframe.ui.vaadin.common.editors.pageflow.builder.VaadinPageDataBuilder;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.grid.VaadinMatchGrid;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.mvp.IConfigurablePresenter;

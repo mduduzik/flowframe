@@ -27,7 +27,7 @@ import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
 @Entity
 @Table(name = "ffsysdsdatasource")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class DataSource extends MultitenantBaseEntity {
+public class EntityDataSource extends MultitenantBaseEntity {
 	@ManyToOne
 	private DataSource superDataSource = null;
 
@@ -75,14 +75,14 @@ public class DataSource extends MultitenantBaseEntity {
 		return Collections.unmodifiableSet(allDsFields);
 	}
 
-	public DataSource() {
+	public EntityDataSource() {
 	}
 
 	public void setDSFields(Set<DataSourceField> dSfields) {
 		this.dSfields = dSfields;
 	}
 
-	public DataSource(String code, EntityType entityType) {
+	public EntityDataSource(String code, EntityType entityType) {
 		super();
 		setCode(code);
 		setName(code);
@@ -209,10 +209,10 @@ public class DataSource extends MultitenantBaseEntity {
 	}
 
 	private void populateDataSourceFieldSet(Set<DataSourceField> dataSourceFieldSet) {
-		if (superDataSource != null) {
+/*		if (superDataSource != null) {
 			superDataSource.populateDataSourceFieldSet(dataSourceFieldSet);
 		}
-		dataSourceFieldSet.addAll(this.getDSFields());
+		dataSourceFieldSet.addAll(this.getDSFields());*/
 	}
 
 	public String toString() {

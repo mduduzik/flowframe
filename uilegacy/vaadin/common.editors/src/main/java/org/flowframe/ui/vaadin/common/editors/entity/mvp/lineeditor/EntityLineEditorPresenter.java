@@ -17,13 +17,13 @@ import org.flowframe.ui.component.domain.referencenumber.ReferenceNumberEditorCo
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.factory.IComponentFactoryManager;
 import org.flowframe.ui.services.factory.IComponentModelFactory;
-import org.flowframe.ui.vaadin.common.mvp.AbstractMainApplication;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.AbstractEntityEditorEventBus;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.ConfigurableBasePresenter;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.ConfigurablePresenterFactory;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.lineeditor.view.EntityLineEditorView;
 import org.flowframe.ui.vaadin.common.editors.entity.mvp.lineeditor.view.IEntityLineEditorView;
+import org.flowframe.ui.vaadin.common.mvp.AbstractMainApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.mvp.eventbus.EventBus;

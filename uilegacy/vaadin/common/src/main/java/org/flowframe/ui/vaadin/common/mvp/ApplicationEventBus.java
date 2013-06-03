@@ -2,7 +2,7 @@ package org.flowframe.ui.vaadin.common.mvp;
 
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.annotation.Event;
 

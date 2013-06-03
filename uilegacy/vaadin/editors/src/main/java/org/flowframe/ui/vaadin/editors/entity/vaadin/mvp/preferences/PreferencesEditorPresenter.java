@@ -6,7 +6,7 @@ import java.io.StringWriter;
 import org.flowframe.kernel.common.mdm.dao.services.preferences.IEntityPreferenceDAOService;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.preferences.EntityPreferenceItem;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.services.factory.IComponentFactory;
 import org.flowframe.ui.services.transaction.ITransactionCompletionListener;
 import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.ConfigurableBasePresenter;

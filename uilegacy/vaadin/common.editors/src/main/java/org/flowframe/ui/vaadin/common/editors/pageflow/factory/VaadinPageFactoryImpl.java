@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.flowframe.bpm.jbpm.ui.pageflow.services.ICustomDrivenPageFlowPage;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IModelDrivenPageFlowPage;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageComponent;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageDataBuilder;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
+import org.flowframe.ui.pageflow.services.ICustomDrivenPageFlowPage;
+import org.flowframe.ui.pageflow.services.IModelDrivenPageFlowPage;
+import org.flowframe.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageDataBuilder;
+import org.flowframe.ui.pageflow.services.IPageFactory;
+import org.flowframe.ui.pageflow.services.IPageFlowPage;
 import org.flowframe.ui.vaadin.common.editors.pageflow.builder.VaadinPageDataBuilder;
 import org.flowframe.ui.vaadin.common.editors.pageflow.contribution.PageFactoryContributionManager;
 import org.flowframe.ui.vaadin.common.editors.pageflow.ext.form.VaadinCollapsibleConfirmActualsForm;
@@ -111,7 +111,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#createComponent
+	 * org.flowframe.ui.pageflow.services.IPageFactory#createComponent
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
 	@Override
@@ -174,7 +174,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#create(org.flowframe
+	 * org.flowframe.ui.pageflow.services.IPageFactory#create(org.flowframe
 	 * .ui.component.domain.AbstractComponent)
 	 */
 	@Override
@@ -198,7 +198,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#createPresenter
+	 * org.flowframe.ui.pageflow.services.IPageFactory#createPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent, java.util.Map)
 	 */
 	@Override
@@ -230,7 +230,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createMasterSectionHeaderPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
@@ -249,7 +249,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createMasterSectionContentPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent, java.util.Map)
 	 */
@@ -273,7 +273,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createLineEditorSectionContentPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent, java.util.Map)
 	 */
@@ -311,7 +311,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * createLineEditorSectionHeaderPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
@@ -331,7 +331,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#createPage(org
+	 * org.flowframe.ui.pageflow.services.IPageFactory#createPage(org
 	 * .flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage, java.util.Map)
 	 */
 	@Override
@@ -388,8 +388,8 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#isInstanceOf
-	 * (org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage,
+	 * org.flowframe.ui.pageflow.services.IPageFactory#isInstanceOf
+	 * (org.flowframe.ui.pageflow.services.IPageFlowPage,
 	 * java.lang.Class)
 	 */
 	@Override
@@ -400,7 +400,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#
 	 * correspondsToPresenter
 	 * (org.flowframe.ui.component.domain.AbstractComponent)
 	 */
@@ -419,7 +419,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#getPresenterFactory
+	 * org.flowframe.ui.pageflow.services.IPageFactory#getPresenterFactory
 	 * ()
 	 */
 	@Override
@@ -430,7 +430,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFactory#getConfig()
+	 * @see org.flowframe.ui.pageflow.services.IPageFactory#getConfig()
 	 */
 	@Override
 	public Map<String, Object> getConfig() {

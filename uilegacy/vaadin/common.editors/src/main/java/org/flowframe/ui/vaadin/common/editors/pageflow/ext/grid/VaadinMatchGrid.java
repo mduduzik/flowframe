@@ -10,7 +10,7 @@ import org.flowframe.ui.vaadin.common.editors.pageflow.mvp.editor.multilevel.Mul
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.ui.component.domain.table.MatchGridComponent;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.flowframe.ui.vaadin.addons.common.FlowFrameVerticalSplitPanel;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip;
 import org.flowframe.ui.vaadin.common.editors.entity.ext.EntityEditorToolStrip.EntityEditorToolStripButton;

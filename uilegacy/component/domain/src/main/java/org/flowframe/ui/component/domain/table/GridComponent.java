@@ -71,6 +71,8 @@ public class GridComponent extends AbstractFieldComponent {
     @OneToOne
     protected MasterDetailComponent recordEditor;
 
+	private String[] visibleColumnIds;
+
 	public GridComponent() {
 		super("table");
 	}
@@ -82,6 +84,14 @@ public class GridComponent extends AbstractFieldComponent {
 	public GridComponent(DataSource dataSource) {
 		this();
 		super.setDataSource(dataSource);
+	}	
+	
+	public String[] getVisibleColumnIds() {
+		return visibleColumnIds;
+	}
+
+	public void setVisibleColumnIds(String[] visibleColumnIds) {
+		this.visibleColumnIds = visibleColumnIds;
 	}	
 
 
