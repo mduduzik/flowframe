@@ -181,5 +181,6 @@ public class MasterSectionPresenter extends BasePresenter<IMasterSectionView, Ma
 				throw new Exception("Could not set the item datasource. The content presenter was null.");
 			}
 		}
+		((EntityLineEditorEventBus)this.factory.getPresenterFactory().getEventBusManager().getEventBus(EntityLineEditorEventBus.class)).setItemDataSource(item, containers);
 	}
 }

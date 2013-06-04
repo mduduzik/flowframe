@@ -229,7 +229,7 @@ public class EditorGridPresenter extends BasePresenter<IEditorGridView, EditorGr
 		 * We have turn off listening so that we do not receive own event
 		 */
 		isListening = false;
-		this.sectionEventBusManager.fireAnonymousEvent("setItemDataSource", new Object[] { item, this.entityContainer });
+		this.sectionEventBusManager.fireAnonymousEvent("setItemDataSource", new Object[] { item, new Container[] { this.entityContainer } });
 		isListening = true;
 		fireEvent("enableEdit");
 		fireEvent("enableDelete");
