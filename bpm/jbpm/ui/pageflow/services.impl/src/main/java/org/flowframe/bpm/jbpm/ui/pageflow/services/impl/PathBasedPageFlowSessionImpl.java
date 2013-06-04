@@ -15,13 +15,13 @@ import javax.transaction.UserTransaction;
 
 import org.flowframe.bpm.jbpm.services.IBPMProcessInstance;
 import org.flowframe.bpm.jbpm.services.IBPMService;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowManager;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowSession;
 import org.flowframe.bpm.jbpm.ui.pageflow.services.impl.path.PageFlowPathAssessor;
-import org.flowframe.bpm.jbpm.ui.pageflow.vaadin.wizard.TaskWizard;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.utils.Validator;
+import org.flowframe.ui.pageflow.services.IPageFlowManager;
+import org.flowframe.ui.pageflow.services.IPageFlowPage;
+import org.flowframe.ui.pageflow.services.IPageFlowSession;
+import org.flowframe.ui.pageflow.vaadin.wizard.TaskWizard;
 import org.jboss.bpm.console.client.model.ProcessInstanceRef;
 import org.jbpm.task.AccessType;
 import org.jbpm.task.Status;

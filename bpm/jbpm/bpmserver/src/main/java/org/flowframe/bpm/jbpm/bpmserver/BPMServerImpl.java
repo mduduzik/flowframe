@@ -101,7 +101,7 @@ public class BPMServerImpl implements IBPMService {
 
 	private EntityManagerFactory jbpmEMF;
 	private EntityManagerFactory jbpmTaskEMF;
-	//private EntityManagerFactory flowframeEMF;
+	private EntityManagerFactory flowframeEMF;
 	
 	private TransactionManager globalTransactionManager;
 	private UserTransaction globalUserTransaction;
@@ -149,13 +149,13 @@ public class BPMServerImpl implements IBPMService {
 	}
 	
 
-/*	public EntityManagerFactory getFlowframeEMF() {
+	public EntityManagerFactory getFlowframeEMF() {
 		return flowframeEMF;
 	}
 
 	public void setFlowframeEMF(EntityManagerFactory flowframeEMF) {
 		this.flowframeEMF = flowframeEMF;
-	}*/
+	}
 
 	public void setGlobalTransactionManager(
 			TransactionManager globalTransactionManager) {

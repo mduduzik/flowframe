@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.drools.definition.process.Node;
 import org.flowframe.bpm.jbpm.services.IBPMService;
-import org.flowframe.bpm.jbpm.ui.pageflow.services.IPageFlowPage;
+import org.flowframe.ui.pageflow.services.IPageFlowPage;
 import org.jbpm.task.query.TaskSummary;
 import org.jbpm.workflow.core.node.HumanTaskNode;
 import org.slf4j.Logger;

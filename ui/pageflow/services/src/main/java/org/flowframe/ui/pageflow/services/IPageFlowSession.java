@@ -7,13 +7,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import org.flowframe.bpm.jbpm.services.IBPMProcessInstance;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.vaadin.ui.Component;
 
 public interface IPageFlowSession {
-	//public IBPMProcessInstance getBPMProcessInstance();
+	public IBPMProcessInstance getBPMProcessInstance();
 	public Collection<IPageFlowPage> getPages();
 	public Component getWizardComponent();
 	public Feature getOnCompletionFeature();

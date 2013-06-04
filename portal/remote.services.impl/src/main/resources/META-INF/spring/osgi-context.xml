@@ -33,7 +33,7 @@
 			<entry key="service.exported.interfaces" value="*" />
 			<entry key="org.apache.cxf.ws.databinding" value="jaxb" />
 			<entry key="org.apache.cxf.ws.address"
-				value="http://localhost:8181/cxf/org/flowframe/portal/remote/services/IPortalCompanyService" />
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/portal/remote/services/IPortalCompanyService" />
 		</osgi:service-properties>
 	</osgi:service>
 

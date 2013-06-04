@@ -26,7 +26,6 @@ import org.flowframe.ui.pageflow.services.ITaskWizard;
 import org.flowframe.ui.pageflow.services.event.PageFlowPageChangedEvent;
 import org.flowframe.ui.pageflow.services.impl.inmemory.path.PageFlowPathAssessor;
 import org.flowframe.ui.pageflow.vaadin.wizard.TaskWizard;
-import org.jboss.bpm.console.client.model.ProcessInstanceRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jndi.JndiTemplate;
@@ -185,7 +184,7 @@ public class InMemoryPageFlowEngineImpl implements IPageFlowManager {
 
 	@Override
 	public ITaskWizard createTaskWizard(IPresenter<?, ? extends EventBus> appPresenter, String processId, String userId, Feature feature, IMainApplication app) throws Exception {
-		ProcessInstanceRef pi = null;
+		Object pi = null;
 		IPageFlowSession session = null;
 
 		UserTransaction ut = this.userTransaction;
@@ -283,7 +282,7 @@ public class InMemoryPageFlowEngineImpl implements IPageFlowManager {
 
 	@Override
 	public ITaskWizard resumeProcessInstanceTaskWizard(String processInstanceId, Map<String, Object> properties) throws Exception {
-		ProcessInstanceRef pi = null;
+		Object pi = null;
 		IPageFlowSession session = null;
 
 		String processId = (String) properties.get("processId");

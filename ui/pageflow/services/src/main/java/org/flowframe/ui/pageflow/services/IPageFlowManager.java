@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
+import org.flowframe.bpm.jbpm.services.IBPMService;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.task.TaskDefinition;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
@@ -62,7 +63,7 @@ public interface IPageFlowManager {
 	 */
 	public EntityManagerFactory getConXEntityManagerfactory();
 	public PlatformTransactionManager getJTAGlobalTransactionManager();
-	//public IBPMService getBPMService();
+	public IBPMService getBPMService();
 	public IEntityTypeDAOService getEntityTypeDAOService();
 	public UserTransaction getUserTransaction();
 	
