@@ -143,7 +143,8 @@ public class EditorGridPresenter extends BasePresenter<IEditorGridView, EditorGr
 				((JPAContainer<?>) this.entityContainer).addContainerFilter(defaultFilter);
 				((JPAContainer<?>) this.entityContainer).applyFilters();
 			} else {
-				throw new IllegalArgumentException("Could not add the default filter since it was null.");
+				logger.warn("Could not add the default filter since it was null.");
+				//throw new IllegalArgumentException("Could not add the default filter since it was null.");
 				// this.mainApplication.showAlert("Filter Not Added",
 				// "Could not add the default filter since it was null.");
 			}
