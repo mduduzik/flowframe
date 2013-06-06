@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
-	<osgi:service ref="pageFactoryManager" interface="org.flowframe.ui.pageflow.services.IPageFactoryManager"/>
+	<!-- <osgi:service ref="pageFactoryManager" interface="org.flowframe.ui.pageflow.services.IPageFactoryManager"/> -->
 	
 	<!-- Listen to IPageFactoryContribution registrations -->
 	<osgi:list id="pageFactoryContributionManagerRegistrations" cardinality="0..N" interface="org.flowframe.ui.pageflow.services.IPageFactoryContribution" >

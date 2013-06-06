@@ -532,10 +532,30 @@ public class BPMServerImpl implements IBPMService {
 				logger.error("Global JNDI Context Lookup failed: "+e.getMessage());
 			}			
 			
-			ksession = JPAKnowledgeService.newStatefulKnowledgeSession(kbase,
-					null, env);
-			ksessionId = ksession.getId();
-			logger.debug("Created new knowledge session with id " + ksessionId);
+			try {
+				ksession = JPAKnowledgeService.newStatefulKnowledgeSession(kbase,
+						null, env);
+				ksessionId = ksession.getId();
+				logger.debug("Created new knowledge session with id " + ksessionId);
+			}
+			catch (Exception e)
+			{
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				String stacktrace = sw.toString();
+				logger.error(stacktrace);
+				
+				throw new IllegalStateException("Error JPAKnowledgeService.newStatefulKnowledgeSession:\r\n"+stacktrace, e);
+			}	
+			catch (Error e)
+			{
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				String stacktrace = sw.toString();
+				logger.error(stacktrace);
+				
+				throw new IllegalStateException("Error JPAKnowledgeService.newStatefulKnowledgeSession:\r\n"+stacktrace, e);			
+			}	
 		}
 
 		return ksession;

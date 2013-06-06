@@ -8,7 +8,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name="ffsysdlfileentry")
 public class FileEntry extends AbstractDocument {
@@ -16,6 +20,7 @@ public class FileEntry extends AbstractDocument {
 	@Transient
 	private InputStream	contentStream;	
 	
+	@XmlTransient
 	@OneToOne
 	private Folder folder;
 	

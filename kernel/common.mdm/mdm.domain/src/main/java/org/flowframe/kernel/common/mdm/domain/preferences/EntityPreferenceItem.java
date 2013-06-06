@@ -15,17 +15,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.commons.beanutils.ConvertUtils;
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 import org.flowframe.kernel.common.mdm.domain.metamodel.BasicType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Table(name="ffmdmpreferenceitem")
 public class EntityPreferenceItem extends MultitenantBaseEntity {
 	private static final long serialVersionUID = 1886230028L;
 	
+	@XmlTransient
 	@ManyToOne(targetEntity = EntityPreference.class, cascade = CascadeType.ALL)
 	private EntityPreference parentEntityPreference;
 	

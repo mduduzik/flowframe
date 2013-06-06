@@ -8,24 +8,31 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Table(name="ffmdmpreference")
 public class EntityPreference extends MultitenantBaseEntity {
 	private static final long serialVersionUID = 1112120191L;
 	
+	@XmlTransient
 	@Transient
 	private Map<String,EntityPreferenceItem> keyToItemMap = null;
 	
-	@OneToMany(mappedBy = "parentEntityPreference", cascade = CascadeType.ALL, targetEntity = EntityPreferenceItem.class)
+	@XmlTransient
+	@OneToMany(mappedBy = "parentEntityPreference", fetch=FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = EntityPreferenceItem.class)
     private Set<EntityPreferenceItem> items = new java.util.HashSet<EntityPreferenceItem>();
 
 	public EntityPreference() {

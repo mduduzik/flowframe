@@ -107,7 +107,7 @@ public abstract class BaseEntity
     @JoinColumn
     private Note note; 
     
-    @ManyToOne(targetEntity = EntityPreference.class, fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = EntityPreference.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn
     private EntityPreference preferences;
 
