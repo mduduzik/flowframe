@@ -63,6 +63,7 @@ import org.flowframe.ui.vaadin.forms.impl.VaadinEntityPreferenceForm;
 import org.flowframe.ui.vaadin.forms.impl.VaadinSimpleForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.EventBusManager;
 import org.vaadin.mvp.presenter.IPresenter;
@@ -79,6 +80,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	protected IPageDataBuilder dataBuilder;
 	protected boolean initialized = false;
 
+	@Autowired
 	private PageFactoryContributionManager pageFactoryContributionManager;
 
 	public VaadinPageFactoryImpl(Map<String, Object> config) {

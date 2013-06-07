@@ -17,8 +17,8 @@
 		class="bitronix.tm.TransactionManagerServices"
 		p:defaultTransactionTimeout="1000">
 		<property name="allowMultipleLrc" value="true" />
-		<!-- <property name="serverId" value="spring-btm" /> <property name="logPart1Filename" 
-			value="btm1.tlog"/> <property name="logPart2Filename" value="btm2.tlog"/> -->
+		<property name="logPart1Filename" value="serviceability/btm1.tlog"/> 
+		<property name="logPart2Filename" value="serviceability/btm2.tlog"/> 
 	</bean>
 
 	<!-- create BTM transaction manager -->
