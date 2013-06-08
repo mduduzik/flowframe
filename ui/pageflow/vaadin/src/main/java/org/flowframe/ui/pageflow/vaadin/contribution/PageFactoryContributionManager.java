@@ -19,24 +19,28 @@ public class PageFactoryContributionManager  {
 	public void registerPageFactoryContribution(IPageFactoryContribution pageFactoryContribution, Map<String, Object> properties) {
 		Map<Class,Class> mappings = pageFactoryContribution.getComponentToPresenterMappings();
 		String contributionName = pageFactoryContribution.getContributionName();
-		logger.debug("registerPageFactoryContribution(" + contributionName + ")");
+		logger.info("registerPageFactoryContribution(" + contributionName + ")");
 		
 		for (Class ac : mappings.keySet())
 		{
-			logger.debug("registerPageFactoryContribution(" + contributionName + "): Adding: "+ac.getName()+"-->"+mappings.get(ac).getName());
+			logger.info("registerPageFactoryContribution(" + contributionName + "): Adding: "+ac.getName()+"-->"+mappings.get(ac).getName());
 			this.pageFactoryContributionsMap.put(ac, mappings.get(ac));
 		}
 	}
 
 	public void unregisterPageFactoryContribution(IPageFactoryContribution pageFactoryContribution, Map<String, Object> properties) {
-		Map<Class,Class> mappings = pageFactoryContribution.getComponentToPresenterMappings();
-		String contributionName = pageFactoryContribution.getContributionName();
-		logger.debug("unregisterPageFactoryContribution(" + contributionName + ")");
-		for (Class ac : mappings.keySet())
-		{
-			logger.debug("unregisterPageFactoryContribution(" + contributionName + "): Adding: "+ac.getName()+"-->"+mappings.get(ac).getName());
-			this.pageFactoryContributionsMap.remove(ac);
+		if (pageFactoryContribution != null){
+			Map<Class,Class> mappings = pageFactoryContribution.getComponentToPresenterMappings();
+			String contributionName = pageFactoryContribution.getContributionName();
+			logger.info("unregisterPageFactoryContribution(" + contributionName + ")");
+			for (Class ac : mappings.keySet())
+			{
+				logger.debug("unregisterPageFactoryContribution(" + contributionName + "): Removing: "+ac.getName()+"-->"+mappings.get(ac).getName());
+				this.pageFactoryContributionsMap.remove(ac);
+			}
 		}
+		else
+			logger.info("unregisterPageFactoryContribution called with NULL service");
 	}
 
 	public Map<Class,Class> getPageFactoryContributionsMap() {

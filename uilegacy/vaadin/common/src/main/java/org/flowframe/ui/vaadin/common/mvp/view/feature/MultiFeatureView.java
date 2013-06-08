@@ -79,7 +79,7 @@ public abstract class MultiFeatureView extends TabSheet implements IFeatureView 
 
 
 
-	private void createAndAddFeatueTab(Feature feature) {
+	protected void createAndAddFeatueTab(Feature feature) {
 		Component featureComponent = null;
 		String iconUrl = null;
 		String name = null;
@@ -142,7 +142,7 @@ public abstract class MultiFeatureView extends TabSheet implements IFeatureView 
 		this.setSelectedTab(featureTab);
 	}
 
-	private boolean isFeatureOpen(Feature feature) {
+	protected boolean isFeatureOpen(Feature feature) {
 		return this.featureMap.containsKey(feature);
 	}
 }

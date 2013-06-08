@@ -10,8 +10,8 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-	<bean id="pageFactoryManager" class="org.flowframe.ui.pageflow.vaadin.factory.VaadinPageFactoryManagerImpl">
+<!-- 	<bean id="pageFactoryManager" class="org.flowframe.ui.pageflow.vaadin.factory.VaadinPageFactoryManagerImpl">
 		<property name="pageFactoryContributionManager" ref="pageFactoryContributionManager"/>
 	</bean>
 	<bean id="pageFactoryContributionManager" class="org.flowframe.ui.pageflow.vaadin.contribution.PageFactoryContributionManager"/>
-</beans>
+ --></beans>

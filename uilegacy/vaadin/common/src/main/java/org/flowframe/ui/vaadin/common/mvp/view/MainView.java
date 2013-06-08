@@ -16,7 +16,7 @@ public class MainView extends Window implements IMainView {
 	// Window theme name; themes are located in web.app/src/main/webapp/VAADIN
 	private static final String CONX_THEME_NAME = "conx";
 	// Window title
-	private final String WINDOW_TITLE = "FlowFrame Logistics";
+	private final String WINDOW_TITLE = "FlowFrame";
 
 	private VerticalLayout mainLayout;
 	private FlowFrameHeader headerStrip;
@@ -60,9 +60,9 @@ public class MainView extends Window implements IMainView {
 		applicationTabSheet.setSizeFull();
 		
 		// Add the pieces of the main layout
-		mainLayout.addComponent(headerStrip);
+		//mainLayout.addComponent(headerStrip);
 		mainLayout.addComponent(applicationTabSheet);
-		mainLayout.addComponent(footerStrip);
+		//mainLayout.addComponent(footerStrip);
 		mainLayout.setExpandRatio(applicationTabSheet, 1.0f);
 	}
 	
