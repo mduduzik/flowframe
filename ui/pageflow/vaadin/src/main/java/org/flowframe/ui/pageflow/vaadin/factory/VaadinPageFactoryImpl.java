@@ -81,7 +81,7 @@ public class VaadinPageFactoryImpl implements IPageFactory {
 	protected boolean initialized = false;
 
 	@Autowired
-	private PageFactoryContributionManager pageFactoryContributionManager;
+	protected PageFactoryContributionManager pageFactoryContributionManager;
 
 	public VaadinPageFactoryImpl(Map<String, Object> config) {
 		this.config = config;

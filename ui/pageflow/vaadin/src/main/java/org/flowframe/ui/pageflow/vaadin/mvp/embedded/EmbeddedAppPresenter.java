@@ -36,13 +36,13 @@ public class EmbeddedAppPresenter extends BasePresenter<IEmbeddedAppView, Embedd
     		
 			ExternalResource eress = new ExternalResource(bpmnUrl, "application/html"); 
 			
-			Embedded pdf = new Embedded(null,eress);   
+			Embedded embeddedApp = new Embedded(null,eress);   
 			
-			pdf.setType(Embedded.TYPE_BROWSER);
-			pdf.setMimeType("application/html"); 
-			pdf.setSizeFull();	
-			pdf.setHeight("800px");
-			getView().getMainLayout().addComponent(pdf);
+			embeddedApp.setType(Embedded.TYPE_BROWSER);
+			embeddedApp.setMimeType("application/html"); 
+			embeddedApp.setSizeFull();	
+			embeddedApp.setHeight("800px");
+			getView().getMainLayout().addComponent(embeddedApp);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
