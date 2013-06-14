@@ -51,7 +51,6 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import com.conx.bi.kernel.core.domain.service.ReportingServiceProvision;
 import com.stripe.model.Token;
 
 @Ignore
@@ -252,7 +251,7 @@ public class ContractManagementJobServicesImplTests extends AbstractJUnit4Spring
 			/**
 			 * == Reporting Service with 5 job limit
 			 */
-			ReportingServiceProvision rptService = new ReportingServiceProvision();
+/*			ReportingServiceProvision rptService = new ReportingServiceProvision();
 			rptService.setName("Free Reporting Service : 2 Job Defs/3 Runs");
 			rptService.setCode("Free Reporting Service : 2 Job Defs/3 Runs");
 			
@@ -264,7 +263,7 @@ public class ContractManagementJobServicesImplTests extends AbstractJUnit4Spring
 			rptService.getQuotas().add(rptPageQuota);
 			
 			rptService = (ReportingServiceProvision)serviceProvisionDAO.add(rptService);			
-			
+			*/
 			freePlan = new SubscriptionPlan();
 			freePlan.setName(ISubscriptionDAOService.FREE_TRIAL_PLAN_NAME);
 			freePlan.setCode(ISubscriptionDAOService.FREE_TRIAL_PLAN_NAME);
@@ -301,7 +300,7 @@ public class ContractManagementJobServicesImplTests extends AbstractJUnit4Spring
 			 * Reporting Service Group
 			 * 
 			 */			
-			ServiceProvisionGroupService rptSGS = new ServiceProvisionGroupService();
+/*			ServiceProvisionGroupService rptSGS = new ServiceProvisionGroupService();
 			rptSGS.setCode(freePlanSPG.getCode()+" Reporting");
 			rptSGS.setService(rptService);
 			rptSGS.setServiceGroup(freePlanSPG);
@@ -310,7 +309,7 @@ public class ContractManagementJobServicesImplTests extends AbstractJUnit4Spring
 			
 			freePlan.setServiceGroup(freePlanSPG);
 			
-			freePlan = subscriptionDAO.addPlan(freePlan);
+			freePlan = subscriptionDAO.addPlan(freePlan);*/
 
 			
 			//== Create ETL Job Definition

@@ -11,9 +11,11 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>domain</module>
+		<module>stripe.services</module>
+		<module>stripe.webhooks.soap.client</module>
+		<module>stripe.webhooks.service.impl</module>		
 		<module>stripe.service.impl</module>
 		<module>stripe.service.impl.config.fragment</module>
-		<module>stripe.webhooks.service.impl</module>
 		<module>datasource.mysql</module>
 	</modules>
 	<build>

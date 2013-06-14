@@ -17,6 +17,7 @@
 		<module>reporting</module>
 		<module>documentlibrary</module>
 		<module>ui</module>
+		<module>erp</module>
 		<!--<module>distribution</module>-->
 		<module>permissions</module>
 	</modules>

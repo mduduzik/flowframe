@@ -10,6 +10,7 @@ Import-Package: org.flowframe.kernel.common.mdm.domain.organization;version="[0.
   org.flowframe.kernel.metamodel.dao.services;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.dao.services.documentlibrary;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.domain.role;version="[0.0.1,1.0.0)",
+  org.flowframe.erp.app.contractmanagement.domain;version="[0.0.1,1.0.0)",
   org.springframework.transaction;version="[3.1,3.2)",
   org.springframework.transaction.aspectj;version="[3.1,3.2)",
   javax.persistence;version="0",
