@@ -1,24 +1,22 @@
 package org.flowframe.kernel.json.impl;
 
 
-import flexjson.BeanAnalyzer;
-import flexjson.BeanProperty;
-import flexjson.JSONException;
-import flexjson.ObjectBinder;
-
-import flexjson.factories.BeanObjectFactory;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.flowframe.kernel.common.utils.StringPool;
+import org.flowframe.kernel.json.impl.JSONUtil.StringPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import flexjson.BeanAnalyzer;
+import flexjson.BeanProperty;
+import flexjson.JSONException;
+import flexjson.ObjectBinder;
+import flexjson.factories.BeanObjectFactory;
 
 public class PortalBeanObjectFactory extends BeanObjectFactory {
 	

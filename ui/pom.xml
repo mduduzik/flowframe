@@ -11,9 +11,10 @@
 	<packaging>pom</packaging>
 	<name>org.flowframe.ui</name>
 	<modules>
-		<module>vaadin</module>
+	    <module>pageflow</module>
+<!-- 		<module>vaadin</module>
 		<module>component</module>
 		<module>services</module>
-		<module>manager</module>
+		<module>manager</module> -->
 	</modules>
 </project>

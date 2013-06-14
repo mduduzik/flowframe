@@ -6,10 +6,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.flowframe.kernel.common.utils.StringPool;
 import org.flowframe.kernel.json.JSONArray;
 import org.flowframe.kernel.json.JSONException;
 import org.flowframe.kernel.json.JSONObject;
+import org.flowframe.kernel.json.impl.JSONUtil.StringPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

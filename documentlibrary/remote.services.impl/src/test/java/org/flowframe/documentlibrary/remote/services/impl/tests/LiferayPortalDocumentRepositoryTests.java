@@ -29,6 +29,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 
+@Ignore
 @ContextConfiguration(locations = { "/META-INF/flowframe/tm.jta-module-context.xml",
 		"/META-INF/jpa.lob.jpacontainer.springdm-module-context.xml",
         "/META-INF/flowframe/dao.services.impl-module-context.xml",

@@ -24,8 +24,10 @@ import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentR
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class SimpleLiferayPortalDocumentRepositoryTests {
 
 	@Before

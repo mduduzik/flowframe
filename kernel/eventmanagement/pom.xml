@@ -15,7 +15,7 @@
   </modules>
 	<build>
 		<plugins>
-			<plugin>
+<!-- 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<inherited>false</inherited>
 				<executions>
@@ -84,6 +84,6 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+	 -->	</plugins>
 	</build>  
 </project>

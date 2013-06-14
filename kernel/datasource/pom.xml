@@ -9,12 +9,13 @@
   <artifactId>org.flowframe.kernel.datasource</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>mysql</module>
-  	<module>hsqldb</module>
+<!--   	<module>mysql</module>
+  	<module>hsqldb</module> -->
+  	<module>common</module>
   </modules>
 	<build>
 		<plugins>
-			<plugin>
+<!-- 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<inherited>false</inherited>
 				<executions>
@@ -88,7 +89,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 </project>

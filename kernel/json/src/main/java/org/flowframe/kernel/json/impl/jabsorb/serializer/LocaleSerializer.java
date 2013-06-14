@@ -2,13 +2,12 @@ package org.flowframe.kernel.json.impl.jabsorb.serializer;
 
 import java.util.Locale;
 
-import org.flowframe.kernel.common.utils.Validator;
+import org.flowframe.kernel.json.impl.JSONUtil.Validator;
 import org.jabsorb.serializer.AbstractSerializer;
 import org.jabsorb.serializer.MarshallException;
 import org.jabsorb.serializer.ObjectMatch;
 import org.jabsorb.serializer.SerializerState;
 import org.jabsorb.serializer.UnmarshallException;
-
 import org.json.JSONObject;
 
 public class LocaleSerializer extends AbstractSerializer {

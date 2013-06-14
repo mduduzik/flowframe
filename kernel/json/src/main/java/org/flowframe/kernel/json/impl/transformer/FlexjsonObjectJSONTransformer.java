@@ -1,19 +1,18 @@
 package org.flowframe.kernel.json.impl.transformer;
 
+import java.util.List;
+
+import jodd.bean.BeanUtil;
+
+import org.flowframe.kernel.json.JSONTransformer;
+import org.flowframe.kernel.json.impl.JSONIncludesManager;
+import org.flowframe.kernel.json.impl.JSONUtil.CharPool;
+import org.flowframe.kernel.json.impl.JSONUtil.StringPool;
+
 import flexjson.JSONContext;
 import flexjson.Path;
 import flexjson.PathExpression;
-
 import flexjson.transformer.ObjectTransformer;
-
-import java.util.List;
-
-import org.flowframe.kernel.common.utils.CharPool;
-import org.flowframe.kernel.common.utils.StringPool;
-import org.flowframe.kernel.json.JSONTransformer;
-import org.flowframe.kernel.json.impl.JSONIncludesManager;
-
-import jodd.bean.BeanUtil;
 
 public class FlexjsonObjectJSONTransformer
 	extends ObjectTransformer implements JSONTransformer {

@@ -1,10 +1,8 @@
 package org.flowframe.kernel.json.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.List;
 
-import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.json.JSONArray;
 import org.flowframe.kernel.json.JSONDeserializer;
 import org.flowframe.kernel.json.JSONException;
@@ -12,12 +10,12 @@ import org.flowframe.kernel.json.JSONFactory;
 import org.flowframe.kernel.json.JSONObject;
 import org.flowframe.kernel.json.JSONSerializer;
 import org.flowframe.kernel.json.JSONTransformer;
+import org.flowframe.kernel.json.impl.JSONUtil.Validator;
 import org.flowframe.kernel.json.impl.jabsorb.serializer.FFJSONSerializer;
 import org.flowframe.kernel.json.impl.jabsorb.serializer.FFSerializer;
 import org.flowframe.kernel.json.impl.jabsorb.serializer.LocaleSerializer;
 import org.flowframe.kernel.json.impl.transformer.StringTransformer;
 import org.jabsorb.serializer.MarshallException;
-
 import org.json.JSONML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

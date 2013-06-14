@@ -9,12 +9,13 @@
   <artifactId>org.flowframe.kernel</artifactId>
   <packaging>pom</packaging>
   <modules>
+    <module>common.mdm</module>
   	<module>common.utils</module>
-  	<module>common.mdm</module>
   	<module>datasource</module>
+  	<module>eventmanagement</module>
   	<module>jpa</module>
-  	<module>metamodel</module>
   	<module>json</module>
+  	<module>metamodel</module>
   	<module>services</module>
   	<module>servlet</module>
   </modules>

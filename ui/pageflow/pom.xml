@@ -13,6 +13,6 @@
 	<modules>
 		<module>services</module>
 		<module>vaadin</module>
-		<module>services.impl</module>
+		<!-- <module>services.impl</module> -->
 	</modules>
 </project>
