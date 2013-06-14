@@ -63,7 +63,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.component.domain</artifactId>
+			<artifactId>org.flowframe.ui.pageflow.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.uilegacy.component.domain</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
@@ -87,13 +92,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
-			<artifactId>org.flowframe.ui.services</artifactId>
+			<artifactId>org.flowframe.uilegacy.services</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>
-				org.flowframe.ui.vaadin.addons.common
+				org.flowframe.uilegacy.vaadin.addons.common
 			</artifactId>
 			<version>0.0.1</version>
 		</dependency>

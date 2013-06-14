@@ -110,7 +110,7 @@
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.org.jvnet.jaxb2_commons</artifactId>
-			<version>0.6.4.SNAPSHOT</version>
+			<version>0.6.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>

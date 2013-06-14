@@ -100,6 +100,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.documentlibrary.remote.services</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.uilegacy.vaadin.common</artifactId>
 			<version>0.0.1</version>
 		</dependency>

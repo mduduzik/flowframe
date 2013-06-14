@@ -10,7 +10,7 @@ import org.flowframe.bpm.jbpm.services.IBPMService;
 import org.flowframe.kernel.common.mdm.domain.application.Feature;
 import org.flowframe.kernel.common.mdm.domain.task.TaskDefinition;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
-import org.flowframe.ui.services.contribution.IMainApplication;
+import org.flowframe.ui.pageflow.services.IMainApplication;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.IPresenter;
