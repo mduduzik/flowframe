@@ -17,6 +17,7 @@
 		<module>reporting</module>
 		<module>scheduling</module>
 		<module>documentlibrary</module>
+		<module>uilegacy</module>
 		<module>ui</module>
 		<module>erp</module>
 		<!--<module>distribution</module>-->

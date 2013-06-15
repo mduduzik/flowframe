@@ -2610,10 +2610,36 @@
 			</repository> -->
 
 		<!-- Conventions are described in http://community.jboss.org/wiki/MavenGettingStarted-Developers -->
-		<repository>
+<!-- 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Repository Group</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+			</snapshots>
+		</repository> -->
+		<repository>
+			<id>jboss-public-repository-group-2</id>
+			<name>JBoss Public Repository Group</name>
+			<url>http://snapshots.jboss.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>nuxeo</id>
+			<name>nuxeo</name>
+			<url>https://maven-us.nuxeo.org/nexus/content/repositories/public</url>
 			<releases>
 				<enabled>true</enabled>
 				<updatePolicy>never</updatePolicy>
