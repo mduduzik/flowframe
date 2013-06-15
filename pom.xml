@@ -15,6 +15,7 @@
 		<module>portal</module>
 		<module>ds</module>
 		<module>reporting</module>
+		<module>scheduling</module>
 		<module>documentlibrary</module>
 		<module>ui</module>
 		<module>erp</module>
