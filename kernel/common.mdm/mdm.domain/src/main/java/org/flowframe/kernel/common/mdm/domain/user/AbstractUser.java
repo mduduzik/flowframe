@@ -20,7 +20,7 @@ public class AbstractUser{
 	@Column(name = "id")
 	protected Long id;
 	
-    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.EAGER)
     @JoinColumn
     private Organization tenant;
 

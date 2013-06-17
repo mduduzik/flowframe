@@ -4,15 +4,14 @@ Bundle-Name: FF Common JSON Utils
 Bundle-SymbolicName: org.flowframe.kernel.json
 Bundle-Vendor: FF
 Bundle-Version: 0.0.1
-Import-Package:   org.flowframe.kernel.common.utils;version="[0.0.1,1.0.0)",
-  org.slf4j;version="[1.6,1.7)",
+Import-Package:  org.slf4j;version="[1.6,2.0)",
   flexjson;version="[2.0,3.0)",
   flexjson.factories;version="[2.0,3.0)",
   flexjson.transformer;version="[2.0,3.0)",
-  jodd.bean;version="[3.4,3.5)",
-  org.jabsorb;version="[0.0.1,1.0.0)",
-  org.jabsorb.serializer;version="[0.0.1,1.0.0)",
-  org.json;version="20090211"
+  jodd.bean;version="[3.3,3.5)",
+  org.jabsorb;version="[0.0.1,1.0.0)";resolution:="optional",
+  org.jabsorb.serializer;version="[0.0.1,1.0.0)";resolution:="optional",
+  org.json;version="20090211";resolution:="optional"
 Excluded-Imports: 
  org.springframework.test.*,
  org.junit.*

@@ -31,7 +31,7 @@
 	            <prop key="hibernate.connection.release_mode">after_statement</prop>
 	            <prop key="hibernate.hbm2ddl.auto">${ff.kernel.jpa.hibernate.hbm2ddl.auto}</prop>	
 	            <prop key="hibernate.connection.autocommit">false</prop>
-	            <prop key="hibernate.show_sql">${ff.kernel.jpa.hibernate.hibernate.show_sql}</prop>
+	            <prop key="hibernate.show_sql">${ff.kernel.jpa.hibernate.show_sql}</prop>
 			</props>
 		</property>
 	</bean>
