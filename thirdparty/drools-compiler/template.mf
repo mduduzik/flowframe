@@ -1,0 +1,91 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.6.0_31 (Apple Inc.)
+Built-By: rikkola
+Build-Jdk: 1.6.0_31
+Specification-Title: Drools :: Compiler
+Specification-Version: 5.4.0.Final
+Specification-Vendor: JBoss by Red Hat
+Implementation-Title: Drools :: Compiler
+Implementation-Version: 5.4.0.Final
+Implementation-Vendor-Id: org.drools
+Implementation-Vendor: JBoss by Red Hat
+Export-Package: org.drools.lang.descr;version="5.4.0.Final",org.drools
+ .builder.impl;uses:="com.sun.tools.xjc,org.drools.compiler";version="
+ 5.4.0.Final",org.drools.rule.builder.util;uses:="org.drools.lang.desc
+ r";version="5.4.0.Final",org.drools.osgi.compiler;uses:="org.osgi.uti
+ l.tracker,org.osgi.framework,org.drools.builder.impl,org.drools.compi
+ ler";version="5.4.0.Final",org.drools.compiler.xml.rules;uses:="org.d
+ rools.lang.descr,org.w3c.dom,org.xml.sax";version="5.4.0.Final",org.d
+ rools.testframework;version="5.4.0.Final",org.drools.runtime.pipeline
+ .impl;uses:="com.sun.tools.xjc,org.xml.sax,com.sun.codemodel,com.sun.
+ tools.xjc.model,org.drools.lang.descr,com.sun.tools.xjc.outline,org.d
+ rools.rule.builder.dialect.java,org.drools.builder.impl,org.drools.co
+ mpiler,javax.xml.bind";version="5.4.0.Final",org.drools.rule.builder.
+ dialect.mvel;uses:="org.drools.rule.builder.util,org.drools.lang.desc
+ r,org.drools.compiler,org.drools.rule.builder.dialect,org.drools.rule
+ .builder,org.mvel2,org.drools.rule.builder.dialect.java,org.mvel2.uti
+ l";version="5.4.0.Final",org.drools.rule.builder.dialect.java;uses:="
+ org.drools.rule.builder.dialect.java.parser,org.drools.rule.builder.u
+ til,org.drools.lang.descr,org.drools.compiler,org.drools.rule.builder
+ ,org.drools.rule.builder.dialect,org.drools.rule.builder.dialect.mvel
+ ,org.drools.rule.builder.dialect.asm,org.antlr.runtime,org.mvel2.temp
+ lates,org.mvel2.integration,org.mvel2.integration.impl,org.mvel2";ver
+ sion="5.4.0.Final",org.drools.rule.builder.dialect.java.parser;uses:=
+ "org.antlr.runtime";version="5.4.0.Final",org.drools.rule.builder.dia
+ lect;uses:="org.drools.compiler,org.drools.rule.builder.dialect.java,
+ org.drools.rule.builder.dialect.java.parser,org.drools.rule.builder,o
+ rg.mvel2,org.drools.lang.descr,org.drools.rule.builder.dialect.mvel";
+ version="5.4.0.Final",org.drools.compiler.xml.processes;version="5.4.
+ 0.Final",org.drools.compiler.xml;uses:="org.drools.compiler.xml.rules
+ ,org.drools.lang.descr,javax.xml.parsers,org.xml.sax";version="5.4.0.
+ Final",org.drools.compiler;uses:="org.drools.lang.descr,org.drools.ru
+ le.builder,org.antlr.runtime,com.sun.tools.xjc,org.xml.sax,org.drools
+ .runtime.pipeline.impl,org.drools.rule.builder.dialect,org.drools.com
+ piler.xml";version="5.4.0.Final",org.drools.reteoo.compiled;uses:="or
+ g.drools.rule.builder.dialect.java,org.drools.lang.descr,org.drools.c
+ ompiler";version="5.4.0.Final",org.drools.semantics.java.parser;versi
+ on="5.4.0.Final",org.drools.rule.builder;uses:="org.drools.lang.descr
+ ,org.drools.compiler,org.mvel2,org.mvel2.util,org.drools.rule.builder
+ .dialect.mvel,org.drools.rule.builder.dialect,org.drools.rule.builder
+ .dialect.java,org.mvel2.integration,org.antlr.runtime";version="5.4.0
+ .Final",org.drools.rule.builder.dialect.asm;uses:="org.mvel2.asm,org.
+ drools.rule.builder,org.drools.rule.builder.dialect.java,org.drools.r
+ ule.builder.dialect,org.drools.compiler,org.drools.lang.descr";versio
+ n="5.4.0.Final"
+Private-Package: org.drools.commons.jci.compilers;version="5.4.0.Final
+ ",org.drools.lang.api;version="5.4.0.Final",org.drools.lang.dsl;versi
+ on="5.4.0.Final",org.drools.lang.api.impl;version="5.4.0.Final",org.d
+ rools.commons.jci.problems;version="5.4.0.Final",org.drools.commons.j
+ ci.readers;version="5.4.0.Final",org.drools.commons.jci.stores;versio
+ n="5.4.0.Final",com.sample;version="5.4.0.Final",org.drools.lang;vers
+ ion="5.4.0.Final"
+Tool: Bnd-0.0.357
+Bundle-Name: Drools :: Compiler
+Require-Bundle: org.drools.core;visibility:=reexport;bundle-version="5
+ .4.0.Final"
+Bundle-Vendor: JBoss by Red Hat
+DynamicImport-Package: *
+Bundle-Version: 5.4.0.Final
+Bnd-LastModified: 1336833303399
+Bundle-Activator: org.drools.osgi.compiler.Activator
+Bundle-ManifestVersion: 2
+Bundle-Description: Drools Expert is the rule engine and Drools Fusion
+  does complex event processing (CEP).
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Import-Package: javax.xml.parsers,org.
+ antlr.runtime,org.antlr.runtime.tree,org.codehaus.janino;resolution:=
+ optional,org.codehaus.janino.util;resolution:=optional,org.codehaus.j
+ anino.util.enumerator;resolution:=optional,org.codehaus.janino.util.r
+ esource;resolution:=optional,org.eclipse.jdt.core.compiler;resolution
+ :=optional,org.eclipse.jdt.internal.compiler;resolution:=optional,org
+ .eclipse.jdt.internal.compiler.classfmt;resolution:=optional,org.ecli
+ pse.jdt.internal.compiler.env;resolution:=optional,org.eclipse.jdt.in
+ ternal.compiler.problem;resolution:=optional,org.mvel2;version="2.1",
+ org.mvel2.asm;version="2.1",org.mvel2.integration;version="2.1",org.m
+ vel2.integration.impl;version="2.1",org.mvel2.optimizers;version="2.1
+ ",org.mvel2.templates;version="2.1",org.mvel2.util;version="2.1",org.
+ osgi.framework;version="1.5",org.osgi.util.tracker;version="1.4",org.
+ w3c.dom,org.xml.sax
+Bundle-SymbolicName: org.drools.compiler;singleton:=true
+Bundle-DocURL: http://www.jboss.org/

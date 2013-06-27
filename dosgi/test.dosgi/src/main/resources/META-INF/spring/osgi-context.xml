@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+	xmlns:osgi="http://www.springframework.org/schema/osgi">
+	<osgi:reference id="eventDAOService" cardinality="0..1" interface="org.flowframe.erp.integration.adaptors.stripe.services.IEventDAOService">
+		<osgi:listener ref="testEventServicesImpl" bind-method="setEventDAOService" unbind-method="unsetEventDAOService"/>
+	</osgi:reference>
+
+	<osgi:reference id="eventBusinessService" cardinality="0..1" interface="org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService">
+		<osgi:listener ref="testEventServicesImpl" bind-method="setEventBusinessService" unbind-method="unsetEventBusinessService"/>
+	</osgi:reference>
+</beans>
