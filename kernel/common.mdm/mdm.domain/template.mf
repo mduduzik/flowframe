@@ -13,6 +13,7 @@ Excluded-Imports:  org.flowframe.kernel.common.utils,
   javax.validation.constraints,
   org.springframework.format.annotation,
   org.springframework.transaction,
-  org.springframework.transaction.annotation
+  org.springframework.transaction.annotation,
+  javax.xml.bind.annotation
   
   

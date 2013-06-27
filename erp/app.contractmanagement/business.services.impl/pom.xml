@@ -13,6 +13,11 @@
 		<!-- FF -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client</artifactId>
+			<version>0.0.1</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.remote.services</artifactId>
 			<version>0.0.1</version>
 			<exclusions>

@@ -4,6 +4,9 @@ Bundle-Name: FF Contract Management Business Services
 Bundle-SymbolicName: org.flowframe.erp.app.contractmanagement.business.services.impl
 Bundle-Vendor: ConX
 Bundle-Version: 1.0.0
+Require-Bundle: org.apache.cxf.cxf-api;bundle-version="2.7.2",
+ org.apache.cxf.cxf-rt-core;bundle-version="2.7.2",
+ org.apache.cxf.cxf-rt-frontend-jaxws;bundle-version="2.7.2"
 Import-Package: 
   org.flowframe.kernel.common.mdm.dao.services;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.dao.services.user;version="[0.0.1,1.0.0)",
@@ -28,6 +31,7 @@ Import-Package:
   org.flowframe.erp.app.financialmanagement.domain;version="[0.0.1,1.0.0)",
   org.flowframe.erp.integration.adaptors.stripe.domain.event;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.services;version="[0.0.1,1.0.0)",
+  org.flowframe.erp.integration.adaptors.services.soap;version="[0.0.1,1.0.0)",
   org.springframework.stereotype;version="[3.1,3.2)",
   org.springframework.transaction.annotation;version="[3.1,3.2)",
   org.springframework.beans.factory.annotation;version="[3.1,3.2)",

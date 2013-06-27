@@ -210,44 +210,55 @@ public class BPMServerImpl implements IBPMService {
 
 	
 	private void start() {
-		//jbpmProperties = loadJbpmProperties();
-		KnowledgeBase localKBase = loadKnowledgeBase(jbpmProperties);
-		
-		this.managementFactory = new ManagementFactory(this);
-		this.processManager = this.managementFactory.createProcessManagement();
-		this.taskManager = this.managementFactory.createTaskManagement();
-		this.processGraphManager = new ProcessGraphManagement(this);
-		this.humanTaskManager = new HumanTaskService(this);
-		this.jpaProcessInstanceDbLog = new CustomJPAProcessInstanceDbLog(this.jbpmEMF,this.globalUserTransaction);
-
-		// try to restore known session id for reuse
-		ksessionId = getPersistedSessionId(jbpmProperties.getProperty(
-				"jbpm.conxrepo.tmp.dir",
-				System.getProperty("jboss.server.temp.dir")));
-		// Create knowledge session
-		ksession = createOrLoadStatefulKnowledgeSession(localKBase);
-		
-		KnowledgeBase kbase = ksession.getKnowledgeBase();
-		Collection<KnowledgePackage> pkgs = kbase.getKnowledgePackages();
-		
-
-		
-		persistSessionId(jbpmProperties.getProperty("jbpm.conxrepo.tmp.dir",
-				System.getProperty("jboss.server.temp.dir")));
-		// Additional necessary modifications to the knowledge session
-		new JPAWorkingMemoryDbLogger(ksession);
-		// Adds a work item handler for work items titled "Human Task"		
-		registerWorkItemHandler(ksession, jbpmProperties);
-		addAgendaEventListener(ksession);
-		
-/*		try {
-			addUsersAndGroups();
-		} catch (NamingException e) {
+		try {
+			//jbpmProperties = loadJbpmProperties();
+			KnowledgeBase localKBase = loadKnowledgeBase(jbpmProperties);
+			
+			this.managementFactory = new ManagementFactory(this);
+			this.processManager = this.managementFactory.createProcessManagement();
+			this.taskManager = this.managementFactory.createTaskManagement();
+			this.processGraphManager = new ProcessGraphManagement(this);
+			this.humanTaskManager = new HumanTaskService(this);
+			this.jpaProcessInstanceDbLog = new CustomJPAProcessInstanceDbLog(this.jbpmEMF,this.globalUserTransaction);
+	
+			// try to restore known session id for reuse
+			ksessionId = getPersistedSessionId(jbpmProperties.getProperty(
+					"jbpm.conxrepo.tmp.dir",
+					System.getProperty("jboss.server.temp.dir")));
+			// Create knowledge session
+			ksession = createOrLoadStatefulKnowledgeSession(localKBase);
+			
+			KnowledgeBase kbase = ksession.getKnowledgeBase();
+			Collection<KnowledgePackage> pkgs = kbase.getKnowledgePackages();
+			
+	
+			
+			persistSessionId(jbpmProperties.getProperty("jbpm.conxrepo.tmp.dir",
+					System.getProperty("jboss.server.temp.dir")));
+			// Additional necessary modifications to the knowledge session
+			new JPAWorkingMemoryDbLogger(ksession);
+			// Adds a work item handler for work items titled "Human Task"		
+			registerWorkItemHandler(ksession, jbpmProperties);
+			addAgendaEventListener(ksession);
+		}
+		catch (Exception e)
+		{
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
-		}*/
+			
+			throw new IllegalStateException("start:\r\n"+stacktrace, e);
+		}	
+		catch (Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+			
+			throw new IllegalStateException("start:\r\n"+stacktrace, e);			
+		}			
 	}
 	
 /*	private void addUsersAndGroups() throws NamingException

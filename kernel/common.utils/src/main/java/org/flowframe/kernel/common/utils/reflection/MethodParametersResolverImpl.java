@@ -11,7 +11,7 @@ import org.flowframe.kernel.common.utils.InitialThreadLocal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jodd.paramo.Paramo;
+//import jodd.paramo.Paramo;
 
 
 public class MethodParametersResolverImpl implements MethodParametersResolver {
@@ -27,17 +27,17 @@ public class MethodParametersResolverImpl implements MethodParametersResolver {
 		try {
 			Class<?>[] methodParameterTypes = method.getParameterTypes();
 
-			jodd.paramo.MethodParameter[] joddMethodParameters =
-				Paramo.resolveParameters(method);
-
+			/*
+			jodd.paramo.MethodParameter[] joddMethodParameters = Paramo.resolveParameters(method);
 			methodParameters = new MethodParameter[joddMethodParameters.length];
-
+			methodParameters = new MethodParameter[0];
 			for (int i = 0; i < joddMethodParameters.length; i++) {
 				methodParameters[i] = new MethodParameter(
 					joddMethodParameters[i].getName(),
 					joddMethodParameters[i].getSignature(),
 					methodParameterTypes[i]);
 			}
+			*/
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage(), e);

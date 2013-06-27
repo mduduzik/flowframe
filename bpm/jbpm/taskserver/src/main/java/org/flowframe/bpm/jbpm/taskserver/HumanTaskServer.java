@@ -90,7 +90,7 @@ public class HumanTaskServer implements IBPMTaskService {
 			
 			// kernelSystemBPMTransManager.commit(status);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();

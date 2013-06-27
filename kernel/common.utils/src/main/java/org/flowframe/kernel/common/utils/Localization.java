@@ -3,7 +3,7 @@ package org.flowframe.kernel.common.utils;
 import java.util.Locale;
 import java.util.Map;
 
-import org.flowframe.kernel.json.JSONObject;
+//import org.flowframe.kernel.json.JSONObject;
 
 
 /**
@@ -29,7 +29,7 @@ public interface Localization {
 	 * @param  jsonObject the JSON object
 	 * @return the locales and localized strings
 	 */
-	public Object deserialize(JSONObject jsonObject);
+	//public Object deserialize(JSONObject jsonObject);
 
 	/**
 	 * Returns the available locales from the localizations XML.

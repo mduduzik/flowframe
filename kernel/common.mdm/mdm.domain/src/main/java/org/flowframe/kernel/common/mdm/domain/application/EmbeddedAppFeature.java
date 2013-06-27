@@ -15,6 +15,7 @@ import org.flowframe.kernel.common.utils.StringUtil;
 public class EmbeddedAppFeature extends Feature {
 
 	private String baseUrl;
+	private String tag;
 	private Map<String,String> urlParams = new HashMap<String,String>();
  
     public EmbeddedAppFeature()
@@ -53,5 +54,13 @@ public class EmbeddedAppFeature extends Feature {
 		url = StringUtil.replaceLast(url, ';',' ');
 		
 		return url;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 }

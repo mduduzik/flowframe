@@ -7,9 +7,7 @@ Bundle-Version: 0.0.1
 Export-Package: org.flowframe.kernel.common.utils;version="0.0.1"
 Import-Package: org.apache.commons.lang.math;version="2.4.0",
   javax.servlet;version="0",
-  javax.servlet.http;version="0",
-  jodd.paramo;version="[3.3,4.0)",
-  org.flowframe.kernel.json;version="[0.0.1,1.0.0)"
+  javax.servlet.http;version="0"
 Import-Template: 
   org.slf4j;version="1.6.1"
 Excluded-Imports: 

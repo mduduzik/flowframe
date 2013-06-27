@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.flowframe.kernel.json.JSONArray;
+//import org.flowframe.kernel.json.JSONArray;
 
 
 public class ArrayUtil {
@@ -1248,7 +1248,7 @@ public class ArrayUtil {
 		return newArray;
 	}
 
-	public static String[] toStringArray(JSONArray array) {
+/*	public static String[] toStringArray(JSONArray array) {
 		String[] newArray = new String[array.length()];
 
 		for (int i = 0; i < array.length(); i++) {
@@ -1257,7 +1257,7 @@ public class ArrayUtil {
 
 		return newArray;
 	}
-
+*/
 	public static String[] toStringArray(long[] array) {
 		String[] newArray = new String[array.length];
 
