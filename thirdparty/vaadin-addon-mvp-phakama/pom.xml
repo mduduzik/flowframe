@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.flowframe</groupId>
+		<artifactId>org.flowframe.thirdparty</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<version>0.0.5</version>
+	<artifactId>org.flowframe.thirdparty.vaadin.addons.mvp.phakama</artifactId>
+	<name>org.flowframe.thirdparty.vaadin.addons.mvp.phakama</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.10</junit.version>
+		<vaadin.version>7.0.2</vaadin.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+	</properties>
+	<repositories>
+		<!-- Vaadin -->
+		<repository>
+			<id>vaadin</id>
+			<url>http://oss.sonatype.org/content/repositories/vaadin/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<!-- Vaadin -->
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.3</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.3</version><!--$NO-MVN-MAN-VER$-->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version><!--$NO-MVN-MAN-VER$-->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.springsource.bundlor</groupId>
+				<artifactId>com.springsource.bundlor.maven</artifactId>
+				<executions>
+					<execution>
+						<id>build-manifest</id>
+						<goals>
+							<goal>bundlor</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+							<outputPath>${basedir}/src/main/resources</outputPath>
+							<!-- used to properly set-up versions for system packages -->
+							<osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
