@@ -1,0 +1,7 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.5
+Bundle-Name: FlowFrame Phakama MVP Vaadin Addon
+Bundle-SymbolicName: org.flowframe.thirdparty.vaadin.addons.mvp.phakama
+Import-Package: com.vaadin.server;version="[7.0.0, 7.1.0)",
+  com.vaadin.ui;version="[7.0.0, 7.1.0)",
+  org.slf4j;version="1.7.3"
