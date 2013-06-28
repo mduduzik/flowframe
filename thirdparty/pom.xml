@@ -33,6 +33,7 @@
 		<module>google</module>
 		<module>hornetq-all</module>
 		<module>netty</module>
+		<module>spring-vaadin</module>
 		<module>vaadin-addon-contextmenu</module>
 		<module>vaadin-addon-jpacontainer-agpl-3.0</module>
 		<module>vaadin-addon-mvp-customized</module>

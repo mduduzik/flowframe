@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 import org.flowframe.erp.app.contractmanagement.dao.customer.ICustomerDAOService;
 import org.flowframe.erp.app.contractmanagement.domain.Customer;
@@ -35,27 +35,50 @@ public class CustomerDAOImpl implements ICustomerDAOService{
 	
 	@Override
 	public Customer get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.getReference(Customer.class, id);
 	}
 
 	@Override
 	public List<Customer> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Customer o record by o.id").getResultList();
 	}
 
 	@Override
 	public Customer add(Customer record) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.merge(record);
 	}
 
 	@Override
 	public Customer provide(Customer record) {
-		// TODO Auto-generated method stub
-		return null;
+		Customer existingRecord = getByName(record.getName());
+		if (Validator.isNull(existingRecord)) {
+			existingRecord = add(record);
+		}
+		return existingRecord;
 	}
+	
+	
+	public CustomerUser addUser(CustomerUser record) {
+		return em.merge(record);
+	}
+
+	public CustomerUser updateUser(CustomerUser record) {
+		return em.merge(record);
+	}
+	
+	@Override
+	public CustomerUser provideUser(CustomerUser record) {
+		CustomerUser existingRecord = getUserByEmailAddress(record.getEmailAddress());
+		if (Validator.isNull(existingRecord))
+		{		
+			record = addUser(record);
+		}
+		else
+		{
+			record = updateUser(record);
+		}
+		return record;
+	}	
 
 	@Override
 	public Long getUserCustomerIdByEmailAddress(String emailAddress) {
@@ -77,30 +100,71 @@ public class CustomerDAOImpl implements ICustomerDAOService{
 			return null;
 			
 	}
-
-	private CustomerUser getUserByEmailAddress(String userEmailAddress) {
-		CustomerUser res = null;
-		try
-		{
-			TypedQuery<CustomerUser> query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.CustomerUser o where o.emailAddress = :emailAddress",CustomerUser.class);
-			query.setParameter("emailAddress", userEmailAddress);
-
-			
-			res = query.getSingleResult();				
-		}
-		catch(NoResultException e){}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		catch(Error e)
-		{
+	
+	@Override
+	public Customer getByCode(String code) {
+		Customer record = null;
+		try {
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Customer o WHERE o.code = :code");
+			query.setParameter("code", code);
+			record = (Customer) query.getSingleResult();
+		} catch (NoResultException e) {
+		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			String stacktrace = sw.toString();
 			logger.error(stacktrace);
-		}		
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
 		
-		return res;
+		return record;
+	}
+	
+	private Customer getByName(String name) {
+		Customer record = null;
+		try {
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Customer o WHERE o.name = :name");
+			query.setParameter("name", name);
+			record = (Customer) query.getSingleResult();
+		} catch (NoResultException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+		
+		return record;
+	}
+
+	private CustomerUser getUserByEmailAddress(String userEmailAddress) {
+		CustomerUser record = null;
+		try {
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.CustomerUser o where o.emailAddress = :emailAddress");
+			query.setParameter("emailAddress", userEmailAddress);
+			record = (CustomerUser) query.getSingleResult();
+		} catch (NoResultException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+		
+		return record;		
 	}	
 }
