@@ -28,13 +28,15 @@ public class ComponentFactoryContributionManager  implements IComponentFactoryCo
 	}
 
 	public void unregisterComponentFactoryContribution(IComponentFactoryContribution pageFactoryContribution, Map<String, Object> properties) {
-		Map<Class,Class> mappings = pageFactoryContribution.getComponentToPresenterMappings();
-		String contributionName = pageFactoryContribution.getContributionName();
-		logger.debug("unregisterComponentFactoryContribution(" + contributionName + ")");
-		for (Class ac : mappings.keySet())
-		{
-			logger.debug("unregisterComponentFactoryContribution(" + contributionName + "): Adding: "+ac.getName()+"-->"+mappings.get(ac).getName());
-			this.componentFactoryContributionsMap.remove(ac);
+		if (pageFactoryContribution != null) {
+			Map<Class,Class> mappings = pageFactoryContribution.getComponentToPresenterMappings();
+			String contributionName = pageFactoryContribution.getContributionName();
+			logger.debug("unregisterComponentFactoryContribution(" + contributionName + ")");
+			for (Class ac : mappings.keySet())
+			{
+				logger.debug("unregisterComponentFactoryContribution(" + contributionName + "): Removing: "+ac.getName()+"-->"+mappings.get(ac).getName());
+				this.componentFactoryContributionsMap.remove(ac);
+			}
 		}
 	}
 

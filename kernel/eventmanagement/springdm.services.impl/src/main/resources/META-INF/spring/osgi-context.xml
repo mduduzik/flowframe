@@ -9,6 +9,7 @@
 			<entry key="event.topics" value="org/osgi/service/blueprint/container/CREATED" />
 		</osgi:service-properties>
 	</osgi:service> -->
+	<osgi:reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin"/>
 
 	<osgi:service ref="installArtifactLifecycleHandler" interface="org.eclipse.virgo.kernel.install.artifact.InstallArtifactLifecycleListener" />
 </beans>

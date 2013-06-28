@@ -107,12 +107,20 @@
 							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService?wsdl</wsdl>
+									<wsdl>http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService?wsdl</wsdl>
 									<serviceName>IEventDAOService</serviceName>
+									<extraargs>
+										<extraarg>-p</extraarg>
+										<extraarg>http://services.stripe.adaptors.integration.erp.flowframe.org/=org.flowframe.erp.integration.adaptors.services.soap</extraarg>
+									</extraargs>									
 								</wsdlOption>
 								<wsdlOption>
-									<wsdl>http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService?wsdl</wsdl>
+									<wsdl>http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService?wsdl</wsdl>
 									<serviceName>IEventBusinessService</serviceName>
+									<extraargs>
+										<extraarg>-p</extraarg>
+										<extraarg>http://services.stripe.adaptors.integration.erp.flowframe.org/=org.flowframe.erp.integration.adaptors.services.soap</extraarg>
+									</extraargs>									
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>

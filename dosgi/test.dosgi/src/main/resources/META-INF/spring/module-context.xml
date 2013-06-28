@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Application context definition for GreenPages JPA.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jaxws="http://cxf.apache.org/jaxws"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://cxf.apache.org/jaxws 
+			http://cxf.apache.org/schemas/jaxws.xsd">
+	<context:load-time-weaver aspectj-weaving="on" />
+			
+	<!--
+		Activates various annotations to be detected in bean classes: Spring's
+		@Required and @Autowired, as well as JSR 250's @PostConstruct,
+		@PreDestroy and @Resource (if available) and JPA's @PersistenceContext
+		and @PersistenceUnit (if available).
+	-->
+	<context:annotation-config/>
+		
+	<!--
+		Will automatically be transactional due to @Transactional.
+		EntityManager will be auto-injected due to @PersistenceContext.
+		PersistenceExceptions will be auto-translated due to @Repository.
+	-->
+<!-- 	
+	<bean id="eventDAOService" class="org.flowframe.erp.integration.adaptors.services.soap.IEventDAOService">
+		<constructor-arg type="java.net.URL" index="0" value="http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService?wsdl"/>
+	</bean>
+	<bean id="eventBusinessService" class="org.flowframe.erp.integration.adaptors.services.soap.IEventBusinessService">
+		<constructor-arg type="java.net.URL" index="0" value="http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService?wsdl"/>
+	</bean>	 -->
+	
+<!-- 	<jaxws:client id="serviceProvisionDAOService" serviceClass="org.flowframe.erp.integration.adaptors.services.soap.IEventDAOServicePortType"
+		address="http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService?wsdl" />	
+	<jaxws:client id="serviceProvisionBusinessService" serviceClass="org.flowframe.erp.integration.adaptors.services.soap.IEventBusinessServicePortType"
+		address="http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService?wsdl" />			
+ -->	
+    <bean id="testEventServicesImpl" class="org.flowframe.dosgi.test.dosgi.TestEventServicesImpl"  init-method="init"/>
+<!--     <jaxws:client id="eventDAOService" serviceClass="org.flowframe.erp.integration.adaptors.services.soap.IEventDAOServicePortType"
+		address="http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
+	<jaxws:client id="eventBusinessService" serviceClass="org.flowframe.erp.integration.adaptors.services.soap.IEventBusinessServicePortType"
+		address="http://production2.bconv.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
+		
+ -->
+ </beans>

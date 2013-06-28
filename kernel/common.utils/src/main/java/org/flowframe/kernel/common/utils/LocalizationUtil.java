@@ -7,15 +7,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.flowframe.kernel.json.JSONObject;
+//import org.flowframe.kernel.json.JSONObject;
 
 
 public class LocalizationUtil {
 
-	public static Object deserialize(JSONObject jsonObject) {
+/*	public static Object deserialize(JSONObject jsonObject) {
 		return getLocalization().deserialize(jsonObject);
 	}
-
+*/
 	public static String[] getAvailableLocales(String xml) {
 		return getLocalization().getAvailableLocales(xml);
 	}

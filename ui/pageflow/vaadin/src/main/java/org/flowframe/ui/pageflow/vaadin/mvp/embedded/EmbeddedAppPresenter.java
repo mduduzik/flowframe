@@ -1,5 +1,6 @@
 package org.flowframe.ui.pageflow.vaadin.mvp.embedded;
 
+import java.net.URL;
 import java.util.Map;
 
 import org.flowframe.kernel.common.mdm.domain.user.User;
@@ -29,10 +30,17 @@ public class EmbeddedAppPresenter extends BasePresenter<IEmbeddedAppView, Embedd
     	try {
     		
     		String userparam = this.component.getUserTokenName();
-    		if (bpmnUrl.contains("?"))
-    			bpmnUrl += "&"+userparam+"="+currentUser.getScreenName();
-    		else
-    			bpmnUrl += "?"+userparam+"="+currentUser.getScreenName();
+    		URL aURL = new URL(bpmnUrl);
+    		String ref = aURL.getRef();
+    		String query = aURL.getQuery();
+    		if (query != null){
+    			query += "&"+userparam+"="+currentUser.getScreenName();
+    			bpmnUrl = aURL.getProtocol()+"://"+aURL.getHost()+":"+aURL.getPort()+aURL.getPath()+"?"+query+"#"+aURL.getRef();
+    		}
+    		else {
+    			bpmnUrl += userparam+"="+currentUser.getScreenName();
+    			bpmnUrl = aURL.getProtocol()+"://"+aURL.getHost()+":"+aURL.getPort()+aURL.getPath()+"#"+aURL.getRef();
+    		}
     		
 			ExternalResource eress = new ExternalResource(bpmnUrl, "application/html"); 
 			

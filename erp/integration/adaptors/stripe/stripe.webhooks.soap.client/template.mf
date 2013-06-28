@@ -4,6 +4,16 @@ Bundle-Name: FF ERP Stripe Webhooks Server SOAP Client
 Bundle-SymbolicName: org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client
 Bundle-Vendor: ConX
 Bundle-Version: 0.0.1
+Import-Package: javax.jws;version="0",
+  javax.xml.datatype;version="0",
+  javax.xml.namespace;version="0",
+  javax.xml.ws;version="0"
 Excluded-Imports: 
  org.springframework.test.*,
- org.junit.*
+ org.junit.*,
+ javax.xml.bind,
+ javax.xml.bind.annotation,
+ javax.xml.bind.annotation.adapters,
+ javax.xml.bind.attachment,
+ javax.xml.bind.helpers,
+ javax.xml.bind.util 

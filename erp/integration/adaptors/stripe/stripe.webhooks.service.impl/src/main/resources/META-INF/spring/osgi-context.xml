@@ -25,7 +25,7 @@
 			<entry key="service.exported.interfaces" value="*" />
 			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
 			<entry key="org.apache.cxf.ws.address"
-				value="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
+				value="http://${ff.erp.integration.adaptors.stripe.webhook.hostname}:${ff.erp.integration.adaptors.stripe.webhook.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
 		</osgi:service-properties>		
 	</osgi:service>
 	<osgi:service ref="eventBusinessServiceImpl" interface="org.flowframe.erp.integration.adaptors.stripe.services.IEventBusinessService">
@@ -33,7 +33,7 @@
 			<entry key="service.exported.interfaces" value="*" />
 			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
 			<entry key="org.apache.cxf.ws.address"
-				value="http://stage.conxbi.com:8182/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
+				value="http://${ff.erp.integration.adaptors.stripe.webhook.hostname}:${ff.erp.integration.adaptors.stripe.webhook.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventBusinessService" />
 		</osgi:service-properties>		
 	</osgi:service>	
 </beans>
