@@ -113,8 +113,8 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 			factory.afterPropertiesSet();
 			eventDAOService = (IEventDAOService)factory.getObject();*/
 			
-			if (Validator.isNotNull(eventDAOService)) {
-				List<Event> createdEvents = eventDAOService.getAllInvoiceEventsCreated();
+			if (Validator.isNotNull(eventDAORemoteServicePort)) {
+				List<org.flowframe.erp.integration.adaptors.services.soap.Event> createdEvents = eventDAORemoteServicePort.getAllInvoiceEventsCreated();
 				if (Validator.isNotNull(createdEvents) && !createdEvents.isEmpty()) {
 					DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 					def.setName("RegistrationBusinessServiceImpl.processNewInvoices");
@@ -130,13 +130,19 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 						Set<ServiceProvisionGroupService> services = null;
 						SubscriptionPlan freePlan = subscriptionDAOService.getFreePlan();
 						Organization customer = null;
-						for (Event evt : createdEvents) {
-							ffInv = paymentProcessorService.getInvoice(evt.getObjectId());
+						for (org.flowframe.erp.integration.adaptors.services.soap.Event evt : createdEvents) {
+							try {
+								ffInv = paymentProcessorService.getInvoice(evt.getObjectId());
+							} catch (Exception e) {
+								logger.warn("ContractManagementJobServicesImpl.processNewInvoices Invoice/"+evt.getObjectId()+" was not found locally...deactivating");
+								eventBusinessRemoteServicePort.markInactive(evt.getObjectId());
+								continue;
+							}
 							customer = ffInv.getDebtor();
 							//customer = organizationDAOService.getByExternalRefId(ffInv.getCustomer());
 							if (Validator.isNull(customer)) {//There's NO customer for this
-								logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer does not exist for Invoice/"+evt.getObjectId()+" was not found");
-								eventBusinessService.markInactive(evt.getStripeId());
+								logger.info("ContractManagementJobServicesImpl.processNewInvoices Customer does not exist for Invoice/"+evt.getObjectId()+" was not found...deactivating");
+								eventBusinessRemoteServicePort.markInactive(evt.getStripeId());
 								continue;
 							}
 							else {
@@ -156,7 +162,7 @@ public class ContractManagementJobServicesImpl implements IContractManagementJob
 									ffInv = receiptDAOService.update(ffInv);
 									logger.info("ContractManagementJobServicesImpl.processNewInvoices Processed Free Plan Customer/"+customer.getExternalRefId()+"for Invoice/"+evt.getObjectId()+" invoice successfully");
 								}
-								eventBusinessService.markInactive(evt.getStripeId());
+								eventBusinessRemoteServicePort.markInactive(evt.getStripeId());
 								logger.info("ContractManagementJobServicesImpl.processNewInvoices Invoice/"+evt.getObjectId()+" for Customer/"+customer.getExternalRefId()+" processed successfully");
 							}
 						}

@@ -303,22 +303,24 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		// TODO Auto-generated method stub
 		// http://localhost:8080/documents/10180/16279/Bill+Of+Laden/7b30b6bd-4174-40e3-aadb-63f2cbadd8fe
 		// http://<host>:<port>/documents/<groupd.id>/<folder.id>/<url_encode_title>/<uuid>
-		String encodedUrl = targetHost.toString() + "/documents/" + loginGroupId + "/" + fe.getFolderId() + "/"
-				+ HTTPUtil.encodeURL(fe.getTitle(), true) + "/" + fe.getUuid();
+		String encodedUrl = "/documents/"+fe.getGroupId()+"/"+fe.getFolderId()+"/"+HTTPUtil.encodeURL(fe.getTitle(), true)+"/"+fe.getUuid();
+		System.out.println("getFileEntryInputStreamWithURL URL:[" + encodedUrl + "]");		
 		
-		BasicHttpContext ctx = new BasicHttpContext();
-		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+		//BasicHttpContext ctx = new BasicHttpContext();
+		//ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
 
 		HttpGet get = new HttpGet(encodedUrl);
 
+		HttpResponse resp = httpclient.execute(get);
+		System.out.println("getFileEntryInputStreamWithURL Status:[" + resp.getStatusLine() + "]");
+		System.out.println("getFileEntryInputStreamWithURL Res:[" + resp + "]");
+		
+		InputStream in = resp.getEntity().getContent();
+		byte[] contentByteArray = EntityUtils.toByteArray(resp.getEntity());
+		
+		System.out.println("getFileEntryInputStreamWithURL StreamLength:[" + contentByteArray.length + "]");
 
-		HttpResponse resp = httpclient.execute(targetHost, get, ctx);
-		System.out.println("getFileAsStream Status:[" + resp.getStatusLine() + "]");
-		
-	
-		InputStream is = resp.getEntity().getContent();
-		
-		return is;
+		return new ByteArrayInputStream(contentByteArray);
 	}	
 	
 

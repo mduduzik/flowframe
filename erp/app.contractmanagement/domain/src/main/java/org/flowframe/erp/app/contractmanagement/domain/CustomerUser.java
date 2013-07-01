@@ -17,10 +17,20 @@ public class CustomerUser extends User {
 
 	public CustomerUser(User toCopy, Customer customer, Role role) {
 		super();
-		this.setUserId(toCopy.getUserId());
-		this.setScreenName(toCopy.getScreenName());
 		this.customer = customer;
 		this.role = role;
+		
+		setUserId(toCopy.getUserId());
+		setScreenName(toCopy.getScreenName());
+		setUuid(toCopy.getUuid());
+		setUserUuid(toCopy.getUserUuid());
+		setCompanyId(toCopy.getCompanyId());
+		setCreateDate(toCopy.getCreateDate());
+		setModifiedDate(toCopy.getModifiedDate());
+		setContactId(toCopy.getContactId());
+		setFirstName(toCopy.getFirstName());
+		setMiddleName(toCopy.getMiddleName());
+		setLastName(toCopy.getLastName());
 	}
 
 	public CustomerUser() {
