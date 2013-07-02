@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.user.User;
 
 @Transactional
@@ -87,17 +89,10 @@ public class UserDAOImpl implements IUserDAOService {
 		
 		try
 		{
-			CriteriaBuilder builder = em.getCriteriaBuilder();
-			CriteriaQuery<User> query = builder.createQuery(User.class);
-			Root<User> rootEntity = query.from(User.class);
-			ParameterExpression<String> p1 = builder.parameter(String.class);
-			ParameterExpression<String> p2 = builder.parameter(String.class);
-			query.select(rootEntity).where(builder.or(builder.equal(rootEntity.get("emailAddress"), p1),builder.equal(rootEntity.get("screenName"), p2)));
-
-			TypedQuery<User> typedQuery = em.createQuery(query);
-			typedQuery.setParameter(p1, email);
-			typedQuery.setParameter(p2, screenName);
-			org = typedQuery.getSingleResult();
+			Query query = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.user.User o WHERE (o.emailAddress is not null AND o.emailAddress = :emailAddress) OR (o.screenName is not null AND o.screenName = :screenName)");
+			query.setParameter("emailAddress", email);
+			query.setParameter("screenName", screenName);
+			org = (User) query.getSingleResult();
 		}
 		catch(NoResultException e){}
 		catch(Exception e)
