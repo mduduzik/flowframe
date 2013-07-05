@@ -7,4 +7,6 @@ public interface IBPMTaskService {
 	public TaskService getTaskService();
 
 	public LocalTaskService getLocalTaskService();
+	
+	public void addUser(String userName) throws Exception;
 }

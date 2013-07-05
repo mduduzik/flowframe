@@ -52,6 +52,8 @@ public class HumanTaskServer implements IBPMTaskService {
 	
 	private IPortalUserService portalUserService;
 
+	private Context jndiCtx;
+
 	public void stop() {
 		minaServer.stop();
 	}
@@ -71,7 +73,7 @@ public class HumanTaskServer implements IBPMTaskService {
 			//ut.begin();
 			//ClassLoader tccl = Thread.currentThread().getContextClassLoader();
 			//Thread.currentThread().setContextClassLoader(HumanTaskServer.class.getClassLoader());
-			
+			 jndiCtx = jndiTemplate.getContext();
 
 			taskService = new JTACustomTaskService(globalTransactionManager,
 					jndiTemplate, userTransaction,emfOrgJbpmTask,
@@ -165,11 +167,41 @@ public class HumanTaskServer implements IBPMTaskService {
 	public void setPortalUserService(IPortalUserService portalUserService) {
 		this.portalUserService = portalUserService;
 	}
+	
+	@Override
+	public void addUser(String userName) throws Exception
+	{
+/*		 UserTransaction ut = (UserTransaction)jndiCtx.lookup( "java:comp/UserTransaction" );
+		 try
+		 {
+			ut.begin();*/
+			
+			TaskServiceSession ts = taskService.createSession();
+			
+			try {
+					ts.addUser(new User(userName));
+			} catch (Exception e) {
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				String stacktrace = sw.toString();
+				logger.error(stacktrace);
+				//ut.rollback();
+				throw e;
+			}
+/*			ut.commit();
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+			
+			throw new RuntimeException(stacktrace);
+		}	*/			
+	}		
 
 	private void addUsersAndGroups() throws NamingException
 	{
-		 Context ctx = jndiTemplate.getContext();
-		 UserTransaction ut = (UserTransaction)ctx.lookup( "java:comp/UserTransaction" );
+		 UserTransaction ut = (UserTransaction)jndiCtx.lookup( "java:comp/UserTransaction" );
 
 		 try
 		 {
