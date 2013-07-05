@@ -12,6 +12,7 @@ import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;
 import com.vaadin.terminal.Resource;
+import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Embedded;
@@ -44,7 +45,7 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 
 		item = container.getItem(itemId);
 		if (item != null) {
-			icon = item.getItemProperty(iconPropertyId) != null ? (Resource) item.getItemProperty(iconPropertyId).getValue() : null;
+			icon = item.getItemProperty(iconPropertyId) != null ? (Resource) item.getItemProperty(iconPropertyId).getValue() : new ThemeResource("icons/conx/conx-navigation-warehouse-icon.png");
 			title = item.getItemProperty(titlePropertyId) != null ? (String) item.getItemProperty(titlePropertyId).getValue() : null;
 			if (icon != null && title != null) {
 				node = new FlowFrameNavigationTreeNode(icon, title, itemId);
