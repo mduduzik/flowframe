@@ -46,8 +46,8 @@ public class FlowFrameNavigationAccordion extends VerticalLayout implements Valu
 				nameProperty = currentItem.getItemProperty("Name");
 				if (nameProperty != null && nameProperty.getValue() instanceof String) {
 					FlowFrameNavigationTree tree = new FlowFrameNavigationTree();
-					tree.setNamePropertyId("Name");
-					tree.setNavigationContainer(container, id);
+					tree.setTitlePropertyId("Name");
+					tree.setContainerItemDataSource(container);
 					addCategory(tree, (String) nameProperty.getValue());
 				}
 			}
@@ -55,21 +55,7 @@ public class FlowFrameNavigationAccordion extends VerticalLayout implements Valu
 	}
 
 	public void setContainer(JPAContainer<?> jpaContainer) {
-		Collection<?> ids = jpaContainer.rootItemIds();
-
-		Property nameProperty = null;
-		for (Object id : ids) {
-			Item currentItem = jpaContainer.getItem(id);
-			if (currentItem != null) {
-				nameProperty = currentItem.getItemProperty("Name");
-				if (nameProperty != null && nameProperty.getValue() instanceof String) {
-					FlowFrameNavigationTree tree = new FlowFrameNavigationTree();
-					tree.setNamePropertyId("Name");
-					tree.setNavigationContainer(jpaContainer, id);
-					addCategory(tree, (String) nameProperty.getValue());
-				}
-			}
-		}
+		throw new UnsupportedOperationException("Setting JPAContainers to back FF Accordion is unsupported.");
 	}
 
 	public void addNavigationListener(ValueChangeListener listener) {
