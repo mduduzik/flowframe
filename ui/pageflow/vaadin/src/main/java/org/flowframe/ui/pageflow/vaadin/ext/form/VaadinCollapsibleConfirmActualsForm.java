@@ -16,6 +16,7 @@ import org.flowframe.ui.vaadin.forms.impl.VaadinFormFieldAugmenter;
 import org.flowframe.ui.vaadin.forms.impl.VaadinFormHeader;
 
 import com.vaadin.data.Buffered;
+import com.vaadin.data.Item;
 import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.event.MouseEvents.ClickEvent;
 import com.vaadin.event.MouseEvents.ClickListener;
@@ -120,6 +121,10 @@ public class VaadinCollapsibleConfirmActualsForm extends VaadinForm {
 
 		// No problems occurred
 		if (problems == null) {
+			Item item = this.getItemDataSource();
+			if (item.getItemProperty("name") != null)
+				this.header.setTitle(item.getItemProperty("name").getValue().toString());
+			
 			this.alertPanel.setAlertType(AlertType.SUCCESS);
 			this.alertPanel.setMessage(this.header.getTitle() + " was saved successfully.");
 			this.alertPanel.setVisible(true);

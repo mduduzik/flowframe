@@ -82,7 +82,7 @@ public class EntityFormPresenter extends ConfigurableBasePresenter<IEntityFormVi
 				}
 			}
 			this.getView().setItemDataSource(item);
-			this.getView().setFormTitle(formComponent.getCaption() + " (" + this.itemDataSource.getItemProperty("code").getValue().toString() + ")");
+			this.getView().setFormTitle(formComponent.getCaption() + " (" + this.itemDataSource.getItemProperty("name").getValue().toString() + ")");
 		}
 	}
 

@@ -37,6 +37,8 @@ public class EditorFormPresenter extends
 	private IDAOProvider daoProvider;
 	private Map<String, Object> config;
 
+	private VaadinForm formVaadinComponent;
+
 	@Override
 	public void onSetItemDataSource(Item item, Container... container)
 			throws Exception {
@@ -61,8 +63,8 @@ public class EditorFormPresenter extends
 		this.daoProvider = (IDAOProvider) params
 				.get(IPageComponent.DAO_PROVIDER);
 
-		this.getView().setForm(
-				(VaadinForm) this.factory.createComponent(this.formComponent));
+		this.formVaadinComponent = (VaadinForm) this.factory.createComponent(this.formComponent);
+		this.getView().setForm(formVaadinComponent);
 		this.getView().addListener(this);
 	}
 
@@ -85,15 +87,13 @@ public class EditorFormPresenter extends
 		}
 	}
 
-	public void onSave() throws Exception {
+	public void onSave() throws Exception {		
 		if (this.getView().getForm().saveForm()) {
-			if (this.getView().getForm().getItemDataSource() instanceof BeanItem<?>) {
-				Object bean = ((BeanItem<?>) this.getView().getForm()
-						.getItemDataSource()).getBean();
+/*			if (item instanceof BeanItem<?>) {
+				Object bean = ((BeanItem<?>) this.getView().getForm().getItemDataSource()).getBean();
 				throw new UnsupportedOperationException("saveInstance is no longer supported in Flowframe. It used to use DAOs to create beans.");
 //				VaadinPageDataBuilder.saveInstance(bean, this.daoProvider);
-			}
-
+			}*/
 			fireEvent("disableValidate");
 			fireEvent("disableSave");
 			fireEvent("disableReset");

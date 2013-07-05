@@ -110,6 +110,15 @@ public class FlowFrameNavigationTree extends TreeTable implements ValueChangeLis
 
 	private void addChildren(JPAContainer<?> container, Object parentId, Integer parentNavItemId) {
 		Collection<?> ids = null;
+		
+        Object[] properties = new Object[1];
+        properties[0] = namePropertyId;
+
+        boolean[] ascending = new boolean[1];
+        ascending[0] = true;
+
+        container.sort(properties, ascending);		
+		
 		if (parentId == null) {
 			ids = container.rootItemIds();
 		} else {
