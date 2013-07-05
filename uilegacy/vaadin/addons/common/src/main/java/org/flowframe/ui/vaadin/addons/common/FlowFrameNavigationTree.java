@@ -1,8 +1,8 @@
 package org.flowframe.ui.vaadin.addons.common;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.TreeMap;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -27,7 +27,7 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 	public static final byte NAV_INDENT_WIDTH = 30;
 
 	private FlowFrameNavigationTreeNode selectedNode = null;
-	private TreeMap<Object, FlowFrameNavigationTreeNode> id2NodeMap = new TreeMap<Object, FlowFrameNavigationTree.FlowFrameNavigationTreeNode>();
+	private HashMap<Object, FlowFrameNavigationTreeNode> id2NodeMap = new HashMap<Object, FlowFrameNavigationTree.FlowFrameNavigationTreeNode>();
 	private String iconPropertyId = "icon", titlePropertyId = "name";
 	private ValueChangeListener navigationListener;
 
@@ -45,26 +45,34 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 
 		item = container.getItem(itemId);
 		if (item != null) {
-			icon = item.getItemProperty(iconPropertyId) != null ? (Resource) item.getItemProperty(iconPropertyId).getValue() : new ThemeResource("icons/conx/conx-navigation-warehouse-icon.png");
-			title = item.getItemProperty(titlePropertyId) != null ? (String) item.getItemProperty(titlePropertyId).getValue() : null;
-			if (icon != null && title != null) {
-				node = new FlowFrameNavigationTreeNode(icon, title, itemId);
-				this.id2NodeMap.put(itemId, node);
-				// Take care of children first
-				if ((children = container.getChildren(itemId)) != null) {
-					for (Object childItemId : children) {
-						childNode = createNode(container, childItemId);
-						node.addChild(childNode);
-					}
-				}
-				// Root elements must be added at the highest level
-				if (container.getParent(itemId) == null) {
-					addComponent(node);
-				}
-				return node;
+			if (item.getItemProperty(this.iconPropertyId) != null && item.getItemProperty(this.iconPropertyId).getValue() != null) {
+				icon = (Resource) item.getItemProperty(this.iconPropertyId).getValue();
 			} else {
-				throw new IllegalArgumentException("Item with id '" + itemId + "' didn't have a Resource type field called 'icon' and a String type field called 'name'.");
+				if (container.getChildren(itemId) != null && container.getChildren(itemId).size() > 0) {
+					icon = new ThemeResource("tree/img/conx-nav-default-node-1.png");
+				} else {
+					icon = new ThemeResource("tree/img/conx-nav-default-node-2.png");
+				}
 			}
+			if (item.getItemProperty(this.titlePropertyId) != null && item.getItemProperty(this.titlePropertyId).getValue() != null) {
+				title = (String) item.getItemProperty(this.titlePropertyId).getValue();
+			} else {
+				title = "Untitled";
+			}
+			node = new FlowFrameNavigationTreeNode(icon, title, itemId);
+			this.id2NodeMap.put(itemId, node);
+			// Take care of children first
+			if ((children = container.getChildren(itemId)) != null) {
+				for (Object childItemId : children) {
+					childNode = createNode(container, childItemId);
+					node.addChild(childNode);
+				}
+			}
+			// Root elements must be added at the highest level
+			if (container.getParent(itemId) == null) {
+				addComponent(node);
+			}
+			return node;
 		} else {
 			return null;
 		}
@@ -227,9 +235,11 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 							FlowFrameNavigationTreeNode.this.children.setVisible(false);
 						}
 					} else {
-						if (FlowFrameNavigationTree.this.selectedNode != null && FlowFrameNavigationTree.this.selectedNode != FlowFrameNavigationTreeNode.this) {
+						if (FlowFrameNavigationTree.this.selectedNode != FlowFrameNavigationTreeNode.this) {
 							// Is a leaf node
-							FlowFrameNavigationTree.this.selectedNode.node.removeStyleName("selected");
+							if (FlowFrameNavigationTree.this.selectedNode != null) {
+								FlowFrameNavigationTree.this.selectedNode.node.removeStyleName("selected");
+							}
 							if (!FlowFrameNavigationTreeNode.this.node.getStyleName().contains("selected")) {
 								FlowFrameNavigationTreeNode.this.node.addStyleName("selected");
 							}
@@ -260,7 +270,7 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 
 											public void setReadOnly(boolean newStatus) {
 											}
-											
+
 										};
 									}
 								});
