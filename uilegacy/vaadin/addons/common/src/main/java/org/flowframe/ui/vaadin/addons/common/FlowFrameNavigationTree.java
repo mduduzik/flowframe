@@ -30,6 +30,7 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 	private HashMap<Object, FlowFrameNavigationTreeNode> id2NodeMap = new HashMap<Object, FlowFrameNavigationTree.FlowFrameNavigationTreeNode>();
 	private String iconPropertyId = "icon", titlePropertyId = "name";
 	private ValueChangeListener navigationListener;
+	private Object rootItemId;
 
 	public FlowFrameNavigationTree() {
 		setWidth("100%");
@@ -69,7 +70,7 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 				}
 			}
 			// Root elements must be added at the highest level
-			if (container.getParent(itemId) == null) {
+			if (container.getParent(itemId) == this.rootItemId || container.getParent(itemId) == null) {
 				addComponent(node);
 			}
 			return node;
@@ -78,15 +79,19 @@ public class FlowFrameNavigationTree extends VerticalLayout {
 		}
 	}
 
-	public void setContainerItemDataSource(HierarchicalContainer container) {
+	public void setContainerItemDataSource(HierarchicalContainer container, Object rootItemId) {
 		if (container == null)
 			throw new IllegalArgumentException("The container parameter (HierarchicalContainer container) was null.");
+		this.rootItemId = rootItemId;
 		// Clear the tree first
 		removeAllComponents();
 		// Add the root items and their children recursively
-		for (Object itemId : container.rootItemIds()) {
-			if (itemId != null) {
-				createNode(container, itemId);
+		Collection<?> ids;
+		if ((ids = container.getChildren(rootItemId)) != null) {
+			for (Object itemId : ids) {
+				if (itemId != null) {
+					createNode(container, itemId);
+				}
 			}
 		}
 	}

@@ -47,7 +47,7 @@ public class FlowFrameNavigationAccordion extends VerticalLayout implements Valu
 				if (nameProperty != null && nameProperty.getValue() instanceof String) {
 					FlowFrameNavigationTree tree = new FlowFrameNavigationTree();
 					tree.setTitlePropertyId("Name");
-					tree.setContainerItemDataSource(container);
+					tree.setContainerItemDataSource(container, id);
 					addCategory(tree, (String) nameProperty.getValue());
 				}
 			}
