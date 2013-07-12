@@ -20,6 +20,8 @@
 	<!-- KERNEL.TM Transaction Manager -->
 	<osgi:reference id="globalTransactionManager" interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
 	</osgi:reference>
+	
+	<osgi:reference id="folderDao" interface="org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService"/>
 
 	<!-- export internal interfaces -->
 	<osgi:service ref="subscriptionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService">

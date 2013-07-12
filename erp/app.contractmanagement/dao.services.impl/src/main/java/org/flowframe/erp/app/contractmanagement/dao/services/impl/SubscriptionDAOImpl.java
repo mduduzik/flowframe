@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,6 +18,8 @@ import org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOSer
 import org.flowframe.erp.app.contractmanagement.domain.Customer;
 import org.flowframe.erp.app.contractmanagement.domain.Subscription;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -151,6 +154,36 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		return sub;		
 	}	
 	
+	@Override
+	public SubscriptionPlan getCurrentSubscriptionbByUserEmail(String customerUserEmaillAddress) {
+		SubscriptionPlan plan = null;
+		try
+		{
+			User user = getUserByEmailAddress(customerUserEmaillAddress);
+			if (Validator.isNull(user))
+				return null;
+			
+			Organization cust = em.getReference(Organization.class, user.getTenant().getId());
+			
+			Subscription sub = getByCustomerId(cust.getId());		
+			if (sub != null)
+				plan = sub.getSubscribedPlan();
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return plan;		
+	}		
 	
 	@Override
 	public Long getPlanIdByCustomerId(Long customerId) {
@@ -318,5 +351,43 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 			record = addPlan(record);
 		}
 		return record;
+	}
+
+	@Override
+	public List<SubscriptionPlan> getAllPlansAvailableForSubscriptionByUserEmail(String userEmailAddress) {
+		User user = getUserByEmailAddress(userEmailAddress);
+		if (Validator.isNull(user))
+			return null;
+		
+		Organization cust = em.getReference(Organization.class, user.getTenant().getId());
+		
+		Subscription sub = getByCustomerId(cust.getId());
+		
+		Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan o WHERE o.id NOT in (:planId)");
+		query.setParameter("planId", sub.getSubscribedPlan().getId());
+		
+		return query.getResultList();
 	}	
+	
+	private User getUserByEmailAddress(String userEmailAddress) {
+		User record = null;
+		try {
+			Query query = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.user.User o where o.emailAddress = :emailAddress");
+			query.setParameter("emailAddress", userEmailAddress);
+			record = (User) query.getSingleResult();
+		} catch (NoResultException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+		
+		return record;		
+	}
 }

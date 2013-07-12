@@ -32,14 +32,18 @@ public class EmbeddedAppPresenter extends BasePresenter<IEmbeddedAppView, Embedd
     		String userparam = this.component.getUserTokenName();
     		URL aURL = new URL(bpmnUrl);
     		String ref = aURL.getRef();
+    		if (ref == null || ref.trim().isEmpty())
+    			ref = "";
+    		else
+    			ref = "#"+aURL.getRef();
     		String query = aURL.getQuery();
     		if (query != null){
     			query += "&"+userparam+"="+currentUser.getScreenName();
-    			bpmnUrl = aURL.getProtocol()+"://"+aURL.getHost()+":"+aURL.getPort()+aURL.getPath()+"?"+query+"#"+aURL.getRef();
+    			bpmnUrl = aURL.getProtocol()+"://"+aURL.getHost()+":"+aURL.getPort()+aURL.getPath()+"?"+query+ref;
     		}
     		else {
     			bpmnUrl += userparam+"="+currentUser.getScreenName();
-    			bpmnUrl = aURL.getProtocol()+"://"+aURL.getHost()+":"+aURL.getPort()+aURL.getPath()+"#"+aURL.getRef();
+    			bpmnUrl = aURL.getProtocol()+"://"+aURL.getHost()+":"+aURL.getPort()+aURL.getPath()+ref;
     		}
     		
 			ExternalResource eress = new ExternalResource(bpmnUrl, "application/html"); 

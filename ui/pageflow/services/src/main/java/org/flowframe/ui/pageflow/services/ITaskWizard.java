@@ -14,4 +14,5 @@ public interface ITaskWizard extends IPageFlowListener {
 	public boolean isNextEnabled();
 	public void setBackEnabled(boolean isEnabled);
 	public boolean isBackEnabled();
+	public void setFinishEnabled(boolean isEnabled);
 }

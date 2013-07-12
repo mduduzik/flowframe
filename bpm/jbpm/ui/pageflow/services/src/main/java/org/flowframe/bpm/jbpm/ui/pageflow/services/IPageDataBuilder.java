@@ -11,7 +11,7 @@ import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
 
 public interface IPageDataBuilder {
-	public Set<Object> buildResultData(Component component);
+	public Set<Object> buildResultData(Component component);	
 
 	public Map<String, Object> buildResultDataMap(Map<String, Object> parameterData, Collection<?> data, Map<Class<?>, String> resultKeyMap);
 

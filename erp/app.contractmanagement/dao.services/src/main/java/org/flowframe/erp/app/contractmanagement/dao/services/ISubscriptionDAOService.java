@@ -9,6 +9,8 @@ import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 public interface ISubscriptionDAOService {
 	
 	final static public String FREE_TRIAL_PLAN_NAME ="FF Free Plan - $0";
+	final static public String BASIC_PLAN_NAME ="FF Basic Plan";
+	final static public String PROF_PLAN_NAME ="FF Professional Plan";
 	
 	public Subscription get(long id);
 	
@@ -32,6 +34,10 @@ public interface ISubscriptionDAOService {
 	public SubscriptionPlan getPlan(long id);
 	
 	public List<SubscriptionPlan> getAllPlans();
+	
+	public List<SubscriptionPlan> getAllPlansAvailableForSubscriptionByUserEmail(String emailAddress);
+	
+	public SubscriptionPlan getCurrentSubscriptionbByUserEmail(String emailAddress);
 	
 	public SubscriptionPlan getPlanByCode(String code);	
 	

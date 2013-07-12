@@ -11,10 +11,14 @@ import javax.persistence.Query;
 
 import org.flowframe.erp.app.contractmanagement.dao.customer.ICustomerDAOService;
 import org.flowframe.erp.app.contractmanagement.domain.Customer;
-import org.flowframe.erp.app.contractmanagement.domain.CustomerUser;
+import org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.flowframe.kernel.common.mdm.domain.user.User;
 import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +33,9 @@ public class CustomerDAOImpl implements ICustomerDAOService{
     @PersistenceContext
     private EntityManager em;	
     
+	@Autowired
+	private IFolderDAOService folderDAOService;
+    
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
@@ -42,10 +49,26 @@ public class CustomerDAOImpl implements ICustomerDAOService{
 	public List<Customer> getAll() {
 		return em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Customer o record by o.id").getResultList();
 	}
+	
+	public Customer update(Customer record) {
+		return em.merge(record);
+	}
 
 	@Override
 	public Customer add(Customer record) {
-		return em.merge(record);
+		
+		record = update(record);//to get id
+		
+		try {
+			Folder folder = folderDAOService.provideFolderForEntity(Organization.class, record.getId());
+			record.setDocFolder(folder);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Prviding folder for Customer("+record.getId()+") failed...",e);
+		}
+		
+		record = update(record);//update
+
+		return record;		
 	}
 
 	@Override
@@ -57,42 +80,20 @@ public class CustomerDAOImpl implements ICustomerDAOService{
 		return existingRecord;
 	}
 	
-	
-	public CustomerUser addUser(CustomerUser record) {
-		return em.merge(record);
-	}
-
-	public CustomerUser updateUser(CustomerUser record) {
-		return em.merge(record);
-	}
-	
-	@Override
-	public CustomerUser provideUser(CustomerUser record) {
-		CustomerUser existingRecord = getUserByEmailAddress(record.getEmailAddress());
-		if (Validator.isNull(existingRecord))
-		{		
-			record = addUser(record);
-		}
-		else
-		{
-			record = updateUser(record);
-		}
-		return record;
-	}	
 
 	@Override
-	public Long getUserCustomerIdByEmailAddress(String emailAddress) {
+	public Long getUserIdByEmailAddress(String emailAddress) {
 		return getUserCustomerId(emailAddress);
 	}
 
 
 	private Long getUserCustomerId(String userEmailAddress) {
 		
-		CustomerUser user = getUserByEmailAddress(userEmailAddress);
+		User user = getUserByEmailAddress(userEmailAddress);
 		if (Validator.isNull(user))
 			return null;
 		
-		Customer cust = em.getReference(Customer.class, user.getCustomer().getId());
+		Organization cust = em.getReference(Organization.class, user.getTenant().getId());
 		
 		if (Validator.isNotNull(cust))
 			return cust.getId();
@@ -146,12 +147,12 @@ public class CustomerDAOImpl implements ICustomerDAOService{
 		return record;
 	}
 
-	private CustomerUser getUserByEmailAddress(String userEmailAddress) {
-		CustomerUser record = null;
+	private User getUserByEmailAddress(String userEmailAddress) {
+		User record = null;
 		try {
-			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.CustomerUser o where o.emailAddress = :emailAddress");
+			Query query = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.user.User o where o.emailAddress = :emailAddress");
 			query.setParameter("emailAddress", userEmailAddress);
-			record = (CustomerUser) query.getSingleResult();
+			record = (User) query.getSingleResult();
 		} catch (NoResultException e) {
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();

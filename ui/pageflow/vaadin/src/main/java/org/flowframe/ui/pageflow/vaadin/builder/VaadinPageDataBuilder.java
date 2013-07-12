@@ -649,5 +649,50 @@ public class VaadinPageDataBuilder implements IPageDataBuilder {
 				}
 			} 			 
 		}
+	}
+
+	@Override
+	public boolean validateData(Component component) {
+		boolean validated = true;
+		if (component instanceof IVaadinDataComponent) {
+			validated = ((IVaadinDataComponent) component).validate();
+		} else if (component instanceof FlowFrameVerticalSplitPanel) {
+			FlowFrameVerticalSplitPanel splitPanel = (FlowFrameVerticalSplitPanel) component;
+			boolean firstValid = validateData(splitPanel.getFirstComponent());
+			boolean secondValid = validateData(splitPanel.getSecondComponent());
+			validated = firstValid && secondValid;
+		} else if (component instanceof VaadinForm) {
+			VaadinForm form = (VaadinForm) component;
+			try {
+				validated = form.validateForm();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			if (component instanceof AbstractOrderedLayout) {
+				Iterator<Component> iterator = ((AbstractOrderedLayout) component).getComponentIterator();
+				Component nextComponent = null;
+				while (iterator.hasNext()) {
+					nextComponent = iterator.next();
+					validated = validated || validateData(nextComponent);
+				}
+			}
+			else if (component instanceof TabSheet) {
+				Iterator<Component> tabIt = ((TabSheet) component).getComponentIterator();
+				Component nextComponent = null;
+				while (tabIt.hasNext())
+				{
+					nextComponent = tabIt.next();
+					validated = validated || validateData(nextComponent);
+				}
+			}			
+			else
+			{
+				logger.warn("Component "+component.getClass().getName()+"not covered by VaadinPageDataBuilder.buildResultData");
+			}
+		}
+
+		return validated;
 	}	
 }

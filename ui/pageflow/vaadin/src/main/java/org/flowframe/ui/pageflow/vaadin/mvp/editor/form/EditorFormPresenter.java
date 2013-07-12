@@ -2,17 +2,18 @@ package org.flowframe.ui.pageflow.vaadin.mvp.editor.form;
 
 import java.util.Map;
 
-import org.flowframe.ui.pageflow.services.IPageComponent;
-import org.flowframe.ui.pageflow.services.IPageFactory;
 import org.flowframe.kernel.jpa.container.services.IDAOProvider;
 import org.flowframe.ui.component.domain.form.FormComponent;
-import org.flowframe.ui.pageflow.vaadin.builder.VaadinPageDataBuilder;
+import org.flowframe.ui.pageflow.services.IPageComponent;
+import org.flowframe.ui.pageflow.services.IPageFactory;
 import org.flowframe.ui.pageflow.vaadin.ext.mvp.IConfigurablePresenter;
 import org.flowframe.ui.pageflow.vaadin.ext.mvp.IContainerItemPresenter;
 import org.flowframe.ui.pageflow.vaadin.ext.mvp.ILocalizedEventSubscriber;
+import org.flowframe.ui.pageflow.vaadin.ext.mvp.IVaadinDataComponent;
 import org.flowframe.ui.pageflow.vaadin.mvp.editor.form.view.EditorFormView;
 import org.flowframe.ui.pageflow.vaadin.mvp.editor.form.view.IEditorFormView;
 import org.flowframe.ui.services.factory.IComponentFactory;
+import org.flowframe.ui.vaadin.editors.entity.vaadin.mvp.MultiLevelEntityEditorPresenter;
 import org.flowframe.ui.vaadin.forms.impl.VaadinForm;
 import org.flowframe.ui.vaadin.forms.listeners.IFormChangeListener;
 import org.slf4j.Logger;
@@ -23,7 +24,6 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
-import com.vaadin.data.util.BeanItem;
 
 @Presenter(view = EditorFormView.class)
 public class EditorFormPresenter extends
@@ -38,6 +38,8 @@ public class EditorFormPresenter extends
 	private Map<String, Object> config;
 
 	private VaadinForm formVaadinComponent;
+
+	private MultiLevelEntityEditorPresenter mleePresenter;
 
 	@Override
 	public void onSetItemDataSource(Item item, Container... container)
@@ -62,6 +64,9 @@ public class EditorFormPresenter extends
 				.get(IComponentFactory.VAADIN_COMPONENT_FACTORY);
 		this.daoProvider = (IDAOProvider) params
 				.get(IPageComponent.DAO_PROVIDER);
+		
+		this.mleePresenter = (MultiLevelEntityEditorPresenter) config.get(IComponentFactory.FACTORY_PARAM_MVP_CURRENT_MLENTITY_EDITOR_PRESENTER);
+
 
 		this.formVaadinComponent = (VaadinForm) this.factory.createComponent(this.formComponent);
 		this.getView().setForm(formVaadinComponent);
@@ -80,6 +85,7 @@ public class EditorFormPresenter extends
 			fireEvent("disableValidate");
 			fireEvent("enableSave");
 			fireEvent("enableReset");
+			((IVaadinDataComponent)this.mleePresenter).validate();
 		} else {
 			fireEvent("disableValidate");
 			fireEvent("disableSave");
@@ -97,6 +103,8 @@ public class EditorFormPresenter extends
 			fireEvent("disableValidate");
 			fireEvent("disableSave");
 			fireEvent("disableReset");
+			
+			((IVaadinDataComponent)this.mleePresenter).validate();
 		} else {
 			fireEvent("disableValidate");
 			fireEvent("disableSave");

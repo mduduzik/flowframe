@@ -88,6 +88,10 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 
 		// Init steps
 		addAllPages();
+		
+		getNextButton().setEnabled(false);
+		getBackButton().setEnabled(false);	
+		getFinishButton().setEnabled(false);
 	}
 
 	public TaskWizard(IPageFlowSession session, Map<String, Object> properties) {
@@ -111,6 +115,10 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 
 		// Init steps
 		addAllPages();
+
+		getNextButton().setEnabled(false);
+		getBackButton().setEnabled(false);		
+		getFinishButton().setEnabled(false);	
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -346,6 +354,15 @@ public class TaskWizard extends Wizard implements ITaskWizard, IPageFlowPageChan
 	@Override
 	public boolean isBackEnabled() {
 		return !backButtonBlocked;
+	}
+	
+	@Override
+	public void setFinishEnabled(boolean isEnabled) {
+		if (isEnabled) {
+			boolean isLastStep = isLastStep(currentStep);
+			if (isLastStep)
+				getFinishButton().setEnabled(isEnabled);
+		}
 	}
 
 	public void onPagesChanged() {

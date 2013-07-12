@@ -21,7 +21,7 @@ public class FileEntry extends AbstractDocument {
 	private InputStream	contentStream;	
 	
 	@XmlTransient
-	@OneToOne
+	@ManyToOne
 	private Folder folder;
 	
 	@ManyToOne

@@ -43,4 +43,6 @@ public interface IFolderDAOService {
 	public FileEntry addorUpdateFileEntry(BaseEntity entity, DocType attachmentType, File sourceFile, String mimeType, String title, String description) throws Exception;
 
 	public FileEntry addorUpdateFileEntry(Folder folder, DocType attachmentType, String sourceFileName, String mimeType, String title, String description) throws Exception;
+	
+	public FileEntry addorUpdateFileEntry(Folder folder, DocType attachmentType, File sourceFile, String mimeType, String title, String description) throws Exception;
 }

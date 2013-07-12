@@ -14,6 +14,8 @@ public interface IARReceiptDAOService {
 	
 	public List<ARReceipt> getAllByCustomerId(Long customerId);	
 	
+	public List<ARReceipt> getAllByUserEmail(String emailAddress);
+	
 	public ARReceipt getByCode(String code);	
 
 	public ARReceipt add(ARReceipt record);

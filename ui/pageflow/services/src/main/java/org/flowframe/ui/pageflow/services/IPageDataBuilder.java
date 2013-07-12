@@ -12,6 +12,8 @@ import com.vaadin.ui.Component;
 
 public interface IPageDataBuilder {
 	public Set<Object> buildResultData(Component component);
+	
+	public boolean validateData(Component component);
 
 	public Map<String, Object> buildResultDataMap(Map<String, Object> parameterData, Collection<?> data, Map<Class<?>, String> resultKeyMap);
 

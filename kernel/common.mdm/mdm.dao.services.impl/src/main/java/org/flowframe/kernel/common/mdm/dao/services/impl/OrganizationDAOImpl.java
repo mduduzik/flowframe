@@ -193,12 +193,13 @@ public class OrganizationDAOImpl implements IOrganizationDAOService {
 	@Override
 	public Organization add(Organization record) throws Exception{
 		
-		record = em.merge(record);//to get id
+		record = update(record);//to get id
 		
 		Folder folder = folderDAOService.provideFolderForEntity(Organization.class, record.getId());
+		//folder = folderDAOService.add(folder);
 		record.setDocFolder(folder);
 		
-		record = em.merge(record);//update
+		record = update(record);//update
 
 		return record;
 	}

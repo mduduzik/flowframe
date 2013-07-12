@@ -1,6 +1,7 @@
 package org.flowframe.kernel.common.mdm.domain.user;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,12 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 
 
 @MappedSuperclass
-public class AbstractUser{
+public class AbstractUser implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -39,4 +41,9 @@ public class AbstractUser{
 	public void setTenant(Organization tenant) {
 		this.tenant = tenant;
 	}
+	
+    @Transient
+    public String getTenantName() {
+    	return this.tenant != null?this.tenant.getName():null;
+    }  
 }

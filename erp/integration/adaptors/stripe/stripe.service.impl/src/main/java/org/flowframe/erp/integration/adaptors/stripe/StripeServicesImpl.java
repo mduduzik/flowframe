@@ -171,7 +171,7 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		ffCustomer.setCode(createdCustomer.getId());
 		ffCustomer.setName(createdCustomer.getDescription());
 		ffCustomer.setExternalRefId(createdCustomer.getId());
-		ffCustomer.setDateCreated(new Date(createdCustomer.getCreated()));
+		ffCustomer.setDateCreated(new Date(createdCustomer.getCreated()*1000));
 		ffCustomer.setDelinquent(createdCustomer.getDelinquent());
 		
 		if (Validator.isNotNull(createdCustomer.getSubscription())) {
@@ -227,7 +227,7 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 	@Override
 	public Map<String,SubscriptionPlan> getAllSubscriptionPlans() throws Exception {
 		Map<String, Object> listParams = new HashMap<String, Object>();
-		listParams.put("count", 1);
+		listParams.put("count", 5);
 		List<Plan> plans = Plan.all(listParams).getData();
 		return toFFSubscriptionPlans(plans);
 	}
@@ -315,7 +315,7 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		SubscriptionPlan plan = subscriptionDAOService.getPlanByExternalRefId(subData.getPlan().getId());
 		org.flowframe.erp.app.contractmanagement.domain.Customer customer = (org.flowframe.erp.app.contractmanagement.domain.Customer)organizationDAOService.getByExternalRefId(subData.getCustomer());
 		Subscription ffSubscription = new Subscription(plan,customer);
-		ffSubscription.setStart(new Date(subData.getStart()));
+		ffSubscription.setStart(new Date(subData.getStart()*1000));
 		SUBSCRIPTIONSTATUS status = SUBSCRIPTIONSTATUS.ACTIVE;
 		if ("trialing".equals(subData.getStatus())) {
 			status = SUBSCRIPTIONSTATUS.TRAILING;
@@ -333,17 +333,17 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		if (Validator.isNotNull(subData.getCancelAtPeriodEnd()))
 			ffSubscription.setCancelAtPeriodEnd(subData.getCancelAtPeriodEnd());
 		if (Validator.isNotNull(subData.getCurrentPeriodStart()))
-			ffSubscription.setCurrentPeriodStart(new Date(subData.getCurrentPeriodStart()));
+			ffSubscription.setCurrentPeriodStart(new Date(subData.getCurrentPeriodStart()*1000));
 		if (Validator.isNotNull(subData.getCurrentPeriodEnd()))
-			ffSubscription.setCurrentPeriodEnd(new Date(subData.getCurrentPeriodEnd()));
+			ffSubscription.setCurrentPeriodEnd(new Date(subData.getCurrentPeriodEnd()*1000));
 		if (Validator.isNotNull(subData.getEndedAt()))
-		 ffSubscription.setEndedAt(new Date(subData.getEndedAt()));
+		 ffSubscription.setEndedAt(new Date(subData.getEndedAt()*1000));
 		if (Validator.isNotNull(subData.getTrialStart()))
-			ffSubscription.setTrialStart(new Date(subData.getTrialStart()));
+			ffSubscription.setTrialStart(new Date(subData.getTrialStart()*1000));
 		if (Validator.isNotNull(subData.getTrialEnd()))
-			ffSubscription.setTrialEnd(new Date(subData.getTrialEnd()));
+			ffSubscription.setTrialEnd(new Date(subData.getTrialEnd()*1000));
 		if (Validator.isNotNull(subData.getCanceledAt()))
-			ffSubscription.setCancelAt(new Date(subData.getCanceledAt()));
+			ffSubscription.setCancelAt(new Date(subData.getCanceledAt()*1000));
 		ffSubscription.setQuantity(subData.getQuantity());
 		
 		return ffSubscription;
@@ -435,17 +435,17 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		invoice_.setEndingBalance(invoice.getEndingBalance());
 		invoice_.setExternalCode(invoice.getId());
 		if (Validator.isNotNull(invoice.getNextPaymentAttempt()))
-			invoice_.setNextPaymentAttempt(new Date(invoice.getNextPaymentAttempt()));
+			invoice_.setNextPaymentAttempt(new Date(invoice.getNextPaymentAttempt()*1000));
 		invoice_.setAttempted(invoice.getAttempted());
 		invoice_.setCharge(invoice.getCharge());
 		invoice_.setClosed(invoice.getClosed());
 		if (Validator.isNotNull(invoice.getDate()))
-			invoice_.setDate(new Date(invoice.getDate()));
+			invoice_.setDate(new Date(invoice.getDate()*1000));
 		invoice_.setPaid(invoice.getPaid());
 		if (Validator.isNotNull(invoice.getPeriodStart()))
-			invoice_.setPeriodStart(new Date(invoice.getPeriodStart()));
+			invoice_.setPeriodStart(new Date(invoice.getPeriodStart()*1000));
 		if (Validator.isNotNull(invoice.getPeriodEnd()))
-			invoice_.setPeriodEnd(new Date(invoice.getPeriodEnd()));
+			invoice_.setPeriodEnd(new Date(invoice.getPeriodEnd()*1000));
 		invoice_.setLivemode(invoice_.getLivemode());
 		invoice_.setAttemptCount(invoice.getAttemptCount());
 		

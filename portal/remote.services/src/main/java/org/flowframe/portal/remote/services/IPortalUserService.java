@@ -31,4 +31,6 @@ public interface IPortalUserService {
 	public int getUserCountByCompanyId(String companyId) throws Exception;
 	
 	public String generateUnencryptedTemporaryPassword(String userEmailAddress) throws Exception;
+	
+	public User updatePassword(Long userId, String password, String password2, Boolean passwordReset) throws Exception;
 }

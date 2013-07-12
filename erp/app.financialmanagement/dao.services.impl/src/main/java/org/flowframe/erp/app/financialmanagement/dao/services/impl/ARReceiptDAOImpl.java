@@ -2,11 +2,13 @@ package org.flowframe.erp.app.financialmanagement.dao.services.impl;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,6 +19,7 @@ import org.flowframe.erp.app.financialmanagement.dao.services.IARReceiptDAOServi
 import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt;
 import org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceiptLine;
 import org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService;
+import org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService;
 import org.flowframe.kernel.common.mdm.domain.geolocation.Country;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.mdm.domain.user.User;
@@ -39,7 +42,10 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
     private EntityManager em;	
     
     @Autowired
-    private ICountryDAOService countryDao;     
+    private ICountryDAOService countryDao;  
+    
+    @Autowired
+    private IUserDAOService userDAOService;
     
 	public void setEm(EntityManager em) {
 		this.em = em;
@@ -52,7 +58,7 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 
 	@Override
 	public List<ARReceipt> getAll() {
-		return em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o record order by o.id",ARReceipt.class).getResultList();
+		return em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o record order by o.id").getResultList();
 	}
 	
 	@Override
@@ -60,7 +66,7 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 		List<ARReceipt> res = null;
 		try
 		{
-			TypedQuery<ARReceipt> query = em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o where o.debtor.id = :debtorId order by o.dateCreated desc",ARReceipt.class);
+			Query query = em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o where o.debtor.id = :debtorId order by o.dateCreated desc");
 			query.setParameter("debtorId", customerId);
 
 			
@@ -85,19 +91,13 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 	@Override
 	public ARReceipt getByCode(String code) {
 		ARReceipt rec = null;
-		
 		try
 		{
-			CriteriaBuilder builder = em.getCriteriaBuilder();
-			CriteriaQuery<ARReceipt> query = builder.createQuery(ARReceipt.class);
-			Root<ARReceipt> rootEntity = query.from(ARReceipt.class);
-			ParameterExpression<String> p = builder.parameter(String.class);
-			query.select(rootEntity).where(builder.equal(rootEntity.get("code"), p));
+			Query query = em.createQuery("select o from org.flowframe.erp.app.financialmanagement.domain.receivable.ARReceipt o where o.code = :code order by o.dateCreated desc");
+			query.setParameter("code", code);
 
-			TypedQuery<ARReceipt> typedQuery = em.createQuery(query);
-			typedQuery.setParameter(p, code);
 			
-			rec = typedQuery.getSingleResult();				
+			rec = (ARReceipt)query.getSingleResult();				
 		}
 		catch(NoResultException e){}
 		catch(Exception e)
@@ -112,7 +112,7 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 			logger.error(stacktrace);
 		}		
 		
-		return rec;
+		return rec;	
 	}	
 
 	@Override
@@ -174,4 +174,47 @@ public class ARReceiptDAOImpl implements IARReceiptDAOService {
 		em.refresh(record);
 		return record;
 	}
+
+	@Override
+	public List<ARReceipt> getAllByUserEmail(String emailAddress) {
+		logger.info("Getting user by email["+emailAddress+"]");
+		User user = getUserByEmailAddress(emailAddress);
+		logger.info("User by email["+emailAddress+"] is "+user);
+		if (Validator.isNull(user))
+			return null;
+		
+		Organization cust = em.getReference(Organization.class, user.getTenant().getId());
+		logger.info("User tenant is ["+cust.getName()+"]");
+		
+		if (Validator.isNotNull(cust)) {
+			List<ARReceipt> rcpts = getAllByCustomerId(cust.getId());
+			logger.info("Retrieved "+rcpts.size()+" receipts");
+			return rcpts;
+		}
+		else
+			return new ArrayList<ARReceipt>();		
+		
+	}
+	
+	private User getUserByEmailAddress(String userEmailAddress) {
+		User record = null;
+		try {
+			Query query = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.user.User o where o.emailAddress = :emailAddress");
+			query.setParameter("emailAddress", userEmailAddress);
+			record = (User) query.getSingleResult();
+		} catch (NoResultException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+		
+		return record;		
+	}		
 }

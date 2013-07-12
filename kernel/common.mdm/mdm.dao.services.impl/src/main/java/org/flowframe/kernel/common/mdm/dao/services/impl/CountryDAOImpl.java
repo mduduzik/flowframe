@@ -7,18 +7,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
+import org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService;
+import org.flowframe.kernel.common.mdm.domain.geolocation.Country;
+import org.flowframe.kernel.common.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import org.flowframe.kernel.common.utils.Validator;
-import org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService;
-import org.flowframe.kernel.common.mdm.domain.geolocation.Country;
-import org.flowframe.kernel.common.mdm.domain.geolocation.CountryState;
-import org.flowframe.kernel.common.mdm.domain.geolocation.Unloco;
 
 @Transactional
 @Repository
@@ -41,7 +38,7 @@ public class CountryDAOImpl implements ICountryDAOService {
 
 	@Override
 	public List<Country> getAll() {
-		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.geolocation.Country o record by o.id",Country.class).getResultList();
+		return em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.geolocation.Country o record by o.id").getResultList();
 	}
 	
 	@Override
@@ -50,10 +47,10 @@ public class CountryDAOImpl implements ICountryDAOService {
 		
 		try
 		{
-			TypedQuery<Country> q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.geolocation.Country o WHERE o.code = :code",Country.class);
+			Query q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.geolocation.Country o WHERE o.code = :code");
 			q.setParameter("code", code);
 						
-			org = q.getSingleResult();
+			org = (Country)q.getSingleResult();
 		}
 		catch(NoResultException e){}
 		catch(Exception e)

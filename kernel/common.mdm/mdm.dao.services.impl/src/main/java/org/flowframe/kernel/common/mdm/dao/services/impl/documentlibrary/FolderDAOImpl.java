@@ -237,6 +237,7 @@ public class FolderDAOImpl implements IFolderDAOService {
 			String description) throws Exception {
 		FileEntry fe = null;
 		Folder df = remoteDocumentRepository.provideFolderForEntity(entity).getDocFolder();
+		df = provide(df);
 
 		fe = remoteDocumentRepository.addorUpdateFileEntry(Long.toString(df.getFolderId()), sourceFile, mimeType, title, description);
 
@@ -252,6 +253,17 @@ public class FolderDAOImpl implements IFolderDAOService {
 	public FileEntry addorUpdateFileEntry(Folder folder, DocType attachmentType, String sourceFileName, String mimeType, String title,
 			String description) throws Exception {
 		FileEntry fe = remoteDocumentRepository.addorUpdateFileEntryOnRepoOnly(folder, attachmentType, sourceFileName, mimeType, title, description);
+
+		fe = addFileEntry(folder.getFolderId(), attachmentType, fe);
+
+		return fe;
+	}	
+	
+
+	@Override
+	public FileEntry addorUpdateFileEntry(Folder folder, DocType attachmentType, File sourceFile, String mimeType, String title,
+			String description) throws Exception {
+		FileEntry fe = remoteDocumentRepository.addorUpdateFileEntry(Long.toString(folder.getFolderId()), sourceFile, mimeType, title, description);
 
 		fe = addFileEntry(folder.getFolderId(), attachmentType, fe);
 

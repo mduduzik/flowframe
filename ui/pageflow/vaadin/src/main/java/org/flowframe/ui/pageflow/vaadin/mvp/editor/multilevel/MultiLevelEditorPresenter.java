@@ -140,6 +140,22 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 		}
 		return null;
 	}
+	
+	@Override
+	public boolean validate() {
+		Boolean validated = true;
+		Component originalEditor = this.editorCache.get(this.componentModel.getContent());
+		IPageFactory originalFactory = provideLocalizedFactory(this.componentModel.getContent());
+		if (originalEditor != null && originalFactory != null) {
+			validated = originalFactory.getDataBuilder().validateData(originalEditor);
+		}
+		
+		Object[] args = new Object[]{validated};
+		onFireAnonymousEvent("onEnableNextStepButton",args);
+		onFireAnonymousEvent("onFinishStepButton",args);
+		
+		return validated;
+	}	
 
 	public MasterDetailComponent getCurrentEditorComponentModel() {
 		return this.editorStack.peek();
@@ -193,6 +209,12 @@ public class MultiLevelEditorPresenter extends BasePresenter<IMultiLevelEditorVi
 	 * @param eventName
 	 * @param args
 	 */
+	public void onValidatePage() {
+		Boolean validated = validate();
+		Object[] args = new Object[]{validated};
+		onFireAnonymousEvent("onEnableNextStepButton",args);
+	}	
+	
 	public void onFireAnonymousEvent(String eventName, Object[] args) {
 		PresenterFactory factory;
 		for (Entry<MasterDetailComponent, IPageFactory> entry : this.factoryCache.entrySet()) {

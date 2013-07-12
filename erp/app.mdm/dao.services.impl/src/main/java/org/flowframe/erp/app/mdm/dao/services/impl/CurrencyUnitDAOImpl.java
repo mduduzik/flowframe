@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -59,20 +60,9 @@ public class CurrencyUnitDAOImpl implements ICurrencyUnitDAOService {
 		
 		try
 		{
-			CriteriaBuilder builder = em.getCriteriaBuilder();
-			CriteriaQuery<CurrencyUnit> query = builder.createQuery(CurrencyUnit.class);
-			Root<CurrencyUnit> rootEntity = query.from(CurrencyUnit.class);
-			ParameterExpression<String> p = builder.parameter(String.class);
-			query.select(rootEntity).where(builder.equal(rootEntity.get("code"), p));
-
-			TypedQuery<CurrencyUnit> typedQuery = em.createQuery(query);
-			typedQuery.setParameter(p, code);
-			
-			org = typedQuery.getSingleResult();				
-			//TypedQuery<CurrencyUnit> q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.currency.CurrencyUnit o WHERE o.code = :code",CurrencyUnit.class);
-			//q.setParameter("code", code);
-						
-			//org = q.getSingleResult();
+			Query query = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.currency.CurrencyUnit o WHERE o.code = :code order by o.name");
+			query.setParameter("code", code);
+			org = (CurrencyUnit)query.getSingleResult();				
 		}
 		catch(NoResultException e){}
 		catch(Exception e)

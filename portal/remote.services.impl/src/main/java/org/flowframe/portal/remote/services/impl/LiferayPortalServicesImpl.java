@@ -634,7 +634,44 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 		return user;
 	}
 	
-
+	@Override
+	public User updatePassword(Long userId, String password1, String password2, Boolean passwordReset) throws Exception {
+		// Add AuthCache to the execution context
+		BasicHttpContext ctx = new BasicHttpContext();
+		ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+		
+		HttpPost post = new HttpPost(
+				"/api/secure/jsonws/user/update-password");
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("userId", Long.toString(userId)));
+		params.add(new BasicNameValuePair("password1", password1));
+		params.add(new BasicNameValuePair("password2", password2));
+		params.add(new BasicNameValuePair("passwordReset", Boolean.toString(passwordReset)));
+	
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+		post.setEntity(entity);
+		
+		
+		HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+		System.out.println("updatePassword Status:["+resp.getStatusLine()+"]");
+		
+		String response = null;
+		if(resp.getEntity()!=null) {
+		    response = EntityUtils.toString(resp.getEntity());
+		}
+		
+		User user = null;
+		if (!StringUtil.contains(response, "NoSuch", "") 
+			|| !StringUtil.contains(response, "Exception", ""))
+		{
+			JSONDeserializer<User> deserializer = new JSONDeserializer<User>();
+			user = deserializer.deserialize(response,User.class);
+		}		
+		
+		EntityUtils.consume(resp.getEntity());
+		
+		return user;
+	}	
 	
 	/*
 	 * 
@@ -1015,5 +1052,5 @@ public class LiferayPortalServicesImpl implements IPortalUserService, IPortalOrg
 
 	public void setRootFolderId(String rootFolderId) {
 		this.rootFolderId = rootFolderId;
-	}	
+	}
 }

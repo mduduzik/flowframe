@@ -4,14 +4,13 @@ Export-Package: org.flowframe.erp.app.contractmanagement.domain;versio
  gement.domain.service,org.flowframe.erp.app.contractmanagement.type,o
  rg.flowframe.erp.app.financialmanagement.domain.payment,org.flowframe
  .erp.app.salesmanagement.domain.rates,org.flowframe.kernel.common.mdm
- .domain,org.flowframe.kernel.common.mdm.domain.organization,org.flowf
- rame.kernel.common.mdm.domain.role,org.flowframe.kernel.common.mdm.do
- main.user",org.flowframe.erp.app.contractmanagement.domain.service;ve
- rsion="0.0.1";uses:="javax.persistence,org.flowframe.erp.app.contract
- management.type,org.flowframe.erp.app.mdm.domain.enums,org.flowframe.
- erp.app.mdm.domain.product,org.flowframe.erp.app.salesmanagement.doma
- in.rates,org.flowframe.kernel.common.mdm.domain",org.flowframe.erp.ap
- p.contractmanagement.type;version="0.0.1"
+ .domain,org.flowframe.kernel.common.mdm.domain.organization",org.flow
+ frame.erp.app.contractmanagement.domain.service;version="0.0.1";uses:
+ ="javax.persistence,org.flowframe.erp.app.contractmanagement.type,org
+ .flowframe.erp.app.mdm.domain.enums,org.flowframe.erp.app.mdm.domain.
+ product,org.flowframe.erp.app.salesmanagement.domain.rates,org.flowfr
+ ame.kernel.common.mdm.domain",org.flowframe.erp.app.contractmanagemen
+ t.type;version="0.0.1"
 Bundle-Vendor: ConX
 Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Build-Jdk: 1.6.0_29

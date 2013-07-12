@@ -62,4 +62,19 @@ public class EditorFormView extends VerticalLayout implements IEditorFormView,
 		}
 		return null;
 	}
+
+	@Override
+	public boolean validate() {
+		boolean valid = false;
+		try {
+			valid = this.form.validateForm();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return valid;
+	}
+	
+	
 }

@@ -22,6 +22,8 @@
 	</osgi:reference>
 	
 	<osgi:reference id="countryDAOService" interface="org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService"/>
+	<osgi:reference id="userDAOService" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
+	<osgi:reference id="countryDAOService" interface="org.flowframe.kernel.common.mdm.dao.services.ICountryDAOService"/>
 	
 			
 	<!-- export internal interfaces -->

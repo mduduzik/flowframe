@@ -3,11 +3,18 @@ package org.flowframe.kernel.common.mdm.domain.user;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity;
+import org.flowframe.kernel.common.mdm.domain.role.Role;
 
 @Entity
 @Table(name="ffsyssecuser")
-public class User extends AbstractUser{
+public class User extends MultitenantBaseEntity {
+	@ManyToOne
+	private Role role;
+	
 	private String uuid;
 	private String originalUuid;
 	private long userId;
@@ -68,6 +75,17 @@ public class User extends AbstractUser{
 	private boolean setOriginalStatus;
 	private long columnBitmask;
 	
+	public User() {
+		super();
+	}
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	public String getUuid() {
 		return uuid;
 	}
@@ -421,5 +439,18 @@ public class User extends AbstractUser{
 	}
 	public void setColumnBitmask(long columnBitmask) {
 		this.columnBitmask = columnBitmask;
+	}
+	
+	public String getName() {
+		if (super.name != null)
+			return super.name;
+		if (getFirstName() != null && getLastName() != null)
+			return getFirstName()+" "+getLastName();
+		else if (getFirstName() != null)
+			return getFirstName();
+		else if (getLastName() != null)
+			return getLastName();
+		else
+			return null;
 	}
 }

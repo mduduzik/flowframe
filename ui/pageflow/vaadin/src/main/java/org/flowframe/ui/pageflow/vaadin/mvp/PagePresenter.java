@@ -86,6 +86,21 @@ public class PagePresenter extends BasePresenter<IPageView, PageEventBus> implem
 	public boolean onBack() {
 		return true;
 	}
+	
+	/**
+	 * MVP Anonymous Event Handlers
+	 */
+	public void onEnableNextStepButton(Boolean enable) {
+		this.wizard.setNextEnabled(enable);
+	}
+	
+	public void onBackStepButton(Boolean enable) {
+		this.wizard.setBackEnabled(enable);		
+	}	
+	
+	public void onFinishStepButton(Boolean enable) {
+		this.wizard.setFinishEnabled(enable);
+	}		
 
 	@Override
 	public void init(Map<String, Object> config) {
