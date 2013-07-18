@@ -24,11 +24,11 @@ public class Customer extends Organization {
 	@ManyToOne
     private Organization paymentProvider;
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+/*	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private Payment activePayment;	
 	
 	@OneToMany(targetEntity = Payment.class,cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-    private Set<Payment> previousPayments = new HashSet<Payment>();
+    private Set<Payment> previousPayments = new HashSet<Payment>();*/
 	
 	private Double accountBalance;
 	
@@ -62,7 +62,7 @@ public class Customer extends Organization {
 	public void setPaymentProvider(Organization paymentProvider) {
 		this.paymentProvider = paymentProvider;
 	}
-
+/*
 	public Payment getActivePayment() {
 		return activePayment;
 	}
@@ -70,7 +70,7 @@ public class Customer extends Organization {
 	public void setActivePayment(Payment activePayment) {
 		this.activePayment = activePayment;
 	}
-
+*/
 	public Double getAccountBalance() {
 		return accountBalance;
 	}
@@ -87,13 +87,13 @@ public class Customer extends Organization {
 		this.delinquent = delinquent;
 	}
 
-	public Set<Payment> getPreviousPayments() {
+/*	public Set<Payment> getPreviousPayments() {
 		return previousPayments;
 	}
 
 	public void setPreviousPayments(Set<Payment> previousPayments) {
 		this.previousPayments = previousPayments;
-	}
+	}*/
 
 	public Set<Subscription> getPreviousSubscriptions() {
 		return previousSubscriptions;

@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService;
 import org.flowframe.erp.app.contractmanagement.domain.Customer;
 import org.flowframe.erp.app.contractmanagement.domain.Subscription;
+import org.flowframe.erp.app.contractmanagement.domain.SubscriptionChange;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.mdm.domain.user.User;
@@ -133,10 +134,10 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		Subscription sub = null;
 		try
 		{
-			TypedQuery<Subscription> query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Subscription o where o.customer.id = :customerId",Subscription.class);
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.Subscription o where o.customer.id = :customerId AND o.active = TRUE");
 			query.setParameter("customerId", customerId);
 
-			sub = query.getSingleResult();				
+			sub = (Subscription)query.getSingleResult();				
 		}
 		catch(NoResultException e){}
 		catch(Exception e)
@@ -153,6 +154,35 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		
 		return sub;		
 	}	
+	
+	@Override
+	public Subscription getCurrentSubscriptionByUserEmail(String emailAddress) {
+		Subscription sub = null;
+		try
+		{
+			User user = getUserByEmailAddress(emailAddress);
+			if (Validator.isNull(user))
+				return null;
+			
+			Organization cust = em.getReference(Organization.class, user.getTenant().getId());
+			
+			sub = getByCustomerId(cust.getId());		
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return sub;		
+	}
 	
 	@Override
 	public SubscriptionPlan getCurrentSubscriptionbByUserEmail(String customerUserEmaillAddress) {
@@ -184,6 +214,15 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		
 		return plan;		
 	}		
+	
+	@Override
+	public Long getCurrentSubscriptionPlanIdByUserEmail(String customerUserEmaillAddress) {
+		SubscriptionPlan plan = getCurrentSubscriptionbByUserEmail(customerUserEmaillAddress);
+		if (plan != null)
+			return plan.getId();
+		else
+			return 0L;
+	}
 	
 	@Override
 	public Long getPlanIdByCustomerId(Long customerId) {
@@ -389,5 +428,51 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		}
 		
 		return record;		
+	}
+	
+	/**
+	 * 
+	 * SubscriptionChange
+	 * 
+	 */
+
+	@Override
+	public SubscriptionChange getSubscriptionChange(long id) {
+		return em.getReference(SubscriptionChange.class, id);
+	}
+
+	@Override
+	public List<SubscriptionChange> getAllSubscriptionChanges() {
+		return em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.SubscriptionChange o record by o.id",SubscriptionChange.class).getResultList();
+	}
+
+	@Override
+	public SubscriptionChange getSubscriptionChangeByCode(String code) {
+		SubscriptionChange record = null;
+		try {
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.SubscriptionChange o WHERE o.code = :code");
+			query.setParameter("code", code);
+			record = (SubscriptionChange) query.getSingleResult();
+		} catch (NoResultException e) {
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		} catch (Error e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}
+		
+		return record;
+	}
+
+	@Override
+	public SubscriptionChange addSubscriptionChange(SubscriptionChange record) {
+		record = em.merge(record);
+		
+		return record;
 	}
 }

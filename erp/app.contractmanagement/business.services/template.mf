@@ -12,4 +12,5 @@ Import-Package: javax.persistence.metamodel;version="0",
   org.flowframe.exception;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.services;version="[0.0.1,1.0.0)",
   org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
-  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)"
+  org.flowframe.kernel.common.mdm.domain.user;version="[0.0.1,1.0.0)",
+  org.flowframe.erp.app.contractmanagement.domain;version="[0.0.1,1.0.0)"

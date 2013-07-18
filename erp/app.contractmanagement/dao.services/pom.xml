@@ -22,6 +22,11 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.kernel.common.mdm.domain</artifactId>
 			<version>0.0.1</version>
-		</dependency>			
+		</dependency>	
+		<dependency>
+			<groupId>org.apache.servicemix.specs</groupId>
+			<artifactId>org.apache.servicemix.specs.jsr339-api-m10</artifactId>
+			<version>2.2.0</version>
+		</dependency>				
 	</dependencies>    
 </project>

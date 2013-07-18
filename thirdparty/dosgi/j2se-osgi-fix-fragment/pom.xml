@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>org.flowframe.thirdparty.dosgi-cxf</artifactId>
+		<groupId>org.flowframe</groupId>
+		<version>1.4.0</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>org.flowframe.thirdparty.dosgi.j2se-osgi-fix-fragment</artifactId>
+	<name>org.flowframe.thirdparty.dosgi.j2se-osgi-fix-fragment</name>
+	<repositories>
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.springsource.bundlor</groupId>
+				<artifactId>com.springsource.bundlor.maven</artifactId>
+				<executions>
+					<execution>
+						<id>build-manifest</id>
+						<goals>
+							<goal>bundlor</goal>
+						</goals>
+						<phase>none</phase>
+						<configuration>
+							<inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+							<outputPath>${basedir}/src/main/resources</outputPath>
+							<!-- used to properly set-up versions for system packages -->
+							<osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-bundle</id>
+						<goals>
+							<goal>bundlor</goal>
+						</goals>
+						<phase>none</phase>
+						<configuration>
+							<inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+							<outputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</outputPath>
+							<!-- used to properly set-up versions for system packages -->
+							<osgiProfilePath>${basedir}/../../java6-server.profile</osgiProfilePath>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

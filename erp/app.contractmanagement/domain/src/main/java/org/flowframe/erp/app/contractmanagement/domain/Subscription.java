@@ -15,15 +15,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.flowframe.erp.app.contractmanagement.type.SUBSCRIPTIONSTATUS;
 import org.flowframe.erp.app.financialmanagement.domain.payment.CreditCardPayment;
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Table(name = "fferpsubscription")
 public class Subscription extends BaseEntity {
+	
+	@XmlTransient
 	@ManyToOne
 	private SubscriptionPlan subscribedPlan;
 

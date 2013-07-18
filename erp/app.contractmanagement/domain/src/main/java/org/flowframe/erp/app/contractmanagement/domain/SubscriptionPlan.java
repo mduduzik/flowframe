@@ -35,7 +35,7 @@ public class SubscriptionPlan extends BaseEntity {
     
     private int intervalCount;
     
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private CalculatableRate rate;   
 	
 	

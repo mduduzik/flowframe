@@ -118,7 +118,7 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		Map<String, Object> newCustomerParams = toParamsMap(customerData);
 		
 		Map<String,Object> defaultTokenParams = new HashMap<String, Object>();
-		newCustomerParams.put("card",((CreditCardToken)customerData.getActivePayment()).getToken());
+		//newCustomerParams.put("card",((CreditCardToken)customerData.getActivePayment()).getToken());
 		newCustomerParams.put("plan", plan.getId());
 		Customer createdCustomer = Customer.create(newCustomerParams);
 		org.flowframe.erp.app.contractmanagement.domain.Customer convertedCustomer = toFFCustomer(createdCustomer);
@@ -134,8 +134,8 @@ public class StripeServicesImpl extends BaseStripeSONWSServicesImpl implements I
 		updateParams.put("card", cct.getToken());
 		Customer updatedCustomer = existingCustomer.update(updateParams);	
 		cct.setDateUsed(new Date());
-		customerData.getPreviousPayments().add(customerData.getActivePayment());
-		customerData.setActivePayment(cct);
+		//customerData.getPreviousPayments().add(customerData.getActivePayment());
+		//customerData.setActivePayment(cct);
 		return customerData;
 	}	
 

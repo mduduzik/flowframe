@@ -1,51 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 
-	<osgi:reference id="ffLoBEntityManagerFactory" interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
-	</osgi:reference>		
-	
-		<osgi:reference id="remoteDocumentRepository" interface="org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository"/>
-	
-	<!-- KERNEL.TM.JTA Transaction Manager -->
-	<osgi:reference id="globalJtaTransactionManager" interface="org.springframework.transaction.PlatformTransactionManager" filter="(module=KERNEL.TM.JTA)">
-	</osgi:reference>	
-	<tx:annotation-driven transaction-manager="globalJtaTransactionManager"/>		
-	
-	<!-- KERNEL.TM Transaction Manager -->
-	<osgi:reference id="globalTransactionManager" interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
+	<osgi:reference id="ffLoBEntityManagerFactory"
+		interface="javax.persistence.EntityManagerFactory" filter="(module=KERNEL)">
 	</osgi:reference>
-	
-	<osgi:reference id="folderDao" interface="org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService"/>
+
+	<osgi:reference id="remoteDocumentRepository"
+		interface="org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository" />
+
+	<!-- KERNEL.TM.JTA Transaction Manager -->
+	<osgi:reference id="globalJtaTransactionManager"
+		interface="org.springframework.transaction.PlatformTransactionManager"
+		filter="(module=KERNEL.TM.JTA)">
+	</osgi:reference>
+	<tx:annotation-driven transaction-manager="globalJtaTransactionManager" />
+
+	<!-- KERNEL.TM Transaction Manager -->
+	<osgi:reference id="globalTransactionManager"
+		interface="javax.transaction.TransactionManager" filter="(module=KERNEL.TM)">
+	</osgi:reference>
+
+	<osgi:reference id="folderDao"
+		interface="org.flowframe.kernel.common.mdm.dao.services.documentlibrary.IFolderDAOService" />
 
 	<!-- export internal interfaces -->
+	<osgi:service ref="subscriptionDAOImpl"
+		interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding" value="jaxb" />
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/services/ISubscriptionDAOService" />
+		</osgi:service-properties>
+	</osgi:service>
+	<!-- <osgi:service ref="subscriptionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService"> 
+		<osgi:service-properties> <entry key="service.exported.interfaces" value="*" 
+		/> <entry key="service.exported.configs" value="org.apache.cxf.rs" /> <entry 
+		key="service.exported.intents" value="HTTP" /> <entry key="org.apache.cxf.rs.address" 
+		value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/jaxrs/org/flowframe/erp/app/contractmanagement/dao/services/ISubscriptionDAOService" 
+		/> <entry key="org.apache.cxf.rs.provider" value="org.apache.cxf.jaxrs.provider.AegisElementProvider,org.apache.cxf.jaxrs.provider.AegisJSONProvider" 
+		/> </osgi:service-properties> </osgi:service> -->
 	<osgi:service ref="subscriptionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService">
 		<osgi:service-properties>
 			<entry key="service.exported.interfaces" value="*" />
-			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
-			<entry key="org.apache.cxf.ws.address"
-				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/services/ISubscriptionDAOService" />
-		</osgi:service-properties>		
-	</osgi:service>	
-	<osgi:service ref="customerDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.customer.ICustomerDAOService">
+			<entry key="service.exported.configs" value="org.apache.cxf.rs" />
+			<entry key="service.exported.intents" value="HTTP" />
+			<entry key="org.apache.cxf.rs.databinding" value="jaxb" />
+			<entry key="org.apache.cxf.rs.in.interceptors" value="org.apache.cxf.interceptor.LoggingInInterceptor" />
+			<entry key="org.apache.cxf.rs.out.interceptors" value="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+			<entry key="org.apache.cxf.rs.provider">
+				<array>
+					<ref bean="jsonProvider" />
+				</array>
+			</entry>
+			<entry key="org.apache.cxf.rs.address" value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/jaxrs/org/flowframe/erp/app/contractmanagement/dao/services/ISubscriptionDAOService" />
+		</osgi:service-properties>
+		<!-- <ref bean="reportService" /> -->
+	</osgi:service>
+
+	<bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
+		<property name="singleJaxbContext" value="true" />
+		<property name="marshallAsJaxbElement" value="true" />
+		<property name="unmarshallAsJaxbElement" value="true" />
+	</bean>
+	
+	<osgi:service ref="customerDAOImpl"
+		interface="org.flowframe.erp.app.contractmanagement.dao.customer.ICustomerDAOService">
 		<osgi:service-properties>
 			<entry key="service.exported.interfaces" value="*" />
-			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.databinding" value="jaxb" />
 			<entry key="org.apache.cxf.ws.address"
 				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/customer/ICustomerDAOService" />
-		</osgi:service-properties>		
+		</osgi:service-properties>
 	</osgi:service>
-	<osgi:service ref="serviceProvisionDAOImpl" interface="org.flowframe.erp.app.contractmanagement.dao.services.IServiceProvisionDAOService">
+	<osgi:service ref="serviceProvisionDAOImpl"
+		interface="org.flowframe.erp.app.contractmanagement.dao.services.IServiceProvisionDAOService">
 		<osgi:service-properties>
 			<entry key="service.exported.interfaces" value="*" />
-			<entry key="org.apache.cxf.ws.databinding"  value="jaxb"/>
+			<entry key="org.apache.cxf.ws.databinding" value="jaxb" />
 			<entry key="org.apache.cxf.ws.address"
 				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/dao/services/IServiceProvisionDAOService" />
-		</osgi:service-properties>		
-	</osgi:service>	
+		</osgi:service-properties>
+	</osgi:service>
 </beans>

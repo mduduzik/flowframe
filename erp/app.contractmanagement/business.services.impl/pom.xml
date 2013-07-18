@@ -10,7 +10,7 @@
 	<artifactId>org.flowframe.erp.app.contractmanagement.business.services.impl</artifactId>
 	<dependencies>
 		<!-- ConXBI -->
-		<!-- FF -->
+		<!-- FF -->	
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client</artifactId>

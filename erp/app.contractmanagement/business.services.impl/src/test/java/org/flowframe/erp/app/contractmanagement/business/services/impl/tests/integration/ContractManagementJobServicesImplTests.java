@@ -204,7 +204,7 @@ public class ContractManagementJobServicesImplTests extends AbstractJUnit4Spring
 			Token token = Token.create(defaultTokenParams);
 			CreditCardToken cct = new CreditCardToken(token.getId());
 			cct = (CreditCardToken)paymentDAOImpl.add(cct);
-			ffCustomer.setActivePayment(cct);
+			//ffCustomer.setActivePayment(cct);
 			ffCustomer = (Customer) organizationDAO.update(ffCustomer);
 
 			ffCustomer = stripeRemoteService.updateCustomer(ffCustomer, cct);

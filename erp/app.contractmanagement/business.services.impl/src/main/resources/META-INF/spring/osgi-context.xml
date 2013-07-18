@@ -25,7 +25,7 @@
 	<osgi:reference id="portalOrganizationService" cardinality="1..1" interface="org.flowframe.portal.remote.services.IPortalOrganizationService"/>
 	<osgi:reference id="subscriptionDAOService" cardinality="1..1" interface="org.flowframe.erp.app.contractmanagement.dao.services.ISubscriptionDAOService"/>
 	<osgi:reference id="roleDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.role.IRoleDAOService"/>
-	
+	<osgi:reference id="customerDAOService" cardinality="1..1" interface="org.flowframe.erp.app.contractmanagement.dao.customer.ICustomerDAOService"/>
 	
 	<osgi:reference id="userDAOService" cardinality="1..1" interface="org.flowframe.kernel.common.mdm.dao.services.user.IUserDAOService"/>
 	<osgi:reference id="paymentProcessorService" cardinality="1..1" interface="org.flowframe.erp.integration.adaptors.remote.services.payments.ICCRemotePaymentProcessorService"/>
@@ -40,7 +40,7 @@
 		<osgi:listener ref="contractManagementJobServicesImpl" bind-method="setEventBusinessService" unbind-method="unsetEventBusinessService"/>
 	</osgi:reference>
 			
-	<!-- export internal interfaces -->
+	<!-- export internal interfaces: Business and Super -->
 	<osgi:service ref="contractManagementJobServicesImpl"
 		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementJobServices">
 		<osgi:service-properties>
@@ -51,4 +51,15 @@
 		</osgi:service-properties>		
 	</osgi:service>
 	<osgi:service ref="contractManagementJobServicesImpl" interface="org.flowframe.kernel.services.ISuperService"/>
+	
+	
+	<osgi:service ref="contractManagementBusinessServicesImpl"
+		interface="org.flowframe.erp.app.contractmanagement.business.services.IContractManagementBusinessServices">
+		<osgi:service-properties>
+			<entry key="service.exported.interfaces" value="*" />
+			<entry key="org.apache.cxf.ws.databinding" value="jaxb" />
+			<entry key="org.apache.cxf.ws.address"
+				value="http://${ff.dosgi.hostname}:${ff.dosgi.port}/cxf/org/flowframe/erp/app/contractmanagement/business/services/IContractManagementBusinessServices" />
+		</osgi:service-properties>		
+	</osgi:service>	
 </beans>

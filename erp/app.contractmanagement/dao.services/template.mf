@@ -21,4 +21,5 @@ Import-Package:
   org.flowframe.erp.app.contractmanagement.domain;version="[0.0.1,1.0.0)",
   org.flowframe.erp.app.contractmanagement.domain.service;version="[0.0.1,1.0.0)",
   javax.persistence;version="2.0.0",
-  javax.persistence.metamodel;version="2.0.0"
+  javax.persistence.metamodel;version="2.0.0",
+  javax.ws.rs;version="[2.0.0,2.1)"

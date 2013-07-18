@@ -41,6 +41,7 @@
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
 	<bean id="contractManagementJobServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementJobServicesImpl" init-method="init"/>
+	<bean id="contractManagementBusinessServicesImpl" class="org.flowframe.erp.app.contractmanagement.business.services.impl.ContractManagementBusinessServicesImpl"/>
 	
 	<jaxws:client id="eventDAOService" serviceClass="org.flowframe.erp.integration.adaptors.services.soap.IEventDAOService"
 		address="http://${ff.erp.integration.adaptors.stripe.webhook.hostname}:${ff.erp.integration.adaptors.stripe.webhook.port}/cxf/org/flowframe/erp/integration/adaptors/stripe/services/IEventDAOService" />
