@@ -2,11 +2,17 @@ package org.flowframe.erp.app.contractmanagement.dao.services;
 
 import java.util.List;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.flowframe.erp.app.contractmanagement.domain.Subscription;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionChange;
 import org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan;
 
 
+@Path("/IServiceDAOService")
 public interface ISubscriptionDAOService {
 	
 	final static public String FREE_TRIAL_PLAN_NAME ="Free Plan - $0";
@@ -20,6 +26,9 @@ public interface ISubscriptionDAOService {
 	 */
 	public Subscription get(long id);
 	
+	@GET
+	@Path("/getall")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Subscription> getAll();
 	
 	public Subscription getByCode(String code);	

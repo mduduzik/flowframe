@@ -58,7 +58,9 @@ Import-Package:
   org.springframework.orm.jpa;version="[3.1,3.2)",
   org.aopalliance.aop;version="[1.0.0,2.0.0)",
   org.apache.cxf.jaxrs.provider;version="[2.7,2.8)",
-  org.apache.cxf.jaxrs.provider.json;version="[2.7,2.8)"
+  org.apache.cxf.jaxrs.provider.json;version="[2.7,2.8)",
+  org.codehaus.jettison.json;version="[1.0.0,2.0.0)",
+  org.codehaus.jettison.mapped;version="[1.0.0,2.0.0)"
 Excluded-Imports: 
   org.flowframe.kernel.common.mdm.dao.services.impl,
   org.flowframe.kernel.common.mdm.dao.services.impl.metamodel

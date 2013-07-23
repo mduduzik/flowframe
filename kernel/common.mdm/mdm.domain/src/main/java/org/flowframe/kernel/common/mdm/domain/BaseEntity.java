@@ -61,7 +61,7 @@ public abstract class BaseEntity
     protected long ownerEntityTypeId;
     @Basic
     @Column(name = "active_")    
-    protected boolean active;
+    protected boolean active = true;
     @Basic
     @Column(name = "externalname", length = 255)    
     protected String externalName;

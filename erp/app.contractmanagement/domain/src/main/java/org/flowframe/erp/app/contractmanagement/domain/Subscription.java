@@ -39,6 +39,7 @@ public class Subscription extends BaseEntity {
 	@OneToOne(cascade=CascadeType.ALL)
 	private CreditCardPayment payment;
 	
+	@XmlTransient
 	@OneToMany(targetEntity = SubscriptionChange.class,mappedBy="subscription",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private Set<SubscriptionChange> changes = new HashSet<SubscriptionChange>();
 	

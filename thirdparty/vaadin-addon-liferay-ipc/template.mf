@@ -1,0 +1,48 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 2.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: vaadin-addon-liferay-ipc
+Import-Template:  
+  javax.persistence.*;version="[1.0.0, 3.0.0)"
+Import-Package:  com.vaadin.data;version="[7.0,7.2)",
+  com.vaadin.data.util;version="[7.0,7.2)",
+  com.vaadin.data.util.filter;version="[7.0,7.2)",
+  com.vaadin.event;version="[7.0,7.2)",
+  com.vaadin.terminal;version="[7.0,7.2)",
+  com.vaadin.ui;version="[7.0,7.2)",
+  com.vaadin.annotations;version="[7.0,7.2)",
+  com.vaadin.server;version="[7.0,7.2)",
+  com.vaadin.shared;version="[7.0,7.2)",
+  com.vaadin.shared.communication;version="[7.0,7.2)",
+  com.vaadin.util;version="[7.0,7.2)"
+Excluded-Imports: com.google.*,
+  com.liferay.*,
+  javax.portlet,
+  javax.servlet.*,
+  junit.*,
+  org.easymock.*,
+  org.junit.*
+Excluded-Exports:
+  com.vaadin,
+  com.vaadin.annotations,
+  com.vaadin.data.*,
+  com.vaadin.event.*,
+  com.vaadin.terminal.*,
+  com.vaadin.external.*,
+  com.vaadin.portal.*,
+  com.vaadin.service.*,
+  com.vaadin.tools.*,
+  com.vaadin.ui.*,
+  com.vaadin.util.*,
+  com.google.*,
+  org.apache.commons.beanutils.*,
+  org.apache.commons.collections.*,
+  org.apache.commons.logging.*,
+  org.apache.avalon.*,
+  org.slf4j.*,
+  VAADIN.*
+Archiver-Version: Plexus Archiver

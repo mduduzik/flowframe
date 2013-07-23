@@ -139,7 +139,8 @@ public class ContractManagementBusinessServicesImpl implements IContractManageme
 		
 		//-- Make cuurent inActive
 		currentSubscription.setActive(false);
-		subscriptionDAOService.update(currentSubscription);
+		currentSubscription.setStatus(SUBSCRIPTIONSTATUS.CANCELLED);
+		currentSubscription = subscriptionDAOService.update(currentSubscription);
 		
 		return ffSubscription;
 	}

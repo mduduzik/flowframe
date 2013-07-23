@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Export-Package: com.vaadin.addon.ipcforliferay;version="2.0.0";uses:="
+ com.vaadin.addon.ipcforliferay.event,com.vaadin.addon.ipcforliferay.s
+ hared,com.vaadin.annotations,com.vaadin.server,com.vaadin.shared,com.
+ vaadin.shared.communication,com.vaadin.ui",com.vaadin.addon.ipcforlif
+ eray.event;version="2.0.0";uses:="com.vaadin.addon.ipcforliferay",com
+ .vaadin.addon.ipcforliferay.shared;version="2.0.0";uses:="com.vaadin.
+ shared,com.vaadin.shared.communication"
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 2.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: vaadin-addon-liferay-ipc
+Import-Package: com.vaadin.annotations;version="[7.0,7.2)",com.vaadin.
+ data;version="[7.0,7.2)",com.vaadin.data.util;version="[7.0,7.2)",com
+ .vaadin.data.util.filter;version="[7.0,7.2)",com.vaadin.event;version
+ ="[7.0,7.2)",com.vaadin.server;version="[7.0,7.2)",com.vaadin.shared;
+ version="[7.0,7.2)",com.vaadin.shared.communication;version="[7.0,7.2
+ )",com.vaadin.terminal;version="[7.0,7.2)",com.vaadin.ui;version="[7.
+ 0,7.2)",com.vaadin.util;version="[7.0,7.2)"
+Archiver-Version: Plexus Archiver
+

@@ -10,14 +10,10 @@ import javax.ws.rs.core.MediaType;
 import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision;
 import org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvisionGroup;
 
-@Path("/IServiceProvisionDAOService")
 public interface IServiceProvisionDAOService {
 
 	public ServiceProvision get(long id);
 
-	@GET
-	@Path("/getall")
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<ServiceProvision> getAll();
 
 	public List<ServiceProvision> getAllByPlanId(Long planId);

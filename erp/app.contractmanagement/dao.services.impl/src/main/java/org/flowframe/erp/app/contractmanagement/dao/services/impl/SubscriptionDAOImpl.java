@@ -236,20 +236,10 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 		
 		try
 		{
-			CriteriaBuilder builder = em.getCriteriaBuilder();
-			CriteriaQuery<SubscriptionPlan> query = builder.createQuery(SubscriptionPlan.class);
-			Root<SubscriptionPlan> rootEntity = query.from(SubscriptionPlan.class);
-			ParameterExpression<String> p = builder.parameter(String.class);
-			query.select(rootEntity).where(builder.equal(rootEntity.get("code"), p));
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan o where o.code = :code");
+			query.setParameter("code", code);
 
-			TypedQuery<SubscriptionPlan> typedQuery = em.createQuery(query);
-			typedQuery.setParameter(p, code);
-			
-			rec = typedQuery.getSingleResult();				
-			//TypedQuery<SubscriptionPlan> q = em.createQuery("select o from org.flowframe.kernel.common.mdm.domain.currency.Subscription o WHERE o.code = :code",Subscription.class);
-			//q.setParameter("code", code);
-						
-			//org = q.getSingleResult();
+			rec = (SubscriptionPlan)query.getSingleResult();				
 		}
 		catch(NoResultException e){}
 		catch(Exception e)
@@ -314,14 +304,34 @@ public class SubscriptionDAOImpl implements ISubscriptionDAOService {
 
 	@Override
 	public SubscriptionPlan getPlan(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		SubscriptionPlan rec = null;
+		
+		try
+		{
+			Query query = em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan o where o.id = :id");
+			query.setParameter("id", id);
+
+			rec = (SubscriptionPlan)query.getSingleResult();				
+		}
+		catch(NoResultException e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(Error e)
+		{
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String stacktrace = sw.toString();
+			logger.error(stacktrace);
+		}		
+		
+		return rec;
 	}
 
 	@Override
 	public List<SubscriptionPlan> getAllPlans() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select o from org.flowframe.erp.app.contractmanagement.domain.SubscriptionPlan o order by o.id").getResultList();
 	}
 
 	@Override
