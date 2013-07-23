@@ -29,8 +29,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.b3mn.poem.Identity;
 import org.b3mn.poem.business.User;
 import org.b3mn.poem.util.HandlerWithoutModelContext;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 
 @HandlerWithoutModelContext(uri="/user")
 public class UserHandler extends  HandlerBase {

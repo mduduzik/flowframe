@@ -31,8 +31,8 @@ import org.b3mn.poem.Identity;
 import org.b3mn.poem.util.ExportInfo;
 import org.b3mn.poem.util.HandlerInfo;
 import org.b3mn.poem.util.HandlerWithoutModelContext;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 
 @HandlerWithoutModelContext(uri="/config")
 public class ConfigurationHandler extends  HandlerBase {

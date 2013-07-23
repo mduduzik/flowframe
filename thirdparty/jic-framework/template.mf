@@ -1,0 +1,4 @@
+Bundle-SymbolicName: jic-framework
+Bundle-Name: jic-framework
+Bundle-ManifestVersion: 2
+Bundle-Version: 2.0.1

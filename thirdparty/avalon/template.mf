@@ -1,0 +1,15 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.avalon-framework-api
+Bundle-Name: avalon-framework-api
+Bundle-ManifestVersion: 2
+Bundle-Version: 4.3.1
+Export-Package: org.apache.avalon.framework;version="4.3.1",
+ org.apache.avalon.framework.activity;version="4.3.1",
+ org.apache.avalon.framework.availability;version="4.3.1",
+ org.apache.avalon.framework.component;version="4.3.1",
+ org.apache.avalon.framework.configuration;version="4.3.1",
+ org.apache.avalon.framework.context;version="4.3.1",
+ org.apache.avalon.framework.logger;version="4.3.1",
+ org.apache.avalon.framework.parameters;version="4.3.1",
+ org.apache.avalon.framework.service;version="4.3.1",
+ org.apache.avalon.framework.thread;version="4.3.1"
+Excluded-Imports: org.apache.log

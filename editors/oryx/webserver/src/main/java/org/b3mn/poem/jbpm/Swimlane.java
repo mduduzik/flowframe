@@ -2,7 +2,7 @@ package org.b3mn.poem.jbpm;
 
 import java.io.StringWriter;
 
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONObject;
 
 public class Swimlane {
 	private String name;

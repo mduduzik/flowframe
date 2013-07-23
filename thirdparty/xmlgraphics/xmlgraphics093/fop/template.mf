@@ -1,0 +1,9 @@
+Bundle-SymbolicName: org.apache.xmlgraphics.fop
+Bundle-Name: org.apache.xmlgraphics.fop
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.93
+Export-Package: org.apache.batik.svggen;version="1.7",
+ org.apache.batik.svggen.font;version="1.7",
+ org.apache.batik.svggen.font.resources;version="1.7",
+ org.apache.batik.svggen.font.table;version="1.7"
+

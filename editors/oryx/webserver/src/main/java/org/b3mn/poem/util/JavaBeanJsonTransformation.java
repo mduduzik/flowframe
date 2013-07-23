@@ -3,9 +3,10 @@ package org.b3mn.poem.util;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 
 
@@ -75,7 +76,9 @@ public class JavaBeanJsonTransformation {
 	}
 	
 	public static Object updateJavaBean(JSONObject jsonObject, Object bean) {
-		for (String attributeName : JSONObject.getNames(jsonObject)) {
+		Iterator attributeNames =  jsonObject.keys();
+		while (attributeNames.hasNext()/*JSONObject.getNames(jsonObject)*/) {
+			String attributeName = (String)attributeNames.next();
 			for (Method method : bean.getClass().getMethods()) {
 				// If the class contains the setter 
 				if (("set" + attributeName.toLowerCase()).

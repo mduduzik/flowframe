@@ -24,8 +24,8 @@
 package org.b3mn.poem;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.classic.Session;
 
 
 public class Persistance {

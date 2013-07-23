@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Export-Package: org.apache.batik.svggen;version="1.7",org.apache.batik
+ .svggen.font;version="1.7",org.apache.batik.svggen.font.resources;ver
+ sion="1.7",org.apache.batik.svggen.font.table;version="1.7"
+Build-Jdk: 1.6.0_45
+Built-By: Mduduzi
+Bundle-Version: 0.93
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: org.apache.xmlgraphics.fop
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: org.apache.xmlgraphics.fop
+Archiver-Version: Plexus Archiver
+

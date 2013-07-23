@@ -50,8 +50,8 @@ import org.b3mn.poem.util.HandlerWithoutModelContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import de.fraunhofer.fokus.jic.identity.Claim;
-import de.fraunhofer.fokus.jic.identity.ClaimIdentity;
+//import de.fraunhofer.fokus.jic.identity.Claim;
+//import de.fraunhofer.fokus.jic.identity.ClaimIdentity;
 
 @HandlerWithoutModelContext(uri = "/saml")
 public class SAMLHandler extends HandlerBase {
@@ -213,7 +213,7 @@ public class SAMLHandler extends HandlerBase {
 				res.setStatus(200);
 				retUrl = this.getReturnToUrl(retUrl, false, true, null);
 			} else { //login
-				//Get ClaimIdentity that contains all claims
+/*				//Get ClaimIdentity that contains all claims
 				ClaimIdentity _id = (ClaimIdentity) req
 						.getAttribute("userdata");
 
@@ -270,7 +270,7 @@ public class SAMLHandler extends HandlerBase {
 				// redirect to return to page
 				res.setStatus(200);
 				retUrl = this.getReturnToUrl(retUrl, true, false, authToken.toString());
-			}
+*/			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			

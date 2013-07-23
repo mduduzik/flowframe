@@ -90,7 +90,7 @@ public class LoginHandler extends HandlerBase {
 			this.manager = new ConsumerManager();
 	        manager.setAssociations(new InMemoryConsumerAssociationStore());
 	        manager.setNonceVerifier(new InMemoryNonceVerifier(5000));
-		} catch (ConsumerException e) {
+		} catch (Exception e) {
 			// TODO implement error handling
 		}
 

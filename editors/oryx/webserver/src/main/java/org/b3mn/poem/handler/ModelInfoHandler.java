@@ -39,8 +39,8 @@ import org.b3mn.poem.util.FilterMethod;
 import org.b3mn.poem.util.HandlerWithModelContext;
 import org.b3mn.poem.util.JavaBeanJsonTransformation;
 import org.b3mn.poem.util.SortMethod;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 @HandlerWithModelContext(uri="/meta")
 public class ModelInfoHandler extends  HandlerBase {

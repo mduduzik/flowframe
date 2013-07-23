@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: org.w3c.dom.smil;version="1.3.04",org.w3c.dom.svg;vers
+ ion="1.3.04"
+Build-Jdk: 1.6.0_45
+Built-By: Mduduzi
+Bundle-Version: 1.3.04
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: org.flowframe.thirdparty.batik.xml-apis-ext
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: org.flowframe.thirdparty.batik.xml-apis-ext
+Archiver-Version: Plexus Archiver
+

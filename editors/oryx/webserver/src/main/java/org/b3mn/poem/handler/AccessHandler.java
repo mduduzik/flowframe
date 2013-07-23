@@ -37,8 +37,8 @@ import org.b3mn.poem.util.AccessRight;
 import org.b3mn.poem.util.FilterMethod;
 import org.b3mn.poem.util.HandlerWithModelContext;
 import org.b3mn.poem.util.RestrictAccess;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 
 @HandlerWithModelContext(uri="/access")
 public class AccessHandler extends  HandlerBase {

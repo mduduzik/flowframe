@@ -2,8 +2,8 @@ package org.b3mn.poem.jbpm;
 
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 public class Node {
 	protected String uuid;

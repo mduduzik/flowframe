@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.b3mn.poem.Identity;
 import org.b3mn.poem.util.HandlerWithModelContext;
-import org.json.JSONException;
+import org.codehaus.jettison.json.JSONException;
 
 /* This class is deprecated and should be removed if the old repository isn't used anymore
  * 

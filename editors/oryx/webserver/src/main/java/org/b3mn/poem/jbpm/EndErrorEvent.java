@@ -1,7 +1,7 @@
 package org.b3mn.poem.jbpm;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 public class EndErrorEvent extends EndEvent{
 

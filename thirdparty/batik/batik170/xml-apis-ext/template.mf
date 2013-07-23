@@ -1,0 +1,6 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.batik.xml-apis-ext
+Bundle-Name: org.flowframe.thirdparty.batik.xml-apis-ext
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.3.04
+Export-Package: org.w3c.dom.smil;version="1.3.04",
+ org.w3c.dom.svg;version="1.3.04"

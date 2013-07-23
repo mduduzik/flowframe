@@ -24,8 +24,8 @@
 package org.b3mn.poem.handler;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,8 +36,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.b3mn.poem.Identity;
 import org.b3mn.poem.Representation;
 import org.b3mn.poem.util.HandlerWithoutModelContext;
-import org.json.JSONArray;
-import org.json.JSONException;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
 
 
 @HandlerWithoutModelContext(uri="/model")
