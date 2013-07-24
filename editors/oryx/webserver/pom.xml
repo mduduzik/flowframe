@@ -8,14 +8,13 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<packaging>war</packaging>
-	<artifactId>org.flowframe.editors.oryx.webserver</artifactId>
+	<artifactId>backend</artifactId>
 	<dependencies>
 		<!-- ConXBI -->
 		<dependency>
 			<groupId>com.conx.bi</groupId>
 			<artifactId>com.conx.bi.remoting.client.soap</artifactId>
 			<version>1.0.0</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- Batick Etc -->
@@ -108,7 +107,7 @@
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.json-path</artifactId>
 			<version>0.8.1</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.openid4java</groupId>
 			<artifactId>com.springsource.org.openid4java</artifactId>
@@ -131,20 +130,18 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
-		</dependency>		
-		
+		</dependency>
+
 
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.hibernate.core</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.flowframe</groupId>
 			<artifactId>org.flowframe.thirdparty.hibernate.entitymanager</artifactId>
-			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>javassist</groupId>
@@ -152,11 +149,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.3-603.jdbc3</version>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.lang</artifactId>
-		</dependency>		
+		</dependency>
 
 		<!-- JSON -->
 		<dependency>
@@ -166,6 +168,12 @@
 		</dependency>
 
 		<!-- Testing -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>		
 		<dependency>
 			<groupId>org.junit</groupId>
 			<artifactId>com.springsource.org.junit</artifactId>
@@ -194,23 +202,27 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>com.springsource.org.hibernate.validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>com.springsource.javax.transaction</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>com.springsource.javax.persistence</artifactId>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.osgi</groupId>
 			<artifactId>org.springframework.osgi.extensions.annotation</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.spring-library</artifactId>
 			<type>libd</type>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -225,18 +237,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.aspects</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.context</artifactId>
-			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.io</artifactId>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.com.mysql.jdbc</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
@@ -266,15 +278,16 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1-beta-1</version>
-				<configuration>
-					<packagingExcludes>WEB-INF/lib/**</packagingExcludes>
-					<archive>
-						<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
-					</archive>
-				</configuration>
-			</plugin>
+			  <artifactId>maven-war-plugin</artifactId>
+			  <version>2.2</version>
+			  <configuration>
+			     <warName>backend</warName>
+			  </configuration>
+			</plugin>			
+			<!-- <plugin> <artifactId>maven-war-plugin</artifactId> <version>2.1-beta-1</version> 
+				<configuration> <packagingExcludes>WEB-INF/lib/**</packagingExcludes> <archive> 
+				<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile> </archive> 
+				</configuration> </plugin> -->
 		</plugins>
 	</build>
 </project>
