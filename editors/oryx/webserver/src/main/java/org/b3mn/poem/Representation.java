@@ -77,7 +77,7 @@ public class Representation {
     // Check whether the content already exists
     private boolean contentExists() {
     	boolean result = Persistance.getSession().
-    		createSQLQuery("SELECT id FROM content WHERE id=:id").
+    		createSQLQuery("SELECT id FROM content_ WHERE id=:id").
     		setLong("id", this.id).list().size() != 0;
     	Persistance.commit();
     	return result;
@@ -92,7 +92,7 @@ public class Representation {
     
     protected String getPureContent(){
     	String content = (String)Persistance.getSession().
-		createSQLQuery("SELECT content.erdf FROM content WHERE id=:id").
+		createSQLQuery("SELECT content_.erdf FROM content_ WHERE id=:id").
 		setLong("id", id).uniqueResult();
 		Persistance.commit();
 		return content;
@@ -145,7 +145,7 @@ public class Representation {
 		if (contentExists()) {
 			// Create and execute UPDATE query
 			Persistance.getSession().
-			createSQLQuery("UPDATE content SET erdf=:erdf WHERE id=:id").
+			createSQLQuery("UPDATE content_ SET erdf=:erdf WHERE id=:id").
 			setString("erdf", erdf).
 			setLong("id", id).executeUpdate();
 			Persistance.commit();
@@ -153,7 +153,7 @@ public class Representation {
 		else {
 			// Create and execute INSERT query
 			Persistance.getSession().
-			createSQLQuery("INSERT INTO content (id, erdf, svg) VALUES (:id, :erdf, '')").
+			createSQLQuery("INSERT INTO content_ (id, erdf, svg) VALUES (:id, :erdf, '')").
 			setLong("id", id).
 			setString("erdf", erdf).executeUpdate();
 			Persistance.commit();
@@ -162,7 +162,7 @@ public class Representation {
 	
     public String getSvg() {
     	String svg = (String)Persistance.getSession().
-			createSQLQuery("SELECT content.svg FROM content WHERE id=:id").
+			createSQLQuery("SELECT content_.svg FROM content_ WHERE id=:id").
 			setLong("id", id).uniqueResult();
     	Persistance.commit();
     	return svg;
@@ -173,7 +173,7 @@ public class Representation {
 		if (contentExists()) {
 			// Create and execute UPDATE query
 			Persistance.getSession().
-			createSQLQuery("UPDATE content SET svg=:svg WHERE id=:id").
+			createSQLQuery("UPDATE content_ SET svg=:svg WHERE id=:id").
 			setString("svg", svg).
 			setLong("id", id).executeUpdate();
 			Persistance.commit();
@@ -181,7 +181,7 @@ public class Representation {
 		else {
 			// Create and execute INSERT query
 			Persistance.getSession().
-			createSQLQuery("INSERT INTO content (id, svg, erdf) VALUES (:id, :svg, '')").
+			createSQLQuery("INSERT INTO content_ (id, svg, erdf) VALUES (:id, :svg, '')").
 			setLong("id", id).
 			setString("svg", svg).executeUpdate();
 			Persistance.commit();
@@ -190,7 +190,7 @@ public class Representation {
 	
 	public byte[] getPngLarge() {
     	byte[] pngData = (byte[]) Persistance.getSession().
-		createSQLQuery("SELECT content.png_large FROM content WHERE id=:id").
+		createSQLQuery("SELECT content_.png_large FROM content_ WHERE id=:id").
 		setLong("id", id).uniqueResult();
 	Persistance.commit();
 	return pngData;
@@ -199,7 +199,7 @@ public class Representation {
 	public void setPngLarge(byte[] pngData) {
 		// Create and execute UPDATE query
 		Persistance.getSession().
-		createSQLQuery("UPDATE content SET png_large=:data WHERE id=:id").
+		createSQLQuery("UPDATE content_ SET png_large=:data WHERE id=:id").
 		setBinary("data", pngData).
 		setLong("id", id).executeUpdate();
 		Persistance.commit();
@@ -207,7 +207,7 @@ public class Representation {
 	
 	public byte[] getPngSmall() {
     	byte[] pngData = (byte[]) Persistance.getSession().
-		createSQLQuery("SELECT content.png_small FROM content WHERE id=:id").
+		createSQLQuery("SELECT content_.png_small FROM content_ WHERE id=:id").
 		setLong("id", id).uniqueResult();
 	Persistance.commit();
 	return pngData;
@@ -216,7 +216,7 @@ public class Representation {
 	public void setPngSmall(byte[] pngData) {
 		// Create and execute UPDATE query
 		Persistance.getSession().
-		createSQLQuery("UPDATE content SET png_small=:data WHERE id=:id").
+		createSQLQuery("UPDATE content_ SET png_small=:data WHERE id=:id").
 		setBinary("data", pngData).
 		setLong("id", id).executeUpdate();
 		Persistance.commit();
@@ -280,8 +280,8 @@ public class Representation {
     public static void update(int id, String title, String summary, String content, String svg) {
     	
     	Representation rep = (Representation) Persistance.getSession()
-    	.createSQLQuery("select {representation.*} from {representation} where ident_id = :ident_id")
-		.addEntity("representation", Representation.class)
+    	.createSQLQuery("select {representation_.*} from {representation_} where ident_id = :ident_id")
+		.addEntity("representation_", Representation.class)
 	    .setInteger("ident_id", id).uniqueResult();
 
         try {

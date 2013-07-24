@@ -54,8 +54,8 @@ public class Identity {
 	}
 	public static Identity instance(String uri) {
 		Identity identity = (Identity) Persistance.getSession().
-			createSQLQuery("select {identity.*} FROM {identity} where uri=?")
-			.addEntity("identity", Identity.class)
+			createSQLQuery("select {identity_.*} FROM {identity_} where uri=?")
+			.addEntity("identity_", Identity.class)
 			.setString(0, uri)
 			.uniqueResult();
 		Persistance.commit();
@@ -64,8 +64,8 @@ public class Identity {
 	
 	public static Identity instance(int id) {
 		Identity identity =  (Identity) Persistance.getSession().
-			createSQLQuery("select {identity.*} FROM {identity} where id=:id")
-			.addEntity("identity", Identity.class)
+			createSQLQuery("select {identity_.*} FROM {identity_} where id=:id")
+			.addEntity("identity_", Identity.class)
 			.setInteger("id", id)
 			.uniqueResult();
 		Persistance.commit();
@@ -75,8 +75,8 @@ public class Identity {
 	public static Identity newModel(Identity owner, String title, String type, String summary, String svg, String content) {
 			Session session = Persistance.getSession();
 			Identity identity = (Identity) session.
-			createSQLQuery("select {identity.*} from identity(?)")
-			.addEntity("identity", Identity.class).setString(0, "/model/new").uniqueResult();
+			createSQLQuery("select {identity_.*} from identity_(?)")
+			.addEntity("identity_", Identity.class).setString(0, "/model/new").uniqueResult();
 			identity.setUri("/model/" + identity.getId());
 			session.save(identity); 
 			
@@ -100,8 +100,8 @@ public class Identity {
 		
 		Identity userroot = instance("ownership");
 		Identity identity = (Identity) Persistance.getSession().
-		createSQLQuery("select {identity.*} from identity(?)")
-		.addEntity("identity", Identity.class).
+		createSQLQuery("select {identity_.*} from identity_(?)")
+		.addEntity("identity_", Identity.class).
 		setString(0, openid).uniqueResult();
 		Persistance.commit();
 		Structure.instance(identity.getId(), userroot.getUserHierarchy());
@@ -111,8 +111,8 @@ public class Identity {
 	public static Identity newUser(String openid, String hierarchy) {
 
 		Identity identity = (Identity) Persistance.getSession().
-		createSQLQuery("select {identity.*} from identity(?)")
-		.addEntity("identity", Identity.class).
+		createSQLQuery("select {identity_.*} from identity_(?)")
+		.addEntity("identity_", Identity.class).
 		setString(0, openid).uniqueResult();
 		Persistance.commit();
 		Structure.instance(identity.getId(), hierarchy);
@@ -122,7 +122,7 @@ public class Identity {
 	@SuppressWarnings("unchecked")
 	public List<Representation> getModels(String type, Date from, Date to, boolean owner, boolean is_shared, boolean is_public, boolean contributor, boolean reader) {
 		List<Representation> list = (List<Representation>) Persistance.getSession().
-		createSQLQuery("select DISTINCT ON(i.id) r.* from access as a, identity as i, representation as r " +
+		createSQLQuery("select DISTINCT ON(i.id) r.* from access as a, identity_ as i, representation_ as r " +
 					   "where ((a.subject_name=:subject or (a.subject_name='public' and :is_public)) " +
             					"and r.type like :type " +
             					"and r.updated >= :from and r.updated <= :to " +
@@ -134,7 +134,7 @@ public class Identity {
             			"and ((:is_public and a.subject_name='public') or (not :is_public))" +
             			"and ((:contributor and a.access_term='write') or (not :contributor))" +
             			"and ((:reader and a.access_term='read' and (not a.subject_name='public')) or (not :reader))")
-		.addEntity("representation", Representation.class)
+		.addEntity("representation_", Representation.class)
 	    .setString("subject", this.getUri())
 	    .setString("type", type)
 	    .setDate("from", from)
@@ -154,8 +154,8 @@ public class Identity {
 	@SuppressWarnings("unchecked")
 	public List<Access> getAccess() {
 		List<Access> list =  (List<Access>) Persistance.getSession().
-		createSQLQuery("select DISTINCT ON(context_name) {access.*} from {access} where object_name=?")
-		.addEntity("access", Access.class)
+		createSQLQuery("select DISTINCT ON(context_name) {access_.*} from {access_} where object_name=?")
+		.addEntity("access_", Access.class)
 	    .setString(0, this.getUri()).list();
 		Persistance.commit();
 		return list;
@@ -196,8 +196,8 @@ public class Identity {
 	@SuppressWarnings("unchecked")
 	public List<Plugin> getServlets() {
 		List<Plugin> list =  (List<Plugin>)Persistance.getSession().
-		createSQLQuery("select {plugin.*} from {plugin}")
-		.addEntity("plugin", Plugin.class)
+		createSQLQuery("select {plugin_.*} from {plugin_}")
+		.addEntity("plugin_", Plugin.class)
 		.list();
 		Persistance.commit();
 		return list;
@@ -205,8 +205,8 @@ public class Identity {
 	
 	public Representation read() {
 		Representation rep = (Representation)Persistance.getSession().
-		createSQLQuery("select {representation.*} from {representation} where ident_id = :ident_id")
-		.addEntity("representation", Representation.class)
+		createSQLQuery("select {representation_.*} from {representation_} where ident_id = :ident_id")
+		.addEntity("representation_", Representation.class)
 	    .setInteger("ident_id", this.id).uniqueResult();
 		Persistance.commit();
 		return rep;
@@ -214,17 +214,17 @@ public class Identity {
 	
 	public String getModelHierarchy() {
 		String hier = Persistance.getSession().
-		createSQLQuery("select structure.hierarchy from identity, structure " +
-						"where identity.id = :id and identity.id = structure.ident_id").
+		createSQLQuery("select structure_.hierarchy from identity_, structure_ " +
+						"where identity_.id = :id and identity_.id = structure_.ident_id").
 		setInteger("id", this.id).uniqueResult().toString();
 		Persistance.commit();
 		return hier;
 	}
 	public String getUserHierarchy() {
 		String hier =  Persistance.getSession().
-		createSQLQuery("select structure.hierarchy from identity, structure " +
-						"where identity.id = :id and identity.id = structure.ident_id " +
-						"and structure.hierarchy like 'U2%'").
+		createSQLQuery("select structure_.hierarchy from identity_, structure_ " +
+						"where identity_.id = :id and identity_.id = structure_.ident_id " +
+						"and structure_.hierarchy like 'U2%'").
 		setInteger("id", this.id).uniqueResult().toString();
 		Persistance.commit();
 		return hier;
