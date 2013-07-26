@@ -71,7 +71,7 @@ public class Structure {
 				.setInteger("hierarchy_position", encode_position)
 				.setInteger("id", owner_id).uniqueResult();
 		if (root_hierarchy_next_child == null)
-			root_hierarchy_next_child = "";
+			root_hierarchy_next_child = hierarchy+encode_position;
 
 		Structure structure = (Structure) Persistance.getSession().
 		createSQLQuery("{CALL ensure_descendant(:hierarchy,:root_hierarchy_next_child,:id)}").
