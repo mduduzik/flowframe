@@ -26,6 +26,7 @@ package org.b3mn.poem;
 import javax.persistence.*;
 
 @Entity
+@Table(name="interaction_")
 public class Interaction {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -42,6 +43,9 @@ public class Interaction {
    	public long getId() {
 	   	return id;
    	}
+  	public void setId(long id) {
+	   	this.id = id;
+   	}   	
    	public String getObject() {
 	   	return object;
    	}

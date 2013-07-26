@@ -30,10 +30,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.Session;
 
 @Entity
+@Table(name="identity_")
 public class Identity {
         
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -74,9 +76,9 @@ public class Identity {
 	
 	public static Identity newModel(Identity owner, String title, String type, String summary, String svg, String content) {
 			Session session = Persistance.getSession();
-			Identity identity = (Identity) session.
-			createSQLQuery("select {identity_.*} from identity_(?)")
-			.addEntity("identity_", Identity.class).setString(0, "/model/new").uniqueResult();
+			
+			//Object res = session.createSQLQuery("{CALL identity_(?)}").setString(0, "/model/new").uniqueResult();
+			Identity identity = (Identity) session.createSQLQuery("{CALL identity_(?)}").addEntity("identity_", Identity.class).setString(0, "/model/new").uniqueResult();
 			identity.setUri("/model/" + identity.getId());
 			session.save(identity); 
 			
@@ -100,7 +102,7 @@ public class Identity {
 		
 		Identity userroot = instance("ownership");
 		Identity identity = (Identity) Persistance.getSession().
-		createSQLQuery("select {identity_.*} from identity_(?)")
+		createSQLQuery("{CALL identity_(?)}")
 		.addEntity("identity_", Identity.class).
 		setString(0, openid).uniqueResult();
 		Persistance.commit();
@@ -111,7 +113,7 @@ public class Identity {
 	public static Identity newUser(String openid, String hierarchy) {
 
 		Identity identity = (Identity) Persistance.getSession().
-		createSQLQuery("select {identity_.*} from identity_(?)")
+		createSQLQuery("{CALL identity_(?)}")
 		.addEntity("identity_", Identity.class).
 		setString(0, openid).uniqueResult();
 		Persistance.commit();

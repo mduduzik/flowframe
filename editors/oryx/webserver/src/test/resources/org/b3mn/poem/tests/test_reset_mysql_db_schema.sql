@@ -67,12 +67,12 @@ DROP PROCEDURE IF EXISTS ensure_descendant //CREATE DEFINER=CURRENT_USER PROCEDU
 		DECLARE resultCount INT;
         select count(*) into resultCount from structure_ where hierarchy like CONCAT(root_hierarchy,'%') and ident_id = target;
 				IF resultCount=0		THEN 			BEGIN				insert into structure_(hierarchy, ident_id) values(root_hierarchy_next_child_position, target);
-				select structure_.*  from structure_ where hierachy = root_hierarchy_next_child_position and ident_id = target;
+				select structure_.*  from structure_ where hierarchy = root_hierarchy_next_child_position and ident_id = target;
 			END;
 		ELSE			BEGIN				select structure_.*  from structure_ where hierarchy like CONCAT(root_hierarchy,'%') and ident_id = target;
 			END;
 					END IF;
 END//DELIMITER ;
 DELIMITER //
-DROP PROCEDURE IF EXISTS next_child_position //CREATE DEFINER=CURRENT_USER PROCEDURE next_child_position(IN hierarchy text, IN encode_position INT, IN parent text)BEGIN        select CONCAT(text,encode_position) from structure_ where hierarchy = parent;
+DROP PROCEDURE IF EXISTS next_child_position //CREATE DEFINER=CURRENT_USER PROCEDURE next_child_position(IN hierarchy text, IN encode_position INT, IN parent text)BEGIN        select CONCAT(hierarchy,encode_position) from structure_ where hierarchy = parent;
 		END//DELIMITER ;

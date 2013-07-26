@@ -36,6 +36,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -57,6 +58,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 @Entity
+@Table(name="representation_")
 public class Representation {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

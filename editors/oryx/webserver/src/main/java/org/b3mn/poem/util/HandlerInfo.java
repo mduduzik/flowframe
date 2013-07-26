@@ -183,7 +183,7 @@ public class HandlerInfo {
 							// returns a collection and has the right parameters
 							if ((method.getAnnotation(FilterMethod.class) != null) && (isSuperclass(method.getReturnType(), Collection.class))
 									&& (method.getParameterTypes().length == 2) && ((method.getModifiers() & Modifier.STATIC) != 0)) {
-								// Check: 1st parameter: Identity, 2nd String
+								// Check: 1st parameter: DataDefaults, 2nd String
 								if ((method.getParameterTypes()[0].equals(Identity.class)) && (method.getGenericParameterTypes()[1].equals(String.class))) {
 									// If no filter name is supplied by the
 									// annotation, use the method name
@@ -203,7 +203,7 @@ public class HandlerInfo {
 							// returns a list and has the right parameters
 							if ((method.getAnnotation(SortMethod.class) != null) && (isSuperclass(method.getReturnType(), List.class))
 									&& (method.getParameterTypes().length == 1) && ((method.getModifiers() & Modifier.STATIC) != 0)) {
-								// Check: 1st and only parameter: Identity
+								// Check: 1st and only parameter: DataDefaults
 								if (method.getParameterTypes()[0].equals(Identity.class)) {
 									// If no filter name is supplied by the
 									// annotation, use the method name

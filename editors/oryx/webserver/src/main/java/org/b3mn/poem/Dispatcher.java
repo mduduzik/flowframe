@@ -365,7 +365,7 @@ public class Dispatcher extends HttpServlet {
 			// user = new User(openId);
 			// user.login(request, response);
 			// } else {
-			// Identity subject = Identity.ensureSubject(openId);
+			// DataDefaults subject = DataDefaults.ensureSubject(openId);
 			// user = new User(subject);
 			// }
 

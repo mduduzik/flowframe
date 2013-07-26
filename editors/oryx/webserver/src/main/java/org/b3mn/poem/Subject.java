@@ -30,7 +30,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity @Table(name="subject")
+@Entity 
+@Table(name="subject_")
 public class Subject {
         
 	@Id 

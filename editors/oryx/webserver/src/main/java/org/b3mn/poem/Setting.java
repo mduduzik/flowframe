@@ -27,14 +27,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="setting_")
 public class Setting  {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int subject_id;
-	private String key;
+	private String key_;
 	private String value;
 	
 	
@@ -51,10 +53,10 @@ public class Setting  {
 		this.subject_id = subject_id;
 	}
 	public String getKey() {
-		return key;
+		return key_;
 	}
 	public void setKey(String key) {
-		this.key = key;
+		this.key_ = key;
 	}
 	public String getValue() {
 		return value;

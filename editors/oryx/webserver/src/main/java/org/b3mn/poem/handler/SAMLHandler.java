@@ -250,7 +250,7 @@ public class SAMLHandler extends HandlerBase {
 				String userUniqueId = userUniqueIdClaim.getValue();
 
 				// identify user
-				Identity subj = Identity.instance(userUniqueId);
+				DataDefaults subj = DataDefaults.instance(userUniqueId);
 
 				// create new user, if the user does not exist
 				if (subj == null) {

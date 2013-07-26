@@ -6,16 +6,20 @@
 <hibernate-configuration>
 
     <session-factory>
-<!--         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/oryx</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property> -->
+        <property name="connection.password">root</property>
+<!--         <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.import_files">
+            /test_reset_mysql_db_schema.sql, /test_data.sql
+        </property> -->
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class">org.postgresql.Driver</property>
+<!--         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://71.162.140.200/poem</property>
         <property name="connection.username">poem</property>
-        <property name="connection.password">poem</property>
+        <property name="connection.password">poem</property> -->
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">20</property>

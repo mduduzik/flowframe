@@ -3,13 +3,21 @@ package org.b3mn.poem.tests;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.io.Reader;
 import java.net.URL;
+import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.b3mn.poem.Identity;
+import org.b3mn.poem.business.User;
 import org.b3mn.poem.handler.NewModelHandler;
 import org.junit.After;
 import org.junit.Before;
@@ -21,13 +29,14 @@ public class NewModelHandlerTest {
 	private NewModelHandler handler;
 	private HttpServletRequest  mockedRequest;
 	private HttpServletResponse mockedResponse;
-	private Identity user;
+	private User user;
 	private String title;
 	private String type;
 	private String summary;
 	private String svg;
 	private String data;
 	private Identity newModelIdentity;
+	private SqlSessionFactory sqlSessionFactory;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -45,14 +54,35 @@ public class NewModelHandlerTest {
 		file = new File(testfile.toURI());		
 		data = FileUtils.readFileToString(file, "UTF-8");	
 		
-		user = new Identity();
-		user.setId(2);
-		user.setUri("public");
+		
+		//--
+		//DataDefaults.all();
+		Reader reader = Resources.getResourceAsReader("org/b3mn/poem/tests/myibitis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+		
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection conn = session.getConnection();
+		reader = Resources.getResourceAsReader("org/b3mn/poem/tests/test_reset_mysql_db_schema.sql");
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setErrorLogWriter(null);
+		runner.runScript(reader);
+		reader.close();
+		
+		reader = Resources.getResourceAsReader("org/b3mn/poem/tests/test_data.sql");
+		runner = new ScriptRunner(conn);
+		runner.setErrorLogWriter(null);
+		runner.runScript(reader);
+		reader.close();
+		
+		session.close();
+
 		
 		title = "Job #1";
 		type = "http://b3mn.org/stencilset/reporting#";
 		summary = "";
 		newModelIdentity = null;
+		user = new User("public");
 		
 		handler = new NewModelHandler();
 		assertNotNull(handler);
@@ -66,9 +96,8 @@ public class NewModelHandlerTest {
 	@After
 	public void tearDownAfter() throws Exception {
 		handler.destroy();
-		newModelIdentity.delete();
+		//newModelIdentity.delete();
 	}
-
 
 	
 	/**
@@ -76,7 +105,7 @@ public class NewModelHandlerTest {
 	 */
 	@Test
 	public final void testSaveNewModel() {
-		newModelIdentity = Identity.newModel(user, title, type, summary, svg, data);
+		newModelIdentity = Identity.newModel(user.getIdentity(), title, type, summary, svg, data);
 		assertNotNull(newModelIdentity);
 	}
 }
