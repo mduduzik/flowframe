@@ -26,7 +26,7 @@ package org.b3mn.poem;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tag_relation")
+@Table(name="tag_relation_")
 public class TagRelation {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

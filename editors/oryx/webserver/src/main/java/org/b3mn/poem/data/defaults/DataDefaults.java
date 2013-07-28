@@ -23,11 +23,24 @@
 
 package org.b3mn.poem.data.defaults;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
+import java.net.URL;
+import java.sql.Connection;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.b3mn.poem.Identity;
 import org.b3mn.poem.Interaction;
 import org.b3mn.poem.Persistance;
 import org.b3mn.poem.Setting;
 import org.b3mn.poem.Structure;
+import org.b3mn.poem.business.User;
 import org.hibernate.Session;
 
 
@@ -35,10 +48,56 @@ import org.hibernate.Session;
 
 public class DataDefaults {
 	public static void all() {
-		createIdentities();
+		try {
+			//-- Check if already initialized
+			Identity rootowner = Identity.instance("ownership");
+			if (rootowner == null)
+			{
+				//-- Reset DB
+				Reader reader = Resources.getResourceAsReader("org/b3mn/poem/tests/myibitis-config.xml");
+				SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+				reader.close();
+				
+				SqlSession session = sqlSessionFactory.openSession();
+				Connection conn = session.getConnection();
+				reader = Resources.getResourceAsReader("org/b3mn/poem/defaults/test_reset_mysql_db_schema.sql");
+				ScriptRunner runner = new ScriptRunner(conn);
+				runner.setErrorLogWriter(null);
+				runner.runScript(reader);
+				reader.close();
+				
+				reader = Resources.getResourceAsReader("org/b3mn/poem/defaults/test_data.sql");
+				runner = new ScriptRunner(conn);
+				runner.setErrorLogWriter(null);
+				runner.runScript(reader);
+				reader.close();
+				
+				session.close();
+				
+				//-- Add test model/template
+				String title = "Job #1";
+				String type = "http://b3mn.org/stencilset/reporting#";
+				String summary = "";
+				User user = new User("public");
+				
+				URL testfile = DataDefaults.class.getResource("/data/newmodelhandler/test1_svg.xml");
+				File file = new File(testfile.toURI());		
+				String svg = FileUtils.readFileToString(file, "UTF-8");
+				
+				testfile = DataDefaults.class.getResource("/data/newmodelhandler/test1_content_json.txt");
+				file = new File(testfile.toURI());		
+				String data = FileUtils.readFileToString(file, "UTF-8");	
+				
+				Identity.newModel(user.getIdentity(), title, type, summary, svg, data);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+/*		createIdentities();
 		createInterations();
 		createSettings();
-		createStructures();
+		createStructures();*/
 	}
 
 	public static void createIdentities() {

@@ -26,8 +26,10 @@ package org.b3mn.poem;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="plugin_")
 public class Plugin {
 
 	@Id

@@ -30,7 +30,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="model_rating")
+@Table(name="model_rating_")
 public class ModelRating {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -21,9 +21,11 @@ import org.b3mn.poem.business.User;
 import org.b3mn.poem.handler.NewModelHandler;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+//@Ignore
 public class NewModelHandlerTest {
 	
 	private NewModelHandler handler;

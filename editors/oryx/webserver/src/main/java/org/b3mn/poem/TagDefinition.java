@@ -30,7 +30,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tag_definition")
+@Table(name="tag_definition_")
 public class TagDefinition {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

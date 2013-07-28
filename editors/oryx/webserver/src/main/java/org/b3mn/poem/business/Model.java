@@ -266,8 +266,8 @@ public class Model extends BusinessObject {
 	
 	public AccessRight getAccessRight(String openId) {
 		String term = (String) Persistance.getSession().createSQLQuery(
-				"SELECT access.access_term FROM access, identity WHERE " +
-				"access.object_id=:object_id AND access.subject_id=identity.id AND identity.uri=:open_id")
+				"SELECT access_.access_term FROM access_, identity_ WHERE " +
+				"access_.object_id=:object_id AND access_.subject_id=identity_.id AND identity_.uri=:open_id")
 				.setInteger("object_id", this.getId())
 				.setString("open_id", openId)
 				.uniqueResult();

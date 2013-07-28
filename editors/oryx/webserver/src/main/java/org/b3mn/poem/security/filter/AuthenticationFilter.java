@@ -150,7 +150,7 @@ public class AuthenticationFilter implements Filter {
 			request.setAttribute("user", user);
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			chain.doFilter(req, res);
 		}

@@ -41,6 +41,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.b3mn.poem.business.Model;
 import org.b3mn.poem.business.User;
+import org.b3mn.poem.data.defaults.DataDefaults;
 import org.b3mn.poem.handler.HandlerBase;
 import org.b3mn.poem.util.AccessRight;
 import org.b3mn.poem.util.ExportInfo;
@@ -101,6 +102,10 @@ public class Dispatcher extends HttpServlet {
 		super.init();
 		loadHandlerInfo();
 		servletContext = this.getServletContext();
+		
+		//--Do defaults
+		//DataDefaults.all();
+		
 		// reloadFriendTable(); // ToDo: implement a bootloader. this operation
 		// isn't necessary at each start
 
