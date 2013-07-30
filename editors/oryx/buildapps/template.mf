@@ -1,0 +1,4 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.0.0
+Bundle-Name: FF Oryx Build Apps
+Bundle-SymbolicName: org.flowframe.editors.oryx.buildapps

@@ -14,7 +14,7 @@
 			"groups_de":[ "Diagramm" ],
 			"description":"A Diagram",
 			"description_de":"Diagramm",
-			"view":"node.diagram.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"800\"    height=\"600\"    version=\"1.0\">   <defs></defs>   <g pointer-events=\"fill\" >     <polygon stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"0,0 0,590 9,599 799,599 799,9 790,0\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />     <rect id=\"diagramcanvas\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"790\" height=\"590\" stroke=\"black\" stroke-width=\"2\" fill=\"white\" />      <text font-size=\"22\" id=\"diagramtext\" x=\"400\" y=\"25\" oryx:align=\"top center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_diagram.png",
 			"roles": [ "diagram" ],
 			"properties": [
@@ -78,7 +78,7 @@
 			"groups":[],
 			"description":"A business event, which my occur in the course of a business process. Events also represent particular states a process is in.",
 			"description_de":"Ein Geschäfts-Ereignis welches im Rahmen eines Prozesses auftreten kann. Häufig repräsentiert ein Ereignis auch gleichermaßen einen Zustand, in dem ein Prozess sich befindet.",
-			"view":"node.event.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"62\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"celem\" d=\"M 0 30 l 15 -30 l 70 0 l 15 30 l -15 30 l -70 0 z\" oryx:resize=\"vertical horizontal\" stroke=\"black\" stroke-width=\"1\" fill=\"#ffafff\" />  <rect id=\"textrect\" oryx:resize=\"vertical horizontal\" x=\"15\" y=\"0\" width=\"70\" height=\"60\" fill=\"none\" stroke=\"none\" />     <text font-size=\"11\" id=\"text\" x=\"50\" y=\"30\" oryx:fittoelem=\"textrect\" oryx:align=\"middle center\" stroke=\"black\"></text>     <text font-size=\"11\" id=\"commonnesstext\" x=\"-2\" y=\"-5\" oryx:align=\"right top\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_event.png",
 			"defaultAlign":"south",
 			"roles": [
@@ -154,7 +154,7 @@
 			"groups":[],
 			"description":"A business function that is performed as part of the process.",
 			"description_de":"Eine Funktion ist eine Tätigkeit, die im Laufe des Prozesses anfällt und durchgeführt wird.",
-			"view":"node.function.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"62\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"celem\"  oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"60\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"#96ff96\" />      <text oryx:fittoelem=\"celem\" font-size=\"11\" id=\"text\" x=\"50\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>      <text font-size=\"11\" id=\"timetext\" x=\"103\" y=\"-10\" oryx:align=\"left top\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_function.png",
 			"defaultAlign":"south",
 			"roles": [
@@ -243,7 +243,7 @@
 			"groups":[],
 			"description":"The AND Connector is used for splitting and merging of the process flow in a parallel way. All branches are taken and executed in parallel.",
 			"description_de":"Die UND-Regel ermöglicht es, Parallelität im Diagramm auszudrücken. Alle Zweige werden gleichzeitig durchgeführt.",
-			"view":"node.and.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.1\">   <g>     <ellipse id=\"celem\" cx=\"16\" cy=\"16\" rx=\"15\" ry=\"15\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>      <path d=\"M 11 22 l 5 -12 l 5 12\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" />      <text font-size=\"11\" id=\"text\" x=\"16\" y=\"16\" oryx:defaultPosition=\"middleRight\"></text>   </g> </svg> ",
 			"icon":"new_and.png",
 			"intersectionType":"ellipse",	
 			"defaultAlign":"south",		
@@ -277,7 +277,7 @@
 			"groups":[],
 			"description":"An XOR Connector introduces an exclusive decision into a process. Either of the branches is taken. It can also be used for merging of branches.",
 			"description_de":"Eine XOR-Regel wird benutzt um exklusive Entscheidungen zu modellieren (\"entweder-oder\"). Auch für die Zusammenführung kann die XOR-Regel benutzt werden.",
-			"view":"node.xor.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.1\">   <g>     <ellipse id=\"celem\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" rx=\"15\" ry=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>      <path oryx:resize=\"vertical horizontal\" d=\"M 10 10 l 12 12 m -12 0 l 12 -12\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" />      <text font-size=\"11\" id=\"text\" x=\"16\" y=\"16\" oryx:defaultPosition=\"middleRight\"></text>   </g> </svg> ",
 			"icon":"new_xor.png",
 			"intersectionType":"ellipse",
 			"defaultAlign":"south",
@@ -311,7 +311,7 @@
 			"groups":[],
 			"description":"The OR Connector is used to model decisions, where one or more branches are taken or merged.",
 			"description_de":"Bei der ODER-Regel können einer oder mehrere Wege eingeschlagen werden. Es handelt sich somit nicht zwangsläufig um eine \"entweder-oder\"-Entscheidung.",
-			"view":"node.or.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.1\">   <g>     <ellipse id=\"celem\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" rx=\"15\" ry=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>      <path oryx:resize=\"vertical horizontal\" d=\"M 11 10 l 5 12 l 5 -12\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" />      <text font-size=\"11\" id=\"text\" x=\"16\" y=\"16\" oryx:defaultPosition=\"middleRight\"></text>   </g> </svg> ",
 			"icon":"new_or.png",
 			"intersectionType":"ellipse",
 			"defaultAlign":"south",
@@ -345,7 +345,7 @@
 			"description":"A control flow edge defines in which order the events and functions follow each other.",
 			"description_de":"Kontrollflusskanten definieren die Reihenfolge in der Ereignisse und Funktionen aufeinander folgen.",
 			"groups":[],
-			"view":"connection.flow.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>     <marker id=\"end\" refX=\"8\" refY=\"7\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"14\" orient=\"auto\">      <path d=\"M 0 0 L 8 7 L 0 14\" fill=\"none\" stroke=\"black\" stroke-width=\"1.5\" />      </marker>    </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" marker-end=\"url(#end)\" />     </g> </svg> ",
 			"icon":"new_flow.png",
 			"roles": [
 				"epcEdge",
@@ -377,7 +377,7 @@
 			"groups":[],
 			"description":"A process interface can point to another process respectively to a process interface in another process. The link is navigable through the editor.",
 			"description_de":"Eine Prozessschnittstelle wird genutzt um auf andere Prozesse bzw. auf eine andere Prozessschnittstelle in einem anderen Prozess zu verweisen. Die Verknüpfung ist im Editor navigierbar.",
-			"view":"node.pInterface.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"62\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"36\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"80 60\">     <path id=\"celem\" d=\"M 20 36 l 12 -24 l 56 0 l 12 24 l -12 24 l -56 0 z\" oryx:resize=\"vertical horizontal\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />     <rect id=\"celem2\"  oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"80\" height=\"48\" rx=\"8\" ry=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <a id=\"u\" target=\"_blank\">   <rect oryx:anchors=\"bottom\" x=\"54\" y=\"50\" width=\"10\" height=\"10\" fill=\"none\" stroke=\"black\" stroke-width=\"1\" />   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"M59 50 v10 M 54 55 h10\" stroke-width=\"1\"/>  </a>          <text oryx:fittoelem=\"celem\" font-size=\"11\" id=\"text\" x=\"40\" y=\"24\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_pInterface.png",
 			"defaultAlign":"south",
 			"roles": [
@@ -462,7 +462,7 @@
 			"groups":[],
 			"description":"An organizational unit can be attached to a function. It is used to visualize which department, division, etc. the function belongs to.",
 			"description_de":"Eine Organisationseinheit kann an eine Funktion angeheftet werden und beschreibt somit, welcher Abteilung, welchem Geschäftsbereich, etc. sie zugeordnet wird.",
-			"view":"node.organization.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"122\"    height=\"52\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"25\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"60\" oryx:cy=\"50\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"120\" oryx:cy=\"25\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"60\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"60\" oryx:cy=\"25\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <ellipse id=\"celem\" oryx:resize=\"vertical horizontal\" cx=\"60\" cy=\"25\" rx=\"60\" ry=\"25\" stroke=\"black\" stroke-width=\"1\" fill=\"#ffffaf\" />     <rect id=\"textrect\" oryx:resize=\"vertical horizontal\" x=\"12\" y=\"11\" width=\"96\" height=\"28\" stroke=\"none\" fill=\"none\" />  <path d=\"M 10 11 l 0 28\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />     <text oryx:fittoelem=\"textrect\" font-size=\"11\" id=\"text\" x=\"60\" y=\"25\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg>    ",
 			"icon":"new_organization.png",
 			"defaultAlign":"east",
 			"roles": [
@@ -521,7 +521,7 @@
 			"groups":[],
 			"description":"A position can be attached to a function. It is used to visualize by which role, person, etc. the function is performed.",
 			"description_de":"Ein Position kann an eine Funktion angeheftet werden und beschreibt somit, durch welche Stelle, Rolle, Person, etc. sie durchgeführt wird.",
-			"view":"node.position.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"112\"    height=\"42\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"20\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"55\" oryx:cy=\"40\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"110\" oryx:cy=\"20\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"55\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"55\" oryx:cy=\"20\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"55 20\" oryx:maximumSize=\"220 80\" >     <rect id=\"celem\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"110\" height=\"40\" stroke=\"black\" stroke-width=\"1\" fill=\"#ffff80\" />  <rect id=\"textrect\" oryx:resize=\"vertical horizontal\" x=\"7\" y=\"0\" width=\"101\" height=\"40\" stroke=\"none\" fill=\"none\" />     <path d=\"M 5 0 l 0 40\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />      <text oryx:fittoelem=\"textrect\" font-size=\"11\" id=\"text\" x=\"55\" y=\"20\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_position.png",
 			"defaultAlign":"east",
 			"roles": [
@@ -581,7 +581,7 @@
 			"groups":[],
 			"description":"A data object can be attached to a function. It is a document or information used or created in the course of the function.",
 			"description_de":"Ein Dokument kann an eine Funktion angeheftet werden. Dieses Dokument wird im Rahmen der Funktionsausführung verwendet oder erstellt.",
-			"view":"node.data.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"62\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"52\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">      <path id=\"celem\" d=\"M 0 0 l 100 0 l 0 52 l -20 -8 l -60 16 l -20 -8 z \" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"#dcdcdc\" stroke-width=\"1\" />      <text oryx:fittoelem=\"celem\" font-size=\"11\" id=\"text\" x=\"50\" y=\"26\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_data.png",
 			"defaultAlign":"west",
 			"roles": [
@@ -642,7 +642,7 @@
 			"groups":[],
 			"description":"An IT System can be attached to a function. It is a system or application used by the function.",
 			"description_de":"Ein IT-System kann an eine Funktion angeheftet werden. Es handelt sich um ein System oder eine Applikation die von der Funktion verwendet wird.",
-			"view":"node.system.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"62\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"celem\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"60\" stroke=\"black\" stroke-width=\"1\" fill=\"#b0b0ff\" />     <rect id=\"textrect\" oryx:resize=\"vertical horizontal\" x=\"8\" y=\"0\" width=\"84\" height=\"60\" stroke=\"none\" fill=\"none\" />  <path d=\"M 4 0 l 0 60\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />     <path d=\"M 8 0 l 0 60\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />     <path d=\"M 96 0 l 0 60\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />     <path d=\"M 92 0 l 0 60\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />     <text oryx:fittoelem=\"textrect\" font-size=\"11\" id=\"text\" x=\"50\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_system.png",
 			"defaultAlign":"east",
 			"roles": [
@@ -702,7 +702,7 @@
 			"groups":[],
 			"description":"A text note for additional comments.",
 			"description_de":"Eine Textnotiz für beliebige Kommentare.",
-			"view":"node.text.note.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"119\"    height=\"65\"    version=\"1.0\">   <defs></defs>   <g pointer-events=\"fill\">     <polyline oryx:resize=\"vertical horizontal\" oryx:anchors=\"left right\" id=\"celem\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"100,60 0,60 0,0 100,0\" />  <polyline oryx:anchors=\"right top bottom\" id=\"celem2\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"100,60 115,60 115,15 100,15\" />     <polyline oryx:anchors=\"right top\" id=\"celem3\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"115,15 100,0 100,15 115,15\" />  <text font-size=\"11\" id=\"text\" x=\"57.5\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_text_note.png",
 			"roles": ["all"],
 			"properties": [
@@ -757,7 +757,7 @@
 			"description":"Describes a relation between two nodes (no control flow). It is used to link e.g. an IT system to a function.",
 			"description_de":"Beschreibt Beziehungen zwischen zwei Knoten (kein Kontrollfluss). Z.B. zwischen Funktion und IT-System.",
 			"groups":[],
-			"view":"connection.relation.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>      <marker id=\"end\" refX=\"8\" refY=\"7\" markerUnits=\"userSpaceOnUse\" markerWidth=\"8\" markerHeight=\"14\" orient=\"auto\">      <path id=\"none\" />      <path id=\"infFlow\" d=\"M 0 0 L 8 7 L 0 14\" fill=\"none\" stroke=\"black\" stroke-width=\"1.5\" />     </marker>  </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" marker-end=\"url(#end)\" />   <text id=\"text_name\" x=\"0\" y=\"0\" oryx:edgePosition=\"startTop\"/>  </g> </svg> ",
 			"icon":"new_relation.png",
 			"roles": [
 				"relationEdge",

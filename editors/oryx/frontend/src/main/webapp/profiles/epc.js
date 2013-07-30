@@ -2,8 +2,8 @@ if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.EPCSupport=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.EPCSupport.exp,functionality:this.exportEPC.bind(this),group:ORYX.I18N.EPCSupport.group,icon:ORYX.PATH+"images/epml_export_icon.png",description:ORYX.I18N.EPCSupport.expDesc,index:1,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.EPCSupport.imp,functionality:this.importEPC.bind(this),group:ORYX.I18N.EPCSupport.group,icon:ORYX.PATH+"images/epml_import_icon.png",description:ORYX.I18N.EPCSupport.impDesc,index:2,minShape:0,maxShape:0})
-},importEPC:function(){this.openUploadDialog()
-},exportEPC:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.EPCSupport.progressExp});
+}get ,importEPC:function(){this.openUploadDialog()
+}get ,exportEPC:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.EPCSupport.progressExp});
 var b=new XMLSerializer();
 var g="Oryx-EPC";
 var d=DataManager.serializeDOM(this.facade);
@@ -24,15 +24,16 @@ e=null
 if(!a.startsWith("<?xml")){a='<?xml version="1.0" encoding="UTF-8"?>'+a
 }}this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 this.openDownloadWindow(g+".epml",a)
-},transformString:function(d,b,c){var e=new DOMParser();
+}get ,transformString:function(d,b,c){var e=new DOMParser();
 var a=e.parseFromString(d,"text/xml");
 return this.transformDOM(a,b,c)
-},transformDOM:function(j,a,d){if(j==null){return new String("Parse Error: \nThe given dom content is null.")
+}get ,transformDOM:function(j,a,d){if(j==null){return new String("Parse Error: 
+The given dom content is null.")
 }var b="";
 source=a;
 new Ajax.Request(source,{asynchronous:false,method:"get",onSuccess:function(l){b=l.responseText
-}.bind(this),onFailure:(function(l){ORYX.Log.error("XSL load failed"+l)
-}).bind(this)});
+}get .bind(this),onFailure:(function(l){ORYX.Log.error("XSL load failed"+l)
+}get ).bind(this)});
 var k;
 var g;
 var e=new XSLTProcessor();
@@ -40,11 +41,12 @@ var h=new DOMParser();
 var c=h.parseFromString(b,"text/xml");
 e.importStylesheet(c);
 try{k=e.transformToFragment(j,document)
-}catch(f){return new String("Parse Error: "+f.name+"\n"+f.message)
+}catch(f){return new String("Parse Error: "+f.name+"
+"+f.message)
 }if(d){return k
 }g=(new XMLSerializer()).serializeToString(k);
 return g
-},openUploadDialog:function(){var b=new Ext.form.FormPanel({frame:true,bodyStyle:"padding:5px;",defaultType:"textfield",labelAlign:"left",buttonAlign:"right",fileUpload:true,enctype:"multipart/form-data",items:[{text:ORYX.I18N.EPCSupport.selectFile,style:"font-size:12px;margin-bottom:10px;display:block;",xtype:"label"},{fieldLabel:ORYX.I18N.EPCSupport.file,inputType:"file",labelStyle:"width:50px;",itemCls:"ext_specific_window_overflow"}]});
+}get ,openUploadDialog:function(){var b=new Ext.form.FormPanel({frame:true,bodyStyle:"padding:5px;",defaultType:"textfield",labelAlign:"left",buttonAlign:"right",fileUpload:true,enctype:"multipart/form-data",items:[{text:ORYX.I18N.EPCSupport.selectFile,style:"font-size:12px;margin-bottom:10px;display:block;",xtype:"label"},{fieldLabel:ORYX.I18N.EPCSupport.file,inputType:"file",labelStyle:"width:50px;",itemCls:"ext_specific_window_overflow"}]});
 var a=new Ext.Window({autoCreate:true,title:ORYX.I18N.EPCSupport.impPanel,height:"auto",width:"auto",modal:true,collapsible:false,fixedcenter:true,shadow:true,proxyDrag:true,resizable:false,items:[b],buttons:[{text:ORYX.I18N.EPCSupport.impBtn,handler:function(){var c=new Ext.LoadMask(Ext.getBody(),{msg:ORYX.I18N.EPCSupport.progressImp});
 c.show();
 b.form.submit({url:ORYX.PATH+"/epc-upload",success:function(e,d){a.hide();
@@ -52,25 +54,25 @@ var g=d.result;
 g=g.startsWith("<?xml")?g:'<?xml version="1.0" encoding="utf-8"?><div>'+g+"</div>";
 this.loadContent(g);
 c.hide()
-}.bind(this),failure:function(e,d){a.hide();
+}get .bind(this),failure:function(e,d){a.hide();
 c.hide();
 Ext.MessageBox.show({title:ORYX.I18N.EPCSupport.error,msg:d.response.responseText.substring(d.response.responseText.indexOf("content:'")+9,d.response.responseText.indexOf("'}")),buttons:Ext.MessageBox.OK,icon:Ext.MessageBox.ERROR})
-}})
-}.bind(this)},{text:ORYX.I18N.EPCSupport.close,handler:function(){a.hide()
-}.bind(this)}]});
+}get })
+}get .bind(this)},{text:ORYX.I18N.EPCSupport.close,handler:function(){a.hide()
+}get .bind(this)}]});
 a.on("hide",function(){a.destroy(true);
 delete a
-});
+}get );
 a.show()
-},createHiddenElement:function(a,b){var c=document.createElement("input");
+}get ,createHiddenElement:function(a,b){var c=document.createElement("input");
 c.name=a;
 c.type="hidden";
 c.value=b;
 return c
-},getFileName:function(b){var a=b.length;
+}get ,getFileName:function(b){var a=b.length;
 if(a>5){if(b.substr(a-5,5)=="(AML)"){return b.substr(0,a-6)
 }}return b
-},openDownloadWindow:function(b,c){var d=window.open("");
+}get ,openDownloadWindow:function(b,c){var d=window.open("");
 if(d!=null){d.document.open();
 d.document.write("<html><body>");
 var a=d.document.createElement("form");
@@ -83,61 +85,61 @@ d.document.write("</body></html>");
 d.document.close();
 a.action=ORYX.PATH+"/download";
 a.submit()
-}},loadContent:function(a){var c=new DOMParser();
+}}get ,loadContent:function(a){var c=new DOMParser();
 var b=c.parseFromString(a,"text/xml");
 this.facade.importERDF(b)
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Validator=ORYX.Plugins.AbstractPlugin.extend({construct:function(a){this.facade=a;
 this.active=false;
 this.raisedEventIds=[];
 this.buttonId=ORYX.Editor.provideId();
 this.facade.offer({name:ORYX.I18N.Validator.name,id:this.buttonId,functionality:this.load.bind(this),group:"Verification",icon:ORYX.PATH+"images/checker_validation.png",description:ORYX.I18N.Validator.description,index:1,toggle:true,minShape:0,maxShape:0})
-},load:function(a,b){if(!b){this.hideOverlays();
+}get ,load:function(a,b){if(!b){this.hideOverlays();
 this.active=!this.active
 }else{this.validate(a)
-}},setActive:function(a){this.active=a;
+}}get ,setActive:function(a){this.active=a;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_BUTTON_UPDATE,id:this.buttonId,pressed:a})
-},hideOverlays:function(){this.raisedEventIds.each(function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:a})
-}.bind(this));
+}get ,hideOverlays:function(){this.raisedEventIds.each(function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:a})
+}get .bind(this));
 this.raisedEventIds=[]
-},validate:function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.Validator.checking});
+}get ,validate:function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.Validator.checking});
 new Ajax.Request(ORYX.CONFIG.VALIDATOR_URL,{method:"POST",asynchronous:false,parameters:{resource:location.href,data:this.getRDFFromDOM()},onSuccess:function(c){var b=Ext.decode(c.responseText);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 this.handleValidationResponse(b,a)
-}.bind(this),onFailure:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get .bind(this),onFailure:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Validator.error,ORYX.I18N.Validator.errorDesc)
-}.bind(this)})
-},showOverlay:function(b,c,a){var g="syntaxchecker."+this.raisedEventIds.length;
+}get .bind(this)})
+}get ,showOverlay:function(b,c,a){var g="syntaxchecker."+this.raisedEventIds.length;
 var e=ORYX.Editor.provideId();
 var f=ORYX.Editor.graft("http://www.w3.org/2000/svg",null,["path",{id:e,title:"","stroke-width":5,stroke:"red",d:"M20,-5 L5,-20 M5,-5 L20,-20","line-captions":"round"}]);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_SHOW,id:g,shapes:[b],node:f,nodePosition:b instanceof ORYX.Core.Edge?"START":"NW"});
 this.raisedEventIds.push(g);
 var d=new Ext.ToolTip({showDelay:50,title:a,html:c,target:e});
 return f
-},enableDeactivationHandler:function(a){var b=function(){this.setActive(false);
+}get ,enableDeactivationHandler:function(a){var b=function(){this.setActive(false);
 this.facade.unregisterOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,b)
-};
+}get ;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,b.bind(this))
-}});
+}get });
 ORYX.Plugins.BPMNValidator=Ext.extend(ORYX.Plugins.Validator,{handleValidationResponse:function(a,e){var f=a.conflictingNodes;
 var c=a.leadsToEnd;
 var b=a.unsafeNode;
 this.setActive(f.size()>0);
 if(f.size()>0){f.each(function(g){sh=this.facade.getCanvas().getChildShapeByResourceId(g.id);
 if(sh){this.showOverlay(sh,ORYX.I18N.Validator.bpmnDeadlock,ORYX.I18N.Validator.bpmnDeadlockTitle)
-}}.bind(this))
+}}get .bind(this))
 }if(b){var d=this.facade.getCanvas().getChildShapeByResourceId(b);
 if(d){this.showOverlay(d,ORYX.I18N.Validator.bpmnUnsafe,ORYX.I18N.Validator.bpmnUnsafeTitle)
 }}if(c&&f.size()===0&&!b){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.Validator.noErrors,timeout:10000})
 }else{if(!c&&f.size()===0&&!b){Ext.Msg.alert(ORYX.I18N.Validator.bpmnLeadsToNoEndTitle,ORYX.I18N.Validator.bpmnLeadsToNoEnd)
 }else{this.enableDeactivationHandler(e);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.SyntaxChecker.notice,timeout:10000})
-}}}});
+}}}get });
 ORYX.Plugins.EPCValidator=Ext.extend(ORYX.Plugins.Validator,{getLabelOfShape:function(a){if(a.properties["oryx-title"]===""){return a.id
 }else{return a.properties["oryx-title"]
-}},findShapeById:function(a){return this.facade.getCanvas().getChildShapeByResourceId(a)
-},handleValidationResponse:function(k,d){var g=k.isSound;
+}}get ,findShapeById:function(a){return this.facade.getCanvas().getChildShapeByResourceId(a)
+}get ,handleValidationResponse:function(k,d){var g=k.isSound;
 var c=k.badStartArcs;
 var b=k.badEndArcs;
 var h=k.goodInitialMarkings;
@@ -149,36 +151,36 @@ if(g){j+=ORYX.I18N.Validator.epcIsSound
 var a=function(l,m){var n="<ul>";
 l.each(function(o){n+="<li> - ";
 o.each(function(p){n+='"'+m(p)+'" '
-});
+}get );
 n+="</li>"
-});
+}get );
 n+="</ul>";
 return n
-};
+}get ;
 var f=function(n,l){var m="<ul>";
 n.each(function(o){m+="<li> - "+l(o)+"</li>"
-});
+}get );
 m+="</ul>";
 return m
-};
+}get ;
 j+="<p>There are "+h.length+" initial markings which does not run into a deadlock.</p>";
 j+=a(h,function(l){return this.getLabelOfShape(this.findShapeById(l.id).getIncomingShapes()[0])
-}.createDelegate(this));
+}get .createDelegate(this));
 j+="<p>The initial markings do not include "+c.length+" start nodes.</p>";
 j+=f(c,function(l){return this.getLabelOfShape(this.findShapeById(l.id).getIncomingShapes()[0])
-}.createDelegate(this));
+}get .createDelegate(this));
 j+="<hr />";
 j+="<p>There are "+e.length+" final markings which can be reached from the initial markings.</p>";
 j+=a(e,function(l){return this.getLabelOfShape(this.findShapeById(l.id).getOutgoingShapes()[0])
-}.createDelegate(this));
+}get .createDelegate(this));
 j+="<p>The final markings do not include "+b.length+" end nodes.</p>";
 j+=f(b,function(l){return this.getLabelOfShape(this.findShapeById(l.id).getOutgoingShapes()[0])
-}.createDelegate(this));
+}get .createDelegate(this));
 j+="<hr />";
 j+="<p><i>Remark: Set titles of functions and events to get some nicer output (names instead of ids)</i></p>";
 Ext.Msg.alert("Validation Result",j);
 this.setActive(false)
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.SyntaxChecker=ORYX.Plugins.AbstractPlugin.extend({construct:function(){arguments.callee.$.construct.apply(this,arguments);
 this.active=false;
@@ -187,22 +189,22 @@ this.facade.offer({name:ORYX.I18N.SyntaxChecker.name,functionality:this.perform.
 this.facade.registerOnEvent(ORYX.Plugins.SyntaxChecker.CHECK_FOR_ERRORS_EVENT,this.checkForErrors.bind(this));
 this.facade.registerOnEvent(ORYX.Plugins.SyntaxChecker.RESET_ERRORS_EVENT,this.resetErrors.bind(this));
 this.facade.registerOnEvent(ORYX.Plugins.SyntaxChecker.SHOW_ERRORS_EVENT,this.doShowErrors.bind(this))
-},perform:function(a,b){if(!b){this.resetErrors()
+}get ,perform:function(a,b){if(!b){this.resetErrors()
 }else{this.checkForErrors({onNoErrors:function(){this.setActivated(a,false);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.SyntaxChecker.noErrors,timeout:10000})
-}.bind(this),onErrors:function(){this.enableDeactivationHandler(a)
-}.bind(this),onFailure:function(){this.setActivated(a,false);
+}get .bind(this),onErrors:function(){this.enableDeactivationHandler(a)
+}get .bind(this),onFailure:function(){this.setActivated(a,false);
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.SyntaxChecker.invalid)
-}.bind(this)})
-}},enableDeactivationHandler:function(a){var b=function(){this.setActivated(a,false);
+}get .bind(this)})
+}}get ,enableDeactivationHandler:function(a){var b=function(){this.setActivated(a,false);
 this.resetErrors();
 this.facade.unregisterOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,b)
-};
+}get ;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,b.bind(this))
-},setActivated:function(b,a){b.toggle(a);
+}get ,setActivated:function(b,a){b.toggle(a);
 if(a===undefined){this.active=!this.active
 }else{this.active=a
-}},checkForErrors:function(a){Ext.applyIf(a||{},{showErrors:true,onErrors:Ext.emptyFn,onNoErrors:Ext.emptyFn,onFailure:Ext.emptyFn});
+}}get ,checkForErrors:function(a){Ext.applyIf(a||{},{showErrors:true,onErrors:Ext.emptyFn,onNoErrors:Ext.emptyFn,onFailure:Ext.emptyFn});
 Ext.Msg.wait(ORYX.I18N.SyntaxChecker.checkingMessage);
 var b=this.facade.getStencilSets();
 var d=null;
@@ -217,17 +219,17 @@ if(f.size()>0){if(a.showErrors){this.showErrors(f)
 }a.onErrors()
 }else{a.onNoErrors()
 }}else{a.onFailure()
-}}.bind(this),onFailure:function(){Ext.Msg.hide();
+}}get .bind(this),onFailure:function(){Ext.Msg.hide();
 a.onFailure()
-}})
-},doShowErrors:function(b,a){this.showErrors(b.errors)
-},showErrors:function(a){if(!(a instanceof Hash)){a=new Hash(a)
+}get })
+}get ,doShowErrors:function(b,a){this.showErrors(b.errors)
+}get ,showErrors:function(a){if(!(a instanceof Hash)){a=new Hash(a)
 }a.keys().each(function(c){var b=this.facade.getCanvas().getChildShapeByResourceId(c);
 if(b){this.raiseOverlay(b,this.parseCodeToMsg(a[c]))
-}}.bind(this));
+}}get .bind(this));
 this.active=!this.active;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.SyntaxChecker.notice,timeout:10000})
-},parseCodeToMsg:function(e){var f=e.replace(/: /g,"<br />").replace(/, /g,"<br />");
+}get ,parseCodeToMsg:function(e){var f=e.replace(/: /g,"<br />").replace(/, /g,"<br />");
 var a=f.split("<br />");
 for(var b=0;
 b<a.length;
@@ -235,49 +237,49 @@ b++){var d=a[b];
 var c=this.parseSingleCodeToMsg(d);
 if(d!=c){f=f.replace(d,c)
 }}return f
-},parseSingleCodeToMsg:function(a){return ORYX.I18N.SyntaxChecker[a]||a
-},resetErrors:function(){this.raisedEventIds.each(function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:a})
-}.bind(this));
+}get ,parseSingleCodeToMsg:function(a){return ORYX.I18N.SyntaxChecker[a]||a
+}get ,resetErrors:function(){this.raisedEventIds.each(function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:a})
+}get .bind(this));
 this.raisedEventIds=[];
 this.active=false
-},raiseOverlay:function(a,b){var f="syntaxchecker."+this.raisedEventIds.length;
+}get ,raiseOverlay:function(a,b){var f="syntaxchecker."+this.raisedEventIds.length;
 var d=ORYX.Editor.provideId();
 var e=ORYX.Editor.graft("http://www.w3.org/2000/svg",null,["path",{id:d,title:"","stroke-width":5,stroke:"red",d:"M20,-5 L5,-20 M5,-5 L20,-20","line-captions":"round"}]);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_SHOW,id:f,shapes:[a],node:e,nodePosition:a instanceof ORYX.Core.Edge?"START":"NW"});
 var c=new Ext.ToolTip({showDelay:50,html:b,target:d});
 this.raisedEventIds.push(f);
 return e
-}});
+}get });
 ORYX.Plugins.SyntaxChecker.CHECK_FOR_ERRORS_EVENT="checkForErrors";
 ORYX.Plugins.SyntaxChecker.RESET_ERRORS_EVENT="resetErrors";
 ORYX.Plugins.SyntaxChecker.SHOW_ERRORS_EVENT="showErrors";
 ORYX.Plugins.PetrinetSyntaxChecker=ORYX.Plugins.SyntaxChecker.extend({getRDFFromDOM:function(){return this.facade.getERDF()
-}});
+}get });
 Ext.namespace("ORYX.Plugins");
 ORYX.Plugins.AbstractStepThroughPlugin=ORYX.Plugins.AbstractPlugin.extend({construct:function(){arguments.callee.$.construct.apply(this,arguments);
 this.facade.offer({name:ORYX.I18N.StepThroughPlugin.stepThrough,functionality:this.load.bind(this),group:ORYX.I18N.StepThroughPlugin.group,icon:ORYX.PATH+"images/control_play.png",description:ORYX.I18N.StepThroughPlugin.stepThroughDesc,index:1,toggle:true,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.StepThroughPlugin.undo,functionality:this.undo.bind(this),group:ORYX.I18N.StepThroughPlugin.group,icon:ORYX.PATH+"images/control_rewind.png",description:ORYX.I18N.StepThroughPlugin.undoDesc,index:2,minShape:0,maxShape:0})
-},showEnabled:function(a,b){if(!(a instanceof ORYX.Core.Shape)){return
+}get ,showEnabled:function(a,b){if(!(a instanceof ORYX.Core.Shape)){return
 }else{if(this.isOrSplit(a)){this.showEnabledOrSplit(a);
 return
 }}this.showPlayOnShape(a)
-},showPlayOnShape:function(b){var a;
+}get ,showPlayOnShape:function(b){var a;
 if(b instanceof ORYX.Core.Edge){a={stroke:"green"}
 }else{a={fill:"green"}
 }var c=ORYX.Editor.graft("http://www.w3.org/2000/svg",null,["path",{title:"Click the element to execute it!","stroke-width":2,stroke:"black",d:"M0,-5 L5,0 L0,5 Z","line-captions":"round"}]);
 this.showOverlayOnShape(b,a,c)
-},showOverlayOnShape:function(b,a,c){this.hideOverlayOnShape(b);
+}get ,showOverlayOnShape:function(b,a,c){this.hideOverlayOnShape(b);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_SHOW,id:"st."+b.resourceId,shapes:[b],attributes:a,node:(c?c:null),nodePosition:b instanceof ORYX.Core.Edge?"END":"SE"})
-},hideOverlayOnShape:function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:"st."+a.resourceId})
-},hideOverlays:function(a){var b=this.facade.getCanvas().getChildShapes(true);
+}get ,hideOverlayOnShape:function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:"st."+a.resourceId})
+}get ,hideOverlays:function(a){var b=this.facade.getCanvas().getChildShapes(true);
 var c;
 for(i=0;
 i<b.size();
 i++){c=b[i];
 if(!(a&&this.isStartNode(c))){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:"st."+c.resourceId})
-}}},load:function(a,b){this.initializeLoadButton(a,b);
+}}}get ,load:function(a,b){this.initializeLoadButton(a,b);
 this.togglePlugin(b)
-},togglePlugin:function(a){if(a){this.initialMarking=[];
+}get ,togglePlugin:function(a){if(a){this.initialMarking=[];
 if(this.getDiagramType()==="epc"){this.prepareInitialMarking()
 }else{this.startAndCheckSyntax()
 }}else{this.executionTrace="";
@@ -288,20 +290,20 @@ this.onDeactivate()
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEUP,this.callback)
 }else{this.facade.unregisterOnEvent(ORYX.CONFIG.EVENT_MOUSEUP,this.callback);
 this.callback=undefined
-}},onDeactivate:function(){this.hideOverlays()
-},initializeLoadButton:function(b,c){if(this.loadButton!==b){var a=function(d){if(d){this.facade.disableEvent(ORYX.CONFIG.EVENT_MOUSEDOWN)
+}}get ,onDeactivate:function(){this.hideOverlays()
+}get ,initializeLoadButton:function(b,c){if(this.loadButton!==b){var a=function(d){if(d){this.facade.disableEvent(ORYX.CONFIG.EVENT_MOUSEDOWN)
 }else{this.facade.enableEvent(ORYX.CONFIG.EVENT_MOUSEDOWN)
-}}.createDelegate(this);
+}}get .createDelegate(this);
 b.on("toggle",function(d,e){a(e)
-});
+}get );
 a(b,c)
 }this.loadButton=b
-},active:function(){return this.loadButton?this.loadButton.pressed:false
-},onSelectionChanged:function(){if(this.active()&&this.facade.getSelection().length>0){this.facade.setSelection([])
-}},getDiagramType:function(){switch(this.facade.getCanvas().getStencil().namespace()){case"http://b3mn.org/stencilset/epc#":return"epc";
+}get ,active:function(){return this.loadButton?this.loadButton.pressed:false
+}get ,onSelectionChanged:function(){if(this.active()&&this.facade.getSelection().length>0){this.facade.setSelection([])
+}}get ,getDiagramType:function(){switch(this.facade.getCanvas().getStencil().namespace()){case"http://b3mn.org/stencilset/epc#":return"epc";
 case"http://b3mn.org/stencilset/bpmn#":return"bpmn";
 default:return null
-}},showUsed:function(b,c){if(!(b instanceof ORYX.Core.Shape)){return
+}}get ,showUsed:function(b,c){if(!(b instanceof ORYX.Core.Shape)){return
 }var a;
 if(b instanceof ORYX.Core.Edge){a={stroke:"mediumslateblue"}
 }else{a={fill:"mediumslateblue"}
@@ -309,14 +311,14 @@ if(b instanceof ORYX.Core.Edge){a={stroke:"mediumslateblue"}
 if(c!="-1"&&c!="1"){var d=ORYX.Editor.graft("http://www.w3.org/2000/svg",null,["text",{style:"font-size: 16px; font-weight: bold;"},c]);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_SHOW,id:"st."+b.resourceId,shapes:[b],attributes:a,node:d,nodePosition:b instanceof ORYX.Core.Edge?"END":"SE"})
 }else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_SHOW,id:"st."+b.resourceId,shapes:[b],attributes:a})
-}}});
+}}get });
 ORYX.Plugins.PetriNetStepThroughPlugin=ORYX.Plugins.AbstractStepThroughPlugin.extend({construct:function(){arguments.callee.$.construct.apply(this,arguments)
-},startAndCheckSyntax:function(){this.facade.raiseEvent({type:ORYX.Plugins.SyntaxChecker.CHECK_FOR_ERRORS_EVENT,onErrors:function(){Ext.Msg.alert("Syntax Check","Some syntax errors have been found, please correct them!")
-}.bind(this),onNoErrors:function(){if(this.initializeMarking()){this.firedTransitions=[];
+}get ,startAndCheckSyntax:function(){this.facade.raiseEvent({type:ORYX.Plugins.SyntaxChecker.CHECK_FOR_ERRORS_EVENT,onErrors:function(){Ext.Msg.alert("Syntax Check","Some syntax errors have been found, please correct them!")
+}get .bind(this),onNoErrors:function(){if(this.initializeMarking()){this.firedTransitions=[];
 this.showEnabledTransition()
 }else{this.togglePlugin(false)
-}}.bind(this)})
-},initializeMarking:function(){var b=function(d,c){if(c==0){d.setProperty("oryx-numberoftokens_text","");
+}}get .bind(this)})
+}get ,initializeMarking:function(){var b=function(d,c){if(c==0){d.setProperty("oryx-numberoftokens_text","");
 d.setProperty("oryx-numberoftokens_drawing","0")
 }else{if(c==1){d.setProperty("oryx-numberoftokens_text","");
 d.setProperty("oryx-numberoftokens_drawing","1")
@@ -331,108 +333,109 @@ if(e&&e>0){d.setProperty("oryx-numberoftokens_text",""+e);
 d.setProperty("oryx-numberoftokens_drawing","0")
 }else{d.setProperty("oryx-numberoftokens_text","");
 d.setProperty("oryx-numberoftokens_drawing","0")
-}}}}}}};
+}}}}}}}get ;
 this.getPlaces().each(function(c){if("undefined"==typeof(c._setProperty_monkey)){c._setProperty_monkey=c.setProperty;
 c.setProperty=function(e,d){if("oryx-numberoftokens"==e){b(c,d)
 }c._setProperty_monkey.apply(c,arguments)
-}}});
+}get 
+}}get );
 var a=0;
 this.getPlaces().each(function(c){var d=parseInt(c.properties["oryx-numberoftokens"]);
 if(isNaN(d)){c.setProperty("oryx-numberoftokens",0)
 }else{if(d>0){a+=d
-}}});
+}}}get );
 if(0==a){this.getPlaces().each(function(c){if(c.getIncomingShapes().length==0){c.setProperty("oryx-numberoftokens",1)
-}});
+}}get );
 Ext.Msg.show({title:"No Tokens Found",msg:"Current marking of the Petri net doesn't contain any token. Tokens are added to the initial places of the net.",buttons:Ext.Msg.OK,icon:Ext.MessageBox.INFO})
 }if(a>3){Ext.Msg.show({title:"Too Many Tokens On Place",msg:"Places with more than 3 tokens aren't supported yet. Please avoid this scenario.",buttons:Ext.Msg.OK,icon:Ext.MessageBox.WARNING})
 }return true
-},doMouseUp:function(c,a){if(!(this.isTransition(a))){return
+}get ,doMouseUp:function(c,a){if(!(this.isTransition(a))){return
 }var b=this.getIncomingNodes(a).all(function(d){return parseInt(d.properties["oryx-numberoftokens"])>0
-});
+}get );
 if(b){this.fireTransition(a)
 }this.showEnabledTransition()
-},onDeactivate:function(){this.hideOverlays();
+}get ,onDeactivate:function(){this.hideOverlays();
 while(this.firedTransitions.length!==0){this.undoLastFiredTransition()
 }this.facade.getCanvas().update();
 this.facade.raiseEvent({type:ORYX.Plugins.SyntaxChecker.RESET_ERRORS_EVENT})
-},fireTransition:function(a){this.firedTransitions.push(a);
+}get ,fireTransition:function(a){this.firedTransitions.push(a);
 this.getIncomingNodes(a).each(function(b){this.removeToken(b)
-}.bind(this));
+}get .bind(this));
 this.getOutgoingNodes(a).each(function(b){this.addToken(b)
-}.bind(this))
-},undoLastFiredTransition:function(){var a=this.firedTransitions.pop();
+}get .bind(this))
+}get ,undoLastFiredTransition:function(){var a=this.firedTransitions.pop();
 if(!a){return
 }this.getIncomingNodes(a).each(function(b){this.addToken(b)
-}.bind(this));
+}get .bind(this));
 this.getOutgoingNodes(a).each(function(b){this.removeToken(b)
-}.bind(this))
-},removeToken:function(a){a.setProperty("oryx-numberoftokens",parseInt(a.properties["oryx-numberoftokens"])-1)
-},addToken:function(a){var b=parseInt(a.properties["oryx-numberoftokens"])+1;
+}get .bind(this))
+}get ,removeToken:function(a){a.setProperty("oryx-numberoftokens",parseInt(a.properties["oryx-numberoftokens"])-1)
+}get ,addToken:function(a){var b=parseInt(a.properties["oryx-numberoftokens"])+1;
 a.setProperty("oryx-numberoftokens",b);
 if(b>3){Ext.Msg.show({title:"Too Many Tokens On Place",msg:"Places with more than 3 tokens aren't supported yet. Please avoid this scenario.",buttons:Ext.Msg.OK,icon:Ext.MessageBox.WARNING})
-}},showEnabledTransition:function(){this.hideOverlays();
+}}get ,showEnabledTransition:function(){this.hideOverlays();
 this.firedTransitions.each(function(a){this.showUsed(a,"1")
-}.bind(this));
+}get .bind(this));
 this.getEnabledTransitions().each(function(a){this.showPlayOnShape(a)
-}.bind(this));
+}get .bind(this));
 this.facade.getCanvas().update()
-},getTransitions:function(){return this.facade.getCanvas().getChildShapes().select(function(a){return this.isTransition(a)
-}.bind(this))
-},isTransition:function(a){return a instanceof ORYX.Core.Shape&&a.getStencil().id().search(/Transition/)>-1
-},getPlaces:function(){return this.facade.getCanvas().getChildShapes().select(function(a){return a.getStencil().id().search(/Place/)>-1
-})
-},getIncomingNodes:function(a){return a.getIncomingShapes().collect(function(b){return b.getIncomingShapes()
-}).flatten()
-},getOutgoingNodes:function(a){return a.getOutgoingShapes().collect(function(b){return b.getOutgoingShapes()
-}).flatten()
-},getEnabledTransitions:function(){return this.getTransitions().select(function(a){return this.getIncomingNodes(a).all(function(b){return parseInt(b.properties["oryx-numberoftokens"])>0
-})
-}.bind(this))
-},undo:function(){this.undoLastFiredTransition();
+}get ,getTransitions:function(){return this.facade.getCanvas().getChildShapes().select(function(a){return this.isTransition(a)
+}get .bind(this))
+}get ,isTransition:function(a){return a instanceof ORYX.Core.Shape&&a.getStencil().id().search(/Transition/)>-1
+}get ,getPlaces:function(){return this.facade.getCanvas().getChildShapes().select(function(a){return a.getStencil().id().search(/Place/)>-1
+}get )
+}get ,getIncomingNodes:function(a){return a.getIncomingShapes().collect(function(b){return b.getIncomingShapes()
+}get ).flatten()
+}get ,getOutgoingNodes:function(a){return a.getOutgoingShapes().collect(function(b){return b.getOutgoingShapes()
+}get ).flatten()
+}get ,getEnabledTransitions:function(){return this.getTransitions().select(function(a){return this.getIncomingNodes(a).all(function(b){return parseInt(b.properties["oryx-numberoftokens"])>0
+}get )
+}get .bind(this))
+}get ,undo:function(){this.undoLastFiredTransition();
 this.showEnabledTransition()
-}});
+}get });
 ORYX.Plugins.StepThroughPlugin=ORYX.Plugins.AbstractStepThroughPlugin.extend({construct:function(a){this.el=undefined;
 this.callback=undefined;
 this.executionTrace="";
 this.rdf=undefined;
 arguments.callee.$.construct.apply(this,arguments)
-},prepareInitialMarking:function(){this.startNodes=[];
+}get ,prepareInitialMarking:function(){this.startNodes=[];
 Ext.each(this.facade.getCanvas().getChildShapes(true),function(a){if(this.isStartNode(a)){this.startNodes.push(a);
 a.initialMarkingFired=false;
 this.showPlayOnShape(a);
 if(a.getOutgoingShapes().size()==1){this.showOverlayOnShape(a.getOutgoingShapes()[0],{stroke:"green"});
 a.getOutgoingShapes()[0].initialMarking=true
-}}}.createDelegate(this))
-},isStartNode:function(a){return(a.getStencil().id().search(/#Event$/)>-1)&&a.getIncomingShapes().length==0&&a.getOutgoingShapes().length==1
-},isStartArc:function(a){return this.isStartNode(a.getIncomingShapes()[0])
-},isStartArcOrNode:function(a){return this.isStartNode(a)||this.isStartArc(a)
-},generateRDF:function(){try{var b=this.getRDFFromDOM();
+}}}get .createDelegate(this))
+}get ,isStartNode:function(a){return(a.getStencil().id().search(/#Event$/)>-1)&&a.getIncomingShapes().length==0&&a.getOutgoingShapes().length==1
+}get ,isStartArc:function(a){return this.isStartNode(a.getIncomingShapes()[0])
+}get ,isStartArcOrNode:function(a){return this.isStartNode(a)||this.isStartArc(a)
+}get ,generateRDF:function(){try{var b=this.getRDFFromDOM();
 b=!b.startsWith("<?xml")?'<?xml version="1.0" encoding="UTF-8"?>'+b:b
 }catch(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,a)
 }this.rdf=b
-},getRDF:function(){if(this.rdf==undefined){this.generateRDF()
+}get ,getRDF:function(){if(this.rdf==undefined){this.generateRDF()
 }return this.rdf
-},startAndCheckSyntax:function(){this.postExecutionTrace({checkSyntax:true,onlyChangedObjects:false,onSuccess:function(a){if(a.responseText.startsWith("{")){var b=Ext.decode(a.responseText).syntaxErrors;
+}get ,startAndCheckSyntax:function(){this.postExecutionTrace({checkSyntax:true,onlyChangedObjects:false,onSuccess:function(a){if(a.responseText.startsWith("{")){var b=Ext.decode(a.responseText).syntaxErrors;
 this.facade.raiseEvent({type:ORYX.Plugins.SyntaxChecker.SHOW_ERRORS_EVENT,errors:b})
 }else{this.showObjectStates(a.responseText)
-}}.bind(this)})
-},fireObject:function(a){this.executionTrace+=a+";";
+}}get .bind(this)})
+}get ,fireObject:function(a){this.executionTrace+=a+";";
 if(this.isOrSplit(this.el)){this.executionTrace=this.executionTrace.substring(0,this.executionTrace.length-1);
 this.executionTrace+="#";
 var c=new Ext.util.MixedCollection();
 c.addAll(this.el.getOutgoingShapes());
 var b=[];
 c.filter("selectedForOrSplit","true").each(function(d){b.push(d.resourceId)
-}.createDelegate(this));
+}get .createDelegate(this));
 c.each(function(d){d.selectedForOrSplit=false;
 this.hideOverlayOnShape(d)
-}.createDelegate(this));
+}get .createDelegate(this));
 this.executionTrace+=b.join(",")+";"
 }this.postExecutionTrace({checkSyntax:false,onlyChangedObjects:true,onSuccess:function(d){if(d.responseText!=""){this.showObjectStates(d.responseText)
 }else{this.removeLastFiredObject()
-}}.bind(this)})
-},doMouseUp:function(d,a){if(a instanceof ORYX.Core.Shape){if(a instanceof ORYX.Core.Edge&&this.isOrSplit(a.getIncomingShapes()[0])){this.doMouseUpOnEdgeComingFromOrSplit(a)
+}}get .bind(this)})
+}get ,doMouseUp:function(d,a){if(a instanceof ORYX.Core.Shape){if(a instanceof ORYX.Core.Edge&&this.isOrSplit(a.getIncomingShapes()[0])){this.doMouseUpOnEdgeComingFromOrSplit(a)
 }else{if(a instanceof ORYX.Core.Edge&&this.getDiagramType()==="epc"&&this.isStartNode(a.getIncomingShapes()[0])){this.doMouseUpOnEdgeComingFromStartNode(a)
 }else{if(this.getDiagramType()==="epc"&&this.isStartNode(a)){a.initialMarkingFired=true;
 var c=a.getOutgoingShapes()[0];
@@ -442,11 +445,11 @@ this.initialMarking.push(a.resourceId)
 }else{this.hideOverlayOnShape(a)
 }var b=true;
 Ext.each(this.startNodes,function(e){if(!e.initialMarkingFired){b=false
-}});
+}}get );
 if(b){this.startAndCheckSyntax()
 }}else{this.el=a;
 this.fireObject(this.el.resourceId)
-}}}}},showObjectStates:function(d){var a=d.split(";");
+}}}}}get ,showObjectStates:function(d){var a=d.split(";");
 for(i=0;
 i<a.size();
 i++){var b=a[i].split(",");
@@ -455,7 +458,7 @@ if(b.size()<3){continue
 if(b[2]=="t"){this.showEnabled(c,b[1])
 }else{if(b[1]!="0"){this.showUsed(c,b[1])
 }else{this.hideOverlayOnShape(c)
-}}}},doMouseUpOnEdgeComingFromOrSplit:function(b){var a=b.getIncomingShapes()[0];
+}}}}get ,doMouseUpOnEdgeComingFromOrSplit:function(b){var a=b.getIncomingShapes()[0];
 if(b.selectedForOrSplit){this.showOverlayOnShape(b,{stroke:"orange"});
 var c=new Ext.util.MixedCollection();
 c.addAll(a.getOutgoingShapes());
@@ -463,54 +466,54 @@ if(c.filter("selectedForOrSplit","true").length<=1){this.hideOverlayOnShape(a)
 }}else{this.showOverlayOnShape(b,{stroke:"green"});
 this.showPlayOnShape(a)
 }b.selectedForOrSplit=!b.selectedForOrSplit
-},doMouseUpOnEdgeComingFromStartNode:function(a){a.initialMarking=!a.initialMarking;
+}get ,doMouseUpOnEdgeComingFromStartNode:function(a){a.initialMarking=!a.initialMarking;
 if(a.initialMarking){this.showOverlayOnShape(a,{stroke:"green"})
 }else{this.showOverlayOnShape(a,{stroke:"orange"})
-}},isOrSplit:function(a){return(a.getStencil().id().search(/#(OR_Gateway|OrConnector)$/)>-1)&&(a.getOutgoingShapes().length>1)
-},showEnabledOrSplit:function(a){Ext.each(a.getOutgoingShapes(),function(b){Ext.apply(b,{selectedForOrSplit:false});
+}}get ,isOrSplit:function(a){return(a.getStencil().id().search(/#(OR_Gateway|OrConnector)$/)>-1)&&(a.getOutgoingShapes().length>1)
+}get ,showEnabledOrSplit:function(a){Ext.each(a.getOutgoingShapes(),function(b){Ext.apply(b,{selectedForOrSplit:false});
 this.showOverlayOnShape(b,{stroke:"orange"})
-}.createDelegate(this))
-},removeLastFiredObject:function(){this.executionTrace=this.executionTrace.replace(/[^;]*;$/,"")
-},undo:function(){if(!this.active()){return
+}get .createDelegate(this))
+}get ,removeLastFiredObject:function(){this.executionTrace=this.executionTrace.replace(/[^;]*;$/,"")
+}get ,undo:function(){if(!this.active()){return
 }if(this.executionTrace!==""){this.removeLastFiredObject();
 this.postExecutionTrace({checkSyntax:false,onlyChangedObjects:false,onSuccess:function(a){this.hideOverlays(true);
 this.showObjectStates(a.responseText)
-}.bind(this)})
+}get .bind(this)})
 }else{if(this.getDiagramType()==="epc"){this.hideOverlays();
 this.prepareInitialMarking()
-}}},postExecutionTrace:function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.StepThroughPlugin.executing});
+}}}get ,postExecutionTrace:function(a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.StepThroughPlugin.executing});
 new Ajax.Request(ORYX.CONFIG.STEP_THROUGH,{method:"POST",asynchronous:false,parameters:{rdf:this.getRDF(),checkSyntax:a.checkSyntax,fire:this.executionTrace,onlyChangedObjects:a.onlyChangedObjects,initialMarking:this.initialMarking.join(";")},onSuccess:function(b){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 a.onSuccess(b)
-}.createDelegate(this),onFailure:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE})
-}.createDelegate(this)})
-}});
+}get .createDelegate(this),onFailure:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE})
+}get .createDelegate(this)})
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.VisioEPCImport=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,construct:function(a){arguments.callee.$.construct.apply(this,arguments);
 this.facade=a;
 this.facade.offer({name:ORYX.I18N.VisioImport.EPCName,functionality:this.importVDX.bind(this),group:"Export",dropDownGroupIcon:ORYX.PATH+"images/import.png",icon:ORYX.PATH+"images/visio_icon.png",description:ORYX.I18N.VisioImport.desc,index:2,minShape:0,maxShape:0})
-},importVDX:function(){this._showImportDialog()
-},_sendRequest:function(b,f,d,e,a){var c=false;
+}get ,importVDX:function(){this._showImportDialog()
+}get ,_sendRequest:function(b,f,d,e,a){var c=false;
 new Ajax.Request(b,{method:f,asynchronous:false,parameters:d,onSuccess:function(g){c=true;
 if(e){e(g.responseText)
-}}.bind(this),onFailure:function(g){if(a){a()
+}}get .bind(this),onFailure:function(g){if(a){a()
 }else{this._showErrorMessageBox(ORYX.I18N.Oryx.title,ORYX.I18N.VisioImport.connectionError);
 ORYX.log.warn("Communication failed: "+g.responseText)
-}}.bind(this)});
+}}get .bind(this)});
 return c
-},_showImportDialog:function(a){var c=new Ext.form.FormPanel({defaultType:"textfield",layout:"anchor",border:false,fileUpload:true,reader:{read:function(d){return d.responseText.replace(/\s*<(pre|\/pre)>\s*/gi,"")
-}},items:[{text:ORYX.I18N.VisioImport.PleaseSelect,style:"font-size:12px;margin-bottom:10px;display:block;",xtype:"label"},{name:"vdxFile",inputType:"file",style:"margin-bottom:10px;display:block;",itemCls:"ext_specific_window_overflow"},{name:"stencil",inputType:"hidden",value:"epc"}]});
+}get ,_showImportDialog:function(a){var c=new Ext.form.FormPanel({defaultType:"textfield",layout:"anchor",border:false,fileUpload:true,reader:{read:function(d){return d.responseText.replace(/\s*<(pre|\/pre)>\s*/gi,"")
+}get },items:[{text:ORYX.I18N.VisioImport.PleaseSelect,style:"font-size:12px;margin-bottom:10px;display:block;",xtype:"label"},{name:"vdxFile",inputType:"file",style:"margin-bottom:10px;display:block;",itemCls:"ext_specific_window_overflow"},{name:"stencil",inputType:"hidden",value:"epc"}]});
 c.getForm().errorReader={read:function(d){return{success:d.responseText.replace(/\s*<(pre|\/pre)>\s*/gi,"").startsWith("{"),records:[]}
-}};
+}get };
 var b=new Ext.Window({autoCreate:true,cls:"x-window-security-center",bodyStyle:"padding:5px;background:white;",title:ORYX.I18N.VisioImport.Label,width:400,modal:true,resizable:false,items:[c],buttons:[{text:ORYX.I18N.VisioImport.UploadButton,handler:function(){if(c.items.items[1].el.dom.value){c.getForm().submit({url:ORYX.CONFIG.VISIOIMPORT,waitMsg:ORYX.I18N.VisioImport.ImportWait,method:"POST",success:function(d,e){b.close();
 this.facade.importJSON(e.response.responseText.replace(/\s*<(pre|\/pre)>\s*/gi,""))
-}.bind(this),failure:function(d,e){b.close();
+}get .bind(this),failure:function(d,e){b.close();
 Ext.Msg.alert(ORYX.I18N.VisioImport.ImportFailure,ORYX.I18N.VisioImport.ImportFailureDescription).setIcon(Ext.MessageBox.INFO)
-}})
+}get })
 }else{b.close()
-}}.bind(this)},{text:Ext.MessageBox.buttonText.cancel,handler:function(){b.close()
-}.bind(this)}]});
+}}get .bind(this)},{text:Ext.MessageBox.buttonText.cancel,handler:function(){b.close()
+}get .bind(this)}]});
 b.show()
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.ShapeRepository={facade:undefined,construct:function(c){this.facade=c;
 this._currentParent;
@@ -524,10 +527,10 @@ b.afterDragDrop=this.drop.bind(this,b);
 b.beforeDragOver=this.beforeDragOver.bind(this,b);
 b.beforeDragEnter=function(){this._lastOverElement=false;
 return true
-}.bind(this);
+}get .bind(this);
 this.setStencilSets();
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED,this.setStencilSets.bind(this))
-},setStencilSets:function(){var a=this.shapeList;
+}get ,setStencilSets:function(){var a=this.shapeList;
 var b=this.shapeList.firstChild;
 while(b){this.shapeList.removeChild(b);
 b=this.shapeList.firstChild
@@ -541,7 +544,7 @@ c.expand();
 var f=e.stencils(this.facade.getCanvas().getStencil(),this.facade.getRules());
 var h=new Hash();
 f=f.sortBy(function(j){return j.position()
-});
+}get );
 f.each((function(k){if(f.length<=ORYX.CONFIG.MAX_NUM_SHAPES_NO_GROUP){this.createStencilTreeNode(c,k);
 return
 }var j=k.groups();
@@ -549,10 +552,10 @@ j.each((function(l){if(!h[l]){h[l]=new Ext.tree.TreeNode({text:l,allowDrag:false
 c.appendChild(h[l]);
 h[l].render()
 }this.createStencilTreeNode(h[l],k)
-}).bind(this));
+}get ).bind(this));
 if(j.length==0){this.createStencilTreeNode(c,k)
-}}).bind(this))
-}).bind(this))
+}}get ).bind(this))
+}get ).bind(this))
 }new Ajax.Request("/backend/poem/jobdefinition",{method:"GET",parameters:{userId:ORYX.CONFIG.USER_ID,call:"getAllJobDefinitions"},onSuccess:function(c){var f;
 a.appendChild(f=new Ext.tree.TreeNode({text:"Advanced",allowDrag:false,allowDrop:false,iconCls:"headerShapeRepImg",cls:"headerShapeRep",singleClickExpand:true}));
 f.render();
@@ -561,23 +564,23 @@ var e=JSON.parse(c.responseText),g;
 for(var d=0;
 d<e.length;
 d++){g=new Ext.tree.TreeNode({text:e[d].title,allowDrag:true,allowDrop:false,iconCls:"ShapeRepEntreeImg",cls:"ShapeRepEntree",listeners:{dblclick:function(h,j){window.location="/oryx/editor;bpmn2.0?template=true&userId="+ORYX.CONFIG.USER_ID+"#"+this.url
-}}});
+}get }});
 g.url=e[d].value;
 f.appendChild(g);
 g.render()
-}},onFailure:function(d){var c="FATAL: REST query to /backend/poem/jobdefinition failed.";
+}}get ,onFailure:function(d){var c="FATAL: REST query to /backend/poem/jobdefinition failed.";
 if(console){console.log(c);
 console.log(d)
 }alert(c)
-}});
+}get });
 if(this.shapeList.firstChild.firstChild){this.shapeList.firstChild.firstChild.expand(false,true)
-}},createStencilTreeNode:function(a,b){var d=new Ext.tree.TreeNode({text:b.title(),icon:b.icon(),allowDrag:false,allowDrop:false,iconCls:"ShapeRepEntreeImg",cls:"ShapeRepEntree"});
+}}get ,createStencilTreeNode:function(a,b){var d=new Ext.tree.TreeNode({text:b.title(),icon:b.icon(),allowDrag:false,allowDrop:false,iconCls:"ShapeRepEntreeImg",cls:"ShapeRepEntree"});
 a.appendChild(d);
 d.render();
 var c=d.getUI();
 c.elNode.setAttributeNS(null,"title",b.description());
 Ext.dd.Registry.register(c.elNode,{node:c.node,handles:[c.elNode,c.textNode].concat($A(c.elNode.childNodes)),isHandle:false,type:b.id(),namespace:b.namespace()})
-},drop:function(j,g,b){this._lastOverElement=undefined;
+}get ,drop:function(j,g,b){this._lastOverElement=undefined;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"shapeRepo.added"});
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"shapeRepo.attached"});
 var h=j.getProxy();
@@ -607,7 +610,7 @@ this.facade=p;
 this.selection=this.facade.getSelection();
 this.shape;
 this.parent
-},execute:function(){if(!this.shape){this.shape=this.facade.createShape(f);
+}get ,execute:function(){if(!this.shape){this.shape=this.facade.createShape(f);
 this.parent=this.shape.parent
 }else{this.parent.add(this.shape)
 }if(this.canAttach&&this.currentParent instanceof ORYX.Core.Node&&this.shape.dockers.length>0){var a=this.shape.dockers[0];
@@ -617,16 +620,16 @@ a.setDockedShape(this.currentParent)
 }this.facade.setSelection([this.shape]);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-},rollback:function(){this.facade.deleteShape(this.shape);
+}get ,rollback:function(){this.facade.deleteShape(this.shape);
 this.facade.setSelection(this.selection.without(this.shape));
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var e=this.facade.eventCoordinates(b.browserEvent);
 var c=new d(f,this._currentParent,this._canAttach,e,this.facade);
 this.facade.executeCommands([c]);
 this._currentParent=undefined
-},beforeDragOver:function(h,f,b){var e=this.facade.eventCoordinates(b.browserEvent);
+}get ,beforeDragOver:function(h,f,b){var e=this.facade.eventCoordinates(b.browserEvent);
 var l=this.facade.getCanvas().getAbstractShapesAtPosition(e);
 if(l.length<=0){var a=h.getProxy();
 a.setStatus(a.dropNotAllowed);
@@ -638,7 +641,7 @@ if(l.lenght==1&&l[0] instanceof ORYX.Core.Canvas){return false
 var j=this.facade.getStencilSets()[d.namespace];
 var k=j.stencil(d.type);
 if(k.type()==="node"){var g=l.reverse().find(function(m){return(m instanceof ORYX.Core.Canvas||m instanceof ORYX.Core.Node||m instanceof ORYX.Core.Edge)
-});
+}get );
 if(g!==this._lastOverElement){this._canAttach=undefined;
 this._canContain=undefined
 }if(g){if(!(g instanceof ORYX.Core.Canvas)&&g.isPointOverOffset(e.x,e.y)&&this._canAttach==undefined){this._canAttach=this.facade.getRules().canConnect({sourceShape:g,edgeStencil:k,targetStencil:k});
@@ -659,14 +662,14 @@ var a=h.getProxy();
 a.setStatus(a.dropAllowed);
 a.sync()
 }}return false
-}};
+}get };
 ORYX.Plugins.ShapeRepository=Clazz.extend(ORYX.Plugins.ShapeRepository);
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.PropertyWindow={facade:undefined,construct:function(a){this.facade=a;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW,this.init.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED,this.selectDiagram.bind(this));
 this.init()
-},init:function(){this.node=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",null,["div"]);
+}get ,init:function(){this.node=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",null,["div"]);
 this.currentDateFormat;
 this.popularProperties=[];
 this.properties=[];
@@ -681,10 +684,10 @@ var a=this.fields.get(c).sortType;
 var b=function(f,e){var k=a(f.data[c]),j=a(e.data[c]);
 var h=f.data.popular,g=e.data.popular;
 return h&&!g?-1:(!h&&g?1:(k>j?1:(k<j?-1:0)))
-};
+}get ;
 this.data.sort(d,b);
 if(this.snapshot&&this.snapshot!=this.data){this.snapshot.sort(d,b)
-}},groupField:"popular"});
+}}get ,groupField:"popular"});
 this.dataSource.load();
 this.grid=new Ext.grid.EditorGridPanel({clicksToEdit:1,stripeRows:true,autoExpandColumn:"propertywindow_column_value",width:"auto",colModel:this.columnModel,enableHdMenu:false,view:new Ext.grid.GroupingView({forceFit:true,groupTextTpl:"{[values.rs.first().data.popular ? ORYX.I18N.PropertyWindow.oftenUsed : ORYX.I18N.PropertyWindow.moreProps]}"}),store:this.dataSource});
 region=this.facade.addToRegion("east",new Ext.Panel({width:220,layout:"fit",border:false,title:"Properties",items:[this.grid]}),ORYX.I18N.PropertyWindow.title);
@@ -692,14 +695,14 @@ this.grid.on("beforeedit",this.beforeEdit,this,true);
 this.grid.on("afteredit",this.afterEdit,this,true);
 this.grid.view.on("refresh",this.hideMoreAttrs,this,true);
 this.grid.enableColumnMove=false
-},selectDiagram:function(){this.shapeSelection.shapes=[this.facade.getCanvas()];
+}get ,selectDiagram:function(){this.shapeSelection.shapes=[this.facade.getCanvas()];
 this.setPropertyWindowTitle();
 this.identifyCommonProperties();
 this.createProperties()
-},specialKeyDown:function(b,a){if(b instanceof Ext.form.TextArea&&a.button==ORYX.CONFIG.KEY_Code_enter){return false
-}},tooltipRenderer:function(b,c,a){c.cellAttr='title="'+a.data.gridProperties.tooltip+'"';
+}get ,specialKeyDown:function(b,a){if(b instanceof Ext.form.TextArea&&a.button==ORYX.CONFIG.KEY_Code_enter){return false
+}}get ,tooltipRenderer:function(b,c,a){c.cellAttr='title="'+a.data.gridProperties.tooltip+'"';
 return b
-},renderer:function(b,c,a){this.tooltipRenderer(b,c,a);
+}get ,renderer:function(b,c,a){this.tooltipRenderer(b,c,a);
 if(b instanceof Date){b=b.dateFormat(ORYX.I18N.PropertyWindow.dateFormat)
 }else{if(String(b).search("<a href='")<0){b=String(b).gsub("<","&lt;");
 b=String(b).gsub(">","&gt;");
@@ -707,9 +710,9 @@ b=String(b).gsub("%","&#37;");
 b=String(b).gsub("&","&amp;");
 if(a.data.gridProperties.type==ORYX.CONFIG.TYPE_COLOR){b="<div class='prop-background-color' style='background-color:"+b+"' />"
 }a.data.icons.each(function(d){if(d.name==b){if(d.icon){b="<img src='"+d.icon+"' /> "+b
-}}})
+}}}get )
 }}return b
-},beforeEdit:function(c){var d=this.dataSource.getAt(c.row).data.gridProperties.editor;
+}get ,beforeEdit:function(c){var d=this.dataSource.getAt(c.row).data.gridProperties.editor;
 var a=this.dataSource.getAt(c.row).data.gridProperties.renderer;
 if(d){this.facade.disableEvent(ORYX.CONFIG.EVENT_KEYDOWN);
 c.grid.getColumnModel().setEditor(1,d);
@@ -720,8 +723,8 @@ d.setSize(c.grid.getColumnModel().getColumnWidth(1),d.height)
 }var b=this.dataSource.getAt(c.row).data.gridProperties.propId;
 this.oldValues=new Hash();
 this.shapeSelection.shapes.each(function(e){this.oldValues[e.getId()]=e.properties[b]
-}.bind(this))
-},afterEdit:function(e){e.grid.getStore().commitChanges();
+}get .bind(this))
+}get ,afterEdit:function(e){e.grid.getStore().commitChanges();
 var c=e.record.data.gridProperties.propId;
 var h=this.shapeSelection.shapes;
 var b=this.oldValues;
@@ -732,61 +735,61 @@ this.selectedElements=h;
 this.oldValues=b;
 this.newValue=f;
 this.facade=d
-},execute:function(){this.selectedElements.each(function(j){if(!j.getStencil().property(this.key).readonly()){j.setProperty(this.key,this.newValue)
-}}.bind(this));
+}get ,execute:function(){this.selectedElements.each(function(j){if(!j.getStencil().property(this.key).readonly()){j.setProperty(this.key,this.newValue)
+}}get .bind(this));
 this.facade.setSelection(this.selectedElements);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-},rollback:function(){this.selectedElements.each(function(j){j.setProperty(this.key,this.oldValues[j.getId()])
-}.bind(this));
+}get ,rollback:function(){this.selectedElements.each(function(j){j.setProperty(this.key,this.oldValues[j.getId()])
+}get .bind(this));
 this.facade.setSelection(this.selectedElements);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var g=new a();
 this.facade.executeCommands([g]);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED,elements:h,key:c,value:e.value})
-},editDirectly:function(a,b){this.shapeSelection.shapes.each(function(d){if(!d.getStencil().property(a).readonly()){d.setProperty(a,b)
-}}.bind(this));
+}get ,editDirectly:function(a,b){this.shapeSelection.shapes.each(function(d){if(!d.getStencil().property(a).readonly()){d.setProperty(a,b)
+}}get .bind(this));
 var c=this.shapeSelection.shapes;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED,elements:c,key:a,value:b});
 this.facade.getCanvas().update()
-},updateAfterInvalid:function(a){this.shapeSelection.shapes.each(function(b){if(!b.getStencil().property(a).readonly()){b.setProperty(a,this.oldValues[b.getId()]);
+}get ,updateAfterInvalid:function(a){this.shapeSelection.shapes.each(function(b){if(!b.getStencil().property(a).readonly()){b.setProperty(a,this.oldValues[b.getId()]);
 b.update()
-}}.bind(this));
+}}get .bind(this));
 this.facade.getCanvas().update()
-},dialogClosed:function(a){var b=this.field?this.field.row:this.row;
+}get ,dialogClosed:function(a){var b=this.field?this.field.row:this.row;
 this.scope.afterEdit({grid:this.scope.grid,record:this.scope.grid.getStore().getAt(b),value:a});
 this.scope.grid.startEditing(b,this.col)
-},setPropertyWindowTitle:function(){if(this.shapeSelection.shapes.length==1){region.setTitle(ORYX.I18N.PropertyWindow.title+" ("+this.shapeSelection.shapes.first().getStencil().title()+")")
+}get ,setPropertyWindowTitle:function(){if(this.shapeSelection.shapes.length==1){region.setTitle(ORYX.I18N.PropertyWindow.title+" ("+this.shapeSelection.shapes.first().getStencil().title()+")")
 }else{region.setTitle(ORYX.I18N.PropertyWindow.title+" ("+this.shapeSelection.shapes.length+" "+ORYX.I18N.PropertyWindow.selected+")")
-}},setCommonPropertiesValues:function(){this.shapeSelection.commonPropertiesValues=new Hash();
+}}get ,setCommonPropertiesValues:function(){this.shapeSelection.commonPropertiesValues=new Hash();
 this.shapeSelection.commonProperties.each(function(d){var c=d.prefix()+"-"+d.id();
 var b=false;
 var a=this.shapeSelection.shapes.first();
 this.shapeSelection.shapes.each(function(e){if(a.properties[c]!=e.properties[c]){b=true
-}}.bind(this));
+}}get .bind(this));
 if(!b){this.shapeSelection.commonPropertiesValues[c]=a.properties[c]
-}}.bind(this))
-},getStencilSetOfSelection:function(){var a=new Hash();
+}}get .bind(this))
+}get ,getStencilSetOfSelection:function(){var a=new Hash();
 this.shapeSelection.shapes.each(function(b){a[b.getStencil().id()]=b.getStencil()
-});
+}get );
 return a
-},identifyCommonProperties:function(){this.shapeSelection.commonProperties.clear();
+}get ,identifyCommonProperties:function(){this.shapeSelection.commonProperties.clear();
 var d=this.getStencilSetOfSelection();
 var c=d.values().first();
 var b=d.values().without(c);
 if(b.length==0){this.shapeSelection.commonProperties=c.properties()
 }else{var a=new Hash();
 c.properties().each(function(e){a[e.namespace()+"-"+e.id()+"-"+e.type()]=e
-});
+}get );
 b.each(function(e){var f=new Hash();
 e.properties().each(function(g){if(a[g.namespace()+"-"+g.id()+"-"+g.type()]){f[g.namespace()+"-"+g.id()+"-"+g.type()]=g
-}});
+}}get );
 a=f
-});
+}get );
 this.shapeSelection.commonProperties=a.values()
-}},onSelectionChanged:function(a){this.grid.stopEditing();
+}}get ,onSelectionChanged:function(a){this.grid.stopEditing();
 this.shapeSelection.shapes=a.elements;
 if(a.elements.length==0){this.shapeSelection.shapes=[this.facade.getCanvas()]
 }if(a.subSelection){this.shapeSelection.shapes=[a.subSelection]
@@ -794,7 +797,7 @@ if(a.elements.length==0){this.shapeSelection.shapes=[this.facade.getCanvas()]
 this.identifyCommonProperties();
 this.setCommonPropertiesValues();
 this.createProperties()
-},createProperties:function(){this.properties=[];
+}get ,createProperties:function(){this.properties=[];
 this.popularProperties=[];
 if(this.shapeSelection.commonProperties){this.shapeSelection.commonProperties.each((function(o,g){var t=o.prefix()+"-"+o.id();
 var u=o.title();
@@ -805,30 +808,30 @@ var b=null;
 var j=false;
 if(!o.readonly()){switch(o.type()){case ORYX.CONFIG.TYPE_STRING:if(o.wrapLines()){var e=new Ext.form.TextArea({alignment:"tl-tl",allowBlank:o.optional(),msgTarget:"title",maxLength:o.length()});
 e.on("keyup",function(w,v){this.editDirectly(t,w.getValue())
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(e)
 }else{var h=new Ext.form.TextField({allowBlank:o.optional(),msgTarget:"title",maxLength:o.length()});
 h.on("keyup",function(v,w){this.editDirectly(t,v.getValue())
-}.bind(this));
+}get .bind(this));
 h.on("blur",function(v){if(!v.isValid(false)){this.updateAfterInvalid(t)
-}}.bind(this));
+}}get .bind(this));
 h.on("specialkey",function(v,w){if(!v.isValid(false)){this.updateAfterInvalid(t)
-}}.bind(this));
+}}get .bind(this));
 a=new Ext.Editor(h)
 }break;
 case ORYX.CONFIG.TYPE_BOOLEAN:var s=new Ext.form.Checkbox();
 s.on("check",function(w,v){this.editDirectly(t,v)
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(s);
 break;
 case ORYX.CONFIG.TYPE_INTEGER:var c=new Ext.form.NumberField({allowBlank:o.optional(),allowDecimals:false,msgTarget:"title",minValue:o.min(),maxValue:o.max()});
 c.on("keyup",function(v,w){this.editDirectly(t,v.getValue())
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(c);
 break;
 case ORYX.CONFIG.TYPE_FLOAT:var c=new Ext.form.NumberField({allowBlank:o.optional(),allowDecimals:true,msgTarget:"title",minValue:o.min(),maxValue:o.max()});
 c.on("keyup",function(v,w){this.editDirectly(t,v.getValue())
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(c);
 break;
 case ORYX.CONFIG.TYPE_COLOR:var q=new Ext.ux.ColorField({allowBlank:o.optional(),msgTarget:"title",facade:this.facade});
@@ -841,11 +844,11 @@ n.each(function(v){if(v.value()==k){k=v.title()
 }if(v.refToView()[0]){j=true
 }d.push([v.icon(),v.title(),v.value()]);
 r.push({name:v.title(),icon:v.icon()})
-});
+}get );
 var f=new Ext.data.SimpleStore({fields:[{name:"icon"},{name:"title"},{name:"value"}],data:d});
 var p=new Ext.form.ComboBox({tpl:'<tpl for="."><div class="x-combo-list-item">{[(values.icon) ? "<img src=\'" + values.icon + "\' />" : ""]} {title}</div></tpl>',store:f,displayField:"title",valueField:"value",typeAhead:true,mode:"local",triggerAction:"all",selectOnFocus:true});
 p.on("select",function(x,v,w){this.editDirectly(t,x.getValue())
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(p);
 break;
 case ORYX.CONFIG.TYPE_DATE:var m=ORYX.I18N.PropertyWindow.dateFormat;
@@ -864,12 +867,12 @@ case"CPNString":var h=new Ext.form.TextField({allowBlank:o.optional(),msgTarget:
 h.on("keyup",function(v,w){this.editDirectly(t,v.getValue());
 console.log(v.getValue());
 alert("huhu")
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(h);
 break;
 default:var h=new Ext.form.TextField({allowBlank:o.optional(),msgTarget:"title",maxLength:o.length(),enableKeyEvents:true});
 h.on("keyup",function(v,w){this.editDirectly(t,v.getValue())
-}.bind(this));
+}get .bind(this));
 a=new Ext.Editor(h)
 }a.on("beforehide",this.facade.enableEvent.bind(this,ORYX.CONFIG.EVENT_KEYDOWN));
 a.on("specialkey",this.specialKeyDown.bind(this))
@@ -878,20 +881,20 @@ k="<a href='"+k+"' target='_blank'>"+k.split("://")[1]+"</a>"
 }}if(o.visible()){if(o.refToView()[0]||j||o.popular()){o.setPopular()
 }if(o.popular()){this.popularProperties.push([o.popular(),u,k,r,{editor:a,propId:t,type:o.type(),tooltip:o.description(),renderer:b}])
 }else{this.properties.push([o.popular(),u,k,r,{editor:a,propId:t,type:o.type(),tooltip:o.description(),renderer:b}])
-}}}).bind(this))
+}}}get ).bind(this))
 }this.setProperties()
-},hideMoreAttrs:function(a){if(this.properties.length<=0){return
+}get ,hideMoreAttrs:function(a){if(this.properties.length<=0){return
 }this.grid.view.toggleGroup(this.grid.view.getGroupId(this.properties[0][0]),false);
 this.grid.view.un("refresh",this.hideMoreAttrs,this)
-},setProperties:function(){var a=this.popularProperties.concat(this.properties);
+}get ,setProperties:function(){var a=this.popularProperties.concat(this.properties);
 this.dataSource.loadData(a)
-}};
+}get };
 ORYX.Plugins.PropertyWindow=Clazz.extend(ORYX.Plugins.PropertyWindow);
 Ext.form.ComplexListField=function(b,a,c,d){Ext.form.ComplexListField.superclass.constructor.call(this,b);
 this.items=a;
 this.key=c;
 this.facade=d
-};
+}get ;
 Ext.extend(Ext.form.ComplexListField,Ext.form.TriggerField,{triggerClass:"x-form-complex-trigger",readOnly:true,emptyText:ORYX.I18N.PropertyWindow.clickIcon,buildValue:function(){var f=this.grid.getStore();
 f.commitChanges();
 if(f.getCount()==0){return""
@@ -910,17 +913,17 @@ if(c<(f.getCount()-1)){d+=", "
 }}d+="]";
 d="{'totalCount':"+f.getCount().toJSON()+", 'items':"+d+"}";
 return Object.toJSON(d.evalJSON())
-},getFieldKey:function(){return this.key
-},getValue:function(){if(this.grid){return this.buildValue()
+}get ,getFieldKey:function(){return this.key
+}get ,getValue:function(){if(this.grid){return this.buildValue()
 }else{if(this.data==undefined){return""
 }else{return this.data
-}}},setValue:function(a){if(a.length>0){if(this.data==undefined){this.data=a
-}}},keydownHandler:function(a){return false
-},dialogListeners:{show:function(){this.onFocus();
+}}}get ,setValue:function(a){if(a.length>0){if(this.data==undefined){this.data=a
+}}}get ,keydownHandler:function(a){return false
+}get ,dialogListeners:{show:function(){this.onFocus();
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_KEYDOWN,this.keydownHandler.bind(this));
 this.facade.disableEvent(ORYX.CONFIG.EVENT_KEYDOWN);
 return
-},hide:function(){var a=this.dialogListeners;
+}get ,hide:function(){var a=this.dialogListeners;
 this.dialog.un("show",a.show,this);
 this.dialog.un("hide",a.hide,this);
 this.dialog.destroy(true);
@@ -931,14 +934,14 @@ this.facade.unregisterOnEvent(ORYX.CONFIG.EVENT_KEYDOWN,this.keydownHandler.bind
 this.facade.enableEvent(ORYX.CONFIG.EVENT_KEYDOWN);
 this.fireEvent("dialogClosed",this.data);
 Ext.form.ComplexListField.superclass.setValue.call(this,this.data)
-}},buildInitial:function(f,a){var b=new Hash();
+}get },buildInitial:function(f,a){var b=new Hash();
 for(var c=0;
 c<a.length;
 c++){var e=a[c].id();
 b[e]=a[c].value()
 }var d=Ext.data.Record.create(f);
 return new d(b)
-},buildColumnModel:function(l){var h=[];
+}get ,buildColumnModel:function(l){var h=[];
 for(var c=0;
 c<this.items.length;
 c++){var a=this.items[c].id();
@@ -951,13 +954,13 @@ if(g==ORYX.CONFIG.TYPE_STRING){e=new Ext.form.TextField({allowBlank:this.items[c
 var k=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",l,["select",{style:"display:none"}]);
 var j=new Ext.Template('<option value="{value}">{value}</option>');
 f.each(function(m){j.append(k,{value:m.value()})
-});
+}get );
 e=new Ext.form.ComboBox({typeAhead:true,triggerAction:"all",transform:k,lazyRender:true,msgTarget:"title",width:b})
 }else{if(g==ORYX.CONFIG.TYPE_BOOLEAN){e=new Ext.form.Checkbox({width:b})
 }}}h.push({id:a,header:d,dataIndex:a,resizable:true,editor:e,width:b})
 }return new Ext.grid.ColumnModel(h)
-},afterEdit:function(a){a.grid.getStore().commitChanges()
-},beforeEdit:function(h){var a=this.grid.getView().getScrollState();
+}get ,afterEdit:function(a){a.grid.getStore().commitChanges()
+}get ,beforeEdit:function(h){var a=this.grid.getView().getScrollState();
 var b=h.column;
 var p=h.row;
 var e=this.grid.getColumnModel().config[b].id;
@@ -975,7 +978,7 @@ c++){var l=f.items[c];
 if(l==e){this.grid.getColumnModel().getCellEditor(b,p).disable();
 return
 }}}}}}this.grid.getColumnModel().getCellEditor(b,p).enable()
-},onTriggerClick:function(){if(this.disabled){return
+}get ,onTriggerClick:function(){if(this.disabled){return
 }var dialogWidth=0;
 var recordType=[];
 for(var i=0;
@@ -1001,7 +1004,7 @@ var p=this.buildInitial(recordType,this.items);
 ds.insert(index,p);
 ds.commitChanges();
 this.grid.startEditing(index,0)
-}.bind(this)},{text:ORYX.I18N.PropertyWindow.rem,handler:function(){var ds=this.grid.getStore();
+}get .bind(this)},{text:ORYX.I18N.PropertyWindow.rem,handler:function(){var ds=this.grid.getStore();
 var selection=this.grid.getSelectionModel().getSelectedCell();
 if(selection==undefined){return
 }this.grid.getSelectionModel().clearSelections();
@@ -1009,75 +1012,75 @@ this.grid.stopEditing();
 var record=ds.getAt(selection[0]);
 ds.remove(record);
 ds.commitChanges()
-}.bind(this)}]);
+}get .bind(this)}]);
 this.dialog=new Ext.Window({autoScroll:true,autoCreate:true,title:ORYX.I18N.PropertyWindow.complex,height:350,width:dialogWidth,modal:true,collapsible:false,fixedcenter:true,shadow:true,proxyDrag:true,keys:[{key:27,fn:function(){this.dialog.hide
-}.bind(this)}],items:[toolbar,this.grid],bodyStyle:"background-color:#FFFFFF",buttons:[{text:ORYX.I18N.PropertyWindow.ok,handler:function(){this.grid.stopEditing();
+}get .bind(this)}],items:[toolbar,this.grid],bodyStyle:"background-color:#FFFFFF",buttons:[{text:ORYX.I18N.PropertyWindow.ok,handler:function(){this.grid.stopEditing();
 this.data=this.buildValue();
 this.dialog.hide()
-}.bind(this)},{text:ORYX.I18N.PropertyWindow.cancel,handler:function(){this.dialog.hide()
-}.bind(this)}]});
+}get .bind(this)},{text:ORYX.I18N.PropertyWindow.cancel,handler:function(){this.dialog.hide()
+}get .bind(this)}]});
 this.dialog.on(Ext.apply({},this.dialogListeners,{scope:this}));
 this.dialog.show();
 this.grid.on("beforeedit",this.beforeEdit,this,true);
 this.grid.on("afteredit",this.afterEdit,this,true);
 this.grid.render()
-}});
+}get });
 Ext.form.ComplexTextField=Ext.extend(Ext.form.TriggerField,{defaultAutoCreate:{tag:"textarea",rows:1,style:"height:16px;overflow:hidden;"},onTriggerClick:function(){if(this.disabled){return
 }var b=new Ext.form.TextArea({anchor:"100% 100%",value:this.value,listeners:{focus:function(){this.facade.disableEvent(ORYX.CONFIG.EVENT_KEYDOWN)
-}.bind(this)}});
+}get .bind(this)}});
 var a=new Ext.Window({layout:"anchor",autoCreate:true,title:ORYX.I18N.PropertyWindow.text,height:500,width:500,modal:true,collapsible:false,fixedcenter:true,shadow:true,proxyDrag:true,keys:[{key:27,fn:function(){a.hide()
-}.bind(this)}],items:[b],listeners:{hide:function(){this.fireEvent("dialogClosed",this.value);
+}get .bind(this)}],items:[b],listeners:{hide:function(){this.fireEvent("dialogClosed",this.value);
 a.destroy()
-}.bind(this)},buttons:[{text:ORYX.I18N.PropertyWindow.ok,handler:function(){var c=b.getValue();
+}get .bind(this)},buttons:[{text:ORYX.I18N.PropertyWindow.ok,handler:function(){var c=b.getValue();
 this.setValue(c);
 this.dataSource.getAt(this.row).set("value",c);
 this.dataSource.commitChanges();
 a.hide()
-}.bind(this)},{text:ORYX.I18N.PropertyWindow.cancel,handler:function(){this.setValue(this.value);
+}get .bind(this)},{text:ORYX.I18N.PropertyWindow.cancel,handler:function(){this.setValue(this.value);
 a.hide()
-}.bind(this)}]});
+}get .bind(this)}]});
 a.show();
 b.render();
 this.grid.stopEditing();
 b.focus(false,100)
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.CanvasResize=Clazz.extend({construct:function(a){this.facade=a;
 new ORYX.Plugins.CanvasResizeButton(this.facade.getCanvas(),"N",this.resize.bind(this));
 new ORYX.Plugins.CanvasResizeButton(this.facade.getCanvas(),"W",this.resize.bind(this));
 new ORYX.Plugins.CanvasResizeButton(this.facade.getCanvas(),"E",this.resize.bind(this));
 new ORYX.Plugins.CanvasResizeButton(this.facade.getCanvas(),"S",this.resize.bind(this))
-},resize:function(a,c){resizeCanvas=function(k,l,n){var f=n.getCanvas();
+}get ,resize:function(a,c){resizeCanvas=function(k,l,n){var f=n.getCanvas();
 var m=f.bounds;
 var h=n.getCanvas().getHTMLContainer().parentNode.parentNode;
 if(k=="E"||k=="W"){f.setSize({width:(m.width()+l)*f.zoomLevel,height:(m.height())*f.zoomLevel})
 }else{if(k=="S"||k=="N"){f.setSize({width:(m.width())*f.zoomLevel,height:(m.height()+l)*f.zoomLevel})
 }}if(k=="N"||k=="W"){var g=k=="N"?{x:0,y:l}:{x:l,y:0};
 f.getChildNodes(false,function(p){p.bounds.moveBy(g)
-});
+}get );
 var j=f.getChildEdges().findAll(function(p){return p.getAllDockedShapes().length>0
-});
+}get );
 var o=j.collect(function(p){return p.dockers.findAll(function(q){return !q.getDockedShape()
-})
-}).flatten();
+}get )
+}get ).flatten();
 o.each(function(p){p.bounds.moveBy(g)
-})
+}get )
 }else{if(k=="S"){h.scrollTop+=l
 }else{if(k=="E"){h.scrollLeft+=l
 }}}f.update();
 n.updateSelection()
-};
+}get ;
 var b=ORYX.Core.Command.extend({construct:function(f,h,g){this.position=f;
 this.extentionSize=h;
 this.facade=g
-},execute:function(){resizeCanvas(this.position,this.extentionSize,this.facade)
-},rollback:function(){resizeCanvas(this.position,-this.extentionSize,this.facade)
-},update:function(){}});
+}get ,execute:function(){resizeCanvas(this.position,this.extentionSize,this.facade)
+}get ,rollback:function(){resizeCanvas(this.position,-this.extentionSize,this.facade)
+}get ,update:function(){}get });
 var d=ORYX.CONFIG.CANVAS_RESIZE_INTERVAL;
 if(c){d=-d
 }var e=new b(a,d,this.facade);
 this.facade.executeCommands([e])
-}});
+}get });
 ORYX.Plugins.CanvasResizeButton=Clazz.extend({construct:function(c,h,m){this.canvas=c;
 var j=c.getHTMLContainer().parentNode.parentNode.parentNode;
 window.myParent=j;
@@ -1100,7 +1103,7 @@ if(n<0){n=0
 if(p<0){p=0
 }return q>d.scrollHeight-p-f
 }}}}return false
-};
+}get ;
 var k=(function(){a.show();
 var o,u,n,t;
 try{var s=this.canvas.getRootNode().childNodes[1].getBBox();
@@ -1119,7 +1122,7 @@ t=w.y
 u=Math.min(u,y.y);
 n=Math.max(n,w.x);
 t=Math.max(t,w.y)
-}})
+}}get )
 }var v=c.bounds.width();
 var q=c.bounds.height();
 var p=c.getChildNodes().size()==0;
@@ -1128,27 +1131,27 @@ if(h=="N"&&(u>ORYX.CONFIG.CANVAS_RESIZE_INTERVAL||(p&&q>ORYX.CONFIG.CANVAS_RESIZ
 }else{if(h=="S"&&(q-t)>ORYX.CONFIG.CANVAS_RESIZE_INTERVAL){e.show()
 }else{if(h=="W"&&(o>ORYX.CONFIG.CANVAS_RESIZE_INTERVAL||(p&&v>ORYX.CONFIG.CANVAS_RESIZE_INTERVAL))){e.show()
 }else{e.hide()
-}}}}}).bind(this);
+}}}}}get ).bind(this);
 var g=function(){a.hide();
 e.hide()
-};
+}get ;
 d.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE,function(n){if(l(n)){k()
 }else{g()
-}},false);
+}}get ,false);
 a.addEventListener(ORYX.CONFIG.EVENT_MOUSEOVER,function(n){k()
-},true);
+}get ,true);
 e.addEventListener(ORYX.CONFIG.EVENT_MOUSEOVER,function(n){k()
-},true);
+}get ,true);
 j.addEventListener(ORYX.CONFIG.EVENT_MOUSEOUT,function(n){g()
-},true);
+}get ,true);
 g();
 a.addEventListener("click",function(){m(h);
 k()
-},true);
+}get ,true);
 e.addEventListener("click",function(){m(h,true);
 k()
-},true)
-}});
+}get ,true)
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.View={facade:undefined,construct:function(b,a){this.facade=b;
 this.zoomLevel=1;
@@ -1160,18 +1163,18 @@ a.properties.each(function(c){if(c.zoomLevel){this.zoomLevel=Number(1)
 }if(c.maxFitToScreenLevel){this.maxFitToScreenLevel=Number(c.maxFitToScreenLevel)
 }if(c.minZoomLevel){this.minZoomLevel=Number(c.minZoomLevel)
 }if(c.maxZoomLevel){this.maxZoomLevel=Number(c.maxZoomLevel)
-}}.bind(this));
+}}get .bind(this));
 this.facade.offer({name:ORYX.I18N.View.zoomIn,functionality:this.zoom.bind(this,[1+ORYX.CONFIG.ZOOM_OFFSET]),group:ORYX.I18N.View.group,icon:ORYX.PATH+"images/magnifier_zoom_in.png",description:ORYX.I18N.View.zoomInDesc,index:1,minShape:0,maxShape:0,isEnabled:function(){return this.zoomLevel<this.maxZoomLevel
-}.bind(this)});
+}get .bind(this)});
 this.facade.offer({name:ORYX.I18N.View.zoomOut,functionality:this.zoom.bind(this,[1-ORYX.CONFIG.ZOOM_OFFSET]),group:ORYX.I18N.View.group,icon:ORYX.PATH+"images/magnifier_zoom_out.png",description:ORYX.I18N.View.zoomOutDesc,index:2,minShape:0,maxShape:0,isEnabled:function(){return this._checkSize()
-}.bind(this)});
+}get .bind(this)});
 this.facade.offer({name:ORYX.I18N.View.zoomStandard,functionality:this.setAFixZoomLevel.bind(this,1),group:ORYX.I18N.View.group,icon:ORYX.PATH+"images/zoom_standard.png",cls:"icon-large",description:ORYX.I18N.View.zoomStandardDesc,index:3,minShape:0,maxShape:0,isEnabled:function(){return this.zoomLevel!=1
-}.bind(this)});
+}get .bind(this)});
 this.facade.offer({name:ORYX.I18N.View.zoomFitToModel,functionality:this.zoomFitToModel.bind(this),group:ORYX.I18N.View.group,icon:ORYX.PATH+"images/image.png",description:ORYX.I18N.View.zoomFitToModelDesc,index:4,minShape:0,maxShape:0})
-},setAFixZoomLevel:function(a){this.zoomLevel=a;
+}get ,setAFixZoomLevel:function(a){this.zoomLevel=a;
 this._checkZoomLevelRange();
 this.zoom(1)
-},zoom:function(d){this.zoomLevel*=d;
+}get ,zoom:function(d){this.zoomLevel*=d;
 var h=this.facade.getCanvas().getHTMLContainer().parentNode.parentNode;
 var c=this.facade.getCanvas();
 var g=c.bounds.width()*this.zoomLevel;
@@ -1189,14 +1192,14 @@ this.facade.updateSelection();
 h.scrollTop=b;
 h.scrollLeft=e;
 c.zoomLevel=this.zoomLevel
-},zoomFitToModel:function(){var h=this.facade.getCanvas().getHTMLContainer().parentNode.parentNode;
+}get ,zoomFitToModel:function(){var h=this.facade.getCanvas().getHTMLContainer().parentNode.parentNode;
 var b=h.getHeight()-30;
 var d=h.getWidth()-30;
 var c=this.facade.getCanvas().getChildShapes();
 if(!c||c.length<1){return false
 }var g=c[0].absoluteBounds().clone();
 c.each(function(j){g.include(j.absoluteBounds().clone())
-});
+}get );
 var f=d/g.width();
 var a=b/g.height();
 var e=a<f?a:f;
@@ -1204,12 +1207,12 @@ if(e>this.maxFitToScreenLevel){e=this.maxFitToScreenLevel
 }this.setAFixZoomLevel(e);
 h.scrollTop=Math.round(g.upperLeft().y*this.zoomLevel)-5;
 h.scrollLeft=Math.round(g.upperLeft().x*this.zoomLevel)-5
-},_checkSize:function(){var a=this.facade.getCanvas().getHTMLContainer().parentNode;
+}get ,_checkSize:function(){var a=this.facade.getCanvas().getHTMLContainer().parentNode;
 var b=Math.min((a.parentNode.getWidth()/a.getWidth()),(a.parentNode.getHeight()/a.getHeight()));
 return 1.05>b
-},_checkZoomLevelRange:function(){if(this.zoomLevel<this.minZoomLevel){this.zoomLevel=this.minZoomLevel
+}get ,_checkZoomLevelRange:function(){if(this.zoomLevel<this.minZoomLevel){this.zoomLevel=this.minZoomLevel
 }if(this.zoomLevel>this.maxZoomLevel){this.zoomLevel=this.maxZoomLevel
-}}};
+}}get };
 ORYX.Plugins.View=Clazz.extend(ORYX.Plugins.View);
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.DragDropResize=ORYX.Plugins.AbstractPlugin.extend({construct:function(b){this.facade=b;
@@ -1242,7 +1245,7 @@ this.resizerNW.registerOnResize(this.onResize.bind(this));
 this.resizerNW.registerOnResizeEnd(this.onResizeEnd.bind(this));
 this.resizerNW.registerOnResizeStart(this.onResizeStart.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,this.handleMouseDown.bind(this))
-},handleMouseDown:function(d,c){if(!this.dragBounds||!this.currentShapes.member(c)||!this.toMoveShapes.length){return
+}get ,handleMouseDown:function(d,c){if(!this.dragBounds||!this.currentShapes.member(c)||!this.toMoveShapes.length){return
 }this.dragEnable=true;
 this.dragIntialized=true;
 this.edgesMovable=true;
@@ -1255,7 +1258,7 @@ this.offsetScroll={x:this.scrollNode.scrollLeft,y:this.scrollNode.scrollTop};
 document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE,this.callbackMouseMove,false);
 document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP,this.callbackMouseUp,true);
 return
-},handleMouseUp:function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"dragdropresize.contain"});
+}get ,handleMouseUp:function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"dragdropresize.contain"});
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"dragdropresize.attached"});
 if(this.dragEnable){if(!this.dragIntialized){this.afterDrag();
 if(this.isAttachingAllowed&&this.toMoveShapes.length==1&&this.toMoveShapes[0] instanceof ORYX.Core.Node&&this.toMoveShapes[0].dockers.length>0){var b=this.facade.eventCoordinates(d);
@@ -1269,17 +1272,17 @@ this.oldDockedShape=j.getDockedShape();
 this.oldParent=j.parent.parent||g.getCanvas();
 this.facade=g;
 if(this.oldDockedShape){this.oldPosition=j.parent.absoluteBounds().center()
-}},execute:function(){this.dock(this.newDockedShape,this.newParent,this.newPosition);
+}}get ,execute:function(){this.dock(this.newDockedShape,this.newParent,this.newPosition);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ARRANGEMENT_TOP,excludeCommand:true})
-},rollback:function(){this.dock(this.oldDockedShape,this.oldParent,this.oldPosition)
-},dock:function(f,g,h){g.add(this.docker.parent);
+}get ,rollback:function(){this.dock(this.oldDockedShape,this.oldParent,this.oldPosition)
+}get ,dock:function(f,g,h){g.add(this.docker.parent);
 this.docker.setDockedShape(undefined);
 this.docker.bounds.centerMoveTo(h);
 this.docker.setDockedShape(f);
 this.facade.setSelection([this.docker.parent]);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var a=[new c(e,b,this.containmentParentNode,this.facade)];
 this.facade.executeCommands(a)
 }else{if(this.isAddingAllowed){this.refreshSelectedShapes()
@@ -1291,13 +1294,13 @@ this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_DRAGDROP_END})
 document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEUP,this.callbackMouseUp,true);
 document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE,this.callbackMouseMove,false);
 return
-},handleMouseMove:function(g){if(!this.dragEnable){return
+}get ,handleMouseMove:function(g){if(!this.dragEnable){return
 }if(this.dragIntialized){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_DRAGDROP_START});
 this.dragIntialized=false;
 this.resizerSE.hide();
 this.resizerNW.hide();
 this._onlyEdges=this.currentShapes.all(function(c){return(c instanceof ORYX.Core.Edge)
-});
+}get );
 this.beforeDrag();
 this._currentUnderlyingNodes=[]
 }var a={x:Event.pointerX(g)-this.offSetPosition.x,y:Event.pointerY(g)-this.offSetPosition.y};
@@ -1321,7 +1324,7 @@ var d=$A(this.facade.getCanvas().getAbstractShapesAtPosition(this.facade.eventCo
 var f=this.toMoveShapes.length==1&&this.toMoveShapes[0] instanceof ORYX.Core.Node&&this.toMoveShapes[0].dockers.length>0;
 f=f&&d.length!=1;
 if(!f&&d.length===this._currentUnderlyingNodes.length&&d.all(function(j,c){return this._currentUnderlyingNodes[c]===j
-}.bind(this))){return
+}get .bind(this))){return
 }else{if(this._onlyEdges){this.isAddingAllowed=true;
 this.containmentParentNode=this.facade.getCanvas()
 }else{var e={event:g,underlyingNodes:d,checkIfAttachable:f};
@@ -1333,24 +1336,24 @@ if(this.isAttachingAllowed){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHL
 }else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"dragdropresize.contain",elements:[this.containmentParentNode],color:ORYX.CONFIG.SELECTION_INVALID_COLOR})
 }}else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"dragdropresize.contain"})
 }return
-},checkRules:function(d){var f=d.event;
+}get ,checkRules:function(d){var f=d.event;
 var c=d.underlyingNodes;
 var e=d.checkIfAttachable;
 var b=d.noEdges;
 this.containmentParentNode=c.reverse().find((function(g){return(g instanceof ORYX.Core.Canvas)||(((g instanceof ORYX.Core.Node)||((g instanceof ORYX.Core.Edge)&&!b))&&(!(this.currentShapes.member(g)||this.currentShapes.any(function(h){return(h.children.length>0&&h.getChildNodes(true).member(g))
-}))))
-}).bind(this));
+}get ))))
+}get ).bind(this));
 if(e&&this.containmentParentNode){this.isAttachingAllowed=this.facade.getRules().canConnect({sourceShape:this.containmentParentNode,edgeShape:this.toMoveShapes[0],targetShape:this.toMoveShapes[0]});
 if(this.isAttachingAllowed){var a=this.facade.eventCoordinates(f);
 this.isAttachingAllowed=this.containmentParentNode.isPointOverOffset(a.x,a.y)
 }}if(!this.isAttachingAllowed){this.isAddingAllowed=this.toMoveShapes.all((function(g){if(g instanceof ORYX.Core.Edge||g instanceof ORYX.Core.Controls.Docker||this.containmentParentNode===g.parent){return true
 }else{if(this.containmentParentNode!==g){if(!(this.containmentParentNode instanceof ORYX.Core.Edge)||!b){if(this.facade.getRules().canContain({containingShape:this.containmentParentNode,containedShape:g})){return true
 }}}}return false
-}).bind(this))
+}get ).bind(this))
 }if(!this.isAttachingAllowed&&!this.isAddingAllowed&&(this.containmentParentNode instanceof ORYX.Core.Edge)){d.noEdges=true;
 d.underlyingNodes.reverse();
 this.checkRules(d)
-}},refreshSelectedShapes:function(){if(!this.dragBounds){return
+}}get ,refreshSelectedShapes:function(){if(!this.dragBounds){return
 }var d=this.dragBounds.upperLeft();
 var b=this.oldDragBounds.upperLeft();
 var c={x:d.x-b.x,y:d.y-b.y};
@@ -1358,30 +1361,30 @@ var a=[new ORYX.Core.Command.Move(this.toMoveShapes,c,this.containmentParentNode
 if(this._undockedEdgesCommand instanceof ORYX.Core.Command){a.unshift(this._undockedEdgesCommand)
 }this.facade.executeCommands(a);
 if(this.dragBounds){this.oldDragBounds=this.dragBounds.clone()
-}},onResize:function(a){if(!this.dragBounds){return
+}}get ,onResize:function(a){if(!this.dragBounds){return
 }this.dragBounds=a;
 this.isResizing=true;
 this.resizeRectangle(this.dragBounds)
-},onResizeStart:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_RESIZE_START})
-},onResizeEnd:function(){if(!(this.currentShapes instanceof Array)||this.currentShapes.length<=0){return
+}get ,onResizeStart:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_RESIZE_START})
+}get ,onResizeEnd:function(){if(!(this.currentShapes instanceof Array)||this.currentShapes.length<=0){return
 }if(this.isResizing){var a=ORYX.Core.Command.extend({construct:function(f,h,g){this.shape=f;
 this.oldBounds=f.bounds.clone();
 this.newBounds=h;
 this.plugin=g
-},execute:function(){this.shape.bounds.set(this.newBounds.a,this.newBounds.b);
+}get ,execute:function(){this.shape.bounds.set(this.newBounds.a,this.newBounds.b);
 this.update(this.getOffset(this.oldBounds,this.newBounds))
-},rollback:function(){this.shape.bounds.set(this.oldBounds.a,this.oldBounds.b);
+}get ,rollback:function(){this.shape.bounds.set(this.oldBounds.a,this.oldBounds.b);
 this.update(this.getOffset(this.newBounds,this.oldBounds))
-},getOffset:function(g,f){return{x:f.a.x-g.a.x,y:f.a.y-g.a.y,xs:f.width()/g.width(),ys:f.height()/g.height()}
-},update:function(g){this.shape.getLabels().each(function(h){h.changed()
-});
+}get ,getOffset:function(g,f){return{x:f.a.x-g.a.x,y:f.a.y-g.a.y,xs:f.width()/g.width(),ys:f.height()/g.height()}
+}get ,update:function(g){this.shape.getLabels().each(function(h){h.changed()
+}get );
 var f=[].concat(this.shape.getIncomingShapes()).concat(this.shape.getOutgoingShapes()).findAll(function(h){return h instanceof ORYX.Core.Edge
-}.bind(this));
+}get .bind(this));
 this.plugin.layoutEdges(this.shape,f,g);
 this.plugin.facade.setSelection([this.shape]);
 this.plugin.facade.getCanvas().update();
 this.plugin.facade.updateSelection()
-}});
+}get });
 var c=this.dragBounds.clone();
 var b=this.currentShapes[0];
 if(b.parent){var e=b.parent.absoluteXY();
@@ -1390,25 +1393,25 @@ c.moveBy(-e.x,-e.y)
 this.facade.executeCommands([d]);
 this.isResizing=false;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_RESIZE_END})
-}},beforeDrag:function(){var a=ORYX.Core.Command.extend({construct:function(b){this.dockers=b.collect(function(c){return c instanceof ORYX.Core.Controls.Docker?{docker:c,dockedShape:c.getDockedShape(),refPoint:c.referencePoint}:undefined
-}).compact()
-},execute:function(){this.dockers.each(function(b){b.docker.setDockedShape(undefined)
-})
-},rollback:function(){this.dockers.each(function(b){b.docker.setDockedShape(b.dockedShape);
+}}get ,beforeDrag:function(){var a=ORYX.Core.Command.extend({construct:function(b){this.dockers=b.collect(function(c){return c instanceof ORYX.Core.Controls.Docker?{docker:c,dockedShape:c.getDockedShape(),refPoint:c.referencePoint}:undefined
+}get ).compact()
+}get ,execute:function(){this.dockers.each(function(b){b.docker.setDockedShape(undefined)
+}get )
+}get ,rollback:function(){this.dockers.each(function(b){b.docker.setDockedShape(b.dockedShape);
 b.docker.setReferencePoint(b.refPoint)
-})
-}});
+}get )
+}get });
 this._undockedEdgesCommand=new a(this.toMoveShapes);
 this._undockedEdgesCommand.execute()
-},hideAllLabels:function(a){a.getLabels().each(function(b){b.hide()
-});
+}get ,hideAllLabels:function(a){a.getLabels().each(function(b){b.hide()
+}get );
 a.getAllDockedShapes().each(function(b){var c=b.getLabels();
 if(c.length>0){c.each(function(d){d.hide()
-})
-}});
+}get )
+}}get );
 a.getChildren().each((function(b){if(b instanceof ORYX.Core.Shape){this.hideAllLabels(b)
-}}).bind(this))
-},afterDrag:function(){},showAllLabels:function(a){for(var d=0;
+}}get ).bind(this))
+}get ,afterDrag:function(){}get ,showAllLabels:function(a){for(var d=0;
 d<a.length;
 d++){var b=a[d];
 b.show()
@@ -1418,12 +1421,12 @@ d<f.length;
 d++){var c=f[d];
 var g=c.getLabels();
 if(g.length>0){g.each(function(h){h.show()
-})
+}get )
 }}for(var d=0;
 d<a.children.length;
 d++){var e=a.children[d];
 if(e instanceof ORYX.Core.Shape){this.showAllLabels(e)
-}}},onSelectionChanged:function(b){var d=b.elements;
+}}}get ,onSelectionChanged:function(b){var d=b.elements;
 this.dragEnable=false;
 this.dragIntialized=false;
 this.resizerSE.hide();
@@ -1437,7 +1440,7 @@ this.oldDragBounds=undefined
 var e=this.facade.getCanvas().getShapesWithSharedParent(d);
 this.toMoveShapes=e;
 this.toMoveShapes=this.toMoveShapes.findAll(function(f){return f instanceof ORYX.Core.Node&&(f.dockers.length===0||!d.member(f.dockers.first().getDockedShape()))
-});
+}get );
 d.each((function(f){if(!(f instanceof ORYX.Core.Edge)){return
 }var h=f.getDockers();
 var j=d.member(h.first().getDockedShape());
@@ -1445,17 +1448,17 @@ var g=d.member(h.last().getDockedShape());
 if(!j&&!g){var k=!h.first().getDockedShape()&&!h.last().getDockedShape();
 if(k){this.toMoveShapes=this.toMoveShapes.concat(h)
 }}if(f.dockers.length>2&&j&&g){this.toMoveShapes=this.toMoveShapes.concat(h.findAll(function(m,l){return l>0&&l<h.length-1
-}))
-}}).bind(this));
+}get ))
+}}get ).bind(this));
 var c=undefined;
 this.toMoveShapes.each(function(g){var f=g;
 if(g instanceof ORYX.Core.Controls.Docker){f=g.parent
 }if(!c){c=f.absoluteBounds()
 }else{c.include(f.absoluteBounds())
-}}.bind(this));
+}}get .bind(this));
 if(!c){d.each(function(f){if(!c){c=f.absoluteBounds()
 }else{c.include(f.absoluteBounds())
-}})
+}}get )
 }this.dragBounds=c;
 this.oldDragBounds=c.clone();
 this.resizeRectangle(c);
@@ -1473,14 +1476,14 @@ if(this.distPointTimeout){window.clearTimeout(this.distPointTimeout)
 while(g){if(d.member(g)){return false
 }g=g.parent
 }return true
-});
+}get );
 f.each((function(k){if(!(k instanceof ORYX.Core.Edge)){var h=k.absoluteXY();
 var j=k.bounds.width();
 var g=k.bounds.height();
 this.distPoints.push({ul:{x:h.x,y:h.y},c:{x:h.x+(j/2),y:h.y+(g/2)},lr:{x:h.x+j,y:h.y+g}})
-}}).bind(this))
-}.bind(this),10)
-}}},snapToGrid:function(h){var a=this.dragBounds;
+}}get ).bind(this))
+}get .bind(this),10)
+}}}get ,snapToGrid:function(h){var a=this.dragBounds;
 var o={};
 var n=6;
 var l=10;
@@ -1500,7 +1503,7 @@ q=r.c.y
 if(f===c){j=s
 }}if(t!==undefined){d=d===undefined?t:(Math.abs(t)<Math.abs(d)?t:d);
 if(d===t){e=q
-}}});
+}}}get );
 if(f!==undefined){k.x+=f;
 k.x*=b;
 if(this.vLine&&j){this.vLine.update(j)
@@ -1512,38 +1515,38 @@ if(this.hLine&&e){this.hLine.update(e)
 }}else{k.y=(h.y-(h.y%(ORYX.CONFIG.GRID_DISTANCE/2)));
 if(this.hLine){this.hLine.hide()
 }}return k
-},showGridLine:function(){},resizeRectangle:function(a){this.selectedRect.resize(a)
-}});
+}get ,showGridLine:function(){}get ,resizeRectangle:function(a){this.selectedRect.resize(a)
+}get });
 ORYX.Plugins.SelectedRect=Clazz.extend({construct:function(a){this.parentId=a;
 this.node=ORYX.Editor.graft("http://www.w3.org/2000/svg",$(a),["g"]);
 this.dashedArea=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.node,["rect",{x:0,y:0,"stroke-width":1,stroke:"#777777",fill:"none","stroke-dasharray":"2,2","pointer-events":"none"}]);
 this.hide()
-},hide:function(){this.node.setAttributeNS(null,"display","none")
-},show:function(){this.node.setAttributeNS(null,"display","")
-},resize:function(a){var c=a.upperLeft();
+}get ,hide:function(){this.node.setAttributeNS(null,"display","none")
+}get ,show:function(){this.node.setAttributeNS(null,"display","")
+}get ,resize:function(a){var c=a.upperLeft();
 var b=ORYX.CONFIG.SELECTED_AREA_PADDING;
 this.dashedArea.setAttributeNS(null,"width",a.width()+2*b);
 this.dashedArea.setAttributeNS(null,"height",a.height()+2*b);
 this.node.setAttributeNS(null,"transform","translate("+(c.x-b)+", "+(c.y-b)+")")
-}});
+}get });
 ORYX.Plugins.GridLine=Clazz.extend({construct:function(b,a){if(ORYX.Plugins.GridLine.DIR_HORIZONTAL!==a&&ORYX.Plugins.GridLine.DIR_VERTICAL!==a){a=ORYX.Plugins.GridLine.DIR_HORIZONTAL
 }this.parent=$(b);
 this.direction=a;
 this.node=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.parent,["g"]);
 this.line=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.node,["path",{"stroke-width":1,stroke:"silver",fill:"none","stroke-dasharray":"5,5","pointer-events":"none"}]);
 this.hide()
-},hide:function(){this.node.setAttributeNS(null,"display","none")
-},show:function(){this.node.setAttributeNS(null,"display","")
-},getScale:function(){try{return this.parent.parentNode.transform.baseVal.getItem(0).matrix.a
+}get ,hide:function(){this.node.setAttributeNS(null,"display","none")
+}get ,show:function(){this.node.setAttributeNS(null,"display","")
+}get ,getScale:function(){try{return this.parent.parentNode.transform.baseVal.getItem(0).matrix.a
 }catch(a){return 1
-}},update:function(e){if(this.direction===ORYX.Plugins.GridLine.DIR_HORIZONTAL){var d=e instanceof Object?e.y:e;
+}}get ,update:function(e){if(this.direction===ORYX.Plugins.GridLine.DIR_HORIZONTAL){var d=e instanceof Object?e.y:e;
 var c=this.parent.parentNode.parentNode.width.baseVal.value/this.getScale();
 this.line.setAttributeNS(null,"d","M 0 "+d+" L "+c+" "+d)
 }else{var a=e instanceof Object?e.x:e;
 var b=this.parent.parentNode.parentNode.height.baseVal.value/this.getScale();
 this.line.setAttributeNS(null,"d","M"+a+" 0 L "+a+" "+b)
 }this.show()
-}});
+}get });
 ORYX.Plugins.GridLine.DIR_HORIZONTAL="hor";
 ORYX.Plugins.GridLine.DIR_VERTICAL="ver";
 ORYX.Plugins.Resizer=Clazz.extend({construct:function(c,a,b){this.parentId=c;
@@ -1565,16 +1568,16 @@ this.resizeStartCallbacks=[];
 this.resizeEndCallbacks=[];
 this.hide();
 this.scrollNode=this.node.parentNode.parentNode.parentNode
-},handleMouseDown:function(a){this.dragEnable=true;
+}get ,handleMouseDown:function(a){this.dragEnable=true;
 this.offsetScroll={x:this.scrollNode.scrollLeft,y:this.scrollNode.scrollTop};
 this.offSetPosition={x:Event.pointerX(a)-this.position.x,y:Event.pointerY(a)-this.position.y};
 this.resizeStartCallbacks.each((function(b){b(this.bounds)
-}).bind(this))
-},handleMouseUp:function(a){this.dragEnable=false;
+}get ).bind(this))
+}get ,handleMouseUp:function(a){this.dragEnable=false;
 this.containmentParentNode=null;
 this.resizeEndCallbacks.each((function(b){b(this.bounds)
-}).bind(this))
-},handleMouseMove:function(c){if(!this.dragEnable){return
+}get ).bind(this))
+}get ,handleMouseMove:function(c){if(!this.dragEnable){return
 }if(c.shiftKey||c.ctrlKey){this.aspectRatio=this.bounds.width()/this.bounds.height()
 }else{this.aspectRatio=undefined
 }var b={x:Event.pointerX(c)-this.offSetPosition.x,y:Event.pointerY(c)-this.offSetPosition.y};
@@ -1608,24 +1611,24 @@ this.bounds.moveBy(d)
 }else{this.bounds.extend(d)
 }this.update();
 this.resizeCallbacks.each((function(e){e(this.bounds)
-}).bind(this));
+}get ).bind(this));
 Event.stop(c)
-},registerOnResizeStart:function(a){if(!this.resizeStartCallbacks.member(a)){this.resizeStartCallbacks.push(a)
-}},unregisterOnResizeStart:function(a){if(this.resizeStartCallbacks.member(a)){this.resizeStartCallbacks=this.resizeStartCallbacks.without(a)
-}},registerOnResizeEnd:function(a){if(!this.resizeEndCallbacks.member(a)){this.resizeEndCallbacks.push(a)
-}},unregisterOnResizeEnd:function(a){if(this.resizeEndCallbacks.member(a)){this.resizeEndCallbacks=this.resizeEndCallbacks.without(a)
-}},registerOnResize:function(a){if(!this.resizeCallbacks.member(a)){this.resizeCallbacks.push(a)
-}},unregisterOnResize:function(a){if(this.resizeCallbacks.member(a)){this.resizeCallbacks=this.resizeCallbacks.without(a)
-}},hide:function(){this.node.style.display="none"
-},show:function(){if(this.bounds){this.node.style.display=""
-}},setBounds:function(d,b,a,c){this.bounds=d;
+}get ,registerOnResizeStart:function(a){if(!this.resizeStartCallbacks.member(a)){this.resizeStartCallbacks.push(a)
+}}get ,unregisterOnResizeStart:function(a){if(this.resizeStartCallbacks.member(a)){this.resizeStartCallbacks=this.resizeStartCallbacks.without(a)
+}}get ,registerOnResizeEnd:function(a){if(!this.resizeEndCallbacks.member(a)){this.resizeEndCallbacks.push(a)
+}}get ,unregisterOnResizeEnd:function(a){if(this.resizeEndCallbacks.member(a)){this.resizeEndCallbacks=this.resizeEndCallbacks.without(a)
+}}get ,registerOnResize:function(a){if(!this.resizeCallbacks.member(a)){this.resizeCallbacks.push(a)
+}}get ,unregisterOnResize:function(a){if(this.resizeCallbacks.member(a)){this.resizeCallbacks=this.resizeCallbacks.without(a)
+}}get ,hide:function(){this.node.style.display="none"
+}get ,show:function(){if(this.bounds){this.node.style.display=""
+}}get ,setBounds:function(d,b,a,c){this.bounds=d;
 if(!b){b={width:ORYX.CONFIG.MINIMUM_SIZE,height:ORYX.CONFIG.MINIMUM_SIZE}
 }if(!a){a={width:ORYX.CONFIG.MAXIMUM_SIZE,height:ORYX.CONFIG.MAXIMUM_SIZE}
 }this.minSize=b;
 this.maxSize=a;
 this.aspectRatio=c;
 this.update()
-},update:function(){if(!this.bounds){return
+}get ,update:function(){if(!this.bounds){return
 }var c=this.bounds.upperLeft();
 if(this.bounds.width()<this.minSize.width){this.bounds.set(c.x,c.y,c.x+this.minSize.width,c.y+this.bounds.height())
 }if(this.bounds.height()<this.minSize.height){this.bounds.set(c.x,c.y,c.x+this.bounds.width(),c.y+this.minSize.height)
@@ -1641,58 +1644,58 @@ c.y+=(b.d*this.bounds.height())+3
 }this.position=c;
 this.node.style.left=this.position.x+"px";
 this.node.style.top=this.position.y+"px"
-}});
+}get });
 ORYX.Core.Command.Move=ORYX.Core.Command.extend({construct:function(b,e,c,a,d){this.moveShapes=b;
 this.selectedShapes=a;
 this.offset=e;
 this.plugin=d;
 this.newParents=b.collect(function(f){return c||f.parent
-});
+}get );
 this.oldParents=b.collect(function(f){return f.parent
-});
+}get );
 this.dockedNodes=b.findAll(function(f){return f instanceof ORYX.Core.Node&&f.dockers.length==1
-}).collect(function(f){return{docker:f.dockers[0],dockedShape:f.dockers[0].getDockedShape(),refPoint:f.dockers[0].referencePoint}
-})
-},execute:function(){this.dockAllShapes();
+}get ).collect(function(f){return{docker:f.dockers[0],dockedShape:f.dockers[0].getDockedShape(),refPoint:f.dockers[0].referencePoint}
+}get )
+}get ,execute:function(){this.dockAllShapes();
 this.move(this.offset);
 this.addShapeToParent(this.newParents);
 this.selectCurrentShapes();
 this.plugin.facade.getCanvas().update();
 this.plugin.facade.updateSelection()
-},rollback:function(){var a={x:-this.offset.x,y:-this.offset.y};
+}get ,rollback:function(){var a={x:-this.offset.x,y:-this.offset.y};
 this.move(a);
 this.addShapeToParent(this.oldParents);
 this.dockAllShapes(true);
 this.selectCurrentShapes();
 this.plugin.facade.getCanvas().update();
 this.plugin.facade.updateSelection()
-},move:function(d,a){for(var g=0;
+}get ,move:function(d,a){for(var g=0;
 g<this.moveShapes.length;
 g++){var l=this.moveShapes[g];
 l.bounds.moveBy(d);
 if(l instanceof ORYX.Core.Node){(l.dockers||[]).each(function(j){j.bounds.moveBy(d)
-});
+}get );
 var e=[].concat(l.getIncomingShapes()).concat(l.getOutgoingShapes()).findAll(function(j){return j instanceof ORYX.Core.Edge&&!this.moveShapes.any(function(k){return k==j||(k instanceof ORYX.Core.Controls.Docker&&k.parent==j)
-})
-}.bind(this)).findAll(function(j){return(j.dockers.first().getDockedShape()==l||!this.moveShapes.include(j.dockers.first().getDockedShape()))&&(j.dockers.last().getDockedShape()==l||!this.moveShapes.include(j.dockers.last().getDockedShape()))
-}.bind(this));
+}get )
+}get .bind(this)).findAll(function(j){return(j.dockers.first().getDockedShape()==l||!this.moveShapes.include(j.dockers.first().getDockedShape()))&&(j.dockers.last().getDockedShape()==l||!this.moveShapes.include(j.dockers.last().getDockedShape()))
+}get .bind(this));
 this.plugin.layoutEdges(l,e,d);
 var h=[].concat(l.getIncomingShapes()).concat(l.getOutgoingShapes()).findAll(function(j){return j instanceof ORYX.Core.Edge&&j.dockers.first().isDocked()&&j.dockers.last().isDocked()&&!this.moveShapes.include(j)&&!this.moveShapes.any(function(k){return k==j||(k instanceof ORYX.Core.Controls.Docker&&k.parent==j)
-})
-}.bind(this)).findAll(function(j){return this.moveShapes.indexOf(j.dockers.first().getDockedShape())>g||this.moveShapes.indexOf(j.dockers.last().getDockedShape())>g
-}.bind(this));
+}get )
+}get .bind(this)).findAll(function(j){return this.moveShapes.indexOf(j.dockers.first().getDockedShape())>g||this.moveShapes.indexOf(j.dockers.last().getDockedShape())>g
+}get .bind(this));
 for(var f=0;
 f<h.length;
 f++){for(var b=1;
 b<h[f].dockers.length-1;
 b++){var c=h[f].dockers[b];
 if(!c.getDockedShape()&&!this.moveShapes.include(c)){c.bounds.moveBy(d)
-}}}}}},dockAllShapes:function(a){for(var b=0;
+}}}}}}get ,dockAllShapes:function(a){for(var b=0;
 b<this.dockedNodes.length;
 b++){var c=this.dockedNodes[b].docker;
 c.setDockedShape(a?this.dockedNodes[b].dockedShape:undefined);
 if(c.getDockedShape()){c.setReferencePoint(this.dockedNodes[b].refPoint)
-}}},addShapeToParent:function(e){for(var f=0;
+}}}get ,addShapeToParent:function(e){for(var f=0;
 f<this.moveShapes.length;
 f++){var d=this.moveShapes[f];
 if(d instanceof ORYX.Core.Node&&d.parent!==e[f]){var g=e[f].absoluteXY();
@@ -1701,14 +1704,14 @@ var c=h.x-g.x;
 var j=h.y-g.y;
 e[f].add(d);
 d.getOutgoingShapes((function(b){if(b instanceof ORYX.Core.Node&&!this.moveShapes.member(b)){e[f].add(b)
-}}).bind(this));
+}}get ).bind(this));
 if(d instanceof ORYX.Core.Node&&d.dockers.length==1){var a=d.bounds;
 c+=a.width()/2;
 j+=a.height()/2;
 d.dockers.first().bounds.centerMoveTo(c,j)
 }else{d.bounds.moveTo(c,j)
-}}}},selectCurrentShapes:function(){this.plugin.facade.setSelection(this.selectedShapes)
-}});
+}}}}get ,selectCurrentShapes:function(){this.plugin.facade.setSelection(this.selectedShapes)
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.RenameShapes=Clazz.extend({facade:undefined,construct:function(a){this.facade=a;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DBLCLICK,this.actOnDBLClick.bind(this));
@@ -1716,31 +1719,31 @@ this.facade.offer({keyCodes:[{keyCode:113,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}
 document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEDOWN,this.hide.bind(this),true);
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE,this.registerTemplate.bind(this));
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE,empty:true})
-},registerTemplate:function(a){this.label_templates=this.label_templates||[];
+}get ,registerTemplate:function(a){this.label_templates=this.label_templates||[];
 this.label_templates.push({edit:"function"==typeof(a.edit_template)?a.edit_template:function(b){return b
-},render:"function"==typeof(a.render_template)?a.render_template:function(b){return b
-}})
-},renamePerF2:function renamePerF2(){var a=this.facade.getSelection();
+}get ,render:"function"==typeof(a.render_template)?a.render_template:function(b){return b
+}get })
+}get ,renamePerF2:function renamePerF2(){var a=this.facade.getSelection();
 this.actOnDBLClick(undefined,a.first())
-},getEditableProperties:function getEditableProperties(a){var b=a.getStencil().properties().findAll(function(c){return(c.refToView()&&c.refToView().length>0&&c.directlyEditable())
-});
+}get ,getEditableProperties:function getEditableProperties(a){var b=a.getStencil().properties().findAll(function(c){return(c.refToView()&&c.refToView().length>0&&c.directlyEditable())
+}get );
 return b.findAll(function(c){return !c.readonly()&&c.type()==ORYX.CONFIG.TYPE_STRING
-})
-},getPropertyForLabel:function getPropertyForLabel(c,a,b){return c.find(function(d){return d.refToView().any(function(e){return b.id==a.id+e
-})
-})
-},actOnDBLClick:function actOnDBLClick(h,d){if(!(d instanceof ORYX.Core.Shape)){return
+}get )
+}get ,getPropertyForLabel:function getPropertyForLabel(c,a,b){return c.find(function(d){return d.refToView().any(function(e){return b.id==a.id+e
+}get )
+}get )
+}get ,actOnDBLClick:function actOnDBLClick(h,d){if(!(d instanceof ORYX.Core.Shape)){return
 }this.destroy();
 var e=this.getEditableProperties(d);
 var f=e.collect(function(l){return l.refToView()
-}).flatten().compact();
+}get ).flatten().compact();
 var b=d.getLabels().findAll(function(l){return f.any(function(m){return l.id.endsWith(m)
-})
-});
+}get )
+}get );
 if(b.length==0){return
 }var c=b.length==1?b[0]:null;
 if(!c){c=b.find(function(l){return l.node==h.target||l.node==h.target.parentNode
-});
+}get );
 if(!c){var j=this.facade.eventCoordinates(h);
 var k=this.facade.getCanvas().rootNode.lastChild.getScreenCTM();
 j.x*=k.a;
@@ -1748,20 +1751,20 @@ j.y*=k.d;
 if(!d instanceof ORYX.Core.Node){var g=b.collect(function(n){var m=this.getCenterPosition(n.node);
 var l=Math.sqrt(Math.pow(m.x-j.x,2)+Math.pow(m.y-j.y,2));
 return{diff:l,label:n}
-}.bind(this));
+}get .bind(this));
 g.sort(function(m,l){return m.diff>l.diff
-});
+}get );
 c=g[0].label
 }else{var g=b.collect(function(n){var m=this.getDifferenceCenterForNode(n.node);
 var l=Math.sqrt(Math.pow(m.x-j.x,2)+Math.pow(m.y-j.y,2));
 return{diff:l,label:n}
-}.bind(this));
+}get .bind(this));
 g.sort(function(m,l){return m.diff>l.diff
-});
+}get );
 c=g[0].label
 }}}var a=this.getPropertyForLabel(e,d,c);
 this.showTextField(d,a,c)
-},showTextField:function showTextField(h,c,j){var g=this.facade.getCanvas().getHTMLContainer().id;
+}get ,showTextField:function showTextField(h,c,j){var g=this.facade.getCanvas().getHTMLContainer().id;
 var e;
 if(!(h instanceof ORYX.Core.Node)){var a=j.node.getBoundingClientRect();
 e=Math.max(150,a.width)
@@ -1773,9 +1776,9 @@ b.x-=(e/2)
 }var d=c.prefix()+"-"+c.id();
 var f={renderTo:g,value:(function(m,l,k){this.label_templates.forEach(function(n){try{m=n.edit(m,l,k)
 }catch(o){ORYX.Log.error("Unable to render label template",o,n.edit)
-}});
+}}get );
 return m
-}.bind(this))(h.properties[d],d,h),x:(b.x<10)?10:b.x,y:b.y,width:Math.max(100,e),style:"position:absolute",allowBlank:c.optional(),maxLength:c.length(),emptyText:c.title(),cls:"x_form_text_set_absolute",listeners:{specialkey:this._specialKeyPressed.bind(this)}};
+}get .bind(this))(h.properties[d],d,h),x:(b.x<10)?10:b.x,y:b.y,width:Math.max(100,e),style:"position:absolute",allowBlank:c.optional(),maxLength:c.length(),emptyText:c.title(),cls:"x_form_text_set_absolute",listeners:{specialkey:this._specialKeyPressed.bind(this)}};
 if(c.wrapLines()){f.y-=30;
 f.grow=true;
 this.shownTextField=new Ext.form.TextArea(f)
@@ -1787,33 +1790,33 @@ this.shownTextField.on("change",function(o,p){var n=h;
 var l=n.properties[d];
 var q=(function(u,t,s){this.label_templates.forEach(function(v){try{u=v.render(u,t,s)
 }catch(w){ORYX.Log.error("Unable to render label template",w,v.render)
-}});
+}}get );
 return u
-}.bind(this))(p,d,h);
+}get .bind(this))(p,d,h);
 var m=this.facade;
 if(l!=q){var k=ORYX.Core.Command.extend({construct:function(){this.el=n;
 this.propId=d;
 this.oldValue=l;
 this.newValue=q;
 this.facade=m
-},execute:function(){this.el.setProperty(this.propId,this.newValue);
+}get ,execute:function(){this.el.setProperty(this.propId,this.newValue);
 this.facade.setSelection([this.el]);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-},rollback:function(){this.el.setProperty(this.propId,this.oldValue);
+}get ,rollback:function(){this.el.setProperty(this.propId,this.oldValue);
 this.facade.setSelection([this.el]);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var r=new k();
 this.facade.executeCommands([r])
-}}.bind(this));
+}}get .bind(this));
 this.facade.disableEvent(ORYX.CONFIG.EVENT_KEYDOWN)
-},_specialKeyPressed:function _specialKeyPressed(c,b){var a=b.getKey();
+}get ,_specialKeyPressed:function _specialKeyPressed(c,b){var a=b.getKey();
 if(a==13&&(b.shiftKey||!c.initialConfig.grow)){c.fireEvent("change",null,c.getValue());
 c.fireEvent("blur")
 }else{if(a==b.ESC){c.fireEvent("blur")
-}}},getCenterPosition:function(f){var a={x:0,y:0};
+}}}get ,getCenterPosition:function(f){var a={x:0,y:0};
 var c=f.getTransformToElement(this.facade.getCanvas().rootNode.lastChild);
 var h=this.facade.getCanvas().rootNode.lastChild.getScreenCTM();
 var b=f.getTransformToElement(f.parentNode);
@@ -1829,32 +1832,32 @@ a.y+=d.height/2;
 a.x*=h.a;
 a.y*=h.d;
 return a
-},getDifferenceCenterForNode:function getDifferenceCenterForNode(b){var a=this.getCenterPosition(b);
+}get ,getDifferenceCenterForNode:function getDifferenceCenterForNode(b){var a=this.getCenterPosition(b);
 a.x=0;
 a.y=a.y+10;
 return a
-},hide:function(a){if(this.shownTextField&&(!a||!this.shownTextField.el||a.target!==this.shownTextField.el.dom)){this.shownTextField.onBlur()
-}},destroy:function(a){if(this.shownTextField){this.shownTextField.destroy();
+}get ,hide:function(a){if(this.shownTextField&&(!a||!this.shownTextField.el||a.target!==this.shownTextField.el.dom)){this.shownTextField.onBlur()
+}}get ,destroy:function(a){if(this.shownTextField){this.shownTextField.destroy();
 delete this.shownTextField;
 this.facade.enableEvent(ORYX.CONFIG.EVENT_KEYDOWN)
-}}});
+}}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.ERDFSupport=Clazz.extend({facade:undefined,ERDFServletURL:"/erdfsupport",construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.ERDFSupport.exp,functionality:this.exportERDF.bind(this),group:"Export",dropDownGroupIcon:ORYX.PATH+"images/export2.png",icon:ORYX.PATH+"images/erdf_export_icon.png",description:ORYX.I18N.ERDFSupport.expDesc,index:0,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.ERDFSupport.imp,functionality:this.importERDF.bind(this),group:"Export",dropDownGroupIcon:ORYX.PATH+"images/import.png",icon:ORYX.PATH+"images/erdf_import_icon.png",description:ORYX.I18N.ERDFSupport.impDesc,index:1,minShape:0,maxShape:0})
-},importERDF:function(){this._showImportDialog()
-},exportERDF:function(){Ext.Msg.show({title:ORYX.I18N.ERDFSupport.deprTitle,msg:ORYX.I18N.ERDFSupport.deprText,buttons:Ext.Msg.YESNO,fn:function(b){if(b==="yes"){var a=this.facade.getERDF();
+}get ,importERDF:function(){this._showImportDialog()
+}get ,exportERDF:function(){Ext.Msg.show({title:ORYX.I18N.ERDFSupport.deprTitle,msg:ORYX.I18N.ERDFSupport.deprText,buttons:Ext.Msg.YESNO,fn:function(b){if(b==="yes"){var a=this.facade.getERDF();
 this.openDownloadWindow(window.document.title+".xml",a)
-}}.bind(this),icon:Ext.MessageBox.WARNING})
-},sendRequest:function(b,d,e,a){var c=false;
+}}get .bind(this),icon:Ext.MessageBox.WARNING})
+}get ,sendRequest:function(b,d,e,a){var c=false;
 new Ajax.Request(b,{method:"POST",asynchronous:false,parameters:d,onSuccess:function(f){c=true;
 if(e){e(f.result)
-}}.bind(this),onFailure:function(f){if(a){a()
+}}get .bind(this),onFailure:function(f){if(a){a()
 }else{Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.ERDFSupport.impFailed);
 ORYX.log.warn("Import ERDF failed: "+f.responseText)
-}}.bind(this)});
+}}get .bind(this)});
 return c
-},loadERDF:function(b,e,a){var c=b;
+}get ,loadERDF:function(b,e,a){var c=b;
 c=c.startsWith("<?xml")?c:'<?xml version="1.0" encoding="utf-8"?>'+c+"";
 var f=new DOMParser();
 var d=f.parseFromString(c,"text/xml");
@@ -1863,23 +1866,23 @@ if(a){a()
 }}else{if(!this.hasStencilSet(d)){if(a){a()
 }}else{this.facade.importERDF(d);
 if(e){e()
-}}}},hasStencilSet:function(e){var a=function(f,g){return $A(f.getElementsByTagName("div")).findAll(function(h){return $A(h.attributes).any(function(j){return j.nodeName=="class"&&j.nodeValue==g
-})
-})
-};
+}}}}get ,hasStencilSet:function(e){var a=function(f,g){return $A(f.getElementsByTagName("div")).findAll(function(h){return $A(h.attributes).any(function(j){return j.nodeName=="class"&&j.nodeValue==g
+}get )
+}get )
+}get ;
 var b=a(e,"-oryx-canvas")[0];
 if(!b){this.throwWarning(ORYX.I18N.ERDFSupport.noCanvas);
 return false
 }var c=$A(b.getElementsByTagName("a")).find(function(f){return f.getAttribute("rel")=="oryx-stencilset"
-});
+}get );
 if(!c){this.throwWarning(ORYX.I18N.ERDFSupport.noSS);
 return false
 }var d=c.getAttribute("href").split("/");
 d=d[d.length-2]+"/"+d[d.length-1];
 return true
-},throwWarning:function(a){Ext.MessageBox.show({title:ORYX.I18N.Oryx.title,msg:a,buttons:Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING})
-},openXMLWindow:function(a){var b=window.open("data:application/xml,"+encodeURIComponent(a),"_blank","resizable=yes,width=600,height=600,toolbar=0,scrollbars=yes")
-},openDownloadWindow:function(b,c){var d=window.open("");
+}get ,throwWarning:function(a){Ext.MessageBox.show({title:ORYX.I18N.Oryx.title,msg:a,buttons:Ext.MessageBox.OK,icon:Ext.MessageBox.WARNING})
+}get ,openXMLWindow:function(a){var b=window.open("data:application/xml,"+encodeURIComponent(a),"_blank","resizable=yes,width=600,height=600,toolbar=0,scrollbars=yes")
+}get ,openDownloadWindow:function(b,c){var d=window.open("");
 if(d!=null){d.document.open();
 d.document.write("<html><body>");
 var a=d.document.createElement("form");
@@ -1891,37 +1894,37 @@ d.document.write("</body></html>");
 d.document.close();
 a.action=ORYX.PATH+"/download";
 a.submit()
-}},createHiddenElement:function(a,b){var c=document.createElement("input");
+}}get ,createHiddenElement:function(a,b){var c=document.createElement("input");
 c.name=a;
 c.type="hidden";
 c.value=b;
 return c
-},_showImportDialog:function(a){var c=new Ext.form.FormPanel({baseCls:"x-plain",labelWidth:50,defaultType:"textfield",items:[{text:ORYX.I18N.ERDFSupport.selectFile,style:"font-size:12px;margin-bottom:10px;display:block;",anchor:"100%",xtype:"label"},{fieldLabel:ORYX.I18N.ERDFSupport.file,name:"subject",inputType:"file",style:"margin-bottom:10px;display:block;",itemCls:"ext_specific_window_overflow"},{xtype:"textarea",hideLabel:true,name:"msg",anchor:"100% -63"}]});
+}get ,_showImportDialog:function(a){var c=new Ext.form.FormPanel({baseCls:"x-plain",labelWidth:50,defaultType:"textfield",items:[{text:ORYX.I18N.ERDFSupport.selectFile,style:"font-size:12px;margin-bottom:10px;display:block;",anchor:"100%",xtype:"label"},{fieldLabel:ORYX.I18N.ERDFSupport.file,name:"subject",inputType:"file",style:"margin-bottom:10px;display:block;",itemCls:"ext_specific_window_overflow"},{xtype:"textarea",hideLabel:true,name:"msg",anchor:"100% -63"}]});
 var b=new Ext.Window({autoCreate:true,layout:"fit",plain:true,bodyStyle:"padding:5px;",title:ORYX.I18N.ERDFSupport.impERDF,height:350,width:500,modal:true,fixedcenter:true,shadow:true,proxyDrag:true,resizable:true,items:[c],buttons:[{text:ORYX.I18N.ERDFSupport.impBtn,handler:function(){var d=new Ext.LoadMask(Ext.getBody(),{msg:ORYX.I18N.ERDFSupport.impProgress});
 d.show();
 window.setTimeout(function(){var e=c.items.items[2].getValue();
 this.loadERDF(e,function(){d.hide();
 b.hide()
-}.bind(this),function(){d.hide()
-}.bind(this))
-}.bind(this),100)
-}.bind(this)},{text:ORYX.I18N.ERDFSupport.close,handler:function(){b.hide()
-}.bind(this)}]});
+}get .bind(this),function(){d.hide()
+}get .bind(this))
+}get .bind(this),100)
+}get .bind(this)},{text:ORYX.I18N.ERDFSupport.close,handler:function(){b.hide()
+}get .bind(this)}]});
 b.on("hide",function(){b.destroy(true);
 delete b
-});
+}get );
 b.show();
 c.items.items[1].getEl().dom.addEventListener("change",function(d){var e=d.target.files[0].getAsText("UTF-8");
 c.items.items[2].setValue(e)
-},true)
-}});
+}get ,true)
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.JSONSupport=ORYX.Plugins.AbstractPlugin.extend({construct:function(){arguments.callee.$.construct.apply(this,arguments);
 this.facade.offer({name:ORYX.I18N.JSONSupport.exp.name,functionality:this.exportJSON.bind(this),group:ORYX.I18N.JSONSupport.exp.group,dropDownGroupIcon:ORYX.PATH+"images/export2.png",icon:ORYX.PATH+"images/page_white_javascript.png",description:ORYX.I18N.JSONSupport.exp.desc,index:0,minShape:0,maxShape:0});
 if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.JSONSupport.imp.name,functionality:this.showImportDialog.bind(this),group:ORYX.I18N.JSONSupport.imp.group,dropDownGroupIcon:ORYX.PATH+"images/import.png",icon:ORYX.PATH+"images/page_white_javascript.png",description:ORYX.I18N.JSONSupport.imp.desc,index:1,minShape:0,maxShape:0})
-}},exportJSON:function(){var a=this.facade.getSerializedJSON();
+}}get ,exportJSON:function(){var a=this.facade.getSerializedJSON();
 this.openDownloadWindow(window.document.title+".json",a)
-},showImportDialog:function(a){var c=new Ext.form.FormPanel({baseCls:"x-plain",labelWidth:50,defaultType:"textfield",items:[{text:ORYX.I18N.JSONSupport.imp.selectFile,style:"font-size:12px;margin-bottom:10px;display:block;",anchor:"100%",xtype:"label"},{fieldLabel:ORYX.I18N.JSONSupport.imp.file,name:"subject",inputType:"file",style:"margin-bottom:10px;display:block;",itemCls:"ext_specific_window_overflow"},{xtype:"textarea",hideLabel:true,name:"msg",anchor:"100% -63"}]});
+}get ,showImportDialog:function(a){var c=new Ext.form.FormPanel({baseCls:"x-plain",labelWidth:50,defaultType:"textfield",items:[{text:ORYX.I18N.JSONSupport.imp.selectFile,style:"font-size:12px;margin-bottom:10px;display:block;",anchor:"100%",xtype:"label"},{fieldLabel:ORYX.I18N.JSONSupport.imp.file,name:"subject",inputType:"file",style:"margin-bottom:10px;display:block;",itemCls:"ext_specific_window_overflow"},{xtype:"textarea",hideLabel:true,name:"msg",anchor:"100% -63"}]});
 var b=new Ext.Window({autoCreate:true,layout:"fit",plain:true,bodyStyle:"padding:5px;",title:ORYX.I18N.JSONSupport.imp.name,height:350,width:500,modal:true,fixedcenter:true,shadow:true,proxyDrag:true,resizable:true,items:[c],buttons:[{text:ORYX.I18N.JSONSupport.imp.btnImp,handler:function(){var d=new Ext.LoadMask(Ext.getBody(),{msg:ORYX.I18N.JSONSupport.imp.progress});
 d.show();
 window.setTimeout(function(){var f=c.items.items[2].getValue();
@@ -1929,25 +1932,25 @@ try{this.facade.importJSON(f,true);
 b.close()
 }catch(e){Ext.Msg.alert(ORYX.I18N.JSONSupport.imp.syntaxError,e.message)
 }finally{d.hide()
-}}.bind(this),100)
-}.bind(this)},{text:ORYX.I18N.JSONSupport.imp.btnClose,handler:function(){b.close()
-}.bind(this)}]});
+}}get .bind(this),100)
+}get .bind(this)},{text:ORYX.I18N.JSONSupport.imp.btnClose,handler:function(){b.close()
+}get .bind(this)}]});
 b.show();
 c.items.items[1].getEl().dom.addEventListener("change",function(d){var e=d.target.files[0].getAsText("UTF-8");
 c.items.items[2].setValue(e)
-},true)
-}});
+}get ,true)
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.RDFExport=ORYX.Plugins.AbstractPlugin.extend({construct:function(){arguments.callee.$.construct.apply(this,arguments);
 this.facade.offer({name:ORYX.I18N.RDFExport.rdfExport,functionality:this.exportRDF.bind(this),group:ORYX.I18N.RDFExport.group,dropDownGroupIcon:ORYX.PATH+"images/export2.png",icon:ORYX.PATH+"images/page_white_code.png",description:ORYX.I18N.RDFExport.rdfExportDescription,index:0,minShape:0,maxShape:0})
-},exportRDF:function(){this.openDownloadWindow(window.document.title+".rdf",this.getRDFFromDOM())
-}});
+}get ,exportRDF:function(){this.openDownloadWindow(window.document.title+".rdf",this.getRDFFromDOM())
+}get });
 if(!ORYX.Plugins){ORYX.Plugins={}
 }if(!ORYX.Config){ORYX.Config={}
 }ORYX.Config.Feedback={VISIBLE_STATE:"visible",HIDDEN_STATE:"hidden",INFO:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, set eiusmod tempor incidunt et labore et dolore magna aliquam. Ut enim ad minim veniam, quis nostrud exerc. Irure dolor in reprehend incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse molestaie cillum. Tia non ob ea soluad incommod quae egen ium improb fugiend. Officia",CSS_FILE:ORYX.PATH+"/css/feedback.css"};
 ORYX.Plugins.Feedback=ORYX.Plugins.AbstractPlugin.extend({construct:function(a,b){this.facade=a;
 ((b&&b.properties)||[]).each(function(d){if(d.cssfile){ORYX.Config.Feedback.CSS_FILE=d.css_file
-}}.bind(this));
+}}get .bind(this));
 var c=document.createElement("link");
 c.setAttribute("rel","stylesheet");
 c.setAttribute("type","text/css");
@@ -1955,7 +1958,7 @@ c.setAttribute("href",ORYX.Config.Feedback.CSS_FILE);
 document.getElementsByTagName("head")[0].appendChild(c);
 this.elements={container:null,tab:null,dialog:null,form:null,info:null};
 this.createFeedbackTab()
-},createFeedbackTab:function(){this.elements.tab=document.createElement("div");
+}get ,createFeedbackTab:function(){this.elements.tab=document.createElement("div");
 this.elements.tab.setAttribute("class","tab");
 this.elements.tab.innerHTML=(ORYX.I18N.Feedback.name+" &#8226;");
 this.elements.container=document.createElement("div");
@@ -1963,7 +1966,7 @@ this.elements.container.setAttribute("id","feedback");
 this.elements.container.appendChild(this.elements.tab);
 document.body.appendChild(this.elements.container);
 Event.observe(this.elements.tab,"click",this.toggleDialog.bindAsEventListener(this))
-},toggleDialog:function(b){if(b){Event.stop(b)
+}get ,toggleDialog:function(b){if(b){Event.stop(b)
 }var a=this.elements.dialog||this.createDialog();
 if(ORYX.Config.Feedback.VISIBLE_STATE==a.state){this.elements.tab.innerHTML=(ORYX.I18N.Feedback.name+" &#8226;");
 Element.hide(a);
@@ -1971,35 +1974,35 @@ a.state=ORYX.Config.Feedback.HIDDEN_STATE
 }else{this.elements.tab.innerHTML=(ORYX.I18N.Feedback.name+" &#215;");
 Element.show(a);
 a.state=ORYX.Config.Feedback.VISIBLE_STATE
-}},createDialog:function(){if(this.elements.dialog){return this.elements.dialog
+}}get ,createDialog:function(){if(this.elements.dialog){return this.elements.dialog
 }var m=function(){[n,l,d].each(function(p){p.value=p._defaultText||"";
 p.className="low"
-})
-};
+}get )
+}get ;
 var f=function(p){var q=Event.element(p);
 if(q._defaultText&&q.value.strip()==q._defaultText.strip()){q.value="";
 q.className="high"
-}};
+}}get ;
 var b=function(p){var q=Event.element(p);
 if(q._defaultText&&q.value.strip()==""){q.value=q._defaultText;
 q.className="low"
-}};
+}}get ;
 this.elements.form=document.createElement("form");
 this.elements.form.action=ORYX.CONFIG.ROOT_PATH+"feedback";
 this.elements.form.method="POST";
 this.elements.form.onsubmit=function(){try{var p=function(){Ext.Msg.alert(ORYX.I18N.Feedback.failure,ORYX.I18N.Feedback.failureMsg);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 this.toggleDialog()
-};
+}get ;
 var s=function(t){if(t.status<200||t.status>=400){return p(t)
 }this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.Feedback.success});
 m()
-};
+}get ;
 this.elements.form.model.value=this.facade.getSerializedJSON();
 this.elements.form.environment.value=this.getEnv();
 var r={};
 $A(this.elements.form.elements).each(function(t){r[t.name]=t.value
-});
+}get );
 r.name=ORYX.Editor.Cookie.getParams().identifier;
 r.subject=("["+r.subject+"] "+r.title);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.Feedback.sending});
@@ -2008,7 +2011,7 @@ this.toggleDialog()
 }catch(q){p();
 ORYX.Log.warn(q)
 }return false
-}.bind(this);
+}get .bind(this);
 var o=document.createElement("div");
 o.className="fieldset";
 var j=document.createElement("input");
@@ -2070,14 +2073,14 @@ if(n.value==n._defaultText){n.value=q.description
 if(q.info&&(""+q.info).strip().length>0){this.elements.info.innerHTML=q.info
 }else{this.elements.info.innerHTML=ORYX.I18N.Feedback.info||""
 }}else{u.className=u._subject
-}}.bind(this))
-}.bind(this);
+}}get .bind(this))
+}get .bind(this);
 Event.observe(s,"click",r);
 if(p==(ORYX.I18N.Feedback.subjects.length-1)){n.value="";
 n._defaultText="";
 r()
 }}catch(t){ORYX.Log.warn("Incomplete I10N for ORYX.I18N.Feedback.subjects",q,ORYX.I18N.Feedback.subjects)
-}}.bind(this));
+}}get .bind(this));
 this.elements.form.appendChild(g);
 this.elements.form.appendChild(o);
 this.elements.info=document.createElement("div");
@@ -2092,37 +2095,41 @@ this.elements.dialog.appendChild(this.elements.info);
 this.elements.dialog.appendChild(this.elements.form);
 this.elements.container.appendChild(this.elements.dialog);
 return this.elements.dialog
-},getEnv:function(){var b="";
+}get ,getEnv:function(){var b="";
 b+="Browser: "+navigator.userAgent;
-b+="\n\nBrowser Plugins: ";
+b+="
+
+Browser Plugins: ";
 if(navigator.plugins){for(var a=0;
 a<navigator.plugins.length;
 a++){var c=navigator.plugins[a];
 b+=c.name+", "
-}}if((typeof(screen.width)!="undefined")&&(screen.width&&screen.height)){b+="\n\nScreen Resolution: "+screen.width+"x"+screen.height
+}}if((typeof(screen.width)!="undefined")&&(screen.width&&screen.height)){b+="
+
+Screen Resolution: "+screen.width+"x"+screen.height
 }return b
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Undo=Clazz.extend({facade:undefined,undoStack:[],redoStack:[],construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.Undo.undo,description:ORYX.I18N.Undo.undoDesc,icon:ORYX.PATH+"images/arrow_undo.png",keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:90,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.doUndo.bind(this),group:ORYX.I18N.Undo.group,isEnabled:function(){return this.undoStack.length>0
-}.bind(this),index:0});
+}get .bind(this),index:0});
 this.facade.offer({name:ORYX.I18N.Undo.redo,description:ORYX.I18N.Undo.redoDesc,icon:ORYX.PATH+"images/arrow_redo.png",keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:89,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.doRedo.bind(this),group:ORYX.I18N.Undo.group,isEnabled:function(){return this.redoStack.length>0
-}.bind(this),index:1});
+}get .bind(this),index:1});
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,this.handleExecuteCommands.bind(this))
-},handleExecuteCommands:function(a){if(!a.commands){return
+}get ,handleExecuteCommands:function(a){if(!a.commands){return
 }this.undoStack.push(a.commands);
 this.redoStack=[]
-},doUndo:function(){var a=this.undoStack.pop();
+}get ,doUndo:function(){var a=this.undoStack.pop();
 if(a){this.redoStack.push(a);
 a.each(function(b){b.rollback()
-})
+}get )
 }this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_UNDO_ROLLBACK,commands:a})
-},doRedo:function(){var a=this.redoStack.pop();
+}get ,doRedo:function(){var a=this.redoStack.pop();
 if(a){this.undoStack.push(a);
 a.each(function(b){b.execute()
-})
+}get )
 }this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_UNDO_EXECUTE,commands:a})
-}});
+}get });
 Array.prototype.insertFrom=function(e,d){d=Math.max(0,d);
 e=Math.min(Math.max(0,e),this.length-1);
 var b=this[e];
@@ -2131,7 +2138,7 @@ var c=a.slice(0,d);
 c.push(b);
 if(a.length>d){c=c.concat(a.slice(d))
 }return c
-};
+}get ;
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Arrangement=Clazz.extend({facade:undefined,construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.Arrangement.btf,functionality:this.setZLevel.bind(this,this.setToTop),group:ORYX.I18N.Arrangement.groupZ,icon:ORYX.PATH+"images/shape_move_front.png",description:ORYX.I18N.Arrangement.btfDesc,index:1,minShape:1});
@@ -2149,17 +2156,17 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ARRANGEMENT_TOP,this.setZLevel.bin
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ARRANGEMENT_BACK,this.setZLevel.bind(this,this.setToBack));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ARRANGEMENT_FORWARD,this.setZLevel.bind(this,this.setForward));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ARRANGEMENT_BACKWARD,this.setZLevel.bind(this,this.setBackward))
-},setZLevel:function(d,b){var a=ORYX.Core.Command.extend({construct:function(g,f,e){this.callback=g;
+}get ,setZLevel:function(d,b){var a=ORYX.Core.Command.extend({construct:function(g,f,e){this.callback=g;
 this.elements=f;
 this.elAndIndex=f.map(function(h){return{el:h,previous:h.parent.children[h.parent.children.indexOf(h)-1]}
-});
+}get );
 this.facade=e
-},execute:function(){this.callback(this.elements);
+}get ,execute:function(){this.callback(this.elements);
 this.facade.setSelection(this.elements)
-},rollback:function(){var g=this.elAndIndex.sortBy(function(m){var n=m.el;
+}get ,rollback:function(){var g=this.elAndIndex.sortBy(function(m){var n=m.el;
 var l=$A(n.node.parentNode.childNodes);
 return l.indexOf(n.node)
-});
+}get );
 for(var f=0;
 f<g.length;
 f++){var h=g[f].el;
@@ -2170,69 +2177,69 @@ e=e||0;
 j.children=j.children.insertFrom(k,e);
 h.node.parentNode.insertBefore(h.node,h.node.parentNode.childNodes[e+1])
 }this.facade.setSelection(this.elements)
-}});
+}get });
 var c=new a(d,this.facade.getSelection(),this.facade);
 if(b.excludeCommand){c.execute()
 }else{this.facade.executeCommands([c])
-}},setToTop:function(b){var a=b.sortBy(function(e,c){var d=$A(e.node.parentNode.childNodes);
+}}get ,setToTop:function(b){var a=b.sortBy(function(e,c){var d=$A(e.node.parentNode.childNodes);
 return d.indexOf(e.node)
-});
+}get );
 a.each(function(c){var d=c.parent;
 d.children=d.children.without(c);
 d.children.push(c);
 c.node.parentNode.appendChild(c.node)
-})
-},setToBack:function(b){var a=b.sortBy(function(e,c){var d=$A(e.node.parentNode.childNodes);
+}get )
+}get ,setToBack:function(b){var a=b.sortBy(function(e,c){var d=$A(e.node.parentNode.childNodes);
 return d.indexOf(e.node)
-});
+}get );
 a=a.reverse();
 a.each(function(c){var d=c.parent;
 d.children=d.children.without(c);
 d.children.unshift(c);
 c.node.parentNode.insertBefore(c.node,c.node.parentNode.firstChild)
-})
-},setBackward:function(c){var b=c.sortBy(function(f,d){var e=$A(f.node.parentNode.childNodes);
+}get )
+}get ,setBackward:function(c){var b=c.sortBy(function(f,d){var e=$A(f.node.parentNode.childNodes);
 return e.indexOf(f.node)
-});
+}get );
 b=b.reverse();
 var a=b.findAll(function(d){return !b.some(function(e){return e.node==d.node.previousSibling
-})
-});
+}get )
+}get );
 a.each(function(e){if(e.node.previousSibling===null){return
 }var f=e.parent;
 var d=f.children.indexOf(e);
 f.children=f.children.insertFrom(d,d-1);
 e.node.parentNode.insertBefore(e.node,e.node.previousSibling)
-})
-},setForward:function(c){var b=c.sortBy(function(f,d){var e=$A(f.node.parentNode.childNodes);
+}get )
+}get ,setForward:function(c){var b=c.sortBy(function(f,d){var e=$A(f.node.parentNode.childNodes);
 return e.indexOf(f.node)
-});
+}get );
 var a=b.findAll(function(d){return !b.some(function(e){return e.node==d.node.nextSibling
-})
-});
+}get )
+}get );
 a.each(function(f){var d=f.node.nextSibling;
 if(d===null){return
 }var e=f.parent.children.indexOf(f);
 var g=f.parent;
 g.children=g.children.insertFrom(e,e+1);
 f.node.parentNode.insertBefore(d,f.node)
-})
-},alignShapes:function(b){var f=this.facade.getSelection();
+}get )
+}get ,alignShapes:function(b){var f=this.facade.getSelection();
 f=this.facade.getCanvas().getShapesWithSharedParent(f);
 f=f.findAll(function(h){return(h instanceof ORYX.Core.Node)
-});
+}get );
 f=f.findAll(function(h){var j=h.getIncomingShapes();
 return j.length==0||!f.include(j[0])
-});
+}get );
 if(f.length<2){return
 }var e=f[0].absoluteBounds().clone();
 f.each(function(h){e.include(h.absoluteBounds().clone())
-});
+}get );
 var d=0;
 var c=0;
 f.each(function(h){d=Math.max(h.bounds.width(),d);
 c=Math.max(h.bounds.height(),c)
-});
+}get );
 var a=ORYX.Core.Command.extend({construct:function(n,m,l,k,h,j){this.elements=n;
 this.bounds=m;
 this.maxHeight=l;
@@ -2240,7 +2247,7 @@ this.maxWidth=k;
 this.way=h;
 this.facade=j;
 this.orgPos=[]
-},setBounds:function(h,k){if(!k){k={width:ORYX.CONFIG.MAXIMUM_SIZE,height:ORYX.CONFIG.MAXIMUM_SIZE}
+}get ,setBounds:function(h,k){if(!k){k={width:ORYX.CONFIG.MAXIMUM_SIZE,height:ORYX.CONFIG.MAXIMUM_SIZE}
 }if(!h.bounds){throw"Bounds not definined."
 }var j={a:{x:h.bounds.upperLeft().x-(this.maxWidth-h.bounds.width())/2,y:h.bounds.upperLeft().y-(this.maxHeight-h.bounds.height())/2},b:{x:h.bounds.lowerRight().x+(this.maxWidth-h.bounds.width())/2,y:h.bounds.lowerRight().y+(this.maxHeight-h.bounds.height())/2}};
 if(this.maxWidth>k.width){j.a.x=h.bounds.upperLeft().x-(k.width-h.bounds.width())/2;
@@ -2248,7 +2255,7 @@ j.b.x=h.bounds.lowerRight().x+(k.width-h.bounds.width())/2
 }if(this.maxHeight>k.height){j.a.y=h.bounds.upperLeft().y-(k.height-h.bounds.height())/2;
 j.b.y=h.bounds.lowerRight().y+(k.height-h.bounds.height())/2
 }h.bounds.set(j)
-},execute:function(){this.elements.each(function(h,j){this.orgPos[j]=h.bounds.upperLeft();
+}get ,execute:function(){this.elements.each(function(h,j){this.orgPos[j]=h.bounds.upperLeft();
 var k=this.bounds.clone();
 if(h.parent&&!(h.parent instanceof ORYX.Core.Canvas)){var l=h.parent.absoluteBounds().upperLeft();
 k.moveBy(-l.x,-l.y)
@@ -2267,84 +2274,84 @@ break;
 case ORYX.CONFIG.EDITOR_ALIGN_SIZE:if(h.isResizable){this.orgPos[j]={a:h.bounds.upperLeft(),b:h.bounds.lowerRight()};
 this.setBounds(h,h.maximumSize)
 }break
-}}.bind(this));
+}}get .bind(this));
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-},rollback:function(){this.elements.each(function(h,j){if(this.way==ORYX.CONFIG.EDITOR_ALIGN_SIZE){if(h.isResizable){h.bounds.set(this.orgPos[j])
+}get ,rollback:function(){this.elements.each(function(h,j){if(this.way==ORYX.CONFIG.EDITOR_ALIGN_SIZE){if(h.isResizable){h.bounds.set(this.orgPos[j])
 }}else{h.bounds.moveTo(this.orgPos[j])
-}}.bind(this));
+}}get .bind(this));
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var g=new a(f,e,c,d,parseInt(b),this.facade);
 this.facade.executeCommands([g])
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Grouping=Clazz.extend({facade:undefined,construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.Grouping.group,functionality:this.createGroup.bind(this),group:ORYX.I18N.Grouping.grouping,icon:ORYX.PATH+"images/shape_group.png",description:ORYX.I18N.Grouping.groupDesc,index:1,minShape:2,isEnabled:this.isEnabled.bind(this,false)});
 this.facade.offer({name:ORYX.I18N.Grouping.ungroup,functionality:this.deleteGroup.bind(this),group:ORYX.I18N.Grouping.grouping,icon:ORYX.PATH+"images/shape_ungroup.png",description:ORYX.I18N.Grouping.ungroupDesc,index:2,minShape:2,isEnabled:this.isEnabled.bind(this,true)});
 this.selectedElements=[];
 this.groups=[]
-},isEnabled:function(a){var b=this.selectedElements;
+}get ,isEnabled:function(a){var b=this.selectedElements;
 return a===this.groups.any(function(c){return c.length===b.length&&c.all(function(d){return b.member(d)
-})
-})
-},onSelectionChanged:function(b){var a=b.elements;
+}get )
+}get )
+}get ,onSelectionChanged:function(b){var a=b.elements;
 this.selectedElements=this.groups.findAll(function(c){return c.any(function(d){return a.member(d)
-})
-});
+}get )
+}get );
 this.selectedElements.push(a);
 this.selectedElements=this.selectedElements.flatten().uniq();
 if(this.selectedElements.length!==a.length){this.facade.setSelection(this.selectedElements)
-}},createGroup:function(){var c=this.facade.getSelection();
+}}get ,createGroup:function(){var c=this.facade.getSelection();
 var a=ORYX.Core.Command.extend({construct:function(g,d,f,e){this.selectedElements=g;
 this.groups=d;
 this.callback=f;
 this.facade=e
-},execute:function(){var d=this.groups.findAll(function(e){return !e.any(function(f){return c.member(f)
-})
-});
+}get ,execute:function(){var d=this.groups.findAll(function(e){return !e.any(function(f){return c.member(f)
+}get )
+}get );
 d.push(c);
 this.callback(d.clone());
 this.facade.setSelection(this.selectedElements)
-},rollback:function(){this.callback(this.groups.clone());
+}get ,rollback:function(){this.callback(this.groups.clone());
 this.facade.setSelection(this.selectedElements)
-}});
+}get });
 var b=new a(c,this.groups.clone(),this.setGroups.bind(this),this.facade);
 this.facade.executeCommands([b])
-},deleteGroup:function(){var c=this.facade.getSelection();
+}get ,deleteGroup:function(){var c=this.facade.getSelection();
 var a=ORYX.Core.Command.extend({construct:function(g,d,f,e){this.selectedElements=g;
 this.groups=d;
 this.callback=f;
 this.facade=e
-},execute:function(){var d=this.groups.partition(function(e){return e.length!==c.length||!e.all(function(f){return c.member(f)
-})
-});
+}get ,execute:function(){var d=this.groups.partition(function(e){return e.length!==c.length||!e.all(function(f){return c.member(f)
+}get )
+}get );
 this.callback(d[0]);
 this.facade.setSelection(this.selectedElements)
-},rollback:function(){this.callback(this.groups.clone());
+}get ,rollback:function(){this.callback(this.groups.clone());
 this.facade.setSelection(this.selectedElements)
-}});
+}get });
 var b=new a(c,this.groups.clone(),this.setGroups.bind(this),this.facade);
 this.facade.executeCommands([b])
-},setGroups:function(a){this.groups=a
-}});
+}get ,setGroups:function(a){this.groups=a
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.ShapeHighlighting=Clazz.extend({construct:function(a){this.parentNode=a.getCanvas().getSvgContainer();
 this.node=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.parentNode,["g"]);
 this.highlightNodes={};
 a.registerOnEvent(ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,this.setHighlight.bind(this));
 a.registerOnEvent(ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,this.hideHighlight.bind(this))
-},setHighlight:function(a){if(a&&a.highlightId){var b=this.highlightNodes[a.highlightId];
+}get ,setHighlight:function(a){if(a&&a.highlightId){var b=this.highlightNodes[a.highlightId];
 if(!b){b=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.node,["path",{"stroke-width":2,fill:"none"}]);
 this.highlightNodes[a.highlightId]=b
 }if(a.elements&&a.elements.length>0){this.setAttributesByStyle(b,a);
 this.show(b)
 }else{this.hide(b)
-}}},hideHighlight:function(a){if(a&&a.highlightId&&this.highlightNodes[a.highlightId]){this.hide(this.highlightNodes[a.highlightId])
-}},hide:function(a){a.setAttributeNS(null,"display","none")
-},show:function(a){a.setAttributeNS(null,"display","")
-},setAttributesByStyle:function(b,a){if(a.style&&a.style==ORYX.CONFIG.SELECTION_HIGHLIGHT_STYLE_RECTANGLE){var d=a.elements[0].absoluteBounds();
+}}}get ,hideHighlight:function(a){if(a&&a.highlightId&&this.highlightNodes[a.highlightId]){this.hide(this.highlightNodes[a.highlightId])
+}}get ,hide:function(a){a.setAttributeNS(null,"display","none")
+}get ,show:function(a){a.setAttributeNS(null,"display","")
+}get ,setAttributesByStyle:function(b,a){if(a.style&&a.style==ORYX.CONFIG.SELECTION_HIGHLIGHT_STYLE_RECTANGLE){var d=a.elements[0].absoluteBounds();
 var c=a.strokewidth?a.strokewidth:ORYX.CONFIG.BORDER_OFFSET;
 b.setAttributeNS(null,"d",this.getPathRectangle(d.a,d.b,c));
 b.setAttributeNS(null,"stroke",a.color?a.color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR);
@@ -2358,7 +2365,7 @@ b.setAttributeNS(null,"stroke-width",ORYX.CONFIG.OFFSET_EDGE_BOUNDS)
 b.setAttributeNS(null,"stroke",a.color?a.color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR);
 b.setAttributeNS(null,"stroke-opacity",a.opacity?a.opacity:1);
 b.setAttributeNS(null,"stroke-width",a.strokewidth?a.strokewidth:2)
-}}},getPathByElements:function(a){if(!a||a.length<=0){return undefined
+}}}get ,getPathByElements:function(a){if(!a||a.length<=0){return undefined
 }var c=ORYX.CONFIG.SELECTED_AREA_PADDING;
 var b="";
 a.each((function(f){if(!f){return
@@ -2367,17 +2374,17 @@ g.widen(c);
 var e=g.upperLeft();
 var d=g.lowerRight();
 b=b+this.getPath(e,d)
-}).bind(this));
+}get ).bind(this));
 return b
-},getPath:function(d,c){return this.getPathCorners(d,c)
-},getPathCorners:function(d,c){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
+}get ,getPath:function(d,c){return this.getPathCorners(d,c)
+}get ,getPathCorners:function(d,c){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
 var f="";
 f=f+"M"+d.x+" "+(d.y+e)+" l0 -"+e+" l"+e+" 0 ";
 f=f+"M"+d.x+" "+(c.y-e)+" l0 "+e+" l"+e+" 0 ";
 f=f+"M"+c.x+" "+(c.y-e)+" l0 "+e+" l-"+e+" 0 ";
 f=f+"M"+c.x+" "+(d.y+e)+" l0 -"+e+" l-"+e+" 0 ";
 return f
-},getPathRectangle:function(d,c,h){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
+}get ,getPathRectangle:function(d,c,h){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
 var f="";
 var g=h/2;
 f=f+"M"+(d.x+g)+" "+(d.y);
@@ -2386,23 +2393,23 @@ f=f+" L"+(c.x-g)+" "+(c.y-g);
 f=f+" L"+(c.x-g)+" "+(d.y+g);
 f=f+" L"+(d.x+g)+" "+(d.y+g);
 return f
-},getPathEdge:function(a){var b=a.length;
+}get ,getPathEdge:function(a){var b=a.length;
 var c="M"+a[0].bounds.center().x+" "+a[0].bounds.center().y;
 for(i=1;
 i<b;
 i++){var d=a[i].bounds.center();
 c=c+" L"+d.x+" "+d.y
 }return c
-}});
+}get });
 ORYX.Plugins.HighlightingSelectedShapes=Clazz.extend({construct:function(a){this.facade=a;
 this.opacityFull=0.9;
 this.opacityLow=0.4
-},onSelectionChanged:function(a){if(a.elements&&a.elements.length>1){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"selection",elements:a.elements.without(a.subSelection),color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR,opacity:!a.subSelection?this.opacityFull:this.opacityLow});
+}get ,onSelectionChanged:function(a){if(a.elements&&a.elements.length>1){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"selection",elements:a.elements.without(a.subSelection),color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR,opacity:!a.subSelection?this.opacityFull:this.opacityLow});
 if(a.subSelection){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"subselection",elements:[a.subSelection],color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR,opacity:this.opacityFull})
 }else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"subselection"})
 }}else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"selection"});
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"subselection"})
-}}});
+}}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.DragDocker=Clazz.extend({construct:function(a){this.facade=a;
 this.VALIDCOLOR=ORYX.CONFIG.SELECTION_VALID_COLOR;
@@ -2423,14 +2430,14 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,this.handleMouseDown.bin
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DOCKERDRAG,this.handleDockerDrag.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOVER,this.handleMouseOver.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOUT,this.handleMouseOut.bind(this))
-},handleMouseOut:function(b,a){if(!this.docker&&a instanceof ORYX.Core.Controls.Docker){a.hide()
+}get ,handleMouseOut:function(b,a){if(!this.docker&&a instanceof ORYX.Core.Controls.Docker){a.hide()
 }else{if(!this.docker&&a instanceof ORYX.Core.Edge){a.dockers.each(function(c){c.hide()
-})
-}}},handleMouseOver:function(b,a){if(!this.docker&&a instanceof ORYX.Core.Controls.Docker){a.show()
+}get )
+}}}get ,handleMouseOver:function(b,a){if(!this.docker&&a instanceof ORYX.Core.Controls.Docker){a.show()
 }else{if(!this.docker&&a instanceof ORYX.Core.Edge){a.dockers.each(function(c){c.show()
-})
-}}},handleDockerDrag:function(b,a){this.handleMouseDown(b.uiEvent,a)
-},handleMouseDown:function(d,c){if(c instanceof ORYX.Core.Controls.Docker&&c.isMovable){this.shapeSelection=this.facade.getSelection();
+}get )
+}}}get ,handleDockerDrag:function(b,a){this.handleMouseDown(b.uiEvent,a)
+}get ,handleMouseDown:function(d,c){if(c instanceof ORYX.Core.Controls.Docker&&c.isMovable){this.shapeSelection=this.facade.getSelection();
 this.facade.setSelection();
 this.docker=c;
 this.initialDockerPosition=this.docker.bounds.center();
@@ -2446,7 +2453,7 @@ this.dockerTarget=undefined
 this.isEndDocker=this.docker.parent.dockers.last()===this.docker;
 this.facade.getCanvas().add(this.docker.parent);
 this.docker.parent.getLabels().each(function(e){e.hide()
-});
+}get );
 if((!this.isStartDocker&&!this.isEndDocker)||!this.docker.isDocked()){this.docker.setDockedShape(undefined);
 var b=this.facade.eventCoordinates(d);
 this.docker.bounds.centerMoveTo(b);
@@ -2454,7 +2461,7 @@ this.dockerParent._update()
 }else{this.outerDockerNotMoved=true
 }var a={movedCallback:this.dockerMoved.bind(this),upCallback:this.dockerMovedFinished.bind(this)};
 ORYX.Core.UIEnableDrag(d,c,a)
-}},dockerMoved:function(t){this.outerDockerNotMoved=false;
+}}get ,dockerMoved:function(t){this.outerDockerNotMoved=false;
 var k=undefined;
 if(this.docker.parent){if(this.isStartDocker||this.isEndDocker){var n=this.facade.eventCoordinates(t);
 if(this.docker.isDocked()){var b=ORYX.Core.Math.getDistancePointToPoint(n,this.initialDockerPosition);
@@ -2486,7 +2493,7 @@ this.lastUIObj?this.hideMagnets(this.lastUIObj):null;
 this.lastUIObj=undefined;
 this.isValid=false
 }}if(this.lastUIObj&&this.isValid&&!(t.shiftKey||t.ctrlKey)){k=this.lastUIObj.magnets.find(function(x){return x.absoluteBounds().isIncluded(n)
-});
+}get );
 if(k){this.docker.bounds.centerMoveTo(k.absoluteCenterXY())
 }}}}if(!(t.shiftKey||t.ctrlKey)&&!k){var m=ORYX.CONFIG.DOCKER_SNAP_OFFSET;
 var h=m+1;
@@ -2496,7 +2503,7 @@ if(this.docker.parent){this.docker.parent.dockers.each((function(y){if(this.dock
 }var x=y.referencePoint?y.getAbsoluteReferencePoint():y.bounds.center();
 h=Math.abs(h)>Math.abs(x.x-w.x)?x.x-w.x:h;
 f=Math.abs(f)>Math.abs(x.y-w.y)?x.y-w.y:f
-}).bind(this));
+}get ).bind(this));
 if(Math.abs(h)<m||Math.abs(f)<m){h=Math.abs(h)<m?h:0;
 f=Math.abs(f)<m?f:0;
 this.docker.bounds.centerMoveTo(w.x+h,w.y+f)
@@ -2511,10 +2518,10 @@ var j=(e.y-(e.x*v))+(v*l);
 if(isNaN(l)||isNaN(j)){return
 }this.docker.bounds.centerMoveTo(l,j)
 }}}}}this.dockerParent._update()
-},dockerMovedFinished:function(e){this.facade.setSelection(this.shapeSelection);
+}get ,dockerMovedFinished:function(e){this.facade.setSelection(this.shapeSelection);
 this.hideHighlight();
 this.dockerParent.getLabels().each(function(g){g.show()
-});
+}get );
 if(this.lastUIObj&&(this.isStartDocker||this.isEndDocker)){if(this.isValid){this.docker.setDockedShape(this.lastUIObj);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_DRAGDOCKER_DOCKED,docker:this.docker,parent:this.docker.parent,target:this.lastUIObj})
 }this.hideMagnets(this.lastUIObj)
@@ -2522,7 +2529,7 @@ this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_DRAGDOCKER_DOCKED,docker:this.doc
 if(this.outerDockerNotMoved){var d=this.facade.eventCoordinates(e);
 var a=this.facade.getCanvas().getAbstractShapesAtPosition(d);
 var b=a.findAll(function(g){return g instanceof ORYX.Core.Node
-});
+}get );
 a=b.length?b:a;
 this.facade.setSelection(a)
 }else{var c=ORYX.Core.Command.extend({construct:function(m,h,g,l,k,j){this.docker=m;
@@ -2534,21 +2541,21 @@ this.oldDockedShape=k;
 this.facade=j;
 this.index=m.parent.dockers.indexOf(m);
 this.shape=m.parent
-},execute:function(){if(!this.docker.parent){this.docker=this.shape.dockers[this.index]
+}get ,execute:function(){if(!this.docker.parent){this.docker=this.shape.dockers[this.index]
 }this.dock(this.newDockedShape,this.newPosition);
 this.removedDockers=this.shape.removeUnusedDockers();
 this.facade.updateSelection()
-},rollback:function(){this.dock(this.oldDockedShape,this.oldPosition);
+}get ,rollback:function(){this.dock(this.oldDockedShape,this.oldPosition);
 (this.removedDockers||$H({})).each(function(g){this.shape.add(g.value,Number(g.key));
 this.shape._update(true)
-}.bind(this));
+}get .bind(this));
 this.facade.updateSelection()
-},dock:function(g,h){this.docker.setDockedShape(undefined);
+}get ,dock:function(g,h){this.docker.setDockedShape(undefined);
 if(g){this.docker.setDockedShape(g);
 this.docker.setReferencePoint(h)
 }else{this.docker.bounds.centerMoveTo(h)
 }this.facade.getCanvas().update()
-}});
+}get });
 if(this.docker.parent){var f=new c(this.docker,this.docker.getDockedShape()?this.docker.referencePoint:this.docker.bounds.center(),this._commandArg.refPoint,this.docker.getDockedShape(),this._commandArg.dockedShape,this.facade);
 this.facade.executeCommands([f])
 }}this.docker=undefined;
@@ -2556,54 +2563,54 @@ this.dockerParent=undefined;
 this.dockerSource=undefined;
 this.dockerTarget=undefined;
 this.lastUIObj=undefined
-},hideHighlight:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"validDockedShape"})
-},showHighlight:function(b,a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"validDockedShape",elements:[b],color:a})
-},showMagnets:function(a){a.magnets.each(function(b){b.show()
-})
-},hideMagnets:function(a){a.magnets.each(function(b){b.hide()
-})
-},getHighestParentBeforeCanvas:function(a){if(!(a instanceof ORYX.Core.Shape)){return undefined
+}get ,hideHighlight:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"validDockedShape"})
+}get ,showHighlight:function(b,a){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"validDockedShape",elements:[b],color:a})
+}get ,showMagnets:function(a){a.magnets.each(function(b){b.show()
+}get )
+}get ,hideMagnets:function(a){a.magnets.each(function(b){b.hide()
+}get )
+}get ,getHighestParentBeforeCanvas:function(a){if(!(a instanceof ORYX.Core.Shape)){return undefined
 }var b=a.parent;
 while(b&&!(b.parent instanceof ORYX.Core.Canvas)){b=b.parent
 }return b
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.AddDocker=Clazz.extend({construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.AddDocker.add,functionality:this.enableAddDocker.bind(this),group:ORYX.I18N.AddDocker.group,icon:ORYX.PATH+"images/vector_add.png",description:ORYX.I18N.AddDocker.addDesc,index:1,toggle:true,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.AddDocker.del,functionality:this.enableDeleteDocker.bind(this),group:ORYX.I18N.AddDocker.group,icon:ORYX.PATH+"images/vector_delete.png",description:ORYX.I18N.AddDocker.delDesc,index:2,toggle:true,minShape:0,maxShape:0});
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,this.handleMouseDown.bind(this))
-},enableAddDocker:function(a,b){this.addDockerButton=a;
+}get ,enableAddDocker:function(a,b){this.addDockerButton=a;
 if(b&&this.deleteDockerButton){this.deleteDockerButton.toggle(false)
-}},enableDeleteDocker:function(a,b){this.deleteDockerButton=a;
+}}get ,enableDeleteDocker:function(a,b){this.deleteDockerButton=a;
 if(b&&this.addDockerButton){this.addDockerButton.toggle(false)
-}},enabledAdd:function(){return this.addDockerButton?this.addDockerButton.pressed:false
-},enabledDelete:function(){return this.deleteDockerButton?this.deleteDockerButton.pressed:false
-},handleMouseDown:function(b,a){if(this.enabledAdd()&&a instanceof ORYX.Core.Edge){this.newDockerCommand({edge:a,position:this.facade.eventCoordinates(b)})
+}}get ,enabledAdd:function(){return this.addDockerButton?this.addDockerButton.pressed:false
+}get ,enabledDelete:function(){return this.deleteDockerButton?this.deleteDockerButton.pressed:false
+}get ,handleMouseDown:function(b,a){if(this.enabledAdd()&&a instanceof ORYX.Core.Edge){this.newDockerCommand({edge:a,position:this.facade.eventCoordinates(b)})
 }else{if(this.enabledDelete()&&a instanceof ORYX.Core.Controls.Docker&&a.parent instanceof ORYX.Core.Edge){this.newDockerCommand({edge:a.parent,docker:a})
 }else{if(this.enabledAdd()){this.addDockerButton.toggle(false)
 }else{if(this.enabledDelete()){this.deleteDockerButton.toggle(false)
-}}}}},newDockerCommand:function(b){if(!b.edge){return
+}}}}}get ,newDockerCommand:function(b){if(!b.edge){return
 }var a=ORYX.Core.Command.extend({construct:function(h,f,e,g,j,d){this.addEnabled=h;
 this.deleteEnabled=f;
 this.edge=e;
 this.docker=g;
 this.pos=j;
 this.facade=d
-},execute:function(){if(this.addEnabled){this.docker=this.edge.addDocker(this.pos,this.docker);
+}get ,execute:function(){if(this.addEnabled){this.docker=this.edge.addDocker(this.pos,this.docker);
 this.index=this.edge.dockers.indexOf(this.docker)
 }else{if(this.deleteEnabled){this.index=this.edge.dockers.indexOf(this.docker);
 this.pos=this.docker.bounds.center();
 this.edge.removeDocker(this.docker)
 }}this.facade.getCanvas().update();
 this.facade.updateSelection()
-},rollback:function(){if(this.addEnabled){if(this.docker instanceof ORYX.Core.Controls.Docker){this.edge.removeDocker(this.docker)
+}get ,rollback:function(){if(this.addEnabled){if(this.docker instanceof ORYX.Core.Controls.Docker){this.edge.removeDocker(this.docker)
 }}else{if(this.deleteEnabled){this.edge.add(this.docker,this.index)
 }}this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var c=new a(this.enabledAdd(),this.enabledDelete(),b.edge,b.docker,b.position,this.facade);
 this.facade.executeCommands([c])
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.DockerCreation=Clazz.extend({construct:function(a){this.facade=a;
 this.active=false;
@@ -2613,40 +2620,40 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOVER,this.handleMouseOver.bin
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOUT,this.handleMouseOut.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEMOVE,this.handleMouseMove.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DBLCLICK,function(){window.clearTimeout(this.timer)
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEUP,function(){window.clearTimeout(this.timer)
-}.bind(this))
-},handleMouseOut:function(b,a){if(this.active){this.hideOverlay();
+}get .bind(this))
+}get ,handleMouseOut:function(b,a){if(this.active){this.hideOverlay();
 this.active=false
-}},handleMouseOver:function(b,a){if(a instanceof ORYX.Core.Edge&&this.isEdgeDocked(a)){this.showOverlay(a,this.facade.eventCoordinates(b))
+}}get ,handleMouseOver:function(b,a){if(a instanceof ORYX.Core.Edge&&this.isEdgeDocked(a)){this.showOverlay(a,this.facade.eventCoordinates(b))
 }this.active=true
-},handleMouseDown:function(b,a){if(b.which==1&&a instanceof ORYX.Core.Edge&&this.isEdgeDocked(a)){window.clearTimeout(this.timer);
+}get ,handleMouseDown:function(b,a){if(b.which==1&&a instanceof ORYX.Core.Edge&&this.isEdgeDocked(a)){window.clearTimeout(this.timer);
 this.timer=window.setTimeout(function(){this.addDockerCommand({edge:a,event:b,position:this.facade.eventCoordinates(b)})
-}.bind(this),200);
+}get .bind(this),200);
 this.hideOverlay()
-}},handleMouseMove:function(b,a){if(a instanceof ORYX.Core.Edge&&this.isEdgeDocked(a)){if(this.active){this.hideOverlay();
+}}get ,handleMouseMove:function(b,a){if(a instanceof ORYX.Core.Edge&&this.isEdgeDocked(a)){if(this.active){this.hideOverlay();
 this.showOverlay(a,this.facade.eventCoordinates(b))
 }else{this.showOverlay(a,this.facade.eventCoordinates(b))
-}}},isEdgeDocked:function(a){return !!(a.incoming.length||a.outgoing.length)
-},addDockerCommand:function(b){if(!b.edge){return
+}}}get ,isEdgeDocked:function(a){return !!(a.incoming.length||a.outgoing.length)
+}get ,addDockerCommand:function(b){if(!b.edge){return
 }var a=ORYX.Core.Command.extend({construct:function(f,g,h,e,d){this.edge=f;
 this.docker=g;
 this.pos=h;
 this.facade=e;
 this.options=d
-},execute:function(){this.docker=this.edge.addDocker(this.pos,this.docker);
+}get ,execute:function(){this.docker=this.edge.addDocker(this.pos,this.docker);
 this.index=this.edge.dockers.indexOf(this.docker);
 this.facade.getCanvas().update();
 this.facade.updateSelection();
 this.options.docker=this.docker
-},rollback:function(){if(this.docker instanceof ORYX.Core.Controls.Docker){this.edge.removeDocker(this.docker)
+}get ,rollback:function(){if(this.docker instanceof ORYX.Core.Controls.Docker){this.edge.removeDocker(this.docker)
 }this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 var c=new a(b.edge,b.docker,b.position,this.facade,b);
 this.facade.executeCommands([c]);
 this.facade.raiseEvent({uiEvent:b.event,type:ORYX.CONFIG.EVENT_DOCKERDRAG},b.docker)
-},showOverlay:function(a,j){var e=j;
+}get ,showOverlay:function(a,j){var e=j;
 var f=[0,1];
 var b=Infinity;
 for(var g=0,d=a.dockers.length;
@@ -2657,71 +2664,71 @@ if(!c){continue
 if(b>h){b=h;
 e=c
 }}this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_SHOW,id:"ghostpoint",shapes:[a],node:this.circle,ghostPoint:e,dontCloneNode:true})
-},hideOverlay:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:"ghostpoint"})
-}});
+}get ,hideOverlay:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_OVERLAY_HIDE,id:"ghostpoint"})
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.SSExtensionLoader={construct:function(a){this.facade=a;
 if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.SSExtensionLoader.add,functionality:this.addSSExtension.bind(this),group:ORYX.I18N.SSExtensionLoader.group,icon:ORYX.PATH+"images/add.png",description:ORYX.I18N.SSExtensionLoader.addDesc,index:1,minShape:0,maxShape:0})
-}},addSSExtension:function(facade){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.SSExtensionLoader.loading});
+}}get ,addSSExtension:function(facade){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.SSExtensionLoader.loading});
 var url=ORYX.CONFIG.SS_EXTENSIONS_CONFIG;
 new Ajax.Request(url,{method:"GET",asynchronous:false,onSuccess:(function(transport){try{eval("var jsonObject = "+transport.responseText);
 var stencilsets=this.facade.getStencilSets();
 var validExtensions=jsonObject.extensions.findAll(function(extension){var stencilset=stencilsets[extension["extends"]];
 if(stencilset){return true
 }else{return false
-}});
+}}get );
 var loadedExtensions=validExtensions.findAll(function(extension){return stencilsets.values().any(function(ss){if(ss.extensions()[extension.namespace]){return true
 }else{return false
-}})
-});
+}}get )
+}get );
 if(validExtensions.size()==0){Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.SSExtensionLoader.noExt)
 }else{this._showPanel(validExtensions,loadedExtensions,this._loadExtensions.bind(this))
 }}catch(e){console.log(e);
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.SSExtensionLoader.failed1)
 }this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE})
-}).bind(this),onFailure:(function(transport){Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.SSExtensionLoader.failed2);
+}get ).bind(this),onFailure:(function(transport){Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.SSExtensionLoader.failed2);
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE})
-}).bind(this)})
-},_loadExtensions:function(b){var c=this.facade.getStencilSets();
+}get ).bind(this)})
+}get ,_loadExtensions:function(b){var c=this.facade.getStencilSets();
 var d=false;
 c.values().each(function(e){var f=e.extensions().values().select(function(g){return b[g.namespace]==undefined
-});
+}get );
 f.each(function(g){e.removeExtension(g.namespace);
 d=true
-})
-});
+}get )
+}get );
 b.each(function(f){var e=c[f["extends"]];
 if(e){e.addExtension(ORYX.CONFIG.SS_EXTENSIONS_FOLDER+f.definition);
 d=true
-}}.bind(this));
+}}get .bind(this));
 if(d){c.values().each(function(e){this.facade.getRules().initializeRules(e)
-}.bind(this));
+}get .bind(this));
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_STENCIL_SET_LOADED,lazyLoaded:true});
 var a=this.facade.getSelection();
 this.facade.setSelection();
 this.facade.setSelection(a)
-}},_showPanel:function(h,j,c){var e=[];
+}}get ,_showPanel:function(h,j,c){var e=[];
 h.each(function(k){e.push([k.title,k.definition,k["extends"]])
-});
+}get );
 var d=new Ext.grid.CheckboxSelectionModel();
 var a=new Ext.grid.GridPanel({deferRowRender:false,id:"oryx_new_stencilset_extention_grid",store:new Ext.data.SimpleStore({fields:["title","definition","extends"]}),cm:new Ext.grid.ColumnModel([d,{header:ORYX.I18N.SSExtensionLoader.panelTitle,width:200,sortable:true,dataIndex:"title"}]),sm:d,frame:true,width:200,height:200,iconCls:"icon-grid",listeners:{render:function(){this.getStore().loadData(e);
 g.defer(1)
-}}});
+}get }});
 function g(){var k=new Array();
 a.store.each(function(l){if(j.any(function(m){return m.definition==l.get("definition")
-})){k.push(l)
-}});
+}get )){k.push(l)
+}}get );
 d.selectRecords(k)
-}var b=new Ext.Panel({items:[{xtype:"label",text:ORYX.I18N.SSExtensionLoader.panelText,style:"margin:10px;display:block"},a],frame:true,buttons:[{text:ORYX.I18N.SSExtensionLoader.labelImport,handler:function(){var l=Ext.getCmp("oryx_new_stencilset_extention_grid").getSelectionModel();
+}get var b=new Ext.Panel({items:[{xtype:"label",text:ORYX.I18N.SSExtensionLoader.panelText,style:"margin:10px;display:block"},a],frame:true,buttons:[{text:ORYX.I18N.SSExtensionLoader.labelImport,handler:function(){var l=Ext.getCmp("oryx_new_stencilset_extention_grid").getSelectionModel();
 var k=l.selections.items.collect(function(m){return m.data
-});
+}get );
 Ext.getCmp("oryx_new_stencilset_extention_window").close();
 c(k)
-}.bind(this)},{text:ORYX.I18N.SSExtensionLoader.labelCancel,handler:function(){Ext.getCmp("oryx_new_stencilset_extention_window").close()
-}.bind(this)}]});
+}get .bind(this)},{text:ORYX.I18N.SSExtensionLoader.labelCancel,handler:function(){Ext.getCmp("oryx_new_stencilset_extention_window").close()
+}get .bind(this)}]});
 var f=new Ext.Window({id:"oryx_new_stencilset_extention_window",width:227,title:ORYX.I18N.Oryx.title,floating:true,shim:true,modal:true,resizable:false,autoHeight:true,items:[b]});
 f.show()
-}};
+}get };
 ORYX.Plugins.SSExtensionLoader=Clazz.extend(ORYX.Plugins.SSExtensionLoader);
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.SelectionFrame=Clazz.extend({construct:function(a){this.facade=a;
@@ -2734,7 +2741,7 @@ this.moveCallback=undefined;
 this.offsetScroll={x:0,y:0};
 this.node=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",this.facade.getCanvas().getHTMLContainer(),["div",{"class":"Oryx_SelectionFrame"}]);
 this.hide()
-},handleMouseDown:function(d,c){if(c instanceof ORYX.Core.Canvas){var e=c.rootNode.parentNode.parentNode;
+}get ,handleMouseDown:function(d,c){if(c instanceof ORYX.Core.Canvas){var e=c.rootNode.parentNode.parentNode;
 var b=this.facade.getCanvas().node.getScreenCTM();
 this.offsetPosition={x:b.e,y:b.f};
 this.setPos({x:Event.pointerX(d)-this.offsetPosition.x,y:Event.pointerY(d)-this.offsetPosition.y});
@@ -2744,7 +2751,7 @@ document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE,this.moveC
 this.offsetScroll={x:e.scrollLeft,y:e.scrollTop};
 this.show()
 }Event.stop(d)
-},handleMouseUp:function(f){if(this.moveCallback){this.hide();
+}get ,handleMouseUp:function(f){if(this.moveCallback){this.hide();
 document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE,this.moveCallback,false);
 this.moveCallback=undefined;
 var e=this.facade.getCanvas().node.getScreenCTM();
@@ -2759,20 +2766,20 @@ var j=a.upperLeft();
 var h=a.lowerRight();
 if(j.x>d.x&&j.y>d.y&&h.x<c.x&&h.y<c.y){return true
 }return false
-});
+}get );
 this.facade.setSelection(g)
-}},handleMouseMove:function(b){var a={width:Event.pointerX(b)-this.position.x-this.offsetPosition.x,height:Event.pointerY(b)-this.position.y-this.offsetPosition.y,};
+}}get ,handleMouseMove:function(b){var a={width:Event.pointerX(b)-this.position.x-this.offsetPosition.x,height:Event.pointerY(b)-this.position.y-this.offsetPosition.y,};
 var c=this.facade.getCanvas().rootNode.parentNode.parentNode;
 a.width-=this.offsetScroll.x-c.scrollLeft;
 a.height-=this.offsetScroll.y-c.scrollTop;
 this.resize(a);
 Event.stop(b)
-},hide:function(){this.node.style.display="none"
-},show:function(){this.node.style.display=""
-},setPos:function(a){this.node.style.top=a.y+"px";
+}get ,hide:function(){this.node.style.display="none"
+}get ,show:function(){this.node.style.display=""
+}get ,setPos:function(a){this.node.style.top=a.y+"px";
 this.node.style.left=a.x+"px";
 this.position=a
-},resize:function(a){this.setPos(this.position);
+}get ,resize:function(a){this.setPos(this.position);
 this.size=Object.clone(a);
 if(a.width<0){this.node.style.left=(this.position.x+a.width)+"px";
 a.width=-a.width
@@ -2780,23 +2787,23 @@ a.width=-a.width
 a.height=-a.height
 }this.node.style.width=a.width+"px";
 this.node.style.height=a.height+"px"
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.ShapeHighlighting=Clazz.extend({construct:function(a){this.parentNode=a.getCanvas().getSvgContainer();
 this.node=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.parentNode,["g"]);
 this.highlightNodes={};
 a.registerOnEvent(ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,this.setHighlight.bind(this));
 a.registerOnEvent(ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,this.hideHighlight.bind(this))
-},setHighlight:function(a){if(a&&a.highlightId){var b=this.highlightNodes[a.highlightId];
+}get ,setHighlight:function(a){if(a&&a.highlightId){var b=this.highlightNodes[a.highlightId];
 if(!b){b=ORYX.Editor.graft("http://www.w3.org/2000/svg",this.node,["path",{"stroke-width":2,fill:"none"}]);
 this.highlightNodes[a.highlightId]=b
 }if(a.elements&&a.elements.length>0){this.setAttributesByStyle(b,a);
 this.show(b)
 }else{this.hide(b)
-}}},hideHighlight:function(a){if(a&&a.highlightId&&this.highlightNodes[a.highlightId]){this.hide(this.highlightNodes[a.highlightId])
-}},hide:function(a){a.setAttributeNS(null,"display","none")
-},show:function(a){a.setAttributeNS(null,"display","")
-},setAttributesByStyle:function(b,a){if(a.style&&a.style==ORYX.CONFIG.SELECTION_HIGHLIGHT_STYLE_RECTANGLE){var d=a.elements[0].absoluteBounds();
+}}}get ,hideHighlight:function(a){if(a&&a.highlightId&&this.highlightNodes[a.highlightId]){this.hide(this.highlightNodes[a.highlightId])
+}}get ,hide:function(a){a.setAttributeNS(null,"display","none")
+}get ,show:function(a){a.setAttributeNS(null,"display","")
+}get ,setAttributesByStyle:function(b,a){if(a.style&&a.style==ORYX.CONFIG.SELECTION_HIGHLIGHT_STYLE_RECTANGLE){var d=a.elements[0].absoluteBounds();
 var c=a.strokewidth?a.strokewidth:ORYX.CONFIG.BORDER_OFFSET;
 b.setAttributeNS(null,"d",this.getPathRectangle(d.a,d.b,c));
 b.setAttributeNS(null,"stroke",a.color?a.color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR);
@@ -2810,7 +2817,7 @@ b.setAttributeNS(null,"stroke-width",ORYX.CONFIG.OFFSET_EDGE_BOUNDS)
 b.setAttributeNS(null,"stroke",a.color?a.color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR);
 b.setAttributeNS(null,"stroke-opacity",a.opacity?a.opacity:1);
 b.setAttributeNS(null,"stroke-width",a.strokewidth?a.strokewidth:2)
-}}},getPathByElements:function(a){if(!a||a.length<=0){return undefined
+}}}get ,getPathByElements:function(a){if(!a||a.length<=0){return undefined
 }var c=ORYX.CONFIG.SELECTED_AREA_PADDING;
 var b="";
 a.each((function(f){if(!f){return
@@ -2819,17 +2826,17 @@ g.widen(c);
 var e=g.upperLeft();
 var d=g.lowerRight();
 b=b+this.getPath(e,d)
-}).bind(this));
+}get ).bind(this));
 return b
-},getPath:function(d,c){return this.getPathCorners(d,c)
-},getPathCorners:function(d,c){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
+}get ,getPath:function(d,c){return this.getPathCorners(d,c)
+}get ,getPathCorners:function(d,c){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
 var f="";
 f=f+"M"+d.x+" "+(d.y+e)+" l0 -"+e+" l"+e+" 0 ";
 f=f+"M"+d.x+" "+(c.y-e)+" l0 "+e+" l"+e+" 0 ";
 f=f+"M"+c.x+" "+(c.y-e)+" l0 "+e+" l-"+e+" 0 ";
 f=f+"M"+c.x+" "+(d.y+e)+" l0 -"+e+" l-"+e+" 0 ";
 return f
-},getPathRectangle:function(d,c,h){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
+}get ,getPathRectangle:function(d,c,h){var e=ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE;
 var f="";
 var g=h/2;
 f=f+"M"+(d.x+g)+" "+(d.y);
@@ -2838,23 +2845,23 @@ f=f+" L"+(c.x-g)+" "+(c.y-g);
 f=f+" L"+(c.x-g)+" "+(d.y+g);
 f=f+" L"+(d.x+g)+" "+(d.y+g);
 return f
-},getPathEdge:function(a){var b=a.length;
+}get ,getPathEdge:function(a){var b=a.length;
 var c="M"+a[0].bounds.center().x+" "+a[0].bounds.center().y;
 for(i=1;
 i<b;
 i++){var d=a[i].bounds.center();
 c=c+" L"+d.x+" "+d.y
 }return c
-}});
+}get });
 ORYX.Plugins.HighlightingSelectedShapes=Clazz.extend({construct:function(a){this.facade=a;
 this.opacityFull=0.9;
 this.opacityLow=0.4
-},onSelectionChanged:function(a){if(a.elements&&a.elements.length>1){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"selection",elements:a.elements.without(a.subSelection),color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR,opacity:!a.subSelection?this.opacityFull:this.opacityLow});
+}get ,onSelectionChanged:function(a){if(a.elements&&a.elements.length>1){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"selection",elements:a.elements.without(a.subSelection),color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR,opacity:!a.subSelection?this.opacityFull:this.opacityLow});
 if(a.subSelection){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,highlightId:"subselection",elements:[a.subSelection],color:ORYX.CONFIG.SELECTION_HIGHLIGHT_COLOR,opacity:this.opacityFull})
 }else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"subselection"})
 }}else{this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"selection"});
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"subselection"})
-}}});
+}}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Overlay=Clazz.extend({facade:undefined,styleNode:undefined,construct:function(a){this.facade=a;
 this.changes=[];
@@ -2863,10 +2870,10 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_OVERLAY_HIDE,this.hide.bind(this))
 this.styleNode=document.createElement("style");
 this.styleNode.setAttributeNS(null,"type","text/css");
 document.getElementsByTagName("head")[0].appendChild(this.styleNode)
-},show:function(a){if(!a||!a.shapes||!a.shapes instanceof Array||!a.id||!a.id instanceof String||a.id.length==0){return
+}get ,show:function(a){if(!a||!a.shapes||!a.shapes instanceof Array||!a.id||!a.id instanceof String||a.id.length==0){return
 }if(a.attributes){a.shapes.each(function(d){if(!d instanceof ORYX.Core.Shape){return
 }this.setAttributes(d.node,a.attributes)
-}.bind(this))
+}get .bind(this))
 }var c=true;
 try{c=a.node&&a.node instanceof SVGElement
 }catch(b){}if(a.node&&c){a._temps=[];
@@ -2899,7 +2906,7 @@ l=e.height()/2
 }}}}}}}}}if(h instanceof ORYX.Core.Edge){k+=e.upperLeft().x;
 l+=e.upperLeft().y
 }f.svg.setAttributeNS(null,"transform","translate("+k+", "+l+")")
-}.bind(this);
+}get .bind(this);
 f.element=h;
 f.callback();
 e.registerCallback(f.callback)
@@ -2910,7 +2917,7 @@ var l=0;
 k=d.x-7;
 l=d.y-7;
 f.svg.setAttributeNS(null,"transform","translate("+k+", "+l+")")
-}.bind(this);
+}get .bind(this);
 f.element=h;
 f.callback();
 e.registerCallback(f.callback)
@@ -2921,33 +2928,33 @@ var l=0;
 k=d.x;
 l=d.y;
 f.svg.setAttributeNS(null,"transform","translate("+k+", "+l+")")
-}.bind(this);
+}get .bind(this);
 f.element=h;
 f.callback();
 e.registerCallback(f.callback)
 }a._temps.push(f)
-}.bind(this))
+}get .bind(this))
 }if(!this.changes[a.id]){this.changes[a.id]=[]
 }this.changes[a.id].push(a)
-},hide:function(a){if(!a||!a.id||!a.id instanceof String||a.id.length==0||!this.changes[a.id]){return
+}get ,hide:function(a){if(!a||!a.id||!a.id instanceof String||a.id.length==0||!this.changes[a.id]){return
 }this.changes[a.id].each(function(b){b.shapes.each(function(d,c){if(!d instanceof ORYX.Core.Shape){return
 }this.deleteAttributes(d.node)
-}.bind(this));
+}get .bind(this));
 if(b._temps){b._temps.each(function(c){if(c.svg&&c.svg.parentNode){c.svg.parentNode.removeChild(c.svg)
 }if(c.callback&&c.element){c.element.bounds.unregisterCallback(c.callback)
-}}.bind(this))
-}}.bind(this));
+}}get .bind(this))
+}}get .bind(this));
 this.changes[a.id]=null
-},setAttributes:function(c,d){var h=this.getAllChilds(c.firstChild.firstChild);
+}get ,setAttributes:function(c,d){var h=this.getAllChilds(c.firstChild.firstChild);
 var a=[];
 h.each(function(l){a.push($A(l.attributes).findAll(function(m){return m.nodeValue.startsWith("url(#")
-}))
-});
+}get ))
+}get );
 a=a.flatten().compact();
 a=a.collect(function(l){return l.nodeValue
-}).uniq();
+}get ).uniq();
 a=a.collect(function(l){return l.slice(5,l.length-1)
-});
+}get );
 a.unshift(c.id+" .me");
 var g=$H(d);
 var e=g.toJSON().gsub(",",";").gsub('"',"");
@@ -2957,18 +2964,19 @@ if(d.fill){var b=Object.clone(d);
 b.fill="black";
 f=$H(b).toJSON().gsub(",",";").gsub('"',"")
 }csstags=a.collect(function(m,l){return"#"+m+" * "+(!l?e:j)+""+(f?" #"+m+" text * "+f:"")
-});
-var k=csstags.join(" ")+"\n";
+}get );
+var k=csstags.join(" ")+"
+";
 this.styleNode.appendChild(document.createTextNode(k))
-},deleteAttributes:function(b){var a=$A(this.styleNode.childNodes).findAll(function(c){return c.textContent.include("#"+b.id)
-});
+}get ,deleteAttributes:function(b){var a=$A(this.styleNode.childNodes).findAll(function(c){return c.textContent.include("#"+b.id)
+}get );
 a.each(function(c){c.parentNode.removeChild(c)
-})
-},getAllChilds:function(a){var b=$A(a.childNodes);
+}get )
+}get ,getAllChilds:function(a){var b=$A(a.childNodes);
 $A(a.childNodes).each(function(c){b.push(this.getAllChilds(c))
-}.bind(this));
+}get .bind(this));
 return b.flatten()
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Edit=Clazz.extend({construct:function(a){this.facade=a;
 this.clipboard=new ORYX.Plugins.Edit.ClipBoard(a);
@@ -2976,81 +2984,81 @@ this.facade.offer({name:ORYX.I18N.Edit.cut,description:ORYX.I18N.Edit.cutDesc,ic
 this.facade.offer({name:ORYX.I18N.Edit.copy,description:ORYX.I18N.Edit.copyDesc,icon:ORYX.PATH+"images/page_copy.png",keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:67,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.callEdit.bind(this,this.editCopy,[true,false]),group:ORYX.I18N.Edit.group,index:2,minShape:1});
 this.facade.offer({name:ORYX.I18N.Edit.paste,description:ORYX.I18N.Edit.pasteDesc,icon:ORYX.PATH+"images/page_paste.png",keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:86,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.callEdit.bind(this,this.editPaste),isEnabled:this.clipboard.isOccupied.bind(this.clipboard),group:ORYX.I18N.Edit.group,index:3,minShape:0,maxShape:0});
 if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.Edit.del,description:ORYX.I18N.Edit.delDesc,icon:ORYX.PATH+"images/cross.png",keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:8,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN},{keyCode:46,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.callEdit.bind(this,this.editDelete),group:ORYX.I18N.Edit.group,index:4,minShape:1})
-}},callEdit:function(b,a){window.setTimeout(function(){b.apply(this,(a instanceof Array?a:[]))
-}.bind(this),1)
-},handleMouseDown:function(a){if(this._controlPressed){this._controlPressed=false;
+}}get ,callEdit:function(b,a){window.setTimeout(function(){b.apply(this,(a instanceof Array?a:[]))
+}get .bind(this),1)
+}get ,handleMouseDown:function(a){if(this._controlPressed){this._controlPressed=false;
 this.editCopy();
 this.editPaste();
 a.forceExecution=true;
 this.facade.raiseEvent(a,this.clipboard.shapesAsJson())
-}},getAllShapesToConsider:function(b){var a=[];
+}}get ,getAllShapesToConsider:function(b){var a=[];
 var c=[];
 b.each(function(e){isChildShapeOfAnother=b.any(function(g){return g.hasChildShape(e)
-});
+}get );
 if(isChildShapeOfAnother){return
 }a.push(e);
 if(e instanceof ORYX.Core.Node){var f=e.getOutgoingNodes();
 f=f.findAll(function(g){return !b.include(g)
-});
+}get );
 a=a.concat(f)
 }c=c.concat(e.getChildShapes(true))
-}.bind(this));
+}get .bind(this));
 var d=this.facade.getCanvas().getChildEdges().select(function(e){if(a.include(e)){return false
 }if(e.getAllDockedShapes().size()===0){return false
 }return e.getAllDockedShapes().all(function(f){return f instanceof ORYX.Core.Edge||c.include(f)
-})
-});
+}get )
+}get );
 a=a.concat(d);
 return a
-},editCut:function(){try{this.editCopy(false,true);
+}get ,editCut:function(){try{this.editCopy(false,true);
 this.editDelete(true)
 }catch(a){ORYX.Log.error(a)
 }return false
-},editCopy:function(c,a){var b=this.facade.getSelection();
+}get ,editCopy:function(c,a){var b=this.facade.getSelection();
 if(b.length==0){return
 }this.clipboard.refresh(b,this.getAllShapesToConsider(b),this.facade.getCanvas().getStencil().stencilSet().namespace(),a);
 if(c){this.facade.updateSelection()
-}},editPaste:function(){var b={childShapes:this.clipboard.shapesAsJson(),stencilset:{namespace:this.clipboard.SSnamespace}};
+}}get ,editPaste:function(){var b={childShapes:this.clipboard.shapesAsJson(),stencilset:{namespace:this.clipboard.SSnamespace}};
 Ext.apply(b,ORYX.Core.AbstractShape.JSONHelper);
 var a=b.getChildShapes(true).pluck("resourceId");
 var c={};
 b.eachChild(function(d,e){d.outgoing=d.outgoing.select(function(f){return a.include(f.resourceId)
-});
+}get );
 d.outgoing.each(function(f){if(!c[f.resourceId]){c[f.resourceId]=[]
 }c[f.resourceId].push(d)
-});
+}get );
 return d
-}.bind(this),true,true);
+}get .bind(this),true,true);
 b.eachChild(function(d,e){if(d.target&&!(a.include(d.target.resourceId))){d.target=undefined;
 d.targetRemoved=true
 }if(d.dockers&&d.dockers.length>=1&&d.dockers[0].getDocker&&((d.dockers[0].getDocker().getDockedShape()&&!a.include(d.dockers[0].getDocker().getDockedShape().resourceId))||!d.getShape().dockers[0].getDockedShape()&&!c[d.resourceId])){d.sourceRemoved=true
 }return d
-}.bind(this),true,true);
+}get .bind(this),true,true);
 b.eachChild(function(d,e){if(this.clipboard.useOffset){d.bounds={lowerRight:{x:d.bounds.lowerRight.x+ORYX.CONFIG.COPY_MOVE_OFFSET,y:d.bounds.lowerRight.y+ORYX.CONFIG.COPY_MOVE_OFFSET},upperLeft:{x:d.bounds.upperLeft.x+ORYX.CONFIG.COPY_MOVE_OFFSET,y:d.bounds.upperLeft.y+ORYX.CONFIG.COPY_MOVE_OFFSET}}
 }if(d.dockers){d.dockers=d.dockers.map(function(g,f){if((d.targetRemoved===true&&f==d.dockers.length-1&&g.getDocker)||(d.sourceRemoved===true&&f==0&&g.getDocker)){g=g.getDocker().bounds.center()
 }if((f==0&&g.getDocker instanceof Function&&d.sourceRemoved!==true&&(g.getDocker().getDockedShape()||((c[d.resourceId]||[]).length>0&&(!(d.getShape() instanceof ORYX.Core.Node)||c[d.resourceId][0].getShape() instanceof ORYX.Core.Node))))||(f==d.dockers.length-1&&g.getDocker instanceof Function&&d.targetRemoved!==true&&(g.getDocker().getDockedShape()||d.target))){return{x:g.x,y:g.y,getDocker:g.getDocker}
 }else{if(this.clipboard.useOffset){return{x:g.x+ORYX.CONFIG.COPY_MOVE_OFFSET,y:g.y+ORYX.CONFIG.COPY_MOVE_OFFSET,getDocker:g.getDocker}
 }else{return{x:g.x,y:g.y,getDocker:g.getDocker}
-}}}.bind(this))
+}}}get .bind(this))
 }else{if(d.getShape() instanceof ORYX.Core.Node&&d.dockers&&d.dockers.length>0&&(!d.dockers.first().getDocker||d.sourceRemoved===true||!(d.dockers.first().getDocker().getDockedShape()||c[d.resourceId]))){d.dockers=d.dockers.map(function(g,f){if((d.sourceRemoved===true&&f==0&&g.getDocker)){g=g.getDocker().bounds.center()
 }if(this.clipboard.useOffset){return{x:g.x+ORYX.CONFIG.COPY_MOVE_OFFSET,y:g.y+ORYX.CONFIG.COPY_MOVE_OFFSET,getDocker:g.getDocker}
 }else{return{x:g.x,y:g.y,getDocker:g.getDocker}
-}}.bind(this))
+}}get .bind(this))
 }}return d
-}.bind(this),false,true);
+}get .bind(this),false,true);
 this.clipboard.useOffset=true;
 this.facade.importJSON(b)
-},editDelete:function(){var b=this.facade.getSelection();
+}get ,editDelete:function(){var b=this.facade.getSelection();
 var a=this.getAllShapesToConsider(b);
 var c=new ORYX.Plugins.Edit.DeleteCommand(a,this.facade);
 this.facade.executeCommands([c])
-}});
+}get });
 ORYX.Plugins.Edit.ClipBoard=Clazz.extend({construct:function(){this._shapesAsJson=[];
 this.selection=[];
 this.SSnamespace="";
 this.useOffset=true
-},isOccupied:function(){return this.shapesAsJson().length>0
-},refresh:function(d,b,c,a){this.selection=d;
+}get ,isOccupied:function(){return this.shapesAsJson().length>0
+}get ,refresh:function(d,b,c,a){this.selection=d;
 this.SSnamespace=c;
 this.outgoings={};
 this.parents={};
@@ -3060,37 +3068,37 @@ this._shapesAsJson=b.map(function(e){var f=e.toJSON();
 f.parent={resourceId:e.getParentShape().resourceId};
 f.parentIndex=e.getParentShape().getChildShapes().indexOf(e);
 return f
-})
-},shapesAsJson:function(){return this._shapesAsJson
-}});
+}get )
+}get ,shapesAsJson:function(){return this._shapesAsJson
+}get });
 ORYX.Plugins.Edit.DeleteCommand=ORYX.Core.Command.extend({construct:function(a,b){try{this.shapesAsJson=a;
 this.facade=b;
 ORYX.Log.info("this.shapesAsJson",this.shapesAsJson);
 this.dockers=this.shapesAsJson.map(function(f){var g=f.getIncomingShapes().map(function(h){return h.getDockers().last()
-});
+}get );
 var e=f.getOutgoingShapes().map(function(h){return h.getDockers().first()
-});
+}get );
 var d=f.getDockers().concat(g,e).compact().map(function(h){return{object:h,referencePoint:h.referencePoint,dockedShape:h.getDockedShape()}
-});
+}get );
 return d
-}).flatten()
+}get ).flatten()
 }catch(c){ORYX.Log.error(c)
-}},execute:function(){this.shapesAsJson.each(function(a){this.facade.deleteShape(a)
-}.bind(this));
+}}get ,execute:function(){this.shapesAsJson.each(function(a){this.facade.deleteShape(a)
+}get .bind(this));
 this.facade.setSelection([]);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-},rollback:function(){this.shapesAsJson.each(function(a){var b=("undefined"!=typeof(a.parent)?this.facade.getCanvas().getChildShapeByResourceId(a.parent.resourceId):this.facade.getCanvas());
+}get ,rollback:function(){this.shapesAsJson.each(function(a){var b=("undefined"!=typeof(a.parent)?this.facade.getCanvas().getChildShapeByResourceId(a.parent.resourceId):this.facade.getCanvas());
 b.add(a,a.parentIndex);
 b.add(a,a.parentIndex)
-}.bind(this));
+}get .bind(this));
 this.dockers.each(function(a){a.object.setDockedShape(a.dockedShape);
 a.object.setReferencePoint(a.referencePoint)
-}.bind(this));
+}get .bind(this));
 this.facade.setSelection(this.selectedShapes);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.KeysMove=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,construct:function(a){this.facade=a;
 this.copyElements=[];
@@ -3103,9 +3111,9 @@ this.facade.offer({keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:
 this.facade.offer({keyCodes:[{keyCode:ORYX.CONFIG.KEY_CODE_UP,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.move.bind(this,ORYX.CONFIG.KEY_CODE_UP,true)});
 this.facade.offer({keyCodes:[{metaKeys:[ORYX.CONFIG.META_KEY_META_CTRL],keyCode:ORYX.CONFIG.KEY_CODE_DOWN,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.move.bind(this,ORYX.CONFIG.KEY_CODE_DOWN,false)});
 this.facade.offer({keyCodes:[{keyCode:ORYX.CONFIG.KEY_CODE_DOWN,keyAction:ORYX.CONFIG.KEY_ACTION_DOWN}],functionality:this.move.bind(this,ORYX.CONFIG.KEY_CODE_DOWN,true)})
-},selectAll:function(a){Event.stop(a.event);
+}get ,selectAll:function(a){Event.stop(a.event);
 this.facade.setSelection(this.facade.getCanvas().getChildShapes(true))
-},move:function(m,j,k){Event.stop(k.event);
+}get ,move:function(m,j,k){Event.stop(k.event);
 var b=j?20:5;
 var l=this.facade.getSelection();
 var g=this.facade.getSelection();
@@ -3123,12 +3131,12 @@ break
 do{if(l.include(n)){return false
 }}while(n=n.parent);
 return true
-});
+}get );
 var f=true;
 var h=l.all(function(e){if(e instanceof ORYX.Core.Edge){if(e.isDocked()){f=false
 }return true
 }return false
-});
+}get );
 if(h&&!f){return
 }l=l.map(function(n){if(n instanceof ORYX.Core.Node){return n
 }else{if(n instanceof ORYX.Core.Edge){var e=n.dockers;
@@ -3136,31 +3144,31 @@ if(l.include(n.dockers.first().getDockedShape())){e=e.without(n.dockers.first())
 }if(l.include(n.dockers.last().getDockedShape())){e=e.without(n.dockers.last())
 }return e
 }else{return null
-}}}).flatten().compact();
+}}}get ).flatten().compact();
 if(l.size()>0){var a=[this.facade.getCanvas().bounds.lowerRight().x,this.facade.getCanvas().bounds.lowerRight().y,0,0];
 l.each(function(e){a[0]=Math.min(a[0],e.bounds.upperLeft().x);
 a[1]=Math.min(a[1],e.bounds.upperLeft().y);
 a[2]=Math.max(a[2],e.bounds.lowerRight().x);
 a[3]=Math.max(a[3],e.bounds.lowerRight().y)
-});
+}get );
 if(a[0]+c.x<0){c.x=-a[0]
 }if(a[1]+c.y<0){c.y=-a[1]
 }if(a[2]+c.x>this.facade.getCanvas().bounds.lowerRight().x){c.x=this.facade.getCanvas().bounds.lowerRight().x-a[2]
 }if(a[3]+c.y>this.facade.getCanvas().bounds.lowerRight().y){c.y=this.facade.getCanvas().bounds.lowerRight().y-a[3]
 }if(c.x!=0||c.y!=0){var d=[new ORYX.Core.Command.Move(l,c,null,g,this)];
 this.facade.executeCommands(d)
-}}},getUndockedCommant:function(b){var a=ORYX.Core.Command.extend({construct:function(c){this.dockers=c.collect(function(d){return d instanceof ORYX.Core.Controls.Docker?{docker:d,dockedShape:d.getDockedShape(),refPoint:d.referencePoint}:undefined
-}).compact()
-},execute:function(){this.dockers.each(function(c){c.docker.setDockedShape(undefined)
-})
-},rollback:function(){this.dockers.each(function(c){c.docker.setDockedShape(c.dockedShape);
+}}}get ,getUndockedCommant:function(b){var a=ORYX.Core.Command.extend({construct:function(c){this.dockers=c.collect(function(d){return d instanceof ORYX.Core.Controls.Docker?{docker:d,dockedShape:d.getDockedShape(),refPoint:d.referencePoint}:undefined
+}get ).compact()
+}get ,execute:function(){this.dockers.each(function(c){c.docker.setDockedShape(undefined)
+}get )
+}get ,rollback:function(){this.dockers.each(function(c){c.docker.setDockedShape(c.dockedShape);
 c.docker.setReferencePoint(c.refPoint)
-})
-}});
+}get )
+}get });
 command=new a(b);
 command.execute();
 return command
-},});
+}get ,});
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.RowLayouting={construct:function(a){this.facade=a;
 this.currentShapes=[];
@@ -3170,26 +3178,26 @@ this.offSetPosition={x:0,y:0};
 this.evCoord={x:0,y:0};
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LAYOUT_ROWS,this.handleLayoutRows.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN,this.handleMouseDown.bind(this))
-},onSelectionChanged:function(a){var c=a.elements;
+}get ,onSelectionChanged:function(a){var c=a.elements;
 if(!c||c.length==0){this.currentShapes=[];
 this.toMoveShapes=[];
 this.dragBounds=undefined
 }else{this.currentShapes=c;
 this.toMoveShapes=this.facade.getCanvas().getShapesWithSharedParent(c);
 this.toMoveShapes=this.toMoveShapes.findAll(function(d){return d instanceof ORYX.Core.Node&&(d.dockers.length===0||!c.member(d.dockers.first().getDockedShape()))
-});
+}get );
 var b=undefined;
 c.each(function(d){if(!b){b=d.absoluteBounds()
 }else{b.include(d.absoluteBounds())
-}});
+}}get );
 this.dragBounds=b
 }return
-},handleMouseDown:function(c,b){if(!this.dragBounds||!this.toMoveShapes.member(b)){return
+}get ,handleMouseDown:function(c,b){if(!this.dragBounds||!this.toMoveShapes.member(b)){return
 }var d=this.facade.eventCoordinates(c);
 var a=this.dragBounds.upperLeft();
 this.offSetPosition={x:d.x-a.x,y:d.y-a.y};
 return
-},handleLayoutRows:function(o){var b=o.shape;
+}get ,handleLayoutRows:function(o){var b=o.shape;
 var j=this.offSetPosition;
 var n=o.marginLeft;
 var d=o.marginTop;
@@ -3198,20 +3206,20 @@ var p=o.spacingY;
 var k=o.shape.getChildShapes(false);
 var m=this.toMoveShapes;
 m.each(function(t){if(k.include(t)){t.bounds.moveBy(j)
-}});
+}}get );
 if(o.exclude){k=k.filter(function(t){return !o.exclude.some(function(u){return t.getStencil().id()==u
-})
-})
+}get )
+}get )
 }var c=d;
 var r=d-p;
 if(o.horizontalLayout){k.each(function(u){var t=u.bounds.upperLeft();
 u.bounds.moveTo(t.x,c)
-})
+}get )
 }else{if(o.verticalLayout){k.each(function(u){var t=u.bounds.upperLeft();
 u.bounds.moveTo(n,t.y)
-})
+}get )
 }}k=k.sortBy(function(t){return t.bounds.upperLeft().y
-});
+}get );
 var e=0;
 var f=0;
 var l=false;
@@ -3236,9 +3244,9 @@ if(t.y>r){if(l){e+=t.y-r
 }}r=t.y
 }if((w.x!=v)||(w.y!=u)||(t.x!=z)||(t.y!=y)){if(!m.include(x)){if((u-w.y)>f){f=u-w.y
 }}x.bounds.set(w.x,w.y,t.x,t.y)
-}});
+}}get );
 k=k.sortBy(function(t){return t.bounds.upperLeft().y*10000+t.bounds.upperLeft().x
-});
+}get );
 c=d;
 var a=n-q;
 var s=a;
@@ -3257,28 +3265,28 @@ a=t.x;
 if(a>s){s=a
 }if(t.y>h){h=t.y
 }if((w.x!=v)||(w.y!=u)||(t.x!=z)||(t.y!=y)){x.bounds.set(w.x,w.y,t.x,t.y)
-}});
+}}get );
 if(o.shape!=this.facade.getCanvas()){var g=o.shape.bounds.upperLeft();
 if(s>n){o.shape.bounds.set(g.x,g.y,g.x+s+n,g.y+r+d)
 }}else{if(s>this.facade.getCanvas().bounds.width()){this.facade.getCanvas().setSize({width:(s+n),height:this.facade.getCanvas().bounds.height()})
 }if(h>this.facade.getCanvas().bounds.height()){this.facade.getCanvas().setSize({width:this.facade.getCanvas().bounds.width(),height:(r+d)})
 }}return
-}};
+}get };
 ORYX.Plugins.RowLayouting=Clazz.extend(ORYX.Plugins.RowLayouting);
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.PluginLoader=Clazz.extend({facade:undefined,mask:undefined,processURI:undefined,construct:function(a){this.facade=a;
 if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.PluginLoad.AddPluginButtonName,functionality:this.showManageDialog.bind(this),group:ORYX.I18N.SSExtensionLoader.group,icon:ORYX.PATH+"images/labs/script_add.png",description:ORYX.I18N.PluginLoad.AddPluginButtonDesc,index:8,minShape:0,maxShape:0})
-}},showManageDialog:function(){this.mask=new Ext.LoadMask(Ext.getBody(),{msg:ORYX.I18N.Oryx.pleaseWait});
+}}get ,showManageDialog:function(){this.mask=new Ext.LoadMask(Ext.getBody(),{msg:ORYX.I18N.Oryx.pleaseWait});
 this.mask.show();
 var f=[];
 var c=[];
 var e=this.facade.getStencilSets().keys();
 this.facade.getAvailablePlugins().each(function(h){if((!h.requires||!h.requires.namespaces||h.requires.namespaces.any(function(j){return e.indexOf(j)>=0
-}))&&(!h.notUsesIn||!h.notUsesIn.namespaces||!h.notUsesIn.namespaces.any(function(j){return e.indexOf(j)>=0
-}))){c.push(h)
-}});
+}get ))&&(!h.notUsesIn||!h.notUsesIn.namespaces||!h.notUsesIn.namespaces.any(function(j){return e.indexOf(j)>=0
+}get ))){c.push(h)
+}}get );
 c.each(function(h){f.push([h.name,h.engaged===true])
-});
+}get );
 if(f.length==0){return
 }var b=new Ext.data.ArrayReader({},[{name:"name"},{name:"engaged"}]);
 var g=new Ext.grid.CheckboxSelectionModel({listeners:{beforerowselect:function(l,h,j,k){this.mask=new Ext.LoadMask(Ext.getBody(),{msg:ORYX.I18N.Oryx.pleaseWait});
@@ -3288,24 +3296,24 @@ if(!!m){l.suspendEvents();
 l.selectRow(h,true);
 l.resumeEvents()
 }else{Ext.Msg.show({title:ORYX.I18N.PluginLoad.loadErrorTitle,msg:ORYX.I18N.PluginLoad.loadErrorDesc+ORYX.I18N.PluginLoad[n],buttons:Ext.MessageBox.OK})
-}}.bind(this));
+}}get .bind(this));
 return false
-}.bind(this),rowdeselect:function(k,h,j){k.suspendEvents();
+}get .bind(this),rowdeselect:function(k,h,j){k.suspendEvents();
 k.selectRow(h,true);
 k.resumeEvents()
-}}});
+}get }});
 var d=new Ext.grid.GridPanel({store:new Ext.data.Store({reader:b,data:f}),cm:new Ext.grid.ColumnModel([{id:"name",width:390,sortable:true,dataIndex:"name"},g]),sm:g,width:450,height:250,frame:true,hideHeaders:true,iconCls:"icon-grid",listeners:{render:function(){var h=[];
 this.grid.getStore().each(function(j){if(j.data.engaged){h.push(j)
-}}.bind(this));
+}}get .bind(this));
 this.suspendEvents();
 this.selectRecords(h);
 this.resumeEvents()
-}.bind(g)}});
+}get .bind(g)}});
 var a=new Ext.Window({title:ORYX.I18N.PluginLoad.WindowTitle,width:"auto",height:"auto",modal:true});
 a.add(d);
 a.show();
 this.mask.hide()
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Save=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,processURI:undefined,construct:function(a){this.facade=a;
 if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.Save.save,functionality:this.save.bind(this,false),group:ORYX.I18N.Save.group,icon:ORYX.PATH+"images/disk.png",description:ORYX.I18N.Save.saveDesc,index:1,minShape:0,maxShape:0})
@@ -3313,13 +3321,13 @@ if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.Save.save,funct
 window.onbeforeunload=this.onUnLoad.bind(this);
 this.changeDifference=0;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_EXECUTE,function(){this.changeDifference++
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,function(){this.changeDifference++
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_ROLLBACK,function(){this.changeDifference--
-}.bind(this))
-},onUnLoad:function(){if(this.changeDifference!==0){return ORYX.I18N.Save.unsavedData
-}},saveSynchronously:function(e){this.changeDifference=0;
+}get .bind(this))
+}get ,onUnLoad:function(){if(this.changeDifference!==0){return ORYX.I18N.Save.unsavedData
+}}get ,saveSynchronously:function(e){this.changeDifference=0;
 var d="";
 if(this.processURI){d=this.processURI
 }else{if(!location.hash.slice(1)){d="/backend/poem/new"
@@ -3342,57 +3350,59 @@ var k=l.elements.namespace.value.strip();
 k=k.length==0?a.namespace:k;
 win.destroy();
 this.sendSaveRequest(d,{data:this.serializedDOM,svg:f,title:m,summary:j,type:k},e)
-}.bind(this);
+}get .bind(this);
 win=new Ext.Window({id:"Propertie_Window",width:"auto",height:"auto",title:e?ORYX.I18N.Save.saveAsTitle:ORYX.I18N.Save.save,modal:true,bodyStyle:"background:#FFFFFF",html:b.apply(a),buttons:[{text:ORYX.I18N.Save.saveBtn,handler:function(){callback($("edit_model"))
-}},{text:ORYX.I18N.Save.close,handler:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get },{text:ORYX.I18N.Save.close,handler:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 win.destroy()
-}.bind(this)}]});
+}get .bind(this)}]});
 win.show()
 }else{this.sendSaveRequest(d,{data:this.serializedDOM,svg:f})
-}},sendSaveRequest:function(a,c,b){new Ajax.Request(a,{method:"POST",asynchronous:false,parameters:c,onSuccess:(function(g){var f=g.getResponseHeader("location");
+}}get ,sendSaveRequest:function(a,c,b){new Ajax.Request(a,{method:"POST",asynchronous:false,parameters:c,onSuccess:(function(g){var f=g.getResponseHeader("location");
 if(f){this.processURI=f
 }else{this.processURI=a
 }var e="/model"+this.processURI.split("model")[1].replace(/self\/?$/i,"");
 location.hash="#"+e;
 if(b){var d=new Ext.Window({title:ORYX.I18N.Save.savedAs,bodyStyle:"background:white;padding:10px",width:"auto",height:"auto",html:"<div style='font-weight:bold;margin-bottom:10px'>"+ORYX.I18N.Save.saveAsHint+"</div><span><a href='"+f+"' target='_blank'>"+f+"</a></span>",buttons:[{text:"Ok",handler:function(){d.destroy()
-}}]});
+}get }]});
 d.show()
 }this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_MODEL_SAVED});
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.Save.saved})
-}).bind(this),onFailure:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get ).bind(this),onFailure:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.Save.failed);
 ORYX.Log.warn("Saving failed: "+d.responseText)
-}).bind(this),on403:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get ).bind(this),on403:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.Save.noRights);
 ORYX.Log.warn("Saving failed: "+d.responseText)
-}).bind(this)})
-},save:function(a,b){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.Save.saving});
+}get ).bind(this)})
+}get ,save:function(a,b){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.Save.saving});
 window.setTimeout((function(){this.saveSynchronously(a)
-}).bind(this),10);
+}get ).bind(this),10);
 return true
-}});
+}get });
 ORYX.Plugins.File=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.File.print,functionality:this.print.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/printer.png",description:ORYX.I18N.File.printDesc,index:3,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.File.pdf,functionality:this.exportPDF.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/page_white_acrobat.png",description:ORYX.I18N.File.pdfDesc,index:4,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.File.svg,functionality:this.exportSVG.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/page_white_code_red.png",description:ORYX.I18N.File.svgDesc,index:4,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.File.info,functionality:this.info.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/information.png",description:ORYX.I18N.File.infoDesc,index:5,minShape:0,maxShape:0})
-},info:function(){var a='<iframe src="'+ORYX.CONFIG.LICENSE_URL+'" type="text/plain" style="border:none;display:block;width:575px;height:460px;"/>\n\n<pre style="display:inline;">Version: </pre><iframe src="'+ORYX.CONFIG.VERSION_URL+'" type="text/plain" style="border:none;overflow:hidden;display:inline;width:40px;height:20px;"/>';
+}get ,info:function(){var a='<iframe src="'+ORYX.CONFIG.LICENSE_URL+'" type="text/plain" style="border:none;display:block;width:575px;height:460px;"/>
+
+<pre style="display:inline;">Version: </pre><iframe src="'+ORYX.CONFIG.VERSION_URL+'" type="text/plain" style="border:none;overflow:hidden;display:inline;width:40px;height:20px;"/>';
 this.infoBox=Ext.Msg.show({title:ORYX.I18N.Oryx.title,msg:a,width:640,maxWidth:640,maxHeight:480,buttons:Ext.MessageBox.OK});
 return false
-},exportSVG:function(){var c=location.href;
+}get ,exportSVG:function(){var c=location.href;
 var b=this.facade.getCanvas().getSVGRepresentation(true);
 var a=DataManager.serialize(b);
 this.openDownloadWindow("oryx.svg",a)
-},exportPDF:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.File.genPDF});
+}get ,exportPDF:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.File.genPDF});
 var c=location.href;
 var b=this.facade.getCanvas().getSVGRepresentation(true);
 var a=DataManager.serialize(b);
 new Ajax.Request(ORYX.CONFIG.PDF_EXPORT_URL,{method:"POST",parameters:{resource:c,data:a,format:"pdf"},onSuccess:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 window.open(d.responseText)
-}).bind(this),onFailure:(function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get ).bind(this),onFailure:(function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.File.genPDFFailed)
-}).bind(this)})
-},print:function(){Ext.Msg.show({title:ORYX.I18N.File.printTitle,msg:ORYX.I18N.File.printMsg,buttons:Ext.Msg.YESNO,icon:Ext.MessageBox.QUESTION,fn:function(c){if(c=="yes"){var e=$H({width:300,height:400,toolbar:"no",status:"no",menubar:"yes",dependent:"yes",resizable:"yes",scrollbars:"yes"});
+}get ).bind(this)})
+}get ,print:function(){Ext.Msg.show({title:ORYX.I18N.File.printTitle,msg:ORYX.I18N.File.printMsg,buttons:Ext.Msg.YESNO,icon:Ext.MessageBox.QUESTION,fn:function(c){if(c=="yes"){var e=$H({width:300,height:400,toolbar:"no",status:"no",menubar:"yes",dependent:"yes",resizable:"yes",scrollbars:"yes"});
 var f=window.open("","PrintWindow",e.invoke("join","=").join(","));
 var b=f.document.getElementsByTagName("head")[0];
 var d=document.createElement("style");
@@ -3409,19 +3419,19 @@ g.each(function(j){h.each(function(k){var l=j.getAttributeNS(null,k);
 if(!l){return
 }l="url(about:blank#"+l.slice(5);
 j.setAttributeNS(null,k,l)
-})
-});
+}get )
+}get );
 f.print();
 return true
-}}.bind(this)})
-}});
+}}get .bind(this)})
+}get });
 window.onOryxResourcesLoaded=function(){if(location.hash.slice(1).length==0||location.hash.slice(1).indexOf("new")!=-1){var a=ORYX.Utils.getParamFromUrl("stencilset")||ORYX.CONFIG.SSET;
 new ORYX.Editor({id:"oryx-canvas123",stencilset:{url:ORYX.PATH+"/"+a}})
 }else{ORYX.Editor.createByUrl("/backend/poem"+location.hash.slice(1).replace(/\/*$/,"/").replace(/^\/*/,"/")+"json",{id:"oryx-canvas123",onFailure:function(b){if(403==b.status){Ext.Msg.show({title:"Authentication Failed",msg:'You may not have access rights for this model, maybe you forgot to <a href="'+ORYX.CONFIG.WEB_URL+'/backend/poem/repository">log in</a>?',icon:Ext.MessageBox.WARNING,closeable:false,closable:false})
 }else{if(404==b.status){Ext.Msg.show({title:"Not Found",msg:"The model you requested could not be found.",icon:Ext.MessageBox.WARNING,closeable:false,closable:false})
 }else{Ext.Msg.show({title:"Internal Error",msg:"We're sorry, the model cannot be loaded due to an internal error",icon:Ext.MessageBox.WARNING,closeable:false,closable:false})
-}}}})
-}};
+}}}get })
+}}get ;
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Save=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,processURI:undefined,construct:function(a){this.facade=a;
 if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.Save.save,functionality:this.save.bind(this,false),group:ORYX.I18N.Save.group,icon:ORYX.PATH+"images/disk.png",description:ORYX.I18N.Save.saveDesc,index:1,minShape:0,maxShape:0})
@@ -3429,13 +3439,13 @@ if(!(ORYX.CONFIG.IS_TEMPLATE)){this.facade.offer({name:ORYX.I18N.Save.save,funct
 window.onbeforeunload=this.onUnLoad.bind(this);
 this.changeDifference=0;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_EXECUTE,function(){this.changeDifference++
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,function(){this.changeDifference++
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_ROLLBACK,function(){this.changeDifference--
-}.bind(this))
-},onUnLoad:function(){if(this.changeDifference!==0){return ORYX.I18N.Save.unsavedData
-}},saveSynchronously:function(e){this.changeDifference=0;
+}get .bind(this))
+}get ,onUnLoad:function(){if(this.changeDifference!==0){return ORYX.I18N.Save.unsavedData
+}}get ,saveSynchronously:function(e){this.changeDifference=0;
 var d="";
 if(this.processURI){d=this.processURI
 }else{if(!location.hash.slice(1)){d="/backend/poem/new"
@@ -3458,57 +3468,59 @@ var k=l.elements.namespace.value.strip();
 k=k.length==0?a.namespace:k;
 win.destroy();
 this.sendSaveRequest(d,{data:this.serializedDOM,svg:f,title:m,summary:j,type:k},e)
-}.bind(this);
+}get .bind(this);
 win=new Ext.Window({id:"Propertie_Window",width:"auto",height:"auto",title:e?ORYX.I18N.Save.saveAsTitle:ORYX.I18N.Save.save,modal:true,bodyStyle:"background:#FFFFFF",html:b.apply(a),buttons:[{text:ORYX.I18N.Save.saveBtn,handler:function(){callback($("edit_model"))
-}},{text:ORYX.I18N.Save.close,handler:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get },{text:ORYX.I18N.Save.close,handler:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 win.destroy()
-}.bind(this)}]});
+}get .bind(this)}]});
 win.show()
 }else{this.sendSaveRequest(d,{data:this.serializedDOM,svg:f})
-}},sendSaveRequest:function(a,c,b){new Ajax.Request(a,{method:"POST",asynchronous:false,parameters:c,onSuccess:(function(g){var f=g.getResponseHeader("location");
+}}get ,sendSaveRequest:function(a,c,b){new Ajax.Request(a,{method:"POST",asynchronous:false,parameters:c,onSuccess:(function(g){var f=g.getResponseHeader("location");
 if(f){this.processURI=f
 }else{this.processURI=a
 }var e="/model"+this.processURI.split("model")[1].replace(/self\/?$/i,"");
 location.hash="#"+e;
 if(b){var d=new Ext.Window({title:ORYX.I18N.Save.savedAs,bodyStyle:"background:white;padding:10px",width:"auto",height:"auto",html:"<div style='font-weight:bold;margin-bottom:10px'>"+ORYX.I18N.Save.saveAsHint+"</div><span><a href='"+f+"' target='_blank'>"+f+"</a></span>",buttons:[{text:"Ok",handler:function(){d.destroy()
-}}]});
+}get }]});
 d.show()
 }this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_MODEL_SAVED});
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_STATUS,text:ORYX.I18N.Save.saved})
-}).bind(this),onFailure:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get ).bind(this),onFailure:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.Save.failed);
 ORYX.Log.warn("Saving failed: "+d.responseText)
-}).bind(this),on403:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get ).bind(this),on403:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.Save.noRights);
 ORYX.Log.warn("Saving failed: "+d.responseText)
-}).bind(this)})
-},save:function(a,b){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.Save.saving});
+}get ).bind(this)})
+}get ,save:function(a,b){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.Save.saving});
 window.setTimeout((function(){this.saveSynchronously(a)
-}).bind(this),10);
+}get ).bind(this),10);
 return true
-}});
+}get });
 ORYX.Plugins.File=ORYX.Plugins.AbstractPlugin.extend({facade:undefined,construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.File.print,functionality:this.print.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/printer.png",description:ORYX.I18N.File.printDesc,index:3,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.File.pdf,functionality:this.exportPDF.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/page_white_acrobat.png",description:ORYX.I18N.File.pdfDesc,index:4,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.File.svg,functionality:this.exportSVG.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/page_white_code_red.png",description:ORYX.I18N.File.svgDesc,index:4,minShape:0,maxShape:0});
 this.facade.offer({name:ORYX.I18N.File.info,functionality:this.info.bind(this),group:ORYX.I18N.File.group,icon:ORYX.PATH+"images/information.png",description:ORYX.I18N.File.infoDesc,index:5,minShape:0,maxShape:0})
-},info:function(){var a='<iframe src="'+ORYX.CONFIG.LICENSE_URL+'" type="text/plain" style="border:none;display:block;width:575px;height:460px;"/>\n\n<pre style="display:inline;">Version: </pre><iframe src="'+ORYX.CONFIG.VERSION_URL+'" type="text/plain" style="border:none;overflow:hidden;display:inline;width:40px;height:20px;"/>';
+}get ,info:function(){var a='<iframe src="'+ORYX.CONFIG.LICENSE_URL+'" type="text/plain" style="border:none;display:block;width:575px;height:460px;"/>
+
+<pre style="display:inline;">Version: </pre><iframe src="'+ORYX.CONFIG.VERSION_URL+'" type="text/plain" style="border:none;overflow:hidden;display:inline;width:40px;height:20px;"/>';
 this.infoBox=Ext.Msg.show({title:ORYX.I18N.Oryx.title,msg:a,width:640,maxWidth:640,maxHeight:480,buttons:Ext.MessageBox.OK});
 return false
-},exportSVG:function(){var c=location.href;
+}get ,exportSVG:function(){var c=location.href;
 var b=this.facade.getCanvas().getSVGRepresentation(true);
 var a=DataManager.serialize(b);
 this.openDownloadWindow("oryx.svg",a)
-},exportPDF:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.File.genPDF});
+}get ,exportPDF:function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_ENABLE,text:ORYX.I18N.File.genPDF});
 var c=location.href;
 var b=this.facade.getCanvas().getSVGRepresentation(true);
 var a=DataManager.serialize(b);
 new Ajax.Request(ORYX.CONFIG.PDF_EXPORT_URL,{method:"POST",parameters:{resource:c,data:a,format:"pdf"},onSuccess:(function(d){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 window.open(d.responseText)
-}).bind(this),onFailure:(function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
+}get ).bind(this),onFailure:(function(){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_LOADING_DISABLE});
 Ext.Msg.alert(ORYX.I18N.Oryx.title,ORYX.I18N.File.genPDFFailed)
-}).bind(this)})
-},print:function(){Ext.Msg.show({title:ORYX.I18N.File.printTitle,msg:ORYX.I18N.File.printMsg,buttons:Ext.Msg.YESNO,icon:Ext.MessageBox.QUESTION,fn:function(c){if(c=="yes"){var e=$H({width:300,height:400,toolbar:"no",status:"no",menubar:"yes",dependent:"yes",resizable:"yes",scrollbars:"yes"});
+}get ).bind(this)})
+}get ,print:function(){Ext.Msg.show({title:ORYX.I18N.File.printTitle,msg:ORYX.I18N.File.printMsg,buttons:Ext.Msg.YESNO,icon:Ext.MessageBox.QUESTION,fn:function(c){if(c=="yes"){var e=$H({width:300,height:400,toolbar:"no",status:"no",menubar:"yes",dependent:"yes",resizable:"yes",scrollbars:"yes"});
 var f=window.open("","PrintWindow",e.invoke("join","=").join(","));
 var b=f.document.getElementsByTagName("head")[0];
 var d=document.createElement("style");
@@ -3525,23 +3537,23 @@ g.each(function(j){h.each(function(k){var l=j.getAttributeNS(null,k);
 if(!l){return
 }l="url(about:blank#"+l.slice(5);
 j.setAttributeNS(null,k,l)
-})
-});
+}get )
+}get );
 f.print();
 return true
-}}.bind(this)})
-}});
+}}get .bind(this)})
+}get });
 window.onOryxResourcesLoaded=function(){if(location.hash.slice(1).length==0||location.hash.slice(1).indexOf("new")!=-1){var a=ORYX.Utils.getParamFromUrl("stencilset")||ORYX.CONFIG.SSET;
 new ORYX.Editor({id:"oryx-canvas123",stencilset:{url:ORYX.PATH+"/"+a}})
 }else{ORYX.Editor.createByUrl("/backend/poem"+location.hash.slice(1).replace(/\/*$/,"/").replace(/^\/*/,"/")+"json",{id:"oryx-canvas123",onFailure:function(b){if(403==b.status){Ext.Msg.show({title:"Authentication Failed",msg:'You may not have access rights for this model, maybe you forgot to <a href="'+ORYX.CONFIG.WEB_URL+'/backend/poem/repository">log in</a>?',icon:Ext.MessageBox.WARNING,closeable:false,closable:false})
 }else{if(404==b.status){Ext.Msg.show({title:"Not Found",msg:"The model you requested could not be found.",icon:Ext.MessageBox.WARNING,closeable:false,closable:false})
 }else{Ext.Msg.show({title:"Internal Error",msg:"We're sorry, the model cannot be loaded due to an internal error",icon:Ext.MessageBox.WARNING,closeable:false,closable:false})
-}}}})
-}};
+}}}get })
+}}get ;
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.ContainerLayouter={construct:function(a){this.facade=a;
 this.hashedContainers=new Hash()
-},handleLayoutContainerDockers:function(b){var a=b.shape;
+}get ,handleLayoutContainerDockers:function(b){var a=b.shape;
 if(!this.hashedContainers[a.resourceId]){this.hashedContainers[a.resourceId]=a.bounds.clone();
 return
 }var c=a.bounds.upperLeft();
@@ -3549,7 +3561,7 @@ c.x-=this.hashedContainers[a.resourceId].upperLeft().x;
 c.y-=this.hashedContainers[a.resourceId].upperLeft().y;
 this.hashedContainers[a.resourceId]=a.bounds.clone();
 this.moveChildDockers(a,c)
-},handleLayoutContainerMinBounds:function(c){var h=c.shape;
+}get ,handleLayoutContainerMinBounds:function(c){var h=c.shape;
 var g=c.topOffset;
 var b=h._oldBounds;
 var m=c.options;
@@ -3557,7 +3569,7 @@ var e=(m.ignoreChildsWithId?m.ignoreChildsWithId:new Array());
 var n=this.retrieveChildsIncludingBounds(h,e);
 if(!n){return
 }var l=this.getChildShapesWithout(h,e).find(function(o){return n.upperLeft().y==o.bounds.upperLeft().y
-});
+}get );
 if(this.ensureContainersMinimumSize(h,n,l.absoluteBounds(),e,m)){return
 }var a=n.upperLeft();
 var k=n.lowerRight();
@@ -3565,10 +3577,10 @@ var f=(a.y?a.y:1)/((b.height()-k.y)?(b.height()-k.y):1);
 var j=f*(h.bounds.height()-n.height())/(1+f);
 this.getChildShapesWithout(h,e).each(function(p){var o=p.bounds.upperLeft().y-a.y;
 p.bounds.moveTo({x:p.bounds.upperLeft().x,y:j+o})
-});
+}get );
 var d=l.bounds.upperLeft().y-l._oldBounds.upperLeft().y;
 this.moveChildDockers(h,{x:0,y:d})
-},ensureContainersMinimumSize:function(b,m,u,l,d){var f=b.bounds;
+}get ,ensureContainersMinimumSize:function(b,m,u,l,d){var f=b.bounds;
 var a=f.upperLeft();
 var q=f.lowerRight();
 var k=m.upperLeft();
@@ -3631,35 +3643,35 @@ y++;
 p=true
 }}}}f.set(w,s,y,x);
 if(p){this.handleLayoutContainerDockers({shape:b})
-}},moveChildsBy:function(a,c,b){if(!a||!c){return
+}}get ,moveChildsBy:function(a,c,b){if(!a||!c){return
 }this.getChildShapesWithout(a,b).each(function(d){d.bounds.moveBy(c)
-})
-},getAbsoluteBoundsForChildShapes:function(a){},moveChildDockers:function(a,b){if(!b.x&&!b.y){return
+}get )
+}get ,getAbsoluteBoundsForChildShapes:function(a){}get ,moveChildDockers:function(a,b){if(!b.x&&!b.y){return
 }a.getChildNodes(true).map(function(c){return[].concat(c.getIncomingShapes()).concat(c.getOutgoingShapes())
-}).flatten().uniq().map(function(c){return c.dockers.length>2?c.dockers.slice(1,c.dockers.length-1):[]
-}).flatten().each(function(c){c.bounds.moveBy(b)
-})
-},retrieveChildsIncludingBounds:function(b,c){var a=undefined;
+}get ).flatten().uniq().map(function(c){return c.dockers.length>2?c.dockers.slice(1,c.dockers.length-1):[]
+}get ).flatten().each(function(c){c.bounds.moveBy(b)
+}get )
+}get ,retrieveChildsIncludingBounds:function(b,c){var a=undefined;
 this.getChildShapesWithout(b,c).each(function(e,d){if(d==0){a=e.bounds.clone();
 return
 }a.include(e.bounds)
-});
+}get );
 return a
-},getChildShapesWithout:function(a,b){var c=a.getChildShapes(false);
+}get ,getChildShapesWithout:function(a,b){var c=a.getChildShapes(false);
 return c.findAll(function(d){return !b.member(d.getStencil().id())
-})
-}};
+}get )
+}get };
 ORYX.Plugins.ContainerLayouter=ORYX.Plugins.AbstractPlugin.extend(ORYX.Plugins.ContainerLayouter);
 if(!ORYX.Plugins){ORYX.Plugins={}
 }if(!ORYX.Plugins.Layouter){ORYX.Plugins.Layouter={}
 }new function(){ORYX.Plugins.Layouter.EdgeLayouter=ORYX.Plugins.AbstractLayouter.extend({layouted:["http://b3mn.org/stencilset/bpmn1.1#SequenceFlow","http://b3mn.org/stencilset/bpmn1.1#MessageFlow","http://b3mn.org/stencilset/bpmn2.0#MessageFlow","http://b3mn.org/stencilset/bpmn2.0#SequenceFlow","http://b3mn.org/stencilset/bpmn2.0conversation#ConversationLink","http://b3mn.org/stencilset/epc#ControlFlow","http://www.signavio.com/stencilsets/processmap#ProcessLink","http://www.signavio.com/stencilsets/organigram#connection"],layout:function(a){a.each(function(b){this.doLayout(b)
-}.bind(this))
-},doLayout:function(b){var d=b.getIncomingNodes()[0];
+}get .bind(this))
+}get ,doLayout:function(b){var d=b.getIncomingNodes()[0];
 var c=b.getOutgoingNodes()[0];
 if(!d||!c){return
 }var a=this.getPositions(d,c,b);
 if(a.length>0){this.setDockers(b,a[0].a,a[0].b)
-}},getPositions:function(q,r,e){var t=q.absoluteBounds();
+}}get ,getPositions:function(q,r,e){var t=q.absoluteBounds();
 var l=r.absoluteBounds();
 var p=t.center();
 var n=l.center();
@@ -3682,9 +3694,9 @@ if(!t.isIncluded(n.x,p.y)&&!l.isIncluded(n.x,p.y)){h.push({a:{x:n.x+f(s,d,"x"),y
 }if(!t.isIncluded(g.x,p.y)&&!l.isIncluded(g.x,n.y)){h.push({a:{x:g.x,y:p.y+f(j,k,"y")},b:{x:g.x,y:n.y+f(s,d,"y")},z:this.getWeight(q,"r",r,"l",e,p.x>n.x)})
 }if(!t.isIncluded(p.x,g.y)&&!l.isIncluded(n.x,g.y)){h.push({a:{x:p.x+f(j,k,"x"),y:g.y},b:{x:n.x+f(s,d,"x"),y:g.y},z:this.getWeight(q,"b",r,"t",e,p.y>n.y)})
 }return h.sort(function(u,m){return u.z<m.z?1:(u.z==m.z?-1:-1)
-})
-},getOffset:function(c,b,a){return c[a]-b[a]
-},getWeight:function(l,b,m,a,d,g){b=(b||"").toLowerCase();
+}get )
+}get ,getOffset:function(c,b,a){return c[a]-b[a]
+}get ,getWeight:function(l,b,m,a,d,g){b=(b||"").toLowerCase();
 a=(a||"").toLowerCase();
 if(!["t","r","b","l"].include(b)){b="r"
 }if(!["t","r","b","l"].include(a)){b="l"
@@ -3700,25 +3712,25 @@ case"r":return q.x>p.x&&Math.abs(q.y-p.y)<2;
 case"b":return Math.abs(q.x-p.x)<2&&q.y>p.y;
 case"l":return q.x<p.x&&Math.abs(q.y-p.y)<2;
 default:return false
-}};
+}}get ;
 var j=l.getIncomingShapes().findAll(function(p){return p instanceof ORYX.Core.Edge
-}).any(function(p){return k(b,p.dockers[p.dockers.length-2].bounds.center(),p.dockers.last().bounds.center())
-});
+}get ).any(function(p){return k(b,p.dockers[p.dockers.length-2].bounds.center(),p.dockers.last().bounds.center())
+}get );
 var h=m.getOutgoingShapes().findAll(function(p){return p instanceof ORYX.Core.Edge
-}).any(function(p){return k(a,p.dockers[1].bounds.center(),p.dockers.first().bounds.center())
-});
+}get ).any(function(p){return k(a,p.dockers[1].bounds.center(),p.dockers.first().bounds.center())
+}get );
 return(j||h?0:e+c)
-},setDockers:function(e,d,c){if(!e){return
+}get ,setDockers:function(e,d,c){if(!e){return
 }e.dockers.each(function(a){e.removeDocker(a)
-});
+}get );
 [d,c].compact().each(function(b){var a=e.createDocker(undefined,b);
 a.bounds.centerMoveTo(b)
-});
+}get );
 e.dockers.each(function(a){a.update()
-});
+}get );
 e._update(true)
-}})
-}();
+}get })
+}get ();
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }if(!ORYX.Config){ORYX.Config=new Object()
 }ORYX.Config.WaveThisGadgetUri="http://ddj0ahgq8zch6.cloudfront.net/gadget/oryx_stable.xml";
@@ -3726,21 +3738,21 @@ ORYX.Plugins.WaveThis=Clazz.extend({construct:function(a){this.facade=a;
 this.facade.offer({name:ORYX.I18N.WaveThis.name,functionality:this.waveThis.bind(this),group:ORYX.I18N.WaveThis.group,icon:ORYX.PATH+"images/waveThis.png",description:ORYX.I18N.WaveThis.desc,dropDownGroupIcon:ORYX.PATH+"images/export2.png",});
 this.changeDifference=0;
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_EXECUTE,function(){this.changeDifference++
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,function(){this.changeDifference++
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_ROLLBACK,function(){this.changeDifference--
-}.bind(this));
+}get .bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MODEL_SAVED,function(){this.changeDifference=0
-}.bind(this))
-},waveThis:function(){var a;
+}get .bind(this))
+}get ,waveThis:function(){var a;
 if(!location.hash.slice(1)){Ext.Msg.alert(ORYX.I18N.WaveThis.name,ORYX.I18N.WaveThis.failUnsaved);
 return
 }else{a=ORYX.CONFIG.WEB_URL+"/backend/poem/"+(location.hash.slice(1).replace(/^\/?/,"").replace(/\/?$/,""))+"/json"
 }if(this.changeDifference!=0){Ext.Msg.confirm(ORYX.I18N.WaveThis.name,"You have unsaved changes in your model. Proceed?",function(b){if(b=="yes"){this._openWave(a)
-}},this)
+}}get ,this)
 }else{this._openWave(a)
-}},_openWave:function(b){var c=window.open("");
+}}get ,_openWave:function(b){var c=window.open("");
 if(c!=null){c.document.open();
 c.document.write("<html><body>");
 var a=c.document.createElement("form");
@@ -3750,7 +3762,7 @@ g.name=e;
 g.type="hidden";
 g.value=f;
 return g
-};
+}get ;
 a.appendChild(d("u",b));
 a.appendChild(d("g",ORYX.Config.WaveThisGadgetUri));
 a.method="POST";
@@ -3758,26 +3770,26 @@ c.document.write("</body></html>");
 c.document.close();
 a.action="https://wave.google.com/wave/wavethis?t=Oryx%20Model%20Export";
 a.submit()
-}}});
+}}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Toolbar=Clazz.extend({facade:undefined,plugs:[],construct:function(b,a){this.facade=b;
 this.groupIndex=new Hash();
 a.properties.each((function(c){if(c.group&&c.index!=undefined){this.groupIndex[c.group]=c.index
-}}).bind(this));
+}}get ).bind(this));
 Ext.QuickTips.init();
 this.buttons=[];
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_BUTTON_UPDATE,this.onButtonUpdate.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED,this.onSelectionChanged.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_WINDOW_FOCUS,this.onSelectionChanged.bind(this));
 Event.observe(window,"focus",function(c){this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_WINDOW_FOCUS},null)
-}.bind(this))
-},onButtonUpdate:function(b){var a=this.buttons.find(function(c){return c.id===b.id
-});
+}get .bind(this))
+}get ,onButtonUpdate:function(b){var a=this.buttons.find(function(c){return c.id===b.id
+}get );
 if(b.pressed!==undefined){a.buttonInstance.toggle(b.pressed)
-}},registryChanged:function(c){var b=c.sortBy((function(g){return((this.groupIndex[g.group]!=undefined?this.groupIndex[g.group]:"")+g.group+""+g.index).toLowerCase()
-}).bind(this));
+}}get ,registryChanged:function(c){var b=c.sortBy((function(g){return((this.groupIndex[g.group]!=undefined?this.groupIndex[g.group]:"")+g.group+""+g.index).toLowerCase()
+}get ).bind(this));
 var a=$A(b).findAll(function(g){return !this.plugs.include(g)
-}.bind(this));
+}get .bind(this));
 if(a.length<1){return
 }this.buttons=[];
 ORYX.Log.trace("Creating a toolbar.");
@@ -3793,43 +3805,44 @@ d={}
 }var h=j.functionality;
 j.functionality=function(){if("undefined"!=typeof(pageTracker)&&"function"==typeof(pageTracker._trackEvent)){pageTracker._trackEvent("ToolbarButton",j.name)
 }return h.apply(this,arguments)
-};
+}get ;
 if(j.dropDownGroupIcon){var l=d[j.dropDownGroupIcon];
 if(l===undefined){l=d[j.dropDownGroupIcon]=new Ext.Toolbar.SplitButton({cls:"x-btn-icon",icon:j.dropDownGroupIcon,menu:new Ext.menu.Menu({items:[]}),listeners:{click:function(m,n){if(!m.menu.isVisible()&&!m.ignoreNextClick){m.showMenu()
 }else{m.hideMenu()
-}}}});
+}}get }});
 this.toolbar.add(l)
 }var k={icon:j.icon,text:j.name,itemId:j.id,handler:j.toggle?undefined:j.functionality,checkHandler:j.toggle?j.functionality:undefined,listeners:{render:function(m){if(j.description){new Ext.ToolTip({target:m.getEl(),title:j.description})
-}}}};
+}}get }};
 if(j.toggle){var g=new Ext.menu.CheckItem(k)
 }else{var g=new Ext.menu.Item(k)
 }l.menu.add(g)
 }else{var g=new Ext.Toolbar.Button({icon:j.icon,cls:"x-btn-icon",itemId:j.id,tooltip:j.description,tooltipType:"title",handler:j.toggle?null:j.functionality,enableToggle:j.toggle,toggleHandler:j.toggle?j.functionality:null});
 this.toolbar.add(g);
 g.getEl().onclick=function(){this.blur()
-}}j.buttonInstance=g;
+}get 
+}j.buttonInstance=g;
 this.buttons.push(j)
-}).bind(this));
+}get ).bind(this));
 this.enableButtons([]);
 this.toolbar.calcSlices();
 window.addEventListener("resize",function(g){this.toolbar.calcSlices()
-}.bind(this),false);
+}get .bind(this),false);
 window.addEventListener("onresize",function(g){this.toolbar.calcSlices()
-}.bind(this),false)
-},onSelectionChanged:function(a){if(!a.elements){this.enableButtons([])
+}get .bind(this),false)
+}get ,onSelectionChanged:function(a){if(!a.elements){this.enableButtons([])
 }else{this.enableButtons(a.elements)
-}},enableButtons:function(a){this.buttons.each((function(b){b.buttonInstance.enable();
+}}get ,enableButtons:function(a){this.buttons.each((function(b){b.buttonInstance.enable();
 if(b.minShape&&b.minShape>a.length){b.buttonInstance.disable()
 }if(b.maxShape&&b.maxShape<a.length){b.buttonInstance.disable()
 }if(b.isEnabled&&!b.isEnabled()){b.buttonInstance.disable()
-}}).bind(this))
-}});
+}}get ).bind(this))
+}get });
 Ext.ns("Ext.ux");
 Ext.ux.SlicedToolbar=Ext.extend(Ext.Toolbar,{currentSlice:0,iconStandardWidth:22,seperatorStandardWidth:2,toolbarStandardPadding:2,initComponent:function(){Ext.apply(this,{});
 Ext.ux.SlicedToolbar.superclass.initComponent.apply(this,arguments)
-},onRender:function(){Ext.ux.SlicedToolbar.superclass.onRender.apply(this,arguments)
-},onResize:function(){Ext.ux.SlicedToolbar.superclass.onResize.apply(this,arguments)
-},calcSlices:function(){var d=0;
+}get ,onRender:function(){Ext.ux.SlicedToolbar.superclass.onRender.apply(this,arguments)
+}get ,onResize:function(){Ext.ux.SlicedToolbar.superclass.onResize.apply(this,arguments)
+}get ,calcSlices:function(){var d=0;
 this.sliceMap={};
 var c=0;
 var a=this.getEl().getWidth();
@@ -3844,7 +3857,7 @@ d+=1;
 c=0
 }this.sliceMap[g.id]=d;
 c+=h
-}.bind(this));
+}get .bind(this));
 if(d>0){this.insertSlicingSeperator(d,this.items.getCount()+1);
 this.insertSlicingButton("prev",d,this.items.getCount()+1);
 var b=new Ext.Toolbar.Spacer();
@@ -3852,22 +3865,22 @@ this.insertSlicedHelperButton(b,d,this.items.getCount()+1);
 Ext.get(b.id).setWidth(this.iconStandardWidth)
 }this.maxSlice=d;
 this.setCurrentSlice(this.currentSlice)
-},insertSlicedButton:function(b,c,a){this.insertButton(a,b);
+}get ,insertSlicedButton:function(b,c,a){this.insertButton(a,b);
 this.sliceMap[b.id]=c
-},insertSlicedHelperButton:function(b,c,a){b.helperItem=true;
+}get ,insertSlicedHelperButton:function(b,c,a){b.helperItem=true;
 this.insertSlicedButton(b,c,a)
-},insertSlicingSeperator:function(b,a){this.insertSlicedHelperButton(new Ext.Toolbar.Fill(),b,a)
-},insertSlicingButton:function(e,f,b){var d=function(){this.setCurrentSlice(this.currentSlice+1)
-}.bind(this);
+}get ,insertSlicingSeperator:function(b,a){this.insertSlicedHelperButton(new Ext.Toolbar.Fill(),b,a)
+}get ,insertSlicingButton:function(e,f,b){var d=function(){this.setCurrentSlice(this.currentSlice+1)
+}get .bind(this);
 var a=function(){this.setCurrentSlice(this.currentSlice-1)
-}.bind(this);
+}get .bind(this);
 var c=new Ext.Toolbar.Button({cls:"x-btn-icon",icon:ORYX.CONFIG.ROOT_PATH+"images/toolbar_"+e+".png",handler:(e==="next")?d:a});
 this.insertSlicedHelperButton(c,f,b)
-},setCurrentSlice:function(a){if(a>this.maxSlice||a<0){return
+}get ,setCurrentSlice:function(a){if(a>this.maxSlice||a<0){return
 }this.currentSlice=a;
 this.items.getRange().each(function(b){b.setVisible(a===this.sliceMap[b.id])
-}.bind(this))
-}});
+}get .bind(this))
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.ShapeMenuPlugin={construct:function(c){this.facade=c;
 this.alignGroups=new Hash();
@@ -3878,33 +3891,33 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAGDROP_START,this.hideShapeMenu.
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAGDROP_END,this.showShapeMenu.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_RESIZE_START,(function(){this.hideShapeMenu();
 this.hideMorphMenu()
-}).bind(this));
+}get ).bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_RESIZE_END,this.showShapeMenu.bind(this));
 var b=new Ext.dd.DragZone(a.parentNode,{shadow:!Ext.isMac});
 b.afterDragDrop=this.afterDragging.bind(this,b);
 b.beforeDragOver=this.beforeDragOver.bind(this,b);
 this.createdButtons={};
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED,(function(){this.registryChanged()
-}).bind(this));
+}get ).bind(this));
 this.timer=null;
 this.resetElements=true
-},hideShapeMenu:function(a){window.clearTimeout(this.timer);
+}get ,hideShapeMenu:function(a){window.clearTimeout(this.timer);
 this.timer=null;
 this.shapeMenu.hide()
-},showShapeMenu:function(a){if(!a||this.resetElements){window.clearTimeout(this.timer);
+}get ,showShapeMenu:function(a){if(!a||this.resetElements){window.clearTimeout(this.timer);
 this.timer=window.setTimeout(function(){this.shapeMenu.closeAllButtons();
 this.showMorphButton(this.currentShapes);
 this.showStencilButtons(this.currentShapes);
 this.shapeMenu.show(this.currentShapes);
 this.resetElements=false
-}.bind(this),300)
+}get .bind(this),300)
 }else{window.clearTimeout(this.timer);
 this.timer=null;
 this.shapeMenu.show(this.currentShapes)
-}},registryChanged:function(a){if(a){a=a.each(function(d){d.group=d.group?d.group:"unknown"
-});
+}}get ,registryChanged:function(a){if(a){a=a.each(function(d){d.group=d.group?d.group:"unknown"
+}get );
 this.pluginsData=a.sortBy(function(d){return(d.group+""+d.index)
-})
+}get )
 }this.shapeMenu.removeAllButtons();
 this.shapeMenu.setNumberOfButtonsPerLevel(ORYX.CONFIG.SHAPEMENU_RIGHT,2);
 this.createdButtons={};
@@ -3919,53 +3932,53 @@ var g=new ORYX.Plugins.ShapeMenuButton({callback:this.newShape.bind(this,h),icon
 this.shapeMenu.addButton(g);
 this.createdButtons[j.namespace()+j.type()+j.id()]=g;
 Ext.dd.Registry.register(g.node.lastChild,h)
-}).bind(this));
+}get ).bind(this));
 var d=f.edges();
 d.each((function(j){var h={type:j.id(),namespace:j.namespace()};
 var g=new ORYX.Plugins.ShapeMenuButton({callback:this.newShape.bind(this,h),icon:j.icon(),align:ORYX.CONFIG.SHAPEMENU_RIGHT,group:1,msg:(b?ORYX.I18N.Edge:j.title())+" - "+ORYX.I18N.ShapeMenuPlugin.drag});
 this.shapeMenu.addButton(g);
 this.createdButtons[j.namespace()+j.type()+j.id()]=g;
 Ext.dd.Registry.register(g.node.lastChild,h)
-}).bind(this))
-}).bind(this))
-},createMorphMenu:function(){this.morphMenu=new Ext.menu.Menu({id:"Oryx_morph_menu",items:[]});
+}get ).bind(this))
+}get ).bind(this))
+}get ,createMorphMenu:function(){this.morphMenu=new Ext.menu.Menu({id:"Oryx_morph_menu",items:[]});
 this.morphMenu.on("mouseover",function(){this.morphMenuHovered=true
-},this);
+}get ,this);
 this.morphMenu.on("mouseout",function(){this.morphMenuHovered=false
-},this);
+}get ,this);
 var a=new ORYX.Plugins.ShapeMenuButton({hovercallback:(ORYX.CONFIG.ENABLE_MORPHMENU_BY_HOVER?this.showMorphMenu.bind(this):undefined),resetcallback:(ORYX.CONFIG.ENABLE_MORPHMENU_BY_HOVER?this.hideMorphMenu.bind(this):undefined),callback:(ORYX.CONFIG.ENABLE_MORPHMENU_BY_HOVER?undefined:this.toggleMorphMenu.bind(this)),icon:ORYX.PATH+"images/wrench_orange.png",align:ORYX.CONFIG.SHAPEMENU_BOTTOM,group:0,msg:ORYX.I18N.ShapeMenuPlugin.morphMsg});
 this.shapeMenu.setNumberOfButtonsPerLevel(ORYX.CONFIG.SHAPEMENU_BOTTOM,1);
 this.shapeMenu.addButton(a);
 this.morphMenu.getEl().appendTo(a.node);
 this.morphButton=a
-},showMorphMenu:function(){this.morphMenu.show(this.morphButton.node);
+}get ,showMorphMenu:function(){this.morphMenu.show(this.morphButton.node);
 this._morphMenuShown=true
-},hideMorphMenu:function(){this.morphMenu.hide();
+}get ,hideMorphMenu:function(){this.morphMenu.hide();
 this._morphMenuShown=false
-},toggleMorphMenu:function(){if(this._morphMenuShown){this.hideMorphMenu()
+}get ,toggleMorphMenu:function(){if(this._morphMenuShown){this.hideMorphMenu()
 }else{this.showMorphMenu()
-}},onSelectionChanged:function(a){var b=a.elements;
+}}get ,onSelectionChanged:function(a){var b=a.elements;
 this.hideShapeMenu();
 this.hideMorphMenu();
 if(this.currentShapes.inspect()!==b.inspect()){this.currentShapes=b;
 this.resetElements=true;
 this.showShapeMenu()
 }else{this.showShapeMenu(true)
-}},showMorphButton:function(b){if(b.length!=1){return
+}}get ,showMorphButton:function(b){if(b.length!=1){return
 }var a=this.facade.getRules().morphStencils({stencil:b[0].getStencil()});
 a=a.select(function(c){if(b[0].getStencil().type()==="node"){return this.facade.getRules().canContain({containingShape:b[0].parent,containedStencil:c})
 }else{return this.facade.getRules().canConnect({sourceShape:b[0].dockers.first().getDockedShape(),edgeStencil:c,targetShape:b[0].dockers.last().getDockedShape()})
-}}.bind(this));
+}}get .bind(this));
 if(a.size()<=1){return
 }this.morphMenu.removeAll();
 a=a.sortBy(function(c){return c.position()
-});
+}get );
 a.each((function(d){var c=new Ext.menu.Item({text:d.title(),icon:d.icon(),disabled:d.id()==b[0].getStencil().id(),disabledClass:ORYX.CONFIG.MORPHITEM_DISABLED,handler:(function(){this.morphShape(b[0],d)
-}).bind(this)});
+}get ).bind(this)});
 this.morphMenu.add(c)
-}).bind(this));
+}get ).bind(this));
 this.morphButton.prepareToShow()
-},showStencilButtons:function(g){if(g.length!=1){return
+}get ,showStencilButtons:function(g){if(g.length!=1){return
 }var f=this.facade.getStencilSets()[g[0].getStencil().namespace()];
 var c=this.facade.getRules().outgoingEdgeStencils({canvas:this.facade.getCanvas(),sourceShape:g[0]});
 var a=new Array();
@@ -3975,11 +3988,11 @@ c.each((function(j){if(e){if(this.baseMorphStencils.include(j)){var k=true
 }else{var h=this.facade.getRules().morphStencils({stencil:j});
 var k=!h.any((function(l){if(this.baseMorphStencils.include(l)&&c.include(l)){return true
 }return d.include(l)
-}).bind(this))
+}get ).bind(this))
 }}if(k||!e){if(this.createdButtons[j.namespace()+j.type()+j.id()]){this.createdButtons[j.namespace()+j.type()+j.id()].prepareToShow()
 }d.push(j)
 }a=a.concat(this.facade.getRules().targetStencils({canvas:this.facade.getCanvas(),sourceShape:g[0],edgeStencil:j}))
-}).bind(this));
+}get ).bind(this));
 a.uniq();
 var b=new Array();
 a.each((function(k){if(e){if(k.type()==="edge"){return
@@ -3988,12 +4001,12 @@ a.each((function(k){if(e){if(k.type()==="edge"){return
 if(h.size()==0){return
 }var j=h.any((function(l){if(this.baseMorphStencils.include(l)&&a.include(l)){return true
 }return b.include(l)
-}).bind(this));
+}get ).bind(this));
 if(j){return
 }}}if(this.createdButtons[k.namespace()+k.type()+k.id()]){this.createdButtons[k.namespace()+k.type()+k.id()].prepareToShow()
 }b.push(k)
-}).bind(this))
-},beforeDragOver:function(m,l,b){if(this.shapeMenu.isVisible){this.hideShapeMenu()
+}get ).bind(this))
+}get ,beforeDragOver:function(m,l,b){if(this.shapeMenu.isVisible){this.hideShapeMenu()
 }var k=this.facade.eventCoordinates(b.browserEvent);
 var r=this.facade.getCanvas().getAbstractShapesAtPosition(k);
 if(r.length<=0){return false
@@ -4041,7 +4054,7 @@ a.setStatus(this._currentReference?a.dropAllowed:a.dropNotAllowed);
 a.sync()
 }this._lastOverElement=d;
 return false
-},afterDragging:function(j,f,b){if(!(this.currentShapes instanceof Array)||this.currentShapes.length<=0){return
+}get ,afterDragging:function(j,f,b){if(!(this.currentShapes instanceof Array)||this.currentShapes.length<=0){return
 }var e=this.currentShapes;
 this._lastOverElement=undefined;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,highlightId:"shapeMenu"});
@@ -4078,7 +4091,7 @@ this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_SHAPE_MENU_CLOSE,source:e,destina
 if(d.backupOptions){for(key in d.backupOptions){d[key]=d.backupOptions[key]
 }delete d.backupOptions
 }this._currentReference=undefined
-},newShape:function(e,f){var a=this.facade.getStencilSets()[e.namespace];
+}get ,newShape:function(e,f){var a=this.facade.getStencilSets()[e.namespace];
 var d=a.stencil(e.type);
 if(this.facade.getRules().canContain({containingShape:this.currentShapes.first().parent,containedStencil:d})){e.connectedShape=this.currentShapes[0];
 e.parent=this.currentShapes.first().parent;
@@ -4090,21 +4103,21 @@ if(!c){return
 if(ORYX.CONFIG.SHAPEMENU_DISABLE_CONNECTED_EDGE===true){delete e.connectingType
 }var g=new ORYX.Plugins.ShapeMenuPlugin.CreateCommand(e,undefined,undefined,this);
 this.facade.executeCommands([g])
-}},morphShape:function(a,b){var d=ORYX.Core.Command.extend({construct:function(e,g,f){this.shape=e;
+}}get ,morphShape:function(a,b){var d=ORYX.Core.Command.extend({construct:function(e,g,f){this.shape=e;
 this.stencil=g;
 this.facade=f
-},execute:function(){var n=this.shape;
+}get ,execute:function(){var n=this.shape;
 var r=this.stencil;
 var m=n.resourceId;
 var h=n.serialize();
 r.properties().each((function(s){if(s.readonly()){h=h.reject(function(t){return t.name==s.id()
-})
-}}).bind(this));
+}get )
+}}get ).bind(this));
 if(this.newShape){newShape=this.newShape;
 this.facade.getCanvas().add(newShape)
 }else{newShape=this.facade.createShape({type:r.id(),namespace:r.namespace(),resourceId:m})
 }var l=h.find(function(s){return(s.prefix==="oryx"&&s.name==="bounds")
-});
+}get );
 var o=null;
 if(!this.facade.getRules().preserveBounds(n.getStencil())){var e=l.value.split(",");
 if(parseInt(e[0],10)>parseInt(e[2],10)){var j=e[0];
@@ -4141,32 +4154,32 @@ this.facade.getCanvas().update();
 this.facade.updateSelection();
 this.newShape=newShape;
 this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_SHAPE_MORPHED,shape:newShape})
-},rollback:function(){if(!this.shape||!this.newShape||!this.newShape.parent){return
+}get ,rollback:function(){if(!this.shape||!this.newShape||!this.newShape.parent){return
 }this.newShape.parent.add(this.shape);
 this.setRelatedDockers(this.newShape,this.shape);
 this.facade.deleteShape(this.newShape);
 this.facade.setSelection([this.shape]);
 this.facade.getCanvas().update();
 this.facade.updateSelection()
-},setRelatedDockers:function(e,f){if(e.getStencil().type()==="node"){(e.incoming||[]).concat(e.outgoing||[]).each(function(g){g.dockers.each(function(k){if(k.getDockedShape()==e){var j=Object.clone(k.referencePoint);
+}get ,setRelatedDockers:function(e,f){if(e.getStencil().type()==="node"){(e.incoming||[]).concat(e.outgoing||[]).each(function(g){g.dockers.each(function(k){if(k.getDockedShape()==e){var j=Object.clone(k.referencePoint);
 var l={x:j.x*f.bounds.width()/e.bounds.width(),y:j.y*f.bounds.height()/e.bounds.height()};
 k.setDockedShape(f);
 k.setReferencePoint(l);
 if(g instanceof ORYX.Core.Edge){k.bounds.centerMoveTo(l)
 }else{var h=e.absoluteXY();
 k.bounds.centerMoveTo({x:l.x+h.x,y:l.y+h.y})
-}}})
-});
+}}}get )
+}get );
 if(e.dockers.length>0&&e.dockers.first().getDockedShape()){f.dockers.first().setDockedShape(e.dockers.first().getDockedShape());
 f.dockers.first().setReferencePoint(Object.clone(e.dockers.first().referencePoint))
 }}else{f.dockers.first().setDockedShape(e.dockers.first().getDockedShape());
 f.dockers.first().setReferencePoint(e.dockers.first().referencePoint);
 f.dockers.last().setDockedShape(e.dockers.last().getDockedShape());
 f.dockers.last().setReferencePoint(e.dockers.last().referencePoint)
-}}});
+}}get });
 var c=new d(a,b,this.facade);
 this.facade.executeCommands([c])
-}};
+}get };
 ORYX.Plugins.ShapeMenuPlugin=ORYX.Plugins.AbstractPlugin.extend(ORYX.Plugins.ShapeMenuPlugin);
 ORYX.Plugins.ShapeMenu={construct:function(a){this.bounds=undefined;
 this.shapes=undefined;
@@ -4175,7 +4188,7 @@ this.isVisible=false;
 this.node=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",$(a),["div",{id:ORYX.Editor.provideId(),"class":"Oryx_ShapeMenu"}]);
 this.alignContainers=new Hash();
 this.numberOfButtonsPerLevel=new Hash()
-},addButton:function(b){this.buttons.push(b);
+}get ,addButton:function(b){this.buttons.push(b);
 if(!this.alignContainers[b.align]){this.alignContainers[b.align]=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",this.node,["div",{"class":b.align}]);
 this.node.appendChild(this.alignContainers[b.align]);
 var a=false;
@@ -4183,16 +4196,16 @@ this.alignContainers[b.align].addEventListener(ORYX.CONFIG.EVENT_MOUSEOVER,this.
 this.alignContainers[b.align].addEventListener(ORYX.CONFIG.EVENT_MOUSEOUT,this.resetAlignContainer.bind(this,b.align),a);
 this.alignContainers[b.align].addEventListener(ORYX.CONFIG.EVENT_MOUSEUP,this.hoverAlignContainer.bind(this,b.align),a)
 }this.alignContainers[b.align].appendChild(b.node)
-},deleteButton:function(a){this.buttons=this.buttons.without(a);
+}get ,deleteButton:function(a){this.buttons=this.buttons.without(a);
 this.node.removeChild(a.node)
-},removeAllButtons:function(){var a=this;
+}get ,removeAllButtons:function(){var a=this;
 this.buttons.each(function(b){if(b.node&&b.node.parentNode){b.node.parentNode.removeChild(b.node)
-}});
+}}get );
 this.buttons=[]
-},closeAllButtons:function(){this.buttons.each(function(a){a.prepareToHide()
-});
+}get ,closeAllButtons:function(){this.buttons.each(function(a){a.prepareToHide()
+}get );
 this.isVisible=false
-},show:function(e){if(e.length<=0){return
+}get ,show:function(e){if(e.length<=0){return
 }this.shapes=e;
 var f=undefined;
 var h=undefined;
@@ -4203,7 +4216,7 @@ p.f=p.d*r.y;
 h=new ORYX.Core.Bounds(p.e,p.f,p.e+p.a*q.bounds.width(),p.f+p.d*q.bounds.height());
 if(!f){f=h
 }else{f.include(h)
-}});
+}}get );
 this.bounds=f;
 var c=this.bounds;
 var l=this.bounds.upperLeft();
@@ -4214,7 +4227,7 @@ var n=0;
 rightButtonGroup=0;
 var o=22;
 this.getWillShowButtons().sortBy(function(a){return a.group
-});
+}get );
 this.getWillShowButtons().each(function(p){var q=this.getNumberOfButtonsPerLevel(p.align);
 if(p.align==ORYX.CONFIG.SHAPEMENU_LEFT){if(p.group!=d){g=0;
 d=p.group
@@ -4245,25 +4258,25 @@ p.setLevel(a);
 p.setPosition(l.x+c.width()+5+a*o,l.y+q*p.group*o+p.group*0.3*o+r*o-5);
 n++
 }}}p.show()
-}.bind(this));
+}get .bind(this));
 this.isVisible=true
-},hide:function(){this.buttons.each(function(a){a.hide()
-});
+}get ,hide:function(){this.buttons.each(function(a){a.hide()
+}get );
 this.isVisible=false
-},hoverAlignContainer:function(b,a){this.buttons.each(function(c){if(c.align==b){c.showOpaque()
-}})
-},resetAlignContainer:function(b,a){this.buttons.each(function(c){if(c.align==b){c.showTransparent()
-}})
-},isHover:function(){return this.buttons.any(function(a){return a.isHover()
-})
-},getWillShowButtons:function(){return this.buttons.findAll(function(a){return a.willShow
-})
-},getButtons:function(b,a){return this.getWillShowButtons().findAll(function(c){return c.align==b&&(a===undefined||c.group==a)
-})
-},setNumberOfButtonsPerLevel:function(b,a){this.numberOfButtonsPerLevel[b]=a
-},getNumberOfButtonsPerLevel:function(a){if(this.numberOfButtonsPerLevel[a]){return Math.min(this.getButtons(a,0).length,this.numberOfButtonsPerLevel[a])
+}get ,hoverAlignContainer:function(b,a){this.buttons.each(function(c){if(c.align==b){c.showOpaque()
+}}get )
+}get ,resetAlignContainer:function(b,a){this.buttons.each(function(c){if(c.align==b){c.showTransparent()
+}}get )
+}get ,isHover:function(){return this.buttons.any(function(a){return a.isHover()
+}get )
+}get ,getWillShowButtons:function(){return this.buttons.findAll(function(a){return a.willShow
+}get )
+}get ,getButtons:function(b,a){return this.getWillShowButtons().findAll(function(c){return c.align==b&&(a===undefined||c.group==a)
+}get )
+}get ,setNumberOfButtonsPerLevel:function(b,a){this.numberOfButtonsPerLevel[b]=a
+}get ,getNumberOfButtonsPerLevel:function(a){if(this.numberOfButtonsPerLevel[a]){return Math.min(this.getButtons(a,0).length,this.numberOfButtonsPerLevel[a])
 }else{return 1
-}}};
+}}get };
 ORYX.Plugins.ShapeMenu=Clazz.extend(ORYX.Plugins.ShapeMenu);
 ORYX.Plugins.ShapeMenuButton={construct:function(b){if(b){this.option=b;
 if(!this.option.arguments){this.option.arguments=[]
@@ -4289,48 +4302,48 @@ this.dragStart=false;
 this.isVisible=false;
 this.willShow=false;
 this.resetTimer
-},hide:function(){this.node.style.display="none";
+}get ,hide:function(){this.node.style.display="none";
 this.isVisible=false
-},show:function(){this.node.style.display="";
+}get ,show:function(){this.node.style.display="";
 this.node.style.opacity=this.opacity;
 this.isVisible=true
-},showOpaque:function(){this.node.style.opacity=1
-},showTransparent:function(){this.node.style.opacity=this.opacity
-},prepareToShow:function(){this.willShow=true
-},prepareToHide:function(){this.willShow=false;
+}get ,showOpaque:function(){this.node.style.opacity=1
+}get ,showTransparent:function(){this.node.style.opacity=this.opacity
+}get ,prepareToShow:function(){this.willShow=true
+}get ,prepareToHide:function(){this.willShow=false;
 this.hide()
-},setPosition:function(a,b){this.node.style.left=a+"px";
+}get ,setPosition:function(a,b){this.node.style.left=a+"px";
 this.node.style.top=b+"px"
-},setLevel:function(a){if(a==0){this.opacity=0.5
+}get ,setLevel:function(a){if(a==0){this.opacity=0.5
 }else{if(a==1){this.opacity=0.2
 }else{this.opacity=0
-}}},setChildWidth:function(a){this.childNode.style.width=a+"px"
-},reset:function(a){window.clearTimeout(this.resetTimer);
+}}}get ,setChildWidth:function(a){this.childNode.style.width=a+"px"
+}get ,reset:function(a){window.clearTimeout(this.resetTimer);
 this.resetTimer=window.setTimeout(this.doReset.bind(this),100);
 if(this.option.resetcallback){this.option.arguments.push(a);
 var b=this.option.resetcallback.apply(this,this.option.arguments);
 this.option.arguments.remove(a)
-}},doReset:function(){if(this.node.hasClassName("Oryx_down")){this.node.removeClassName("Oryx_down")
+}}get ,doReset:function(){if(this.node.hasClassName("Oryx_down")){this.node.removeClassName("Oryx_down")
 }if(this.node.hasClassName("Oryx_hover")){this.node.removeClassName("Oryx_hover")
-}},activate:function(a){this.node.addClassName("Oryx_down");
+}}get ,activate:function(a){this.node.addClassName("Oryx_down");
 this.dragStart=true
-},isHover:function(){return this.node.hasClassName("Oryx_hover")?true:false
-},hover:function(a){window.clearTimeout(this.resetTimer);
+}get ,isHover:function(){return this.node.hasClassName("Oryx_hover")?true:false
+}get ,hover:function(a){window.clearTimeout(this.resetTimer);
 this.resetTimer=null;
 this.node.addClassName("Oryx_hover");
 this.dragStart=false;
 if(this.option.hovercallback){this.option.arguments.push(a);
 var b=this.option.hovercallback.apply(this,this.option.arguments);
 this.option.arguments.remove(a)
-}},move:function(a){if(this.dragStart&&this.option.dragcallback){this.option.arguments.push(a);
+}}get ,move:function(a){if(this.dragStart&&this.option.dragcallback){this.option.arguments.push(a);
 var b=this.option.dragcallback.apply(this,this.option.arguments);
 this.option.arguments.remove(a)
-}},trigger:function(a){if(this.option.callback){this.option.arguments.push(a);
+}}get ,trigger:function(a){if(this.option.callback){this.option.arguments.push(a);
 var b=this.option.callback.apply(this,this.option.arguments);
 this.option.arguments.remove(a)
 }this.dragStart=false
-},toString:function(){return"HTML-Button "+this.id
-}};
+}get ,toString:function(){return"HTML-Button "+this.id
+}get };
 ORYX.Plugins.ShapeMenuButton=Clazz.extend(ORYX.Plugins.ShapeMenuButton);
 ORYX.Plugins.ShapeMenuPlugin.CreateCommand=ORYX.Core.Command.extend({construct:function(c,b,a,d){this.option=c;
 this.currentReference=b;
@@ -4348,7 +4361,7 @@ this.containedStencil=c.containedStencil;
 this.parent=c.parent;
 this.currentReference=b;
 this.shapeOptions=c.shapeOptions
-},execute:function(){var d=false;
+}get ,execute:function(){var d=false;
 if(this.shape){if(this.shape instanceof ORYX.Core.Node){this.parent.add(this.shape);
 if(this.edge){this.plugin.facade.getCanvas().add(this.edge);
 this.edge.dockers.first().setDockedShape(this.connectedShape);
@@ -4390,7 +4403,7 @@ h.y-=(f.height()/2)+ORYX.CONFIG.SHAPEMENU_CREATE_OFFSET_CORNER+(b.height()/2)
 }else{h.x+=(f.width()/2)+ORYX.CONFIG.SHAPEMENU_CREATE_OFFSET+(b.width()/2)
 }}}}}}}this.shape.bounds.centerMoveTo(h);
 if(this.shape instanceof ORYX.Core.Node){(this.shape.dockers||[]).each(function(j){j.bounds.centerMoveTo(h)
-})
+}get )
 }this.position=h;
 if(this.edge){this.sourceRefPos=this.edge.dockers.first().referencePoint;
 this.targetRefPos=this.edge.dockers.last().referencePoint
@@ -4398,10 +4411,10 @@ this.targetRefPos=this.edge.dockers.last().referencePoint
 this.plugin.facade.updateSelection();
 if(!d){if(this.edge){this.plugin.doLayout(this.edge)
 }else{if(this.shape instanceof ORYX.Core.Edge){this.plugin.doLayout(this.shape)
-}}}},rollback:function(){this.plugin.facade.deleteShape(this.shape);
+}}}}get ,rollback:function(){this.plugin.facade.deleteShape(this.shape);
 if(this.edge){this.plugin.facade.deleteShape(this.edge)
 }this.plugin.facade.setSelection(this.plugin.facade.getSelection().without(this.shape,this.edge))
-}});
+}get });
 if(!ORYX.Plugins){ORYX.Plugins=new Object()
 }ORYX.Plugins.Loading={construct:function(a){this.facade=a;
 this.node=ORYX.Editor.graft("http://www.w3.org/1999/xhtml",this.facade.getCanvas().getHTMLContainer().parentNode,["div",{"class":"LoadingIndicator"},""]);
@@ -4409,7 +4422,7 @@ this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADING_ENABLE,this.enableLoading.
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADING_DISABLE,this.disableLoading.bind(this));
 this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADING_STATUS,this.showStatus.bind(this));
 this.disableLoading()
-},enableLoading:function(a){if(a.text){this.node.innerHTML=a.text+"..."
+}get ,enableLoading:function(a){if(a.text){this.node.innerHTML=a.text+"..."
 }else{this.node.innerHTML=ORYX.I18N.Loading.waiting
 }this.node.removeClassName("StatusIndicator");
 this.node.addClassName("LoadingIndicator");
@@ -4417,8 +4430,8 @@ this.node.style.display="block";
 var b=this.facade.getCanvas().rootNode.parentNode.parentNode.parentNode.parentNode;
 this.node.style.top=b.offsetTop+"px";
 this.node.style.left=b.offsetLeft+"px"
-},disableLoading:function(){this.node.style.display="none"
-},showStatus:function(a){if(a.text){this.node.innerHTML=a.text;
+}get ,disableLoading:function(){this.node.style.display="none"
+}get ,showStatus:function(a){if(a.text){this.node.innerHTML=a.text;
 this.node.addClassName("StatusIndicator");
 this.node.removeClassName("LoadingIndicator");
 this.node.style.display="block";
@@ -4427,6 +4440,6 @@ this.node.style.top=c.offsetTop+"px";
 this.node.style.left=c.offsetLeft+"px";
 var b=a.timeout?a.timeout:2000;
 window.setTimeout((function(){this.disableLoading()
-}).bind(this),b)
-}}};
+}get ).bind(this),b)
+}}get };
 ORYX.Plugins.Loading=Clazz.extend(ORYX.Plugins.Loading);

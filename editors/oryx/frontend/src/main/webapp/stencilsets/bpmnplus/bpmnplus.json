@@ -9,7 +9,7 @@
 			"title":"BPMN+-Diagram",
 			"groups":["Diagram"],
 			"description":"A BPMN+ Diagram.",
-			"view":"diagram/node.diagram.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"800\"    height=\"600\"    version=\"1.0\">   <defs></defs>   <g pointer-events=\"fill\" >     <polygon stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"0,0 0,590 9,599 799,599 799,9 790,0\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />     <rect id=\"diagramcanvas\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"790\" height=\"590\" stroke=\"black\" stroke-width=\"2\" fill=\"white\" />      <text font-size=\"22\" id=\"diagramtext\" x=\"400\" y=\"25\" oryx:align=\"top center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_diagram.png",
 			"roles": [
 				"fromtoall"
@@ -137,7 +137,7 @@
 			"title":"Pool",
 			"groups":["Swimlanes"],
 			"description":"",
-			"view":"swimlane/node.pool.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"500\"    height=\"300\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"149\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"249\" oryx:cy=\"399\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"499\" oryx:cy=\"149\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"249\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"249\" oryx:cy=\"149\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" >     <rect id=\"c\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"500\" height=\"300\" stroke=\"none\" fill=\"white\" />     <rect id=\"border\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"500\" height=\"300\" stroke=\"black\" stroke-width=\"1\" fill=\"none\" />          <text x=\"10\" y=\"125\" font-size=\"14\" id=\"text_v\" oryx:align=\"middle center\" oryx:rotate=\"270\" fill=\"black\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_pool.png",
 			"roles": [
 				"fromtoall"				
@@ -636,7 +636,8 @@
 					"title":"BackgroundColor",
 					"value":"#ffffff",
 					"description":"",
-					"readonly":false,
+					"readonly":false,
+
 					"optional":false,
 					"refToView":"c",
 					"fill":true,
@@ -651,7 +652,7 @@
 			"title":"PoolSet",
 			"groups":["Swimlanes"],
 			"description":"",
-			"view":"swimlane/node.poolSet.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"515\"    height=\"315\"    version=\"1.0\">   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"156\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"256\" oryx:cy=\"314\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"514\" oryx:cy=\"156\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"256\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"256\" oryx:cy=\"156\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" >    <rect id=\"border_shade\" oryx:resize=\"vertical horizontal\" x=\"15\" y=\"0\" width=\"500\" height=\"300\" stroke=\"black\" stroke-width=\"1\" fill=\"none\" />    <rect id=\"c_shade\" oryx:resize=\"vertical horizontal\" x=\"15\" y=\"0\" width=\"500\" height=\"300\" stroke=\"none\" fill=\"white\" />        <rect id=\"c\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"15\" width=\"500\" height=\"300\" stroke=\"none\" fill=\"white\" />     <rect id=\"border\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"15\" width=\"500\" height=\"300\" stroke=\"black\" stroke-width=\"1\" fill=\"none\" />          <text x=\"10\" y=\"140\" font-size=\"14\" id=\"text_v\" oryx:align=\"middle center\" oryx:rotate=\"270\" fill=\"black\" stroke=\"black\"/>   </g> </svg> ",
 			"icon":"new_poolSet.png",
 			"roles": [
 				"fromtoall"				
@@ -970,7 +971,8 @@
 					"description":"",
 					"readonly":false,
 					"optional":true,
-					"refToView":"",
+					"refToView":"",
+
 					"length":"30"
 				},				
 				{
@@ -1117,7 +1119,7 @@
 			"title":"Lane",
 			"groups":["Swimlanes"],
 			"description":"",
-			"view":"swimlane/node.lane.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"500\"    height=\"300\"    version=\"1.0\">   <defs></defs>   <g pointer-events=\"fill\" >   <rect id=\"frame\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"500\" height=\"300\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />   <text x=\"10\" y=\"125\" oryx:rotate=\"270\" font-size=\"14\" id=\"text_v\" oryx:align=\"middle center\" oryx:anchors=\"left\" fill=\"black\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_lane.png",
 			"roles": [
 				"poolChild",
@@ -1181,7 +1183,7 @@
 			"title":"Service Task",
 			"groups":["Tasks"],
 			"description":"An task that invokes an activity of another pool or pool set.",
-			"view":"activity/node.task.service.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>       <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_service.png",
 			"roles": [
 				"sequence_start",
@@ -1808,7 +1810,7 @@
 			"title":"Receive Task",
 			"groups":["Tasks"],
 			"description":"An task that receives a message from an activity of another pool or pool set.",
-			"view":"activity/node.task.receive.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>       <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_receive.png",
 			"roles": [
 				"sequence_start",
@@ -2380,7 +2382,7 @@
 			"title":"Send Task",
 			"groups":["Tasks"],
 			"description":"An task that sends a message.",
-			"view":"activity/node.task.send.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />     <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>          <!-- <rect      oryx:resize=\"vertical horizontal\"         width=\"20.40457\"      height=\"14.876908\"      x=\"4.9366875\"         y=\"4.9366875\"         style=\"fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.87337512px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"letterRect\"/>  <path   oryx:resize=\"vertical horizontal\"      style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.93609655px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"       d=\"M 5.0794541,5.0794541 C 15.007958,13.299856 15.007958,13.299856 15.007958,13.299856 L 15.007958,13.299856 C 24.936461,5.1890594 24.936461,5.1890594 24.936461,5.1890594\"       id=\"letterTriangle\" /> -->         <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_send.png",
 			"roles": [
 				"sequence_start",
@@ -2968,7 +2970,7 @@
 			"title":"Assign Task",
 			"groups":["Tasks"],
 			"description":"An task that copies data from one variable to another.",
-			"view":"activity/node.task.assign.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />     <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>          <rect         oryx:resize=\"vertical horizontal\"         width=\"12.401549\"         height=\"11.985294\"         x=\"4.8055716\"         y=\"4.8055716\"         style=\"fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.61114335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"rectFrom\" />             <rect         oryx:resize=\"vertical horizontal\"         width=\"12.401549\"         height=\"11.985294\"         x=\"26.588352\"         y=\"4.8011193\"         style=\"fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.61114335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"rectTo\" />     <path         oryx:resize=\"vertical horizontal\"         d=\"M 17.3,10.5 C 18.76817,10.5 18.76817,10.5 18.76817,10.5\"         style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"arrow1\" />     <path         oryx:resize=\"vertical horizontal\"         d=\"M 19.466844,10.5 C 20.935014,10.5 20.935014,10.5 20.935014,10.5\"         style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"arrow2\" />     <path      oryx:resize=\"vertical horizontal\"         d=\"M 21.669098,10.5 C 23.137268,10.5 23.137268,10.5 23.137268,10.5\"         style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"arrow3\" />     <path      oryx:resize=\"vertical horizontal\"         d=\"M 23.844164,10.5 C 25.312334,10.5 25.312334,10.5 25.312334,10.5\"         style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"arrow4\" />     <path      oryx:resize=\"vertical horizontal\"   d=\"M 23.055703,7.1233421 C 26.50862,10.793767 26.50862,10.793767 26.50862,10.793767\"      style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"      id=\"arrow5\" />     <path      oryx:resize=\"vertical horizontal\"         d=\"M 26.319042,10.381079 C 23.046612,14.115605 23.046612,14.115605 23.046612,14.115605\"         style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.98197788px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"         id=\"path2276\" />       <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_assign.png",
 			"roles": [
 				"sequence_start",
@@ -3576,7 +3578,8 @@
 							"name":"FS_ExpressionLanguage",
 							"type":"String",
 							"value":"",
-							"width":150,
+							"width":150,
+
 							"optional":true
 						},
 						{
@@ -3762,7 +3765,7 @@
 			"title":"Empty Task",
 			"groups":["Tasks"],
 			"description":"An task that copies data from one variable to another.",
-			"view":"activity/node.task.empty.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>       <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_empty.png",
 			"roles": [
 				"sequence_start",
@@ -4194,7 +4197,7 @@
 			"title":"Validate Task",
 			"groups":["Tasks"],
 			"description":"An task that validates data in variables against their definition.",
-			"view":"activity/node.task.validate.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />     <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>          <text oryx:anchors=\"top left\" font-size=\"20\" id=\"questionMark\" x=\"10\" y=\"10\" oryx:align=\"middle center\" stroke=\"black\">?</text>       <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_validate.png",
 			"roles": [
 				"sequence_start",
@@ -4630,7 +4633,7 @@
 			"title":"None-typed Task",
 			"groups":["Tasks"],
 			"description":"An task that hides the details about its actual implementation.",
-			"view":"activity/node.task.none.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"40\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"80\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"100\" oryx:cy=\"40\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"40\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\" oryx:minimumSize=\"50 40\" oryx:maximumSize=\"200 160\" >     <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"100\" height=\"80\" rx=\"10\" ry=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <text font-size=\"14\" id=\"acttext\" x=\"50\" y=\"40\" oryx:align=\"middle center\" stroke=\"black\"></text>       <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" d=\"M46,78 L49,78 L49,75 M49,78 C38,66 63,66 52,78\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"bottom\" fill=\"none\" stroke=\"black\" d=\"m49 70 v8 M53 70 v8\" stroke-width=\"2\" />  </g>   </g> </svg> ",
 			"icon":"new_task_none.png",
 			"roles": [
 				"sequence_start",
@@ -4691,7 +4694,8 @@
 					"readonly":false,
 					"optional":true,
 					"complexItems": [
-						{
+						{
+
 							"id":"to",
 							"name":"To",
 							"type":"String",
@@ -5066,7 +5070,7 @@
 			"title":"Scope",
 			"groups":["Sub-Processes"],
 			"description":"A scope.",
-			"view":"activity/node.scope.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"50\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"100\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"300\" oryx:cy=\"50\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"50\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"scoperect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"300\" height=\"100\" rx=\"8\" ry=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />                 <g id=\"none\"></g>  <g id=\"loop\">   <path oryx:anchors=\"right\" fill=\"none\" stroke=\"black\" stroke-width=\"1\" d=\"M278,60 L281,60 L281,53 M281,60 C270,44 295,44 285,60\" />  </g>  <g id=\"multiple\">   <path oryx:anchors=\"right\" fill=\"none\" stroke=\"black\" d=\"m285 46 v12 M291 46 v12\" stroke-width=\"4\" />  </g>   </g> </svg> ",
 			"icon":"new_scope.png",
 			"roles": [
 				"sequence_start",
@@ -5279,7 +5283,8 @@
 						}
 					]
 				},
-				{
+				{
+
 					"id":"correlationsets",
 					"type":"Complex",
 					"title":"CorrelationSets",
@@ -5470,7 +5475,8 @@
 					"type":"String",
 					"title":"MI_CompletionConditionLanguage",
 					"value":"",
-					"description":"",
+					"description":"",
+
 					"readonly":false,
 					"optional":true
 				},
@@ -5575,10 +5581,11 @@
 		{
 			"type": "node",
 			"id":"FaultHandler",
-			"title":"Fault Handler",
+			"title":"Fault Handler",
+
 			"groups":["Sub-Processes"],
 			"description":"A fault handler.",
-			"view":"activity/node.handler.fault.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"50\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"100\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"300\" oryx:cy=\"50\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"50\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"handlerrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"300\" height=\"100\" rx=\"8\" ry=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />          <polygon oryx:anchors=\"right\" stroke=\"black\" fill=\"black\" stroke-width=\"1\"         points=\"294,41 293,50.5 289,47.5 286,55 287,44.5 291,48.5\"        stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />          </g> </svg>  ",
 			"icon":"new_fault_handler.png",
 			"roles": [
 				"noGateway",
@@ -5774,7 +5781,8 @@
 							"type":"String",
 							"value":"",
 							"width":100,
-							"optional":false
+							"optional":false
+
 						},
 						{
 							"id":"correlation",
@@ -5884,7 +5892,7 @@
 			"title":"Message Handler",
 			"groups":["Sub-Processes"],
 			"description":"A message handler.",
-			"view":"activity/node.handler.message.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"50\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"100\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"300\" oryx:cy=\"50\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"50\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"handlerrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"300\" height=\"100\" rx=\"8\" ry=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <polyline oryx:anchors=\"right\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" points=\"279,45 279,55 295,55 295,45 279,45 287,51 295,45\" />   </g> </svg>  ",
 			"icon":"new_message_handler.png",
 			"roles": [
 				"noGateway",
@@ -6189,7 +6197,7 @@
 			"title":"Timer Handler",
 			"groups":["Sub-Processes"],
 			"description":"A timer handler.",
-			"view":"activity/node.handler.timer.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"50\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"100\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"300\" oryx:cy=\"50\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"50\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"handlerrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"300\" height=\"100\" rx=\"8\" ry=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />        <circle oryx:anchors=\"right\" cx=\"284\" cy=\"50\" r=\"10\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" />     <path oryx:anchors=\"right\" d=\" M 284 40 L 284 43.5       M 289 41 L 287.5 44       M 293 45 L 290 46.5       M 294 50 L 291 50       M 293 55 L 290 53.5       M 289 59 L 287.5 56       M 284 60 L 284 57       M 279 59 L 280.5 56       M 275 55 L 278 53.5       M 274 50 L 277 50       M 275 45 L 278 46.5       M 279 41 L 280.5 44       M 286 43 L 284 50 L 288 50\" fill=\"none\" stroke=\"black\" />   </g> </svg>  ",
 			"icon":"new_timer_handler.png",
 			"roles": [
 				"noGateway",
@@ -6494,7 +6502,7 @@
 			"title":"Termination Handler",
 			"groups":["Sub-Processes"],
 			"description":"A termination handler.",
-			"view":"activity/node.handler.termination.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns=\"http://www.w3.org/2000/svg\"    version=\"1.0\"    width=\"102\"    height=\"82\"    id=\"svg2324\">   <defs      id=\"defs2326\" />   <oryx:magnets>     <oryx:magnet oryx:cx=\"0\" oryx:cy=\"50\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"100\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"300\" oryx:cy=\"50\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"50\" oryx:default=\"yes\" />   </oryx:magnets>   <g      id=\"layer1\">     <g        id=\"g2328\">       <rect          width=\"300\"          height=\"100\"          rx=\"8\"          ry=\"8\"          x=\"0\"          y=\"0\"          style=\"fill:#ffffff;stroke:#000000;stroke-width:1\"          id=\"handlerrect\" oryx:resize=\"vertical horizontal\"/>       <path          d=\"M 295.56833,50.461539 C 295.57021,55.255119 291.6848,59.142086 286.89125,59.142086 C 282.09769,59.142086 278.21228,55.255119 278.21416,50.461539 C 278.21228,45.667958 282.09769,41.780991 286.89124,41.780991 C 291.6848,41.780991 295.57021,45.667958 295.56833,50.461539 L 295.56833,50.461539 z \"          style=\"opacity:1;fill:#000000;stroke:#000000;stroke-width:1.10074639;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:32.20000076;stroke-dasharray:none;stroke-opacity:1\"          id=\"path2238\" oryx:anchors=\"right\"/>     </g>     <g        id=\"layer2\">       <path          d=\"M 287.09375,49.3125 C 286.92709,49.333642 286.77773,49.436447 286.71875,49.59375 C 286.65977,49.751053 286.70083,49.936984 286.8125,50.0625 L 287.3125,50.75 L 285.5625,50.75 C 285.54169,50.748607 285.52081,50.748607 285.5,50.75 C 285.24112,50.767259 285.04524,50.991117 285.0625,51.25 C 285.07976,51.508883 285.30362,51.704759 285.5625,51.6875 L 287.40625,51.6875 L 286.8125,52.5 C 286.68437,52.625217 286.65611,52.800905 286.71875,52.96875 C 286.78141,53.136595 286.91491,53.270606 287.09375,53.28125 C 287.27258,53.291895 287.44914,53.19048 287.53125,53.03125 L 288.625,51.53125 L 288.84375,51.28125 L 288.625,51.03125 C 288.62151,51.023003 288.62894,51.007998 288.625,51 L 288.53125,50.875 L 287.53125,49.5 C 287.43269,49.359689 287.26332,49.287101 287.09375,49.3125 z M 289.6459,46.493977 L 293.8559,46.493977 L 293.8559,54.003672 L 289.6459,54.003672 L 289.6459,46.493977 z \"          style=\"fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.93541437px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1\"          id=\"path16914\" oryx:anchors=\"right\"/>       <path          d=\"M 284.79796,46.914145 C 284.79796,47.411205 284.39502,47.814155 283.89796,47.814155 C 283.40089,47.814155 282.99795,47.411205 282.99795,46.914145 C 282.99795,46.417095 283.40089,46.014145 283.89796,46.014145 C 284.39502,46.014145 284.79796,46.417095 284.79796,46.914145 L 284.79796,46.914145 z \"          style=\"fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:1.00034392;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:32.20000076;stroke-opacity:1\"          id=\"path4198\" oryx:anchors=\"right\"/>       <path          d=\"M 280.40307,48.846535 L 281.2819,47.810055 L 283.03955,47.810055 L 283.72131,50.028295 L 283.72131,50.028295 M 283.67594,50.028295 L 285.41668,50.028295 M 281.72131,50.028295 L 282.98676,51.293744 L 283.72131,52.028295 M 283.72131,52.028295 L 283.72131,54.028295 M 281.72131,50.028295 C 281.72131,52.028295 281.72131,52.028295 281.72131,52.028295 C 279.72131,52.028295 279.72131,52.028295 279.72131,52.028295 M 283.16595,47.951038 C 281.75316,50.035698 281.75316,50.035698 281.75316,50.035698\"          style=\"fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.90100002;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"          id=\"path10998\" oryx:anchors=\"right\"/>     </g>   </g> </svg> ",
 			"icon":"new_termination.png",
 			"roles": [
 				"noGateway",
@@ -6782,7 +6790,7 @@
 			"title":"Compensation Handler",
 			"groups":["Sub-Processes"],
 			"description":"A compensatin handler.",
-			"view":"activity/node.handler.compensation.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"50\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"100\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"300\" oryx:cy=\"50\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"150\" oryx:cy=\"50\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <rect id=\"handlerrect\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"300\" height=\"100\" rx=\"8\" ry=\"8\" stroke=\"black\" stroke-width=\"1\" fill=\"white\" />      <polygon    oryx:anchors=\"right\" stroke=\"black\" fill=\"black\" stroke-width=\"1\"         points=\"285,42 285,58 275,50\"        stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />      <polygon    oryx:anchors=\"right\" stroke=\"black\" fill=\"black\" stroke-width=\"1\"         points=\"295,42 295,58 285,50\"        stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />   </g> </svg>  ",
 			"icon":"new_compensation_handler.png",
 			"roles": [
 				"noGateway",
@@ -7031,7 +7039,8 @@
 					"optional":false
 				},
 				{
-					"id":"handlertype",
+					"id":"handlertype",
+
 					"type":"String",
 					"title":"HandlerType",
 					"value":"Compensation",
@@ -7070,7 +7079,7 @@
 			"title":"Parallel Fork",
 			"groups":["Gateways"],
 			"description":"A parallel fork gateway.",
-			"view":"gateway/node.gateway.and.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <path fill=\"white\" oryx:resize=\"vertical horizontal\" stroke-width=\"3\" stroke=\"black\" d=\" M 8.5,16 L 23.5,16             M 16,8.5 L 16,23.5\" />   </g> </svg> ",
 			"icon":"new_gateway_and.png",
 			"roles": [
 				"sequence_start",
@@ -7194,7 +7203,7 @@
 			"title":"Parallel Join",
 			"groups":["Gateways"],
 			"description":"A parallel join gateway.",
-			"view":"gateway/node.gateway.and.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <path fill=\"white\" oryx:resize=\"vertical horizontal\" stroke-width=\"3\" stroke=\"black\" d=\" M 8.5,16 L 23.5,16             M 16,8.5 L 16,23.5\" />   </g> </svg> ",
 			"icon":"new_gateway_and.png",
 			"roles": [
 				"sequence_start",
@@ -7319,7 +7328,7 @@
 			"title":"Inclusive Decision",
 			"groups":["Gateways"],
 			"description":"An inclusive decision gateway.",
-			"view":"gateway/node.gateway.or.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"7.5\" stroke=\"black\" fill=\"none\" stroke-width=\"2.5\"/>   </g> </svg> ",
 			"icon":"new_gateway_or.png",
 			"roles": [
 				"sequence_end",
@@ -7444,7 +7453,7 @@
 			"title":"Inclusive Merge",
 			"groups":["Gateways"],
 			"description":"An inclusive merge gateway.",
-			"view":"gateway/node.gateway.or.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"7.5\" stroke=\"black\" fill=\"none\" stroke-width=\"2.5\"/>   </g> </svg> ",
 			"icon":"new_gateway_or.png",
 			"roles": [
 				"sequence_start",
@@ -7570,7 +7579,7 @@
 			"title":"Data-based Exclusive (XOR) Gateway",
 			"groups":["Gateways"],
 			"description":"A decision point.",
-			"view":"gateway/node.gateway.xor.databased.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <g id=\"none\"></g>          <g id=\"cross\">       <path oryx:resize=\"vertical horizontal\" d=\"M 11.5 9.5 L 14.5 9.5 L 20.5 22.5 L 17.5 22.5 L 11.5 9.5\" fill=\"black\" stroke=\"black\" stroke-width=\"1\" />       <path oryx:resize=\"vertical horizontal\" d=\"M 11.5 22.5 L 17.5 9.5 L 20.5 9.5 L 14.5 22.5 L 11.5 22.5\" fill=\"black\" stroke=\"black\" stroke-width=\"1\" />     </g>   </g> </svg> ",
 			"icon":"new_gateway_xor_data.png",
 			"roles": [
 				"sequence_end",
@@ -7730,7 +7739,7 @@
 			"title":"Event-based Exclusive (XOR) Gateway",
 			"groups":["Gateways"],
 			"description":"A exclusive decision point based on events.",
-			"view":"gateway/node.gateway.xor.eventbased.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"8\" stroke=\"black\" fill=\"none\" stroke-width=\"0.5\"/>     <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"9\" stroke=\"black\" fill=\"none\" stroke-width=\"0.5\"/>          <polygon oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"16,10 18,13 21.5,13 19.5,16 21.5,19 18,19 16,22 14,19 10.5,19 12.5,16 10.5,13 14,13\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />   </g> </svg> ",
 			"icon":"new_gateway_xor_event.png",
 			"roles": [
 				"sequence_start",
@@ -7763,7 +7772,8 @@
 					"optional":true,
 					"refToView":"",
 					"length":"30"
-				},
+				},
+
 				{
 					"id":"name",
 					"type":"String",
@@ -7874,7 +7884,7 @@
 			"title":"Exclusive Merge Gateway",
 			"groups":["Gateways"],
 			"description":"An exclusive merge gateway.",
-			"view":"gateway/node.gateway.xor.databased.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <path id=\"frame\" oryx:resize=\"vertical horizontal\" fill=\"white\" stroke-width=\"1\" stroke=\"black\" d=\"M 1,16 L 16,1 L 31,16 L 16,31 L 1,16\" />          <g id=\"none\"></g>          <g id=\"cross\">       <path oryx:resize=\"vertical horizontal\" d=\"M 11.5 9.5 L 14.5 9.5 L 20.5 22.5 L 17.5 22.5 L 11.5 9.5\" fill=\"black\" stroke=\"black\" stroke-width=\"1\" />       <path oryx:resize=\"vertical horizontal\" d=\"M 11.5 22.5 L 17.5 9.5 L 20.5 9.5 L 14.5 22.5 L 11.5 22.5\" fill=\"black\" stroke=\"black\" stroke-width=\"1\" />     </g>   </g> </svg> ",
 			"icon":"new_gateway_xor_data.png",
 			"roles": [
 				"sequence_start",
@@ -8023,7 +8033,7 @@
 			"title":"Group",
 			"groups":["Artifacts"],
 			"description":"A group box element",
-			"view":"artifact/node.group.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg   xmlns=\"http://www.w3.org/2000/svg\"   xmlns:svg=\"http://www.w3.org/2000/svg\"   xmlns:oryx=\"http://www.b3mn.org/oryx\"   xmlns:xlink=\"http://www.w3.org/1999/xlink\"   width=\"122\"   height=\"92\"   version=\"1.0\">   <defs></defs>   <g pointer-events=\"fill\" oryx:minimumSize=\"60 50\">     <rect id=\"c\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"120\" height=\"90\" rx=\"5\" ry=\"5\" stroke=\"black\" stroke-dasharray=\"2, 4, 10, 4\" stroke-width=\"1\" fill=\"none\" />     <text font-size=\"14\" id=\"text\" x=\"2\" y=\"2\" oryx:align=\"top left\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_group.png",
 			"roles": [
 				"fromtoall"
@@ -8084,7 +8094,7 @@
 			"title":"Text Annotation",
 			"groups":["Artifacts"],
 			"description":"A text annotation",
-			"view":"artifact/node.text.annotation.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"51\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"2\" oryx:cy=\"25\" oryx:anchors=\"left\" oryx:default=\"yes\"/>   </oryx:magnets>   <g pointer-events=\"all\" oryx:minimumSize=\"10 20\" oryx:maximumSize=\"150 200\" >   <rect id=\"taskrect\" oryx:resize=\"vertical horizontal\" x=\"1\" y=\"1\" width=\"100\" height=\"50\" stroke=\"none\" fill=\"none\" />     <path d=\"M15,1 L1,1 L1,50 L15,50\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" />          <text font-size=\"14\" id=\"text\" x=\"5\" y=\"20\" oryx:align=\"middle left\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_text_annotation.png",
 			"roles": [
 				"tc"
@@ -8146,7 +8156,7 @@
 			"title":"Standard Variable",
 			"description":"",
 			"groups":["Artifacts"],
-			"view":"artifact/node.data.object.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"41\"    height=\"61\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"40\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <polygon id=\"frame\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"0,0 0,60 40,60 40,10 30,0 30,10 40,10 30,0\" />     <text font-size=\"14\" id=\"text\" x=\"20\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_var_data_object.png",
 			"roles": [
 				"fromtoall"
@@ -8548,7 +8558,7 @@
 			"title":"Fault Variable",
 			"description":"",
 			"groups":["Artifacts"],
-			"view":"artifact/node.data.object.fault.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"41\"    height=\"61\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"40\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <polygon id=\"frame\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"0,0 0,60 40,60 40,10 30,0 30,10 40,10 30,0\" />     <text font-size=\"14\" id=\"text\" x=\"20\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>          <g id=\"Fault\">        <polygon oryx:anchors=\"top left\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"black\" stroke-width=\"1\"         points=\"12,5 11,14.5 7,11.5 4,19 5,8.5 9,12.5\"        stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />      </g>   </g> </svg> ",
 			"icon":"new_error_var.png",
 			"roles": [
 				"fromtoall",
@@ -8745,7 +8755,7 @@
 			"title":"Message Variable",
 			"description":"",
 			"groups":["Artifacts"],
-			"view":"artifact/node.data.object.message.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"41\"    height=\"61\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"40\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <polygon id=\"frame\" oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"0,0 0,60 40,60 40,10 30,0 30,10 40,10 30,0\" />     <text font-size=\"14\" id=\"text\" x=\"20\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>          <g id=\"Message\">      <polyline oryx:resize=\"vertical horizontal\" oryx:anchors=\"top left\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" points=\"3,3 3,13 16,13 16,3 3,3 9,9 16,3\" />     </g>       </g> </svg> ",
 			"icon":"new_message_var.png",
 			"roles": [
 				"fromtoall",
@@ -8942,7 +8952,7 @@
 			"title":"Counter Variable",
 			"description":"",
 			"groups":["Artifacts"],
-			"view":"artifact/node.data.object.counter.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"41\"    height=\"61\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"0\" oryx:cy=\"30\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"60\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"40\" oryx:cy=\"30\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"20\" oryx:cy=\"30\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <polygon oryx:resize=\"vertical horizontal\" id=\"frame\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" points=\"0,0 0,60 40,60 40,10 30,0 30,10 40,10 30,0\" />     <text font-size=\"14\" id=\"text\" x=\"20\" y=\"30\" oryx:align=\"middle center\" stroke=\"black\"></text>          <g id=\"Counter\">   <path oryx:anchors=\"top left\" oryx:resize=\"vertical horizontal\" fill=\"none\" stroke=\"black\" d=\"m5 3 v10 M9 3 v10\" stroke-width=\"2\" />     </g>   </g> </svg> ",
 			"icon":"new_counter_var.png",
 			"roles": [
 				"fromtoall"
@@ -9099,7 +9109,7 @@
 			"title":"Participant Reference",
 			"description":"A participant reference data object.",
 			"groups":["Artifacts"],
-			"view":"artifact/node.data.object.ref.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    version=\"1.0\">   <oryx:magnets>    <oryx:magnet oryx:cx=\"10\" oryx:cy=\"15\" oryx:anchors=\"left\" />    <oryx:magnet oryx:cx=\"30\" oryx:cy=\"30\" oryx:anchors=\"bottom\" />    <oryx:magnet oryx:cx=\"50\" oryx:cy=\"15\" oryx:anchors=\"right\" />    <oryx:magnet oryx:cx=\"30\" oryx:cy=\"0\" oryx:anchors=\"top\" />    <oryx:magnet oryx:cx=\"30\" oryx:cy=\"15\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">    <rect        width=\"40\"        height=\"30\"        x=\"10\"        y=\"0\"        style=\"opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\"        id=\"frame\" oryx:resize=\"vertical horizontal\" />     <text font-size=\"14\" id=\"text\" x=\"30\" y=\"30\" oryx:align=\"center top\" stroke=\"black\" oryx:resize=\"vertical horizontal\"></text>     <path        d=\"M 14,7 L 46,7\"        style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"        id=\"path3134\" oryx:resize=\"vertical horizontal\"/>     <path        d=\"M 14,12 L 46,12\"        style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"        id=\"path3138\" oryx:resize=\"vertical horizontal\"/>     <path        d=\"M 14,17 L 46,17\"        style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"        id=\"path3140\" oryx:resize=\"vertical horizontal\"/>     <path        d=\"M 14,23 L 46,23\"        style=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"        id=\"path3142\" oryx:resize=\"vertical horizontal\"/>   </g> </svg> ",
 			"icon":"new_ref_data_object.png",
 			"roles": [
 				"assoc_start_to_set",
@@ -9294,7 +9304,7 @@
 			"title":"Participant Set",
 			"description":"A participant set data object.",
 			"groups":["Artifacts"],
-			"view":"artifact/node.data.object.set.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns=\"http://www.w3.org/2000/svg\"    version=\"1.0\"    id=\"svg2160\">   <oryx:magnets>     <oryx:magnet        oryx:anchors=\"left\"        oryx:cy=\"36\"        oryx:cx=\"2\" />    <oryx:magnet        oryx:anchors=\"left\"        oryx:cy=\"8\"        oryx:cx=\"12\" />     <oryx:magnet        oryx:anchors=\"bottom\"        oryx:cy=\"48\"        oryx:cx=\"30\" />     <oryx:magnet        oryx:anchors=\"right\"        oryx:cy=\"20\"        oryx:cx=\"62\" />     <oryx:magnet        oryx:anchors=\"top\"        oryx:cy=\"0\"        oryx:cx=\"40\" />     <oryx:magnet        oryx:default=\"yes\"        oryx:cy=\"24\"        oryx:cx=\"30\" />   </oryx:magnets>   <g      id=\"g2164\">     <path        d=\"M 46,26 L 2,26 L 2,48 L 46,48 L 46,26 L 62,10 L 62,32 L 46,48 M 62,10 L 60,10 L 60,12 L 62,10 M 2,26 L 4,26 L 4,24 L 2,26\"        style=\"fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1\"        id=\"frame\" oryx:resize=\"vertical horizontal\" />  <path        d=\"M 4,26 L 4,16 L 44,16 L 44,26 L 4,26 M 8,16 L 8,12 L 48,12 L 48,24 L 46,26 L 44,26 L 44,16 L 8,16 M 12,12 L 12,8 L 52,8 L 52,20 L 48,24 L 48,12 L 12,12 M 16,8 L 16,4 L 56,4, L 56,16 L 52,20 L 52,8 L 16,8 M 20,4 L 20,0 L 60,0 L 60,12 L 56,16 L 56,4 L 20,4\"        style=\"fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1\"        id=\"refs\" oryx:resize=\"vertical horizontal\" />     <path      d=\"M 8,23 L 40,23\"      style=\"fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1\"         id=\"line\" oryx:resize=\"vertical horizontal\" />     <text font-size=\"14\" id=\"text\" x=\"30\" y=\"48\" oryx:align=\"center top\" stroke=\"black\" oryx:resize=\"vertical horizontal\"></text>   </g> </svg> ",
 			"icon":"new_set_data_object.png",
 			"roles": [	
 				"assoc_start_to_set",
@@ -9451,7 +9461,7 @@
 			"title":"Start Event",
 			"groups":["Startevents"],
 			"description":"An event without incoming edges.",
-			"view":"startevent/node.event.start.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <circle id=\"frame\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>   </g> </svg> ",
 			"icon":"new_startevent.png",		
 			"roles": [
 				"noGateway",
@@ -9587,7 +9597,7 @@
 			"title":"Message Start Event",
 			"groups":["Startevents"],
 			"description":"A message event without incoming edges.",
-			"view":"startevent/node.event.message.start.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <circle id=\"frame\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>     <polyline oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" points=\"8,11 8,21 24,21 24,11 8,11 16,17 24,11\" />          <text font-size=\"14\" id=\"eventtext\" x=\"15\" y=\"30\" oryx:align=\"top center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_messageevent.png",
 			"roles": [
 				"sequence_start",
@@ -9851,7 +9861,7 @@
 			"title":"Timer Start Event",
 			"groups":["Startevents"],
 			"description":"A timer event without incoming edges.",
-			"view":"startevent/node.event.timer.start.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <circle id=\"frame\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>          <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"10\" stroke=\"black\" fill=\"none\" stroke-width=\"1\"/>     <path oryx:resize=\"vertical horizontal\" d=\" M 16 6 L 16 9       M 21 7 L 19.5 10       M 25 11 L 22 12.5       M 26 16 L 23 16       M 25 21 L 22 19.5       M 21 25 L 19.5 22       M 16 26 L 16 23       M 11 25 L 12.5 22       M 7 21 L 10 19.5       M 6 16 L 9 16       M 7 11 L 10 12.5       M 11 7 L 12.5 10       M 18 9 L 16 16 L 20 16\" fill=\"none\" stroke=\"black\" />   </g> </svg> ",
 			"icon":"new_timerevent.png",
 			"roles": [
 				"sequence_start",
@@ -10047,7 +10057,7 @@
 			"title":"Message Event",
 			"groups":["Intermediate Events"],
 			"description":"An intermediate message event with incoming and outgoing edges.",
-			"view":"intermediateevent/node.event.message.intermediate.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <oryx:docker oryx:cx=\"16\" oryx:cy=\"16\" />   <g pointer-events=\"fill\">     <circle id=\"frame\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>     <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"12\" stroke=\"black\" fill=\"none\" stroke-width=\"1\"/>     <polyline oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"none\" stroke-width=\"1\" points=\"8,11 8,21 24,21 24,11 8,11 16,17 24,11\" />          <text font-size=\"14\" id=\"eventtext\" x=\"15\" y=\"30\" oryx:align=\"top center\" stroke=\"black\"></text>   </g> </svg> ",
 			"icon":"new_messageevent.png",
 			"roles":[
 				"sequence_start",
@@ -10174,7 +10184,8 @@
 					"title":"SuppressJoinFailure",
 					"value":"false",
 					"description":"",
-					"readonly":false,
+					"readonly":false,
+
 					"optional":true
 				},
 				{
@@ -10320,7 +10331,7 @@
 			"title":"Timer Event",
 			"groups":["Intermediate Events"],
 			"description":"An intermediate timer event with incoming and outgoing edges.",
-			"view":"intermediateevent/node.event.timer.intermediate.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <circle oryx:resize=\"vertical horizontal\" id=\"frame\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\" />     <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"12\" stroke=\"black\" fill=\"none\" stroke-width=\"1\"/>          <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"10\" stroke=\"black\" fill=\"none\" stroke-width=\"1\"/>     <path oryx:resize=\"vertical horizontal\" d=\" M 16 6 L 16 9       M 21 7 L 19.5 10       M 25 11 L 22 12.5       M 26 16 L 23 16       M 25 21 L 22 19.5       M 21 25 L 19.5 22       M 16 26 L 16 23       M 11 25 L 12.5 22       M 7 21 L 10 19.5       M 6 16 L 9 16       M 7 11 L 10 12.5       M 11 7 L 12.5 10       M 18 9 L 16 16 L 20 16\" fill=\"none\" stroke=\"black\"/>   </g> </svg> ",
 			"icon":"new_timerevent.png",
 			"roles":[
 				"sequence_start",
@@ -10509,7 +10520,7 @@
 			"title":"Error Event",
 			"groups":["Intermediate Events"],
 			"description":"An intermediate error event with incoming and outgoing edges.",
-			"view":"intermediateevent/node.event.error.intermediate.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <oryx:docker oryx:cx=\"16\" oryx:cy=\"16\" />   <g pointer-events=\"fill\">     <circle id=\"frame\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>     <circle oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"12\" stroke=\"black\" fill=\"none\" stroke-width=\"1\"/>          <polygon oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"21,8 20,18.5 12,14.5 9,22 10,11.5 18,15.5\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />   </g> </svg> ",
 			"icon":"new_errorevent.png",
 			"roles":[
 				"sequence_start",
@@ -10662,7 +10673,7 @@
 			"title":"Compensation Event",
 			"groups":["Intermediate Events"],
 			"description":"An intermediate compensation event with incoming and outgoing edges.",
-			"view":"intermediateevent/node.event.compensation.intermediate.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <oryx:docker oryx:cx=\"16\" oryx:cy=\"16\" />   <g pointer-events=\"fill\">     <circle id=\"frame\" oryx:resize=\"vertical horizontal\" cx=\"16\" cy=\"16\" r=\"15\" stroke=\"black\" fill=\"white\" stroke-width=\"1\"/>     <circle cx=\"16\" oryx:resize=\"vertical horizontal\" cy=\"16\" r=\"12\" stroke=\"black\" fill=\"none\" stroke-width=\"1\"/>          <polygon oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"15,9 15,23 8,16\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />     <polygon oryx:resize=\"vertical horizontal\" stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"22,9 22,23 15,16\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />   </g> </svg> ",
 			"icon":"new_compensationevent.png",
 			"roles":[
 				"sequence_start",
@@ -10713,7 +10724,8 @@
 				{
 					"id":"assignments",
 					"type":"Complex",
-					"title":"Assignments",
+					"title":"Assignments",
+
 					"value":"",
 					"description":"",
 					"readonly":false,
@@ -10819,7 +10831,7 @@
 			"title":"Termination Event",
 			"groups":["Intermediate Events"],
 			"description":"An intermediate termination event with outgoing edges.",
-			"view":"intermediateevent/node.event.termination.intermediate.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns=\"http://www.w3.org/2000/svg\"    version=\"1.0\"    width=\"40\"    height=\"40\"    id=\"svg2355\">   <oryx:magnets>     <oryx:magnet        oryx:default=\"yes\"        oryx:cy=\"16\"        oryx:cx=\"16\" />   </oryx:magnets>   <oryx:docker      oryx:cy=\"16\"      oryx:cx=\"16\" />   <g      id=\"g2216\">     <circle oryx:resize=\"vertical horizontal\"        cx=\"16\"        cy=\"16\"        r=\"15\"        style=\"fill:#ffffff;stroke:#000000;stroke-width:1\"        id=\"frame\" />     <circle oryx:resize=\"vertical horizontal\"        cx=\"16\"        cy=\"16\"        r=\"12\"        style=\"fill:#000000;stroke:#000000;stroke-width:1\"        id=\"circle2362\" />     <g               id=\"g2257\"/>     <path oryx:resize=\"vertical horizontal\"        d=\"M 15.755955,13.711035 C 15.509274,13.744365 15.288199,13.906437 15.2009,14.154425 C 15.113601,14.402412 15.174376,14.695532 15.339664,14.893408 L 16.079736,15.97725 L 13.489482,15.97725 C 13.45868,15.975054 13.427775,15.975054 13.396973,15.97725 C 13.013793,16.004459 12.723862,16.35737 12.749409,16.765499 C 12.774957,17.173627 13.106302,17.482425 13.489482,17.455216 L 16.2185,17.455216 L 15.339664,18.736121 C 15.150013,18.933525 15.108184,19.210497 15.2009,19.475104 C 15.293646,19.739711 15.491245,19.950979 15.755955,19.967759 C 16.020649,19.984541 16.281984,19.824661 16.403518,19.573635 L 18.022427,17.208889 L 18.346209,16.814764 L 18.022427,16.42064 C 18.017262,16.407638 18.028259,16.383983 18.022427,16.371374 L 17.883664,16.174312 L 16.403518,14.006628 C 16.257635,13.785428 16.006943,13.670993 15.755955,13.711035 z M 19.533508,9.2676405 L 25.76492,9.2676405 L 25.76492,21.106656 L 19.533508,21.106656 L 19.533508,9.2676405 z \"        style=\"fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.93541437px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1\"        id=\"path2259\"/>     <path oryx:resize=\"vertical horizontal\"        d=\"M 12.357852,9.9300345 C 12.357852,10.713648 11.761442,11.348897 11.025721,11.348897 C 10.289985,11.348897 9.6935749,10.713648 9.6935749,9.9300345 C 9.6935749,9.1464365 10.289985,8.5111865 11.025721,8.5111865 C 11.761442,8.5111865 12.357852,9.1464365 12.357852,9.9300345 L 12.357852,9.9300345 z \"        style=\"fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:1.00034392;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:32.20000076;stroke-opacity:1\"        id=\"path2261\"/>     <path oryx:resize=\"vertical horizontal\"        d=\"M 5.8527749,12.976442 L 7.1535719,11.342434 L 9.7551489,11.342434 L 10.764253,14.839484 L 10.764253,14.839484 M 10.697099,14.839484 L 13.273647,14.839484 M 7.8039619,14.839484 L 9.6770119,16.834461 L 10.764253,17.992479 M 10.764253,17.992479 L 10.764253,21.145474 M 7.8039619,14.839484 C 7.8039619,17.992479 7.8039619,17.992479 7.8039619,17.992479 C 4.8436709,17.992479 4.8436709,17.992479 4.8436709,17.992479 M 9.9422399,11.564693 C 7.8511049,14.851155 7.8511049,14.851155 7.8511049,14.851155\"        style=\"fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.37633336;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1\"        id=\"path2263\"/>   </g> </svg> ",
 			"icon":"new_termination.png",
 			"roles":[
 				"sequence_start",
@@ -10966,7 +10978,7 @@
 			"title":"End event",
 			"groups":["Endevents"],
 			"description":"An event without outgoing edges.",
-			"view":"endevent/node.event.end.svg",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    width=\"40\"    height=\"40\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>    <oryx:magnet oryx:cx=\"16\" oryx:cy=\"16\" oryx:default=\"yes\" />   </oryx:magnets>   <g pointer-events=\"fill\">     <circle oryx:resize=\"vertical horizontal\" id=\"frame\" cx=\"16\" cy=\"16\" r=\"14\" stroke=\"black\" fill=\"white\" stroke-width=\"3\"/>   </g> </svg> ",
 			"icon":"new_event_end.png",
 			"roles":[
 				"sequence_end",
@@ -11104,7 +11116,7 @@
 			"title":"Sequence Flow",
 			"description":"",
 			"groups":["Connecting Objects"],
-			"view":"connection/connection.sequenceflow.normal.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>     <marker id=\"end\" refX=\"15\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"15\" markerHeight=\"10\" orient=\"auto\">      <path d=\"M 0 0 L 15 5 L 0 10 L 0 0\" fill=\"black\" stroke=\"black\" />     </marker>  </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" marker-end=\"url(#end)\" />  </g> </svg> ",
 			"icon":"new_sequenceflow.png",
 			"roles": [
 				"flow"
@@ -11174,7 +11186,7 @@
 			"title":"Conditional flow",
 			"description":"",
 			"groups":["Connecting Objects"],
-			"view":"connection/connection.sequenceflow.conditional.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>     <marker id=\"end\" refX=\"15\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"15\" markerHeight=\"10\" orient=\"auto\">      <path d=\"M 0 0 L 15 5 L 0 10 L 0 0\" fill=\"black\" stroke=\"black\" stroke-width=\"1\" />     </marker>  </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" marker-end=\"url(#end)\" />  </g> </svg> ",
 			"icon":"new_conditionalflow.png",
 			"roles": [
 				"flow"
@@ -11264,7 +11276,7 @@
 			"title":"Default flow",
 			"description":"",
 			"groups":["Connecting Objects"],
-			"view":"connection/connection.sequenceflow.default.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>     <marker id=\"start\" refX=\"0\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"17\" markerHeight=\"11\" orient=\"auto\">      <path d=\"M 5 0 L 11 10\" fill=\"white\" stroke=\"black\" stroke-width=\"1\" />     </marker>     <marker id=\"end\" refX=\"15\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"15\" markerHeight=\"10\" orient=\"auto\">      <path d=\"M 0 0 L 15 5 L 0 10 L 0 0\" fill=\"black\" stroke=\"black\" />     </marker>  </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" marker-start=\"url(#start)\" marker-end=\"url(#end)\" />  </g> </svg> ",
 			"icon":"new_defaultflow.png",
 			"roles": [
 				"flow"
@@ -11333,7 +11345,7 @@
 			"title":"Association Undirected",
 			"description":"",
 			"groups":["Connecting Objects"],
-			"view":"connection/connection.association.undirected.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"2\" stroke-dasharray=\"3, 4\" />  </g> </svg> ",
 			"icon":"new_association_undirected.png",
 			"roles": [
 			],
@@ -11382,7 +11394,7 @@
 			"title":"Association Directed",
 			"description":"A directed association.",
 			"groups":["Connecting Objects"],
-			"view":"connection/connection.association.directed.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>     <marker id=\"end\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\">      <path d=\"M 0 0 L 10 5 L 0 10\" fill=\"none\" stroke=\"black\" />     </marker>  </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"2\" stroke-dasharray=\"3, 4\" marker-end=\"url(#end)\" />  </g> </svg> ",
 			"icon":"new_association_directed.png",
 			"roles": [
 			],
@@ -11431,7 +11443,7 @@
 			"title":"Message flow",
 			"description":"",
 			"groups":["Connecting Objects"],
-			"view":"connection/connection.messageflow.svg",
+			"view":"<svg  xmlns=\"http://www.w3.org/2000/svg\"  xmlns:oryx=\"http://www.b3mn.org/oryx\"  version=\"1.0\"  oryx:edge=\"edge\" >  <defs>   <marker id=\"start\" oryx:optional=\"yes\" oryx:enabled=\"yes\" refX=\"5\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\">      <!-- <path d=\"M 10 10 L 0 5 L 10 0\" fill=\"none\" stroke=\"black\" /> -->      <circle cx=\"5\" cy=\"5\" r=\"5\" fill=\"white\" stroke=\"black\" />     </marker>      <marker id=\"end\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\">      <path d=\"M 0 0 L 10 5 L 0 10 L 0 0\" fill=\"white\" stroke=\"black\" />     </marker>  </defs>  <g id=\"edge\">      <path d=\"M10 50 L210 50\" stroke=\"black\" fill=\"none\" stroke-width=\"2\" stroke-dasharray=\"3, 4\" marker-start=\"url(#start)\" marker-end=\"url(#end)\" />  </g> </svg> ",
 			"icon":"new_messageflow.png",
 			"roles": [
 			],
@@ -12012,7 +12024,8 @@
 						// association from compensation event to compensation handler only if compensation event attached
 						// and only if no other compensation handler connected to
 						if (args.targetStencil && args.sourceShape &&
-							(args.targetStencil.id() == args.sourceStencil.namespace() + "CompensationHandler")) {
+							(args.targetStencil.id() == args.sourceStencil.namespace() + "CompensationHandler")) {
+
 							
 							if (!isAttached(args.sourceShape)) {
 								return false;
