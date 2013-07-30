@@ -1,0 +1,141 @@
+{
+        "title":"ETL",
+        "namespace":"http://b3mn.org/stencilset/etl#",
+        "description":"Simple stencil set for ETL style diagrams.",
+	"propertyPackages": [],
+        "stencils": [
+		{
+			"type":				"node",
+			"id":				"ETLDiagram",
+			"title":			"ETL-Diagram",
+			"groups":			["Diagram"],
+			"description":		"An ETL Diagram.",
+			"view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"800\"    height=\"600\"    version=\"1.0\">   <defs></defs>   <g pointer-events=\"fill\" >     <polygon stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"0,0 0,590 9,599 799,599 799,9 790,0\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />     <rect id=\"diagramcanvas\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"790\" height=\"590\" stroke=\"black\" stroke-width=\"2\" fill=\"white\" />      <text font-size=\"22\" id=\"diagramtext\" x=\"400\" y=\"25\" oryx:align=\"top center\" stroke=\"black\"></text>   </g> </svg> ",
+			"icon":				"node.diagram.png",
+			"mayBeRoot":		true,
+			"hide":				true,
+			"roles":			["canContainArtifacts"]
+		},
+		{
+			"type": "node",
+			"id": "node-datasource",
+			"title": "Data Source",
+			"groups": ["Input"],
+			"description": "A data source that can be used to back reports etc.",
+			"view": "data.store.svg",
+			"icon": "data.store.png",
+			"roles": ["input"],
+			"properties": [
+				{
+					"id": "dataSourceTemplate",
+					"type": "Choice",
+					"title": "Data Source Template",
+                                        "value": "mysql",
+                                        "description": "Template for this data source.",
+                                        "readonly":false,
+                                        "optional":false,
+					"items": [
+						{
+							"id": "dst1",
+							"title": "MySQL Template",
+							"value": "mysql"
+						},
+						{
+							"id": "dst2",
+							"title": "PostgreSQL Template",
+							"value": "postgresql"
+						},
+						{
+							"id": "dst3",
+							"title": "Oracle Template",
+							"value": "oracle"
+						},
+						{
+							"id": "dst4",
+							"title": "MSSQL Template",
+							"value": "mssql"
+						},
+						{
+							"id": "dst5",
+							"title": "Access Template",
+							"value": "access"
+						},
+						{
+							"id": "dst6",
+							"title": "MongoDB Template",
+							"value": "mongodb"
+						}
+					]
+				}
+			]
+		},
+		{
+		        "type": "node",
+		        "id": "node-report",
+		        "title": "Report",   
+		        "groups": ["Output"],
+		        "description": "A report that relates data.",
+		        "view": "data.object.svg",
+		        "icon": "data.object.png",
+		        "roles": ["output"],
+			"properties": [
+                                {
+                                        "id":"guardCondition",
+                                        "type":"String",
+                                        "title":"Guard Condition",
+                                        "value":"",
+                                        "description":"",
+                                        "readonly":false,
+                                        "optional":true,
+                                        "length":"",
+                                        "refToView":"guardConditionText",
+                                        "wrapLines":false
+                                },
+                                {
+                                        "id":"showGuardCondition",
+                                        "type":"Boolean",
+                                        "title":"Show Condition",
+                                        "value": false,
+                                        "description":"",
+                                        "optional":false,
+                                        "refToView": [
+                                                "guardConditionText",
+                                                "guardConditionBorder"
+                                        ]
+                                },
+                        ]
+		},
+		{
+                        "type": "edge",
+                        "id": "Precedes",
+                        "title": "Connector",     
+                        "groups": ["Relationship"],
+                        "description": "A precedes edges",
+                        "view": "edge.precedes.svg",
+                        "icon": "association.unidirectional.png",
+                        "roles": ["controlflow"]
+                }
+	],
+	"rules": {
+		"connectionRules": [
+                        {
+                                "role": "controlflow",
+                                "connects": [
+                                	{
+                                                "from": "input",
+                                                "to":   "output"
+                                        }
+                                ],
+                        }
+                ],
+		"containmentRules": [
+			{
+				"role": "canContainArtifacts",
+				"contains": [
+					"output",
+					"input"
+				]
+			}
+		]
+	}
+}

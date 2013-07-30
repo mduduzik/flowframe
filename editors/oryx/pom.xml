@@ -8,6 +8,15 @@
   </parent>
   <artifactId>org.flowframe.editors.oryx</artifactId>
   <packaging>pom</packaging>
+    <distributionManagement>
+        <repository>
+            <id>xmappr-repo</id>
+            <uniqueVersion>false</uniqueVersion>
+            <name>Xmappr repository</name>
+            <url>svn:https://xmappr.googlecode.com/svn/repo</url>
+        </repository>
+
+    </distributionManagement>
   <modules>
   	<!-- <module>webclient</module> -->
   	<module>webserver</module>

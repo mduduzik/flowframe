@@ -25,7 +25,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-//@Ignore
+@Ignore
 public class NewModelHandlerTest {
 	
 	private NewModelHandler handler;
