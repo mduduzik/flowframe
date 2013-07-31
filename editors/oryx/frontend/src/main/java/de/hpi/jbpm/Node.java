@@ -2,8 +2,8 @@ package de.hpi.jbpm;
 
 import java.util.List;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Node {
 	protected String uuid;

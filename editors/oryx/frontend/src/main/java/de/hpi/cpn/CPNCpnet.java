@@ -2,8 +2,8 @@ package de.hpi.cpn;
 
 import java.util.*;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.thoughtworks.xstream.XStream;
 

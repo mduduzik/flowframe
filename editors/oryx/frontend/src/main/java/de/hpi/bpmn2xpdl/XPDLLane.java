@@ -2,8 +2,8 @@ package de.hpi.bpmn2xpdl;
 
 import java.util.Arrays;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmappr.Attribute;
 import org.xmappr.RootElement;
 

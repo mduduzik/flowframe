@@ -2,8 +2,8 @@ package de.hpi.cpn.mapperhelper;
 
 import java.util.Hashtable;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CPNNodePositions
 {

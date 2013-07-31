@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.hpi.jbpm.InvalidModelException;
 import de.hpi.jbpm.JsonToJpdl;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 
 /**
  * Copyright (c) 2010

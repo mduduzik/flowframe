@@ -15,7 +15,7 @@ import javax.xml.bind.ValidationEvent;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import org.codehaus.jettison.json.JSONException;
+import org.json.JSONException;
 import org.oryxeditor.server.diagram.Diagram;
 import org.oryxeditor.server.diagram.DiagramBuilder;
 import org.oryxeditor.server.diagram.JSONBuilder;

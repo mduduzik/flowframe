@@ -2,7 +2,7 @@ package de.hpi.diagram.verification;
 
 import java.util.Map;
 
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 
 /**
  * Copyright (c) 2008 Gero Decker

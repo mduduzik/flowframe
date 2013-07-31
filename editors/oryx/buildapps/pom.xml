@@ -12,9 +12,9 @@
 	<dependencies>
 		<!-- JSON -->
 		<dependency>
-			<groupId>org.codehaus.jettison</groupId>
-			<artifactId>com.springsource.org.codehaus.jettison</artifactId>
-			<version>1.0.1</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yahoo.platform.yui</groupId>

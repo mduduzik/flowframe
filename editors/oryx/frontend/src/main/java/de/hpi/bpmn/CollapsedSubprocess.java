@@ -3,7 +3,7 @@ package de.hpi.bpmn;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 
 import de.hpi.bpmn.serialization.BPMNSerialization;
 

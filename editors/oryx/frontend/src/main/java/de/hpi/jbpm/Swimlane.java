@@ -2,7 +2,7 @@ package de.hpi.jbpm;
 
 import java.io.StringWriter;
 
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 
 public class Swimlane {
 	private String name;

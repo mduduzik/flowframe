@@ -14,7 +14,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 
 import de.hpi.bpel2bpmn.BPEL2BPMNTransformer;

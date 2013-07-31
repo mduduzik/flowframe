@@ -3,7 +3,7 @@ package de.hpi.cpn.mapperhelper;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 
 import com.thoughtworks.xstream.XStream;
 

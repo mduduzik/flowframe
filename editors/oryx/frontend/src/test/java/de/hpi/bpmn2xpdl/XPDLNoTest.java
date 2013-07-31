@@ -5,7 +5,7 @@ import java.io.StringWriter;
 
 import junit.framework.TestCase;
 
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 import org.xmappr.Xmappr;
 
 public class XPDLNoTest extends TestCase {

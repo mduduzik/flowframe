@@ -3,7 +3,7 @@ package de.hpi.diagram.reachability;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.codehaus.jettison.json.JSONArray;
+import org.json.JSONArray;
 
 import de.hpi.petrinet.Transition;
 

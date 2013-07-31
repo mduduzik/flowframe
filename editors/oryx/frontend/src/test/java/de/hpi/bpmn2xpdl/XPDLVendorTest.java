@@ -4,7 +4,7 @@ import java.io.StringWriter;
 
 import junit.framework.TestCase;
 
-import org.codehaus.jettison.json.JSONException;
+import org.json.JSONException;
 import org.xmappr.Xmappr;
 
 public class XPDLVendorTest extends TestCase {
