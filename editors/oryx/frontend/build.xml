@@ -26,6 +26,7 @@
         <fileset file="${editor-src-root}/jsdoc-toolkit/jsrun.jar" />
         <fileset file="${editor-src-root}/jsdoc-toolkit/jsdoctoolkit-ant-task-1.0.jar" />
     </path>
+
     <taskdef name="jsdoctoolkit" classname="uk.co.darrenhurley.ant.tasks.JsDocToolkit"  classpathref="jsdoc.classpath"/>
     <target name="jsdoc-editor">
         <mkdir dir="doc/editor/client" />
@@ -162,7 +163,13 @@
     	<java dir="${main-src-webapps-dir}" classname="org.oryxeditor.buildapps.ProfileCreator" fork="true"
          failonerror="true">
             <classpath>
-                <fileset dir="${editor-root}/buildapps-dependencies"/>
+                <!-- <fileset dir="${editor-root}/buildapps-dependencies"/> -->
+                <fileset file="${editor-root}/buildapps-dependencies/json-20090211.jar" />
+                <fileset file="${editor-root}/buildapps-dependencies/spring-core-2.0.6.jar" />
+                <fileset file="${editor-root}/buildapps-dependencies/yuicompressor-2.4.7.jar" />   
+            	<fileset file="${editor-root}/buildapps-dependencies/commons-logging-1.1.jar" />
+            	<fileset file="${editor-root}/buildapps-dependencies/javascript-1.0.jar" />
+            	<fileset file="${editor-root}/buildapps-dependencies/org.flowframe.editors.oryx.buildapps-0.0.1.jar" />
             </classpath>
             <arg file="${editor-src-client}/scripts/Plugins/"/>
 			<arg file="${editor-build-root}/tempProfiles/"/>
@@ -259,9 +266,12 @@
             Copied stencilsets into build destination
         </echo>
  	   <path id="sscompressor.classpath">
+ 	   	    <fileset dir="${editor-root}/buildapps-dependencies"/>
+ 	   		<!--
  	        <fileset file="${editor-root}/buildapps-dependencies/json-20090211.jar" />
  	        <fileset file="${editor-root}/buildapps-dependencies/org.flowframe.editors.oryx.buildapps-0.0.1.jar" />
  	        <fileset file="${editor-root}/buildapps-dependencies/yuicompressor-2.4.2.jar" />
+ 	        -->	   	
  	    </path>
          <java dir="${editor-build-root}" classname="org.oryxeditor.buildapps.sscompress.SSCompressor" fork="true"
           failonerror="true" classpathref="sscompressor.classpath">

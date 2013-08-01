@@ -98,5 +98,6 @@ Excluded-Imports: org.apache.commons.compress.utils,
  org.apache.commons.httpclient.params,
  org.mozilla.javascript,
  org.supercsv.io,
- org.supercsv.prefs
+ org.supercsv.prefs,
+ org.json
  

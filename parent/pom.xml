@@ -2680,6 +2680,7 @@
             <name>intalio-maven2/Xmappr repository</name>
             <url>http://maven.wso2.org/nexus/content/repositories/intalio-maven2</url>
         </repository>	
+        <!-- Oryx -->
         <repository>
             <id>yongtai</id>
             <name>yongtai/bpmnq</name>
@@ -2689,7 +2690,12 @@
             <id>cloudbees</id>
             <name>cloudbees</name>
             <url>http://repository-telnext.forge.cloudbees.com/release</url>
-        </repository>	                
+        </repository>	     	        
+        <repository>
+            <id>ncimvn</id>
+            <name>ncimvn</name>
+            <url>https://ncimvn.nci.nih.gov/nexus/content/repositories/public</url>
+        </repository>        
 	</repositories>
 
 	<pluginRepositories>

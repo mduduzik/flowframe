@@ -140,6 +140,7 @@ public class ProfileCreator {
 		 * creqate a new file for the compressed version of the profile file
 		 */
 		File compressOut=new File(outputPath + File.separator + profileName +".js");
+		System.out.println("Compressing "+profileFile+" to "+outputPath + File.separator + profileName +".js");
 		InputStreamReader reader = new InputStreamReader(new FileInputStream(profileFile),"UTF8");
 		OutputStreamWriter writer2 = new OutputStreamWriter(new FileOutputStream(compressOut),"UTF8");
 		/*
