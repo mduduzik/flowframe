@@ -11,8 +11,8 @@ Export-Package: org.apache.avalon.framework;version="4.3.1",org.apache
  n.framework.configuration",org.apache.avalon.framework.service;versio
  n="4.3.1";uses:="org.apache.avalon.framework",org.apache.avalon.frame
  work.thread;version="4.3.1"
-Build-Jdk: 1.6.0_45
-Built-By: Mduduzi
+Build-Jdk: 1.7.0_25
+Built-By: Sandile
 Bundle-Version: 4.3.1
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: avalon-framework-api

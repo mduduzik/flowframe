@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ba06307f-714d-40b4-bb43-8b15d10cec5b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/editors/oryx/.idea/artifacts/org_flowframe_editors_oryx_backend_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/editors/oryx/.idea/artifacts/org_flowframe_editors_oryx_backend_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/editors/oryx/.idea/artifacts/org_flowframe_editors_oryx_frontend_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/editors/oryx/.idea/artifacts/org_flowframe_editors_oryx_frontend_war_exploded.xml" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_classic_0_9_24.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_core_0_9_24.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_api_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_org_apache_commons_logging_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__org_springframework_org_springframework_instrument_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\backend\org.flowframe.editors.oryx.backend.iml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__asm_asm_3_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__avalon_framework_avalon_framework_4_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_classic_0_9_24.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_core_0_9_24.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_logback_classic_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_logback_core_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_bpmnq_bpmnq_1_0_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_conx_bi_com_conx_bi_remoting_client_soap_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_sun_jdmk_jmxtools_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_sun_jmx_jmxri_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_sun_xml_bind_jaxb_impl_2_2_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_thoughtworks_xstream_com_springsource_com_thoughtworks_xstream_1_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_yahoo_platform_yui_yuicompressor_2_4_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_codec_commons_codec_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_collections_commons_collections_3_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_fileupload_commons_fileupload_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_httpclient_commons_httpclient_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_logging_commons_logging_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ggtools_grand_1_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_activation_activation_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_jms_jms_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_mail_mail_1_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_persistence_com_springsource_javax_persistence_2_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_servlet_javax_servlet_3_0_0_v201103241009.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_servlet_servlet_api_2_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_transaction_com_springsource_javax_transaction_1_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_validation_com_springsource_javax_validation_1_0_0_GA.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_xml_stream_stax_api_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__junit_junit_4_10.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__log4j_log4j_1_2_15.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__logkit_logkit_1_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sf_supercsv_supercsv_1_5_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sourceforge_cglib_com_springsource_net_sf_cglib_2_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sourceforge_ehcache_com_springsource_net_sf_ehcache_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sourceforge_nekohtml_com_springsource_org_cyberneko_html_1_9_13.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_antlr_com_springsource_antlr_2_7_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_aopalliance_com_springsource_org_aopalliance_1_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_anim_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_bridge_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_css_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_dom_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_dom_svg_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_ext_awt_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_gvt_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_parser_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_script_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_util_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_xml_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_bcel_com_springsource_org_apache_bcel_5_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_beanutils_1_8_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_codec_1_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_collections_3_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_configuration_1_8_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_digester_1_8_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_io_1_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_jxpath_1_3_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_lang_2_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_logging_1_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_api_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_bindings_soap_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_bindings_xml_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_core_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_databinding_jaxb_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_frontend_jaxws_sources_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_frontend_simple_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_ws_addr_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_ws_policy_2_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_geronimo_specs_geronimo_javamail_1_4_spec_1_7_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_ibatis_ibatis_sqlmap_3_0_beta_10.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_neethi_neethi_3_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_regexp_com_springsource_org_apache_regexp_1_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_velocity_com_springsource_org_apache_velocity_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_ws_xmlschema_xmlschema_core_2_0_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xalan_com_springsource_org_apache_xalan_2_7_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xalan_com_springsource_org_apache_xml_serializer_2_7_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xerces_com_springsource_org_apache_xerces_2_9_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xml_com_springsource_org_apache_xml_resolver_1_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xmlcommons_com_springsource_org_apache_xmlcommons_1_3_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_aspectj_com_springsource_org_aspectj_runtime_1_6_8_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_aspectj_com_springsource_org_aspectj_weaver_1_6_8_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_btm_com_springsource_org_codehaus_btm_1_3_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_groovy_com_springsource_org_codehaus_groovy_1_7_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_woodstox_stax2_api_3_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_woodstox_woodstox_core_asl_4_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_dbunit_dbunit_2_4_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_dom4j_com_springsource_org_dom4j_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_editors_oryx_buildapps_0_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_asm_3_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_avalon_framework_api_4_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_batik_batik_svggen_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_batik_batik_transcoder_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_batik_xml_apis_ext_1_3_04.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_com_mysql_jdbc_5_1_20.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_hibernate_annotations_commons_3_2_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_hibernate_core_3_6_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_hibernate_entitymanager_3_6_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_javassist_3_12_0_GA.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_json_path_0_8_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_xmlgraphics_fop_0_93.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_hamcrest_hamcrest_core_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_hibernate_com_springsource_org_hibernate_validator_4_2_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jbpt_jbpt_0_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jbpt_oryxAtlas_0_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jdom_com_springsource_org_jdom_1_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_joda_com_springsource_org_joda_time_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_json_json_20090211.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jsoup_com_springsource_org_jsoup_1_5_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_junit_com_springsource_org_junit_4_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_mockito_mockito_all_1_9_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_mozilla_javascript_javascript_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_openid4java_com_springsource_org_openid4java_0_9_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_api_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_org_apache_commons_logging_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_slf4j_slf4j_api_1_6_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_aop_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_asm_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_aspects_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_beans_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_context_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_core_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_expression_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_instrument_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_test_3_1_3_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_core_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_extender_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_extensions_annotation_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_io_1_2_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_aop_3_0_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_asm_3_0_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_beans_3_0_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_context_3_0_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_core_2_0_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_expression_3_0_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_test_3_0_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_xmappr_xmappr_0_9_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_xmlpull_com_springsource_org_xmlpull_1_1_4_c.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__postgresql_postgresql_8_3_603_jdbc3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__rhino_js_1_6R7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__wsdl4j_wsdl4j_1_6_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__xml_resolver_xml_resolver_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\org.flowframe.editors.oryx.frontend.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/.name" afterPath="$PROJECT_DIR$/editors/oryx/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/compiler.xml" afterPath="$PROJECT_DIR$/editors/oryx/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/encodings.xml" afterPath="$PROJECT_DIR$/editors/oryx/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/misc.xml" afterPath="$PROJECT_DIR$/editors/oryx/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/frontend/.idea/misc.xml" afterPath="$PROJECT_DIR$/editors/oryx/frontend/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/modules.xml" afterPath="$PROJECT_DIR$/editors/oryx/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/org.flowframe.editors.oryx.iml" afterPath="$PROJECT_DIR$/editors/oryx/org.flowframe.editors.oryx.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war.xml" afterPath="$PROJECT_DIR$/editors/oryx/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war_exploded.xml" afterPath="$PROJECT_DIR$/editors/oryx/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/vcs.xml" afterPath="$PROJECT_DIR$/editors/oryx/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/frontend/.idea/vcs.xml" afterPath="$PROJECT_DIR$/editors/oryx/frontend/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/.idea/workspace.xml" afterPath="$PROJECT_DIR$/editors/oryx/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editors/oryx/frontend/.idea/workspace.xml" afterPath="$PROJECT_DIR$/editors/oryx/frontend/.idea/workspace.xml" />
+    </list>
+    <ignored path="org.flowframe.toplevel.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="ba06307f-714d-40b4-bb43-8b15d10cec5b" time="1375665185375" ignored="false" />
+    <file path="/build.xml" changelist="ba06307f-714d-40b4-bb43-8b15d10cec5b" time="1375664011460" ignored="false" />
+    <file path="/pom.xml" changelist="ba06307f-714d-40b4-bb43-8b15d10cec5b" time="1375663943325" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules />
+    <ui_properties />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="org.flowframe.toplevel" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="RPST.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jbpt-read-only/src/main/java/de/hpi/bpt/graph/algo/rpst/RPST.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="95" column="42" selection-start="3432" selection-end="3432" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2828#2843#0" expanded="false" />
+                <element signature="e#2905#2920#0" expanded="false" />
+                <element signature="e#3034#3064#0" expanded="false" />
+                <element signature="e#4185#4209#0" expanded="false" />
+                <element signature="e#5196#5235#0" expanded="false" />
+                <element signature="e#7887#7902#0" expanded="false" />
+                <element signature="e#8007#8022#0" expanded="false" />
+                <element signature="e#10088#10103#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jbpt-read-only/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="27" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/thirdparty/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="46" selection-start="492" selection-end="492" vertical-scroll-proportion="0.3526971">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="createModuleGroups" value="true" />
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="54" />
+    <option name="y" value="-8" />
+    <option name="width" value="1554" />
+    <option name="height" value="916" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thirdparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thirdparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbpt-read-only" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.thirdparty and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.thirdparty and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vaadin-addon-easyuploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.thirdparty and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thirdparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.thirdparty and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thirdparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jbpt-read-only" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.reporting and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reporting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.reporting and modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="true" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="true">C:\Users\Sandile\AppData\Roaming\Subversion</configuration>
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba06307f-714d-40b4-bb43-8b15d10cec5b" name="Default" comment="" />
+      <created>1375653088680</created>
+      <updated>1375653088680</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="54" y="-8" width="1554" height="916" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298153" sideWeight="0.43565685" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298153" sideWeight="0.56434315" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25402144" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/thirdparty/jbpt-read-only/src/main/java/de/hpi/bpt/graph/algo/rpst/RPST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="42" selection-start="3432" selection-end="3432" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2828#2843#0" expanded="false" />
+            <element signature="e#2905#2920#0" expanded="false" />
+            <element signature="e#3034#3064#0" expanded="false" />
+            <element signature="e#4185#4209#0" expanded="false" />
+            <element signature="e#5196#5235#0" expanded="false" />
+            <element signature="e#7887#7902#0" expanded="false" />
+            <element signature="e#8007#8022#0" expanded="false" />
+            <element signature="e#10088#10103#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jbpt-read-only/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="27" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="46" selection-start="492" selection-end="492" vertical-scroll-proportion="0.3526971">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

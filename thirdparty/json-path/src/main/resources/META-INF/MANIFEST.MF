@@ -87,8 +87,8 @@ Export-Package: com.jayway.jsonpath;version="0.8.1";uses:="com.jayway.
  amcrest.object;version="0.8.1";uses:="org.hamcrest",org.hamcrest.text
  ;version="0.8.1";uses:="org.hamcrest",org.hamcrest.xml;version="0.8.1
  ";uses:="javax.xml.namespace,org.hamcrest,org.w3c.dom"
-Build-Jdk: 1.6.0_45
-Built-By: Mduduzi
+Build-Jdk: 1.7.0_25
+Built-By: Sandile
 Bundle-Version: 0.8.1
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: com.jayway.jsonpath

@@ -330,12 +330,17 @@
 			<artifactId>supercsv</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.mozilla.javascript</groupId>
 			<artifactId>javascript</artifactId>
 			<version>1.0</version>
-		</dependency>
-		<dependency>
+		</dependency> -->
+        <dependency>
+            <groupId>rhino</groupId>
+            <artifactId>js</artifactId>
+            <version>1.6R7</version>
+        </dependency>
+        <dependency>
 			<groupId>com.yahoo.platform.yui</groupId>
 			<artifactId>yuicompressor</artifactId>
 			<version>2.4.2</version>
@@ -418,7 +423,7 @@
 							<stripVersion>false</stripVersion>
 							<includeScope>runtime</includeScope>
 							<excludeTransitive>true</excludeTransitive>
-							<includeArtifactIds>org.flowframe.editors.oryx.buildapps,json,spring-core,yuicompressor,javascript,commons-logging,commons-codec,grand</includeArtifactIds>
+							<includeArtifactIds>org.flowframe.editors.oryx.buildapps,json,spring-core,yuicompressor,js,commons-logging,commons-codec,grand</includeArtifactIds>
 						</configuration>
 					</execution>
 				</executions>

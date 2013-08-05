@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="org.flowframe.reporting.jasper.web.services:war">
+    <output-path>$PROJECT_DIR$/reporting/jasper/web.services/target</output-path>
+    <root id="archive" name="org.flowframe.reporting.jasper.web.services-0.0.1.war">
+      <element id="artifact" artifact-name="org.flowframe.reporting.jasper.web.services:war exploded" />
+    </root>
+  </artifact>
+</component>
