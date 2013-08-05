@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Export-Package: org.apache.batik.transcoder;version="1.7",org.apache.b
+ atik.transcoder.image;version="1.7",org.apache.batik.transcoder.image
+ .resources;version="1.7",org.apache.batik.transcoder.keys;version="1.
+ 7",org.apache.batik.transcoder.print;version="1.7",org.apache.batik.t
+ ranscoder.svg2svg;version="1.7",org.apache.batik.transcoder.wmf;versi
+ on="1.7",org.apache.batik.transcoder.wmf.tosvg;version="1.7"
+Build-Jdk: 1.7.0_25
+Built-By: Sandile
+Bundle-Version: 1.7
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: batik-transcoder
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: batik-transcoder
+Archiver-Version: Plexus Archiver
+

@@ -13,6 +13,7 @@
 	<modules>
 		<module>batik-transcoder</module>
 		<module>batik-svggen</module>
+        <module>xml-apis-ext</module>
 	</modules>	
    <build>
             <plugins>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="org.flowframe.uilegacy.vaadin.addons.common:GWT">
+    <output-path>$PROJECT_DIR$/uilegacy/vaadin/addons/common/src/main/resources/VAADIN/widgetsets</output-path>
+    <root id="root">
+      <element id="gwt-compiler-output" facet="org.flowframe.uilegacy.vaadin.addons.common/gwt/GWT" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Export-Package: org.apache.batik.svggen;version="1.7",org.apache.batik
+ .svggen.font;version="1.7",org.apache.batik.svggen.font.resources;ver
+ sion="1.7",org.apache.batik.svggen.font.table;version="1.7"
+Build-Jdk: 1.7.0_25
+Built-By: Sandile
+Bundle-Version: 1.7
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: batik-svggen
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: batik-svggen
+Archiver-Version: Plexus Archiver
+

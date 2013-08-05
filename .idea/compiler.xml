@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="jbpt" />
+        <module name="org.flowframe.bpm.jbpm.bpmserver" />
+        <module name="org.flowframe.bpm.jbpm.bpmserver.persistence" />
+        <module name="org.flowframe.bpm.jbpm.persistence.datasource" />
+        <module name="org.flowframe.bpm.jbpm.services" />
+        <module name="org.flowframe.bpm.jbpm.shared" />
+        <module name="org.flowframe.bpm.jbpm.taskserver" />
+        <module name="org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment" />
+        <module name="org.flowframe.bpm.jbpm.taskserver.jta.tm.fragment" />
+        <module name="org.flowframe.bpm.jbpm.taskserver.persistence" />
+        <module name="org.flowframe.bpm.jbpm.ui.pageflow.services" />
+        <module name="org.flowframe.bpm.jbpm.ui.pageflow.services.impl" />
+        <module name="org.flowframe.bpm.jbpm.ui.pageflow.vaadin" />
+        <module name="org.flowframe.documentlibrary.remote.services" />
+        <module name="org.flowframe.documentlibrary.remote.services.impl" />
+        <module name="org.flowframe.documentlibrary.remote.services.impl.config.fragment" />
+        <module name="org.flowframe.ds.dao.services" />
+        <module name="org.flowframe.ds.dao.services.impl" />
+        <module name="org.flowframe.ds.domain" />
+        <module name="org.flowframe.erp.app.contractmanagement.business.services" />
+        <module name="org.flowframe.erp.app.contractmanagement.business.services.impl" />
+        <module name="org.flowframe.erp.app.contractmanagement.dao.services" />
+        <module name="org.flowframe.erp.app.contractmanagement.dao.services.impl" />
+        <module name="org.flowframe.erp.app.contractmanagement.domain" />
+        <module name="org.flowframe.erp.app.financialmanagement.dao.services" />
+        <module name="org.flowframe.erp.app.financialmanagement.dao.services.impl" />
+        <module name="org.flowframe.erp.app.financialmanagement.domain" />
+        <module name="org.flowframe.erp.app.mdm.dao.services" />
+        <module name="org.flowframe.erp.app.mdm.dao.services.impl" />
+        <module name="org.flowframe.erp.app.mdm.domain" />
+        <module name="org.flowframe.erp.app.salesmanagement.domain" />
+        <module name="org.flowframe.erp.integration.adaptors.remote.services" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.datasource.mysql" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.domain" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.service.impl" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.service.impl.config.fragment" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.services" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl" />
+        <module name="org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client" />
+        <module name="org.flowframe.erp.remote.services" />
+        <module name="org.flowframe.erp.remote.services.impl" />
+        <module name="org.flowframe.erp.remote.services.impl.config.fragment" />
+        <module name="org.flowframe.kernel.common.mdm.dao.services" />
+        <module name="org.flowframe.kernel.common.mdm.dao.services.impl" />
+        <module name="org.flowframe.kernel.common.mdm.domain" />
+        <module name="org.flowframe.kernel.common.utils" />
+        <module name="org.flowframe.kernel.datasource.common" />
+        <module name="org.flowframe.kernel.datasource.hsqldb" />
+        <module name="org.flowframe.kernel.eventmanagement.domain" />
+        <module name="org.flowframe.kernel.eventmanagement.services" />
+        <module name="org.flowframe.kernel.eventmanagement.springdm.services.impl" />
+        <module name="org.flowframe.kernel.jpa.container.services" />
+        <module name="org.flowframe.kernel.jpa.container.services.impl" />
+        <module name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm" />
+        <module name="org.flowframe.kernel.json" />
+        <module name="org.flowframe.kernel.metamodel.dao.services" />
+        <module name="org.flowframe.kernel.metamodel.dao.services.impl" />
+        <module name="org.flowframe.kernel.services" />
+        <module name="org.flowframe.kernel.servlet" />
+        <module name="org.flowframe.portal.remote.services" />
+        <module name="org.flowframe.portal.remote.services.impl" />
+        <module name="org.flowframe.portal.remote.services.impl.config.fragment" />
+        <module name="org.flowframe.reporting.jasper.web.services" />
+        <module name="org.flowframe.reporting.remote.services" />
+        <module name="org.flowframe.scheduling.jobs.manager" />
+        <module name="org.flowframe.scheduling.remote.services" />
+        <module name="org.flowframe.scheduling.remote.services.impl" />
+        <module name="org.flowframe.tests.common" />
+        <module name="org.flowframe.thirdparty.asm" />
+        <module name="org.flowframe.thirdparty.bitronix" />
+        <module name="org.flowframe.thirdparty.com.google.protobuf" />
+        <module name="org.flowframe.thirdparty.com.mysql.jdbc" />
+        <module name="org.flowframe.thirdparty.commons-compress" />
+        <module name="org.flowframe.thirdparty.commons-exec" />
+        <module name="org.flowframe.thirdparty.drools-core" />
+        <module name="org.flowframe.thirdparty.drools-persistence" />
+        <module name="org.flowframe.thirdparty.flexjson" />
+        <module name="org.flowframe.thirdparty.gwt-console-rpc" />
+        <module name="org.flowframe.thirdparty.gwt-console-server-integration" />
+        <module name="org.flowframe.thirdparty.hibernate.annotations.commons" />
+        <module name="org.flowframe.thirdparty.hibernate.core" />
+        <module name="org.flowframe.thirdparty.hibernate.entitymanager" />
+        <module name="org.flowframe.thirdparty.hornetq" />
+        <module name="org.flowframe.thirdparty.itext" />
+        <module name="org.flowframe.thirdparty.javassist" />
+        <module name="org.flowframe.thirdparty.javax.security.jacc" />
+        <module name="org.flowframe.thirdparty.jboss-arrai-all" />
+        <module name="org.flowframe.thirdparty.jbpm-bam" />
+        <module name="org.flowframe.thirdparty.jbpm-human-task-core" />
+        <module name="org.flowframe.thirdparty.jbpm-human-task-mina" />
+        <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" />
+        <module name="org.flowframe.thirdparty.jbpm-workitems" />
+        <module name="org.flowframe.thirdparty.knowledge-api" />
+        <module name="org.flowframe.thirdparty.knowledge-internal-api" />
+        <module name="org.flowframe.thirdparty.netty" />
+        <module name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3" />
+        <module name="org.flowframe.thirdparty.org.springframework.orm" />
+        <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized" />
+        <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests" />
+        <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi" />
+        <module name="org.flowframe.thirdparty.spring-vaadin-integration" />
+        <module name="org.flowframe.thirdparty.stripe-java" />
+        <module name="org.flowframe.thirdparty.vaadin" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-contextmenu" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-easyuploads" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized-common" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized-osgi" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-popup-button" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-portallayout" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-refresher" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-tableexport" />
+        <module name="org.flowframe.thirdparty.vaadin-addon-toolbar" />
+        <module name="org.flowframe.thirdparty.vaadin.addons.mvp.phakama" />
+        <module name="org.flowframe.tm.jta" />
+        <module name="org.flowframe.ui.pageflow.services" />
+        <module name="org.flowframe.ui.pageflow.vaadin" />
+        <module name="org.flowframe.uilegacy.component.dao.services" />
+        <module name="org.flowframe.uilegacy.component.dao.services.impl" />
+        <module name="org.flowframe.uilegacy.component.domain" />
+        <module name="org.flowframe.uilegacy.manager" />
+        <module name="org.flowframe.uilegacy.services" />
+        <module name="org.flowframe.uilegacy.vaadin.addons.common" />
+        <module name="org.flowframe.uilegacy.vaadin.common" />
+        <module name="org.flowframe.uilegacy.vaadin.common.editors" />
+        <module name="org.flowframe.uilegacy.vaadin.editors" />
+        <module name="org.flowframe.uilegacy.vaadin.expressions" />
+        <module name="org.flowframe.uilegacy.vaadin.factory" />
+        <module name="org.flowframe.uilegacy.vaadin.forms" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jbpt" target="1.5" />
+      <module name="org.flowframe.bpm" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.bpmserver" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.bpmserver.persistence" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.persistence.datasource" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.services" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.shared" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.taskserver" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.taskserver.jta.tm.fragment" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.taskserver.persistence" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.ui" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.ui.pageflow" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.ui.pageflow.services" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.ui.pageflow.services.impl" target="1.6" />
+      <module name="org.flowframe.bpm.jbpm.ui.pageflow.vaadin" target="1.6" />
+      <module name="org.flowframe.documentlibrary" target="1.6" />
+      <module name="org.flowframe.documentlibrary.remote.services" target="1.6" />
+      <module name="org.flowframe.documentlibrary.remote.services.impl" target="1.6" />
+      <module name="org.flowframe.documentlibrary.remote.services.impl.config.fragment" target="1.6" />
+      <module name="org.flowframe.ds" target="1.6" />
+      <module name="org.flowframe.ds.dao.services" target="1.6" />
+      <module name="org.flowframe.ds.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.ds.domain" target="1.6" />
+      <module name="org.flowframe.erp" target="1.6" />
+      <module name="org.flowframe.erp.app.contractmanagement" target="1.6" />
+      <module name="org.flowframe.erp.app.contractmanagement.business.services" target="1.6" />
+      <module name="org.flowframe.erp.app.contractmanagement.business.services.impl" target="1.6" />
+      <module name="org.flowframe.erp.app.contractmanagement.dao.services" target="1.6" />
+      <module name="org.flowframe.erp.app.contractmanagement.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.erp.app.contractmanagement.domain" target="1.6" />
+      <module name="org.flowframe.erp.app.financialmanagement" target="1.6" />
+      <module name="org.flowframe.erp.app.financialmanagement.dao.services" target="1.6" />
+      <module name="org.flowframe.erp.app.financialmanagement.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.erp.app.financialmanagement.domain" target="1.6" />
+      <module name="org.flowframe.erp.app.mdm" target="1.6" />
+      <module name="org.flowframe.erp.app.mdm.dao.services" target="1.6" />
+      <module name="org.flowframe.erp.app.mdm.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.erp.app.mdm.domain" target="1.5" />
+      <module name="org.flowframe.erp.app.salesmanagement" target="1.6" />
+      <module name="org.flowframe.erp.app.salesmanagement.domain" target="1.5" />
+      <module name="org.flowframe.erp.integration" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.remote.services" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.datasource.mysql" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.domain" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.service.impl" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.service.impl.config.fragment" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.services" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl" target="1.6" />
+      <module name="org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client" target="1.6" />
+      <module name="org.flowframe.erp.remote.services" target="1.6" />
+      <module name="org.flowframe.erp.remote.services.impl" target="1.6" />
+      <module name="org.flowframe.erp.remote.services.impl.config.fragment" target="1.6" />
+      <module name="org.flowframe.kernel" target="1.6" />
+      <module name="org.flowframe.kernel.common.mdm" target="1.6" />
+      <module name="org.flowframe.kernel.common.mdm.dao.services" target="1.6" />
+      <module name="org.flowframe.kernel.common.mdm.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.kernel.common.mdm.domain" target="1.6" />
+      <module name="org.flowframe.kernel.common.utils" target="1.6" />
+      <module name="org.flowframe.kernel.datasource" target="1.6" />
+      <module name="org.flowframe.kernel.datasource.common" target="1.6" />
+      <module name="org.flowframe.kernel.datasource.hsqldb" target="1.6" />
+      <module name="org.flowframe.kernel.eventmanagement" target="1.6" />
+      <module name="org.flowframe.kernel.eventmanagement.domain" target="1.6" />
+      <module name="org.flowframe.kernel.eventmanagement.services" target="1.6" />
+      <module name="org.flowframe.kernel.eventmanagement.springdm.services.impl" target="1.6" />
+      <module name="org.flowframe.kernel.jpa" target="1.6" />
+      <module name="org.flowframe.kernel.jpa.container.services" target="1.6" />
+      <module name="org.flowframe.kernel.jpa.container.services.impl" target="1.6" />
+      <module name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm" target="1.6" />
+      <module name="org.flowframe.kernel.json" target="1.6" />
+      <module name="org.flowframe.kernel.metamodel" target="1.6" />
+      <module name="org.flowframe.kernel.metamodel.dao.services" target="1.6" />
+      <module name="org.flowframe.kernel.metamodel.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.kernel.services" target="1.6" />
+      <module name="org.flowframe.kernel.servlet" target="1.6" />
+      <module name="org.flowframe.parent" target="1.6" />
+      <module name="org.flowframe.portal" target="1.6" />
+      <module name="org.flowframe.portal.remote.services" target="1.6" />
+      <module name="org.flowframe.portal.remote.services.impl" target="1.6" />
+      <module name="org.flowframe.portal.remote.services.impl.config.fragment" target="1.6" />
+      <module name="org.flowframe.reporting" target="1.6" />
+      <module name="org.flowframe.reporting.jasper" target="1.6" />
+      <module name="org.flowframe.reporting.jasper.web.services" target="1.6" />
+      <module name="org.flowframe.reporting.remote.services" target="1.6" />
+      <module name="org.flowframe.scheduling" target="1.6" />
+      <module name="org.flowframe.scheduling.jobs.manager" target="1.6" />
+      <module name="org.flowframe.scheduling.remote.services" target="1.6" />
+      <module name="org.flowframe.scheduling.remote.services.impl" target="1.6" />
+      <module name="org.flowframe.tests" target="1.6" />
+      <module name="org.flowframe.tests.common" target="1.6" />
+      <module name="org.flowframe.thirdparty" target="1.6" />
+      <module name="org.flowframe.thirdparty.asm" target="1.6" />
+      <module name="org.flowframe.thirdparty.bitronix" target="1.6" />
+      <module name="org.flowframe.thirdparty.com.google.protobuf" target="1.6" />
+      <module name="org.flowframe.thirdparty.com.mysql.jdbc" target="1.6" />
+      <module name="org.flowframe.thirdparty.commons-compress" target="1.6" />
+      <module name="org.flowframe.thirdparty.commons-exec" target="1.6" />
+      <module name="org.flowframe.thirdparty.drools-core" target="1.6" />
+      <module name="org.flowframe.thirdparty.drools-persistence" target="1.6" />
+      <module name="org.flowframe.thirdparty.flexjson" target="1.6" />
+      <module name="org.flowframe.thirdparty.google" target="1.6" />
+      <module name="org.flowframe.thirdparty.gwt-console-rpc" target="1.6" />
+      <module name="org.flowframe.thirdparty.gwt-console-server-integration" target="1.6" />
+      <module name="org.flowframe.thirdparty.hibernate.annotations.commons" target="1.6" />
+      <module name="org.flowframe.thirdparty.hibernate.core" target="1.6" />
+      <module name="org.flowframe.thirdparty.hibernate.entitymanager" target="1.6" />
+      <module name="org.flowframe.thirdparty.hornetq" target="1.6" />
+      <module name="org.flowframe.thirdparty.itext" target="1.6" />
+      <module name="org.flowframe.thirdparty.javassist" target="1.6" />
+      <module name="org.flowframe.thirdparty.javax.security.jacc" target="1.6" />
+      <module name="org.flowframe.thirdparty.jboss-arrai-all" target="1.6" />
+      <module name="org.flowframe.thirdparty.jbpm-bam" target="1.6" />
+      <module name="org.flowframe.thirdparty.jbpm-human-task-core" target="1.6" />
+      <module name="org.flowframe.thirdparty.jbpm-human-task-mina" target="1.6" />
+      <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" target="1.6" />
+      <module name="org.flowframe.thirdparty.jbpm-workitems" target="1.6" />
+      <module name="org.flowframe.thirdparty.knowledge-api" target="1.6" />
+      <module name="org.flowframe.thirdparty.knowledge-internal-api" target="1.6" />
+      <module name="org.flowframe.thirdparty.netty" target="1.6" />
+      <module name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3" target="1.6" />
+      <module name="org.flowframe.thirdparty.org.springframework.orm" target="1.6" />
+      <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized" target="1.6" />
+      <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests" target="1.6" />
+      <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized" target="1.6" />
+      <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi" target="1.6" />
+      <module name="org.flowframe.thirdparty.spring-vaadin-integration" target="1.6" />
+      <module name="org.flowframe.thirdparty.stripe-java" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-contextmenu" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-easyuploads" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized-common" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized-osgi" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-popup-button" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-portallayout" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-refresher" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-tableexport" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin-addon-toolbar" target="1.6" />
+      <module name="org.flowframe.thirdparty.vaadin.addons.mvp.phakama" target="1.6" />
+      <module name="org.flowframe.tm" target="1.6" />
+      <module name="org.flowframe.tm.jta" target="1.6" />
+      <module name="org.flowframe.ui" target="1.6" />
+      <module name="org.flowframe.ui.pageflow" target="1.6" />
+      <module name="org.flowframe.ui.pageflow.services" target="1.6" />
+      <module name="org.flowframe.ui.pageflow.vaadin" target="1.6" />
+      <module name="org.flowframe.uilegacy" target="1.6" />
+      <module name="org.flowframe.uilegacy.component" target="1.6" />
+      <module name="org.flowframe.uilegacy.component.dao.services" target="1.6" />
+      <module name="org.flowframe.uilegacy.component.dao.services.impl" target="1.6" />
+      <module name="org.flowframe.uilegacy.component.domain" target="1.6" />
+      <module name="org.flowframe.uilegacy.manager" target="1.6" />
+      <module name="org.flowframe.uilegacy.services" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.addons" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.addons.common" target="1.5" />
+      <module name="org.flowframe.uilegacy.vaadin.common" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.common.editors" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.editors" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.expressions" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.factory" target="1.6" />
+      <module name="org.flowframe.uilegacy.vaadin.forms" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
+
