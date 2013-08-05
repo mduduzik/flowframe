@@ -2,188 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59e61bfd-2d2e-43a2-b28e-23900572dfc2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/org_flowframe_editors_oryx_backend_war.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/org_flowframe_editors_oryx_backend_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/org_flowframe_editors_oryx_frontend_war.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/org_flowframe_editors_oryx_frontend_war_exploded.xml" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_classic_0_9_24.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_core_0_9_24.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_api_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_org_apache_commons_logging_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\.idea\libraries\Maven__org_springframework_org_springframework_instrument_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\backend\org.flowframe.editors.oryx.backend.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__asm_asm_3_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__avalon_framework_avalon_framework_4_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_classic_0_9_24.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_com_springsource_ch_qos_logback_core_0_9_24.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_logback_classic_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ch_qos_logback_logback_core_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_bpmnq_bpmnq_1_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_conx_bi_com_conx_bi_remoting_client_soap_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_sun_jdmk_jmxtools_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_sun_jmx_jmxri_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_sun_xml_bind_jaxb_impl_2_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_thoughtworks_xstream_com_springsource_com_thoughtworks_xstream_1_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__com_yahoo_platform_yui_yuicompressor_2_4_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_codec_commons_codec_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_collections_commons_collections_3_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_fileupload_commons_fileupload_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_httpclient_commons_httpclient_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__commons_logging_commons_logging_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__ggtools_grand_1_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_activation_activation_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_jms_jms_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_mail_mail_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_persistence_com_springsource_javax_persistence_2_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_servlet_javax_servlet_3_0_0_v201103241009.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_servlet_servlet_api_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_transaction_com_springsource_javax_transaction_1_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_validation_com_springsource_javax_validation_1_0_0_GA.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__javax_xml_stream_stax_api_1_0_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__junit_junit_4_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__log4j_log4j_1_2_15.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__logkit_logkit_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sf_supercsv_supercsv_1_5_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sourceforge_cglib_com_springsource_net_sf_cglib_2_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sourceforge_ehcache_com_springsource_net_sf_ehcache_1_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__net_sourceforge_nekohtml_com_springsource_org_cyberneko_html_1_9_13.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_antlr_com_springsource_antlr_2_7_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_aopalliance_com_springsource_org_aopalliance_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_anim_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_bridge_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_css_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_dom_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_dom_svg_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_ext_awt_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_gvt_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_parser_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_script_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_util_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_batik_com_springsource_org_apache_batik_xml_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_bcel_com_springsource_org_apache_bcel_5_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_beanutils_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_codec_1_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_collections_3_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_configuration_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_digester_1_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_io_1_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_jxpath_1_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_lang_2_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_commons_com_springsource_org_apache_commons_logging_1_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_api_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_bindings_soap_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_bindings_xml_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_core_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_databinding_jaxb_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_frontend_jaxws_sources_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_frontend_simple_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_ws_addr_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_cxf_cxf_rt_ws_policy_2_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_geronimo_specs_geronimo_javamail_1_4_spec_1_7_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_ibatis_ibatis_sqlmap_3_0_beta_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_neethi_neethi_3_0_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_regexp_com_springsource_org_apache_regexp_1_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_velocity_com_springsource_org_apache_velocity_1_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_ws_xmlschema_xmlschema_core_2_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xalan_com_springsource_org_apache_xalan_2_7_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xalan_com_springsource_org_apache_xml_serializer_2_7_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xerces_com_springsource_org_apache_xerces_2_9_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xml_com_springsource_org_apache_xml_resolver_1_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_apache_xmlcommons_com_springsource_org_apache_xmlcommons_1_3_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_aspectj_com_springsource_org_aspectj_runtime_1_6_8_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_aspectj_com_springsource_org_aspectj_weaver_1_6_8_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_btm_com_springsource_org_codehaus_btm_1_3_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_groovy_com_springsource_org_codehaus_groovy_1_7_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_woodstox_stax2_api_3_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_codehaus_woodstox_woodstox_core_asl_4_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_dbunit_dbunit_2_4_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_dom4j_com_springsource_org_dom4j_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_editors_oryx_buildapps_0_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_asm_3_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_avalon_framework_api_4_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_batik_batik_svggen_1_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_batik_batik_transcoder_1_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_batik_xml_apis_ext_1_3_04.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_com_mysql_jdbc_5_1_20.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_hibernate_annotations_commons_3_2_0_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_hibernate_core_3_6_0_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_hibernate_entitymanager_3_6_0_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_javassist_3_12_0_GA.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_json_path_0_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_flowframe_org_flowframe_thirdparty_xmlgraphics_fop_0_93.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_hamcrest_hamcrest_core_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_hibernate_com_springsource_org_hibernate_validator_4_2_0_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jbpt_jbpt_0_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jbpt_oryxAtlas_0_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jdom_com_springsource_org_jdom_1_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_joda_com_springsource_org_joda_time_1_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_json_json_20090211.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_jsoup_com_springsource_org_jsoup_1_5_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_junit_com_springsource_org_junit_4_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_mockito_mockito_all_1_9_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_mozilla_javascript_javascript_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_openid4java_com_springsource_org_openid4java_0_9_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_api_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_slf4j_com_springsource_slf4j_org_apache_commons_logging_1_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_slf4j_slf4j_api_1_6_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_aop_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_asm_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_aspects_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_beans_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_context_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_core_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_expression_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_instrument_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_org_springframework_test_3_1_3_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_core_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_extender_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_extensions_annotation_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_osgi_org_springframework_osgi_io_1_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_aop_3_0_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_asm_3_0_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_beans_3_0_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_context_3_0_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_core_2_0_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_expression_3_0_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_springframework_spring_test_3_0_6_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_xmappr_xmappr_0_9_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__org_xmlpull_com_springsource_org_xmlpull_1_1_4_c.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__postgresql_postgresql_8_3_603_jdbc3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__rhino_js_1_6R7.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__wsdl4j_wsdl4j_1_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\.idea\libraries\Maven__xml_resolver_xml_resolver_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\editors\oryx\frontend\org.flowframe.editors.oryx.frontend.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\asm\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\bitronix212\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\com.mysql.jdbc\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\flexjson\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\hibernate-commons-annotations\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\hibernate-core\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\hibernate-entitymanager\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\javassist\dependency-reduced-pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\repos\github\flowframe\thirdparty\jboss-errai-all\dependency-reduced-pom.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../thirdparty/avalon/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../../thirdparty/avalon/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../thirdparty/batik/batik170/xml-apis-ext/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../../thirdparty/batik/batik170/xml-apis-ext/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../thirdparty/json-path/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../../thirdparty/json-path/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../thirdparty/xmlgraphics/xmlgraphics093/fop/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../../thirdparty/xmlgraphics/xmlgraphics093/fop/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/build.xml" afterPath="$PROJECT_DIR$/frontend/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.idea/misc.xml" afterPath="$PROJECT_DIR$/frontend/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org.flowframe.editors.oryx.iml" afterPath="$PROJECT_DIR$/org.flowframe.editors.oryx.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war.xml" afterPath="$PROJECT_DIR$/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war_exploded.xml" afterPath="$PROJECT_DIR$/frontend/.idea/artifacts/org_flowframe_editors_oryx_frontend_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/pom.xml" afterPath="$PROJECT_DIR$/frontend/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../thirdparty/batik/batik170/pom.xml" afterPath="$PROJECT_DIR$/../../thirdparty/batik/batik170/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.idea/vcs.xml" afterPath="$PROJECT_DIR$/frontend/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.gitignore" afterPath="$PROJECT_DIR$/frontend/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.editors.oryx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -327,10 +147,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="169" column="77" selection-start="6545" selection-end="6545" vertical-scroll-proportion="0.6741573">
+            <state line="169" column="77" selection-start="6545" selection-end="6545" vertical-scroll-proportion="-12.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="23" selection-start="49" selection-end="49" vertical-scroll-proportion="0.10559006">
               <folding />
             </state>
           </provider>
@@ -357,6 +186,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/frontend/pom.xml" />
         <option value="$PROJECT_DIR$/frontend/build.xml" />
+        <option value="$PROJECT_DIR$/frontend/.gitignore" />
       </list>
     </option>
   </component>
@@ -790,7 +620,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1554" height="916" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -811,7 +641,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32849604" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32849604" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297587" sideWeight="0.67150396" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.8733244" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -933,7 +763,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="77" selection-start="6545" selection-end="6545" vertical-scroll-proportion="0.6741573">
+        <state line="169" column="77" selection-start="6545" selection-end="6545" vertical-scroll-proportion="-12.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="23" selection-start="49" selection-end="49" vertical-scroll-proportion="0.10559006">
           <folding />
         </state>
       </provider>

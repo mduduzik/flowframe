@@ -1,4 +1,4 @@
 /target
 
 /src/main/webapp
-/buildapps-dependencies
+buildapps-dependencies/
