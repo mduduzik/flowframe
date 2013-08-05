@@ -1,6 +1,7 @@
 .buildpath
 .classpath
 .project
+.idea/
 .settings*
 target/
 bin/
