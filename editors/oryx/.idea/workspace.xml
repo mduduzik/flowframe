@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59e61bfd-2d2e-43a2-b28e-23900572dfc2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/.gitignore" afterPath="$PROJECT_DIR$/frontend/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="59e61bfd-2d2e-43a2-b28e-23900572dfc2" name="Default" comment="" />
     <ignored path="org.flowframe.editors.oryx.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$PROJECT_DIR$/frontend/src/main/javascript/client/scripts/kickstart.js" changelist="59e61bfd-2d2e-43a2-b28e-23900572dfc2" time="1375569147946" ignored="false" />
