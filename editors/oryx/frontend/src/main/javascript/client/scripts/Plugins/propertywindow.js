@@ -136,8 +136,9 @@ ORYX.Plugins.PropertyWindow = {
 			
 		});
 
-		region = this.facade.addToRegion('east', new Ext.Panel({
-			width: 220,
+		region = this.facade.addToRegion("south", new Ext.Panel({
+			height: 220,
+            autoWidth: true,
 			layout: "fit",
 			border: false,
 			title: 'Properties',
