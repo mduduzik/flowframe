@@ -433,24 +433,35 @@
 				<inherited>false</inherited>
 				<executions>
 					<execution>
-						<id>generate-editor-web-sources</id>
-						<phase>generate-sources</phase>
+						<id>clean-editor-web-sources</id>
+						<phase>clean</phase>
 						<configuration>
 					          <tasks>
 					            <echo message="Cleaning editor web sources"/>
 								<delete dir="src/main/webapp" includeemptydirs="true">
 									<exclude name="favicon.ico" />	
-								</delete>								          
-					            <echo message="Generate editor web sources"/>
-					            <ant>
-					              <target name="build-editor"/>
-					            </ant>
+								</delete>
 					          </tasks>							
 						</configuration>
 						<goals>
 							<goal>run</goal>
 						</goals>
 					</execution>
+                    <execution>
+                        <id>generate-editor-web-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <echo message="Generate editor web sources"/>
+                                <ant>
+                                    <target name="copy-js-to-webapp-folder"/>
+                                </ant>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
 				</executions>
 			</plugin>
 		</plugins>

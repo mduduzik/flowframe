@@ -184,7 +184,8 @@ public class EditorHandler extends HttpServlet {
                 + "<script src=\"" + oryx_path + "i18n/translation_en_us.js\" type=\"text/javascript\" />\n"
                 + languageFiles
                 // Handle different profiles
-                + "<script src=\"" + oryx_path + "profiles/oryx.core.uncompressed.js\" type=\"text/javascript\" />\n"
+                //+ "<script src=\"" + oryx_path + "profiles/oryx.core.uncompressed.js\" type=\"text/javascript\" />\n"
+                + generateUncompressedJSFileList()
                 + profileFiles
                 + headExtentions
 
@@ -244,5 +245,46 @@ public class EditorHandler extends HttpServlet {
             }
         }
         return profilNames;
+    }
+
+    private String generateUncompressedJSFileList() {
+
+        return "<script src=\"" + oryx_path + "scripts/utils.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/kickstart.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/erdfparser.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/datamanager.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/clazz.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/config.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/oryx.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/SVG/editpathhandler.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/SVG/minmaxpathhandler.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/SVG/pointspathhandler.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/SVG/svgmarker.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/SVG/svgshape.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/SVG/label.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/Math/math.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/stencil.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/property.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/propertyitem.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/complexpropertyitem.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/rules.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/stencilset.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/stencilsets.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/command.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/bounds.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/uiobject.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/abstractshape.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/canvas.js\" type=\"text/javascript\" />\n"
+                /*+ "<script src=\"" + oryx_path + "scripts/Core/apiHandler.js\" type=\"text/javascript\" />\n"*/
+                + "<script src=\"" + oryx_path + "scripts/Core/main.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/svgDrag.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/shape.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/Controls/control.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/Controls/docker.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/Controls/magnet.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/node.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/edge.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + oryx_path + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n";
     }
 }

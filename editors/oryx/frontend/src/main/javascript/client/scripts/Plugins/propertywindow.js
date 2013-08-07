@@ -136,16 +136,15 @@ ORYX.Plugins.PropertyWindow = {
 			
 		});
 
-		region = this.facade.addToRegion("south", new Ext.Panel({
-			height: 220,
-            autoWidth: true,
-			layout: "fit",
-			border: false,
-			title: 'Properties',
-			items: [
-				this.grid 
-			]
-		}), ORYX.I18N.PropertyWindow.title)
+        region = this.facade.addToRegion("centerSouth", new Ext.Panel({
+            autoHeight: true,
+            layout: "fit",
+            border: false,
+            title: 'Properties',
+            items: [
+                this.grid
+            ]
+        }), ORYX.I18N.PropertyWindow.title)
 
 		// Register on Events
 		this.grid.on('beforeedit', this.beforeEdit, this, true);
@@ -1118,7 +1117,7 @@ Ext.extend(Ext.form.ComplexListField, Ext.form.TriggerField,  {
 				autoScroll: true,
 				autoCreate: true, 
 				title: ORYX.I18N.PropertyWindow.complex, 
-				height: 350, 
+				height: 200,
 				width: dialogWidth, 
 				modal:true,
 				collapsible:false,
@@ -1202,8 +1201,8 @@ Ext.form.ComplexTextField = Ext.extend(Ext.form.TriggerField,  {
 			layout		: 'anchor',
 			autoCreate	: true, 
 			title		: ORYX.I18N.PropertyWindow.text, 
-			height		: 500, 
-			width		: 500, 
+			height		: 200,
+			width		: 200,
 			modal		: true,
 			collapsible	: false,
 			fixedcenter	: true, 
