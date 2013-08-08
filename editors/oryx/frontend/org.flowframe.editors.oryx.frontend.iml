@@ -162,7 +162,7 @@
     <orderEntry type="library" name="Maven: rhino:js:1.6R7" level="project" />
     <orderEntry type="library" name="Maven: com.yahoo.platform.yui:yuicompressor:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: ggtools:grand:1.8" level="project" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.editors.oryx.buildapps:0.0.1" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.editors.oryx.buildapps" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.core:0.9.24" level="project" />

@@ -168,6 +168,7 @@ public class EditorHandler extends HttpServlet {
                 + "<head profile=\"http://purl.org/NET/erdf/profile\">\n"
                 + "<title>" + title + " - Oryx</title>\n"
                 + "<!-- libraries -->\n"
+                + "<script src=\"" + oryx_path + "lib/LABjs-2.0.3/LAB.min.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + oryx_path + "lib/prototype-1.5.1.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + oryx_path + "lib/path_parser.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + oryx_path + "lib/ext-2.0.2/adapter/ext/ext-base.js\" type=\"text/javascript\" />\n"

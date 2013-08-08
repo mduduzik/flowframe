@@ -454,7 +454,7 @@
                             <tasks>
                                 <echo message="Generate editor web sources"/>
                                 <ant>
-                                    <target name="copy-js-to-webapp-folder"/>
+                                    <target name="build-editor"/>
                                 </ant>
                             </tasks>
                         </configuration>

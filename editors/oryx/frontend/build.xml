@@ -223,6 +223,7 @@
             </classpath>
             <arg file="${editor-src-client}/scripts/Plugins/"/>
             <arg file="${editor-build-root}/tempProfiles/"/>
+            <arg value="true"/>
         </java>
         <echo>
             Refreshed profile js-Files
@@ -250,6 +251,7 @@
             </classpath>
             <arg file="${editor-src-client}/scripts/Plugins/"/>
             <arg file="${editor-build-root}/tempProfiles/"/>
+            <arg value="true"/>
         </java>
         <echo>
             Created profile js-Files
@@ -569,6 +571,6 @@
          -->
     </target>
 
-    <target name="build-editor" depends="build, examples, compress, dist"/>
+    <target name="build-editor" depends="build,examples, compress, dist"/>
     <!-- <target name="build-editor" depends="build, examples, compress, dist"/> -->
 </project>
