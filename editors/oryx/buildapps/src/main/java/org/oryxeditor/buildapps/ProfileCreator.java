@@ -138,7 +138,7 @@ public class ProfileCreator {
                  * create a $LAB.script("").wait();
                  */
                 String fragmentJSFileName = profileName + "-" + new File(sourceFullPath).getName();
-                String labScriptLoadStatement = "$LAB.script(\"plugins/scripts/" + source + "\").wait();" + "\n";
+                String labScriptLoadStatement = "$LAB.script(\"plugins/" + source + "\").wait();" + "\n";
 
                 /*
                 InputStreamReader reader = new InputStreamReader(new FileInputStream(sourceFullPath), "UTF8");

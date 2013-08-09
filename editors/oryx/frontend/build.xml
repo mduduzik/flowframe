@@ -209,25 +209,6 @@
         <echo>
             Copied "${editor-src-client}/scripts/Plugins/" into ${main-src-webapps-dir}
         </echo>
-
-        <java dir="${main-src-webapps-dir}" classname="org.oryxeditor.buildapps.ProfileCreator" fork="true"
-              failonerror="true">
-            <classpath>
-                <!-- <fileset dir="${editor-root}/buildapps-dependencies"/> -->
-                <fileset file="${editor-root}/buildapps-dependencies/json-20090211.jar"/>
-                <fileset file="${editor-root}/buildapps-dependencies/spring-core-2.0.6.jar"/>
-                <fileset file="${editor-root}/buildapps-dependencies/yuicompressor-2.4.2.jar"/>
-                <fileset file="${editor-root}/buildapps-dependencies/js-1.6R7.jar"/>
-                <fileset file="${editor-root}/buildapps-dependencies/commons-logging-1.1.jar"/>
-                <fileset file="${editor-root}/buildapps-dependencies/org.flowframe.editors.oryx.buildapps-0.0.1.jar"/>
-            </classpath>
-            <arg file="${editor-src-client}/scripts/Plugins/"/>
-            <arg file="${editor-build-root}/tempProfiles/"/>
-            <arg value="true"/>
-        </java>
-        <echo>
-            Refreshed profile js-Files
-        </echo>
     </target>
     <target name="build-profiles">
         <copy todir='${editor-build-root}' file="${editor-src-client}/scripts/Plugins/profiles.xml">
@@ -571,6 +552,6 @@
          -->
     </target>
 
-    <target name="build-editor" depends="build,examples, compress, dist"/>
+    <target name="build-editor" depends="copy-js-to-webapp-folder,build,examples, compress, dist"/>
     <!-- <target name="build-editor" depends="build, examples, compress, dist"/> -->
 </project>
