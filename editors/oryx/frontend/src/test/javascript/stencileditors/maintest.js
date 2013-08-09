@@ -1,3 +1,49 @@
+Ext.app.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
+    initComponent : function(){
+        Ext.app.SearchField.superclass.initComponent.call(this);
+        this.on('specialkey', function(f, e){
+            if(e.getKey() == e.ENTER){
+                this.onTrigger2Click();
+            }
+        }, this);
+    },
+
+    validationEvent:false,
+    validateOnBlur:false,
+    trigger1Class:'x-form-clear-trigger',
+    trigger2Class:'x-form-search-trigger',
+    hideTrigger1:true,
+    width:180,
+    hasSearch : false,
+    paramName : 'query',
+
+    onTrigger1Click : function(){
+        if(this.hasSearch){
+            this.el.dom.value = '';
+            var o = {start: 0};
+            this.store.baseParams = this.store.baseParams || {};
+            this.store.baseParams[this.paramName] = '';
+            this.store.reload({params:o});
+            this.triggers[0].hide();
+            this.hasSearch = false;
+        }
+    },
+
+    onTrigger2Click : function(){
+        var v = this.getRawValue();
+        if(v.length < 1){
+            this.onTrigger1Click();
+            return;
+        }
+        var o = {start: 0};
+        this.store.baseParams = this.store.baseParams || {};
+        this.store.baseParams[this.paramName] = v;
+        this.store.reload({params:o});
+        this.hasSearch = true;
+        this.triggers[0].show();
+    }
+});
+
 Ext.onReady(function(){
 
     Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
@@ -607,13 +653,20 @@ Ext.onReady(function(){
     var navigationTree = new Ext.tree.TreePanel({
         region: 'west',
         id: 'navigation',
+        icon: '../../../../src/main/webapp/images/conxbi/etl/home_nav.gif',
         collapsible: true,
-        title: 'Navigation',
+        title: 'Repository',
         width: 214,
         autoScroll: true,
         rootVisible: false,
         cmargins: '5 0 0 0',
         padding: '0 0 0 0',
+        tbar: [
+            'Search: ', ' ',
+            new Ext.app.SearchField({
+                width:'auto'
+            })
+        ],
         loader: new Ext.tree.TreeLoader({dataUrl:'test_tree_data.json'}),
         // default tree elements for the navigation
         root: new Ext.tree.AsyncTreeNode({
@@ -714,6 +767,48 @@ Ext.onReady(function(){
             }]
         })
     });
+
+    var item1 = new Ext.Panel({
+        title: 'Accordion Item 1'
+    });
+
+    var item2 = new Ext.Panel({
+        title: 'Accordion Item 2'
+    });
+
+    var item3 = new Ext.Panel({
+        title: 'Accordion Item 3'
+    });
+
+    var item4 = new Ext.Panel({
+        title: 'Accordion Item 4'
+    });
+
+    var item5 = new Ext.Panel({
+        title: 'Accordion Item 5'
+    });
+
+    var accordion = new Ext.Panel({
+        region:'east',
+        title: 'Palette',
+        collapsible: true,
+        split:true,
+        width: 225,
+        minSize: 175,
+        maxSize: 400,
+        layout:'fit',
+        margins:'0 5 0 0',
+        layout:'accordion',
+        tbar: [
+            'Search: ', ' ',
+            new Ext.app.SearchField({
+                width:'auto'
+            })
+        ],
+        defaults: {html: '&lt;empty panel&gt;', cls:'empty'},
+        items: [item1, item2, item3, item4, item5]
+    });
+
     var viewport = new Ext.Viewport({
         layout:'border',
         items:[
@@ -721,42 +816,8 @@ Ext.onReady(function(){
                 region:'north',
                 el: 'north',
                 height:32
-            }),{
-                region:'east',
-                title: 'East Side',
-                collapsible: true,
-                split:true,
-                width: 225,
-                minSize: 175,
-                maxSize: 400,
-                layout:'fit',
-                margins:'0 5 0 0',
-                items:
-                    new Ext.TabPanel({
-                        border:false,
-                        activeTab:1,
-                        tabPosition:'bottom',
-                        items:[{
-                            html:'<p>A TabPanel component can be a region.</p>',
-                            title: 'A Tab',
-                            autoScroll:true
-                        },
-                            new Ext.grid.PropertyGrid({
-                                title: 'Property Grid',
-                                closable: true,
-                                source: {
-                                    "(name)": "Properties Grid",
-                                    "grouping": false,
-                                    "autoFitColumns": true,
-                                    "productionQuality": false,
-                                    "created": new Date(Date.parse('10/15/2006')),
-                                    "tested": false,
-                                    "version": .01,
-                                    "borderWidth": 1
-                                }
-                            })]
-                    })
-            },
+            }),
+            accordion,
             navigationTree,
             mainCenter_
         ]
