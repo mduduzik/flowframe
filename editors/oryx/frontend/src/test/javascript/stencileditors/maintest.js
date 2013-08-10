@@ -769,23 +769,23 @@ Ext.onReady(function(){
     });
 
     var item1 = new Ext.Panel({
-        title: 'Accordion Item 1'
+        title: 'Databases'
     });
 
     var item2 = new Ext.Panel({
-        title: 'Accordion Item 2'
+        title: 'File'
     });
 
     var item3 = new Ext.Panel({
-        title: 'Accordion Item 3'
+        title: 'Internet'
     });
 
     var item4 = new Ext.Panel({
-        title: 'Accordion Item 4'
+        title: 'XML'
     });
 
     var item5 = new Ext.Panel({
-        title: 'Accordion Item 5'
+        title: 'Logs & Errors'
     });
 
     var accordion = new Ext.Panel({
