@@ -8,6 +8,7 @@
         <relativePath>..</relativePath>
     </parent>
     <artifactId>org.flowframe.etl.pentaho.repository.db.services.impl</artifactId>
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>org.flowframe</groupId>
@@ -41,25 +42,9 @@
             <version>4.4.0</version>
         </dependency>
         <dependency>
-            <groupId>com.conx.bi</groupId>
-            <artifactId>com.conx.bi.thirdparty.kettle-vfs-20100924-osgi</artifactId>
-            <version>4.3.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.pentaho</groupId>
-                    <artifactId>kettle-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.pentaho</groupId>
-                    <artifactId>kettle-db</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>com.pentaho</groupId>
             <artifactId>kettle-vfs-20100924</artifactId>
             <version>4.3.0</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -89,19 +74,16 @@
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.spring-library</artifactId>
             <type>libd</type>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>3.0.5.RELEASE</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>org.aspectj-library</artifactId>
             <type>libd</type>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -132,13 +114,12 @@
             <groupId>com.mysql.jdbc</groupId>
             <artifactId>com.springsource.com.mysql.jdbc</artifactId>
             <version>5.1.6</version>
-            <scope>test</scope>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.mchange.c3p0</groupId>
             <artifactId>com.springsource.com.mchange.v2.c3p0</artifactId>
             <version>0.9.1</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit</groupId>
@@ -155,7 +136,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>org.aspectj-library</artifactId>
             <type>libd</type>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -177,13 +157,11 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>com.springsource.org.apache.commons.dbcp</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>com.springsource.javax.validation</artifactId>
             <version>1.0.0.GA</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.log4j</groupId>
@@ -259,7 +237,7 @@
                     <!-- point to a different output path - so manifest will be regenerated
                         on each build and can be eyeballed if desired. Also for eclipse use, where
                         manifest is always needed -->
-                    <outputPath>${bundlor.manifest.output.path}</outputPath>
+                    <outputPath>${basedir}/src/main/webapp</outputPath>
                 </configuration>
                 <executions>
                     <execution>
@@ -269,6 +247,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1-beta-1</version>
+                <configuration>
+                    <packagingExcludes>WEB-INF/lib/**</packagingExcludes>
+                    <archive>
+                        <manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

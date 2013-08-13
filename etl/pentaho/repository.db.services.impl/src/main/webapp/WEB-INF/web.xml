@@ -2,18 +2,9 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
- id="oryx" version="2.4">
- 
-    <context-param>
-        <param-name>proxy-host-name</param-name>
-        <param-value></param-value>
-    </context-param>
-    <context-param>
-        <param-name>proxy-port</param-name>
-        <param-value></param-value>
-    </context-param>
-    
-    <display-name>PoEM</display-name>
+ id="etlmdmrepo" version="2.4">
+
+    <display-name>ETL MDM Repository</display-name>
 	
 	<!-- Authentication Filter -->
 	<filter>
@@ -21,7 +12,7 @@
             AuthenticationFilter
         </filter-name>
         <filter-class>
-            org.b3mn.poem.security.filter.AuthenticationFilter
+            com.conx.bi.etl.pentaho.repository.db.services.security.filter.AuthenticationFilter
         </filter-class>
     </filter>
 	
@@ -30,7 +21,7 @@
             AuthenticationFilter
         </filter-name>
         <url-pattern>
-            /poem/*
+            /
         </url-pattern>
     </filter-mapping>
 	
@@ -70,14 +61,14 @@
     </filter-mapping>-->
 	
     <servlet>
-        <display-name>Oryx Dispatcher</display-name>
+        <display-name>ETL MDM Repo Dispatcher</display-name>
         <servlet-name>Dispatcher</servlet-name>
-        <servlet-class>org.b3mn.poem.Dispatcher</servlet-class>
+        <servlet-class>com.conx.bi.etl.pentaho.repository.db.services.servlet.Dispatcher</servlet-class>
     </servlet>
 	
     <servlet-mapping>
         <servlet-name>Dispatcher</servlet-name>
-        <url-pattern>/poem/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 	
 	<!-- the number within the session-timout element must be expressed in

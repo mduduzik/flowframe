@@ -3,7 +3,10 @@ package com.conx.bi.etl.pentaho.repository.db.services.handler;
 
 import com.conx.bi.etl.pentaho.repository.db.services.CustomRepository;
 import com.conx.bi.etl.pentaho.repository.db.services.Identity;
+import com.conx.bi.etl.pentaho.repository.db.services.repository.DBRepositoryWrapperImpl;
+import com.conx.bi.etl.pentaho.repository.db.services.repository.RepositoryExporter;
 import com.conx.bi.etl.pentaho.repository.db.services.util.HandlerWithoutModelContext;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
@@ -17,7 +20,7 @@ import java.util.Properties;
 
 import static com.conx.bi.etl.pentaho.repository.db.services.repository.DBRepositoryWrapperImpl.*;
 
-@HandlerWithoutModelContext(uri = "/repositoryexplorer")
+@HandlerWithoutModelContext(uri = "/explorer")
 public class RepositoryExplorerHandler extends HandlerBase {
 	Properties props = null;
     CustomRepository repo = null;
@@ -49,67 +52,10 @@ public class RepositoryExplorerHandler extends HandlerBase {
                     tenant.setId(1L);
                     tenant.setName("Test");
 
-                    RepositoryDirectoryInterface mdDir = repo.provideMetadataDirectoryForTenant(tenant);
-                    RepositoryDirectoryInterface dbConnectionsMdDir = repo.provideDBConnectionsMetadataDirectoryForTenant(tenant);
-                    RepositoryDirectoryInterface excelMdDir = repo.provideExcelMetadataDirectoryForTenant(tenant);
-                    RepositoryDirectoryInterface delimitedMdDir = repo.provideDelimitedMetadataDirectoryForTenant(tenant);
+                    JSONArray tree = RepositoryExporter.exportTreeToJSONByTenant(null, DBRepositoryWrapperImpl.getINSTANCE(), tenant);
 
-                    JSONObject metadata = new JSONObject();
-                    metadata.put("id","metadata");
-                    metadata.put("text",mdDir.getName());
-                    metadata.put("title",mdDir.getName());
-                    metadata.put("icon","images/package.gif");
-                    metadata.put("leaf",false);
-                    metadata.put("hasChildren",true);
-                    metadata.put("singleClickExpand",true);
-
-                    //-- DB Connections
-                    String[] dbConnectionMetadataTransNames = repo.getTransformationNames(dbConnectionsMdDir.getObjectId(), true);
-
-/*
-					StringBuffer buffer = new StringBuffer();
-					buffer.append('[');
-					List<ReportingJobDefinition> jobDefs = getJobDefinitions(userId);
-					boolean isFirst = true;
-					for (ReportingJobDefinition jobDef : jobDefs) {
-						if (jobDef.isTemplate()) {
-							if (!isFirst)
-								buffer.append(',');
-
-							buffer.append('{');
-
-							buffer.append("\"title\":\"");
-							if (jobDef.getName() == null) {
-								buffer.append("New Process");
-							} else {
-								buffer.append(jobDef.getName());
-							}
-							buffer.append("\",");
-
-							buffer.append("\"value\":\"");
-							if (jobDef.getExternalRefId() == null) {
-								buffer.append(0);
-							} else {
-								buffer.append(jobDef.getExternalRefId());
-							}
-							buffer.append("\",");
-
-							buffer.append("\"id\":");
-							if (jobDef.getId() == null) {
-								buffer.append(0);
-							} else {
-								buffer.append(jobDef.getId());
-							}
-
-							buffer.append('}');
-
-							if (isFirst)
-								isFirst = false;
-						}
-					}
-					buffer.append(']');*/
-					response.setContentType("application/xml");
-					response.getWriter().write(buffer.toString());
+					response.setContentType("application/json");
+					response.getWriter().write(tree.toString());
 					response.setStatus(200);
 				}
 			} else {

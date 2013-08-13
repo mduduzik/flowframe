@@ -8,6 +8,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pentaho.di.core.ProgressMonitorListener;
@@ -25,6 +26,7 @@ import org.springframework.util.Assert;
 import static com.conx.bi.etl.pentaho.repository.db.services.repository.DBRepositoryWrapperImpl.getINSTANCE;
 
 
+//@Ignore
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations={"/META-INF/DBRepositoryWrapperImplTests-module-context.xml"})
 public class RepositoryExplorerTests  {

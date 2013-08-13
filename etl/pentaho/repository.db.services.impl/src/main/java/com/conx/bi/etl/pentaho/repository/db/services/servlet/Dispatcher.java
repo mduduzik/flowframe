@@ -126,7 +126,7 @@ public class Dispatcher extends HttpServlet {
     }
 
     public Collection<String> getHandlerClassNames() {
-        File handlerDir = new File(this.getServletContext().getRealPath("/WEB-INF/classes/org/b3mn/poem/handler"));
+        File handlerDir = new File(this.getServletContext().getRealPath("/WEB-INF/classes/com/conx/bi/etl/pentaho/repository/db/services/handler"));
 
         Collection<String> classNames = new ArrayList<String>();
 
@@ -246,8 +246,8 @@ public class Dispatcher extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Cache-Control", "no-cache");
             // Parse request uri to extract handler uri and model uri
-            String modelUri = this.getModelUri(request.getPathInfo());
-            String handlerUri = this.getHandlerUri(request.getPathInfo());
+            //String modelUri = this.getModelUri(request.getPathInfo());
+            String handlerUri = request.getServletPath();
 
             // Validate request: handler uri has to be different from null
             if (handlerUri == null)
@@ -256,13 +256,13 @@ public class Dispatcher extends HttpServlet {
             Model model = null;
 
             // Try to get the model if an handler uri is provided by the request
-            if (modelUri != null) {
+/*            if (modelUri != null) {
                 try {
                     model = new Model(modelUri);
                 } catch (Exception e) {
                     throw new Exception("Dispatching failed: Invalid model uri", e);
                 }
-            }
+            }*/
 
             // If you want to disable OpenID login, hard code the openId here.
             // You can use any name without spaces as openId
@@ -363,7 +363,7 @@ public class Dispatcher extends HttpServlet {
             if (handlerInfo == null)
                 throw new Exception("Dispatching failed: The requested handler doesn't exist.");
 
-            // If the requesting browser cannot handle the response (IE)
+/*            // If the requesting browser cannot handle the response (IE)
             if (!this.checkBrowser(handlerInfo, request, response)) {
                 if (model == null) {
                     response.sendRedirect(filterBrowserRedirectUrl);
@@ -387,27 +387,27 @@ public class Dispatcher extends HttpServlet {
                     || (handlerInfo.isPermitPublicUserAccess() && openId.equals(publicUser))) {
                 response.setStatus(403); // Access forbidden
                 return;
-            }
+            }*/
 
             HandlerBase handler = this.getHandler(handlerUri); // Retrieve
             // handler
             // instance
 
-            Identity object = null;
+/*            Identity object = null;
             if (model != null)
-                object = model.getIdentity();
+                object = model.getIdentity();*/
 
             if (requestMethod.equals("GET")) {
-                handler.doGet(request, response, user.getIdentity(), object);
+                handler.doGet(request, response, null, null);
             }
             if (requestMethod.equals("POST")) {
-                handler.doPost(request, response, user.getIdentity(), object);
+                handler.doPost(request, response, null, null);
             }
             if (requestMethod.equals("PUT")) {
-                handler.doPut(request, response, user.getIdentity(), object);
+                handler.doPut(request, response, null, null);
             }
             if (requestMethod.equals("DELETE")) {
-                handler.doDelete(request, response, user.getIdentity(), object);
+                handler.doDelete(request, response, null, null);
             }
         } catch (Exception e) {
             // response.reset(); // Undo all changes --> this may cause some

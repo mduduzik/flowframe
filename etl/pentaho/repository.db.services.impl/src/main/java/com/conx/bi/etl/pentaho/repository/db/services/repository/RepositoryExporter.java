@@ -40,7 +40,7 @@ public class RepositoryExporter {
             metadata.put("id","metadata");
             metadata.put("text",mdDir.getName());
             metadata.put("title",mdDir.getName());
-            metadata.put("icon","images/package.gif");
+            metadata.put("icon","/oryx/images/conxbi/etl/package.gif");
             metadata.put("leaf",false);
             metadata.put("hasChildren",true);
             metadata.put("singleClickExpand",true);
@@ -52,7 +52,7 @@ public class RepositoryExporter {
             metadataDBConnections.put("id","metadata.dbconnections");
             metadataDBConnections.put("text","DB Connections");
             metadataDBConnections.put("title","DB Connections");
-            metadataDBConnections.put("icon","images/conxbi/etl/connection.gif");
+            metadataDBConnections.put("icon","/oryx/images/conxbi/etl/connection.gif");
             metadataDBConnections.put("leaf",false);
             metadataDBConnections.put("hasChildren",true);
             metadataDBConnections.put("singleClickExpand",true);
@@ -76,7 +76,7 @@ public class RepositoryExporter {
             subDir.put("id", dir.getObjectId().toString());
             subDir.put("text", dir.getName());
             subDir.put("title",dir.getName());
-            subDir.put("icon", "images/conxbi/etl/folder_close.png");
+            subDir.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
             subDir.put("leaf",false);
             subDir.put("hasChildren",true);
             subDir.put("singleClickExpand",true);
@@ -101,7 +101,7 @@ public class RepositoryExporter {
                     JSONObject dbObj = new JSONObject();
                     dbObj.put("text",db.getName());
                     dbObj.put("title",db.getName());
-                    dbObj.put("icon","images/conxbi/etl/connection.gif");
+                    dbObj.put("icon","/oryx/images/conxbi/etl/connection.gif");
                     dbObj.put("id",db.getObjectId().toString());
                     dbObj.put("leaf",false);
                     dbObj.put("hasChildren",true);
@@ -115,7 +115,7 @@ public class RepositoryExporter {
                     tableSchemas.put("title","Table Schemas");
                     tableSchemas.put("text","Table Schemas");
                     tableSchemas.put("id",transName+".tables.schemas");
-                    tableSchemas.put("icon","images/conxbi/etl/folder_close.png");
+                    tableSchemas.put("icon","/oryx/images/conxbi/etl/folder_close.png");
                     tableSchemas.put("leaf",false);
                     tableSchemas.put("hasChildren",true);
                     tableSchemas.put("singleClickExpand",true);
@@ -134,7 +134,7 @@ public class RepositoryExporter {
                             schemaObj.put("id", transName + ".tables.schemas.table." + schemaName + "." + tableName);
                             schemaObj.put("text", schemaName + "." + tableName);
                             schemaObj.put("title", schemaName + "." + tableName);
-                            schemaObj.put("icon", "images/conxbi/etl/table.gif");
+                            schemaObj.put("icon", "/oryx/images/conxbi/etl/table.gif");
                             schemaObj.put("leaf", false);
                             schemaObj.put("hasChildren", true);
                             schemaObj.put("singleClickExpand", true);
@@ -152,7 +152,7 @@ public class RepositoryExporter {
                                 column.put("id", schemaObj.get("id")+"."+name);
                                 column.put("text", name+"["+typeName+"]");
                                 column.put("text", name+"["+typeName+"]");
-                                column.put("icon", "images/conxbi/etl/columns.gif");
+                                column.put("icon", "/oryx/images/conxbi/etl/columns.gif");
                                 column.put("leaf", true);
                                 column.put("hasChildren", false);
                                 column.put("singleClickExpand", false);
