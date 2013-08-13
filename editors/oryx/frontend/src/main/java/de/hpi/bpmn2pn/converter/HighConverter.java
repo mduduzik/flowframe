@@ -180,7 +180,7 @@ public class HighConverter extends StandardConverter {
 				addFlowRelationship(net, c.map.get(edge), t);
 			}
 			// negative edges are handled in post processing
-			//TODO performance: howto impl negEdges = incomingEdges -  posEdges 
+			//TODO performance: howto repository negEdges = incomingEdges -  posEdges
 			List<Edge> negEdges = new LinkedList<Edge>();
 			for(Edge edge : gateway.getIncomingEdges()){
 				if(!posEdges.contains(edge)){

@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Export-Package: com.conx.bi.etl.pentaho.repository.db.services;version
+ ="1.0.0";uses:="org.flowframe.kernel.common.mdm.domain.organization,o
+ rg.pentaho.di.core.exception,org.pentaho.di.repository",com.conx.bi.e
+ tl.pentaho.repository.db.services.impl;version="1.0.0";uses:="com.con
+ x.bi.etl.pentaho.repository.db.services,org.flowframe.kernel.common.m
+ dm.domain.organization,org.pentaho.di.core.exception,org.pentaho.di.r
+ epository,org.pentaho.di.repository.kdr"
+Require-Bundle: com.conx.bi.thirdparty.kettle-all;bundle-version="4.3.
+ 0",com.conx.bi.thirdparty.kettle-vfs-20100924;bundle-version="4.3.0"
+Bundle-Vendor: ConX
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.1.0.BUILD-20101220120024
+Bundle-Name: ConX BI Kettle ETL DB Repository Services Impl
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.conx.bi.etl.pentaho.repository.db.services.im
+ pl
+Import-Package: com.conx.bi.etl.services.transformation;version="1.0.0
+ ",org.apache.log4j;version="[1.2.0,1.3.0)",org.flowframe.kernel.commo
+ n.mdm.domain.organization;version="0.0.1",org.junit;version="[4.3.0,4
+ .11.0)",org.pentaho.di.core;version="[4.3.0,4.7.0)",org.pentaho.di.co
+ re.database;version="[4.3.0,4.7.0)",org.pentaho.di.core.exception;ver
+ sion="[4.3.0,4.7.0)",org.pentaho.di.core.logging;version="[4.3.0,4.7.
+ 0)",org.pentaho.di.core.variables;version="[4.3.0,4.7.0)",org.pentaho
+ .di.repository;version="[4.3.0,4.7.0)",org.pentaho.di.repository.file
+ rep;version="[4.3.0,4.7.0)",org.pentaho.di.repository.kdr;version="[4
+ .3.0,4.7.0)",org.pentaho.di.trans;version="[4.3.0,4.7.0)",org.slf4j;v
+ ersion="[1.6.0,1.7.0)"
+

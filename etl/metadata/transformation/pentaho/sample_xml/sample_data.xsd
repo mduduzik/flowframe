@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="transformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="info">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" />
+              <xs:element name="description" />
+              <xs:element name="extended_description" />
+              <xs:element name="trans_version" />
+              <xs:element name="directory" type="xs:string" />
+              <xs:element name="log">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="read" />
+                    <xs:element name="write" />
+                    <xs:element name="input" />
+                    <xs:element name="output" />
+                    <xs:element name="update" />
+                    <xs:element name="rejected" />
+                    <xs:element name="connection" />
+                    <xs:element name="table" />
+                    <xs:element name="step_performance_table" />
+                    <xs:element name="use_batchid" type="xs:string" />
+                    <xs:element name="use_logfield" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="maxdate">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="connection" />
+                    <xs:element name="table" />
+                    <xs:element name="field" />
+                    <xs:element name="offset" type="xs:decimal" />
+                    <xs:element name="maxdiff" type="xs:decimal" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="size_rowset" type="xs:unsignedShort" />
+              <xs:element name="sleep_time_empty" type="xs:unsignedByte" />
+              <xs:element name="sleep_time_full" type="xs:unsignedByte" />
+              <xs:element name="unique_connections" type="xs:string" />
+              <xs:element name="feedback_shown" type="xs:string" />
+              <xs:element name="feedback_size" type="xs:unsignedShort" />
+              <xs:element name="using_thread_priorities" type="xs:string" />
+              <xs:element name="shared_objects_file" />
+              <xs:element name="capture_step_performance" type="xs:string" />
+              <xs:element name="step_performance_capturing_delay" type="xs:unsignedShort" />
+              <xs:element name="dependencies" type="xs:string" />
+              <xs:element name="partitionschemas" type="xs:string" />
+              <xs:element name="slaveservers" type="xs:string" />
+              <xs:element name="clusterschemas" type="xs:string" />
+              <xs:element name="modified_user" type="xs:string" />
+              <xs:element name="modified_date" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="notepads" type="xs:string" />
+        <xs:element name="order">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="hop">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="from" type="xs:string" />
+                    <xs:element name="to" type="xs:string" />
+                    <xs:element name="enabled" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element maxOccurs="unbounded" name="step">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" />
+              <xs:element name="type" type="xs:string" />
+              <xs:element name="description" />
+              <xs:element name="distribute" type="xs:string" />
+              <xs:element name="copies" type="xs:unsignedByte" />
+              <xs:element name="partitioning">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="method" type="xs:string" />
+                    <xs:element name="schema_name" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="filename" type="xs:string" />
+              <xs:element minOccurs="0" name="filename_field" />
+              <xs:element minOccurs="0" name="rownum_field" />
+              <xs:element minOccurs="0" name="include_filename" type="xs:string" />
+              <xs:element minOccurs="0" name="separator" type="xs:string" />
+              <xs:element minOccurs="0" name="enclosure" type="xs:string" />
+              <xs:element minOccurs="0" name="header" type="xs:string" />
+              <xs:element minOccurs="0" name="buffer_size" type="xs:unsignedShort" />
+              <xs:element minOccurs="0" name="lazy_conversion" type="xs:string" />
+              <xs:element minOccurs="0" name="add_filename_result" type="xs:string" />
+              <xs:element minOccurs="0" name="parallel" type="xs:string" />
+              <xs:element minOccurs="0" name="encoding" type="xs:string" />
+              <xs:element minOccurs="0" name="fields">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="select_unspecified" type="xs:string" />
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="meta">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="name" type="xs:string" />
+                          <xs:element name="rename" type="xs:string" />
+                          <xs:element name="type" type="xs:string" />
+                          <xs:element name="length" type="xs:byte" />
+                          <xs:element name="precision" type="xs:byte" />
+                          <xs:element name="conversion_mask" />
+                          <xs:element name="date_format_lenient" type="xs:boolean" />
+                          <xs:element name="encoding" />
+                          <xs:element name="decimal_symbol" />
+                          <xs:element name="grouping_symbol" />
+                          <xs:element name="currency_symbol" />
+                          <xs:element name="storage_type" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="field">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="name" type="xs:string" />
+                          <xs:element name="type" type="xs:string" />
+                          <xs:element name="format" type="xs:string" />
+                          <xs:element name="currency" type="xs:string" />
+                          <xs:element name="decimal" type="xs:string" />
+                          <xs:element name="group" type="xs:string" />
+                          <xs:element name="length" type="xs:unsignedByte" />
+                          <xs:element name="precision" type="xs:byte" />
+                          <xs:element name="trim_type" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="cluster_schema" />
+              <xs:element name="remotesteps">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="input" type="xs:string" />
+                    <xs:element name="output" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="GUI">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="xloc" type="xs:unsignedShort" />
+                    <xs:element name="yloc" type="xs:unsignedShort" />
+                    <xs:element name="draw" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="step_error_handling" type="xs:string" />
+        <xs:element name="slave-step-copy-partition-distribution" type="xs:string" />
+        <xs:element name="slave_transformation" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bundle-Vendor: ConX
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.1.0.BUILD-20101220120024
+Bundle-Name: ConX BI ETL Transformation Services
+Bundle-ManifestVersion: 2
+Require-Bundle: com.conx.awbtracker.thirdparty.aparse2;bundle-version="2.1"
+Bundle-SymbolicName: com.conx.bi.etl.services
+Import-Template: 
+  com.conx.awbtracker.core.domain.*;version="1.0.0",
+  com.conx.awbtracker.core.services.*;version="1.0.0",
+  com.conx.awbtracker.core.exception.*;version="1.0.0",
+  com.conx.awbtracker.core.types.*;version="1.0.0",
+  com.conx.awbtracker.core.utils.*;version="1.0.0",
+  com.conx.awbtracker.refdata.dao.services;version="1.0.0",
+  iata.flightmanifest._1;version="1.0.0",
+  iata.statusmessage._1;version="1.0.0",
+  iata.datamodel._3.*;version="1.0.0",
+  iata.waybill._1.*;version="1.0.0",
+  un.unece.uncefact.data.unqualifieddatatype._8.*;version="1.0.0",  
+  un.unece.uncefact.data.qualifieddatatype._7;version="1.0.0",
+  un.unece.uncefact.codelist._5.iso42173a._2009_09_09;version="1.0.0",
+  un.unece.uncefact.codelist.unece.partyrolecode.d09a;version="1.0.0",
+  un.unece.uncefact.identifierlist._5.iso316612a.secondedition2006vi_6;version="1.0.0",
+  javax.persistence.*;version="[2.0.0,3.0.0)",
+  org.jvnet.hyperjaxb3.*;version="0.5.7.SNAPSHOT",
+  org.jvnet.jaxb2_commons.*;version="0.6.4.SNAPSHOT",
+  org.slf4j;version="1.6.1",
+  org.joda.time;version="1.6.0",
+  org.springframework.beans.factory.annotation;version="[3.0,3.1)",
+  org.springframework.transaction.annotation;version="[3.0,3.1)"
+  
+Excluded-Imports: 
+  com.conx.awbtracker.integration.parsers.cargoimp.*,
+  org.springframework.orm.*,
+  org.springframework.test.*,
+  org.junit.*
+Excluded-Exports: 
+ com.conx.awbtracker.integration.parsers.cargoimp.*,
+ org.junit.*

@@ -15,7 +15,6 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
-    <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
@@ -23,7 +22,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.flowframe.reporting.remote.services" />
+    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.reporting.remote.services:0.0.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.aop:3.1.3.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.aopalliance:com.springsource.org.aopalliance:1.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.beans:3.1.3.RELEASE" level="project" />

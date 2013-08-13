@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd
+http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <persistence-unit name="org.pentaho.kettle.schema.kettle.trans">
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Info</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Info$Log</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Info$Maxdate</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Order</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Order$Hop</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step$Fields</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step$Fields$Field</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step$Fields$Meta</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step$GUI</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step$Partitioning</class>
+        <class>org.pentaho.kettle.schema.kettle.trans.Transformation$Step$Remotesteps</class>
+    </persistence-unit>
+</persistence>

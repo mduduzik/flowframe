@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: com.conx.bi.etl.services.engine;version="0.0.1",com.co
+ nx.bi.etl.services.plugins;version="0.0.1",com.conx.bi.etl.services.t
+ ransformation;version="0.0.1",com.conx.bi.etl.type;version="0.0.1"
+Require-Bundle: com.conx.awbtracker.thirdparty.aparse2;bundle-version=
+ "2.1"
+Bundle-Vendor: ConX
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.1.0.BUILD-20101220120024
+Bundle-Name: ConX BI ETL Transformation Services
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.conx.bi.etl.services
+

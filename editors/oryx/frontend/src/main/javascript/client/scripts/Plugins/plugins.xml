@@ -436,8 +436,10 @@
 		<plugin source="umlsequence.js" name="ORYX.Plugins.UMLSequence">
 			<requires namespace="http://b3mn.org/stencilset/umlsequence#"/>	
 		</plugin>
-		
-		
+
+
+        <!-- ETL -->
+        <plugin source="etl/metadata/dbconnection/dbconnectionwizard.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
 	</plugins>
 
 	

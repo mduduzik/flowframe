@@ -35,6 +35,7 @@
 		<plugin name="ORYX.Plugins.ContainerLayouter" />
 		<plugin name="ORYX.Plugins.Layouter.EdgeLayouter"/>
 		<plugin name="ORYX.Plugins.WaveThis"/>
+        <plugin name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
 	</profile>
 	<profile name="bpmn" depends="default" stencilset="stencilsets/bpmn1.1/bpmn1.1.json">
 		<plugin name="ORYX.Plugins.BPMN2XForms"/>

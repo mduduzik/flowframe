@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-Vendor: ConX
+Build-Jdk: 1.6.0_29
+Built-By: Developer
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: ConX BI Metadata
+Bundle-ManifestVersion: 2
+Created-By: Maven Integration for Eclipse
+Bundle-SymbolicName: com.conx.bi.etl.metadata.core
+Fragment-Host: com.conxbi.core.dao.jpa.dynaconfig.hibernate
+Import-Package: javax.persistence;version="[2.0.0,3.0.0)",
+ javax.xml.bind;version="0",
+ javax.xml.bind.annotation;version="0",
+ javax.xml.bind.annotation.adapters;version="0",
+ javax.xml.datatype;version="0",
+ javax.xml.namespace;version="0",
+ org.jvnet.hyperjaxb3.item;version="0.5.7.SNAPSHOT",
+ org.jvnet.hyperjaxb3.xml.bind;version="0.5.7.SNAPSHOT",
+ org.jvnet.hyperjaxb3.xml.bind.annotation.adapters;version="0.5.7.SNAPSHOT",
+ org.jvnet.hyperjaxb3.ejb.test;version="0.5.7.SNAPSHOT",
+ org.jvnet.jaxb2_commons.lang;version="0.6.4.SNAPSHOT",
+ org.jvnet.jaxb2_commons.locator;version="0.6.4.SNAPSHOT",
+ org.jvnet.jaxb2_commons.locator.util;version="0.6.4.SNAPSHOT",
+ org.jvnet.jaxb2_commons.xml.bind;version="0.6.4.SNAPSHOT"

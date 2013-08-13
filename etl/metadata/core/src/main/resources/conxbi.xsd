@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- http://confluence.highsource.org/display/HJ3/Customization+Guide#CustomizationGuide-Cutomizingmappedsuperclass -->
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://conxbi.com/metadata"
+	xmlns:tns="http://conxbi.com/metadata" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	jaxb:extensionBindingPrefixes="hj orm">
+
+	<!-- Common: Base -->
+	<xs:complexType name="tenantrecord" abstract="true">
+		<xs:annotation>
+			<xs:appinfo>
+				<hj:mapped-superclass>
+				</hj:mapped-superclass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tenant" type="tns:organization" />
+			<xs:element name="repositoryid" type="xs:string" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="description" type="xs:string" />
+			<xs:element name="system" type="xs:boolean" />
+			<xs:element name="dateCreated" type="xs:dateTime" />
+			<xs:element name="dateLastUpdated" type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+	
+  <!-- Common: Preferences -->
+   <xs:complexType name="preferences">
+	<xs:complexContent>
+		<xs:extension base="tns:tenantrecord">    
+	      <xs:sequence>
+	        <xs:element ref="tns:prefroot" />
+	      </xs:sequence>
+	      <xs:attribute default="0.0" name="EXTERNAL_XML_VERSION" type="xs:string" />
+	     </xs:extension>
+     </xs:complexContent>
+   </xs:complexType>
+  <xs:element name="prefroot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:prefmap" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:prefnode" />
+      </xs:sequence>
+      <xs:attribute name="type" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="system" />
+            <xs:enumeration value="user" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prefnode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:prefmap" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:prefnode" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prefmap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:prefentry" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prefentry">
+    <xs:complexType>
+      <xs:attribute name="key" type="xs:string" use="required" />
+      <xs:attribute name="value" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>	
+
+	<!-- Organization -->
+	<xs:complexType name="organization">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="subscriber">
+		<xs:complexContent>
+			<xs:extension base="tns:organization">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="subscriptions" type="tns:subscriber" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- <xs:element name="organization" type="tns:organization"> -->
+
+	<!-- Subscription -->
+	<xs:complexType name="subscription">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- Service -->
+	<xs:complexType name="service" abstract="true">
+		<xs:annotation>
+			<xs:appinfo>
+				<hj:mapped-superclass>
+				</hj:mapped-superclass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="category" type="tns:servicecategory"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="servicecategory">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+	<xs:complexType name="etlservice" abstract="true">
+		<xs:annotation>
+			<xs:appinfo>
+				<hj:mapped-superclass>
+				</hj:mapped-superclass>
+			</xs:appinfo>
+		</xs:annotation>	
+		<xs:complexContent>
+			<xs:extension base="tns:service">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+	<!-- Job: Endpoint -->
+	<xs:complexType name="endpoint" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="epId" type="xs:string"/>
+					<xs:element name="templateEndpoint" type="tns:endpoint"/>					
+					<xs:element name="scheme" type="tns:SchemeType"/>
+					<xs:element name="extraOptions" type="tns:preferences"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="SchemeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="FTP"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="URLBasedEndpoint" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="tns:endpoint">
+				<xs:sequence>
+					<xs:element name="protocol" type="xs:string"/>
+					<xs:element name="hostname" type="xs:string"/>
+					<xs:element name="port" type="xs:integer"/>
+					<xs:element name="path" type="xs:string"/>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+	<xs:complexType name="FTPEndpoint">
+		<xs:complexContent>
+			<xs:extension base="tns:URLBasedEndpoint">
+				<xs:sequence>
+					<xs:element name="binary" type="xs:boolean"/>
+					<xs:element name="disconnect" type="xs:boolean"/>
+					<xs:element name="passiveMode" type="xs:boolean"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+	<xs:complexType name="CXFUriEndpoint">
+		<xs:complexContent>
+			<xs:extension base="tns:URLBasedEndpoint">
+				<xs:sequence>
+					<xs:element name="wsdlURL" type="xs:string"/>
+					<xs:element name="serviceName" type="xs:string"/>
+					<xs:element name="dataFormat" type="tns:SOAPDataFormat"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>		
+	<xs:simpleType name="SOAPDataFormat">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="POJO"/>
+			<xs:enumeration value="PAYLOAD"/>
+			<xs:enumeration value="MESSAGE"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:complexType name="endpointMetaStep">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="endpoint" type="tns:endpoint"/>
+					<xs:element name="metaStep" type="tns:step"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="endpointMetaStepJobInputMapping">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="endpointMetaStep" type="tns:endpointMetaStep"/>
+					<xs:element name="job" type="tns:job"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+	<!-- Job -->	
+	<xs:complexType name="job" abstract="true">
+		<xs:annotation>
+			<xs:appinfo>
+				<hj:mapped-superclass>
+				</hj:mapped-superclass>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="jobMetaTemplate" type="tns:jobMeta"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="OneInputOneOutputEtlJob">
+		<xs:complexContent>
+			<xs:extension base="tns:job">
+				<xs:sequence>
+					<xs:element name="inputEndpointMetaStep" type="tns:endpointMetaStep"/>
+					<xs:element name="inputEndpointMetaStepMapper" type="tns:endpointMetaStepJobInputMapping"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+	<xs:complexType name="jobMeta">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="camelRouteId" type="xs:long"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+		
+	<!-- ETL: Transformation -->
+	<!-- ETL: Transformation: Main -->
+	<xs:element name="transformation">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="tns:tenantrecord">
+					<xs:sequence>
+						<xs:element name="info">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="name" type="xs:string" />
+									<xs:element name="description" />
+									<xs:element name="extended_description" />
+									<xs:element name="trans_version" />
+									<xs:element name="directory" type="xs:string" />
+									<xs:element name="log">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="read" />
+												<xs:element name="write" />
+												<xs:element name="input" />
+												<xs:element name="output" />
+												<xs:element name="update" />
+												<xs:element name="rejected" />
+												<xs:element name="connection" />
+												<xs:element name="table" />
+												<xs:element name="step_performance_table" />
+												<xs:element name="use_batchid" type="xs:string" />
+												<xs:element name="use_logfield" type="xs:string" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="maxdate">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="connection" />
+												<xs:element name="table" />
+												<xs:element name="field" />
+												<xs:element name="offset" type="xs:decimal" />
+												<xs:element name="maxdiff" type="xs:decimal" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="size_rowset" type="xs:unsignedShort" />
+									<xs:element name="sleep_time_empty" type="xs:unsignedByte" />
+									<xs:element name="sleep_time_full" type="xs:unsignedByte" />
+									<xs:element name="unique_connections" type="xs:string" />
+									<xs:element name="feedback_shown" type="xs:string" />
+									<xs:element name="feedback_size" type="xs:unsignedShort" />
+									<xs:element name="using_thread_priorities" type="xs:string" />
+									<xs:element name="shared_objects_file" />
+									<xs:element name="capture_step_performance" type="xs:string" />
+									<xs:element name="step_performance_capturing_delay"
+										type="xs:unsignedShort" />
+									<xs:element name="dependencies" type="xs:string" />
+									<xs:element name="partitionschemas" type="xs:string" />
+									<xs:element name="slaveservers" type="xs:string" />
+									<xs:element name="clusterschemas" type="xs:string" />
+									<xs:element name="modified_user" type="xs:string" />
+									<xs:element name="modified_date" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="notepads" type="xs:string" />
+						<xs:element name="order">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="hop">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="from" type="xs:string" />
+												<xs:element name="to" type="xs:string" />
+												<xs:element name="enabled" type="xs:string" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" name="step" type="tns:step"/>
+						<xs:element name="step_error_handling" type="xs:string" />
+						<xs:element name="slave-step-copy-partition-distribution"
+							type="xs:string" />
+						<xs:element name="slave_transformation" type="xs:string" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="step">
+		<xs:complexContent>
+			<xs:extension base="tns:tenantrecord">
+				<xs:sequence>
+					<xs:element name="type" type="xs:string" />
+					<xs:element name="distribute" type="xs:string" />
+					<xs:element name="copies" type="xs:unsignedByte" />
+					<xs:element name="partitioning">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="method" type="xs:string" />
+								<xs:element name="schema_name" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="filename" type="xs:string" />
+					<xs:element minOccurs="0" name="filename_field" />
+					<xs:element minOccurs="0" name="rownum_field" />
+					<xs:element minOccurs="0" name="include_filename"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="separator" type="xs:string" />
+					<xs:element minOccurs="0" name="enclosure" type="xs:string" />
+					<xs:element minOccurs="0" name="header" type="xs:string" />
+					<xs:element minOccurs="0" name="buffer_size" type="xs:unsignedShort" />
+					<xs:element minOccurs="0" name="lazy_conversion"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="add_filename_result"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="parallel" type="xs:string" />
+					<xs:element minOccurs="0" name="encoding" type="xs:string" />
+					<xs:element minOccurs="0" name="fields">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element minOccurs="0" name="select_unspecified"
+									type="xs:string" />
+								<xs:element minOccurs="0" maxOccurs="unbounded"
+									name="meta">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="name" type="xs:string" />
+											<xs:element name="rename" type="xs:string" />
+											<xs:element name="type" type="xs:string" />
+											<xs:element name="length" type="xs:byte" />
+											<xs:element name="precision" type="xs:byte" />
+											<xs:element name="conversion_mask" />
+											<xs:element name="date_format_lenient" type="xs:boolean" />
+											<xs:element name="encoding" />
+											<xs:element name="decimal_symbol" />
+											<xs:element name="grouping_symbol" />
+											<xs:element name="currency_symbol" />
+											<xs:element name="storage_type" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element minOccurs="0" maxOccurs="unbounded"
+									name="field">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="name" type="xs:string" />
+											<xs:element name="type" type="xs:string" />
+											<xs:element name="format" type="xs:string" />
+											<xs:element name="currency" type="xs:string" />
+											<xs:element name="decimal" type="xs:string" />
+											<xs:element name="group" type="xs:string" />
+											<xs:element name="length" type="xs:unsignedByte" />
+											<xs:element name="precision" type="xs:byte" />
+											<xs:element name="trim_type" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="cluster_schema" />
+					<xs:element name="remotesteps">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="input" type="xs:string" />
+								<xs:element name="output" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="GUI">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="xloc" type="xs:unsignedShort" />
+								<xs:element name="yloc" type="xs:unsignedShort" />
+								<xs:element name="draw" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

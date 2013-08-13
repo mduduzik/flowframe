@@ -1,0 +1,2 @@
+call mvn install:install-file -Dfile=cloveretl.engine.jar -DgroupId=com.cloveretl -DartifactId=cloveretl.engine -Dversion=3.3.0 -Dpackaging=jar
+call mvn install:install-file -Dfile=cloveretl.component.jar -DgroupId=com.cloveretl -DartifactId=cloveretl.component -Dversion=3.3.0 -Dpackaging=jar

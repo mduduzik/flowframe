@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Export-Package: com.conxbi.metadata;version="1.0.0";uses:="javax.persi
+ stence,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,j
+ avax.xml.datatype,org.jvnet.jaxb2_commons.lang,org.jvnet.jaxb2_common
+ s.locator"
+Built-By: Developer
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: ConX BI Metadata
+Created-By: Maven Integration for Eclipse
+Bundle-Vendor: ConX
+Fragment-Host: com.conxbi.core.dao.jpa.dynaconfig.hibernate
+Bundle-Version: 1.0.0
+Build-Jdk: 1.6.0_29
+Bundle-ManifestVersion: 2
+Import-Package: javax.persistence;version="[2.0.0,3.0.0)",javax.xml.bi
+ nd;version="0",javax.xml.bind.annotation;version="0",javax.xml.bind.a
+ nnotation.adapters;version="0",javax.xml.datatype;version="0",javax.x
+ ml.namespace;version="0",org.jvnet.hyperjaxb3.ejb.test;version="0.5.7
+ .SNAPSHOT",org.jvnet.hyperjaxb3.item;version="0.5.7.SNAPSHOT",org.jvn
+ et.hyperjaxb3.xml.bind;version="0.5.7.SNAPSHOT",org.jvnet.hyperjaxb3.
+ xml.bind.annotation.adapters;version="0.5.7.SNAPSHOT",org.jvnet.jaxb2
+ _commons.lang;version="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.locato
+ r;version="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.locator.util;versi
+ on="0.6.4.SNAPSHOT",org.jvnet.jaxb2_commons.xml.bind;version="0.6.4.S
+ NAPSHOT"
+Bundle-SymbolicName: com.conx.bi.etl.metadata.core
+

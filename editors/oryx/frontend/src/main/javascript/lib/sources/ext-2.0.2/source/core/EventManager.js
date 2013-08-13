@@ -71,7 +71,7 @@ Ext.EventManager = function(){
     var createBuffered = function(h, o){
         var task = new Ext.util.DelayedTask(h);
         return function(e){
-            // create new event object impl so new events don't wipe out properties
+            // create new event object repository so new events don't wipe out properties
             e = new Ext.EventObjectImpl(e);
             task.delay(o.buffer, h, null, [e]);
         };
@@ -86,7 +86,7 @@ Ext.EventManager = function(){
 
     var createDelayed = function(h, o){
         return function(e){
-            // create new event object impl so new events don't wipe out properties
+            // create new event object repository so new events don't wipe out properties
             e = new Ext.EventObjectImpl(e);
             setTimeout(function(){
                 h(e);

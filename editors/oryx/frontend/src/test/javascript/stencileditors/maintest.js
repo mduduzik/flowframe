@@ -650,123 +650,7 @@ Ext.onReady(function(){
 
 
     //Repository tree
-    var navigationTree = new Ext.tree.TreePanel({
-        region: 'west',
-        id: 'navigation',
-        icon: '../../../../src/main/webapp/images/conxbi/etl/home_nav.gif',
-        collapsible: true,
-        title: 'Repository',
-        width: 214,
-        autoScroll: true,
-        rootVisible: false,
-        cmargins: '5 0 0 0',
-        padding: '0 0 0 0',
-        tbar: [
-            'Search: ', ' ',
-            new Ext.app.SearchField({
-                width:'auto'
-            })
-        ],
-        loader: new Ext.tree.TreeLoader({dataUrl:'test_tree_data.json'}),
-        // default tree elements for the navigation
-        root: new Ext.tree.AsyncTreeNode({
-            text: '',
-            uiProvider: Ext.tree.customNodeUI,
-            children: [{
-                text: 'Job Designs',
-                icon: 'images/bi_process.png',
-                id: 'designs',
-                leaf: false
-            }, {
-                text: 'Metadata',
-                icon: 'images/package.gif',
-                id: 'metadata',
-                leaf: false,
-                title: 'Metadata',
-                hasChildren: true,
-                singleClickExpand: true,
-                children: [ {text: 'DB Connections',
-                            icon: '../../../../src/main/webapp/images/conxbi/etl/connection.gif',
-                            id: 'metadata.dbconnections',
-                            leaf: false,
-                            title: 'DB Connections',
-                            hasChildren: true,
-                            singleClickExpand: true,
-                            children: [ {
-                                        text: 'Test MySQL DB',
-                                        icon: '../../../../src/main/webapp/images/conxbi/etl/connection.gif',
-                                        id: 'metadata.dbconnections.testmysqldb',
-                                        leaf: false,
-                                        title: 'Test MySQL DB',
-                                        hasChildren: true,
-                                        singleClickExpand: true,
-                                        children: [ {
-                                                    text: 'Table Schemas',
-                                                    icon: '../../../../src/main/webapp/images/conxbi/etl/folder_close.png',
-                                                    leaf: false,
-                                                    title: 'Table Schemas',
-                                                    hasChildren: true,
-                                                    singleClickExpand: true,
-                                                    children: [ {
-                                                                    text: 'table1',
-                                                                    icon: '../../../../src/main/webapp/images/conxbi/etl/table.gif',
-                                                                    leaf: false,
-                                                                    title: 'table1',
-                                                                    hasChildren: true,
-                                                                    singleClickExpand: true,
-                                                                    children: [ {
-                                                                                    text: 'Column11',
-                                                                                    icon: '../../../../src/main/webapp/images/conxbi/etl/columns.gif',
-                                                                                    leaf: false,
-                                                                                    title: 'Column11',
-                                                                                    hasChildren: true,
-                                                                                    singleClickExpand: true
-                                                                                 }
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    text: 'table2',
-                                                                    icon: '../../../../src/main/webapp/images/conxbi/etl/table.gif',
-                                                                    leaf: false,
-                                                                    title: 'table2',
-                                                                    hasChildren: true,
-                                                                    singleClickExpand: true,
-                                                                    children: [ {
-                                                                        text: 'Column21',
-                                                                        icon: '../../../../src/main/webapp/images/conxbi/etl/columns.gif',
-                                                                        leaf: false,
-                                                                        title: 'Column21',
-                                                                        hasChildren: true,
-                                                                        singleClickExpand: true
-                                                                    }
-                                                                    ]
-                                                                }
-                                                    ]
-                                                }
-                                        ]
-                                    }
-                            ]
-                            },
-                            {text: 'Excel',
-                            icon: 'images/icon_excel.gif',
-                            id: 'metadata.excel',
-                            leaf: false,
-                            title: 'Excel',
-                            hasChildren: true,
-                            singleClickExpand: true
-                            },
-                            {text: 'Delimited',
-                                icon: 'images/icon_delimited.gif',
-                                id: 'metadata.delimited',
-                                leaf: false,
-                                title: 'Delimited',
-                                hasChildren: true,
-                                singleClickExpand: true
-                            }
-                ]
-            }]
-        })
-    });
+    var navigationTree = new NavigationTreePanel();
 
     var item1 = new Ext.Panel({
         title: 'Databases'
@@ -822,6 +706,253 @@ Ext.onReady(function(){
             mainCenter_
         ]
     });
+});
 
 
+NavigationTreePanel = function() {
+    NavigationTreePanel.superclass.constructor.call(this, {
+        region: 'west',
+        id: 'navigation',
+        icon: '../../../../src/main/webapp/images/conxbi/etl/home_nav.gif',
+        collapsible: true,
+        title: 'Repository',
+        width: 214,
+        autoScroll: true,
+        rootVisible: false,
+        cmargins: '5 0 0 0',
+        padding: '0 0 0 0',
+        tbar: [
+            'Search: ', ' ',
+            new Ext.app.SearchField({
+                width:'auto'
+            })
+        ],
+        loader: new Ext.tree.TreeLoader({dataUrl:'test_tree_data.json'}),
+        // default tree elements for the navigation
+        root: new Ext.tree.AsyncTreeNode({
+            text: '',
+            uiProvider: Ext.tree.customNodeUI,
+            children: [{
+                text: 'Job Designs',
+                icon: 'images/bi_process.png',
+                id: 'designs',
+                leaf: false
+            }, {
+                text: 'Metadata',
+                icon: 'images/package.gif',
+                id: 'metadata',
+                leaf: false,
+                title: 'Metadata',
+                hasChildren: true,
+                singleClickExpand: true,
+                children: [ {text: 'DB Connections',
+                    icon: '../../../../src/main/webapp/images/conxbi/etl/connection.gif',
+                    id: 'metadata.dbconnections',
+                    leaf: false,
+                    title: 'DB Connections',
+                    hasChildren: true,
+                    singleClickExpand: true,
+                    children: [ {
+                        text: 'Test MySQL DB',
+                        icon: '../../../../src/main/webapp/images/conxbi/etl/connection.gif',
+                        id: 'metadata.dbconnections.testmysqldb',
+                        leaf: false,
+                        title: 'Test MySQL DB',
+                        hasChildren: true,
+                        singleClickExpand: true,
+                        children: [ {
+                            text: 'Table Schemas',
+                            icon: '../../../../src/main/webapp/images/conxbi/etl/folder_close.png',
+                            leaf: false,
+                            title: 'Table Schemas',
+                            hasChildren: true,
+                            singleClickExpand: true,
+                            children: [ {
+                                text: 'table1',
+                                icon: '../../../../src/main/webapp/images/conxbi/etl/table.gif',
+                                leaf: false,
+                                title: 'table1',
+                                hasChildren: true,
+                                singleClickExpand: true,
+                                children: [ {
+                                    text: 'Column11',
+                                    icon: '../../../../src/main/webapp/images/conxbi/etl/columns.gif',
+                                    leaf: false,
+                                    title: 'Column11',
+                                    hasChildren: true,
+                                    singleClickExpand: true
+                                }
+                                ]
+                            },
+                                {
+                                    text: 'table2',
+                                    icon: '../../../../src/main/webapp/images/conxbi/etl/table.gif',
+                                    leaf: false,
+                                    title: 'table2',
+                                    hasChildren: true,
+                                    singleClickExpand: true,
+                                    children: [ {
+                                        text: 'Column21',
+                                        icon: '../../../../src/main/webapp/images/conxbi/etl/columns.gif',
+                                        leaf: false,
+                                        title: 'Column21',
+                                        hasChildren: true,
+                                        singleClickExpand: true
+                                    }
+                                    ]
+                                }
+                            ]
+                        }
+                        ]
+                    }
+                    ]
+                },
+                    {text: 'Excel',
+                        icon: 'images/icon_excel.gif',
+                        id: 'metadata.excel',
+                        leaf: false,
+                        title: 'Excel',
+                        hasChildren: true,
+                        singleClickExpand: true
+                    },
+                    {text: 'Delimited',
+                        icon: 'images/icon_delimited.gif',
+                        id: 'metadata.delimited',
+                        leaf: false,
+                        title: 'Delimited',
+                        hasChildren: true,
+                        singleClickExpand: true
+                    }
+                ]
+            }]
+
+        })
+    });
+
+    this.getSelectionModel().on({
+        'beforeselect' : function(sm, node){
+            return node.isLeaf();
+        },
+        'selectionchange' : function(sm, node){
+            if(node){
+                this.fireEvent('feedselect', node.attributes);
+            }
+            this.getTopToolbar().items.get('delete').setDisabled(!node);
+        },
+        scope:this
+    });
+
+    this.addEvents({feedselect:true});
+
+    this.on('contextmenu', this.onContextMenu, this);
+}
+
+Ext.extend(NavigationTreePanel, Ext.tree.TreePanel, {
+    onContextMenu : function(node, e){
+        if(!this.menu){ // create context menu on first right click
+            this.menu = new Ext.menu.Menu({
+                id:'feeds-ctx',
+                items: [{
+                    id:'load',
+                    icon: '../../../../src/main/webapp/images/conxbi/etl/connection-new.png',
+                    text:'Create Connection',
+                    scope: this,
+                    handler:function(){
+                        this.ctxNode.select();
+                    }
+                },{
+                    text:'Create Folder',
+                    icon: '../../../../src/main/webapp/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler:function(){
+                        this.ctxNode.ui.removeClass('x-node-ctx');
+                        this.removeFeed(this.ctxNode.attributes.url);
+                        this.ctxNode = null;
+                    }
+                },'-',{
+                    iconCls:'add-feed',
+                    text:'Add Feed',
+                    handler: this.showWindow,
+                    scope: this
+                }]
+            });
+            this.menu.on('hide', this.onContextHide, this);
+        }
+        if(this.ctxNode){
+            this.ctxNode.ui.removeClass('x-node-ctx');
+            this.ctxNode = null;
+        }
+        //if(node.isLeaf()){
+            this.ctxNode = node;
+            this.ctxNode.ui.addClass('x-node-ctx');
+            this.menu.items.get('load').setDisabled(node.isSelected());
+            this.menu.showAt(e.getXY());
+        //}
+    },
+
+    onContextHide : function(){
+        if(this.ctxNode){
+            this.ctxNode.ui.removeClass('x-node-ctx');
+            this.ctxNode = null;
+        }
+    },
+
+    showWindow : function(btn){
+        if(!this.win){
+            this.win = new FeedWindow();
+            this.win.on('validfeed', this.addFeed, this);
+        }
+        this.win.show(btn);
+    },
+
+    selectFeed: function(url){
+        this.getNodeById(url).select();
+    },
+
+    removeFeed: function(url){
+        var node = this.getNodeById(url);
+        if(node){
+            node.unselect();
+            Ext.fly(node.ui.elNode).ghost('l', {
+                callback: node.remove, scope: node, duration: .4
+            });
+        }
+    },
+
+    addFeed : function(attrs, inactive, preventAnim){
+        var exists = this.getNodeById(attrs.url);
+        if(exists){
+            if(!inactive){
+                exists.select();
+                exists.ui.highlight();
+            }
+            return;
+        }
+        Ext.apply(attrs, {
+            iconCls: 'feed-icon',
+            leaf:true,
+            cls:'feed',
+            id: attrs.url
+        });
+        var node = new Ext.tree.TreeNode(attrs);
+        this.feeds.appendChild(node);
+        if(!inactive){
+            if(!preventAnim){
+                Ext.fly(node.ui.elNode).slideIn('l', {
+                    callback: node.select, scope: node, duration: .4
+                });
+            }else{
+                node.select();
+            }
+        }
+        return node;
+    },
+
+    // prevent the default context menu when you miss the node
+    afterRender : function(){
+        NavigationTreePanel.superclass.afterRender.call(this);
+        this.el.on('contextmenu', function(e){
+            e.preventDefault();
+        });
+    }
 });
