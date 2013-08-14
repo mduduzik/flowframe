@@ -4,6 +4,7 @@ if(!ORYX.Plugins) {
 
 if(!ORYX.Plugins.ETL) {
     ORYX.Plugins.ETL = new Object();
+}
 
 if(!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
@@ -12,6 +13,10 @@ if(!ORYX.Plugins.ETL.Metadata) {
 ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
     facade: undefined,
+
+    selectDBTypeFormPanel : undefined,
+    setJDBCSettingsFormPanel : undefined,
+    setUsernameAndPasswordFormPanel : undefined,
 
     construct: function(facade) {
         // Reference to the Editor-Interface
@@ -25,10 +30,10 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
     init: function(){
         var wizard = new Ext.ux.Wiz({
 
-            title : 'A simple example for a wizard',
+            title : 'New DB Connection Wizard',
 
             headerConfig : {
-                title : 'Simple Wizard Example'
+                title : 'New DB Connection Wizard'
             },
 
             cardPanelConfig : {
@@ -41,89 +46,35 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
             cards : [
 
-                // first card with welcome message
+                //Select database name and type
                 new Ext.ux.Wiz.Card({
-                    title : 'Welcome',
+                    title : 'Select database name and type',
                     items : [{
                         border    : false,
                         bodyStyle : 'background:none;',
-                        html      : 'Welcome to the example for <strong>Ext.ux.Wiz</string>, '+
-                            'a Ext JS user extension for creating wizards.<br/><br/>'+
-                            'Please click the "next"-button and fill out all form values.'
+                        items     : this.selectDBTypeFormPanel
                     }]
                 }),
 
-                // second card with input fields last/firstname
+                //Set JDBC settings
                 new Ext.ux.Wiz.Card({
-                    title        : 'Your name',
-                    monitorValid : true,
-                    defaults     : {
-                        labelStyle : 'font-size:11px'
-                    },
-                    items : [{
-                        border    : false,
-                        bodyStyle : 'background:none;padding-bottom:30px;',
-                        html      : 'Please enter your first- and your lastname. Only letters, underscores and hyphens are allowed.'
-                    },
-                        new Ext.form.TextField({
-                            name       : 'firstname',
-                            fieldLabel : 'Firstname',
-                            allowBlank : false,
-                            validator  : function(v){
-                                var t = /^[a-zA-Z_\- ]+$/;
-                                return t.test(v);
-                            }
-                        }),
-                        new Ext.form.TextField({
-                            name       : 'lastname',
-                            fieldLabel : 'Lastname',
-                            allowBlank : false,
-                            validator  : function(v){
-                                var t = /^[a-zA-Z_\- ]+$/
-                                return t.test(v);
-                            }
-                        })
-
-                    ]
-                }),
-
-                // third card with input field email-address
-                new Ext.ux.Wiz.Card({
-                    title        : 'Your email-address',
-                    monitorValid : true,
-                    defaults     : {
-                        labelStyle : 'font-size:11px'
-                    },
-                    items : [{
-                        border    : false,
-                        bodyStyle : 'background:none;padding-bottom:30px;',
-                        html      : ' Please enter your email-address.'
-                    },
-                        new Ext.form.TextField({
-                            name       : 'email',
-                            fieldLabel : 'Email-Address',
-                            allowBlank : false,
-                            vtype      : 'email'
-                        })
-                    ]
-                }),
-
-                // fourth card with finish-message
-                new Ext.ux.Wiz.Card({
-                    title        : 'Finished!',
-                    monitorValid : true,
+                    title        : 'Set JDBC settings',
                     items : [{
                         border    : false,
                         bodyStyle : 'background:none;',
-                        html      : 'Thank you for testing this wizard. Your data has been collected '+
-                            'and can be accessed via a call to <pre><code>this.getWizardData</code></pre>'+
-                            'When you click on the "finish"-button, the "finish"-event will be fired.<br/>'+
-                            'If no attached listener for this event returns "false", this dialog will be '+
-                            'closed. <br />(In this case, our listener will return false after a popup shows the data you just entered)'
+                        items     : this.setJDBCSettingsFormPanel
+                    }]
+                }),
+
+                //Set the username and password
+                new Ext.ux.Wiz.Card({
+                    title        : 'Set the username and password',
+                    items : [{
+                        border    : false,
+                        bodyStyle : 'background:none;',
+                        items     : this.setUsernameAndPasswordFormPanel
                     }]
                 })
-
-
             ]
         });
 

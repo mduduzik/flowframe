@@ -3,126 +3,122 @@
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Ext.ux.Wiz - SimpleWizard</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../../src/main/javascript/lib/ext-2.0.2/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="/oryx/lib/ext-2.0.2/resources/css/ext-all.css"/>
 
     <!-- GC -->
     <!-- LIBS -->
-    <script type="text/javascript" src="../../../../src/main/javascript/lib/ext-2.0.2/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="/oryx/lib/ext-2.0.2/adapter/ext/ext-base.js"></script>
     <!-- ENDLIBS -->
 
-    <script type="text/javascript" src="../../../../src/main/javascript/lib/ext-2.0.2/ext-all.js"></script>
+    <script type="text/javascript" src="/oryx/lib/ext-2.0.2/ext-all.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../../../../src/main/javascript/lib/ext-2.0.2/ux/wiz/resources/wiz.css" />
-    <script type="text/javascript" src="../../../../src/main/javascript/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js"></script>
+    <link rel="stylesheet" type="text/css" href="/oryx/lib/ext-2.0.2/ux/wiz/resources/wiz.css"/>
+    <script type="text/javascript" src="/oryx/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js"></script>
 </head>
 
 <body>
 <script type="text/javascript">
 
 
-
-    Ext.onReady(function(){
+    Ext.onReady(function () {
 
         Ext.QuickTips.init();
 
         var wizard = new Ext.ux.Wiz({
 
-            title : 'A simple example for a wizard',
+            title: 'A simple example for a wizard',
 
-            headerConfig : {
-                title : 'Simple Wizard Example'
+            headerConfig: {
+                title: 'Simple Wizard Example'
             },
 
-            cardPanelConfig : {
-                defaults : {
-                    baseCls    : 'x-small-editor',
-                    bodyStyle  : 'padding:40px 15px 5px 120px;background-color:#F6F6F6;',
-                    border     : false
+            cardPanelConfig: {
+                defaults: {
+                    baseCls: 'x-small-editor',
+                    bodyStyle: 'padding:40px 15px 5px 120px;background-color:#F6F6F6;',
+                    border: false
                 }
             },
 
-            cards : [
-
-                // first card with welcome message
-                new Ext.ux.Wiz.Card({
-                    title : 'Welcome',
-                    items : [{
-                        border    : false,
-                        bodyStyle : 'background:none;',
-                        html      : 'Welcome to the example for <strong>Ext.ux.Wiz</string>, '+
-                                'a Ext JS user extension for creating wizards.<br/><br/>'+
-                                'Please click the "next"-button and fill out all form values.'
-                    }]
-                }),
-
+            cards: [
                 // second card with input fields last/firstname
                 new Ext.ux.Wiz.Card({
-                    title        : 'Your name',
-                    monitorValid : true,
-                    defaults     : {
-                        labelStyle : 'font-size:11px'
+                    title: 'Your name',
+                    monitorValid: true,
+                    defaults: {
+                        labelStyle: 'font-size:11px'
                     },
-                    items : [{
-                        border    : false,
-                        bodyStyle : 'background:none;padding-bottom:30px;',
-                        html      : 'Please enter your first- and your lastname. Only letters, underscores and hyphens are allowed.'
-                    },
-                        new Ext.form.TextField({
-                            name       : 'firstname',
-                            fieldLabel : 'Firstname',
-                            allowBlank : false,
-                            validator  : function(v){
-                                var t = /^[a-zA-Z_\- ]+$/;
-                                return t.test(v);
-                            }
-                        }),
-                        new Ext.form.TextField({
-                            name       : 'lastname',
-                            fieldLabel : 'Lastname',
-                            allowBlank : false,
-                            validator  : function(v){
-                                var t = /^[a-zA-Z_\- ]+$/
-                                return t.test(v);
+                    items: [
+                        new Ext.form.ComboBox({
+                            store: new Ext.data.Store({
+                                proxy: new Ext.data.ScriptTagProxy({
+                                    url: 'http://localhost:8082/etlmdmrepo/refdata?call=list&type=databasetype&userId=test'
+                                }),
+                                reader: new Ext.data.JsonReader({
+                                    root: 'types',
+                                    totalProperty: 'totalCount',
+                                    id: 'id'
+                                }, [
+                                    {name: 'id', mapping: 'id'},
+                                    {name: 'code', mapping: 'code'},
+                                    {name: 'description', mapping: 'description'}
+                                ])
+                            }),
+                            displayField:'description',
+                            typeAhead: false,
+                            loadingText: 'Searching...',
+                            width: 570,
+                            pageSize:10,
+                            hideTrigger:true,
+                            tpl: new Ext.XTemplate(
+                                    '<tpl for="."><div class="search-item">',
+                                    '<h3><span>{code}</h3>',
+                                    '{description}',
+                                    '</div></tpl>'),
+                            onSelect: function(record){ // override default onSelect to do redirect
+                                //window.location = String.format('http://extjs.com/forum/showthread.php?t={0}&p={1}', record.data.topicId, record.id);
                             }
                         })
-
                     ]
                 }),
 
                 // third card with input field email-address
                 new Ext.ux.Wiz.Card({
-                    title        : 'Your email-address',
-                    monitorValid : true,
-                    defaults     : {
-                        labelStyle : 'font-size:11px'
+                    title: 'Your email-address',
+                    monitorValid: true,
+                    defaults: {
+                        labelStyle: 'font-size:11px'
                     },
-                    items : [{
-                        border    : false,
-                        bodyStyle : 'background:none;padding-bottom:30px;',
-                        html      : ' Please enter your email-address.'
-                    },
+                    items: [
+                        {
+                            border: false,
+                            bodyStyle: 'background:none;padding-bottom:30px;',
+                            html: ' Please enter your email-address.'
+                        },
                         new Ext.form.TextField({
-                            name       : 'email',
-                            fieldLabel : 'Email-Address',
-                            allowBlank : false,
-                            vtype      : 'email'
+                            name: 'email',
+                            fieldLabel: 'Email-Address',
+                            allowBlank: false,
+                            vtype: 'email'
                         })
                     ]
                 }),
 
                 // fourth card with finish-message
                 new Ext.ux.Wiz.Card({
-                    title        : 'Finished!',
-                    monitorValid : true,
-                    items : [{
-                        border    : false,
-                        bodyStyle : 'background:none;',
-                        html      : 'Thank you for testing this wizard. Your data has been collected '+
-                                'and can be accessed via a call to <pre><code>this.getWizardData</code></pre>'+
-                                'When you click on the "finish"-button, the "finish"-event will be fired.<br/>'+
-                                'If no attached listener for this event returns "false", this dialog will be '+
-                                'closed. <br />(In this case, our listener will return false after a popup shows the data you just entered)'
-                    }]
+                    title: 'Finished!',
+                    monitorValid: true,
+                    items: [
+                        {
+                            border: false,
+                            bodyStyle: 'background:none;',
+                            html: 'Thank you for testing this wizard. Your data has been collected ' +
+                                    'and can be accessed via a call to <pre><code>this.getWizardData</code></pre>' +
+                                    'When you click on the "finish"-button, the "finish"-event will be fired.<br/>' +
+                                    'If no attached listener for this event returns "false", this dialog will be ' +
+                                    'closed. <br />(In this case, our listener will return false after a popup shows the data you just entered)'
+                        }
+                    ]
                 })
 
 

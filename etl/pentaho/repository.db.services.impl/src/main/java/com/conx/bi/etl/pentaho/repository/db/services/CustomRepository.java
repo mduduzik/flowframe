@@ -5,6 +5,7 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.UserInfo;
+import org.pentaho.di.repository.kdr.delegates.*;
 
 public interface CustomRepository extends Repository {
 	public UserInfo getUserInfo();
@@ -15,6 +16,13 @@ public interface CustomRepository extends Repository {
 	 */
 	public RepositoryDirectoryInterface provideDirectoryForTenant(Organization tenant) throws KettleException;
 	public void deleteDirectoryForTenant(Organization tenant) throws KettleException;
+
+    public KettleDatabaseRepositoryDirectoryDelegate getRepositoryDirectoryDelegate();
+    public KettleDatabaseRepositoryTransDelegate getRepositoryTransDelegate();
+    public KettleDatabaseRepositoryJobDelegate getRepositoryJobDelegate();
+    public KettleDatabaseRepositoryDatabaseDelegate getRepositoryDatabaseDelegate();
+    public KettleDatabaseRepositoryConnectionDelegate getRepositoryConnectionDelegate();
+    public KettleDatabaseRepositoryStepDelegate getRepositoryStepDelegate();
 
     /**
      *

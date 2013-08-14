@@ -13,6 +13,11 @@ import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.core.database.Database;
+import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
+import org.pentaho.di.trans.steps.excelinput.ExcelInputField;
+import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
+import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
 
 import java.util.Collection;
 import java.util.List;
@@ -47,7 +52,9 @@ public class RepositoryExporter {
             JSONArray metadataChildren = new JSONArray();
             treeByTenant.put(metadata);
 
+            /*
             //-- DB Connections
+            */
             JSONObject metadataDBConnections = generateDBConnectionsJSON(repo,dbConnectionsMdDir);
             metadataDBConnections.put("id","metadata.dbconnections");
             metadataDBConnections.put("text","DB Connections");
@@ -60,6 +67,37 @@ public class RepositoryExporter {
             metadataChildren.put(metadataDBConnections);
             metadata.put("children",metadataChildren);
 
+            /*
+            //-- CSV
+            */
+            JSONObject metadataDelimited = generateCSVMetadataJSON(repo, delimitedMdDir);
+            metadataDelimited.put("id",IdentityUtil.generatePathID(delimitedMdDir,"CSVInput"));
+            metadataDelimited.put("text","CSV");
+            metadataDelimited.put("title","CSV");
+            metadataDelimited.put("icon","/oryx/images/conxbi/etl/icon_delimited.gif");
+            metadataDelimited.put("leaf",false);
+            metadataDelimited.put("hasChildren",true);
+            metadataDelimited.put("singleClickExpand",true);
+
+            metadataChildren.put(metadataDelimited);
+
+
+            /*
+            //-- Excel
+            */
+            JSONObject metadataDExcel = generateExcelMetadataJSON(repo, excelMdDir);
+            metadataDExcel.put("id","metadata.excel");
+            metadataDExcel.put("text","Excel");
+            metadataDExcel.put("title","Excel");
+            metadataDExcel.put("icon","/oryx/images/conxbi/etl/icon_excel.gif");
+            metadataDExcel.put("leaf",false);
+            metadataDExcel.put("hasChildren",true);
+            metadataDExcel.put("singleClickExpand",true);
+
+            metadataChildren.put(metadataDExcel);
+
+            metadata.put("children",metadataChildren);
+
         } catch (KettleException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (JSONException e) {
@@ -69,11 +107,176 @@ public class RepositoryExporter {
         return treeByTenant;
     }
 
+    private static JSONObject generateExcelMetadataJSON(CustomRepository customRepository, RepositoryDirectoryInterface dir) {
+        JSONObject subDir = new JSONObject();
+        try {
+            // Populate
+            subDir.put("id", IdentityUtil.generatePathID(dir, "ExcelInput"));
+            subDir.put("text", dir.getName());
+            subDir.put("title",dir.getName());
+            subDir.put("icon", "/oryx/images/conxbi/etl/icon_excel.gif");
+            subDir.put("leaf",false);
+            subDir.put("hasChildren",true);
+            subDir.put("singleClickExpand",true);
+
+            JSONArray childrenArray = new JSONArray();
+
+            //Do sub dirs
+            List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
+
+            for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
+                JSONObject subDirDir = generateCSVMetadataJSON(customRepository, subDir_);
+                childrenArray.put(subDirDir);
+            }
+
+
+            //Do metadata from transformations
+            String[] dbConnectionMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
+            for (String transName : dbConnectionMetadataTransNames) {
+                TransMeta trans = customRepository.loadTransformation(transName, dir, null, true, null);
+                List<StepMeta> steps = trans.getSteps();
+                for (StepMeta step : steps){
+                    if (step.getTypeId().equalsIgnoreCase("ExcelInput")) {
+                        JSONObject mdmObj = new JSONObject();
+                        mdmObj.put("text",step.getName());
+                        mdmObj.put("title",step.getName());
+                        mdmObj.put("icon","/oryx/images/conxbi/etl/icon_excel.gif");
+                        mdmObj.put("id",IdentityUtil.generatePathID(step, steps.indexOf(step)));
+                        mdmObj.put("leaf",false);
+                        mdmObj.put("hasChildren",true);
+                        mdmObj.put("singleClickExpand",true);
+                        childrenArray.put(mdmObj);
+
+                        //Create tables
+                        JSONArray mdmObjItems = new JSONArray();
+                        mdmObj.put("children",mdmObjItems);
+                        JSONObject fieldsObj = new JSONObject();
+                        fieldsObj.put("title", "Fields");
+                        fieldsObj.put("text", "Fields");
+                        fieldsObj.put("id", step.getName() + ".fields");
+                        fieldsObj.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
+                        fieldsObj.put("leaf", false);
+                        fieldsObj.put("hasChildren", true);
+                        fieldsObj.put("singleClickExpand", true);
+                        JSONArray fields = new JSONArray();
+                        fieldsObj.put("children", fields);
+                        mdmObjItems.put(fieldsObj);
+
+                        ExcelInputMeta csvStep = (ExcelInputMeta)step.getStepMetaInterface();
+                        ExcelInputField[] inputFields = csvStep.getField();
+                        for (ExcelInputField field : inputFields) {
+                            JSONObject fieldObj = new JSONObject();
+                            fieldObj.put("id", fieldsObj.get("id")+"."+field.getName());
+                            fieldObj.put("text", field.getName()+"["+field.getTypeDesc()+"]");
+                            fieldObj.put("title", field.getName()+"["+field.getTypeDesc()+"]");
+                            fieldObj.put("icon", "/oryx/images/conxbi/etl/columns.gif");
+                            fieldObj.put("leaf", true);
+                            fieldObj.put("hasChildren", false);
+                            fieldObj.put("singleClickExpand", false);
+                            fields.put(fieldObj);
+                        }
+                    }
+                }
+            }
+
+            if (childrenArray.length() > 0)
+                subDir.put("children",childrenArray);
+        } catch (KettleException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (JSONException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return subDir;
+    }
+
+    private static JSONObject generateCSVMetadataJSON(CustomRepository customRepository, RepositoryDirectoryInterface dir) {
+        JSONObject subDir = new JSONObject();
+        try {
+            // Populate
+            subDir.put("id", IdentityUtil.generatePathID(dir, "CSVInput"));
+            subDir.put("text", dir.getName());
+            subDir.put("title",dir.getName());
+            subDir.put("icon", "/oryx/images/conxbi/etl/icon_delimited.gif");
+            subDir.put("leaf",false);
+            subDir.put("hasChildren",true);
+            subDir.put("singleClickExpand",true);
+
+            JSONArray childrenArray = new JSONArray();
+
+            //Do sub dirs
+            List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
+
+            for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
+                JSONObject subDirDir = generateCSVMetadataJSON(customRepository, subDir_);
+                childrenArray.put(subDirDir);
+            }
+
+
+            //Do metadata from transformations
+            String[] dbConnectionMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
+            for (String transName : dbConnectionMetadataTransNames) {
+                TransMeta trans = customRepository.loadTransformation(transName, dir, null, true, null);
+                List<StepMeta> steps = trans.getSteps();
+                for (StepMeta step : steps){
+                    if (step.getTypeId().equalsIgnoreCase("CsvInput")) {
+                        JSONObject mdmObj = new JSONObject();
+                        mdmObj.put("text",step.getName());
+                        mdmObj.put("title",step.getName());
+                        mdmObj.put("icon","/oryx/images/conxbi/etl/icon_delimited.gif");
+                        mdmObj.put("id",IdentityUtil.generatePathID(step,steps.indexOf(step)));
+                        mdmObj.put("leaf",false);
+                        mdmObj.put("hasChildren",true);
+                        mdmObj.put("singleClickExpand",true);
+                        childrenArray.put(mdmObj);
+
+                        //Create tables
+                        JSONArray mdmObjItems = new JSONArray();
+                        mdmObj.put("children",mdmObjItems);
+                        JSONObject fieldsObj = new JSONObject();
+                        fieldsObj.put("title", "Fields");
+                        fieldsObj.put("text", "Fields");
+                        fieldsObj.put("id", step.getName() + ".fields");
+                        fieldsObj.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
+                        fieldsObj.put("leaf", false);
+                        fieldsObj.put("hasChildren", true);
+                        fieldsObj.put("singleClickExpand", true);
+                        JSONArray fields = new JSONArray();
+                        fieldsObj.put("children", fields);
+                        mdmObjItems.put(fieldsObj);
+
+
+                        CsvInputMeta csvStep = (CsvInputMeta)step.getStepMetaInterface();
+                        TextFileInputField[] inputFields = csvStep.getInputFields();
+                        for (TextFileInputField field : inputFields) {
+                            JSONObject fieldObj = new JSONObject();
+                            fieldObj.put("id", fieldsObj.get("id")+"."+field.getName());
+                            fieldObj.put("text", field.getName()+"["+field.getTypeDesc()+"]");
+                            fieldObj.put("title", field.getName()+"["+field.getTypeDesc()+"]");
+                            fieldObj.put("icon", "/oryx/images/conxbi/etl/columns.gif");
+                            fieldObj.put("leaf", true);
+                            fieldObj.put("hasChildren", false);
+                            fieldObj.put("singleClickExpand", false);
+                            fields.put(fieldObj);
+                        }
+                    }
+                }
+            }
+
+            if (childrenArray.length() > 0)
+                subDir.put("children",childrenArray);
+        } catch (KettleException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (JSONException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return subDir;
+    }
+
     private static JSONObject generateDBConnectionsJSON(CustomRepository customRepository, RepositoryDirectoryInterface dir) {
         JSONObject subDir = new JSONObject();
         try {
             // Populate
-            subDir.put("id", dir.getObjectId().toString());
+            subDir.put("id", IdentityUtil.generatePathID(dir,"database"));
             subDir.put("text", dir.getName());
             subDir.put("title",dir.getName());
             subDir.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
@@ -102,7 +305,7 @@ public class RepositoryExporter {
                     dbObj.put("text",db.getName());
                     dbObj.put("title",db.getName());
                     dbObj.put("icon","/oryx/images/conxbi/etl/connection.gif");
-                    dbObj.put("id",db.getObjectId().toString());
+                    dbObj.put("id",IdentityUtil.generatePathID(trans, db));
                     dbObj.put("leaf",false);
                     dbObj.put("hasChildren",true);
                     dbObj.put("singleClickExpand",true);

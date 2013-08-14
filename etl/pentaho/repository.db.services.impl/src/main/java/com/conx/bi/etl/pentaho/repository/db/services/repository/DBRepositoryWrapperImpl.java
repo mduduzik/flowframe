@@ -13,6 +13,7 @@ import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryMeta;
 
 import com.conx.bi.etl.pentaho.repository.db.services.CustomRepository;
+import org.pentaho.di.repository.kdr.delegates.*;
 
 public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements CustomRepository {
 
@@ -176,7 +177,37 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		deleteRepositoryDirectory(dir);
 	}
 
-	@Override
+    @Override
+    public KettleDatabaseRepositoryDirectoryDelegate getRepositoryDirectoryDelegate() {
+        return directoryDelegate;
+    }
+
+    @Override
+    public KettleDatabaseRepositoryTransDelegate getRepositoryTransDelegate() {
+        return transDelegate;
+    }
+
+    @Override
+    public KettleDatabaseRepositoryJobDelegate getRepositoryJobDelegate() {
+        return jobDelegate;
+    }
+
+    @Override
+    public KettleDatabaseRepositoryDatabaseDelegate getRepositoryDatabaseDelegate() {
+        return databaseDelegate;
+    }
+
+    @Override
+    public KettleDatabaseRepositoryConnectionDelegate getRepositoryConnectionDelegate() {
+        return connectionDelegate;
+    }
+
+    @Override
+    public KettleDatabaseRepositoryStepDelegate getRepositoryStepDelegate() {
+        return stepDelegate;
+    }
+
+    @Override
 	public RepositoryDirectoryInterface provideDirectoryForTenant(Organization tenant) throws KettleException {
 		String dirName = "Organization-"+tenant.getId();
 		RepositoryDirectoryInterface dir = tenantDir.findDirectory(dirName);
@@ -278,5 +309,8 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 			dir = createRepositoryDirectory(jobsDir, FOLDER_JOBS_FILE_MANAGEMENT);
 		return dir;	
 	}
+
+
+
 	
 }
