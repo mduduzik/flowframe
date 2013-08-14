@@ -36,26 +36,32 @@ import java.util.Map;
  */
 public class RefDataListing {
 
-    public static JSONObject listDatabaseTypes(CustomRepository repo) {
+    public static JSONObject listDatabaseTypes(CustomRepository repo, String query, int start, int limit) {
         JSONObject wrapper = new JSONObject();
 
         String databaseTypesTable = repo.getRepositoryDatabaseDelegate().quoteTable(KettleDatabaseRepository.TABLE_R_DATABASE_TYPE);
-        String sql = "SELECT * FROM " + databaseTypesTable + " ORDER BY CODE ASC";
+        String sql = "SELECT * FROM " + databaseTypesTable + " WHERE description LIKE '%"+query+"%' ORDER BY CODE ASC LIMIT "+limit+" OFFSET "+start;
 
 
         ResultSet resultSet = null;
+        long totalCount = 0;
         JSONArray types = new JSONArray();
         try {
+            RowMetaAndData r = repo.getRepositoryConnectionDelegate().getDatabase().getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable + " WHERE description LIKE '%"+query+"%'");
+            if (r != null)
+                totalCount = r.getInteger(0, 0L);
+
             List<Object[]> results = repo.getRepositoryConnectionDelegate().getDatabase().getRows(sql, 0);
             for (Object[] result : results) {
                 JSONObject obj = new JSONObject();
                 obj.put("id",Integer.valueOf(result[0].toString()));
                 obj.put("code",result[1].toString());
-                obj.put("description",result[2].toString());
+                obj.put("description",result[2].toString().replace(',',' '));
                 types.put(obj);
+
             }
-            wrapper.put("totalCount",types.length());
-            wrapper.put("types",types);
+            wrapper.put("totalCount",totalCount);
+            wrapper.put("dbTypes",types);
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }

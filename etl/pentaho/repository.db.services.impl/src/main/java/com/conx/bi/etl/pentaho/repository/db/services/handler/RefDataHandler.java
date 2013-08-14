@@ -55,8 +55,16 @@ public class RefDataHandler extends HandlerBase {
 
                     if ("databasetype".equals(type))
                     {
-                        JSONObject typesJson = RefDataListing.listDatabaseTypes(DBRepositoryWrapperImpl.getINSTANCE());
-                        response.getWriter().write(typesJson.toString());
+
+                        Integer start =   Integer.valueOf(request.getParameter("start"));
+                        Integer limit =   Integer.valueOf(request.getParameter("limit"));
+                        String query =   request.getParameter("query")==null?"":request.getParameter("query").toString();
+                        JSONObject typesJson = RefDataListing.listDatabaseTypes(DBRepositoryWrapperImpl.getINSTANCE(),query,start,limit);
+                        String callback = request.getParameter("callback");
+                        if (callback != null)
+                            response.getWriter().write(callback+"("+typesJson.toString()+");");
+                        else
+                            response.getWriter().write(typesJson.toString());
                     }
 
                     JSONArray tree = RepositoryExporter.exportTreeToJSONByTenant(null, DBRepositoryWrapperImpl.getINSTANCE(), tenant);
