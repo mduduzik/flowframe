@@ -1,7 +1,4 @@
-package com.conx.bi.etl.pentaho.repository.db.services.repository;
-
-import java.io.IOException;
-import java.util.Properties;
+package org.flowframe.etl.pentaho.repository.db.repository;
 
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.KettleEnvironment;
@@ -11,9 +8,10 @@ import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.UserInfo;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryMeta;
-
-import com.conx.bi.etl.pentaho.repository.db.services.CustomRepository;
 import org.pentaho.di.repository.kdr.delegates.*;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements CustomRepository {
 

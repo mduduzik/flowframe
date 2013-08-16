@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Export-Package: com.mkyong;version="0.0.1",com.mkyong.rest;version="0.
+ 0.1";uses:="com.mkyong,javax.ws.rs,javax.ws.rs.core"
+Bundle-ClassPath: .,WEB-INF/classes
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: ETL Repo
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.etl.pentaho.repository.db
+Web-ContextPath: etlrepo
+Import-Package: javax.ws.rs,javax.ws.rs.core
+

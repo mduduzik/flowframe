@@ -11,5 +11,6 @@
     <packaging>pom</packaging>
     <modules>
         <!-- <module>transformation.kettle.impl</module> -->
+        <module>repository.db</module>
     </modules>
 </project>

@@ -56,10 +56,10 @@ public class RefDataHandler extends HandlerBase {
                     if ("databasetype".equals(type))
                     {
 
-                        Integer start =   Integer.valueOf(request.getParameter("start"));
-                        Integer limit =   Integer.valueOf(request.getParameter("limit"));
-                        String query =   request.getParameter("query")==null?"":request.getParameter("query").toString();
-                        JSONObject typesJson = RefDataListing.listDatabaseTypes(DBRepositoryWrapperImpl.getINSTANCE(),query,start,limit);
+                        Integer start =   request.getParameter("start") != null?Integer.valueOf(request.getParameter("start")):0;
+                        Integer limit =   request.getParameter("limit") != null?Integer.valueOf(request.getParameter("limit")):10;
+                        String query =   request.getParameter("query")==null?null:request.getParameter("query").toString();
+                        JSONArray typesJson = RefDataListing.listDatabaseTypes(DBRepositoryWrapperImpl.getINSTANCE(),query,start,limit);
                         String callback = request.getParameter("callback");
                         if (callback != null)
                             response.getWriter().write(callback+"("+typesJson.toString()+");");

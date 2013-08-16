@@ -36,12 +36,15 @@ import java.util.Map;
  */
 public class RefDataListing {
 
-    public static JSONObject listDatabaseTypes(CustomRepository repo, String query, int start, int limit) {
+    public static JSONArray listDatabaseTypes(CustomRepository repo, String query, int start, int limit) {
         JSONObject wrapper = new JSONObject();
 
         String databaseTypesTable = repo.getRepositoryDatabaseDelegate().quoteTable(KettleDatabaseRepository.TABLE_R_DATABASE_TYPE);
-        String sql = "SELECT * FROM " + databaseTypesTable + " WHERE description LIKE '%"+query+"%' ORDER BY CODE ASC LIMIT "+limit+" OFFSET "+start;
-
+        String sql = null;
+        if (query != null)
+            sql = "SELECT * FROM " + databaseTypesTable + " WHERE description LIKE '%"+query+"%' ORDER BY CODE ASC LIMIT "+limit+" OFFSET "+start;
+        else
+            sql = "SELECT * FROM " + databaseTypesTable + " ORDER BY DESCRIPTION";
 
         ResultSet resultSet = null;
         long totalCount = 0;
@@ -68,6 +71,6 @@ public class RefDataListing {
 
 
 
-        return wrapper;
+        return types;
     }
 }
