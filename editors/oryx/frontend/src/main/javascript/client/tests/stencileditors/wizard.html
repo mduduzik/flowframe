@@ -90,13 +90,14 @@
                     'auth']);
                 Object.extend(data,{dirPathId:'/dir/1'});
                 var dataJson = Ext.encode(data);
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                });
                 Ext.Ajax.request({
-                    url: '/etlrepo/databasemeta/post',
+                    url: '/etlrepo/databasemeta/add',
                     method: 'POST',
-                    headers : {
-                        'Content-Type': 'application/json'
-                    },
-                    params: {data: dataJson},
+                    params: dataJson,
                     success: function(response, opts) {},
                     failure: function(response, opts) {}
                 });
@@ -119,7 +120,7 @@
                         new Ext.form.ComboBox({
                             name: 'databaseType',
                             fieldLabel: 'Database Type',
-                            hiddenName:'databasetype',
+                            hiddenName:'databaseType',
                             store: new Ext.data.Store({
                                 id: "store",
                                 remoteSort: true,
@@ -162,7 +163,7 @@
                             fieldLabel: 'Hostname of database server',
                             allowBlank: false
                         }),
-                        new Ext.form.TextField({
+                        new Ext.form.NumberField({
                             name: 'databasePort',
                             fieldLabel: 'The TCP/IP Port',
                             allowBlank: true
@@ -170,7 +171,7 @@
                         new Ext.form.TextField({
                             name: 'databaseName',
                             fieldLabel: 'The name of the database',
-                            allowBlank: true
+                            allowBlank: false
                         })
                     ]
                 }),

@@ -1,21 +1,17 @@
 package org.flowframe.etl.pentaho.repository.db.services.persistence;
 
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
-import org.flowframe.etl.pentaho.repository.db.model.PagedDatabaseMetaDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
 import org.flowframe.etl.pentaho.repository.db.repository.IdentityUtil;
-import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
-import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -63,9 +59,9 @@ public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
 
     @Override
     @POST
-    @Path("/post")
+    @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void add(DatabaseMetaDTO record) throws KettleException {
+    public Response add(DatabaseMetaDTO record) throws KettleException {
         repository.getRepositoryDatabaseDelegate().insertDatabase(record.getName(),
                 record.getDatabaseType(),
                 record.getAccessType(),
@@ -77,6 +73,9 @@ public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
                 record.getServerName(),
                 null,
                 null);
+
+        String result = "DatabaseMeta saved : " + record;
+        return Response.status(201).entity(result).build();
     }
 
     @Override

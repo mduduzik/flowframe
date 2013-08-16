@@ -57,5 +57,7 @@
     -->
     <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseMetaDAOImpl" scope="request"/>
     <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseTypeDAOImpl" scope="request"/>
+    <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.repository.db.services.persistence.RepositoryExplorer" scope="request"/>
+
 
 </beans>

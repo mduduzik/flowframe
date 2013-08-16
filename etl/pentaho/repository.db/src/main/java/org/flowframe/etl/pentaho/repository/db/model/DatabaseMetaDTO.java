@@ -3,6 +3,8 @@ package org.flowframe.etl.pentaho.repository.db.model;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.repository.LongObjectId;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Mduduzi
@@ -10,7 +12,7 @@ import org.pentaho.di.repository.LongObjectId;
  * Time: 11:43 PM
  * To
  */
-public class DatabaseMetaDTO {
+public class DatabaseMetaDTO implements Serializable {
     private long objectId;
     private String name;
     private String accessType;
