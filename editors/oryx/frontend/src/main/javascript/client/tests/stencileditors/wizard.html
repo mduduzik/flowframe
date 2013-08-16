@@ -128,8 +128,10 @@
                                     url: 'http://localhost:8082/etlrepo/databasetype/search'
                                 }),
                                 reader: new Ext.data.JsonReader({
+                                    root : 'data',
+                                    totalProperty: 'totalCount'
                                 }, [
-                                    {name: 'objectId', mapping: 'objectId'},
+                                    {name: 'id', mapping: 'id'},
                                     {name: 'code', mapping: 'code'},
                                     {name: 'description', mapping: 'description'}
                                 ])
