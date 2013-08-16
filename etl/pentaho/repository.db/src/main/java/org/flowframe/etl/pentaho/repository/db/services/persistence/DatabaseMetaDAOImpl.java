@@ -2,7 +2,7 @@ package org.flowframe.etl.pentaho.repository.db.services.persistence;
 
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
-import org.flowframe.etl.pentaho.repository.db.repository.IdentityUtil;
+import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
@@ -34,7 +34,7 @@ public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     public DatabaseMetaDTO get(@QueryParam("pathID")String pathID) throws KettleException {
-        DatabaseMeta res = IdentityUtil.getDatabase(repository, pathID);
+        DatabaseMeta res = RepositoryUtil.getDatabase(repository, pathID);
         if (res == null)
             return null;
         return new DatabaseMetaDTO((LongObjectId)res.getObjectId(),

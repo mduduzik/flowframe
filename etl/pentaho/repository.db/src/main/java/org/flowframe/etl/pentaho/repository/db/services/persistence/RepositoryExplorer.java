@@ -3,22 +3,17 @@ package org.flowframe.etl.pentaho.repository.db.services.persistence;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.repository.db.model.DatabaseTypeDTO;
-import org.flowframe.etl.pentaho.repository.db.model.PagedDatabaseTypeDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.CustomRepository;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
-import org.flowframe.etl.pentaho.repository.db.repository.IdentityUtil;
+import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.ProgressMonitorListener;
-import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
-import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
@@ -33,8 +28,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -106,7 +99,7 @@ public class RepositoryExplorer  {
             //-- CSV
             */
             JSONObject metadataDelimited = generateCSVMetadataJSON(repo, delimitedMdDir);
-            metadataDelimited.put("id", IdentityUtil.generatePathID(delimitedMdDir, "CSVInput"));
+            metadataDelimited.put("id", RepositoryUtil.generatePathID(delimitedMdDir, "CSVInput"));
             metadataDelimited.put("text","CSV");
             metadataDelimited.put("title","CSV");
             metadataDelimited.put("icon","/oryx/images/conxbi/etl/icon_delimited.gif");
@@ -146,7 +139,7 @@ public class RepositoryExplorer  {
         JSONObject subDir = new JSONObject();
         try {
             // Populate
-            subDir.put("id", IdentityUtil.generatePathID(dir, "ExcelInput"));
+            subDir.put("id", RepositoryUtil.generatePathID(dir, "ExcelInput"));
             subDir.put("text", dir.getName());
             subDir.put("title",dir.getName());
             subDir.put("icon", "/oryx/images/conxbi/etl/icon_excel.gif");
@@ -176,7 +169,7 @@ public class RepositoryExplorer  {
                         mdmObj.put("text",step.getName());
                         mdmObj.put("title",step.getName());
                         mdmObj.put("icon","/oryx/images/conxbi/etl/icon_excel.gif");
-                        mdmObj.put("id",IdentityUtil.generatePathID(step, steps.indexOf(step)));
+                        mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
                         mdmObj.put("leaf",false);
                         mdmObj.put("hasChildren",true);
                         mdmObj.put("singleClickExpand",true);
@@ -228,7 +221,7 @@ public class RepositoryExplorer  {
         JSONObject subDir = new JSONObject();
         try {
             // Populate
-            subDir.put("id", IdentityUtil.generatePathID(dir, "CSVInput"));
+            subDir.put("id", RepositoryUtil.generatePathID(dir, "CSVInput"));
             subDir.put("text", dir.getName());
             subDir.put("title",dir.getName());
             subDir.put("icon", "/oryx/images/conxbi/etl/icon_delimited.gif");
@@ -258,7 +251,7 @@ public class RepositoryExplorer  {
                         mdmObj.put("text",step.getName());
                         mdmObj.put("title",step.getName());
                         mdmObj.put("icon","/oryx/images/conxbi/etl/icon_delimited.gif");
-                        mdmObj.put("id",IdentityUtil.generatePathID(step,steps.indexOf(step)));
+                        mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
                         mdmObj.put("leaf",false);
                         mdmObj.put("hasChildren",true);
                         mdmObj.put("singleClickExpand",true);
@@ -311,7 +304,7 @@ public class RepositoryExplorer  {
         JSONObject subDir = new JSONObject();
         try {
             // Populate
-            subDir.put("id", IdentityUtil.generatePathID(dir,"database"));
+            subDir.put("id", RepositoryUtil.generatePathID(dir, "database"));
             subDir.put("text", dir.getName());
             subDir.put("title",dir.getName());
             subDir.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
@@ -340,7 +333,7 @@ public class RepositoryExplorer  {
                     dbObj.put("text",db.getName());
                     dbObj.put("title",db.getName());
                     dbObj.put("icon","/oryx/images/conxbi/etl/connection.gif");
-                    dbObj.put("id",IdentityUtil.generatePathID(trans, db));
+                    dbObj.put("id", RepositoryUtil.generatePathID(trans, db));
                     dbObj.put("leaf",false);
                     dbObj.put("hasChildren",true);
                     dbObj.put("singleClickExpand",true);

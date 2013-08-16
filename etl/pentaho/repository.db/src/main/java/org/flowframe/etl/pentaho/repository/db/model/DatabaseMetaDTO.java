@@ -13,6 +13,7 @@ import java.io.Serializable;
  * To
  */
 public class DatabaseMetaDTO implements Serializable {
+    private int index;
     private long objectId;
     private String name;
     private String accessType;
@@ -31,9 +32,18 @@ public class DatabaseMetaDTO implements Serializable {
                            String accessType,
                            String databaseType,
                            String databaseTypeDesc) {
-        objectId = ((LongObjectId)objId).longValue();
-        accessType = accessType;
-        databaseType = databaseType;
+        this.objectId = ((LongObjectId)objId).longValue();
+        this.accessType = accessType;
+        this.databaseType = databaseType;
+    }
+
+    public DatabaseMetaDTO(int index,
+                           String accessType,
+                           String databaseType,
+                           String databaseTypeDesc) {
+        this.index = index;
+        this.accessType = accessType;
+        this.databaseType = databaseType;
     }
 
     public DatabaseMetaDTO(LongObjectId objId,
@@ -46,7 +56,33 @@ public class DatabaseMetaDTO implements Serializable {
                            String username,
                            String password,
                            String serverName) {
+        this(name,accessType,databaseType,hostname,databaseName,databasePort,username,password,serverName);
         this.objectId = ((LongObjectId)objId).longValue();
+    }
+
+    public DatabaseMetaDTO(int index,
+                           String name,
+                           String accessType,
+                           String databaseType,
+                           String hostname,
+                           String databaseName,
+                           int databasePort,
+                           String username,
+                           String password,
+                           String serverName) {
+        this(name,accessType,databaseType,hostname,databaseName,databasePort,username,password,serverName);
+        this.index = index;
+    }
+
+    public DatabaseMetaDTO(String name,
+                           String accessType,
+                           String databaseType,
+                           String hostname,
+                           String databaseName,
+                           int databasePort,
+                           String username,
+                           String password,
+                           String serverName) {
         this.name = name;
         this.accessType = accessType;
         this.databaseType = databaseType;
@@ -56,6 +92,14 @@ public class DatabaseMetaDTO implements Serializable {
         this.username = username;
         this.password = password;
         this.serverName = serverName;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public long getObjectId() {
@@ -145,5 +189,17 @@ public class DatabaseMetaDTO implements Serializable {
     // eg /dev/1
     public void setDirPathId(String dirPathId) {
         this.dirPathId = dirPathId;
+    }
+
+    public static DatabaseMeta toMeta(DatabaseMetaDTO dto) {
+        DatabaseMeta meta = new DatabaseMeta();
+        meta.setName(dto.getName());
+        meta.setDatabaseType(dto.getDatabaseType());
+        meta.setDBName(dto.getDatabaseName());
+        meta.setDBPort(Integer.toString(dto.getDatabasePort()));
+        meta.setHostname(dto.getHostname());
+        meta.setUsername(dto.getUsername());
+        meta.setPassword(dto.getPassword());
+        return meta;
     }
 }
