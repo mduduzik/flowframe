@@ -55,11 +55,16 @@ public class RepositoryExplorer  {
     @GET
     @Path("/getall")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getall(@QueryParam("userId") String userid) {
+    public String getall(@QueryParam("userId") String userid, @QueryParam("callback") String callback) {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        return exportTreeToJSONByTenant(null,repository,tenant).toString();
+        String res = exportTreeToJSONByTenant(null, repository, tenant).toString();
+
+        if (callback != null)
+            return callback+"("+res+");";
+        else
+            return res;
     }
 
     public static JSONArray exportTreeToJSONByTenant(ProgressMonitorListener monitor, CustomRepository repo, Organization tenant) {

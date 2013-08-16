@@ -1,5 +1,7 @@
 package org.flowframe.etl.pentaho.repository.db.model;
 
+import org.codehaus.jettison.json.JSONObject;
+
 import java.util.List;
 
 /**

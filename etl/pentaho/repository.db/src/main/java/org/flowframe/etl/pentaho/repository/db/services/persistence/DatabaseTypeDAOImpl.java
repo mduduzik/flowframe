@@ -1,5 +1,7 @@
 package org.flowframe.etl.pentaho.repository.db.services.persistence;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.repository.db.model.PagedDatabaseTypeDTO;
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseTypeDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
@@ -39,7 +41,11 @@ public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
 
         try {
             String databaseTypesTable = repository.getRepositoryDatabaseDelegate().quoteTable(KettleDatabaseRepository.TABLE_R_DATABASE_TYPE);
-            RowMetaAndData r = repository.getRepositoryConnectionDelegate().getDatabase().getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable + " WHERE description LIKE '%"+descrkeyword+"%'");
+            RowMetaAndData r = null;
+            if (descrkeyword != null && !descrkeyword.isEmpty())
+                r = repository.getRepositoryConnectionDelegate().getDatabase().getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable + " WHERE description LIKE '%"+descrkeyword+"%'");
+            else
+                r = repository.getRepositoryConnectionDelegate().getDatabase().getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable);
             if (r != null)
                 totalCount = r.getInteger(0, 0L);
         } catch (Exception e) {
@@ -54,9 +60,9 @@ public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
-    public PagedDatabaseTypeDTO search(@QueryParam("query") String descrkeyword, @QueryParam("start") int start, @QueryParam("limit") int limit) {
-        DatabaseTypeDTO dbMeta;
-        List<DatabaseTypeDTO> results = new ArrayList<DatabaseTypeDTO>();
+    public String search(@QueryParam("query") String descrkeyword, @QueryParam("callback") String callback, @QueryParam("start") int start, @QueryParam("limit") int limit) {
+        JSONObject wrapper = new JSONObject();
+        JSONArray types = new JSONArray();
 
         String databaseTypesTable = repository.getRepositoryDatabaseDelegate().quoteTable(KettleDatabaseRepository.TABLE_R_DATABASE_TYPE);
         String sql = null;
@@ -70,16 +76,22 @@ public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
         try {
             List<Object[]> results_ = repository.getRepositoryConnectionDelegate().getDatabase().getRows(sql, 0);
             for (Object[] result : results_) {
-                dbMeta = new DatabaseTypeDTO(new LongObjectId(Long.valueOf(result[0].toString())),
-                        result[1].toString(),
-                        result[2].toString().replace(',',' '));
-                results.add(dbMeta);
-
+                JSONObject obj = new JSONObject();
+                obj.put("id", Integer.valueOf(result[0].toString()));
+                obj.put("code",result[1].toString());
+                obj.put("description",result[2].toString().replace(',',' '));
+                types.put(obj);
             }
+
+            wrapper.put("totalCount",totalCount);
+            wrapper.put("data",types);
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
 
-        return new PagedDatabaseTypeDTO(results,totalCount,"data");
+        if (callback != null)
+            return callback+"("+wrapper.toString()+");";
+        else
+            return wrapper.toString();
     }
 }
