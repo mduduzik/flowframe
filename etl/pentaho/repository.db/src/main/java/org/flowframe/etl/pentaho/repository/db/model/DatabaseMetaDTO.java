@@ -21,6 +21,7 @@ public class DatabaseMetaDTO {
     private String username;
     private String password;
     private String serverName;
+    private String dirPathId;
 
     public DatabaseMetaDTO() {}
 
@@ -133,5 +134,14 @@ public class DatabaseMetaDTO {
 
     public void setServerName(String serverName) {
         this.serverName = serverName;
+    }
+
+    public String getDirPathId() {
+        return dirPathId;
+    }
+
+    // eg /dev/1
+    public void setDirPathId(String dirPathId) {
+        this.dirPathId = dirPathId;
     }
 }

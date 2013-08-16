@@ -34,7 +34,7 @@ public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
     @GET
     @Path("/count")
     @Produces(MediaType.APPLICATION_JSON)
-    public long count(@QueryParam("descrkeyword") String descrkeyword) {
+    public long count(@QueryParam("query") String descrkeyword) {
         long totalCount = 0;
 
         try {
@@ -54,7 +54,7 @@ public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
-    public PagedDatabaseTypeDTO search(@QueryParam("descrkeyword") String descrkeyword, @QueryParam("start") int start, @QueryParam("limit") int limit) {
+    public PagedDatabaseTypeDTO search(@QueryParam("query") String descrkeyword, @QueryParam("start") int start, @QueryParam("limit") int limit) {
         DatabaseTypeDTO dbMeta;
         List<DatabaseTypeDTO> results = new ArrayList<DatabaseTypeDTO>();
 

@@ -2,6 +2,7 @@ package org.flowframe.etl.pentaho.repository.db;
 
 import org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseMetaDAOImpl;
 import org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseTypeDAOImpl;
+import org.flowframe.etl.pentaho.repository.db.services.persistence.RepositoryExplorer;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
@@ -21,5 +22,6 @@ public class MainApplication extends ResourceConfig {
         register(RequestContextFilter.class);
         register(DatabaseMetaDAOImpl.class);
         register(DatabaseTypeDAOImpl.class);
+        register(RepositoryExplorer.class);
     }
 }
