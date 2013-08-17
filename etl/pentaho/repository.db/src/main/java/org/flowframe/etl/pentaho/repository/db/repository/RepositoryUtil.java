@@ -34,6 +34,7 @@ public class RepositoryUtil {
         TransMeta res = null;
         if (!repo.getRepositoryTransDelegate().existsTransMeta(DATABASES_TRANSFORMTION_NAME,dir, RepositoryObjectType.TRANSFORMATION)) {
             res = new TransMeta();
+            res.setRepositoryDirectory(dir);
             res.setName(DATABASES_TRANSFORMTION_NAME);
             repo.getRepositoryTransDelegate().saveTransformation(res,"initial",null,true);
         }
@@ -57,39 +58,6 @@ public class RepositoryUtil {
         }
 
         return res;
-    }
-
-
-    /**
-     *    Add/Update/Delete Metadata Steps
-     */
-    //-- Databases Meta
-    public static DatabaseMeta addDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO databaseMeta) throws KettleException {
-        TransMeta trans = provideDatabaseTransformation(repo, dir);
-        trans.addDatabase(DatabaseMetaDTO.toMeta(databaseMeta));
-        repo.getRepositoryTransDelegate().saveTransformation(trans,"insert database "+databaseMeta.getName(),null,true);
-        trans = provideDatabaseTransformation(repo, dir);
-        List<DatabaseMeta> dbs = trans.getDatabases();
-        for (DatabaseMeta db : dbs) {
-            if (db.getName().equals(databaseMeta.getName()))
-                return null;
-        }
-        return null;
-    }
-
-    public static DatabaseMeta updateDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO databaseMeta) throws KettleException {
-        TransMeta trans = provideDatabaseTransformation(repo, dir);
-        DatabaseMeta updatedDb = DatabaseMetaDTO.toMeta(databaseMeta);
-        trans.getDatabases().set(databaseMeta.getIndex(),updatedDb);
-        repo.getRepositoryTransDelegate().saveTransformation(trans,"updated database "+databaseMeta.getName(),null,true);
-        return updatedDb;
-    }
-
-    public static void deleteDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO databaseMeta) throws KettleException {
-        TransMeta trans = provideDatabaseTransformation(repo, dir);
-        DatabaseMeta updatedDb = DatabaseMetaDTO.toMeta(databaseMeta);
-        trans.getDatabases().remove(databaseMeta.getIndex());
-        repo.getRepositoryTransDelegate().saveTransformation(trans,"removed database "+databaseMeta.getName(),null,true);
     }
 
     /**
@@ -155,6 +123,10 @@ public class RepositoryUtil {
         DatabaseMeta database = trans.getDatabase(databaseId);
 
         return database;
+    }
+
+    static public RepositoryDirectoryInterface getDirectory(CustomRepository repo, ObjectId objId) throws KettleException {
+        return repo.findDirectory(objId);
     }
 
     static public RepositoryDirectoryInterface getDirectory(CustomRepository repo, String pathID) {

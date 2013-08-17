@@ -1,11 +1,15 @@
-package org.flowframe.etl.pentaho.repository.db.services.persistence;
+package org.flowframe.etl.pentaho.repository.db.resource;
 
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
+import org.flowframe.etl.pentaho.repository.db.repository.DatabaseMetaUtil;
 import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
+import org.flowframe.etl.pentaho.repository.db.services.persistence.IDatabaseMetaDAO;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
+import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,13 +27,12 @@ import java.util.List;
  */
 @Path("databasemeta")
 @Component
-public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
+public class DatabaseMetaResource  {
     @Autowired
     private DBRepositoryWrapperImpl repository;
 
 
     // e.g. http://localhost:8082/etlrepo/databasemeta/get?pathID=/trans/1/database/0
-    @Override
     @GET
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,7 +52,7 @@ public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
                 res.getServername());
     }
 
-    @Override
+
     @GET
     @Path("/getall")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,28 +60,21 @@ public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response add(DatabaseMetaDTO record) throws KettleException {
-        repository.getRepositoryDatabaseDelegate().insertDatabase(record.getName(),
-                record.getDatabaseType(),
-                record.getAccessType(),
-                record.getHostname(),
-                record.getDatabaseName(),
-                Integer.toString(record.getDatabasePort()),
-                record.getUsername(),
-                record.getPassword(),
-                record.getServerName(),
-                null,
-                null);
+    public Response add(@HeaderParam("userid") String userid, DatabaseMetaDTO record) throws KettleException {
+        //TODO: Hack
+        Organization tenant = new Organization();
+        tenant.setId(1L);
 
-        String result = "DatabaseMeta saved : " + record;
+        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, record.getDirObjectId());
+        DatabaseMeta newRecord = DatabaseMetaUtil.addDatabaseMeta(tenant,repository,dir, record);
+        String result = "DatabaseMeta saved : " + newRecord;
         return Response.status(201).entity(result).build();
     }
 
-    @Override
+
     @PUT
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -86,7 +82,7 @@ public class DatabaseMetaDAOImpl implements IDatabaseMetaDAO {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
+
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
