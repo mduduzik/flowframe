@@ -2,24 +2,18 @@ package org.flowframe.etl.pentaho.repository.db.repository;
 
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
-import org.pentaho.di.core.RowMetaAndData;
-import org.pentaho.di.core.database.BaseDatabaseMeta;
+import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleValueException;
-import org.pentaho.di.core.row.ValueMeta;
-import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
-import org.pentaho.di.repository.kdr.delegates.KettleDatabaseRepositoryDatabaseDelegate;
-import org.pentaho.di.trans.TransMeta;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.sql.ResultSet;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,8 +31,8 @@ public class DatabaseMetaUtil {
      * Attributes
      */
     public static void setTenantAndDirAttributes(Organization tenant, RepositoryDirectoryInterface dir, DatabaseMeta dbMeta) {
-        dbMeta.getAttributes().put(ATTRIBUTE_TENANT_ORG_ID,tenant.getId());
-        dbMeta.getAttributes().put(ATTRIBUTE_TENANT_ORG_ID,dir.getObjectId().toString());
+        dbMeta.getAttributes().put(ATTRIBUTE_TENANT_ORG_ID,tenant.getId().toString());
+        dbMeta.getAttributes().put(ATTRIBUTE_PARENT_DIR_OBJID,dir.getObjectId().toString());
     }
 
     /**
@@ -60,6 +54,10 @@ public class DatabaseMetaUtil {
         DatabaseMeta newDatabaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(id);
         setTenantAndDirAttributes(tenant, dir, newDatabaseMeta);
 
+        repo.getRepositoryDatabaseDelegate().saveDatabaseMeta(newDatabaseMeta);
+
+        repo.getRepositoryConnectionDelegate().commit();
+
         return newDatabaseMeta;
     }
 
@@ -78,6 +76,8 @@ public class DatabaseMetaUtil {
 
         databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(id);
 
+        repo.getRepositoryConnectionDelegate().commit();
+
         return databaseMeta;
     }
 
@@ -86,8 +86,8 @@ public class DatabaseMetaUtil {
         repo.getRepositoryDatabaseDelegate().delDatabase(id);
     }
 
-    public static List<DatabaseMeta> getDatabasesByTenant(CustomRepository repo, RepositoryDirectoryInterface dir, String tenantId) throws KettleException {
-        Collection<ObjectId> dbIds = getDatabaseAttributes(tenantId, dir, repo);
+    public static List<DatabaseMeta> getDatabasesBySubDirAndTenantId(CustomRepository repo, RepositoryDirectoryInterface dir, String tenantId) throws KettleException {
+        Collection<ObjectId> dbIds = getDatabaseIdsBySubDirAndTenantId(tenantId, dir, repo);
         final List<DatabaseMeta> dbs = new ArrayList<DatabaseMeta>();
         for (ObjectId dbId : dbIds) {
              dbs.add(repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(dbId));
@@ -96,20 +96,59 @@ public class DatabaseMetaUtil {
         return dbs;
     }
 
-    public static Collection<ObjectId> getDatabaseAttributes(String tenantId, RepositoryDirectoryInterface dir, CustomRepository repository) throws KettleDatabaseException, KettleValueException
-    {
-        String sql = "SELECT "+"attr.ID_DATABASE"+" FROM "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE_ATTRIBUTE)+" attr"+
-            "LEFT JOIN "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE)+" db ON attr.ID_DATABASE_ATTRIBUTE = db.ID_DATABASE"+
-            "WHERE attr.CODE = 'TENANT_ID' AND attr.VALUE_STR = "+tenantId+" AND attr.CODE = 'DIR_OBJID' AND attr.VALUE_STR = "+dir.getObjectId().toString();
-
+    public static Collection<ObjectId> getDatabaseIdsBySubDirAndTenantId(String tenantId, RepositoryDirectoryInterface dir, CustomRepository repository) throws KettleException {
+        String sql = "SELECT "+"db.ID_DATABASE"+" FROM "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE)+" db"+
+            " JOIN "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE_ATTRIBUTE)+" tenantprop ON db.ID_DATABASE = tenantprop.ID_DATABASE AND tenantprop.CODE = 'TENANT_ID'"+
+            " JOIN "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE_ATTRIBUTE)+" dirprop ON db.ID_DATABASE = dirprop.ID_DATABASE AND dirprop.CODE = 'DIR_OBJID'"+
+            " WHERE tenantprop.VALUE_STR  = "+tenantId+" AND dirprop.VALUE_STR = "+dir.getObjectId().toString();
         List<ObjectId> dbIds = new ArrayList<ObjectId>();
+
+
+        ResultSet rs = null;
+        Database db = null;
+        try {
+            db = new Database(repository.getSupportingDatabase().getDatabaseMeta());
+            db.connect();
+            rs = db.openQuery(sql);
+            List<Object[]> rows = repository.getSupportingDatabase().getRows(rs, 0, null);
+            for (Object[] row : rows)
+            {
+                dbIds.add(new LongObjectId(Long.valueOf(row[0].toString())));
+            }
+            repository.getSupportingDatabase().disconnect();
+        } finally {
+           if (rs != null && db != null)
+               db.closeQuery(rs);
+           if (db != null)
+               db.disconnect();
+        }
+
+        return dbIds;
+    }
+
+/*    public static Map<String,Collection<String>> getDatabaseIdsMapBySubDirAndTenantId(String tenantId, CustomRepository repository) throws KettleException {
+        String sql = "SELECT "+"db.ID_DATABASE, dirprop.VALUE_STR FROM "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE)+" db"+
+                " JOIN "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE_ATTRIBUTE)+" tenantprop ON db.ID_DATABASE = tenantprop.ID_DATABASE AND tenantprop.CODE = 'TENANT_ID'"+
+                " JOIN "+quoteTable(repository,KettleDatabaseRepository.TABLE_R_DATABASE_ATTRIBUTE)+" dirprop ON db.ID_DATABASE = dirprop.ID_DATABASE AND dirprop.CODE = 'DIR_OBJID'"+
+                " WHERE tenantprop.VALUE_STR  = "+tenantId;
+        List<ObjectId> dbIds = new ArrayList<ObjectId>();
+
+        Map<String,Collection<String>> map = new HashMap<String, Collection<String>>();
+        Collection<String> dbs = null;
         List<Object[]> rows = repository.getRepositoryConnectionDelegate().getRows(sql, 0);
         for (Object[] row : rows)
         {
-            dbIds.add(new LongObjectId(Long.valueOf(row[0].toString())));
+            dbs = map.get(row[0].toString());
+            if (dbs == null) {
+                dbs = new ArrayList<String>();
+                map.put(row[0].toString(),dbs);
+            }
+            dbs.add(row[1].toString());
         }
-        return dbIds;
-    }
+
+
+        return map;
+    }*/
 
     public static String quote(CustomRepository repository, String identifier) {
         return repository.getRepositoryConnectionDelegate().getDatabaseMeta().quoteField(identifier);

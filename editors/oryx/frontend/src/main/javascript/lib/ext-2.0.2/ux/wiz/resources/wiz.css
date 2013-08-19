@@ -10,12 +10,12 @@
 
 .ext-ux-wiz-Header-step {
     color:#767676;
-    text-align:right;
+    text-align:left;
     padding:2px 4px 0px 0px;
 }
 
 .ext-ux-wiz-Header-stepIndicator-container {
-    float:right;
+    float:left;
     margin-right:6px;
     margin-top:8px;
 }

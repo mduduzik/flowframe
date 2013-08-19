@@ -54,9 +54,6 @@
         Ext.QuickTips.init();
 
         var wizard = new Ext.ux.Wiz({
-
-            title: 'A simple example for a wizard',
-
             headerConfig: {
                 title: 'Simple Wizard Example'
             },
@@ -88,11 +85,12 @@
                     'selectdatabasetype',
                     'jdbcsettings',
                     'auth']);
-                Object.extend(data,{dirPathId:'/dir/1'});
+                Object.extend(data,{dirObjectId:'2'});
                 var dataJson = Ext.encode(data);
                 Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
                     // here you can put whatever you need as header. For instance:
                     this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid:'test'};
                 });
                 Ext.Ajax.request({
                     url: '/etlrepo/databasemeta/add',
@@ -202,7 +200,28 @@
         });
 
         // show the wizard
-        wizard.show();
+        var panel = new Ext.Panel({
+            title       : 'Navigation',
+            layout      : 'fit',
+            split       : true,
+            width       : 500,
+            height      : 400,
+            collapsible : false,
+            margins     : '3 0 3 3',
+            cmargins    : '3 3 3 3',
+            items       : [
+                wizard
+            ]
+        });
+
+        new Ext.Viewport({
+            layout: 'fit',
+            title: 'Ext Layout Browser',
+            items: [wizard
+            ],
+            renderTo: Ext.getBody()
+        });
+
     });
 
 </script>

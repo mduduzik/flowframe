@@ -91,7 +91,7 @@ Ext.ux.layout.CardLayout = Ext.extend(Ext.layout.CardLayout, {
  * @constructor
  * @param {Object} config The config object
  */
-Ext.ux.Wiz = Ext.extend(Ext.Window, {
+Ext.ux.Wiz = Ext.extend(Ext.panel.ContentPanel, {
 
     /**
      * @cfg {Object} An object containing the messages for the {@link Ext.LoadMask}
@@ -127,7 +127,7 @@ Ext.ux.Wiz = Ext.extend(Ext.Window, {
     /**
      * @cfg {Number} width The width of the dialog. Defaults to "540".
      */
-    width : 540,
+    //width : 540,
 
     /**
      * @cfg {Boolean} closable Wether the dialog is closable. Defaults to "true".
@@ -257,7 +257,7 @@ Ext.ux.Wiz = Ext.extend(Ext.Window, {
         title     = title || "";
 
         Ext.apply(this, {
-            title     : title,
+            //title     : title,
             layout    : 'border',
             cardCount : this.cards.length,
             buttons   : [

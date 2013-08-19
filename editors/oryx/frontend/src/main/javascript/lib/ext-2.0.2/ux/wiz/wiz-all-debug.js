@@ -91,7 +91,7 @@ Ext.ux.layout.CardLayout = Ext.extend(Ext.layout.CardLayout, {
  * @constructor
  * @param {Object} config The config object
  */
-Ext.ux.Wiz = Ext.extend(Ext.Window, {
+Ext.ux.Wiz = Ext.extend(Ext.Panel, {
 
     /**
      * @cfg {Object} An object containing the messages for the {@link Ext.LoadMask}
@@ -122,12 +122,12 @@ Ext.ux.Wiz = Ext.extend(Ext.Window, {
     /**
      * @cfg {Number} height The height of the dialog. Defaults to "400".
      */
-    height : 400,
+    //height : 400,
 
     /**
      * @cfg {Number} width The width of the dialog. Defaults to "540".
      */
-    width : 540,
+    //width : 540,
 
     /**
      * @cfg {Boolean} closable Wether the dialog is closable. Defaults to "true".
@@ -137,17 +137,17 @@ Ext.ux.Wiz = Ext.extend(Ext.Window, {
      * "beforeclose"-listener which will either return true or false, indicating if the
      * dialog may be closed.
      */
-    closable : true,
+    //closable : true,
 
     /**
      * @cfg {Boolean} resizable Wether the dialog is resizable. Defaults to "false".
      */
-    resizable : false,
+    //resizable : true,
 
     /**
      * @cfg {Boolean} resizable Wether the dialog is modal. Defaults to "true".
      */
-    modal : true,
+    //modal : true,
 
     /**
      * @cfg {Array} cards A numeric array with the configured {@link Ext.ux.Wiz.Card}s.
@@ -257,6 +257,7 @@ Ext.ux.Wiz = Ext.extend(Ext.Window, {
         title     = title || "";
 
         Ext.apply(this, {
+            header    : false,
             title     : title,
             layout    : 'border',
             cardCount : this.cards.length,
@@ -835,7 +836,7 @@ Ext.ux.Wiz.Header = Ext.extend(Ext.BoxComponent, {
     /**
      * @param {Ext.Element}
      */
-    titleEl : null,
+    //titleEl : null,
 
     /**
      * @param {Ext.Element}
@@ -910,11 +911,11 @@ Ext.ux.Wiz.Header = Ext.extend(Ext.BoxComponent, {
         var el = this.el.dom.firstChild;
         var ns = el.nextSibling;
 
-        this.titleEl        = new Ext.Element(el);
+        //this.titleEl        = new Ext.Element(el);
         this.stepEl         = new Ext.Element(ns.firstChild);
         this.imageContainer = new Ext.Element(ns.lastChild);
 
-        this.titleEl.update(this.title);
+        //this.titleEl.update(this.title);
 
         var image = null;
         for (var i = 0, len = this.steps; i < len; i++) {

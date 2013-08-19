@@ -2,8 +2,12 @@ package org.flowframe.etl.pentaho.repository.db.repository;
 
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.KettleEnvironment;
+import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.LoggingObjectInterface;
+import org.pentaho.di.core.logging.LoggingObjectType;
+import org.pentaho.di.core.logging.SimpleLoggingObject;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.UserInfo;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
@@ -14,6 +18,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements CustomRepository {
+    public static final LoggingObjectInterface loggingObject = new SimpleLoggingObject("DBRepositoryWrapperImpl repository", LoggingObjectType.REPOSITORY, null);
 
     private static final String FOLDER_METADATA = "Metadata";
     private static final String FOLDER_METADATA_DBCONNECTIONS = "DBConnections";
@@ -52,6 +57,8 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	private UserInfo userInfo;
 	private RepositoryDirectoryInterface rootDir;
 	private RepositoryDirectoryInterface tenantDir;
+
+    private Database supportingDatabase;
 
     private static CustomRepository INSTANCE = null;
 
@@ -113,6 +120,9 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		init(repositoryMeta);
 		
 		connect(username, userpassword);
+
+        supportingDatabase = new Database(loggingObject,connection);
+        supportingDatabase.connect();;
 		
 		//Ensure root and tenant root dir's
 		rootDir = findDirectory("/conxbi");
@@ -309,7 +319,11 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		return dir;	
 	}
 
+    public Database getSupportingDatabase() {
+        return supportingDatabase;
+    }
 
-
-	
+    public void setSupportingDatabase(Database supportingDatabase) {
+        this.supportingDatabase = supportingDatabase;
+    }
 }

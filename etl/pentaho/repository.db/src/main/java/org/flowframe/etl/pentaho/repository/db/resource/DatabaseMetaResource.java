@@ -68,7 +68,7 @@ public class DatabaseMetaResource  {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, record.getDirObjectId());
+        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
         DatabaseMeta newRecord = DatabaseMetaUtil.addDatabaseMeta(tenant,repository,dir, record);
         String result = "DatabaseMeta saved : " + newRecord;
         return Response.status(201).entity(result).build();

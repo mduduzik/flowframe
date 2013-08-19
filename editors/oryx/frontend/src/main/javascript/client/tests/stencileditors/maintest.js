@@ -51,267 +51,17 @@ Ext.onReady(function(){
     /*
      //Job Artifact Wizard/Main Editor
      */
-    var registrationWizard = function() {
-
-        var cardsTotal = 4;
-
-        var navHandler = function( direction ) {
-            var lay = cardForm.getLayout();
-            var i = lay.activeItem.id.split('card-')[1];
-            var next = parseInt(i) + direction;
-            lay.setActiveItem(next);
-            Ext.getCmp('move-prev').setDisabled(next==0);
-            Ext.getCmp('move-next').setDisabled(next==cardsTotal);
-            if(next >= cardsTotal) {
-                Ext.getCmp('move-next').hide();
-                Ext.getCmp('move-finish').show();
-            } else {
-                Ext.getCmp('move-next').show();
-                Ext.getCmp('move-finish').hide();
-            }
-        };
-
-
-
-        var cardForm = new Ext.FormPanel({
-            id: 'regFormPanel',
-            url: 'user.register.php',
-            method: 'POST',
-            bodyStyle: 'padding:0px',
-            layout:'card',
-            height: 200,
-            activeItem: 0,
-            defaults: {
-                border: false
-            },
-            items: [{
-                id: 'card-0',
-                items: [{
-                    html: '<p>Step 1 of 5</p>'
-                },{
-                    xtype: 'panel',
-                    layout: 'fit',
-                    autoScroll: true,
-                    contentEl: 'north'
-                }]
-            },{
-                id: 'card-1',
-                items: [{
-                    html: '<p>Step 2 of 5</p>'
-                },{
-                    xtype: 'fieldset',
-                    title: 'User',
-                    autoHeight: true,
-                    defaultType: 'textfield',
-                    collapsible: true,
-                    items: [{
-                        fieldLabel: 'username',
-                        name: 'username',
-                        allowBlank: false
-                    }, {
-                        fieldLabel: 'password',
-                        name: 'password',
-                        inputType: 'password',
-                        allowBlank: false
-                    }, {
-                        fieldLabel: 'confirm',
-                        name: 'confirm',
-                        inputType: 'password',
-                        allowBlank: false
-                    }, {
-                        fieldLabel: 'e-mail',
-                        name: 'email',
-                        anchor: '100%',
-                        allowBlank: false
-                    }]
-                }]
-            },{
-                id: 'card-2',
-                items: [{
-                    html: '<p>Step 3 of 5</p>'
-                }, {
-                    xtype: 'fieldset',
-                    title: 'personals',
-                    collapsible: true,
-                    autoHeight: true,
-                    defaultType: 'textfield',
-                    items: [{
-                        fieldLabel: 'gender',
-                        name: 'gender',
-                        anchor: '100%',
-                        allowBlank: true
-                    }, {
-                        fieldLabel: 'firstname',
-                        name: 'firstname',
-                        anchor: '100%',
-                        allowBlank: false
-                    }, {
-                        fieldLabel: 'familyname',
-                        name: 'lastname',
-                        anchor: '100%',
-                        allowBlank: false
-                    }, new Ext.form.DateField({
-                        fieldLabel: 'birthday',
-                        name: 'birthday',
-                        allowBlank: false
-                    })]
-                }]
-            },{
-                id: 'card-3',
-                items: [{
-                    html: '<p>Step 4 of 5</p>'
-                },{
-                    xtype: 'panel',
-                    layout: 'fit',
-                    contentEl: 'north',
-                    autoScroll: true,
-                    height: 200,
-                    frame: true
-                },{
-                    xtype: 'radio',
-                    name: 'disc_accept',
-                    value: "true",
-                    boxLabel: 'I accept the license aggrement',
-                    allowBlank: false
-                },{
-                    xtype: 'radio',
-                    name: 'disc_accept',
-                    value: "false",
-                    checked: true,
-                    boxLabel: 'I do not accept the license aggrement'
-                }]
-            },{
-                id: 'card-4',
-                items: [{
-                    html: '<p>Step 5 of 5</p>'
-                },{
-                    contentEl: 'north'
-                }]
-            }]
-        });
-
-        var submitRegistration = function() {
-            if ( cardForm.form.isValid() ) {
-                Ext.MessageBox.alert('Status', 'Passed');
-                cardForm.form.submit({
-                    waitMsg:'Registring new user...',
-                    reset: false,
-                    failure: function(result, action) {
-                        Ext.MessageBox.alert('Error', action.result.message);
-                    },
-                    success: function(result, action) {
-                        Ext.Msg.show({
-                            title:'registration complete',
-                            msg: result.responseText,
-                            buttons: Ext.Msg.OK,
-                            icon: Ext.MessageBox.INFO
-                        });
-                    }
-                });
-            } else {
-                Ext.MessageBox.alert('Status', 'Not valid');
-            }
-        };
-
-        var registerWin = new Ext.Panel({
-            layout: 'fit',
-            bodyStyle: 'padding:0px',
-            items: [cardForm
-            ],
-            buttons:[{
-                text: 'abort',
-                handler: function(){
-                    registerWin.hide();
-                }
-            },{
-                text: 'previous',
-                disabled: true,
-                id: 'move-prev',
-                handler: navHandler.createDelegate(this, [-1])
-            },{
-                text: 'next',
-                id: 'move-next',
-                handler: navHandler.createDelegate(this, [1])
-            },{
-                text: 'finish',
-                id: 'move-finish',
-                hidden: true,
-                handler: function() {
-                    submitRegistration();
-                }
-            }]
-        });
-
-        return registerWin;
-    }();
-
-
-    var cardForm_ = new Ext.FormPanel({
-        id: 'regFormPanel',
-        url: 'user.register.php',
-        method: 'POST',
-        bodyStyle: 'padding:0px',
-        layout:'card',
-        height: 400,
-        activeItem: 0,
-        defaults: {
-            border: false
-        },
-        items: [{
-            id: 'card-0',
-            items: [{
-                html: '<p>Step 1 of 5</p>'
-                },{
-                    xtype: 'panel',
-                    layout: 'fit',
-                    autoScroll: true,
-                    contentEl: 'north'
-                }]
-            },{
-            id: 'card-1',
-            items: [{
-                html: '<p>Step 2 of 5</p>'
-            },{
-                xtype: 'fieldset',
-                title: 'User',
-                autoHeight: true,
-                defaultType: 'textfield',
-                collapsible: true,
-                items: [{
-                    fieldLabel: 'username',
-                    name: 'username',
-                    allowBlank: false
-                }, {
-                    fieldLabel: 'password',
-                    name: 'password',
-                    inputType: 'password',
-                    allowBlank: false
-                }, {
-                    fieldLabel: 'confirm',
-                    name: 'confirm',
-                    inputType: 'password',
-                    allowBlank: false
-                }, {
-                    fieldLabel: 'e-mail',
-                    name: 'email',
-                    anchor: '100%',
-                    allowBlank: false
-                }]
-            }]
-        }]
-    });
-
-
     var mainEditorTabPanel_ = new Ext.Panel({
         title: 'Editing Metadata (Excel FEDEX)',
         iconCls: 'tabs',
         closable:true,
+        split       : true,
         bodyStyle:'padding:0px',
         layout: 'fit',
-        height: 350,
-        items: [  cardForm_
-        ],
-        autoScroll: true
+        collapsible : false,
+        margins     : '3 0 3 3',
+        cmargins    : '3 3 3 3',
+        autoScroll  : false
     });
 
     /*
@@ -643,14 +393,13 @@ Ext.onReady(function(){
         tabWidth:135,
         enableTabScroll:true,
         activeTab: 0,
-        defaults: {autoScroll:true},
         plugins: new Ext.ux.TabCloseMenu(),
         items: [mainJobEditorPanel_,mainEditorTabPanel_]
     });
 
 
     //Repository tree
-    var navigationTree = new NavigationTreePanel();
+    var navigationTree = new NavigationTreePanel(mainCenter_,mainEditorTabPanel_);
 
     var item1 = new Ext.Panel({
         title: 'Databases'
@@ -708,8 +457,7 @@ Ext.onReady(function(){
     });
 });
 
-
-NavigationTreePanel = function() {
+NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
     NavigationTreePanel.superclass.constructor.call(this, {
         region: 'west',
         id: 'navigation',
@@ -727,7 +475,7 @@ NavigationTreePanel = function() {
                 width:'auto'
             })
         ],
-        loader: new Ext.tree.TreeLoader({requestMethod: 'GET',dataUrl:'http://localhost:8082/etlmdmrepo/explorer?call=all&userId=test'}),
+        loader: new Ext.tree.TreeLoader({requestMethod: 'GET',dataUrl:'http://localhost:8082/etlrepo/explorer/getall?userId=test'}),
         // default tree elements for the navigation
         root: new Ext.tree.AsyncTreeNode({
             text: '',
@@ -748,51 +496,257 @@ NavigationTreePanel = function() {
         scope:this
     });
 
+    //-- Init params
+    this.mainTabPanel =  mainCenterTabPanel_;
+    this.mainEditorPanel =  mainEditorTab_;
+
+    //-- Create context menu's
+    this.repofolder_database_contextmenu = new Ext.menu.Menu({
+        id:'feeds-ctx',
+        items: [{
+            id: 'load',
+            icon: '/oryx/images/conxbi/etl/connection-new.png',
+            text:'Add Database',
+            scope: this,
+            handler:function(){
+                this.ctxNode.select();
+                //this.mainEditorPanel.removeAll();
+                this.mainEditorPanel.add(this.new_repoitem_database_wizard);
+                this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                //this.new_repoitem_database_wizard.show();
+            }
+        },{
+            text:'Create Folder',
+            icon: '/oryx/images/conxbi/etl/folder_close.png',
+            scope: this,
+            handler:function(){
+                this.ctxNode.select();
+            }
+        },{
+            text:'Delete Folder',
+            icon: '/oryx/images/conxbi/etl/folder_delete.png',
+            scope: this,
+            handler:function(){
+                this.ctxNode.ui.removeClass('x-node-ctx');
+                this.removeFeed(this.ctxNode.attributes.url);
+                this.ctxNode = null;
+            }
+        }]
+    });
+    this.repofolder_database_contextmenu.on('hide', this.onContextHide, this);
+
+    this.repoitem_database_contextmenu = new Ext.menu.Menu({
+        id:'feeds-ctx',
+        items: [{
+            id: 'load',
+            icon: '/oryx/images/conxbi/etl/connection-new.png',
+            text:'Add Database',
+            scope: this,
+            handler:function(){
+                this.ctxNode.select();
+                //this.mainEditorPanel.removeAll();
+                this.mainEditorPanel.add(this.new_repoitem_database_wizard);
+                this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                //this.new_repoitem_database_wizard.show();
+            }
+        },{
+            text:'Edit Database',
+            icon: '/oryx/images/conxbi/etl/modify.gif',
+            scope: this,
+            handler:function(){
+                this.ctxNode.ui.removeClass('x-node-ctx');
+                this.removeFeed(this.ctxNode.attributes.url);
+                this.ctxNode = null;
+            }
+        },{
+            text:'Delete Database',
+            icon: '/oryx/images/conxbi/etl/connection-delete.png',
+            scope: this,
+            handler:function(){
+                this.ctxNode.ui.removeClass('x-node-ctx');
+                this.removeFeed(this.ctxNode.attributes.url);
+                this.ctxNode = null;
+            }
+        }]
+    });
+    this.repoitem_database_contextmenu.on('hide', this.onContextHide, this);
+
+    //Wizards
+    this.new_repoitem_database_wizard = new Ext.ux.Wiz({
+        headerConfig: {
+            title: 'Simple Wizard Example'
+        },
+        cardPanelConfig: {
+            defaults: {
+                baseCls: 'x-small-editor',
+                bodyStyle: 'padding:40px 15px 5px 120px;background-color:#F6F6F6;',
+                border: false
+            }
+        },
+        getSelectWizardData : function(cardids)
+        {
+            var formValues = {};
+            var cards = this.cards;
+            for (var i = 0, len = cards.length; i < len; i++) {
+
+                var cardform = cards[i].form;
+                if (cardform) {
+                    var values = cardform.getValues(false);
+                    Object.extend(formValues,values);
+                }
+            }
+            return formValues;
+        },
+
+        onFinish: function() {
+            var data = this.getSelectWizardData([
+                'selectdatabasetype',
+                'jdbcsettings',
+                'auth']);
+            Object.extend(data,{dirObjectId:'2'});
+            var dataJson = Ext.encode(data);
+            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                // here you can put whatever you need as header. For instance:
+                this.defaultPostHeader = "application/json; charset=utf-8;";
+                this.defaultHeaders = {userid:'test'};
+            });
+            Ext.Ajax.request({
+                url: '/etlrepo/databasemeta/add',
+                method: 'POST',
+                params: dataJson,
+                success: function(response, opts) {},
+                failure: function(response, opts) {}
+            });
+        },
+        cards: [
+            // second card with input fields last/firstname
+            new Ext.ux.Wiz.Card({
+                id: "selectdatabasetype",
+                title: 'Enter name and select database type',
+                monitorValid: true,
+                defaults: {
+                    labelStyle: 'font-size:11px'
+                },
+                items: [
+                    new Ext.form.TextField({
+                        name: 'name',
+                        fieldLabel: 'Name',
+                        allowBlank: false
+                    }),
+                    new Ext.form.ComboBox({
+                        name: 'databaseType',
+                        fieldLabel: 'Database Type',
+                        hiddenName:'databaseType',
+                        store: new Ext.data.Store({
+                            id: "store",
+                            remoteSort: true,
+                            autoLoad: {params:{start:1, limit:2}},
+                            proxy: new Ext.data.ScriptTagProxy({
+                                url: 'http://localhost:8082/etlrepo/databasetype/search'
+                            }),
+                            reader: new Ext.data.JsonReader({
+                                root : 'data',
+                                totalProperty: 'totalCount'
+                            }, [
+                                {name: 'id', mapping: 'id'},
+                                {name: 'code', mapping: 'code'},
+                                {name: 'description', mapping: 'description'}
+                            ])
+                        }),
+
+                        valueField:'code',
+                        displayField:'description',
+                        typeAhead: true,
+                        mode: 'local',
+                        triggerAction: 'all',
+                        emptyText:'Select a database type...',
+                        selectOnFocus:true,
+                        width:190
+                    })
+                ]
+            }),
+            // JDBC Settings
+            new Ext.ux.Wiz.Card({
+                name: 'jdbcsettings',
+                title: 'Set the JDBC Settings',
+                monitorValid: true,
+                defaults: {
+                    labelStyle: 'font-size:11px'
+                },
+                items: [
+                    new Ext.form.TextField({
+                        name: 'hostname',
+                        fieldLabel: 'Hostname of database server',
+                        allowBlank: false
+                    }),
+                    new Ext.form.NumberField({
+                        name: 'databasePort',
+                        fieldLabel: 'The TCP/IP Port',
+                        allowBlank: true
+                    }),
+                    new Ext.form.TextField({
+                        name: 'databaseName',
+                        fieldLabel: 'The name of the database',
+                        allowBlank: false
+                    })
+                ]
+            }),
+            //Auth
+            new Ext.ux.Wiz.Card({
+                name: 'auth',
+                title: 'Enter username and password',
+                monitorValid: true,
+                defaults: {
+                    labelStyle: 'font-size:11px'
+                },
+                items: [
+                    new Ext.form.TextField({
+                        name: 'username',
+                        fieldLabel: 'Username',
+                        allowBlank: false
+                    }),
+                    new Ext.form.TextField({
+                        name: 'password',
+                        fieldLabel: 'Password',
+                        allowBlank: false,
+                        inputType:"password"
+                    })
+                ]
+            })
+
+        ]
+    });
+
+    //-- Register events
     this.addEvents({feedselect:true});
 
     this.on('contextmenu', this.onContextMenu, this);
 }
 
 Ext.extend(NavigationTreePanel, Ext.tree.TreePanel, {
+    mainTabPanel: undefined,
+    mainEditorPanel_ : undefined,
+    repofolder_database_contextmenu : undefined,
+    repoitem_database_contextmenu : undefined,
+    new_repoitem_database_wizard : undefined,
     onContextMenu : function(node, e){
-        if(!this.menu){ // create context menu on first right click
-            this.menu = new Ext.menu.Menu({
-                id:'feeds-ctx',
-                items: [{
-                    id:'load',
-                    icon: '/oryx/images/conxbi/etl/connection-new.png',
-                    text:'Create Connection',
-                    scope: this,
-                    handler:function(){
-                        this.ctxNode.select();
-                    }
-                },{
-                    text:'Create Folder',
-                    icon: '/oryx/images/conxbi/etl/folder_close.png',
-                    scope: this,
-                    handler:function(){
-                        this.ctxNode.ui.removeClass('x-node-ctx');
-                        this.removeFeed(this.ctxNode.attributes.url);
-                        this.ctxNode = null;
-                    }
-                },'-',{
-                    iconCls:'add-feed',
-                    text:'Add Feed',
-                    handler: this.showWindow,
-                    scope: this
-                }]
-            });
-            this.menu.on('hide', this.onContextHide, this);
+        if (node.attributes.itemtype && node.attributes.itemtype === 'database') {
+            if (!node.attributes.itemcontainertype) {//database  leaf
+                this.menu = this.repoitem_database_contextmenu;
+            } else if (node.attributes.itemcontainertype && node.attributes.itemcontainertype === 'repofolder') {
+                this.menu = this.repofolder_database_contextmenu;
+            }
         }
+
         if(this.ctxNode){
             this.ctxNode.ui.removeClass('x-node-ctx');
             this.ctxNode = null;
         }
         //if(node.isLeaf()){
-            this.ctxNode = node;
-            this.ctxNode.ui.addClass('x-node-ctx');
-            this.menu.items.get('load').setDisabled(node.isSelected());
-            this.menu.showAt(e.getXY());
+        this.ctxNode = node;
+        this.ctxNode.ui.addClass('x-node-ctx');
+        this.menu.items.get('load').setDisabled(node.isSelected());
+        this.menu.showAt(e.getXY());
         //}
     },
 
@@ -862,3 +816,6 @@ Ext.extend(NavigationTreePanel, Ext.tree.TreePanel, {
         });
     }
 });
+
+
+

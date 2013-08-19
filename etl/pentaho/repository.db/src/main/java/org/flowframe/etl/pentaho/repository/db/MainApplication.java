@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.repository.db;
 
-import org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseMetaDAOImpl;
+
+import org.flowframe.etl.pentaho.repository.db.resource.DatabaseMetaResource;
 import org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseTypeDAOImpl;
 import org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -20,7 +21,7 @@ public class MainApplication extends ResourceConfig {
      */
     public MainApplication () {
         register(RequestContextFilter.class);
-        register(DatabaseMetaDAOImpl.class);
+        register(DatabaseMetaResource.class);
         register(DatabaseTypeDAOImpl.class);
         register(RepositoryExplorerResource.class);
     }

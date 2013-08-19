@@ -25,7 +25,7 @@ public class DatabaseMetaDTO implements Serializable {
     private String password;
     private String serverName;
     private String dirPathId;
-    private String dirObjectId;
+    private long dirObjectId;
 
     public DatabaseMetaDTO() {}
 
@@ -192,11 +192,11 @@ public class DatabaseMetaDTO implements Serializable {
         this.dirPathId = dirPathId;
     }
 
-    public String getDirObjectId() {
+    public long getDirObjectId() {
         return dirObjectId;
     }
 
-    public void setDirObjectId(String dirObjectId) {
+    public void setDirObjectId(long dirObjectId) {
         this.dirObjectId = dirObjectId;
     }
 
