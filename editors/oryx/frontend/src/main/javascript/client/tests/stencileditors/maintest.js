@@ -65,8 +65,8 @@ Ext.onReady(function(){
     });
 
     /*
-    //Job Editor Tab
-    */
+     //Job Editor Tab
+     */
     //Center Panel
     var problemsGrid = new Ext.grid.PropertyGrid({
         title: 'Problems',
@@ -394,7 +394,7 @@ Ext.onReady(function(){
         enableTabScroll:true,
         activeTab: 0,
         plugins: new Ext.ux.TabCloseMenu(),
-        items: [mainJobEditorPanel_,mainEditorTabPanel_]
+        items: [mainJobEditorPanel_]
     });
 
 
@@ -475,13 +475,32 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
                 width:'auto'
             })
         ],
-        loader: new Ext.tree.TreeLoader({requestMethod: 'GET',dataUrl:'http://localhost:8082/etlrepo/explorer/getall?userId=test'}),
+        loader: new Ext.tree.TreeLoader({
+            requestMethod: 'GET',
+            clearOnLoad: false,
+            dataUrl:'http://localhost:8082/etlrepo/explorer/getnode',
+            preloadChildren: false,
+            baseParams: {
+                userid: 'userid',
+                itemtype: 'undefined',
+                folderObjectId: 'undefined'
+            }
+        }),
         // default tree elements for the navigation
         root: new Ext.tree.AsyncTreeNode({
             text: '',
             uiProvider: Ext.tree.customNodeUI
         })
     });
+
+    this.loader.on("beforeload", function(treeLoader, node) {
+        //this.baseParams.category = node.attributes.category;
+        //this.baseParams.userid = 'test';
+        if (node.attributes.itemtype)
+            this.loader.baseParams.itemtype = node.attributes.itemtype;
+        if (node.attributes.folderObjectId)
+            this.loader.baseParams.folderObjectId = node.attributes.folderObjectId;
+    }, this);
 
     this.getSelectionModel().on({
         'beforeselect' : function(sm, node){
@@ -511,7 +530,10 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
             handler:function(){
                 this.ctxNode.select();
                 //this.mainEditorPanel.removeAll();
+                Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode});
+                this.mainEditorPanel.setTitle("New Database");
                 this.mainEditorPanel.add(this.new_repoitem_database_wizard);
+                this.mainTabPanel.add(this.mainEditorPanel);
                 this.mainTabPanel.setActiveTab(this.mainEditorPanel);
                 //this.new_repoitem_database_wizard.show();
             }
@@ -531,7 +553,16 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
                 this.removeFeed(this.ctxNode.attributes.url);
                 this.ctxNode = null;
             }
-        }]
+        },{
+            text:'Refresh Folder',
+            icon: '/oryx/images/conxbi/etl/folder_delete.png',
+            scope: this,
+            handler:function(){
+                this.ctxNode.attributes.children = false;
+                this.ctxNode.reload();
+            }
+        }
+        ]
     });
     this.repofolder_database_contextmenu.on('hide', this.onContextHide, this);
 
@@ -545,6 +576,8 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
             handler:function(){
                 this.ctxNode.select();
                 //this.mainEditorPanel.removeAll();
+                Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode});
+                this.mainEditorPanel.setTitle("New Database");
                 this.mainEditorPanel.add(this.new_repoitem_database_wizard);
                 this.mainTabPanel.setActiveTab(this.mainEditorPanel);
                 //this.new_repoitem_database_wizard.show();
@@ -579,7 +612,7 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
         cardPanelConfig: {
             defaults: {
                 baseCls: 'x-small-editor',
-                bodyStyle: 'padding:40px 15px 5px 120px;background-color:#F6F6F6;',
+                bodyStyle: 'padding: 20px 15px 5px 5px; background-color:#F6F6F6;',
                 border: false
             }
         },
@@ -599,11 +632,13 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
         },
 
         onFinish: function() {
+            var idArray = this.ctxNode.id.split('/');
+            var dirId = idArray[1];
             var data = this.getSelectWizardData([
                 'selectdatabasetype',
                 'jdbcsettings',
                 'auth']);
-            Object.extend(data,{dirObjectId:'2'});
+            Object.extend(data,{dirObjectId:dirId});
             var dataJson = Ext.encode(data);
             Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
                 // here you can put whatever you need as header. For instance:
@@ -745,7 +780,8 @@ Ext.extend(NavigationTreePanel, Ext.tree.TreePanel, {
         //if(node.isLeaf()){
         this.ctxNode = node;
         this.ctxNode.ui.addClass('x-node-ctx');
-        this.menu.items.get('load').setDisabled(node.isSelected());
+        if (this.menu.items)
+            this.menu.items.get('load').setDisabled(node.isSelected());
         this.menu.showAt(e.getXY());
         //}
     },
@@ -816,6 +852,3 @@ Ext.extend(NavigationTreePanel, Ext.tree.TreePanel, {
         });
     }
 });
-
-
-
