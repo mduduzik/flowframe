@@ -63,15 +63,16 @@ public class DatabaseMetaResource  {
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response add(@HeaderParam("userid") String userid, DatabaseMetaDTO record) throws KettleException {
+    @Produces(MediaType.APPLICATION_JSON)
+    public DatabaseMetaDTO add(@HeaderParam("userid") String userid, DatabaseMetaDTO record) throws KettleException {
         //TODO: Hack
         Organization tenant = new Organization();
         tenant.setId(1L);
 
         RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
         DatabaseMeta newRecord = DatabaseMetaUtil.addDatabaseMeta(tenant,repository,dir, record);
-        String result = "DatabaseMeta saved : " + newRecord;
-        return Response.status(201).entity(result).build();
+
+        return DatabaseMetaDTO.fromMeta(newRecord);
     }
 
 
@@ -86,7 +87,7 @@ public class DatabaseMetaResource  {
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public DatabaseMetaDTO delete(DatabaseMeta record) {
+    public DatabaseMetaDTO delete(DatabaseMetaDTO record) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

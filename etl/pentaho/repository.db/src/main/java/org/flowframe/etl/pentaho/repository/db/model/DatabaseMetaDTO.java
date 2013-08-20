@@ -211,4 +211,19 @@ public class DatabaseMetaDTO implements Serializable {
         meta.setPassword(dto.getPassword());
         return meta;
     }
+
+    public static DatabaseMetaDTO fromMeta(DatabaseMeta meta) {
+        DatabaseMetaDTO dto = new DatabaseMetaDTO((LongObjectId)meta.getObjectId(),
+                meta.getName(),
+                meta.getAccessTypeDesc(),
+                meta.getDatabaseTypeDesc(),
+                meta.getHostname(),
+                meta.getDatabaseName(),
+                meta.getDefaultDatabasePort(),
+                meta.getUsername(),
+                meta.getPassword(),
+                meta.getServername());
+
+        return dto;
+    }
 }

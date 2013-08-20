@@ -530,7 +530,7 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
             handler:function(){
                 this.ctxNode.select();
                 //this.mainEditorPanel.removeAll();
-                Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode});
+                Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
                 this.mainEditorPanel.setTitle("New Database");
                 this.mainEditorPanel.add(this.new_repoitem_database_wizard);
                 this.mainTabPanel.add(this.mainEditorPanel);
@@ -549,13 +549,35 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
             icon: '/oryx/images/conxbi/etl/folder_delete.png',
             scope: this,
             handler:function(){
-                this.ctxNode.ui.removeClass('x-node-ctx');
-                this.removeFeed(this.ctxNode.attributes.url);
-                this.ctxNode = null;
+                var requestWiz = this;
+                var requestCtxNode =  requestWiz.ctxNode;
+
+                var idArray = requestCtxNode.id.split('/');
+                var dirId = idArray[1];
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                    // here you can put whatever you need as header. For instance:
+                    //this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {
+                        userid: 'test',
+                        itemtype: 'database',
+                        folderObjectId: dirId
+                    };
+                });
+                Ext.Ajax.request({
+                    url: '/etlrepo/explorer/deletedir',
+                    method: 'DELETE',
+                    success: function(response, opts) {
+                        //Refresh this.ctxNode
+                        if (requestCtxNode.attributes)
+                            requestCtxNode.attributes.children = false;
+                        requestCtxNode.reload();
+                    },
+                    failure: function(response, opts) {}
+                });
             }
         },{
             text:'Refresh Folder',
-            icon: '/oryx/images/conxbi/etl/folder_delete.png',
+            icon: '/oryx/images/conxbi/etl/refresh.gif',
             scope: this,
             handler:function(){
                 this.ctxNode.attributes.children = false;
@@ -576,7 +598,7 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
             handler:function(){
                 this.ctxNode.select();
                 //this.mainEditorPanel.removeAll();
-                Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode});
+                Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
                 this.mainEditorPanel.setTitle("New Database");
                 this.mainEditorPanel.add(this.new_repoitem_database_wizard);
                 this.mainTabPanel.setActiveTab(this.mainEditorPanel);
@@ -632,26 +654,51 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
         },
 
         onFinish: function() {
-            var idArray = this.ctxNode.id.split('/');
-            var dirId = idArray[1];
-            var data = this.getSelectWizardData([
-                'selectdatabasetype',
-                'jdbcsettings',
-                'auth']);
-            Object.extend(data,{dirObjectId:dirId});
-            var dataJson = Ext.encode(data);
-            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
-                // here you can put whatever you need as header. For instance:
-                this.defaultPostHeader = "application/json; charset=utf-8;";
-                this.defaultHeaders = {userid:'test'};
-            });
-            Ext.Ajax.request({
-                url: '/etlrepo/databasemeta/add',
-                method: 'POST',
-                params: dataJson,
-                success: function(response, opts) {},
-                failure: function(response, opts) {}
-            });
+            var requestWiz = this;
+            var requestCtxNode =  requestWiz.ctxNode;
+            var requestMainEditorPanel = requestWiz.mainEditorPanel;
+            var requestMainTabPanel = requestWiz.mainTabPanel;
+            if (requestWiz.wizmode && requestWiz.wizmode === 'EDITING') {
+
+            }
+            else {
+                var idArray = requestCtxNode.id.split('/');
+                var dirId = idArray[1];
+                var data = this.getSelectWizardData([
+                    'selectdatabasetype',
+                    'jdbcsettings',
+                    'auth']);
+                Object.extend(data,{dirObjectId:dirId});
+                var dataJson = Ext.encode(data);
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid:'test'};
+                });
+                Ext.Ajax.request({
+                    url: '/etlrepo/databasemeta/add',
+                    method: 'POST',
+                    params: dataJson,
+                    success: function(response, opts) {
+                        //Refresh this.ctxNode
+                        if (requestCtxNode.attributes)
+                            requestCtxNode.attributes.children = false;
+                        requestCtxNode.select();
+                        requestCtxNode.ui.addClass('x-node-ctx');
+                        requestCtxNode.reload();
+
+
+                        //Update tab title
+                        //requestMainEditorPanel.hide();
+
+                        var db = Ext.decode(response.responseText);
+                        requestMainEditorPanel.setTitle("Editing "+db.name);
+                        requestWiz.finishButtonText = 'Save';
+                        Object.extend(requestWiz,{wizmode:'EDITING'});
+                    },
+                    failure: function(response, opts) {}
+                });
+            }
         },
         cards: [
             // second card with input fields last/firstname
@@ -852,3 +899,6 @@ Ext.extend(NavigationTreePanel, Ext.tree.TreePanel, {
         });
     }
 });
+
+
+

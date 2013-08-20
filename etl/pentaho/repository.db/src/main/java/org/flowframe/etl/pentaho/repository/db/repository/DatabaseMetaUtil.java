@@ -81,6 +81,19 @@ public class DatabaseMetaUtil {
         return databaseMeta;
     }
 
+    public static void deleteDatabaseDirectory(CustomRepository repo, RepositoryDirectoryInterface dir, String tenantId) throws KettleException {
+        //Delete all databases
+        Collection<ObjectId> dbIds = getDatabaseIdsBySubDirAndTenantId(tenantId, dir, repo);
+        for (ObjectId dbId : dbIds) {
+            repo.getRepositoryDatabaseDelegate().delDatabase(dbId);
+        }
+
+        //Delete dir
+        repo.getRepositoryDirectoryDelegate().deleteDirectory(dir);
+
+        repo.getRepositoryConnectionDelegate().commit();
+    }
+
     public static void deleteDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO dto) throws KettleException {
         ObjectId id = new LongObjectId(dto.getObjectId());
         repo.getRepositoryDatabaseDelegate().delDatabase(id);

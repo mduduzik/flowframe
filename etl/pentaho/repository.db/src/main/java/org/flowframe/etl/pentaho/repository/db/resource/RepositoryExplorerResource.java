@@ -3,12 +3,14 @@ package org.flowframe.etl.pentaho.repository.db.resource;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.CustomRepository;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
 import org.flowframe.etl.pentaho.repository.db.repository.DatabaseMetaUtil;
 import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.ProgressMonitorListener;
+import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
@@ -27,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +62,24 @@ public class RepositoryExplorerResource {
     @Autowired
     private DBRepositoryWrapperImpl repository;
 
+    @DELETE
+    @Path("/deletedir")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deletedir(@HeaderParam("userid") String userid,
+                              @HeaderParam("itemtype") String itemtype,
+                              @HeaderParam("folderObjectId") String folderObjectId) throws KettleException {
+        Organization tenant = new Organization();
+        tenant.setId(1L);
+        
+        LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
+        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, dirObjId);
+
+        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype))   {
+            DatabaseMetaUtil.deleteDatabaseDirectory(repository,dir,tenant.getId().toString());
+        }
+        return Response.ok("Folder " + folderObjectId + " deleted successfully", MediaType.TEXT_PLAIN).build();
+    }
+
     @GET
     @Path("/getall")
     @Produces(MediaType.TEXT_PLAIN)
@@ -89,7 +110,7 @@ public class RepositoryExplorerResource {
         if (itemtype == null || "undefined".equals(itemtype))
             res = exportTreeToJSONByTenant(null, repository, tenant).toString();
         else {
-            json = exportTreeNodeToJSONByTenant(itemtype, folderObjectId, repository, tenant, true);
+            json = exportTreeNodeToJSONByTenant(itemtype, folderObjectId, repository, tenant, true/*excluderootnode*/,true/*ondemand*/);
             res = json.getJSONArray("children").toString();
         }
         if (callback != null)
@@ -98,14 +119,14 @@ public class RepositoryExplorerResource {
             return res;
     }
 
-    private JSONObject exportTreeNodeToJSONByTenant(String itemtype, String folderObjectId, DBRepositoryWrapperImpl repository, Organization tenant, boolean excludeRoot) throws KettleException, JSONException {
+    private JSONObject exportTreeNodeToJSONByTenant(String itemtype, String folderObjectId, DBRepositoryWrapperImpl repository, Organization tenant, boolean excludeRoot, boolean ondemand) throws KettleException, JSONException {
         JSONObject res = null;
         if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype)) {
             LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
             RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
 
-            res = generateDBConnectionsJSON(false, repository, dir, tenant.getId().toString());
+            res = generateDBConnectionsJSON(ondemand,false,repository, dir, tenant.getId().toString());
         }
         return res;
     }
@@ -134,7 +155,8 @@ public class RepositoryExplorerResource {
             /*
             //-- DB Connections
             */
-        JSONObject metadataDBConnections = generateDBConnectionsJSON(true,repo, dbConnectionsMdDir, tenant.getId().toString());
+        //JSONObject metadataDBConnections = generateDBConnectionsJSON(true,false,repo, dbConnectionsMdDir, tenant.getId().toString());
+        JSONObject metadataDBConnections = new JSONObject();
         metadataDBConnections.put("id", "metadata.dbconnections");
         metadataDBConnections.put("text", "DB Connections");
         metadataDBConnections.put("title", "DB Connections");
@@ -152,7 +174,8 @@ public class RepositoryExplorerResource {
             /*
             //-- CSV
             */
-        JSONObject metadataDelimited = generateCSVMetadataJSON(true,repo, delimitedMdDir);
+        //JSONObject metadataDelimited = generateCSVMetadataJSON(true,repo, delimitedMdDir);
+        JSONObject metadataDelimited = new JSONObject();
         metadataDelimited.put("id", RepositoryUtil.generatePathID(delimitedMdDir, "CSVInput"));
         metadataDelimited.put("text", "CSV");
         metadataDelimited.put("title", "CSV");
@@ -170,7 +193,8 @@ public class RepositoryExplorerResource {
             /*
             //-- Excel
             */
-        JSONObject metadataDExcel = generateExcelMetadataJSON(true, repo, excelMdDir);
+        //JSONObject metadataDExcel = generateExcelMetadataJSON(true, repo, excelMdDir);
+        JSONObject metadataDExcel = new JSONObject();
         metadataDExcel.put("id", "metadata.excel");
         metadataDExcel.put("text", "Excel");
         metadataDExcel.put("title", "Excel");
@@ -375,7 +399,8 @@ public class RepositoryExplorerResource {
         return subDir;
     }
 
-    private static JSONObject generateDBConnectionsJSON(Boolean ondemand, CustomRepository customRepository, RepositoryDirectoryInterface dir, String tenantId) throws JSONException, KettleException {
+    private static JSONObject generateDBConnectionsJSON(Boolean ondemand, Boolean excludeChildrenForThisNode, CustomRepository customRepository, RepositoryDirectoryInterface dir, String tenantId) throws JSONException, KettleException {
+        boolean hasChildren = false;
         JSONObject subDir = new JSONObject();
 
         // Populate
@@ -389,11 +414,14 @@ public class RepositoryExplorerResource {
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
         subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DATABASE);
         subDir.put(REPOSITORY_ITEMCONTAINER_TYPE, REPOSITORY_ITEMCONTAINER_TYPE_REPOFOLDER);
+        subDir.put(REPOSITORY_REPOFOLDER_OBJID, dir.getObjectId().toString());
 
-
-        if (ondemand) {
-            subDir.put("hasChildren", true);
-            subDir.put("singleClickExpand", true);
+        Collection<DatabaseMeta> dbs = DatabaseMetaUtil.getDatabasesBySubDirAndTenantId(customRepository, dir, tenantId);
+        List<RepositoryDirectoryInterface> dbConnectionsMdSubDirs = dir.getChildren();
+        hasChildren = !dbConnectionsMdSubDirs.isEmpty() || !dbs.isEmpty();
+        if (excludeChildrenForThisNode)  {
+            subDir.put("hasChildren", hasChildren);
+            subDir.put("singleClickExpand", hasChildren);
             return subDir;
         }
 
@@ -402,16 +430,14 @@ public class RepositoryExplorerResource {
 
 
         //Do sub dirs
-        List<RepositoryDirectoryInterface> dbConnectionsMdSubDirs = dir.getChildren();
-
+        excludeChildrenForThisNode = !excludeChildrenForThisNode && ondemand;
         for (RepositoryDirectoryInterface subDir_ : dbConnectionsMdSubDirs) {
-            JSONObject subDirDir = generateDBConnectionsJSON(ondemand,customRepository, subDir_, tenantId);
+            JSONObject subDirDir = generateDBConnectionsJSON(ondemand,excludeChildrenForThisNode,customRepository,subDir_, tenantId);
             childrenArray.put(subDirDir);
         }
 
 
         //Do actual db connections
-        Collection<DatabaseMeta> dbs = DatabaseMetaUtil.getDatabasesBySubDirAndTenantId(customRepository, dir, tenantId);
         for (DatabaseMeta db : dbs) {
             JSONObject dbObj = new JSONObject();
             dbObj.put("text", db.getName());
