@@ -122,6 +122,8 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		connect(username, userpassword);
 
         supportingDatabase = new Database(loggingObject,connection);
+        supportingDatabase.getDatabaseMeta().setUsingConnectionPool(true);
+        supportingDatabase.getDatabaseMeta().setMaximumPoolSize(20);
         supportingDatabase.connect();;
 		
 		//Ensure root and tenant root dir's

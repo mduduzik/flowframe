@@ -115,12 +115,12 @@ public class DatabaseMetaUtil {
             {
                 dbIds.add(new LongObjectId(Long.valueOf(row[0].toString())));
             }
-            repository.getSupportingDatabase().disconnect();
+            //repository.getSupportingDatabase().disconnect();
         } finally {
            if (rs != null && db != null)
-               db.closeQuery(rs);
+             db.closeQuery(rs);
            if (db != null)
-               db.disconnect();
+             db.disconnect();
         }
 
         return dbIds;
