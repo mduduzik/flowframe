@@ -4,6 +4,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
+import org.flowframe.etl.pentaho.repository.db.model.DirectoryDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.CustomRepository;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
 import org.flowframe.etl.pentaho.repository.db.repository.DatabaseMetaUtil;
@@ -61,6 +62,23 @@ public class RepositoryExplorerResource {
 
     @Autowired
     private DBRepositoryWrapperImpl repository;
+
+    @POST
+    @Path("/adddir")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public DirectoryDTO adddir(@HeaderParam("userid") String userid, DirectoryDTO record) throws KettleException {
+        //TODO: Hack
+        Organization tenant = new Organization();
+        tenant.setId(1L);
+
+        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(record.getItemtype())) {
+            RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
+            record = DatabaseMetaUtil.addDatabaseDirectory(repository,dir,tenant,record);
+        }
+
+        return record;
+    }
 
     @DELETE
     @Path("/deletedir")
@@ -127,6 +145,20 @@ public class RepositoryExplorerResource {
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
 
             res = generateDBConnectionsJSON(ondemand,false,repository, dir, tenant.getId().toString());
+        }
+        else if (REPOSITORY_ITEM_TYPE_CSVINPUT.equals(itemtype)) {
+            LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
+            RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
+            RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
+
+            res = generateCSVMetadataJSON(ondemand, false, repository, dir);
+        }
+        else if (REPOSITORY_ITEM_TYPE_EXCELINPUT.equals(itemtype)) {
+            LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
+            RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
+            RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
+
+            res = generateExcelMetadataJSON(ondemand, false, repository, dir);
         }
         return res;
     }
@@ -204,7 +236,7 @@ public class RepositoryExplorerResource {
         metadataDExcel.put("singleClickExpand", true);
         metadataDExcel.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
         metadataDExcel.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_EXCELINPUT);
-        metadataDExcel.put(REPOSITORY_REPOFOLDER_OBJID, delimitedMdDir.getObjectId().toString());
+        metadataDExcel.put(REPOSITORY_REPOFOLDER_OBJID, excelMdDir.getObjectId().toString());
 
         metadataChildren.put(metadataDExcel);
 
@@ -213,7 +245,7 @@ public class RepositoryExplorerResource {
         return treeByTenant;
     }
 
-    private static JSONObject generateExcelMetadataJSON(Boolean ondemand, CustomRepository customRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
+    private static JSONObject generateExcelMetadataJSON(Boolean ondemand, boolean excludeChildrenForThisNode,  CustomRepository customRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
         JSONObject subDir = new JSONObject();
 
         // Populate
@@ -226,27 +258,29 @@ public class RepositoryExplorerResource {
         subDir.put("singleClickExpand", false);
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
 
-        JSONArray childrenArray = new JSONArray();
-        subDir.put("children", childrenArray);
-
-        if (ondemand) {
-            subDir.put("hasChildren", true);
-            subDir.put("singleClickExpand", true);
+        List<RepositoryDirectoryInterface> excelMdSubDirs = dir.getChildren();
+        String[] excelMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
+        boolean hasChildren = !excelMdSubDirs.isEmpty() || (excelMetadataTransNames.length > 0);
+        if (excludeChildrenForThisNode)  {
+            subDir.put("hasChildren", hasChildren);
+            subDir.put("singleClickExpand", hasChildren);
             return subDir;
         }
+
+        JSONArray childrenArray = new JSONArray();
+        subDir.put("children", childrenArray);
 
         //Do sub dirs
         List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
 
         for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
-            JSONObject subDirDir = generateCSVMetadataJSON(true, customRepository, subDir_);
+            JSONObject subDirDir = generateCSVMetadataJSON(ondemand,excludeChildrenForThisNode, customRepository, subDir_);
             childrenArray.put(subDirDir);
         }
 
 
         //Do metadata from transformations
-        String[] dbConnectionMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
-        for (String transName : dbConnectionMetadataTransNames) {
+        for (String transName : excelMetadataTransNames) {
             TransMeta trans = customRepository.loadTransformation(transName, dir, null, true, null);
             List<StepMeta> steps = trans.getSteps();
             for (StepMeta step : steps) {
@@ -295,15 +329,10 @@ public class RepositoryExplorerResource {
             }
         }
 
-        if (childrenArray.length() > 0) {
-            subDir.put("hasChildren", true);
-            subDir.put("singleClickExpand", true);
-        }
-
         return subDir;
     }
 
-    private static JSONObject generateCSVMetadataJSON(boolean ondemand, CustomRepository customRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
+    private static JSONObject generateCSVMetadataJSON(boolean ondemand, boolean excludeChildrenForThisNode, CustomRepository customRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
         JSONObject subDir = new JSONObject();
 
         // Populate
@@ -318,26 +347,27 @@ public class RepositoryExplorerResource {
         subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_CSVINPUT);
         subDir.put(REPOSITORY_ITEMCONTAINER_TYPE, REPOSITORY_ITEMCONTAINER_TYPE_REPOFOLDER);
 
-        JSONArray childrenArray = new JSONArray();
-        subDir.put("children", childrenArray);
-
-        if (ondemand) {
-            subDir.put("hasChildren", true);
-            subDir.put("singleClickExpand", true);
+        List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
+        String[] dbConnectionMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
+        boolean hasChildren = !delimitedMdSubDirs.isEmpty() || (dbConnectionMetadataTransNames.length > 0);
+        if (excludeChildrenForThisNode)  {
+            subDir.put("hasChildren", hasChildren);
+            subDir.put("singleClickExpand", hasChildren);
             return subDir;
         }
 
-        //Do sub dirs
-        List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
+        JSONArray childrenArray = new JSONArray();
+        subDir.put("children", childrenArray);
 
+
+        //Do sub dirs
         for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
-            JSONObject subDirDir = generateCSVMetadataJSON(true, customRepository, subDir_);
+            JSONObject subDirDir = generateCSVMetadataJSON(ondemand,excludeChildrenForThisNode,customRepository, subDir_);
             childrenArray.put(subDirDir);
         }
 
 
         //Do metadata from transformations
-        String[] dbConnectionMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
         for (String transName : dbConnectionMetadataTransNames) {
             TransMeta trans = customRepository.loadTransformation(transName, dir, null, true, null);
             List<StepMeta> steps = trans.getSteps();
@@ -389,12 +419,6 @@ public class RepositoryExplorerResource {
         }
 
         subDir.put("children", childrenArray);
-
-        if (childrenArray.length() > 0) {
-            subDir.put("hasChildren", true);
-            subDir.put("singleClickExpand", true);
-        }
-
 
         return subDir;
     }
@@ -506,11 +530,6 @@ public class RepositoryExplorerResource {
                     }
                 }
             dbInstance.disconnect();
-        }
-
-        if (childrenArray.length() > 0) {
-            subDir.put("hasChildren", true);
-            subDir.put("singleClickExpand", true);
         }
 
         return subDir;

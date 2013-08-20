@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.repository.db.repository;
 
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
+import org.flowframe.etl.pentaho.repository.db.model.DirectoryDTO;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
@@ -92,6 +93,21 @@ public class DatabaseMetaUtil {
         repo.getRepositoryDirectoryDelegate().deleteDirectory(dir);
 
         repo.getRepositoryConnectionDelegate().commit();
+    }
+
+
+    public static DirectoryDTO addDatabaseDirectory(CustomRepository repo, RepositoryDirectoryInterface parentDir, Organization tenant, DirectoryDTO dir) throws KettleException {
+        RepositoryDirectoryInterface newDir = null;
+        if (parentDir == null) {//@DB Connections level
+            parentDir = repo.provideDBConnectionsMetadataDirectoryForTenant(tenant);
+        }
+
+        newDir = repo.getRepositoryDirectoryDelegate().createRepositoryDirectory(parentDir, dir.getName());
+        repo.getRepositoryConnectionDelegate().commit();
+
+        dir.setDirObjectId(((LongObjectId)newDir.getObjectId()).longValue());
+
+        return dir;
     }
 
     public static void deleteDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO dto) throws KettleException {

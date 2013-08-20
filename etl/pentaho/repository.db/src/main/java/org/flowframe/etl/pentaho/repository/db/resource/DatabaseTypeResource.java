@@ -1,22 +1,20 @@
-package org.flowframe.etl.pentaho.repository.db.services.persistence;
+package org.flowframe.etl.pentaho.repository.db.resource;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.repository.db.model.PagedDatabaseTypeDTO;
-import org.flowframe.etl.pentaho.repository.db.model.DatabaseTypeDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
+import org.flowframe.etl.pentaho.repository.db.services.persistence.IDatabaseTypeDAO;
 import org.pentaho.di.core.RowMetaAndData;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,15 +26,12 @@ import java.util.List;
  */
 @Path("databasetype")
 @Component
-public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
+public class DatabaseTypeResource  {
     @Autowired
     private DBRepositoryWrapperImpl repository;
 
-    @Override
-    @GET
-    @Path("/count")
-    @Produces(MediaType.APPLICATION_JSON)
-    public long count(@QueryParam("query") String descrkeyword) {
+
+    public long count(String descrkeyword) {
         long totalCount = 0;
 
         try {
@@ -56,7 +51,6 @@ public class DatabaseTypeDAOImpl implements IDatabaseTypeDAO {
     }
 
     // e.g. http://localhost:8082/etlrepo/databasetype/search?descrkeyword=s&start=1&limit=10
-    @Override
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)

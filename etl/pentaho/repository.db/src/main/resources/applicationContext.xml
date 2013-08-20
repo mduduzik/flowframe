@@ -56,7 +56,7 @@
         DAO's
     -->
     <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseMetaResource" scope="request"/>
-    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseTypeDAOImpl" scope="request"/>
+    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseTypeResource" scope="request"/>
     <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource" scope="request"/>
 
 
