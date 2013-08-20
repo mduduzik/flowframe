@@ -77,22 +77,28 @@ public class RepositoryExplorerResource {
     @GET
     @Path("/getnode")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getnode(@HeaderParam("userId") String userid,
+    public String getnode(@QueryParam("userid") String userid,
                           @QueryParam("callback") String callback,
                           @QueryParam("itemtype") String itemtype,
                           @QueryParam("folderObjectId") String folderObjectId) throws KettleException, JSONException {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        String res = exportTreeNodeToJSONByTenant(itemtype, folderObjectId, repository, tenant).toString();
-
+        String res = null;
+        JSONObject json;
+        if (itemtype == null || "undefined".equals(itemtype))
+            res = exportTreeToJSONByTenant(null, repository, tenant).toString();
+        else {
+            json = exportTreeNodeToJSONByTenant(itemtype, folderObjectId, repository, tenant, true);
+            res = json.getJSONArray("children").toString();
+        }
         if (callback != null)
             return callback + "(" + res + ");";
         else
             return res;
     }
 
-    private JSONObject exportTreeNodeToJSONByTenant(String itemtype, String folderObjectId, DBRepositoryWrapperImpl repository, Organization tenant) throws KettleException, JSONException {
+    private JSONObject exportTreeNodeToJSONByTenant(String itemtype, String folderObjectId, DBRepositoryWrapperImpl repository, Organization tenant, boolean excludeRoot) throws KettleException, JSONException {
         JSONObject res = null;
         if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype)) {
             LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
@@ -385,15 +391,14 @@ public class RepositoryExplorerResource {
         subDir.put(REPOSITORY_ITEMCONTAINER_TYPE, REPOSITORY_ITEMCONTAINER_TYPE_REPOFOLDER);
 
 
-        JSONArray childrenArray = new JSONArray();
-        subDir.put("children", childrenArray);
-
         if (ondemand) {
             subDir.put("hasChildren", true);
             subDir.put("singleClickExpand", true);
             return subDir;
         }
 
+        JSONArray childrenArray = new JSONArray();
+        subDir.put("children", childrenArray);
 
 
         //Do sub dirs
