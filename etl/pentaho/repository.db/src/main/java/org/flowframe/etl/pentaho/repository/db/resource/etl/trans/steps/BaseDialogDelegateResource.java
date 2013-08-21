@@ -1,5 +1,8 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps;
 
+import org.pentaho.di.trans.step.BaseStepMeta;
+import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.ws.rs.core.Context;
@@ -12,20 +15,26 @@ import java.io.*;
  * Time: 3:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BaseDialogResource {
+public abstract class BaseDialogDelegateResource {
     protected ServletContext context;
 
     public static String ATTRIBUTENAME_WORKDIR = "workDir";
+    public static String ATTRIBUTENAME_METADATA = "metadata";
+
     protected File tmpDir;
 
 
     @Context
     public void setServletContext(ServletContext context) throws ServletException {
         this.context = context;
+
+        //-- Init temp directory
         tmpDir = (File) context.getAttribute("javax.servlet.context.tempdir");
         if (tmpDir == null) {
             throw new ServletException("Servlet container does not provide temporary directory");
         }
+        //-- Initialize
+        init();
     }
 
     protected void cleanUpWorkingDir() {
@@ -59,4 +68,14 @@ public class BaseDialogResource {
         out.flush();
         out.close();
     }
+
+    public void cacheMetadata(CsvInputMeta inputMeta) {
+        setSessionAttribute(ATTRIBUTENAME_METADATA,inputMeta);
+    }
+
+    public BaseStepMeta getCachedMetadata() {
+        return (BaseStepMeta)getSessionAttribute(ATTRIBUTENAME_METADATA);
+    }
+
+    public abstract void init();
 }

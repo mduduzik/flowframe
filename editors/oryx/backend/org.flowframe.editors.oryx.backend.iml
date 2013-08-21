@@ -105,6 +105,7 @@
     <orderEntry type="library" name="Maven: javax.validation:com.springsource.javax.validation:1.0.0.GA" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: postgresql:postgresql:8.3-603.jdbc3" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jettison:com.springsource.org.codehaus.jettison:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.flexjson:flexjson:3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.dbunit:dbunit:2.4.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.ibatis:ibatis-sqlmap:3.0-beta-10" level="project" />

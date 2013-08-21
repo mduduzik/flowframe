@@ -15,11 +15,12 @@ import java.util.Map;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogResource;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogDelegateResource;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,14 +29,16 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
  * Time: 9:37 AM
  * To change this template use File | Settings | File Templates.
  */
-@Path("/CSVInput")
-public class CSVInputDialogResource extends BaseDialogResource{
+@Path("/csvinput")
+public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
 
     @Context
     public void setServletContext(ServletContext context) throws ServletException {
         super.setServletContext(context);
 
+
+        //-- WorkDir
         File workDir = new File(super.tmpDir, "NewCSVInputDialogResourceDir");
         if (!workDir.exists())
             if (!workDir.mkdirs()) {
@@ -43,6 +46,10 @@ public class CSVInputDialogResource extends BaseDialogResource{
             }
         setSessionAttribute(ATTRIBUTENAME_WORKDIR,workDir);
     }
+
+
+
+
 
     @Path("/uploadsample")
     @POST
@@ -65,7 +72,7 @@ public class CSVInputDialogResource extends BaseDialogResource{
         context.setAttribute("fileSize",fileSize);
 
 
-        File workDir = (File)getSessionAttribute("workDir");
+        File workDir = (File)getSessionAttribute(ATTRIBUTENAME_WORKDIR);
         writeStreamToFile(workDir,sampleCSVInputStream,fileName);
 /*        String uploadedFileLocation = "c://uploadedFiles/" + fileDetail.getFileName();
 
@@ -95,9 +102,26 @@ public class CSVInputDialogResource extends BaseDialogResource{
 
         bytesProcessed = fileSize;*/
 
-        return Response.status(200).entity("{progress:"+0+",success:true,filelocation:"+workDir.getAbsolutePath()+"}").build();
+        return Response.status(200).entity("{progress:" + 0 + ",success:true,filelocation:" + workDir.getAbsolutePath() + "}").build();
 
     }
+
+    @Path("/onstart")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public String start() throws JSONException {
+        init();
+
+        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta)getCachedMetadata());
+        return dto.toJSON();
+    }
+
+    @Override
+    public void init() {
+        CsvInputMeta inputMeta  = new CsvInputMeta();
+        super.cacheMetadata(inputMeta);
+    }
+
 
     @Path("/uploadprogress")
     @POST
@@ -128,6 +152,8 @@ public class CSVInputDialogResource extends BaseDialogResource{
 
         return progressJSon.toString();
     }
+
+
 
     private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {
         List<FormDataBodyPart> fileBPList = null;

@@ -4,7 +4,7 @@ package org.flowframe.etl.pentaho.repository.db;
 import org.flowframe.etl.pentaho.repository.db.resource.DatabaseMetaResource;
 import org.flowframe.etl.pentaho.repository.db.resource.DatabaseTypeResource;
 import org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource;
-import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogResource;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -27,7 +27,7 @@ public class MainApplication extends ResourceConfig {
         register(DatabaseMetaResource.class);
         register(DatabaseTypeResource.class);
         register(RepositoryExplorerResource.class);
-        register(CSVInputDialogResource.class);
+        register(CSVInputDialogDelegateResource.class);
         register(MultiPartFeature.class);
         register(LoggingFilter.class);
     }

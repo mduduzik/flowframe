@@ -62,7 +62,7 @@
     <!--
        CSVInput
     -->
-    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogResource" scope="session"/>
+    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource" scope="session"/>
 
 
 
