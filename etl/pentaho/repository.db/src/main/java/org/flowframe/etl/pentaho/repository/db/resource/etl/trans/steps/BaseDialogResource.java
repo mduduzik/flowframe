@@ -15,15 +15,27 @@ import java.io.*;
 public class BaseDialogResource {
     protected ServletContext context;
 
+    public static String ATTRIBUTENAME_WORKDIR = "workDir";
+    protected File tmpDir;
+
 
     @Context
     public void setServletContext(ServletContext context) throws ServletException {
         this.context = context;
+        tmpDir = (File) context.getAttribute("javax.servlet.context.tempdir");
+        if (tmpDir == null) {
+            throw new ServletException("Servlet container does not provide temporary directory");
+        }
     }
 
-    public void init() {
-
+    protected void cleanUpWorkingDir() {
+        File workDir = (File) getSessionAttribute(ATTRIBUTENAME_WORKDIR);
+        if (workDir.exists()) {
+            workDir.delete();
+        }
     }
+
+
 
     protected void setSessionAttribute(String name, Object value) {
         context.setAttribute(name,value);

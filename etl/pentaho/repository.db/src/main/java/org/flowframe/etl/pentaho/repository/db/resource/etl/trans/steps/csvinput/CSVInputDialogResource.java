@@ -36,18 +36,12 @@ public class CSVInputDialogResource extends BaseDialogResource{
     public void setServletContext(ServletContext context) throws ServletException {
         super.setServletContext(context);
 
-        File tmpDir = (File) context.getAttribute("javax.servlet.context.tempdir");
-        if (tmpDir == null) {
-            throw new ServletException("Servlet container does not provide temporary directory");
-        }
-
-        File workDir = new File(tmpDir, "NewCSVInputDialogResourceDir");
+        File workDir = new File(super.tmpDir, "NewCSVInputDialogResourceDir");
         if (!workDir.exists())
             if (!workDir.mkdirs()) {
                 throw new ServletException("Unable to create classes temporary directory");
             }
-
-        setSessionAttribute("workDir",workDir);
+        setSessionAttribute(ATTRIBUTENAME_WORKDIR,workDir);
     }
 
     @Path("/uploadsample")
