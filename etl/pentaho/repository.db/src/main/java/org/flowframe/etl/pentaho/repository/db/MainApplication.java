@@ -3,10 +3,11 @@ package org.flowframe.etl.pentaho.repository.db;
 
 import org.flowframe.etl.pentaho.repository.db.resource.DatabaseMetaResource;
 import org.flowframe.etl.pentaho.repository.db.resource.DatabaseTypeResource;
-import org.flowframe.etl.pentaho.repository.db.services.persistence.DatabaseTypeDAOImpl;
 import org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogResource;
+import org.glassfish.jersey.filter.LoggingFilter;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
 /**
@@ -21,9 +22,13 @@ public class MainApplication extends ResourceConfig {
      * Register JAX-RS application components.
      */
     public MainApplication () {
+        //packages("org.flowframe.etl.pentaho.repository.db.resource;org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput");
         register(RequestContextFilter.class);
         register(DatabaseMetaResource.class);
         register(DatabaseTypeResource.class);
         register(RepositoryExplorerResource.class);
+        register(CSVInputDialogResource.class);
+        register(MultiPartFeature.class);
+        register(LoggingFilter.class);
     }
 }

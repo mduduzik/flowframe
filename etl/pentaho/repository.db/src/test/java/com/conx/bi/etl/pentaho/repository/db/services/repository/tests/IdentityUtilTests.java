@@ -1,6 +1,5 @@
 package com.conx.bi.etl.pentaho.repository.db.services.repository.tests;
 
-import com.conx.bi.etl.pentaho.repository.db.services.repository.IdentityUtil;
 import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
 import org.flowframe.etl.pentaho.repository.db.repository.CustomRepository;
 import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
@@ -20,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import java.util.List;
-
-import static com.conx.bi.etl.pentaho.repository.db.services.repository.DBRepositoryWrapperImpl.getINSTANCE;
 
 
 //@Ignore

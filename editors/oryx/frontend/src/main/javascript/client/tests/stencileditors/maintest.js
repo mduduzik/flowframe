@@ -65,8 +65,8 @@ Ext.onReady(function(){
     });
 
     /*
-     //Job Editor Tab
-     */
+    //Job Editor Tab
+    */
     //Center Panel
     var problemsGrid = new Ext.grid.PropertyGrid({
         title: 'Problems',
@@ -543,6 +543,13 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
             scope: this,
             handler:function(){
                 this.ctxNode.select();
+                //this.mainEditorPanel.removeAll();
+                Ext.apply(this.new_repoitem_folder_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
+                this.mainEditorPanel.setTitle("New Folder");
+                this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                this.mainTabPanel.add(this.mainEditorPanel);
+                this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                //this.new_repoitem_database_wizard.show();
             }
         },{
             text:'Delete Folder',
@@ -576,14 +583,14 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
                 });
             }
         },{
-            text:'Refresh Folder',
-            icon: '/oryx/images/conxbi/etl/refresh.gif',
-            scope: this,
-            handler:function(){
-                this.ctxNode.attributes.children = false;
-                this.ctxNode.reload();
+                text:'Refresh Folder',
+                icon: '/oryx/images/conxbi/etl/refresh.gif',
+                scope: this,
+                handler:function(){
+                    this.ctxNode.attributes.children = false;
+                    this.ctxNode.reload();
+                }
             }
-        }
         ]
     });
     this.repofolder_database_contextmenu.on('hide', this.onContextHide, this);
@@ -622,11 +629,114 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
                 this.removeFeed(this.ctxNode.attributes.url);
                 this.ctxNode = null;
             }
+        },{
+            text:'Create Folder',
+            icon: '/oryx/images/conxbi/etl/folder_close.png',
+            scope: this,
+            handler:function(){
+                this.ctxNode.select();
+                //this.mainEditorPanel.removeAll();
+                Ext.apply(this.new_repoitem_folder_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
+                this.mainEditorPanel.setTitle("New Folder");
+                this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                this.mainTabPanel.add(this.mainEditorPanel);
+                this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                //this.new_repoitem_database_wizard.show();
+            }
         }]
     });
     this.repoitem_database_contextmenu.on('hide', this.onContextHide, this);
 
     //Wizards
+    this.new_repoitem_folder_wizard = new Ext.ux.Wiz({
+        headerConfig: {
+            title: ''
+        },
+        cardPanelConfig: {
+            defaults: {
+                baseCls: 'x-small-editor',
+                bodyStyle: 'padding: 20px 15px 5px 5px; background-color:#F6F6F6;',
+                border: false
+            }
+        },
+        getSelectWizardData : function(cardids)
+        {
+            var formValues = {};
+            var cards = this.cards;
+            for (var i = 0, len = cards.length; i < len; i++) {
+
+                var cardform = cards[i].form;
+                if (cardform) {
+                    var values = cardform.getValues(false);
+                    Object.extend(formValues,values);
+                }
+            }
+            return formValues;
+        },
+
+        onFinish: function() {
+            var requestWiz = this;
+            var requestCtxNode =  requestWiz.ctxNode;
+            var requestMainEditorPanel = requestWiz.mainEditorPanel;
+            var requestMainTabPanel = requestWiz.mainTabPanel;
+            if (requestWiz.wizmode && requestWiz.wizmode === 'EDITING') {
+
+            }
+            else {
+                var dirId = requestCtxNode.attributes.folderObjectId;
+                var data = this.getSelectWizardData([]);
+                Object.extend(data,{dirObjectId:dirId,itemtype:requestCtxNode.attributes.itemtype});
+                var dataJson = Ext.encode(data);
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid:'test'};
+                });
+                Ext.Ajax.request({
+                    url: '/etlrepo/explorer/adddir',
+                    method: 'POST',
+                    params: dataJson,
+                    success: function(response, opts) {
+                        //Refresh this.ctxNode
+                        if (requestCtxNode.attributes)
+                            requestCtxNode.attributes.children = false;
+                        requestCtxNode.select();
+                        requestCtxNode.ui.addClass('x-node-ctx');
+                        requestCtxNode.reload();
+
+
+                        //Update tab title
+                        //requestMainEditorPanel.hide();
+
+                        var dir = Ext.decode(response.responseText);
+                        requestMainEditorPanel.setTitle("Editing "+dir.name);
+                        requestWiz.finishButtonText = 'Save';
+                        Object.extend(requestWiz,{wizmode:'EDITING'});
+                    },
+                    failure: function(response, opts) {}
+                });
+            }
+        },
+        cards: [
+            // second card with input fields last/firstname
+            new Ext.ux.Wiz.Card({
+                id: "enterfolderproperties",
+                title: 'Enter subfolder name',
+                monitorValid: true,
+                defaults: {
+                    labelStyle: 'font-size:11px'
+                },
+                items: [
+                    new Ext.form.TextField({
+                        name: 'name',
+                        fieldLabel: 'Name',
+                        allowBlank: false
+                    })
+                ]
+            })
+        ]
+    });
+
     this.new_repoitem_database_wizard = new Ext.ux.Wiz({
         headerConfig: {
             title: 'Simple Wizard Example'
@@ -680,7 +790,7 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
                     method: 'POST',
                     params: dataJson,
                     success: function(response, opts) {
-                        //Refresh this.ctxNode
+                       //Refresh this.ctxNode
                         if (requestCtxNode.attributes)
                             requestCtxNode.attributes.children = false;
                         requestCtxNode.select();

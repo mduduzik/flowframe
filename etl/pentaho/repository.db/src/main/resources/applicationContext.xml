@@ -59,5 +59,11 @@
     <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseTypeResource" scope="request"/>
     <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource" scope="request"/>
 
+    <!--
+       CSVInput
+    -->
+    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogResource" scope="session"/>
+
+
 
 </beans>
