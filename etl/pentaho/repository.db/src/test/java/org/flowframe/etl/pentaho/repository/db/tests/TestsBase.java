@@ -39,9 +39,8 @@ public abstract class TestsBase extends JerseyTest {
                 .register(LoggingFilter.class);*/
         //TestUtil.registerHK2Services(rc);
         //rc.property("contextConfigLocation", "classpath:applicationContext.xml");
-        //return configure(rc);
         System.setProperty("jersey.config.test.container.port","8082");
-        return rc;
+        return configure(rc);
     }
 
     protected abstract ResourceConfig configure(ResourceConfig rc);

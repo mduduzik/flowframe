@@ -93,7 +93,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @Path("/onedit")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String onEdit(@QueryParam("pathId") String pathId) throws JSONException {
+    public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws JSONException {
         //-- Get CsvInput by pathId
 
 
@@ -110,7 +110,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onGetMetadata(CsvInputMetaDTO meta_) throws JSONException, KettleException, FileSystemException, UnsupportedEncodingException {
+    public String onGetMetadata(@HeaderParam("userid") String userid, CsvInputMetaDTO meta_) throws JSONException, KettleException, FileSystemException, UnsupportedEncodingException {
         //Cache UI metadata
         CsvInputMeta meta = (CsvInputMeta) meta_.fromDTO(CsvInputMeta.class);
         cacheUIMetadata(meta);
