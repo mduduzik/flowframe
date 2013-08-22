@@ -1,5 +1,7 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto;
 
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto.BaseDTO;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
@@ -26,12 +28,12 @@ public class CsvInputMetaDTO extends BaseDTO {
 
     private boolean headerPresent;
 
-    private String delimiter;
-    private String enclosure;
+    private String delimiter = ",";
+    private String enclosure = "\"";
 
-    private String bufferSize;
+    private String bufferSize = "50000";
 
-    private boolean lazyConversionActive;
+    private boolean lazyConversionActive = true;
 
     private List<TextFileInputFieldDTO> inputFields;
 
@@ -195,6 +197,5 @@ public class CsvInputMetaDTO extends BaseDTO {
     public void setNewlinePossibleInFields(boolean newlinePossibleInFields) {
         this.newlinePossibleInFields = newlinePossibleInFields;
     }
-
 
 }

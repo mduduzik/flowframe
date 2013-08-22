@@ -1,6 +1,8 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto;
 
+import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 
 import java.io.Serializable;
 
@@ -16,5 +18,11 @@ abstract public class BaseDTO implements Serializable {
     public String toJSON() {
         JSONSerializer serializer = new JSONSerializer();
         return serializer.serialize(this);
+    }
+
+    public Object fromDTO(Class type) {
+        String thisJson = toJSON();
+        JSONDeserializer metaDeserializer = new JSONDeserializer();
+        return metaDeserializer.deserialize(thisJson,type);
     }
 }

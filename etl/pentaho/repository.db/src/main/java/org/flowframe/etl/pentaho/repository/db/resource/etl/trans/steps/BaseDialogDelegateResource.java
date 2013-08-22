@@ -20,6 +20,7 @@ public abstract class BaseDialogDelegateResource {
 
     public static String ATTRIBUTENAME_WORKDIR = "workDir";
     public static String ATTRIBUTENAME_METADATA = "metadata";
+    public static String ATTRIBUTENAME_SAMPLEFILE = "samplefile";
 
     protected File tmpDir;
 
@@ -55,10 +56,13 @@ public abstract class BaseDialogDelegateResource {
     }
 
 
-    protected void writeStreamToFile(File dir, InputStream in, String fileName) throws IOException {
+    protected File writeSampleStreamToFile(InputStream in, String fileName) throws IOException {
+        File workDir = (File)getSessionAttribute(ATTRIBUTENAME_WORKDIR);
+
         byte[] buffer = new byte[1024];
         int bytesRead;
-        FileOutputStream out = new FileOutputStream(new File(dir,fileName));
+        File fileOut = new File(workDir,fileName);
+        FileOutputStream out = new FileOutputStream(fileOut);
         //read from is to buffer
         while((bytesRead = in.read(buffer)) !=-1){
             out.write(buffer, 0, bytesRead);
@@ -67,6 +71,10 @@ public abstract class BaseDialogDelegateResource {
         //flush OutputStream to write any buffered data to file
         out.flush();
         out.close();
+
+        setSessionAttribute(ATTRIBUTENAME_SAMPLEFILE,fileOut);
+
+        return fileOut;
     }
 
     public void cacheMetadata(CsvInputMeta inputMeta) {
