@@ -1,5 +1,31 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput;
 
+import org.apache.commons.vfs.FileObject;
+import org.apache.commons.vfs.FileSystemException;
+import org.apache.commons.vfs.provider.local.LocalFile;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogDelegateResource;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.pentaho.di.core.Const;
+import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.LogChannel;
+import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.row.RowMeta;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.util.StringEvaluationResult;
+import org.pentaho.di.core.util.StringEvaluator;
+import org.pentaho.di.core.vfs.KettleVFS;
+import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.steps.csvinput.CsvInput;
+import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
+import org.pentaho.di.trans.steps.textfileinput.*;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.ws.rs.*;
@@ -15,38 +41,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.vfs.FileObject;
-import org.apache.commons.vfs.FileSystemException;
-import org.apache.commons.vfs.provider.local.LocalFile;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogDelegateResource;
-import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
-import org.flowframe.kernel.common.utils.Validator;
-import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataMultiPart;
-import org.glassfish.jersey.media.multipart.FormDataParam;
-import org.pentaho.di.core.Const;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.exception.KettleFileException;
-import org.pentaho.di.core.logging.LogChannel;
-import org.pentaho.di.core.logging.LogChannelInterface;
-import org.pentaho.di.core.row.RowMeta;
-import org.pentaho.di.core.row.RowMetaInterface;
-import org.pentaho.di.core.row.ValueMeta;
-import org.pentaho.di.core.row.ValueMetaInterface;
-import org.pentaho.di.core.util.StringEvaluationResult;
-import org.pentaho.di.core.util.StringEvaluator;
-import org.pentaho.di.core.vfs.KettleVFS;
-import org.pentaho.di.i18n.BaseMessages;
-import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.steps.csvinput.CsvInput;
-import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
-import org.pentaho.di.trans.steps.textfileinput.*;
-import org.pentaho.di.ui.core.dialog.EnterNumberDialog;
-import org.pentaho.di.ui.core.dialog.EnterTextDialog;
-import org.pentaho.di.ui.trans.steps.textfileinput.TextFileCSVImportProgressDialog;
 
 /**
  * Created with IntelliJ IDEA.
@@ -71,17 +65,43 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             if (!workDir.mkdirs()) {
                 throw new ServletException("Unable to create classes temporary directory");
             }
-        setSessionAttribute(ATTRIBUTENAME_WORKDIR,workDir);
+        setSessionAttribute(ATTRIBUTENAME_WORKDIR, workDir);
     }
 
 
-    @Path("/onstart")
-    @POST
+    @Path("/onnew")
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String onStart() throws JSONException {
+    public String onNew(@HeaderParam("userid") String userid) throws JSONException {
+        //-- Init metadata and caching
         init();
 
-        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta)getCachedMetadata());
+        //-- Return copy of actual metadata on startup
+        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
+        return dto.toJSON();
+    }
+
+    @Path("/getcurrentlyedited")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onCurrentlyEdited(@HeaderParam("userid") String userid) throws JSONException {
+        //-- Return copy of actual metadata on startup
+        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
+        return dto.toJSON();
+    }
+
+    @Path("/onedit")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onEdit(@QueryParam("pathId") String pathId) throws JSONException {
+        //-- Get CsvInput by pathId
+
+
+        //-- Init metadata and caching
+        init();
+
+        //-- Return copy of actual metadata on startup
+        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
         return dto.toJSON();
     }
 
@@ -91,14 +111,11 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onGetMetadata(CsvInputMetaDTO meta_) throws JSONException, KettleException, FileSystemException, UnsupportedEncodingException {
-        //Input from client
+        //Cache UI metadata
         CsvInputMeta meta = (CsvInputMeta) meta_.fromDTO(CsvInputMeta.class);
-        cacheMetadata(meta);
+        cacheUIMetadata(meta);
 
-        //Get Meta
-
-
-        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta)getCachedMetadata());
+        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
         return dto.toJSON();
     }
 
@@ -120,8 +137,8 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         Long fileSize = Long.valueOf(fileSizeStr);
         InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
 
-        context.setAttribute("sampleCSVFileName",fileName);
-        context.setAttribute("fileSize",fileSize);
+        context.setAttribute("sampleCSVFileName", fileName);
+        context.setAttribute("fileSize", fileSize);
 
         //Save sample to temp
         File sampleFile = writeSampleStreamToFile(sampleCSVInputStream, fileName);
@@ -139,13 +156,13 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String uploadProgress() throws JSONException {
         JSONObject progressJSon = new JSONObject();
-        if (context.getAttribute("fileName") != null)  {
+        if (context.getAttribute("fileName") != null) {
             Object bytes_ = context.getAttribute("bytesProcessed");
             Object fileName_ = context.getAttribute("fileName");
             Object fileSize_ = context.getAttribute("fileSize");
-            if (fileName_ != null ) {
-                progressJSon.put("bytesTotal",fileSize_);
-                progressJSon.put("bytesUploaded",bytes_);
+            if (fileName_ != null) {
+                progressJSon.put("bytesTotal", fileSize_);
+                progressJSon.put("bytesUploaded", bytes_);
             }
         }
 
@@ -159,25 +176,28 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         progressJSon.put("timeStart","");*/
 
 
-        progressJSon.put("success",true);
+        progressJSon.put("success", true);
 
         return progressJSon.toString();
     }
 
 
-
-
     @Override
     public void init() {
-        CsvInputMeta inputMeta  = new CsvInputMeta();
+        //Cache actual metadata
+        CsvInputMeta inputMeta = new CsvInputMeta();
+        inputMeta.setDelimiter(",");
+        inputMeta.setEnclosure("\"");
+        inputMeta.setBufferSize("50000");
+        inputMeta.setLazyConversionActive(true);
         super.cacheMetadata(inputMeta);
     }
 
 
     private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {
         List<FormDataBodyPart> fileBPList = null;
-        Map<String,List<FormDataBodyPart>> fields = multiPart.getFields();
-        for(String key_ : fields.keySet()){
+        Map<String, List<FormDataBodyPart>> fields = multiPart.getFields();
+        for (String key_ : fields.keySet()) {
             //handleInputStream(field.getValueAs(InputStream.class));
             List<FormDataBodyPart> list = fields.get(key_);
             if (key_.indexOf(startsWidth_) >= 0) {
@@ -200,7 +220,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             transMeta.setName("CsvInputTrans");
             log = new LogChannel("CSVInputStepComponentImpl[]");
 
-            File sampleFile = (File)getSessionAttribute(ATTRIBUTENAME_SAMPLEFILE);
+            File sampleFile = (File) getSessionAttribute(ATTRIBUTENAME_SAMPLEFILE);
 
             String delimiter = meta.getDelimiter();
 
@@ -240,37 +260,37 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 // Generate field names F1 ... F10
                 //
                 DecimalFormat df = new DecimalFormat("000"); // $NON-NLS-1$
-                for (int i=0;i<fieldNames.length;i++) {
-                    fieldNames[i] = "Field_"+df.format(i); // $NON-NLS-1$
+                for (int i = 0; i < fieldNames.length; i++) {
+                    fieldNames[i] = "Field_" + df.format(i); // $NON-NLS-1$
                 }
-            }
-            else
-            {
+            } else {
                 if (!Const.isEmpty(enclosure)) {
-                    for (int i=0;i<fieldNames.length;i++) {
-                        if (fieldNames[i].startsWith(enclosure) && fieldNames[i].endsWith(enclosure) && fieldNames[i].length()>1) fieldNames[i] = fieldNames[i].substring(1, fieldNames[i].length()-1);
+                    for (int i = 0; i < fieldNames.length; i++) {
+                        if (fieldNames[i].startsWith(enclosure) && fieldNames[i].endsWith(enclosure) && fieldNames[i].length() > 1)
+                            fieldNames[i] = fieldNames[i].substring(1, fieldNames[i].length() - 1);
                     }
                 }
             }
 
-            // Trim the names to make sure...
-            //
-            this.cachedInputFields = new TextFileInputField[fieldNames.length];
-            for (int i=0;i<fieldNames.length;i++) {
+            // Clean-up UI metadata: Trim the names to make sure...
+            CsvInputMeta cachedMetadata = (CsvInputMeta) getCachedUIMetadata();
+            cachedMetadata.setInputFields(new TextFileInputField[fieldNames.length]);
+            for (int i = 0; i < fieldNames.length; i++) {
                 fieldNames[i] = Const.trim(fieldNames[i]);
                 TextFileInputField ifm = new TextFileInputField();
                 ifm.setName(fieldNames[i]);
                 ifm.setType(ValueMetaInterface.TYPE_STRING);
-                this.cachedInputFields[i] = ifm;
+                cachedMetadata.getInputFields()[i] = ifm;
             }
 
             int samples = 100;
-            if (samples >= 0)
-            {
+            if (samples >= 0) {
+                //Update cached metadata; fields etc. (before a detailed file analysis) from UI metadata
+                updateMetadata(meta, cachedMetadata);
+
                 TextFileCSVAnalyzer analyzer = new TextFileCSVAnalyzer(meta, transMeta, reader, samples, true);
                 String message = analyzer.analyze();
-                if (message!=null)
-                {
+                if (message != null) {
                     //wFields.removeAll();
 
                     // OK, what's the result of our search?
@@ -291,27 +311,69 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         return meta;
     }
 
-    public class TextFileCSVAnalyzer
-    {
+    private void updateMetadata(CsvInputMeta meta, CsvInputMeta cachedUIMetadata) {
+        //if (isReceivingInput) {
+        meta.setFilenameField(cachedUIMetadata.getFilenameField());
+        meta.setIncludingFilename(cachedUIMetadata.isIncludingFilename());
+        //} else {
+        //    meta.setFilename(cachedUIMetadata.getFilename());
+        //}
+
+        meta.setDelimiter(cachedUIMetadata.getDelimiter());
+        meta.setEnclosure(cachedUIMetadata.getEnclosure());
+        meta.setBufferSize(cachedUIMetadata.getBufferSize());
+        meta.setLazyConversionActive(cachedUIMetadata.isLazyConversionActive());
+        meta.setHeaderPresent(cachedUIMetadata.isHeaderPresent());
+        meta.setRowNumField(cachedUIMetadata.getRowNumField());
+        meta.setAddResultFile(cachedUIMetadata.isAddResultFile());
+        meta.setRunningInParallel(cachedUIMetadata.isRunningInParallel());
+        meta.setNewlinePossibleInFields(cachedUIMetadata.isNewlinePossibleInFields());
+        meta.setEncoding(cachedUIMetadata.getEncoding());
+
+        int nrNonEmptyFields = cachedUIMetadata.getInputFields().length;
+        meta.allocate(nrNonEmptyFields);
+
+        for (int i = 0; i < nrNonEmptyFields; i++) {
+            meta.getInputFields()[i] = new TextFileInputField();
+
+            int colnr = 1;
+            meta.getInputFields()[i].setName(cachedUIMetadata.getInputFields()[i].getName());
+            meta.getInputFields()[i].setType(cachedUIMetadata.getInputFields()[i].getType());
+            meta.getInputFields()[i].setFormat(cachedUIMetadata.getInputFields()[i].getFormat());
+            meta.getInputFields()[i].setLength(cachedUIMetadata.getInputFields()[i].getLength());
+            meta.getInputFields()[i].setPrecision(cachedUIMetadata.getInputFields()[i].getPrecision());
+            meta.getInputFields()[i].setCurrencySymbol(cachedUIMetadata.getInputFields()[i].getCurrencySymbol());
+            meta.getInputFields()[i].setDecimalSymbol(cachedUIMetadata.getInputFields()[i].getDecimalSymbol());
+            meta.getInputFields()[i].setGroupSymbol(cachedUIMetadata.getInputFields()[i].getGroupSymbol());
+            meta.getInputFields()[i].setTrimType(cachedUIMetadata.getInputFields()[i].getTrimType());
+        }
+/*        wFields.removeEmptyRows();
+        wFields.setRowNums();
+        wFields.optWidth(true);*/
+
+        meta.setChanged();
+    }
+
+    public class TextFileCSVAnalyzer {
         private Class<?> PKG = TextFileInputMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
 
         private InputFileMetaInterface meta;
 
-        private int               samples;
+        private int samples;
 
-        private boolean           replaceMeta;
+        private boolean replaceMeta;
 
-        private String            message;
+        private String message;
 
-        private String            debug;
+        private String debug;
 
-        private long              rownumber;
+        private long rownumber;
 
         private InputStreamReader reader;
 
-        private TransMeta         transMeta;
+        private TransMeta transMeta;
 
-        private LogChannelInterface	log;
+        private LogChannelInterface log;
 
         private EncodingType encodingType;
 
@@ -319,13 +381,12 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
          * Creates a new dialog that will handle the wait while we're finding out what tables, views etc we can reach in the
          * database.
          */
-        public TextFileCSVAnalyzer(InputFileMetaInterface meta, TransMeta transMeta, InputStreamReader reader, int samples, boolean replaceMeta )
-        {
-            this.meta        = meta;
-            this.reader      = reader;
-            this.samples     = samples;
+        public TextFileCSVAnalyzer(InputFileMetaInterface meta, TransMeta transMeta, InputStreamReader reader, int samples, boolean replaceMeta) {
+            this.meta = meta;
+            this.reader = reader;
+            this.samples = samples;
             this.replaceMeta = replaceMeta;
-            this.transMeta   = transMeta;
+            this.transMeta = transMeta;
 
             message = null;
             debug = "init";
@@ -338,8 +399,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         }
 
 
-        private String analyze() throws KettleException
-        {
+        private String analyze() throws KettleException {
             // Show information on items using a dialog box
             //
             StringBuilder message = null;
@@ -361,7 +421,8 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 }
 
                 RowMetaInterface convertRowMeta = outputRowMeta.clone();
-                for (int i=0;i<convertRowMeta.size();i++) convertRowMeta.getValueMeta(i).setType(ValueMetaInterface.TYPE_STRING);
+                for (int i = 0; i < convertRowMeta.size(); i++)
+                    convertRowMeta.getValueMeta(i).setType(ValueMetaInterface.TYPE_STRING);
 
                 // How many null values?
                 int nrnull[] = new int[nrfields]; // How many times null value?
@@ -388,8 +449,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 int numberPrecision[][] = new int[nrfields][Const.getNumberFormats().length]; // remember the precision?
                 int numberLength[][] = new int[nrfields][Const.getNumberFormats().length]; // remember the length?
 
-                for (int i = 0; i < nrfields; i++)
-                {
+                for (int i = 0; i < nrfields; i++) {
                     TextFileInputField field = meta.getInputFields()[i];
 
                     if (log.isDebug()) debug = "init field #" + i;
@@ -415,8 +475,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
                     // Init data guess
                     isDate[i] = true;
-                    for (int j = 0; j < Const.getDateFormats().length; j++)
-                    {
+                    for (int j = 0; j < Const.getDateFormats().length; j++) {
                         dateFormat[i][j] = true;
                         minDate[i][j] = Const.MAX_DATE;
                         maxDate[i][j] = Const.MIN_DATE;
@@ -425,8 +484,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
                     // Init number guess
                     isNumber[i] = true;
-                    for (int j = 0; j < Const.getNumberFormats().length; j++)
-                    {
+                    for (int j = 0; j < Const.getNumberFormats().length; j++) {
                         numberFormat[i][j] = true;
                         minValue[i][j] = Double.MAX_VALUE;
                         maxValue[i][j] = -Double.MAX_VALUE;
@@ -452,13 +510,11 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
                 line = TextFileInput.getLine(log, reader, encodingType, fileFormatType, lineBuffer);
                 fileLineNumber++;
-                int skipped=1;
+                int skipped = 1;
 
-                if (meta.hasHeader())
-                {
+                if (meta.hasHeader()) {
 
-                    while (line!=null && skipped<meta.getNrHeaderLines())
-                    {
+                    while (line != null && skipped < meta.getNrHeaderLines()) {
                         line = TextFileInput.getLine(log, reader, encodingType, fileFormatType, lineBuffer);
                         skipped++;
                         fileLineNumber++;
@@ -474,8 +530,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 SimpleDateFormat daf2 = new SimpleDateFormat();
 
                 boolean errorFound = false;
-                while (!errorFound && line != null && (linenr <= samples || samples == 0))
-                {
+                while (!errorFound && line != null && (linenr <= samples || samples == 0)) {
                     if (log.isDebug()) debug = "convert line #" + linenr + " to row";
                     RowMetaInterface rowMeta = new RowMeta();
                     meta.getFields(rowMeta, "stepname", null, null, transMeta);
@@ -490,32 +545,30 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                             false, false, false, false, false, false, false, false,
                             null, null, false, null, null, null, null, 0);
 
-                    if(r == null )
-                    {
+                    if (r == null) {
                         errorFound = true;
                         continue;
                     }
                     rownumber++;
-                    for (int i = 0; i < nrfields && i < r.length; i++)
-                    {
+                    for (int i = 0; i < nrfields && i < r.length; i++) {
                         StringEvaluator evaluator;
-                        if (i>=evaluators.size()) {
-                            evaluator=new StringEvaluator(true);
+                        if (i >= evaluators.size()) {
+                            evaluator = new StringEvaluator(true);
                             evaluators.add(evaluator);
                         } else {
-                            evaluator=evaluators.get(i);
+                            evaluator = evaluators.get(i);
                         }
 
                         String string = rowMeta.getString(r, i);
 
-                        if (i==0) {
+                        if (i == 0) {
                             System.out.println();
                         }
                         evaluator.evaluateString(string);
                     }
 
                     fileLineNumber++;
-                    if (r!=null) {
+                    if (r != null) {
                         linenr++;
                     }
 
@@ -525,11 +578,10 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 }
 
                 message = new StringBuilder();
-                message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.ResultAfterScanning", ""+(linenr-1)));
-                message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.HorizontalLine"));
+                message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.ResultAfterScanning", "" + (linenr - 1)));
+                message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.HorizontalLine"));
 
-                for (int i = 0; i < nrfields; i++)
-                {
+                for (int i = 0; i < nrfields; i++) {
                     TextFileInputField field = meta.getInputFields()[i];
                     StringEvaluator evaluator = evaluators.get(i);
                     List<StringEvaluationResult> evaluationResults = evaluator.getStringEvaluationResults();
@@ -541,7 +593,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                         field.setType(ValueMetaInterface.TYPE_STRING);
                         field.setLength(evaluator.getMaxLength());
                     }
-                    if(result != null) {
+                    if (result != null) {
                         // Take the first option we find, list the others below...
                         //
                         ValueMetaInterface conversionMeta = result.getConversionMeta();
@@ -558,92 +610,82 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                     }
 
 
-                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.FieldNumber", ""+(i + 1)));
+                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.FieldNumber", "" + (i + 1)));
 
-                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.FieldName", field.getName()));
-                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.FieldType", field.getTypeDesc()));
+                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.FieldName", field.getName()));
+                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.FieldType", field.getTypeDesc()));
 
-                    switch (field.getType())
-                    {
+                    switch (field.getType()) {
                         case ValueMetaInterface.TYPE_NUMBER:
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.EstimatedLength", (field.getLength() < 0 ? "-" : "" + field.getLength())));
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.EstimatedPrecision", field.getPrecision() < 0 ? "-" : "" + field.getPrecision()));
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.NumberFormat", field.getFormat()));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.EstimatedLength", (field.getLength() < 0 ? "-" : "" + field.getLength())));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.EstimatedPrecision", field.getPrecision() < 0 ? "-" : "" + field.getPrecision()));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberFormat", field.getFormat()));
 
-                            if(!evaluationResults.isEmpty()) {
-                                if(evaluationResults.size() > 1) {
-                                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.WarnNumberFormat"));
+                            if (!evaluationResults.isEmpty()) {
+                                if (evaluationResults.size() > 1) {
+                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.WarnNumberFormat"));
                                 }
 
-                                for(StringEvaluationResult seResult : evaluationResults) {
+                                for (StringEvaluationResult seResult : evaluationResults) {
                                     String mask = seResult.getConversionMeta().getConversionMask();
 
-                                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.NumberFormat2", mask));
-                                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.TrimType", seResult.getConversionMeta().getTrimType()));
-                                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.NumberMinValue", seResult.getMin()));
-                                    message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.NumberMaxValue", seResult.getMax()));
+                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberFormat2", mask));
+                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.TrimType", seResult.getConversionMeta().getTrimType()));
+                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberMinValue", seResult.getMin()));
+                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberMaxValue", seResult.getMax()));
 
-                                    try
-                                    {
+                                    try {
                                         df2.applyPattern(mask);
                                         df2.setDecimalFormatSymbols(dfs2);
                                         double mn = df2.parse(seResult.getMin().toString()).doubleValue();
-                                        message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.NumberExample", mask, seResult.getMin(), Double.toString(mn)));
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        if (log.isDetailed()) log.logDetailed("This is unexpected: parsing [" + seResult.getMin() + "] with format [" + mask + "] did not work.");
+                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberExample", mask, seResult.getMin(), Double.toString(mn)));
+                                    } catch (Exception e) {
+                                        if (log.isDetailed())
+                                            log.logDetailed("This is unexpected: parsing [" + seResult.getMin() + "] with format [" + mask + "] did not work.");
                                     }
                                 }
                             }
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.NumberNrNullValues", ""+nrnull[i]));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberNrNullValues", "" + nrnull[i]));
                             break;
                         case ValueMetaInterface.TYPE_STRING:
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.StringMaxLength", ""+field.getLength()));
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.StringMinValue", minstr[i]));
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.StringMaxValue", maxstr[i]));
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.StringNrNullValues", ""+nrnull[i]));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringMaxLength", "" + field.getLength()));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringMinValue", minstr[i]));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringMaxValue", maxstr[i]));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringNrNullValues", "" + nrnull[i]));
                             break;
                         case ValueMetaInterface.TYPE_DATE:
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateMaxLength", field.getLength() < 0 ? "-" : "" + field.getLength()));
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateFormat", field.getFormat()));
-                            if (dateFormatCount[i] > 1)
-                            {
-                                message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.WarnDateFormat"));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateMaxLength", field.getLength() < 0 ? "-" : "" + field.getLength()));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateFormat", field.getFormat()));
+                            if (dateFormatCount[i] > 1) {
+                                message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.WarnDateFormat"));
                             }
-                            if (!Const.isEmpty(minstr[i]))
-                            {
-                                for (int x = 0; x < Const.getDateFormats().length; x++)
-                                {
-                                    if (dateFormat[i][x])
-                                    {
-                                        message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateFormat2", Const.getDateFormats()[x]));
+                            if (!Const.isEmpty(minstr[i])) {
+                                for (int x = 0; x < Const.getDateFormats().length; x++) {
+                                    if (dateFormat[i][x]) {
+                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateFormat2", Const.getDateFormats()[x]));
                                         Date mindate = minDate[i][x];
                                         Date maxdate = maxDate[i][x];
-                                        message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateMinValue", mindate.toString()));
-                                        message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateMaxValue", maxdate.toString()));
+                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateMinValue", mindate.toString()));
+                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateMaxValue", maxdate.toString()));
 
                                         daf2.applyPattern(Const.getDateFormats()[x]);
-                                        try
-                                        {
+                                        try {
                                             Date md = daf2.parse(minstr[i]);
-                                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateExample", Const.getDateFormats()[x], minstr[i], md.toString()));
-                                        }
-                                        catch (Exception e)
-                                        {
-                                            if (log.isDetailed()) log.logDetailed("This is unexpected: parsing [" + minstr[i] + "] with format [" + Const.getDateFormats()[x] + "] did not work.");
+                                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateExample", Const.getDateFormats()[x], minstr[i], md.toString()));
+                                        } catch (Exception e) {
+                                            if (log.isDetailed())
+                                                log.logDetailed("This is unexpected: parsing [" + minstr[i] + "] with format [" + Const.getDateFormats()[x] + "] did not work.");
                                         }
                                     }
                                 }
                             }
-                            message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.DateNrNullValues", ""+nrnull[i]));
+                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateNrNullValues", "" + nrnull[i]));
                             break;
                         default:
                             break;
                     }
-                    if (nrnull[i] == linenr - 1)
-                    {
-                        message.append(BaseMessages.getString(PKG, "TextFileCSVImportProgressDialog.Info.AllNullValues"));
+                    if (nrnull[i] == linenr - 1) {
+                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.AllNullValues"));
                     }
                     message.append(Const.CR);
 

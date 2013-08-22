@@ -20,6 +20,7 @@ public abstract class BaseDialogDelegateResource {
 
     public static String ATTRIBUTENAME_WORKDIR = "workDir";
     public static String ATTRIBUTENAME_METADATA = "metadata";
+    public static String ATTRIBUTENAME_UIMETADATA = "uimetadata";
     public static String ATTRIBUTENAME_SAMPLEFILE = "samplefile";
 
     protected File tmpDir;
@@ -83,6 +84,14 @@ public abstract class BaseDialogDelegateResource {
 
     public BaseStepMeta getCachedMetadata() {
         return (BaseStepMeta)getSessionAttribute(ATTRIBUTENAME_METADATA);
+    }
+
+    public void cacheUIMetadata(CsvInputMeta inputMeta) {
+        setSessionAttribute(ATTRIBUTENAME_UIMETADATA,inputMeta);
+    }
+
+    public BaseStepMeta getCachedUIMetadata() {
+        return (BaseStepMeta)getSessionAttribute(ATTRIBUTENAME_UIMETADATA);
     }
 
     public abstract void init();

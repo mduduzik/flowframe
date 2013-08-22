@@ -1,7 +1,5 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto;
 
-import org.codehaus.jettison.json.JSONObject;
-import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
 

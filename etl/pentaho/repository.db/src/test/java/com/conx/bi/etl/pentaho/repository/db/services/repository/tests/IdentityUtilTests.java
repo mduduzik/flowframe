@@ -1,29 +1,11 @@
 package com.conx.bi.etl.pentaho.repository.db.services.repository.tests;
 
-import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
-import org.flowframe.etl.pentaho.repository.db.repository.CustomRepository;
-import org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl;
-import org.flowframe.etl.pentaho.repository.db.repository.DatabaseMetaUtil;
-import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
-import org.flowframe.kernel.common.mdm.domain.organization.Organization;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.pentaho.di.core.database.DatabaseMeta;
-import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.repository.LongObjectId;
-import org.pentaho.di.repository.RepositoryDirectoryInterface;
-import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.StepMeta;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-
-import java.util.List;
+import org.junit.Ignore;
 
 
-//@Ignore
+@Ignore
 public class IdentityUtilTests {
-
+/*
 	@Autowired
 	private CustomRepository repository;
 	private RepositoryDirectoryInterface rootDir;
@@ -75,5 +57,5 @@ public class IdentityUtilTests {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
-    }
+    }*/
 }

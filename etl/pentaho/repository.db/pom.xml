@@ -20,7 +20,14 @@
 			<url>http://download.java.net/maven/2/</url>
 			<layout>default</layout>
 		</repository>
-	</repositories>
+        <repository>
+            <id>Riffpie Jersey-Spring-Test-Framework</id>
+            <name>Jersey-Spring Test Framework</name>
+            <url>http://maven.riffpie.com/releases/</url>
+            <layout>default</layout>
+        </repository>
+
+    </repositories>
 
 	<dependencies>
         <!-- testing -->
@@ -30,6 +37,21 @@
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.riffpie.common.testing</groupId>
+            <artifactId>jersey-test-support</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-external</artifactId>
+            <version>2.2</version>
+        </dependency>
 
         <!-- Pentaho -->
         <dependency>
@@ -189,6 +211,13 @@
             <artifactId>com.springsource.org.codehaus.jettison</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.flexjson</groupId>
+            <artifactId>flexjson</artifactId>
+            <version>3.1</version>
+            <scope>compile</scope>
+        </dependency>
+
 	</dependencies>
 
     <dependencyManagement>
