@@ -1,7 +1,5 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto;
 
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto.BaseDTO;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
@@ -26,7 +24,7 @@ public class CsvInputMetaDTO extends BaseDTO {
 
     private String rowNumField;
 
-    private boolean headerPresent;
+    private boolean headerPresent = true;
 
     private String delimiter = ",";
     private String enclosure = "\"";
@@ -60,8 +58,10 @@ public class CsvInputMetaDTO extends BaseDTO {
         setLazyConversionActive(csvInput.isLazyConversionActive());
         TextFileInputField[] fields_ = csvInput.getInputFields();
         inputFields = new ArrayList<TextFileInputFieldDTO>();
-        for (TextFileInputField field_ : fields_) {
-            inputFields.add(new TextFileInputFieldDTO(field_));
+        if (fields_ != null) {
+            for (TextFileInputField field_ : fields_) {
+                inputFields.add(new TextFileInputFieldDTO(field_));
+            }
         }
         setIsaddresult(csvInput.isAddResultFile());
         setRunningInParallel(csvInput.isRunningInParallel());

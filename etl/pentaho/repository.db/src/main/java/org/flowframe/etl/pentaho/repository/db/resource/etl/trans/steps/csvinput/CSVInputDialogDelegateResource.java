@@ -1,12 +1,13 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput;
 
 import org.apache.commons.vfs.FileObject;
-import org.apache.commons.vfs.FileSystemException;
 import org.apache.commons.vfs.provider.local.LocalFile;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -26,13 +27,11 @@ import org.pentaho.di.trans.steps.csvinput.CsvInput;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.*;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -54,39 +53,14 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     private static Class<?> PKG = CsvInput.class;
     private TextFileInputField[] cachedInputFields;
 
-    @Context
-    public void setServletContext(ServletContext context) throws ServletException {
-        super.setServletContext(context);
-
-
-        //-- WorkDir
-        File workDir = new File(super.tmpDir, "NewCSVInputDialogResourceDir");
-        if (!workDir.exists())
-            if (!workDir.mkdirs()) {
-                throw new ServletException("Unable to create classes temporary directory");
-            }
-        setSessionAttribute(ATTRIBUTENAME_WORKDIR, workDir);
-    }
 
 
     @Path("/onnew")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String onNew(@HeaderParam("userid") String userid) throws JSONException {
-        //-- Init metadata and caching
-        init();
-
         //-- Return copy of actual metadata on startup
-        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
-        return dto.toJSON();
-    }
-
-    @Path("/getcurrentlyedited")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String onCurrentlyEdited(@HeaderParam("userid") String userid) throws JSONException {
-        //-- Return copy of actual metadata on startup
-        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
+        CsvInputMetaDTO dto = new CsvInputMetaDTO();
         return dto.toJSON();
     }
 
@@ -94,14 +68,10 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws JSONException {
-        //-- Get CsvInput by pathId
-
-
-        //-- Init metadata and caching
-        init();
+        CsvInputMeta res = (CsvInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
 
         //-- Return copy of actual metadata on startup
-        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
+        CsvInputMetaDTO dto = new CsvInputMetaDTO(res);
         return dto.toJSON();
     }
 
@@ -110,12 +80,12 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onGetMetadata(@HeaderParam("userid") String userid, CsvInputMetaDTO meta_) throws JSONException, KettleException, FileSystemException, UnsupportedEncodingException {
-        //Cache UI metadata
-        CsvInputMeta meta = (CsvInputMeta) meta_.fromDTO(CsvInputMeta.class);
-        cacheUIMetadata(meta);
+    public String onGetMetadata(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
+        //Generate metadata
+        CsvInputMeta meta_ = (CsvInputMeta)metaDTO_.fromDTO(CsvInputMeta.class);
+        CsvInputMeta updatedMetadata = updateMetadata(meta_);
 
-        CsvInputMetaDTO dto = new CsvInputMetaDTO((CsvInputMeta) getCachedMetadata());
+        CsvInputMetaDTO dto = new CsvInputMetaDTO(updatedMetadata);
         return dto.toJSON();
     }
 
@@ -130,24 +100,19 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
                                      @FormDataParam("path") String path,
                                      @FormDataParam("dir") String dir,
-                                     FormDataMultiPart mpFileUpload) throws InterruptedException, IOException {
+                                     FormDataMultiPart mpFileUpload) throws Exception {
 
+        //Get file handle
         FormDataBodyPart fileBP = getFileBodyPart("ext-gen", mpFileUpload);
         String fileName = fileBP.getContentDisposition().getFileName();
         Long fileSize = Long.valueOf(fileSizeStr);
+        String mimeType = fileBP.getContentDisposition().getType();
         InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
 
-        context.setAttribute("sampleCSVFileName", fileName);
-        context.setAttribute("fileSize", fileSize);
+        //Save sample to ECM
+        FileEntry fe = addOrUpdateSampleFile(sampleCSVInputStream, fileName, mimeType);
 
-        //Save sample to temp
-        File sampleFile = writeSampleStreamToFile(sampleCSVInputStream, fileName);
-
-        //Update metadata
-        CsvInputMeta meta = (CsvInputMeta) getCachedMetadata();
-        meta.setFilename(sampleFile.getAbsolutePath());
-
-        return Response.status(200).entity("{progress:" + fileSize + ",success:true,filelocation:" + sampleFile.getAbsolutePath() + "}").build();
+        return Response.status(200).entity("{fileentryid: " + fe.getFileEntryId() + ",progress:" + fileSize + ",success:true,filelocation:" + Long.toString(fe.getFileEntryId()) + "}").build();
 
     }
 
@@ -182,17 +147,6 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     }
 
 
-    @Override
-    public void init() {
-        //Cache actual metadata
-        CsvInputMeta inputMeta = new CsvInputMeta();
-        inputMeta.setDelimiter(",");
-        inputMeta.setEnclosure("\"");
-        inputMeta.setBufferSize("50000");
-        inputMeta.setLazyConversionActive(true);
-        super.cacheMetadata(inputMeta);
-    }
-
 
     private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {
         List<FormDataBodyPart> fileBPList = null;
@@ -212,34 +166,44 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     }
 
     //File Analysis
-    public CsvInputMeta generateMetadata(CsvInputMeta meta, InputStream sampleDataInputStream) throws Exception {
-        LogChannelInterface log = null;
-
+    public CsvInputMeta updateMetadata(CsvInputMeta inputMetadata) throws Exception {
+        FileObject fileObject = null;
+        InputStreamReader reader = null;
+        CsvInputMeta outputMetadata =  null;
+        //CsvInputMeta cachedMetadata;
         try {
-            TransMeta transMeta = new TransMeta();
-            transMeta.setName("CsvInputTrans");
-            log = new LogChannel("CSVInputStepComponentImpl[]");
+            LogChannelInterface log = null;
+            outputMetadata = (CsvInputMeta)new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
 
-            File sampleFile = (File) getSessionAttribute(ATTRIBUTENAME_SAMPLEFILE);
 
-            String delimiter = meta.getDelimiter();
-
-            FileObject fileObject = KettleVFS.getFileObject(sampleFile.getAbsolutePath());
+            //Get file object
+            String samplefileEntryId = inputMetadata.getFilename();
+            FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
+            InputStream in = ecmService.getFileAsStream(samplefileEntryId,null);
+            fileObject = writeSampleFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
             if (!(fileObject instanceof LocalFile)) {
                 // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
                 //
                 throw new KettleException(BaseMessages.getString(PKG, "CsvInput.Log.OnlyLocalFilesAreSupported"));
             }
 
+
+            TransMeta transMeta = new TransMeta();
+            transMeta.setName("CsvInputTrans");
+            log = new LogChannel("CSVInputStepComponentImpl[]");
+
+            String delimiter = inputMetadata.getDelimiter();
+
+
             //wFields.table.removeAll();
 
             InputStream inputStream = KettleVFS.getInputStream(fileObject);
 
-            InputStreamReader reader;
-            if (Const.isEmpty(meta.getEncoding())) {
+
+            if (Const.isEmpty(inputMetadata.getEncoding())) {
                 reader = new InputStreamReader(inputStream);
             } else {
-                reader = new InputStreamReader(inputStream, meta.getEncoding());
+                reader = new InputStreamReader(inputStream, inputMetadata.getEncoding());
             }
 
             EncodingType encodingType = EncodingType.guessEncodingType(reader.getEncoding());
@@ -250,11 +214,11 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
             // Split the string, header or data into parts...
             //
-            String enclosure = meta.getEnclosure();
-            String escapeCharacter = meta.getEscapeCharacter();
+            String enclosure = inputMetadata.getEnclosure();
+            String escapeCharacter = inputMetadata.getEscapeCharacter();
             String[] fieldNames = CsvInput.guessStringsFromLine(log, line, delimiter, enclosure, escapeCharacter);
 
-            Boolean headerPresent = meta.isHeaderPresent();
+            Boolean headerPresent = inputMetadata.isHeaderPresent();
             if (!headerPresent) {
                 // Don't use field names from the header...
                 // Generate field names F1 ... F10
@@ -273,79 +237,81 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             }
 
             // Clean-up UI metadata: Trim the names to make sure...
-            CsvInputMeta cachedMetadata = (CsvInputMeta) getCachedUIMetadata();
-            cachedMetadata.setInputFields(new TextFileInputField[fieldNames.length]);
+            inputMetadata.setInputFields(new TextFileInputField[fieldNames.length]);
             for (int i = 0; i < fieldNames.length; i++) {
                 fieldNames[i] = Const.trim(fieldNames[i]);
                 TextFileInputField ifm = new TextFileInputField();
                 ifm.setName(fieldNames[i]);
                 ifm.setType(ValueMetaInterface.TYPE_STRING);
-                cachedMetadata.getInputFields()[i] = ifm;
+                inputMetadata.getInputFields()[i] = ifm;
             }
 
             int samples = 100;
             if (samples >= 0) {
                 //Update cached metadata; fields etc. (before a detailed file analysis) from UI metadata
-                updateMetadata(meta, cachedMetadata);
-
-                TextFileCSVAnalyzer analyzer = new TextFileCSVAnalyzer(meta, transMeta, reader, samples, true);
+                updateMetadata(outputMetadata, inputMetadata);
+    
+                TextFileCSVAnalyzer analyzer = new TextFileCSVAnalyzer(outputMetadata, transMeta, reader, samples, true);
                 String message = analyzer.analyze();
                 if (message != null) {
                     //wFields.removeAll();
-
+    
                     // OK, what's the result of our search?
-/*                    getData(meta, false);
-                    wFields.removeEmptyRows();
-                    wFields.setRowNums();
-                    wFields.optWidth(true);
-
-					EnterTextDialog etd = new EnterTextDialog(shell, BaseMessages.getString(PKG, "CsvInputDialog.ScanResults.DialogTitle"), BaseMessages.getString(PKG, "CsvInputDialog.ScanResults.DialogMessage"), message, true);
-					etd.setReadOnly();
-					etd.open();*/
+    /*                    getData(meta, false);
+                        wFields.removeEmptyRows();
+                        wFields.setRowNums();
+                        wFields.optWidth(true);
+    
+                        EnterTextDialog etd = new EnterTextDialog(shell, BaseMessages.getString(PKG, "CsvInputDialog.ScanResults.DialogTitle"), BaseMessages.getString(PKG, "CsvInputDialog.ScanResults.DialogMessage"), message, true);
+                        etd.setReadOnly();
+                        etd.open();*/
                 }
             }
-        } catch (Exception e) {
-            throw e;
+        } finally {
+            if (reader != null)
+                reader.close();
+            if (fileObject != null)
+                fileObject.delete();
         }
 
-        return meta;
+        return outputMetadata;
     }
 
-    private void updateMetadata(CsvInputMeta meta, CsvInputMeta cachedUIMetadata) {
+    private void updateMetadata(CsvInputMeta meta, CsvInputMeta inputMetadata) {
         //if (isReceivingInput) {
-        meta.setFilenameField(cachedUIMetadata.getFilenameField());
-        meta.setIncludingFilename(cachedUIMetadata.isIncludingFilename());
+        meta.setFilenameField(inputMetadata.getFilenameField());
+        meta.setIncludingFilename(inputMetadata.isIncludingFilename());
         //} else {
-        //    meta.setFilename(cachedUIMetadata.getFilename());
+        //    meta.setFilename(inputMetadata.getFilename());
         //}
 
-        meta.setDelimiter(cachedUIMetadata.getDelimiter());
-        meta.setEnclosure(cachedUIMetadata.getEnclosure());
-        meta.setBufferSize(cachedUIMetadata.getBufferSize());
-        meta.setLazyConversionActive(cachedUIMetadata.isLazyConversionActive());
-        meta.setHeaderPresent(cachedUIMetadata.isHeaderPresent());
-        meta.setRowNumField(cachedUIMetadata.getRowNumField());
-        meta.setAddResultFile(cachedUIMetadata.isAddResultFile());
-        meta.setRunningInParallel(cachedUIMetadata.isRunningInParallel());
-        meta.setNewlinePossibleInFields(cachedUIMetadata.isNewlinePossibleInFields());
-        meta.setEncoding(cachedUIMetadata.getEncoding());
+        meta.setDelimiter(inputMetadata.getDelimiter());
+        meta.setEnclosure(inputMetadata.getEnclosure());
+        meta.setBufferSize(inputMetadata.getBufferSize());
+        meta.setLazyConversionActive(inputMetadata.isLazyConversionActive());
+        meta.setHeaderPresent(inputMetadata.isHeaderPresent());
+        meta.setRowNumField(inputMetadata.getRowNumField());
+        meta.setAddResultFile(inputMetadata.isAddResultFile());
+        meta.setRunningInParallel(inputMetadata.isRunningInParallel());
+        meta.setNewlinePossibleInFields(inputMetadata.isNewlinePossibleInFields());
+        meta.setEncoding(inputMetadata.getEncoding());
 
-        int nrNonEmptyFields = cachedUIMetadata.getInputFields().length;
+        int nrNonEmptyFields = inputMetadata.getInputFields().length;
         meta.allocate(nrNonEmptyFields);
 
         for (int i = 0; i < nrNonEmptyFields; i++) {
             meta.getInputFields()[i] = new TextFileInputField();
 
             int colnr = 1;
-            meta.getInputFields()[i].setName(cachedUIMetadata.getInputFields()[i].getName());
-            meta.getInputFields()[i].setType(cachedUIMetadata.getInputFields()[i].getType());
-            meta.getInputFields()[i].setFormat(cachedUIMetadata.getInputFields()[i].getFormat());
-            meta.getInputFields()[i].setLength(cachedUIMetadata.getInputFields()[i].getLength());
-            meta.getInputFields()[i].setPrecision(cachedUIMetadata.getInputFields()[i].getPrecision());
-            meta.getInputFields()[i].setCurrencySymbol(cachedUIMetadata.getInputFields()[i].getCurrencySymbol());
-            meta.getInputFields()[i].setDecimalSymbol(cachedUIMetadata.getInputFields()[i].getDecimalSymbol());
-            meta.getInputFields()[i].setGroupSymbol(cachedUIMetadata.getInputFields()[i].getGroupSymbol());
-            meta.getInputFields()[i].setTrimType(cachedUIMetadata.getInputFields()[i].getTrimType());
+            meta.getInputFields()[i].setName(inputMetadata.getInputFields()[i].getName());
+            meta.getInputFields()[i].setType(inputMetadata.getInputFields()[i].getType());
+            meta.getInputFields()[i].setFormat(inputMetadata.getInputFields()[i].getFormat());
+            meta.getInputFields()[i].setLength(inputMetadata.getInputFields()[i].getLength());
+            meta.getInputFields()[i].setPrecision(inputMetadata.getInputFields()[i].getPrecision());
+            meta.getInputFields()[i].setCurrencySymbol(inputMetadata.getInputFields()[i].getCurrencySymbol());
+            meta.getInputFields()[i].setDecimalSymbol(inputMetadata.getInputFields()[i].getDecimalSymbol());
+            meta.getInputFields()[i].setGroupSymbol(inputMetadata.getInputFields()[i].getGroupSymbol());
+            meta.getInputFields()[i].setTrimType(inputMetadata.getInputFields()[i].getTrimType());
         }
 /*        wFields.removeEmptyRows();
         wFields.setRowNums();

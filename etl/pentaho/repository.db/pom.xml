@@ -30,6 +30,25 @@
     </repositories>
 
 	<dependencies>
+        <!-- Flowframe : DocLIb-->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.kernel.common.mdm.dao.services</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <!-- Flowframe : DocLIb-->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.documentlibrary.remote.services</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.documentlibrary.remote.services.impl</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
         <!-- testing -->
 		<dependency>
 			<groupId>junit</groupId>

@@ -48,6 +48,21 @@
   http://www.springframework.org/schema/context
   http://www.springframework.org/schema/context/spring-context.xsd"
         >
+    <!-- Flowframe props -->
+    <context:property-placeholder  location="classpath*:/flowframe.properties"/>
+
+    <!-- Flowframe Liferay ECM API-->
+    <bean id="lplDocLibService" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl" init-method="init">
+        <property name="repositoryId" value="${ff.docrepo.repository.id}"/>
+        <property name="companyId" value="${ff.docrepo.repository.companyid}"/>
+        <property name="fflogiFolderId" value="${ff.docrepo.repository.main.folderid}"/>
+        <property name="loginEmail" value="${ff.docrepo.user.email}"/>
+        <property name="loginPassword" value="${ff.docrepo.user.password}"/>
+        <property name="hostname" value="${ff.docrepo.server.hostname}"/>
+        <property name="port" value="${ff.docrepo.server.port}"/>
+        <property name="loginGroupId" value="${ff.docrepo.user.group.id}"/>
+    </bean>
+
     <!-- Repo Impl -->
     <bean id="dbRepoImpl" class="org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton"/>
 

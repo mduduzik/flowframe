@@ -1,18 +1,6 @@
 package org.flowframe.documentlibrary.remote.services.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import flexjson.JSONDeserializer;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -49,7 +37,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import flexjson.JSONDeserializer;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 @Transactional
 @Service
@@ -85,7 +83,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	//@Autowired
 	//private IFolderDAOService folderDAOService;
 
-	@Autowired
+	@Autowired(required = false)
 	private IEntityTypeDAOService entityTypeDAOService;
 	
 	private Boolean initialized = false;

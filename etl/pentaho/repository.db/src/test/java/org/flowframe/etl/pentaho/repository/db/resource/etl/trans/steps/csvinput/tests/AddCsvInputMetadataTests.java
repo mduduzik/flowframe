@@ -1,10 +1,12 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.tests;
 
+import flexjson.JSONDeserializer;
+import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,27 +47,40 @@ public class AddCsvInputMetadataTests {//}   extends TestsBase {
         WebTarget t = client.target(getResourcePath());
 
         //-- 1. New Meta
-        Invocation.Builder builder = t.path("onnew").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid","test");
+        Invocation.Builder builder = t.path("onnew").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid", "test");
         String newMeta = builder.get(String.class);
+        JSONObject newMetaJson = new JSONObject(newMeta);
 
-        //-- 2. Check delegate
-        builder = t.path("getcurrentlyedited").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid","test");
-        String cacheMeta = builder.get(String.class);
-        Assert.assertEquals(newMeta,cacheMeta);
-
-        //-- 3. Post sample csv
+        //-- 2. Post sample csv
         URL csv = AddCsvInputMetadataTests.class.getResource("/testfiles/sales_data.csv");
         File file = new File(csv.toURI());
         final FileDataBodyPart filePart = new FileDataBodyPart("ext-gen12345", file);
-        final FormDataMultiPart multipart = (FormDataMultiPart)new FormDataMultiPart()
+        final FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart()
                 .field("MAX_FILE_SIZE", "50000")
                 .bodyPart(filePart);
         builder = t.path("uploadsample").request();
         final Response response_ = builder.post(Entity.entity(multipart, multipart.getMediaType()));
+        String response = response_.readEntity(String.class);
+        System.out.println("getFileEntry Res:[" + response + "]");
+        JSONObject res = new JSONObject(response);
+        String feId = res.getString("fileentryid");
+        newMetaJson.put("filename", feId);
 
         //-- 4. Guess metadata
         builder = t.path("ongetmetadata").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid", "test");
+        newMetaJson.remove("class");
+        newMeta = newMetaJson.toString();
         Response analyzedMetadataResponse = builder.post(Entity.entity(newMeta, MediaType.APPLICATION_JSON_TYPE));
+        response = analyzedMetadataResponse.readEntity(String.class);
+        System.out.println("getFileEntry Res:[" + response + "]");
+        JSONDeserializer<CsvInputMetaDTO> deserializer = new JSONDeserializer<CsvInputMetaDTO>();
+        CsvInputMetaDTO meta = deserializer.deserialize(response);
+
+/*        //-- 3. Check delegate
+        builder = t.path("getcurrentlyedited").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid","test");
+        String cacheMeta = builder.get(String.class);
+        Assert.assertEquals(newMeta,cacheMeta);
+*/
 
     }
 
