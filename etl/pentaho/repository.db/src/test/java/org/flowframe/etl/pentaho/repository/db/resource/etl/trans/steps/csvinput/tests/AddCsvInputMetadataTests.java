@@ -1,8 +1,7 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.tests;
 
-import flexjson.JSONDeserializer;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
@@ -70,11 +69,29 @@ public class AddCsvInputMetadataTests {//}   extends TestsBase {
         builder = t.path("ongetmetadata").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid", "test");
         newMetaJson.remove("class");
         newMeta = newMetaJson.toString();
-        Response analyzedMetadataResponse = builder.post(Entity.entity(newMeta, MediaType.APPLICATION_JSON_TYPE));
+        JSONObject newMetaJSON = new JSONObject(newMeta);
+        JSONObject paramJson = (JSONObject)newMetaJSON.get("data");
+        paramJson.put("fileEntryId", feId);
+        paramJson.remove("class");
+
+        Response analyzedMetadataResponse = builder.post(Entity.entity(paramJson.toString(), MediaType.APPLICATION_JSON_TYPE));
         response = analyzedMetadataResponse.readEntity(String.class);
         System.out.println("getFileEntry Res:[" + response + "]");
-        JSONDeserializer<CsvInputMetaDTO> deserializer = new JSONDeserializer<CsvInputMetaDTO>();
-        CsvInputMetaDTO meta = deserializer.deserialize(response);
+        newMetaJSON = new JSONObject(response);
+        JSONArray fieldsJSONArray = (JSONArray) newMetaJSON.get("rows");
+        for (int i=0; i<fieldsJSONArray.length(); i++){
+            ((JSONObject)fieldsJSONArray.get(i)).remove("class");
+        }
+        paramJson.put("inputFields",fieldsJSONArray);
+
+        //-- 5. Preview data
+        builder = t.path("previewdata").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid", "test");
+        //newMeta = meta.toString();
+        Response previewResponse = builder.post(Entity.entity(paramJson.toString(), MediaType.APPLICATION_JSON_TYPE));
+        response = previewResponse.readEntity(String.class);
+        System.out.println("getFileEntry Res:[" + response + "]");
+        //JSONDeserializer<CsvInputMetaDTO> deserializer = new JSONDeserializer<CsvInputMetaDTO>();
+        //CsvInputMetaDTO meta = deserializer.deserialize(response);
 
 /*        //-- 3. Check delegate
         builder = t.path("getcurrentlyedited").request().accept(MediaType.APPLICATION_JSON_TYPE).header("userid","test");

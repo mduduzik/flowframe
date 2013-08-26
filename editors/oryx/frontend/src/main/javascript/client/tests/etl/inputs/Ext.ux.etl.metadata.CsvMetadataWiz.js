@@ -380,55 +380,28 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
     });
 
     //Preview data
+    var previewDataDS = new Ext.data.Store({
+        proxy: new Ext.data.HttpProxy({url: 'http://localhost/gridlink.php'}),
+        reader: new Ext.data.DynamicJsonReader({root: 'data'}),
+        remoteSort: true
+    });
+    var previewDataGrid = new Ext.ux.dynagrid.EditorGridPanel({
+        //title: 'test',
+        //id: 'test',
+        height: 350,
+        ds: previewDataDS,
+        cm: new Ext.ux.dynagrid.DynamicColumnModel(ds),
+        selModel: new Ext.ux.dynagrid.RowSelectionModel({singleSelect:true})
+    });
     var previewDataCard = new Ext.ux.Wiz.Card({
         name: 'previewdata',
-        title: 'Get metadata fields',
+        title: 'Preview data',
         monitorValid: true,
         layout: 'fit',
         defaults: {
             labelStyle: 'font-size:11px'
         },
-        items: [
-            {
-                layout: 'fit',
-                items: {
-                    xtype: 'grid',
-                    ds: new Ext.data.Store({
-                        reader: new Ext.data.JsonReader({
-                            totalProperty: "results",             // The property which contains the total dataset size (optional)
-                            root: "rows",                         // The property which contains an Array of row objects
-                            id: "id"                              // The property within each row object that provides an ID for the record (optional)
-                        }, [
-                            {name: 'id'},
-                            {name: 'name'},
-                            {name: 'type'},
-                            {name: 'format'},
-                            {name: 'length'},
-                            {name: 'precision'},
-                            {name: 'currency'},
-                            {name: 'decimal'},
-                            {name: 'group'},
-                            {name: 'trimtype'}
-                        ])
-                    }),
-                    cm: new Ext.grid.ColumnModel([
-                        {id: 'name', header: "Name", width: 160, sortable: true, locked: false, dataIndex: 'name'},
-                        {header: "Type", width: 75, sortable: true, dataIndex: 'type'},
-                        {header: "Format", width: 75, sortable: true, dataIndex: 'format'},
-                        {header: "Length", width: 75, sortable: true, dataIndex: 'length'},
-                        {header: "Precision", width: 75, sortable: true, dataIndex: 'precision'},
-                        {header: "Currency", width: 75, sortable: true, dataIndex: 'currency'},
-                        {header: "Decimal", width: 75, sortable: true, dataIndex: 'decimal'},
-                        {header: "Group", width: 75, sortable: true, dataIndex: 'group'},
-                        {header: "trim Type", width: 75, sortable: true, dataIndex: 'trimtype'}
-                    ]),
-                    autoExpandColumn: 'name',
-                    height: 350,
-                    //title:'Company Data',
-                    border: true
-                }
-            }
-        ]
+        items: [previewDataGrid]
     });
     var wiz = new Ext.ux.Wiz({
         region: 'center',
@@ -448,6 +421,60 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
             getMetadataCard,
             previewDataCard
         ],
+        //Called by 'preview' data
+        previewData: function() {
+            var data = this.getSelectWizardData([]);
+
+            //-- Normalize data
+            var formPanel = Ext.getCmp('getfields');
+            var filenameValue = formPanel.form.findField('filename').getSubmitData();
+            Ext.apply(data, filenameValue);
+            var feValue = formPanel.form.findField('fileEntryId').getSubmitData();
+            Ext.apply(data, feValue);
+
+            //a hack: checkboxes are returning 'on' for true
+            if (data.headerPresent === 'on')
+                data.headerPresent = true;
+            else
+                data.headerPresent = false;
+            if (data.includingFilename === 'on')
+                data.includingFilename = true;
+            else
+                data.includingFilename = false;
+            if (data.isaddresult === 'on')
+                data.isaddresult = true;
+            else
+                data.isaddresult = false;
+            if (data.lazyConversionActive === 'on')
+                data.lazyConversionActive = true;
+            else
+                data.lazyConversionActive = false;
+            if (data.newlinePossibleInFields === 'on')
+                data.newlinePossibleInFields = true;
+            else
+                data.newlinePossibleInFields = false;
+
+
+            //--Submit
+            var dataJson = Ext.encode(data);
+            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                // here you can put whatever you need as header. For instance:
+                this.defaultPostHeader = "application/json; charset=utf-8;";
+                this.defaultHeaders = {userid: 'test'};
+            });
+            Ext.Ajax.request({
+                url: '/etlrepo/csvinput/ongetmetadata',
+                method: 'POST',
+                params: dataJson,
+                success: function (response, opts) {
+                    var recs = Ext.decode(response.responseText);
+                    //Update 'getMetadata' card
+                    getmetadataGridStore.loadData(recs, false);
+                },
+                failure: function (response, opts) {
+                }
+            });
+        },
         // Called by 'getmetadata' card
         getMetadata: function() {
             var data = this.getSelectWizardData([]);

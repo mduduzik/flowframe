@@ -6,6 +6,7 @@ import org.apache.commons.vfs.provider.local.LocalFile;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.repository.db.etl.trans.util.TransPreviewFactory;
 import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
@@ -16,6 +17,7 @@ import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.CentralLogStore;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.row.RowMeta;
@@ -25,7 +27,11 @@ import org.pentaho.di.core.util.StringEvaluationResult;
 import org.pentaho.di.core.util.StringEvaluator;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.debug.StepDebugMeta;
+import org.pentaho.di.trans.debug.TransDebugMeta;
+import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.csvinput.CsvInput;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.*;
@@ -104,6 +110,30 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
 
         return res.toString();
+    }
+
+    @Path("/previewdata")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String onPreviewData(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
+        //Generate metadata
+        CsvInputMeta meta_ = (CsvInputMeta)metaDTO_.fromDTO(CsvInputMeta.class);
+        meta_.setFilename(metaDTO_.getFileEntryId());
+        String json = previewData(meta_);
+
+        return json;
+
+/*        TextFileInputFieldDTO[] fields = TextFileInputFieldDTO.toDTOArray(updatedMetadata.getInputFields());
+        JSONSerializer serializer = new JSONSerializer();
+        JSONArray rows =  new JSONArray(serializer.serialize(fields));
+
+        JSONObject res = new JSONObject();
+        res.put("results",fields.length);
+        res.put("rows",rows);
+
+
+        return res.toString();*/
     }
 
 
@@ -337,6 +367,87 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         meta.setChanged();
     }
 
+
+    public String previewData(CsvInputMeta inputMetadata) throws Exception {
+        FileObject fileObject = null;
+        InputStreamReader reader = null;
+        CsvInputMeta outputMetadata =  null;
+        JSONObject res = null;
+        //CsvInputMeta cachedMetadata;
+        try {
+            LogChannelInterface log = null;
+            outputMetadata = (CsvInputMeta)new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
+
+
+            //Get file object
+            String samplefileEntryId = inputMetadata.getFilename();
+            FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
+            InputStream in = ecmService.getFileAsStream(samplefileEntryId,null);
+            fileObject = writeSampleFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
+            if (!(fileObject instanceof LocalFile)) {
+                // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
+                //
+                throw new KettleException(BaseMessages.getString(PKG, "CsvInput.Log.OnlyLocalFilesAreSupported"));
+            }
+
+            InputStream inputStream = KettleVFS.getInputStream(fileObject);
+
+
+            if (Const.isEmpty(inputMetadata.getEncoding())) {
+                reader = new InputStreamReader(inputStream);
+            } else {
+                reader = new InputStreamReader(inputStream, inputMetadata.getEncoding());
+            }
+
+            TextFileCSVPreviewer previewer = new TextFileCSVPreviewer(inputMetadata, reader);
+            previewer.preview();
+
+            //generate results
+            JSONArray rows =  new JSONArray();
+
+            List<Object[]> prevrows = previewer.getPreviewRows("");
+            RowMetaInterface prevmeta = previewer.getPreviewRowsMeta("");
+            JSONObject jsonRow;
+            Object elm;
+            ValueMetaInterface vm;
+            for (Object[] prevrow : prevrows) {
+                jsonRow = new JSONObject();
+                for (int i=0;i<prevrow.length;i++) {
+                   elm = prevrow[i];
+                   vm = prevmeta.getValueMeta(i);
+                   jsonRow.put(vm.getName(),elm);
+                }
+                rows.put(jsonRow);
+            }
+
+
+            res = new JSONObject();
+            res.put("results",rows.length());
+            res.put("rows",rows);
+
+
+
+        } finally {
+            if (reader != null)
+                reader.close();
+            if (fileObject != null)
+                fileObject.delete();
+        }
+
+        return res.toString();
+    }    
+
+
+    /**
+     *
+     * CSV Tools
+     *
+     *
+     */
+
+    /**
+     * CSV Analyzer
+     */
     public class TextFileCSVAnalyzer {
         private Class<?> PKG = TextFileInputMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
 
@@ -682,6 +793,156 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             }
 
             return message.toString();
+        }
+    }
+
+    /**
+     * CSV Data Previewer
+     */
+    public class TextFileCSVPreviewer {
+        private Class<?> PKG = TextFileInputMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
+
+        private InputFileMetaInterface meta;
+
+        private final String[] previewStepNames;
+
+        private final int[] previewSize;
+
+        private InputStreamReader reader;
+
+        private TransMeta transMeta;
+
+        private LogChannelInterface log;
+
+        private EncodingType encodingType;
+
+        private String csvInputPreview = "CsvInputPreview";
+        private TransDebugMeta transDebugMeta;
+        private String loggingText;
+        private Trans trans;
+
+        /**
+         * Creates a new dialog that will handle the wait while we're finding out what tables, views etc we can reach in the
+         * database.
+         */
+        public TextFileCSVPreviewer(CsvInputMeta inputMeta, InputStreamReader sampleFileReader) {
+            this.meta = inputMeta;
+            this.reader = sampleFileReader;
+            this.transMeta = new TransMeta();
+            this.previewStepNames = new String[]{"CsvInputPreview","dummy"};
+            this.previewSize = new int[]{100,100};
+        }
+
+
+        private String preview() throws KettleException {
+            // Show information on items using a dialog box
+            //
+            StringBuilder message = null;
+            try {
+                TransMeta previewMeta = TransPreviewFactory.generatePreviewTransformation(transMeta, this.meta, csvInputPreview);
+                transMeta.getVariable("Internal.Transformation.Filename.Directory");
+                previewMeta.getVariable("Internal.Transformation.Filename.Directory");
+
+                this.trans = new Trans(transMeta);
+
+                // Prepare the execution...
+                //
+                try {
+                    trans.prepareExecution(null);
+                } catch (final KettleException e) {
+                    throw e;
+                }
+
+                // Add the preview / debugging information...
+                //
+                this.transDebugMeta = new TransDebugMeta(transMeta);
+                for (int i=0;i< previewStepNames.length;i++) {
+                    StepMeta stepMeta = transMeta.findStep(previewStepNames[i]);
+                    StepDebugMeta stepDebugMeta = new StepDebugMeta(stepMeta);
+                    stepDebugMeta.setReadingFirstRows(true);
+                    stepDebugMeta.setRowCount(previewSize[i]);
+                    transDebugMeta.getStepDebugMetaMap().put(stepMeta, stepDebugMeta);
+                }
+
+                // set the appropriate listeners on the transformation...
+                //
+                transDebugMeta.addRowListenersToTransformation(trans);
+
+                // Fire off the step threads... start running!
+                //
+                try {
+                    trans.startThreads();
+                } catch (final KettleException e) {
+                    throw e;
+                }
+
+                trans.stopAll();
+
+                // Capture preview activity to a String:
+                this.loggingText = CentralLogStore.getAppender().getBuffer(trans.getLogChannel().getLogChannelId(), true).toString();
+            } catch (KettleException e) {
+                throw e;
+            }
+
+            return message.toString();
+        }
+
+        /**
+         * @param stepname the name of the step to get the preview rows for
+         * @return A list of rows as the result of the preview run.
+         */
+        public List<Object[]> getPreviewRows(String stepname)
+        {
+            if (transDebugMeta==null) return null;
+
+            for (StepMeta stepMeta : transDebugMeta.getStepDebugMetaMap().keySet()) {
+                if (stepMeta.getName().equals(stepname)) {
+                    StepDebugMeta stepDebugMeta = transDebugMeta.getStepDebugMetaMap().get(stepMeta);
+                    return stepDebugMeta.getRowBuffer();
+                }
+            }
+            return null;
+        }
+
+        /**
+         * @param stepname the name of the step to get the preview rows for
+         * @return A description of the row (metadata)
+         */
+        public RowMetaInterface getPreviewRowsMeta(String stepname)
+        {
+            if (transDebugMeta==null) return null;
+
+            for (StepMeta stepMeta : transDebugMeta.getStepDebugMetaMap().keySet()) {
+                if (stepMeta.getName().equals(stepname)) {
+                    StepDebugMeta stepDebugMeta = transDebugMeta.getStepDebugMetaMap().get(stepMeta);
+                    return stepDebugMeta.getRowBufferMeta();
+                }
+            }
+            return null;
+        }
+
+        /**
+         * @return The logging text from the latest preview run
+         */
+        public String getLoggingText()
+        {
+            return loggingText;
+        }
+
+        /**
+         *
+         * @return The transformation object that executed the preview TransMeta
+         */
+        public Trans getTrans()
+        {
+            return trans;
+        }
+
+        /**
+         * @return the transDebugMeta
+         */
+        public TransDebugMeta getTransDebugMeta() {
+            return transDebugMeta;
         }
     }
 
