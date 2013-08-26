@@ -1,7 +1,11 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto;
 
 import flexjson.JSONSerializer;
+import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,6 +19,7 @@ public class TextFileInputFieldDTO extends BaseDTO {
     private int 	position;
     private int 	length;
     private int 	type;
+    private String  typeDescription;
     private boolean ignore;
     private String 	format;
     private int 	trimtype;
@@ -36,6 +41,7 @@ public class TextFileInputFieldDTO extends BaseDTO {
         setPosition(field.getPosition());
         setLength(field.getLength());
         setType(field.getType());
+        setTypeDescription(ValueMeta.getTypeDesc(field.getType()));
         setIgnore(field.isIgnored());
         setFormat(field.getFormat());
         setTrimtype(field.getTrimType());
@@ -94,6 +100,14 @@ public class TextFileInputFieldDTO extends BaseDTO {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getTypeDescription() {
+        return typeDescription;
+    }
+
+    public void setTypeDescription(String typeDescription) {
+        this.typeDescription = typeDescription;
     }
 
     public boolean isIgnore() {
@@ -179,5 +193,14 @@ public class TextFileInputFieldDTO extends BaseDTO {
     public String toJSON() {
         JSONSerializer serializer = new JSONSerializer();
         return serializer.serialize(this);
+    }
+
+    static public TextFileInputFieldDTO[] toDTOArray(TextFileInputField[] fields) {
+         List<TextFileInputFieldDTO> dtos = new ArrayList<TextFileInputFieldDTO>();
+        for (TextFileInputField field : fields) {
+            dtos.add(new TextFileInputFieldDTO(field));
+        }
+
+        return dtos.toArray(new TextFileInputFieldDTO[]{});
     }
 }

@@ -64,7 +64,7 @@ Ext.onReady(function() {
 			  xtype:'uploadpanel'
 			 ,buttonsAt:'tbar'
 			 ,id:'uppanel'
-			 ,url:'http://localhost:8082/etlrepo/CSVInput/uploadsample'
+			 ,url:'http://localhost:8082/etlrepo/csvinput/uploadsample'
 			 ,path:'root'
 			 ,maxFileSize:1048576
 //			 ,enableProgress:false

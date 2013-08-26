@@ -1,12 +1,15 @@
 package org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput;
 
+import flexjson.JSONSerializer;
 import org.apache.commons.vfs.FileObject;
 import org.apache.commons.vfs.provider.local.LocalFile;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.repository.db.repository.RepositoryUtil;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
+import org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
@@ -61,7 +64,12 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     public String onNew(@HeaderParam("userid") String userid) throws JSONException {
         //-- Return copy of actual metadata on startup
         CsvInputMetaDTO dto = new CsvInputMetaDTO();
-        return dto.toJSON();
+        String json = dto.toJSON();
+        JSONObject data = new JSONObject(json);
+        JSONObject record = new JSONObject();
+        record.put("success",true);
+        record.put("data",data);
+        return record.toString();
     }
 
     @Path("/onedit")
@@ -83,10 +91,19 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     public String onGetMetadata(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
         //Generate metadata
         CsvInputMeta meta_ = (CsvInputMeta)metaDTO_.fromDTO(CsvInputMeta.class);
+        meta_.setFilename(metaDTO_.getFileEntryId());
         CsvInputMeta updatedMetadata = updateMetadata(meta_);
 
-        CsvInputMetaDTO dto = new CsvInputMetaDTO(updatedMetadata);
-        return dto.toJSON();
+        TextFileInputFieldDTO[] fields = TextFileInputFieldDTO.toDTOArray(updatedMetadata.getInputFields());
+        JSONSerializer serializer = new JSONSerializer();
+        JSONArray rows =  new JSONArray(serializer.serialize(fields));
+
+        JSONObject res = new JSONObject();
+        res.put("results",fields.length);
+        res.put("rows",rows);
+
+
+        return res.toString();
     }
 
 

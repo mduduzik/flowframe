@@ -116,7 +116,7 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 	/**
 	 * @cfg {String} progressUrl URL to request upload progress from
 	 */
-	,progressUrl:'http://localhost:8082/etlrepo/CSVInput/uploadprogress'
+	,progressUrl:'http://localhost:8082/etlrepo/csvinput/uploadprogress'
 
 	/**
 	 * @cfg {Object} progressMap Mapping of received progress fields to store progress fields

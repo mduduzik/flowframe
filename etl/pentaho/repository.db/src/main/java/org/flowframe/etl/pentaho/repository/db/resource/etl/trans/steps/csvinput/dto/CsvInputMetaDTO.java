@@ -20,6 +20,8 @@ public class CsvInputMetaDTO extends BaseDTO {
 
     private String filenameField;
 
+    private String fileEntryId;
+
     private boolean includingFilename;
 
     private String rowNumField;
@@ -44,6 +46,11 @@ public class CsvInputMetaDTO extends BaseDTO {
     private boolean newlinePossibleInFields;
 
     public CsvInputMetaDTO() {
+    }
+
+    public CsvInputMetaDTO(CsvInputMeta csvInput, String sampleFileEntryId) {
+        this(csvInput);
+        this.fileEntryId = sampleFileEntryId;
     }
 
     public CsvInputMetaDTO(CsvInputMeta csvInput) {
@@ -92,6 +99,14 @@ public class CsvInputMetaDTO extends BaseDTO {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public String getFileEntryId() {
+        return fileEntryId;
+    }
+
+    public void setFileEntryId(String fileEntryId) {
+        this.fileEntryId = fileEntryId;
     }
 
     public String getFilenameField() {

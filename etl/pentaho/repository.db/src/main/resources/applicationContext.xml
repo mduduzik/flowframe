@@ -73,11 +73,11 @@
     <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseMetaResource" scope="request"/>
     <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseTypeResource" scope="request"/>
     <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource" scope="request"/>
-
+    <bean id="charSet" class="org.flowframe.etl.pentaho.repository.db.resource.reference.CharsetEncodingResource" scope="request"/>
     <!--
        CSVInput
     -->
-    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource" scope="session"/>
+    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource" scope="request"/>
 
 
 
