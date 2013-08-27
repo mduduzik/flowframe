@@ -16,39 +16,44 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.KettleEnvironment;
+import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.CentralLogStore;
 import org.pentaho.di.core.logging.LogChannel;
 import org.pentaho.di.core.logging.LogChannelInterface;
+import org.pentaho.di.core.plugins.PluginRegistry;
+import org.pentaho.di.core.plugins.StepPluginType;
 import org.pentaho.di.core.row.RowMeta;
 import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.util.StringEvaluationResult;
 import org.pentaho.di.core.util.StringEvaluator;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
-import org.pentaho.di.trans.Trans;
-import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.*;
 import org.pentaho.di.trans.debug.StepDebugMeta;
 import org.pentaho.di.trans.debug.TransDebugMeta;
+import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.csvinput.CsvInput;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
+import org.pentaho.di.trans.steps.dummytrans.DummyTransMeta;
+import org.pentaho.di.trans.steps.injector.InjectorMeta;
 import org.pentaho.di.trans.steps.textfileinput.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -63,7 +68,6 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     private TextFileInputField[] cachedInputFields;
 
 
-
     @Path("/onnew")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -73,8 +77,8 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         String json = dto.toJSON();
         JSONObject data = new JSONObject(json);
         JSONObject record = new JSONObject();
-        record.put("success",true);
-        record.put("data",data);
+        record.put("success", true);
+        record.put("data", data);
         return record.toString();
     }
 
@@ -96,17 +100,17 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public String onGetMetadata(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
         //Generate metadata
-        CsvInputMeta meta_ = (CsvInputMeta)metaDTO_.fromDTO(CsvInputMeta.class);
+        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
         meta_.setFilename(metaDTO_.getFileEntryId());
         CsvInputMeta updatedMetadata = updateMetadata(meta_);
 
         TextFileInputFieldDTO[] fields = TextFileInputFieldDTO.toDTOArray(updatedMetadata.getInputFields());
         JSONSerializer serializer = new JSONSerializer();
-        JSONArray rows =  new JSONArray(serializer.serialize(fields));
+        JSONArray rows = new JSONArray(serializer.exclude("class").serialize(fields));
 
         JSONObject res = new JSONObject();
-        res.put("results",fields.length);
-        res.put("rows",rows);
+        res.put("results", fields.length);
+        res.put("rows", rows);
 
 
         return res.toString();
@@ -118,7 +122,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public String onPreviewData(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
         //Generate metadata
-        CsvInputMeta meta_ = (CsvInputMeta)metaDTO_.fromDTO(CsvInputMeta.class);
+        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
         meta_.setFilename(metaDTO_.getFileEntryId());
         String json = previewData(meta_);
 
@@ -194,7 +198,6 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     }
 
 
-
     private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {
         List<FormDataBodyPart> fileBPList = null;
         Map<String, List<FormDataBodyPart>> fields = multiPart.getFields();
@@ -216,18 +219,18 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     public CsvInputMeta updateMetadata(CsvInputMeta inputMetadata) throws Exception {
         FileObject fileObject = null;
         InputStreamReader reader = null;
-        CsvInputMeta outputMetadata =  null;
+        CsvInputMeta outputMetadata = null;
         //CsvInputMeta cachedMetadata;
         try {
             LogChannelInterface log = null;
-            outputMetadata = (CsvInputMeta)new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
+            outputMetadata = (CsvInputMeta) new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
 
 
             //Get file object
             String samplefileEntryId = inputMetadata.getFilename();
             FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
-            InputStream in = ecmService.getFileAsStream(samplefileEntryId,null);
-            fileObject = writeSampleFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
+            InputStream in = ecmService.getFileAsStream(samplefileEntryId, null);
+            fileObject = writeSampleFileToVFSTemp(in, fe.getName() + ".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
             if (!(fileObject instanceof LocalFile)) {
                 // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
                 //
@@ -297,12 +300,12 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             if (samples >= 0) {
                 //Update cached metadata; fields etc. (before a detailed file analysis) from UI metadata
                 updateMetadata(outputMetadata, inputMetadata);
-    
+
                 TextFileCSVAnalyzer analyzer = new TextFileCSVAnalyzer(outputMetadata, transMeta, reader, samples, true);
                 String message = analyzer.analyze();
                 if (message != null) {
                     //wFields.removeAll();
-    
+
                     // OK, what's the result of our search?
     /*                    getData(meta, false);
                         wFields.removeEmptyRows();
@@ -371,18 +374,21 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     public String previewData(CsvInputMeta inputMetadata) throws Exception {
         FileObject fileObject = null;
         InputStreamReader reader = null;
-        CsvInputMeta outputMetadata =  null;
+        CsvInputMeta outputMetadata = null;
         JSONObject res = null;
+        File file = null;
         //CsvInputMeta cachedMetadata;
         try {
             LogChannelInterface log = null;
-            outputMetadata = (CsvInputMeta)new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
+            outputMetadata = (CsvInputMeta) new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
 
 
             //Get file object
             String samplefileEntryId = inputMetadata.getFilename();
             FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
-            InputStream in = ecmService.getFileAsStream(samplefileEntryId,null);
+            InputStream in = ecmService.getFileAsStream(samplefileEntryId, null);
+            file = writeSampleStreamToTempFile(in, fe.getName() + ".wip");
+/*
             fileObject = writeSampleFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
             if (!(fileObject instanceof LocalFile)) {
                 // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
@@ -402,40 +408,72 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             TextFileCSVPreviewer previewer = new TextFileCSVPreviewer(inputMetadata, reader);
             previewer.preview();
 
-            //generate results
-            JSONArray rows =  new JSONArray();
 
-            List<Object[]> prevrows = previewer.getPreviewRows("");
-            RowMetaInterface prevmeta = previewer.getPreviewRowsMeta("");
+
+            List<Object[]> prevrows = previewer.getPreviewRows("CsvInputPreview");
+            RowMetaInterface prevmeta = previewer.getPreviewRowsMeta("CsvInputPreview");
+*/
+
+            /**
+             *
+             * generate rows and metadata
+             *
+             */
             JSONObject jsonRow;
             Object elm;
             ValueMetaInterface vm;
-            for (Object[] prevrow : prevrows) {
+            Object[] row;
+            RowMetaInterface rowMI;
+            String obj;
+            List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "CsvInputPreview", file.getAbsolutePath());
+
+            //-- metadata
+            RowMetaAndData rowMeta = dataAndMetaRows.get(0);
+            rowMeta.getRowMeta().removeValueMeta("filename");
+            JSONArray metadata = new JSONArray();
+            for (int i = 0; i < rowMeta.getRowMeta().getFieldNames().length; i++) {
+                vm = rowMeta.getValueMeta(i);
+                metadata.put(vm.getName());
+            }
+
+            //-- data
+            JSONArray rows = new JSONArray();
+            int stepCount = 1;
+            int limit = 100;
+            for (RowMetaAndData prevrow : dataAndMetaRows) {
                 jsonRow = new JSONObject();
-                for (int i=0;i<prevrow.length;i++) {
-                   elm = prevrow[i];
-                   vm = prevmeta.getValueMeta(i);
-                   jsonRow.put(vm.getName(),elm);
+                row = prevrow.getData();
+                rowMI = prevrow.getRowMeta();
+                for (int i = 0; i < rowMI.getFieldNames().length; i++) {
+                    elm = row[i];
+                    vm = rowMI.getValueMeta(i);
+                    obj = rowMI.getString(row, i);
+                    if (!vm.getName().equals("filename"))
+                        jsonRow.put(vm.getName(), obj);
                 }
                 rows.put(jsonRow);
+                stepCount++;
+                if (stepCount > limit)
+                    break;
             }
 
 
             res = new JSONObject();
-            res.put("results",rows.length());
-            res.put("rows",rows);
-
-
+            JSONObject metaDataWrapper = new JSONObject();
+            metaDataWrapper.put("fields",metadata);
+            metaDataWrapper.put("totalProperty","results");
+            metaDataWrapper.put("root","rows");
+            res.put("results", rows.length());
+            res.put("rows", rows);
+            res.put("metaData", metaDataWrapper);
 
         } finally {
-            if (reader != null)
-                reader.close();
-            if (fileObject != null)
-                fileObject.delete();
+            if (file != null)
+                file.delete();
         }
 
         return res.toString();
-    }    
+    }
 
 
     /**
@@ -829,8 +867,8 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             this.meta = inputMeta;
             this.reader = sampleFileReader;
             this.transMeta = new TransMeta();
-            this.previewStepNames = new String[]{"CsvInputPreview","dummy"};
-            this.previewSize = new int[]{100,100};
+            this.previewStepNames = new String[]{"CsvInputPreview", "dummy"};
+            this.previewSize = new int[]{100, 100};
         }
 
 
@@ -855,9 +893,9 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
                 // Add the preview / debugging information...
                 //
-                this.transDebugMeta = new TransDebugMeta(transMeta);
-                for (int i=0;i< previewStepNames.length;i++) {
-                    StepMeta stepMeta = transMeta.findStep(previewStepNames[i]);
+                this.transDebugMeta = new TransDebugMeta(previewMeta);
+                for (int i = 0; i < previewStepNames.length; i++) {
+                    StepMeta stepMeta = previewMeta.findStep(previewStepNames[i]);
                     StepDebugMeta stepDebugMeta = new StepDebugMeta(stepMeta);
                     stepDebugMeta.setReadingFirstRows(true);
                     stepDebugMeta.setRowCount(previewSize[i]);
@@ -884,16 +922,18 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 throw e;
             }
 
-            return message.toString();
+            if (message != null)
+                return message.toString();
+            else
+                return null;
         }
 
         /**
          * @param stepname the name of the step to get the preview rows for
          * @return A list of rows as the result of the preview run.
          */
-        public List<Object[]> getPreviewRows(String stepname)
-        {
-            if (transDebugMeta==null) return null;
+        public List<Object[]> getPreviewRows(String stepname) {
+            if (transDebugMeta == null) return null;
 
             for (StepMeta stepMeta : transDebugMeta.getStepDebugMetaMap().keySet()) {
                 if (stepMeta.getName().equals(stepname)) {
@@ -908,9 +948,8 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
          * @param stepname the name of the step to get the preview rows for
          * @return A description of the row (metadata)
          */
-        public RowMetaInterface getPreviewRowsMeta(String stepname)
-        {
-            if (transDebugMeta==null) return null;
+        public RowMetaInterface getPreviewRowsMeta(String stepname) {
+            if (transDebugMeta == null) return null;
 
             for (StepMeta stepMeta : transDebugMeta.getStepDebugMetaMap().keySet()) {
                 if (stepMeta.getName().equals(stepname)) {
@@ -924,17 +963,14 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         /**
          * @return The logging text from the latest preview run
          */
-        public String getLoggingText()
-        {
+        public String getLoggingText() {
             return loggingText;
         }
 
         /**
-         *
          * @return The transformation object that executed the preview TransMeta
          */
-        public Trans getTrans()
-        {
+        public Trans getTrans() {
             return trans;
         }
 
@@ -944,6 +980,113 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         public TransDebugMeta getTransDebugMeta() {
             return transDebugMeta;
         }
+    }
+
+
+    public static final List<RowMetaAndData> generatePreviewDataFromFile(CsvInputMeta cim, String oneStepname, String inputFilename) throws KettleException {
+        KettleEnvironment.init();
+
+        cim.setFilename(inputFilename);
+        cim.setFilenameField("filename");
+        cim.setIncludingFilename(true);
+
+        //
+        // Create a new transformation...
+        //
+        TransMeta transMeta = new TransMeta();
+        transMeta.setName(oneStepname + "TransMeta");
+
+
+        PluginRegistry registry = PluginRegistry.getInstance();
+
+        //
+        // create an injector step...
+        //
+        String injectorStepname = "DataInjectorStep";
+        InjectorMeta im = new InjectorMeta();
+
+        // Set the information of the injector.
+        String injectorPid = registry.getPluginId(StepPluginType.class, im);
+        StepMeta injectorStep = new StepMeta(injectorPid, injectorStepname, im);
+        transMeta.addStep(injectorStep);
+
+        //
+        // Create a Csv Input step
+        //
+        String csvInputName = oneStepname + "Plugin";
+        String csvInputPid = registry.getPluginId(StepPluginType.class, cim);
+        StepMeta csvInputStep = new StepMeta(csvInputPid, csvInputName, cim);
+        transMeta.addStep(csvInputStep);
+        TransHopMeta hi = new TransHopMeta(injectorStep, csvInputStep);
+        transMeta.addTransHop(hi);
+
+        //
+        // Create a dummy step 1
+        //
+        String dummyStepname1 = "dummy step 1";
+        DummyTransMeta dm1 = new DummyTransMeta();
+
+        String dummyPid1 = registry.getPluginId(StepPluginType.class, dm1);
+        StepMeta dummyStep1 = new StepMeta(dummyPid1, dummyStepname1, dm1);
+        transMeta.addStep(dummyStep1);
+
+        TransHopMeta hi1 = new TransHopMeta(csvInputStep, dummyStep1);
+        transMeta.addTransHop(hi1);
+
+        // Now execute the transformation...
+        Trans trans = new Trans(transMeta);
+
+        trans.prepareExecution(null);
+
+        StepInterface si = trans.getStepInterface(dummyStepname1, 0);
+        RowStepCollector dummyRc1 = new RowStepCollector();
+        si.addRowListener(dummyRc1);
+
+        RowProducer rp = trans.addRowProducer(injectorStepname, 0);
+        trans.startThreads();
+
+        // add rows
+        List<RowMetaAndData> inputList = createData(inputFilename);
+        Iterator<RowMetaAndData> it = inputList.iterator();
+        while (it.hasNext()) {
+            RowMetaAndData rm = it.next();
+            rp.putRow(rm.getRowMeta(), rm.getData());
+        }
+        rp.finished();
+
+        trans.waitUntilFinished();
+
+        // Compare the results
+        List<RowMetaAndData> resultRows = dummyRc1.getRowsWritten();
+        //List<RowMetaAndData> goldenImageRows = createResultData1();
+
+        return resultRows;
+    }
+
+
+    private static RowMetaInterface createRowMetaInterface() {
+        RowMetaInterface rm = new RowMeta();
+
+        ValueMetaInterface[] valuesMeta = {new ValueMeta("filename",
+                ValueMeta.TYPE_STRING),};
+
+        for (int i = 0; i < valuesMeta.length; i++) {
+            rm.addValueMeta(valuesMeta[i]);
+        }
+
+        return rm;
+    }
+
+    private static List<RowMetaAndData> createData(String fileName) {
+        List<RowMetaAndData> list = new ArrayList<RowMetaAndData>();
+
+        RowMetaInterface rm = createRowMetaInterface();
+
+        Object[] r1 = new Object[]{fileName};
+
+        list.add(new RowMetaAndData(rm, r1));
+
+        return list;
     }
 
 }

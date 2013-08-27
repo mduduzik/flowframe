@@ -545,6 +545,10 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
         if (card.isValid()) {
             this.nextButton.setDisabled(false);
         }
+        else {
+            this.nextButton.setDisabled(true);
+        }
+
 
         if (i == 0) {
             this.previousButton.setDisabled(true);

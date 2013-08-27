@@ -1,19 +1,20 @@
 Ext.namespace('Ext.ux.etl', 'Ext.ux.etl.metadata');
 Ext.QuickTips.init();
-Ext.ux.etl.metadata.CsvMetadataWiz = function() {
+Ext.ux.etl.metadata.CsvMetadataWiz = function () {
+    var wiz = undefined;
     /**
      *
      *   Create cards
      */
     //Enter sample file info
-    var getDisabledFieldValue = function() {
+    var getDisabledFieldValue = function () {
         var me = this,
             data = null;
         data = {};
         data[me.getName()] = '' + me.getValue();
         return data;
-        };
-    var getCheckboxFieldValue = function() {
+    };
+    var getCheckboxFieldValue = function () {
         var me = this,
             data = null;
         var val = me.getValue();
@@ -24,8 +25,8 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
             data[me.getName()] = false;
 
         return data;
-        };
-    var uploaderPanel =  new Ext.ux.UploadPanel({
+    };
+    var uploaderPanel = new Ext.ux.UploadPanel({
         layout: 'fit',
         xtype: 'uploadpanel',
         addText: 'Add sample CSV file',
@@ -84,12 +85,14 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                         name: 'filename',
                         emptyText: '<Upload sample file below>',
                         disabled: true,
+                        allowBlank: false,
                         getSubmitData: getDisabledFieldValue
                     },
                     {
                         fieldLabel: 'File Repository ID',
                         name: 'fileEntryId',
                         disabled: true,
+                        allowBlank: false,
                         getSubmitData: getDisabledFieldValue
                     },
                     {
@@ -162,17 +165,31 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                 ]
             },
             uploaderPanel
-        ]
+        ],
+        isValid: function () {
+            var formPanel = Ext.getCmp('getfields');
+            if (!formPanel.form.findField('filename') || !formPanel.form.findField('fileEntryId'))
+                return false;
+
+            var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
+            valid = valid || formPanel.form.findField('filename').validate();
+            valid = valid || formPanel.form.findField('fileEntryId').validate();
+
+            return valid;
+        }
     });
     // relay uploader events
-/*    uploaderPanel.relayEvents(uploaderPanel.uploader, [
-        'allfinished'
-    ]);*/
-    uploaderPanel.on({allfinished:{scope:this, fn:function() {
+    /*    uploaderPanel.relayEvents(uploaderPanel.uploader, [
+     'allfinished'
+     ]);*/
+    uploaderPanel.on({allfinished: {scope: this, fn: function () {
         var formPanel = Ext.getCmp('getfields');
         var rec = uploaderPanel.store.getAt(0);//Only first response
-        formPanel.form.findField('filename').setValue(rec.data.fileName,true);
-        formPanel.form.findField('fileEntryId').setValue(rec.data.fileentryid,true);
+        formPanel.form.findField('filename').setValue(rec.data.fileName, true);
+        formPanel.form.findField('fileEntryId').setValue(rec.data.fileentryid, true);
+
+        enterSampleFileInfoCard.fireEvent('clientvalidation', enterSampleFileInfoCard, true);
+
         uploaderPanel.removeAll();
     }}
     });
@@ -180,16 +197,16 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
 
     enterSampleFileInfoCard.getForm().load({
         method: 'GET',
-        headerConfig: {userid:'test'},
+        headerConfig: {userid: 'test'},
         url: '/etlrepo/csvinput/onnew',
         waitMsg: 'Getting new record...',
-        success: function(fp, o){
+        success: function (fp, o) {
             //msg('Success', 'Processed file "'+o.result.file+'" on the server');
         }
     });
 
     //Get Metadata
-    var  MetadataFieldModel = Ext.data.Record.create([
+    var MetadataFieldModel = Ext.data.Record.create([
         {name: 'id'},
         {name: 'name'},
         {name: 'typeDescription'},
@@ -202,34 +219,33 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
         {name: 'trimtype'}
     ]);
 
-    var getmetadataGridStore =  new Ext.data.Store({
+    var getmetadataGridStore = new Ext.data.Store({
         reader: new Ext.data.JsonReader({
             totalProperty: "results",             // The property which contains the total dataset size (optional)
             root: "rows",                         // The property which contains an Array of row objects
             id: "id"                              // The property within each row object that provides an ID for the record (optional)
-        },MetadataFieldModel)
+        }, MetadataFieldModel)
     });
 
+
     var controlBar = new Ext.Toolbar({
-        items:[{
-            pressed: true,
-            enableToggle:true,
-            text: 'Get Fields',
-            cls: 'x-btn-text details',
-            toggleHandler: function(btn, pressed){
+        items: [
+            {
+                text: 'Get fields', tooltip: 'Refresh fields', iconCls: 'icon-refresh', id: 'btn-refresh', toggleHandler: function (btn, pressed) {
                 wiz.getMetadata();
             }
-        }]
+            }
+        ]
     });
 
     var getmetadataGrid = new Ext.grid.EditorGridPanel({
-        clicksToEdit:2,
+        clicksToEdit: 2,
         tbar: controlBar,
         store: getmetadataGridStore,
         listeners: {
-          afteredit: function(e) {
-              e.record.commit();
-          }
+            afteredit: function (e) {
+                e.record.commit();
+            }
         },
         cm: new Ext.grid.ColumnModel([
             {
@@ -252,24 +268,24 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                 editor: new Ext.form.ComboBox({
                     store: new Ext.data.SimpleStore({
                         fields: ['type', 'description'],
-                        data : [
-                            [0,"NONE"],
-                            [1,"Number"],
-                            [2,"String"],
-                            [3,"Date"],
-                            [4,"Boolean"],
-                            [5,"Integer"],
-                            [6,"BigNumber"],
-                            [7,"Serializable"],
-                            [8,"Binary"]
+                        data: [
+                            [0, "NONE"],
+                            [1, "Number"],
+                            [2, "String"],
+                            [3, "Date"],
+                            [4, "Boolean"],
+                            [5, "Integer"],
+                            [6, "BigNumber"],
+                            [7, "Serializable"],
+                            [8, "Binary"]
                         ]
                     }),
-                    displayField:'description',
+                    displayField: 'description',
                     typeAhead: true,
                     mode: 'local',
                     triggerAction: 'all',
-                    emptyText:'Select a type...',
-                    selectOnFocus:true
+                    emptyText: 'Select a type...',
+                    selectOnFocus: true
                 })
             },
             {
@@ -278,46 +294,46 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                 sortable: true,
                 dataIndex: 'format',
                 editor: new Ext.form.ComboBox({
-                        store: new Ext.data.SimpleStore({
-                            fields: ['format'],
-                            data : [
-                                [""],
-                                ["#"],
-                                ["0.00"],
-                                ["0000000000000"],
-                                ["###,###,###.#######"],
-                                ["###############.###############"],
-                                ["#####.###############%"],
-                                ["yyyy/MM/dd HH:mm:ss.SSS"],
-                                ["yyyy/MM/dd HH:mm:ss"],
-                                ["dd/MM/yyyy"],
-                                ["dd-MM-yyyy"],
-                                ["yyyy/MM/dd"],
-                                ["yyyy-MM-dd"],
-                                ["yyyyMMdd"],
-                                ["ddMMyyyy"],
-                                ["d-M-yyyy"],
-                                ["d/M/yyyy"],
-                                ["d-M-yy"],
-                                ["d/M/yy"]
-                            ]
-                        }),
-                        displayField:'format',
-                        typeAhead: true,
-                        mode: 'local',
-                        triggerAction: 'all',
-                        emptyText:'Select a type...',
-                        selectOnFocus:true
-                    })},
+                    store: new Ext.data.SimpleStore({
+                        fields: ['format'],
+                        data: [
+                            [""],
+                            ["#"],
+                            ["0.00"],
+                            ["0000000000000"],
+                            ["###,###,###.#######"],
+                            ["###############.###############"],
+                            ["#####.###############%"],
+                            ["yyyy/MM/dd HH:mm:ss.SSS"],
+                            ["yyyy/MM/dd HH:mm:ss"],
+                            ["dd/MM/yyyy"],
+                            ["dd-MM-yyyy"],
+                            ["yyyy/MM/dd"],
+                            ["yyyy-MM-dd"],
+                            ["yyyyMMdd"],
+                            ["ddMMyyyy"],
+                            ["d-M-yyyy"],
+                            ["d/M/yyyy"],
+                            ["d-M-yy"],
+                            ["d/M/yy"]
+                        ]
+                    }),
+                    displayField: 'format',
+                    typeAhead: true,
+                    mode: 'local',
+                    triggerAction: 'all',
+                    emptyText: 'Select a type...',
+                    selectOnFocus: true
+                })},
             {
                 header: "Length",
                 width: 75,
                 sortable: true,
                 dataIndex: 'length',
                 editor: new Ext.form.NumberField({
-                        allowBlank: false,
-                        allowNegative: false,
-                        maxValue: 100000
+                    allowBlank: false,
+                    allowNegative: false,
+                    maxValue: 100000
                 })
             },
             {
@@ -340,21 +356,21 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                 dataIndex: 'trimtype',
                 editor: new Ext.form.ComboBox({
                     store: new Ext.data.SimpleStore({
-                        fields: ['index','type'],
-                        data : [
-                            [0,"none"],
-                            [1,"left"],
-                            [2,"right"],
-                            [3,"both"]
+                        fields: ['index', 'type'],
+                        data: [
+                            [0, "none"],
+                            [1, "left"],
+                            [2, "right"],
+                            [3, "both"]
                         ]
                     }),
-                    displayField:'type',
+                    displayField: 'type',
                     valueField: 'index',
                     typeAhead: true,
                     mode: 'local',
                     triggerAction: 'all',
-                    emptyText:'Select a type...',
-                    selectOnFocus:true
+                    emptyText: 'Select a type...',
+                    selectOnFocus: true
                 })
             }
         ]),
@@ -376,23 +392,53 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                 layout: 'fit',
                 items: [getmetadataGrid]
             }
-        ]
+        ],
+        onCardShow: function (card) {
+            Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
+            wiz.getMetadata();
+        }
     });
 
     //Preview data
     var previewDataDS = new Ext.data.Store({
-        proxy: new Ext.data.HttpProxy({url: 'http://localhost/gridlink.php'}),
-        reader: new Ext.data.DynamicJsonReader({root: 'data'}),
-        remoteSort: true
+        proxy: new Ext.data.HttpProxy({
+            url: '/etlrepo/csvinput/previewdata',
+            method: 'POST',
+            headers: {
+                'userid': 'test'
+            }}),
+        reader: new Ext.ux.dynagrid.DynamicJsonReader({root: 'rows'}),
+        remoteSort: true,
+        root: 'rows'
     });
-    var previewDataGrid = new Ext.ux.dynagrid.EditorGridPanel({
+    var previewDataGrid = new Ext.grid.EditorGridPanel({
         //title: 'test',
         //id: 'test',
         height: 350,
         ds: previewDataDS,
-        cm: new Ext.ux.dynagrid.DynamicColumnModel(ds),
-        selModel: new Ext.ux.dynagrid.RowSelectionModel({singleSelect:true})
+        cm: new Ext.ux.dynagrid.DynamicColumnModel(previewDataDS),
+        selModel: new Ext.grid.RowSelectionModel({singleSelect: true}),
+        tbar: [
+            {
+                text: 'Preview', tooltip: 'Refresh data', iconCls: 'icon-refresh', id: 'btn-refresh', listeners: {
+                //click:{scope:this, fn:wiz.previewData,buffer:200}
+            }
+            }
+        ]/*,
+        bbar : new Ext.PagingToolbar({
+            store:previewDataDS
+            ,displayInfo:true
+            ,pageSize:10
+        }),
+        plugins: [
+            new Ext.ux.grid.Search({
+                iconCls: 'icon-zoom',
+                readonlyIndexes: ['note'],
+                disableIndexes: ['pctChange']
+            })
+        ]*/
     });
+
     var previewDataCard = new Ext.ux.Wiz.Card({
         name: 'previewdata',
         title: 'Preview data',
@@ -401,9 +447,14 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
         defaults: {
             labelStyle: 'font-size:11px'
         },
-        items: [previewDataGrid]
+        items: [previewDataGrid],
+        onCardShow: function (card) {
+            Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
+            wiz.previewData();
+        }
     });
-    var wiz = new Ext.ux.Wiz({
+
+    wiz = new Ext.ux.Wiz({
         region: 'center',
         buttonsAt: 'bbar',
         headerConfig: {
@@ -422,16 +473,21 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
             previewDataCard
         ],
         //Called by 'preview' data
-        previewData: function() {
-            var data = this.getSelectWizardData([]);
+        previewData: function () {
 
-            //-- Normalize data
+            //-- Form data
+            var data = this.getSelectWizardData([]);//Form
             var formPanel = Ext.getCmp('getfields');
             var filenameValue = formPanel.form.findField('filename').getSubmitData();
             Ext.apply(data, filenameValue);
             var feValue = formPanel.form.findField('fileEntryId').getSubmitData();
             Ext.apply(data, feValue);
 
+            //--Fields
+            var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//fields
+            Ext.apply(data, fields);
+
+            //-- Normalize data
             //a hack: checkboxes are returning 'on' for true
             if (data.headerPresent === 'on')
                 data.headerPresent = true;
@@ -457,26 +513,13 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
 
             //--Submit
             var dataJson = Ext.encode(data);
-            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                // here you can put whatever you need as header. For instance:
-                this.defaultPostHeader = "application/json; charset=utf-8;";
-                this.defaultHeaders = {userid: 'test'};
-            });
-            Ext.Ajax.request({
-                url: '/etlrepo/csvinput/ongetmetadata',
-                method: 'POST',
-                params: dataJson,
-                success: function (response, opts) {
-                    var recs = Ext.decode(response.responseText);
-                    //Update 'getMetadata' card
-                    getmetadataGridStore.loadData(recs, false);
-                },
-                failure: function (response, opts) {
-                }
+
+            previewDataDS.load({
+                params: dataJson
             });
         },
         // Called by 'getmetadata' card
-        getMetadata: function() {
+        getMetadata: function () {
             var data = this.getSelectWizardData([]);
 
             //-- Normalize data
@@ -538,7 +581,14 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function() {
                 var cardform = cards[i].form;
                 if (cardform) {
                     var values = cardform.getValues(false);
-                    Ext.apply(formValues, values);
+                    var applyProps = true;
+                    for (p in values) {
+                        var propname = p+'';
+                        if (propname.indexOf('ext-comp-') == 0)
+                            applyProps = false;
+                    }
+                    if (applyProps)
+                        Ext.apply(formValues, values);
                 }
             }
             return formValues;
