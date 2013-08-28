@@ -1,6 +1,5 @@
 package org.flowframe.etl.pentaho.repository.db.repository;
 
-import org.flowframe.etl.pentaho.repository.db.model.DatabaseMetaDTO;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
@@ -9,8 +8,6 @@ import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.RepositoryObjectType;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -50,6 +47,7 @@ public class RepositoryUtil {
         TransMeta res = null;
         if (!repo.getRepositoryTransDelegate().existsTransMeta(CSVFILE_STEPS_TRANSFORMTION_NAME,dir, RepositoryObjectType.TRANSFORMATION)) {
             res = new TransMeta();
+            res.setRepositoryDirectory(dir);
             res.setName(CSVFILE_STEPS_TRANSFORMTION_NAME);
             repo.getRepositoryTransDelegate().saveTransformation(res,"initial",null,true);
         }
@@ -103,6 +101,27 @@ public class RepositoryUtil {
         StepMeta stepMeta = trans.getStep(stepIndex);
 
         return stepMeta;
+    }
+
+    static public synchronized StepMeta addStep(CustomRepository repo, String dirObjId, StepMeta stepMeta) {
+        // /trans/1/step/2
+        TransMeta trans = null;
+        try {
+            RepositoryDirectoryInterface dir = getDirectory(repo, new LongObjectId(Long.valueOf(dirObjId)));
+            trans = provideTransformation(repo, dir, stepMeta);
+            int insertIndex = trans.getSteps().size();
+            trans.addStep(insertIndex,stepMeta);
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return stepMeta;
+    }
+
+    private static TransMeta provideTransformation(CustomRepository repo, RepositoryDirectoryInterface dir, StepMeta stepMeta) throws KettleException {
+        if ("CsvInput".equals(stepMeta.getStepID()))
+            return provideCSVFileTransformation(repo,dir);
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
     static public DatabaseMeta getDatabase(CustomRepository repo, String pathID) {

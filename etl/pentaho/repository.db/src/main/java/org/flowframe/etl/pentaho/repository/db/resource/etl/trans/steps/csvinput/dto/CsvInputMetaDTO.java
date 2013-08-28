@@ -16,6 +16,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class CsvInputMetaDTO extends BaseDTO {
+    private String name;
+
     private String filename;
 
     private String filenameField;
@@ -91,6 +93,14 @@ public class CsvInputMetaDTO extends BaseDTO {
         this.runningInParallel = runningInParallel;
         this.encoding = encoding;
         this.newlinePossibleInFields = newlinePossibleInFields;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFilename() {

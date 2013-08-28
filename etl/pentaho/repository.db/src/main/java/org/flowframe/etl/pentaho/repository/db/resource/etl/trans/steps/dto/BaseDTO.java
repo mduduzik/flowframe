@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 abstract public class BaseDTO implements Serializable {
 
+    private String subDirObjId;
+
     public String toJSON() {
         JSONSerializer serializer = new JSONSerializer();
         return serializer.deepSerialize(this);
@@ -23,5 +25,13 @@ abstract public class BaseDTO implements Serializable {
         String thisJson = toJSON();
         JSONDeserializer metaDeserializer = new JSONDeserializer();
         return metaDeserializer.deserialize(thisJson,type);
+    }
+
+    public String getSubDirObjId() {
+        return subDirObjId;
+    }
+
+    public void setSubDirObjId(String subDirObjId) {
+        this.subDirObjId = subDirObjId;
     }
 }

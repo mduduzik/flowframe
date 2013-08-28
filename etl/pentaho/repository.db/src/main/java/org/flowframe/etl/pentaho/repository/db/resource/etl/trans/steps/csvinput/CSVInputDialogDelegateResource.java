@@ -65,6 +65,7 @@ import java.util.*;
 @Path("/csvinput")
 public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     private static Class<?> PKG = CsvInput.class;
+    private static PluginRegistry registry = PluginRegistry.getInstance();;
     private TextFileInputField[] cachedInputFields;
 
 
@@ -139,6 +140,25 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
         return res.toString();*/
     }
+
+    @Path("/add")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String onAdd(@HeaderParam("userid") String userid,
+                        CsvInputMetaDTO metaDTO_) throws Exception {
+        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
+        String csvInputPid = registry.getPluginId(StepPluginType.class, meta_);
+        StepMeta csvInputStep = new StepMeta(csvInputPid, metaDTO_.getName(), meta_);
+        csvInputStep = RepositoryUtil.addStep(repository,metaDTO_.getSubDirObjId(),csvInputStep);
+
+        meta_ = (CsvInputMeta)csvInputStep.getStepMetaInterface();
+        meta_.setFilename(metaDTO_.getFileEntryId());
+
+        CsvInputMetaDTO dto = new CsvInputMetaDTO(meta_);
+        return dto.toJSON();
+    }
+
 
 
     @Path("/uploadsample")
@@ -995,9 +1015,6 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         //
         TransMeta transMeta = new TransMeta();
         transMeta.setName(oneStepname + "TransMeta");
-
-
-        PluginRegistry registry = PluginRegistry.getInstance();
 
         //
         // create an injector step...
