@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Implementation-ProductID: pdi-ce
+Implementation-Version: 1.2.8
+Built-By: Mduduzi
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: Pentaho Corporation
+Bundle-Version: 1.2.8
+Build-Jdk: 1.6.0_45
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-library-libformu
+ la
+Import-Package: org.apache.commons.logging;version="1.1"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

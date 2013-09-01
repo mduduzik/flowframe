@@ -7,13 +7,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.lowagie:itext:2.1.7" level="project" />
-    <orderEntry type="library" name="Maven: com.lowagie:itext-rtf:2.1.7" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libformula:1.2.8" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />

@@ -73,6 +73,10 @@
         <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/core/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/commons-math/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/pentaho/libbase/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/pentaho/libformula/pom.xml" />
       </list>
     </option>
   </component>

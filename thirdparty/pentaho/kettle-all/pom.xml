@@ -78,44 +78,16 @@
             <version>${wrapped.version}</version>
         </dependency>
         <dependency>
-            <groupId>pentaho</groupId>
-            <artifactId>pentaho-metadata</artifactId>
-            <version>3.4.6</version>
-            <exclusions>
-                <exclusion>
-                   <groupId>jug-lgpl</groupId>
-                    <artifactId>jug-lgpl</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans</groupId>
-                    <artifactId>jmi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans</groupId>
-                    <artifactId>jmiutils</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans</groupId>
-                    <artifactId>mdrapi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans</groupId>
-                    <artifactId>mof</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans</groupId>
-                    <artifactId>openide-util</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans</groupId>
-                    <artifactId>nbmdr</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>com.pentaho</groupId>
             <artifactId>kettle-test</artifactId>
             <version>${wrapped.version}</version>
+        </dependency>
+
+        <!-- Ext -->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>com.springsource.com.thoughtworks.xstream</artifactId>
+            <version>1.4.1</version>
         </dependency>
     </dependencies>
 

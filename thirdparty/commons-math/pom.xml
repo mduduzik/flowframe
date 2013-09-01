@@ -7,74 +7,73 @@
 		<version>0.0.1</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>org.flowframe.thirdparty.itext</artifactId>
-	<version>2.1.7</version>
+	<artifactId>org.flowframe.thirdparty.commons-math</artifactId>
+	<version>1.1</version>
+	<name>org.flowframe.thirdparty.commons-math</name>
+	<repositories>
+		<repository>
+			<id>jvnet-nexus-snapshots</id>
+			<name>Java.net Nexus Snapshots Repository</name>
+			<url>https://maven.java.net/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>org.highsource.repository.maven2.releases</id>
+			<name>http://repository.highsource.org/maven2/releases/</name>
+			<url>http://repository.highsource.org/maven2/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>org.highsource.repository.maven2.snapshots</id>
+			<name>http://repository.highsource.org/maven2/snapshots/</name>
+			<url>http://repository.highsource.org/maven2/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<version>2.1.7</version>
-			<exclusions>
-				<exclusion>
-					<groupId>bouncycastle</groupId>
-					<artifactId>bcmail-jdk14</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>bouncycastle</groupId>
-					<artifactId>bcprov-jdk14</artifactId>
-				</exclusion>	
-				<exclusion>
-					<groupId>bouncycastle</groupId>
-					<artifactId>bctsp-jdk14</artifactId>
-				</exclusion>	
-				<exclusion>
-					<groupId>bouncycastle</groupId>
-					<artifactId>bcprov-jdk14</artifactId>
-				</exclusion>														
-			</exclusions>
+			<groupId>commons-math</groupId>
+			<artifactId>commons-math</artifactId>
+			<version>1.1</version>
 		</dependency>
-        <dependency>
-            <groupId>com.lowagie</groupId>
-            <artifactId>itext-rtf</artifactId>
-            <version>2.1.7</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>bouncycastle</groupId>
-                    <artifactId>bcmail-jdk14</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>bouncycastle</groupId>
-                    <artifactId>bcprov-jdk14</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>bouncycastle</groupId>
-                    <artifactId>bctsp-jdk14</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>bouncycastle</groupId>
-                    <artifactId>bcprov-jdk14</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.4</version>
+				<version>1.6</version>
 				<executions>
 					<execution>
+						<phase>package</phase>
 						<goals>
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<!--<createSourcesJar>true</createSourcesJar> -->
-							<artifactSet>
-								<includes>
-									<include>*:*</include>
-								</includes>
-							</artifactSet>
+							<createSourcesJar>false</createSourcesJar>
+							<filters>
+								<filter>
+									<artifact>commons-math:commons-math</artifact>
+									<includes>
+										<include>**</include>
+									</includes>
+								</filter>
+							</filters>
 						</configuration>
 					</execution>
 				</executions>

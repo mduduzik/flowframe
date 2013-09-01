@@ -1,0 +1,8 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-library-libbase
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.2.8
+Implementation-Version: 1.2.8
+Specification-Version: 1
+Implementation-Vendor: Pentaho Corporation
+Implementation-ProductID: pdi-ce
+Import-Package: org.apache.commons.logging;version="1.1"

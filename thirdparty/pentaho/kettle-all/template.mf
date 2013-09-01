@@ -1,4 +1,4 @@
-Bundle-SymbolicName: com.conx.bi.thirdparty.kettle-all
+Bundle-SymbolicName: org.flowframe.thirdparty.kettle-all
 Bundle-ManifestVersion: 2
 Bundle-Version: 4.4.0
 Implementation-Title: Pentaho Data Integration Engine

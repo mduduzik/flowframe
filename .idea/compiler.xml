@@ -105,6 +105,7 @@
         <module name="org.flowframe.thirdparty.com.mysql.jdbc" />
         <module name="org.flowframe.thirdparty.commons-compress" />
         <module name="org.flowframe.thirdparty.commons-exec" />
+        <module name="org.flowframe.thirdparty.commons-math" />
         <module name="org.flowframe.thirdparty.drools-core" />
         <module name="org.flowframe.thirdparty.drools-persistence" />
         <module name="org.flowframe.thirdparty.flexjson" />
@@ -131,6 +132,9 @@
         <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized" />
         <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests" />
         <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi" />
+        <module name="org.flowframe.thirdparty.pentaho-library-libbase" />
+        <module name="org.flowframe.thirdparty.pentaho-library-libformula" />
+        <module name="org.flowframe.thirdparty.pentaho-metadata" />
         <module name="org.flowframe.thirdparty.spring-vaadin-integration" />
         <module name="org.flowframe.thirdparty.stripe-java" />
         <module name="org.flowframe.thirdparty.vaadin" />
@@ -276,6 +280,7 @@
       <module name="org.flowframe.thirdparty.com.mysql.jdbc" target="1.6" />
       <module name="org.flowframe.thirdparty.commons-compress" target="1.6" />
       <module name="org.flowframe.thirdparty.commons-exec" target="1.6" />
+      <module name="org.flowframe.thirdparty.commons-math" target="1.6" />
       <module name="org.flowframe.thirdparty.drools-core" target="1.6" />
       <module name="org.flowframe.thirdparty.drools-persistence" target="1.6" />
       <module name="org.flowframe.thirdparty.flexjson" target="1.6" />
@@ -304,6 +309,9 @@
       <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests" target="1.6" />
       <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized" target="1.6" />
       <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho-library-libbase" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho-library-libformula" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho-metadata" target="1.6" />
       <module name="org.flowframe.thirdparty.spring-vaadin-integration" target="1.6" />
       <module name="org.flowframe.thirdparty.stripe-java" target="1.6" />
       <module name="org.flowframe.thirdparty.vaadin" target="1.6" />
