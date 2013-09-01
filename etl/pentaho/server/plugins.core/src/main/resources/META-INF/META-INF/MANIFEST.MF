@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.etl.pentaho.server.plugins.core;version=
+ "0.0.1";uses:="org.pentaho.di.core.plugins"
+Bundle-ClassPath: .,WEB-INF/classes
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: ETL Server Core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.etl.pentaho.server.plugins.core
+Import-Package: org.pentaho.di.core.plugins;version="[4.3,5.0)"
+

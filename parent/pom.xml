@@ -2525,6 +2525,16 @@
 	</dependencies>
 
 	<repositories>
+        <repository>
+            <id>pentaho</id>
+            <name>pentaho</name>
+            <url>http://repository.pentaho.org/artifactory/pentaho</url>
+        </repository>
+        <repository>
+            <id>EclipseRT</id>
+            <name>EclipseRT</name>
+            <url>http://build.eclipse.org/rt/virgo/maven/bundles/release/</url>
+        </repository>
 		<repository>
 			<id>org.eclipse.build.rt.virgo.bundles.snapshots</id>
 			<name>Eclipse Virgo Snapshot Repository</name>
@@ -2695,7 +2705,7 @@
             <id>ncimvn</id>
             <name>ncimvn</name>
             <url>https://ncimvn.nci.nih.gov/nexus/content/repositories/public</url>
-        </repository>        
+        </repository>
 	</repositories>
 
 	<pluginRepositories>

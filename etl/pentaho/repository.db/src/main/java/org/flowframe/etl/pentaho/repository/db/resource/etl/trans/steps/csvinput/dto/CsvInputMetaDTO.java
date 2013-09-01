@@ -56,6 +56,7 @@ public class CsvInputMetaDTO extends BaseDTO {
     }
 
     public CsvInputMetaDTO(CsvInputMeta csvInput) {
+        setName(csvInput.getName());
         setFilename(csvInput.getFilename());
         setFilenameField(csvInput.getFilenameField());
         setIncludingFilename(csvInput.isIncludingFilename());

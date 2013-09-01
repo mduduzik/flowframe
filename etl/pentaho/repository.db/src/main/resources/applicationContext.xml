@@ -64,20 +64,20 @@
     </bean>
 
     <!-- Repo Impl -->
-    <bean id="dbRepoImpl" class="org.flowframe.etl.pentaho.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton"/>
+    <bean id="dbRepoImpl" class="org.flowframe.etl.pentaho.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton"/>
 
 
     <!--
         DAO's
     -->
-    <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseMetaResource" scope="request"/>
-    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.db.resource.DatabaseTypeResource" scope="request"/>
-    <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.repository.db.resource.RepositoryExplorerResource" scope="request"/>
-    <bean id="charSet" class="org.flowframe.etl.pentaho.repository.db.resource.reference.CharsetEncodingResource" scope="request"/>
+    <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.repository.DatabaseMetaResource" scope="request"/>
+    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.repository.DatabaseTypeResource" scope="request"/>
+    <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.repository.RepositoryExplorerResource" scope="request"/>
+    <bean id="charSet" class="org.flowframe.etl.pentaho.repository.CharsetEncodingResource" scope="request"/>
     <!--
        CSVInput
     -->
-    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource" scope="request"/>
+    <bean class="org.flowframe.etl.pentaho.repository.CSVInputDialogDelegateResource" scope="request"/>
 
 
 

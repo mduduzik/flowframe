@@ -12,5 +12,6 @@
     <modules>
         <!-- <module>transformation.kettle.impl</module> -->
         <module>repository.db</module>
+        <module>server.springdm</module>
     </modules>
 </project>

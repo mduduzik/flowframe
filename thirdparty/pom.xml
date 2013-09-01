@@ -57,5 +57,6 @@
 		<module>vaadin-addon-refresher</module>
 		<module>stripe-java</module>
 		<module>vaadin-addon-mvp-phakama</module>
-	</modules>
+        <module>pentaho</module>
+    </modules>
 </project>

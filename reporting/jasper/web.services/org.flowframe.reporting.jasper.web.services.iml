@@ -23,6 +23,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.reporting.remote.services:0.0.1" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.reporting.remote.services" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.aop:3.1.3.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.aopalliance:com.springsource.org.aopalliance:1.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.beans:3.1.3.RELEASE" level="project" />

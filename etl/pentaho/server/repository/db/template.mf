@@ -1,0 +1,40 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Pentaho PDI Repository DB
+Bundle-SymbolicName: org.flowframe.etl.pentaho.server.repository.db
+Bundle-ClassPath: .,WEB-INF/classes
+Web-ContextPath: /etlrepo
+Import-Library: org.springframework.spring;version="[3.1, 3.2)"
+Import-Package: javax.servlet;version="[3.0.0, 3.1.0)",
+  javax.servlet.http;version="[3.0.0,3.1.0)",
+  javax.servlet.jsp.jstl.core;version="[1.2.0,2.2.0)",
+  org.eclipse.virgo.web.dm;version="[3.0.0, 4.0.0)",
+  org.springframework.format.annotation;version="[3.1,3.2)",
+  org.springframework.transaction.jta;version="[3.1,3.2)",
+  org.springframework.beans.factory.annotation;version="[3.1,3.2)",
+  org.springframework.core.io;version="[3.1,3.2)",
+  org.springframework.dao;version="[3.1,3.2)",
+  org.springframework.jdbc.core;version="[3.1,3.2)",
+  org.springframework.dao.annotation;version="[3.1,3.2)",
+  org.springframework.orm.jpa;version="[3.1,3.2)",
+  org.springframework.orm.jpa.vendor;version="[3.1,3.2)",
+  org.springframework.stereotype;version="[3.1,3.2)",
+  org.springframework.transaction;version="[3.1,3.2)",
+  org.springframework.transaction.annotation;version="[3.1,3.2)",
+  org.springframework.context.weaving;version="[3.1,3.2)",
+  org.springframework.transaction.aspectj;version="[3.1,3.2)",
+  org.springframework.aop;version="[3.1,3.2)",
+  org.springframework.aop.scope;version="[3.1,3.2)",
+  org.springframework.aop.framework;version="[3.1,3.2)",
+  org.springframework.beans.factory;version="[3.1,3.2)",
+  org.springframework.beans.factory.config;version="[3.1,3.2)",
+  org.springframework.orm.jpa.persistenceunit;version="[3.1,3.2)",
+  org.springframework.context;version="[3.1,3.2)",
+  org.springframework.orm.jpa.support;version="[3.1,3.2)",
+  net.sf.cglib.proxy;version="2.2.0",
+  net.sf.cglib.core;version="2.2.0",
+  net.sf.cglib.reflect;version="2.2.0",
+  org.aspectj.lang;version="0",
+  org.aopalliance.aop;version="1.0.0",
+  org.jsoup;version="1.5.2",
+  javassist.util.proxy;version="3.12.0.GA"

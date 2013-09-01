@@ -15,6 +15,7 @@ import java.io.Serializable;
 abstract public class BaseDTO implements Serializable {
 
     private String subDirObjId;
+    private String pathId;
 
     public String toJSON() {
         JSONSerializer serializer = new JSONSerializer();
@@ -33,5 +34,13 @@ abstract public class BaseDTO implements Serializable {
 
     public void setSubDirObjId(String subDirObjId) {
         this.subDirObjId = subDirObjId;
+    }
+
+    public String getPathId() {
+        return pathId;
+    }
+
+    public void setPathId(String pathId) {
+        this.pathId = pathId;
     }
 }

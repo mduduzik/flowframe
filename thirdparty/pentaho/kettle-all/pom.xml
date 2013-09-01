@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>org.flowframe.thirdparty.pentaho</artifactId>
+        <groupId>org.flowframe</groupId>
+        <version>0.0.1</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>org.flowframe.thirdparty.pentaho.kettle-all</artifactId>
+    <version>4.4.0</version>
+    <properties>
+        <wrapped.version>4.4.0</wrapped.version>
+    </properties>
+
+
+    <dependencies>
+        <!-- Prereqs -->
+        <!-- <dependency> <groupId>org.codehaus.woodstox</groupId> <artifactId>com.springsource.com.ctc.wstx</artifactId>
+            <version>3.2.8</version> </dependency> <dependency> <groupId>com.sun.msv</groupId>
+            <artifactId>com.springsource.com.sun.msv</artifactId> <version>0.0.0.20081113</version>
+            </dependency> <dependency> <groupId>net.sourceforge.iso-relax</groupId> <artifactId>com.springsource.org.iso_relax.verifier</artifactId>
+            <version>0.0.0.20041111</version> </dependency> <dependency> <groupId>com.sun.msv</groupId>
+            <artifactId>com.springsource.com.sun.msv.datatype</artifactId> <version>0.0.0.20060615</version>
+            </dependency> <dependency> <groupId>org.relaxng</groupId> <artifactId>com.springsource.org.relaxng.datatype</artifactId>
+            <version>1.0.0</version> </dependency> <dependency> <groupId>org.mortbay.jetty</groupId>
+            <artifactId>com.springsource.org.mortbay.jetty.server</artifactId> <version>6.1.9</version>
+            </dependency> <dependency> <groupId>javax.servlet</groupId> <artifactId>com.springsource.javax.servlet</artifactId>
+            <version>2.5.0</version> </dependency>
+
+                    <dependency>
+            <groupId>net.sourceforge.ehcache</groupId>
+            <artifactId>com.springsource.net.sf.ehcache</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+<dependency>
+    <groupId>org.apache.bsf</groupId>
+    <artifactId>com.springsource.org.apache.bsf</artifactId>
+    <version>2.4.0</version>
+    <dependency>
+    <groupId>org.codehaus.btm</groupId>
+    <artifactId>com.springsource.org.codehaus.btm</artifactId>
+    <version>1.3.3</version>
+</dependency>
+</dependency>
+<dependency>
+    <groupId>org.mozilla.javascript</groupId>
+    <artifactId>com.springsource.org.mozilla.javascript</artifactId>
+    <version>1.7.0.R2</version>
+</dependency>
+<dependency>
+    <groupId>org.beanshell</groupId>
+    <artifactId>com.springsource.bsh</artifactId>
+    <version>2.0.0.b4</version>
+</dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>com.springsource.org.mortbay.jetty.server</artifactId>
+            <version>6.1.9</version>
+        </dependency>
+        -->
+        <!-- Libs : kettle -->
+        <dependency>
+            <groupId>com.pentaho</groupId>
+            <artifactId>kettle-core</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pentaho</groupId>
+            <artifactId>kettle-engine</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pentaho</groupId>
+            <artifactId>kettle-db</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho</groupId>
+            <artifactId>pentaho-metadata</artifactId>
+            <version>3.4.6</version>
+            <exclusions>
+                <exclusion>
+                   <groupId>jug-lgpl</groupId>
+                    <artifactId>jug-lgpl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.netbeans</groupId>
+                    <artifactId>jmi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.netbeans</groupId>
+                    <artifactId>jmiutils</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.netbeans</groupId>
+                    <artifactId>mdrapi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.netbeans</groupId>
+                    <artifactId>mof</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.netbeans</groupId>
+                    <artifactId>openide-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.netbeans</groupId>
+                    <artifactId>nbmdr</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.pentaho</groupId>
+            <artifactId>kettle-test</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createSourcesJar>true</createSourcesJar>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.springsource.bundlor</groupId>
+                <artifactId>com.springsource.bundlor.maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-manifest</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+                            <outputPath>${basedir}/src/main/resources</outputPath>
+                            <!-- used to properly set-up versions for system packages -->
+                            <osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-bundle</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+                            <outputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</outputPath>
+                            <!-- used to properly set-up versions for system packages -->
+                            <osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

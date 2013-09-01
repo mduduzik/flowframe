@@ -65,7 +65,7 @@ import java.util.*;
 @Path("/csvinput")
 public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     private static Class<?> PKG = CsvInput.class;
-    private static PluginRegistry registry = PluginRegistry.getInstance();;
+    private static PluginRegistry registry = PluginRegistry.getInstance();
     private TextFileInputField[] cachedInputFields;
 
 
@@ -86,11 +86,15 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     @Path("/onedit")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws JSONException {
+    public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws Exception {
         CsvInputMeta res = (CsvInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
 
         //-- Return copy of actual metadata on startup
         CsvInputMetaDTO dto = new CsvInputMetaDTO(res);
+        FileEntry fe = ecmService.getFileEntryById(res.getFilename());
+        dto.setFilename(fe.getName());
+        dto.setFileEntryId(fe.getFileEntryId()+"");
+
         return dto.toJSON();
     }
 
@@ -148,14 +152,17 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     public String onAdd(@HeaderParam("userid") String userid,
                         CsvInputMetaDTO metaDTO_) throws Exception {
         CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
+        meta_.setFilename(metaDTO_.getFileEntryId());
         String csvInputPid = registry.getPluginId(StepPluginType.class, meta_);
         StepMeta csvInputStep = new StepMeta(csvInputPid, metaDTO_.getName(), meta_);
-        csvInputStep = RepositoryUtil.addStep(repository,metaDTO_.getSubDirObjId(),csvInputStep);
+        String pathID = RepositoryUtil.addStep(repository,metaDTO_.getSubDirObjId(),csvInputStep);
 
         meta_ = (CsvInputMeta)csvInputStep.getStepMetaInterface();
         meta_.setFilename(metaDTO_.getFileEntryId());
 
         CsvInputMetaDTO dto = new CsvInputMetaDTO(meta_);
+        dto.setPathId(pathID);
+
         return dto.toJSON();
     }
 

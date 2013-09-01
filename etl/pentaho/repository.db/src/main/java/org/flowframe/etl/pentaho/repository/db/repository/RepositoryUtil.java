@@ -103,23 +103,34 @@ public class RepositoryUtil {
         return stepMeta;
     }
 
-    static public synchronized StepMeta addStep(CustomRepository repo, String dirObjId, StepMeta stepMeta) {
+    static public synchronized String addStep(CustomRepository repo, String dirObjId, StepMeta stepMeta) {
         // /trans/1/step/2
         TransMeta trans = null;
+        String pathId = null;
         try {
             RepositoryDirectoryInterface dir = getDirectory(repo, new LongObjectId(Long.valueOf(dirObjId)));
-            trans = provideTransformation(repo, dir, stepMeta);
+            trans = provideTransformation(repo, dir, stepMeta.getStepID());
             int insertIndex = trans.getSteps().size();
+
+            //Check for name colusion
+            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo,dir,stepMeta.getStepID(),stepMeta.getName());
+            if (nameExists)
+                stepMeta.setName(stepMeta.getName()+"-"+insertIndex);
+
             trans.addStep(insertIndex,stepMeta);
+
+            repo.getRepositoryTransDelegate().saveTransformation(trans,"added step",null,true);
+
+            pathId = generatePathID(stepMeta,insertIndex);
         } catch (KettleException e) {
             throw new IllegalArgumentException(e);
         }
 
-        return stepMeta;
+        return pathId;
     }
 
-    private static TransMeta provideTransformation(CustomRepository repo, RepositoryDirectoryInterface dir, StepMeta stepMeta) throws KettleException {
-        if ("CsvInput".equals(stepMeta.getStepID()))
+    public static TransMeta provideTransformation(CustomRepository repo, RepositoryDirectoryInterface dir, String stepInputPid) throws KettleException {
+        if ("CsvInput".equals(stepInputPid))
             return provideCSVFileTransformation(repo,dir);
         return null;  //To change body of created methods use File | Settings | File Templates.
     }

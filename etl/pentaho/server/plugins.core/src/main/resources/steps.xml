@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<steps>
+  <step id="ExcelInput">
+    <description>ExcelInput</description>
+    <service classname="org.flowframe.etl.trans.meta.CSVMeta"></service>
+    <category id="Metadata.CSV" title="CSV"></category>
+    <tooltip>i18n:org.pentaho.di.trans.step:BaseStep.TypeTooltipDesc.ExcelInput</tooltip>
+    <iconfile>ui/images/XLI.png</iconfile>
+  </step>
+
+  <step id="CsvInput">
+    <description>i18n:org.pentaho.di.trans.step:BaseStep.TypeLongDesc.CsvInput</description>
+    <classname>org.pentaho.di.trans.steps.csvinput.CsvInputMeta</classname>
+    <category>i18n:org.pentaho.di.trans.step:BaseStep.Category.Input</category>
+    <tooltip>i18n:org.pentaho.di.trans.step:BaseStep.TypeTooltipDesc.CsvInput</tooltip>
+    <iconfile>ui/images/TFI.png</iconfile>
+  </step>
+</steps>
