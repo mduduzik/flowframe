@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/org.flowframe.bpm.iml" filepath="$PROJECT_DIR$/bpm/org.flowframe.bpm.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/jbpm/org.flowframe.bpm.jbpm.iml" filepath="$PROJECT_DIR$/bpm/jbpm/org.flowframe.bpm.jbpm.iml" />
@@ -135,6 +136,7 @@
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jbpm-human-task-mina/org.flowframe.thirdparty.jbpm-human-task-mina.iml" filepath="$PROJECT_DIR$/thirdparty/jbpm-human-task-mina/org.flowframe.thirdparty.jbpm-human-task-mina.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa/org.flowframe.thirdparty.jbpm-persistence-jpa.iml" filepath="$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa/org.flowframe.thirdparty.jbpm-persistence-jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jbpm-workitems/org.flowframe.thirdparty.jbpm-workitems.iml" filepath="$PROJECT_DIR$/thirdparty/jbpm-workitems/org.flowframe.thirdparty.jbpm-workitems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/knowledge-api/org.flowframe.thirdparty.knowledge-api.iml" filepath="$PROJECT_DIR$/thirdparty/knowledge-api/org.flowframe.thirdparty.knowledge-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/knowledge-internal-api/org.flowframe.thirdparty.knowledge-internal-api.iml" filepath="$PROJECT_DIR$/thirdparty/knowledge-internal-api/org.flowframe.thirdparty.knowledge-internal-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/netty/org.flowframe.thirdparty.netty.iml" filepath="$PROJECT_DIR$/thirdparty/netty/org.flowframe.thirdparty.netty.iml" />
@@ -144,9 +146,20 @@
       <module fileurl="file://$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-tests/org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests.iml" filepath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-tests/org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/org.flowframe.thirdparty.org.vaadin.addons.mvp-customized.iml" filepath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/org.flowframe.thirdparty.org.vaadin.addons.mvp-customized.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-osgi/org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi.iml" filepath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-osgi/org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/libbase/org.flowframe.thirdparty.pentaho-library-libbase.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/libbase/org.flowframe.thirdparty.pentaho-library-libbase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/libformula/org.flowframe.thirdparty.pentaho-library-libformula.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/libformula/org.flowframe.thirdparty.pentaho-library-libformula.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libbase/org.flowframe.thirdparty.pentaho-library-libbase.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libbase/org.flowframe.thirdparty.pentaho-library-libbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula/org.flowframe.thirdparty.pentaho-library-libformula.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula/org.flowframe.thirdparty.pentaho-library-libformula.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata/org.flowframe.thirdparty.pentaho-metadata.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata/org.flowframe.thirdparty.pentaho-metadata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libdocbundle/org.flowframe.thirdparty.pentaho.libdocbundle.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libdocbundle/org.flowframe.thirdparty.pentaho.libdocbundle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library/org.flowframe.thirdparty.pentaho.reporting.engine-library.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library/org.flowframe.thirdparty.pentaho.reporting.engine-library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libfonts/org.flowframe.thirdparty.pentaho.reporting.libfonts.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libfonts/org.flowframe.thirdparty.pentaho.reporting.libfonts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libformat/org.flowframe.thirdparty.pentaho.reporting.libformat.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformat/org.flowframe.thirdparty.pentaho.reporting.libformat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula-ui/org.flowframe.thirdparty.pentaho.reporting.libformula-ui.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula-ui/org.flowframe.thirdparty.pentaho.reporting.libformula-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libloader/org.flowframe.thirdparty.pentaho.reporting.libloader.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libloader/org.flowframe.thirdparty.pentaho.reporting.libloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libpixie/org.flowframe.thirdparty.pentaho.reporting.libpixie.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libpixie/org.flowframe.thirdparty.pentaho.reporting.libpixie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/librepository/org.flowframe.thirdparty.pentaho.reporting.librepository.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/librepository/org.flowframe.thirdparty.pentaho.reporting.librepository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libserializer/org.flowframe.thirdparty.pentaho.reporting.libserializer.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libserializer/org.flowframe.thirdparty.pentaho.reporting.libserializer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing/org.flowframe.thirdparty.pentaho.reporting.libswing.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing/org.flowframe.thirdparty.pentaho.reporting.libswing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml/org.flowframe.thirdparty.pentaho.reporting.libxml.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml/org.flowframe.thirdparty.pentaho.reporting.libxml.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/spring-vaadin/org.flowframe.thirdparty.spring-vaadin-integration.iml" filepath="$PROJECT_DIR$/thirdparty/spring-vaadin/org.flowframe.thirdparty.spring-vaadin-integration.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/stripe-java/org.flowframe.thirdparty.stripe-java.iml" filepath="$PROJECT_DIR$/thirdparty/stripe-java/org.flowframe.thirdparty.stripe-java.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/vaadin686/org.flowframe.thirdparty.vaadin.iml" filepath="$PROJECT_DIR$/thirdparty/vaadin686/org.flowframe.thirdparty.vaadin.iml" />
@@ -187,6 +200,7 @@
       <module fileurl="file://$PROJECT_DIR$/uilegacy/vaadin/forms/org.flowframe.uilegacy.vaadin.forms.iml" filepath="$PROJECT_DIR$/uilegacy/vaadin/forms/org.flowframe.uilegacy.vaadin.forms.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/pentaho.iml" />
       <module fileurl="file://$PROJECT_DIR$/permissions/permissions.iml" filepath="$PROJECT_DIR$/permissions/permissions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/reporting.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/reporting.iml" />
     </modules>
   </component>
 </project>

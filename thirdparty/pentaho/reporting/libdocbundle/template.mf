@@ -1,0 +1,24 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho.reporting.libdocbundle
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.2.8
+Import-Package: javax.mail;version="0",
+ javax.mail.internet;version="0",
+ javax.mail.util;version="0",
+ org.apache.commons.logging;version="0",
+ org.pentaho.reporting.libraries.base.boot;version="1.2.8",
+ org.pentaho.reporting.libraries.base.config;version="1.2.8",
+ org.pentaho.reporting.libraries.base.util;version="1.2.8",
+ org.pentaho.reporting.libraries.base.versioning;version="1.2.8",
+ org.pentaho.reporting.libraries.repository;version="1.2.8",
+ org.pentaho.reporting.libraries.repository.file;version="1.2.8",
+ org.pentaho.reporting.libraries.repository.zip;version="1.2.8",
+ org.pentaho.reporting.libraries.repository.zipreader;version="1.2.8",
+ org.pentaho.reporting.libraries.repository.zipwriter;version="1.2.8",
+ org.pentaho.reporting.libraries.resourceloader;version="1.2.8",
+ org.pentaho.reporting.libraries.resourceloader.cache;version="1.2.8",
+ org.pentaho.reporting.libraries.resourceloader.loader;version="1.2.8",
+ org.pentaho.reporting.libraries.xmlns;version="1.2.8",
+ org.pentaho.reporting.libraries.xmlns.common;version="1.2.8",
+ org.pentaho.reporting.libraries.xmlns.parser;version="1.2.8",
+ org.pentaho.reporting.libraries.xmlns.writer;version="1.2.8"
+

@@ -22,7 +22,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="distribution" />
         <module name="kettle-all" />
+        <module name="org.flowframe..thirdparty.pentaho-reporting-engine-library" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libfonts" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libformat" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libformula-ui" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libloader" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libpixie" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.librepository" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libserializer" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libswing" />
+        <module name="org.flowframe..thirdparty.pentaho.reporting.libxml" />
         <module name="org.flowframe.bpm.jbpm.bpmserver" />
         <module name="org.flowframe.bpm.jbpm.bpmserver.persistence" />
         <module name="org.flowframe.bpm.jbpm.persistence.datasource" />
@@ -124,6 +135,7 @@
         <module name="org.flowframe.thirdparty.jbpm-human-task-mina" />
         <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" />
         <module name="org.flowframe.thirdparty.jbpm-workitems" />
+        <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
         <module name="org.flowframe.thirdparty.knowledge-api" />
         <module name="org.flowframe.thirdparty.knowledge-internal-api" />
         <module name="org.flowframe.thirdparty.netty" />
@@ -135,6 +147,17 @@
         <module name="org.flowframe.thirdparty.pentaho-library-libbase" />
         <module name="org.flowframe.thirdparty.pentaho-library-libformula" />
         <module name="org.flowframe.thirdparty.pentaho-metadata" />
+        <module name="org.flowframe.thirdparty.pentaho.libdocbundle" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.engine-library" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libfonts" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libformat" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libformula-ui" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libloader" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libpixie" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.librepository" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libserializer" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libswing" />
+        <module name="org.flowframe.thirdparty.pentaho.reporting.libxml" />
         <module name="org.flowframe.thirdparty.spring-vaadin-integration" />
         <module name="org.flowframe.thirdparty.stripe-java" />
         <module name="org.flowframe.thirdparty.vaadin" />
@@ -167,7 +190,18 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="distribution" target="1.6" />
       <module name="kettle-all" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho-reporting-engine-library" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libfonts" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libformat" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libformula-ui" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libloader" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libpixie" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.librepository" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libserializer" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libswing" target="1.6" />
+      <module name="org.flowframe..thirdparty.pentaho.reporting.libxml" target="1.6" />
       <module name="org.flowframe.bpm" target="1.6" />
       <module name="org.flowframe.bpm.jbpm" target="1.6" />
       <module name="org.flowframe.bpm.jbpm.bpmserver" target="1.6" />
@@ -300,6 +334,7 @@
       <module name="org.flowframe.thirdparty.jbpm-human-task-mina" target="1.6" />
       <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" target="1.6" />
       <module name="org.flowframe.thirdparty.jbpm-workitems" target="1.6" />
+      <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-api" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-internal-api" target="1.6" />
       <module name="org.flowframe.thirdparty.netty" target="1.6" />
@@ -312,6 +347,17 @@
       <module name="org.flowframe.thirdparty.pentaho-library-libbase" target="1.6" />
       <module name="org.flowframe.thirdparty.pentaho-library-libformula" target="1.6" />
       <module name="org.flowframe.thirdparty.pentaho-metadata" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.libdocbundle" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.engine-library" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libfonts" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libformat" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libformula-ui" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libloader" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libpixie" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.librepository" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libserializer" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libswing" target="1.6" />
+      <module name="org.flowframe.thirdparty.pentaho.reporting.libxml" target="1.6" />
       <module name="org.flowframe.thirdparty.spring-vaadin-integration" target="1.6" />
       <module name="org.flowframe.thirdparty.stripe-java" target="1.6" />
       <module name="org.flowframe.thirdparty.vaadin" target="1.6" />
@@ -350,6 +396,7 @@
       <module name="org.flowframe.uilegacy.vaadin.factory" target="1.6" />
       <module name="org.flowframe.uilegacy.vaadin.forms" target="1.6" />
       <module name="pentaho" target="1.6" />
+      <module name="reporting" target="1.6" />
       <module name="repository" target="1.6" />
     </bytecodeTargetLevel>
   </component>

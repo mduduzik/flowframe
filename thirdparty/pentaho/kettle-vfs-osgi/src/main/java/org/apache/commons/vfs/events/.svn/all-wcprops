@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/events
+END
+DeleteEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/events/DeleteEvent.java
+END
+CreateEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/events/CreateEvent.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/events/package.html
+END
+AbstractFileChangeEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/events/AbstractFileChangeEvent.java
+END
+ChangedEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/events/ChangedEvent.java
+END

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp
+END
+SftpClientFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpClientFactory.java
+END
+SftpFileSystemConfigBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpFileSystemConfigBuilder.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/package.html
+END
+SftpFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpFileProvider.java
+END
+TrustEveryoneUserInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/TrustEveryoneUserInfo.java
+END
+SftpFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpFileSystem.java
+END
+SftpFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpFileObject.java
+END
+SftpFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpFileNameParser.java
+END
+SftpRandomAccessContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/sftp/SftpRandomAccessContent.java
+END

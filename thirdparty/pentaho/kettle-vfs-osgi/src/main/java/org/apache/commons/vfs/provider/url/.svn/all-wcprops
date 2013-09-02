@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url/package.html
+END
+UrlFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url/UrlFileProvider.java
+END
+UrlFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url/UrlFileSystem.java
+END
+UrlFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url/UrlFileObject.java
+END
+UrlFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url/UrlFileName.java
+END
+UrlFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/url/UrlFileNameParser.java
+END

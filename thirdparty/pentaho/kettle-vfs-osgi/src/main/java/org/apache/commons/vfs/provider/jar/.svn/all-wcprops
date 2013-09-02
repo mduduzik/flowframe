@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/jar
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/jar/package.html
+END
+JarFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/jar/JarFileProvider.java
+END
+JarFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/jar/JarFileSystem.java
+END
+JarFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/jar/JarFileObject.java
+END
+JarURLConnectionImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/jar/JarURLConnectionImpl.java
+END

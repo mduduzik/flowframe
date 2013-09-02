@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram
+END
+RamFileSystemConfigBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileSystemConfigBuilder.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/package.html
+END
+RamFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileProvider.java
+END
+RamFileOutputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileOutputStream.java
+END
+RamFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileSystem.java
+END
+RamFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileObject.java
+END
+RamFileRandomAccessContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileRandomAccessContent.java
+END
+RamFileData.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/ram/RamFileData.java
+END

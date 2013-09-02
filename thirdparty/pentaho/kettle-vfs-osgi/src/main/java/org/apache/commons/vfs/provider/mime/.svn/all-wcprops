@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/mime
+END
+MimeFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/mime/MimeFileSystem.java
+END
+MimeFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/mime/MimeFileObject.java
+END
+MimeFileContentInfoFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/mime/MimeFileContentInfoFactory.java
+END
+MimeFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/mime/MimeFileProvider.java
+END
+MimeAttributesMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/mime/MimeAttributesMap.java
+END

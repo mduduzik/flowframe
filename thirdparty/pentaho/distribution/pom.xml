@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>org.flowframe.thirdparty.pentaho</artifactId>
+        <groupId>org.flowframe</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>org.flowframe.thirdparty.pentaho.distribution</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>bundles</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean plugins</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <tasks>
+                                <delete>
+                                    <fileset dir="bundles" includes="**/*.jar"
+                                             excludes="com.springsource.org.jgroups-2.2.8.jar, com.springsource.org.objectweb.asm-1.5.3.jar, **/.gitignore"/>
+                                </delete>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <!--                    <execution>
+                                            <id>copy to virgo repository</id>
+                                            <phase>package</phase>
+                                            <configuration>
+                                                <tasks>
+                                                    <copy todir="../virgo-bundles/repository/conxbi/administration">
+                                                        <filelist dir="dependencies">
+                                                            <file name="com.conx.bi.app.administration.dao.services-1.0.0.jar" />
+                                                            <file name="com.conx.bi.app.administration.dao.services.impl-1.0.0.jar" />
+                                                        </filelist>
+                                                    </copy>
+                                                </tasks>
+                                            </configuration>
+                                            <goals>
+                                                <goal>run</goal>
+                                            </goals>
+                                        </execution>-->
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.springsource.bundlor</groupId>
+                <artifactId>com.springsource.bundlor.maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-manifest</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>generate-bundle</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- -->
+    <dependencies>
+        <!-- Main -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.kettle-all</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho-metadata</artifactId>
+            <version>3.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.kettle-vfs-20100924-osgi</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <!-- Reporting -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho-library-libbase</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.libdocbundle</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libfonts</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libformat</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libformat</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho-library-libformula</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libformula-ui</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libloader</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libpixie</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.librepository</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libserializer</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libswing</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho.reporting.libxml</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.pentaho-reporting-engine-library</artifactId>
+            <version>3.9.1-GA</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

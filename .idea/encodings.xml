@@ -139,10 +139,24 @@
     <file url="file://$PROJECT_DIR$/thirdparty/org.jvnet.hyperjaxb3" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/org.springframework.orm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/distribution" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/libbase" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/libformula" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libbase" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libdocbundle" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libfonts" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libformat" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula-ui" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libloader" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libpixie" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/librepository" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libserializer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/spring-vaadin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/stripe-java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/vaadin-addon-contextmenu" charset="UTF-8" />

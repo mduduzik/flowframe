@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav
+END
+WebdavFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavFileObject.java
+END
+WebdavFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavFileSystem.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/package.html
+END
+WebdavFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavFileNameParser.java
+END
+WebdavFileSystemConfigBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavFileSystemConfigBuilder.java
+END
+WebdavMethodRetryHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavMethodRetryHandler.java
+END
+WebdavFileContentInfoFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavFileContentInfoFactory.java
+END
+WebdavFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/WebdavFileProvider.java
+END
+ExceptionConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/webdav/ExceptionConverter.java
+END

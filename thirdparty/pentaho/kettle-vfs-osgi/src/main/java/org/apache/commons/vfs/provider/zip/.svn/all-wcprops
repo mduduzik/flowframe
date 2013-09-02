@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/zip
+END
+ZipFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/zip/ZipFileProvider.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/zip/package.html
+END
+ZipFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/zip/ZipFileSystem.java
+END
+ZipFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/zip/ZipFileObject.java
+END

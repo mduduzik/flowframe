@@ -1,0 +1,10 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho.reporting.libpixie
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.2.4
+Import-Package: javax.mail;version="0",
+ javax.mail.internet;version="0",
+ javax.mail.util;version="0",
+ org.apache.commons.logging;version="0",
+ org.pentaho.reporting.libraries.base;version="1.2.8",
+ org.pentaho.reporting.libraries.base.util;version="1.2.8",
+ org.pentaho.reporting.libraries.base.versioning;version="1.2.8"

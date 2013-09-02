@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs
+END
+VcsUpdate.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsUpdate.java
+END
+VcsCheckout.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsCheckout.java
+END
+VcsRevert.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsRevert.java
+END
+readme.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/readme.html
+END
+VcsUpdateListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsUpdateListener.java
+END
+VcsLog.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsLog.java
+END
+VcsCommit.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsCommit.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/package.html
+END
+VcsAdd.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsAdd.java
+END
+VcsStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsStatus.java
+END
+VcsLogEntryHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsLogEntryHandler.java
+END
+VcsLogEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsLogEntry.java
+END
+VcsModifyListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsModifyListener.java
+END
+VcsCommitListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsCommitListener.java
+END
+VcsDelete.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/vcs/VcsDelete.java
+END

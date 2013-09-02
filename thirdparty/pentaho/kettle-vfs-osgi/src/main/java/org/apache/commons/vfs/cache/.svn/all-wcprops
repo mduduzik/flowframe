@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache
+END
+AbstractFilesCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/AbstractFilesCache.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/package.html
+END
+DefaultFilesCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/DefaultFilesCache.java
+END
+LRUFilesCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/LRUFilesCache.java
+END
+OnCallRefreshFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/OnCallRefreshFileObject.java
+END
+FileSystemAndNameKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/FileSystemAndNameKey.java
+END
+WeakRefFilesCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/WeakRefFilesCache.java
+END
+SoftRefFilesCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/SoftRefFilesCache.java
+END
+NullFilesCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/cache/NullFilesCache.java
+END

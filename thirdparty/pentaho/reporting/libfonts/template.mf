@@ -1,0 +1,17 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho.reporting.libfonts
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.2.8
+Import-Package: javax.mail;version="0",
+ javax.mail.internet;version="0",
+ javax.mail.util;version="0",
+ org.apache.commons.logging;version="0",
+ com.lowagie.text;version="[2.1.7,2.2)",
+ com.lowagie.text.pdf;version="[2.1.7,2.2)",
+ org.pentaho.reporting.libraries.base;version="1.2.8",
+ org.pentaho.reporting.libraries.base.boot;version="1.2.8",
+ org.pentaho.reporting.libraries.base.config;version="1.2.8",
+ org.pentaho.reporting.libraries.base.util;version="1.2.8",
+ org.pentaho.reporting.libraries.base.versioning;version="1.2.8",
+ org.pentaho.reporting.libraries.resourceloader;version="1.2.8",
+ org.pentaho.reporting.libraries.resourceloader.factory.property;version="1.2.8"
+

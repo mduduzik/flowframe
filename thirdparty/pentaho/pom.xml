@@ -12,6 +12,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>kettle-all</module>
+        <module>reporting</module>
+        <module>distribution</module>
     </modules>
     <artifactId>org.flowframe.thirdparty.pentaho</artifactId>
 </project>

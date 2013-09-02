@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/package.html
+END
+FileOperationProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/FileOperationProvider.java
+END
+FileOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/FileOperation.java
+END
+AbstractFileOperationProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/AbstractFileOperationProvider.java
+END
+AbstractFileOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/AbstractFileOperation.java
+END
+DefaultFileOperations.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/DefaultFileOperations.java
+END
+FileOperations.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/operations/FileOperations.java
+END

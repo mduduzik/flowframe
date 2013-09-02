@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local
+END
+GenericFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/GenericFileNameParser.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/package.html
+END
+LocalFileRandomAccessContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/LocalFileRandomAccessContent.java
+END
+WindowsFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/WindowsFileName.java
+END
+WindowsFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/WindowsFileNameParser.java
+END
+DefaultLocalFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/DefaultLocalFileProvider.java
+END
+LocalFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/LocalFile.java
+END
+LocalFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/LocalFileSystem.java
+END
+LocalFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/LocalFileName.java
+END
+LocalFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/local/LocalFileNameParser.java
+END

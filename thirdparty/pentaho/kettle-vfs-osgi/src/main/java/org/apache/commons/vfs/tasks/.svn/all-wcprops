@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks
+END
+SyncTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/SyncTask.java
+END
+DeleteTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/DeleteTask.java
+END
+ShowFileTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/ShowFileTask.java
+END
+tasks.properties
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/tasks.properties
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/package.html
+END
+CopyTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/CopyTask.java
+END
+antlib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/antlib.xml
+END
+VfsTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/VfsTask.java
+END
+MoveTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/MoveTask.java
+END
+MkdirTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/MkdirTask.java
+END
+AbstractSyncTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/tasks/AbstractSyncTask.java
+END

@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider
+END
+AbstractRandomAccessContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractRandomAccessContent.java
+END
+AbstractFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractFileProvider.java
+END
+HostFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/HostFileNameParser.java
+END
+FileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/FileProvider.java
+END
+AbstractFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractFileSystem.java
+END
+DefaultURLConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/DefaultURLConnection.java
+END
+DefaultFileSelectorInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/DefaultFileSelectorInfo.java
+END
+AbstractFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractFileNameParser.java
+END
+FileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/FileNameParser.java
+END
+GenericFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/GenericFileName.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/package.html
+END
+DefaultURLStreamHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/DefaultURLStreamHandler.java
+END
+DefaultFileContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/DefaultFileContent.java
+END
+FileReplicator.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/FileReplicator.java
+END
+LocalFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/LocalFileProvider.java
+END
+LayeredFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/LayeredFileName.java
+END
+URLFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/URLFileNameParser.java
+END
+FileSystemKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/FileSystemKey.java
+END
+AbstractOriginatingFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractOriginatingFileProvider.java
+END
+AbstractRandomAccessStreamContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractRandomAccessStreamContent.java
+END
+UriParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/UriParser.java
+END
+AbstractFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractFileName.java
+END
+DelegateFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/DelegateFileObject.java
+END
+AbstractVfsContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractVfsContainer.java
+END
+AbstractFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractFileObject.java
+END
+AbstractVfsComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractVfsComponent.java
+END
+AbstractLayeredFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/AbstractLayeredFileProvider.java
+END
+VfsComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/VfsComponent.java
+END
+LayeredFileNameParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/LayeredFileNameParser.java
+END
+URLFileName.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/URLFileName.java
+END
+VfsComponentContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/VfsComponentContext.java
+END
+TemporaryFileStore.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/TemporaryFileStore.java
+END
+CompositeFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/CompositeFileProvider.java
+END
+FileContentThreadData.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/FileContentThreadData.java
+END

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2
+END
+Bzip2FileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/Bzip2FileProvider.java
+END
+Bzip2FileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/Bzip2FileSystem.java
+END
+Bzip2FileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/Bzip2FileObject.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/package.html
+END
+BZip2Constants.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/BZip2Constants.java
+END
+CBZip2InputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/CBZip2InputStream.java
+END
+CRC.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/CRC.java
+END
+CBZip2OutputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/bzip2/CBZip2OutputStream.java
+END

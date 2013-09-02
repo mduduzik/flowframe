@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/compressed
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/compressed/package.html
+END
+CompressedFileFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/compressed/CompressedFileFileProvider.java
+END
+CompressedFileFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/compressed/CompressedFileFileSystem.java
+END
+CompressedFileFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/compressed/CompressedFileFileObject.java
+END

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar
+END
+TarFileSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarFileSystem.java
+END
+TarFileObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarFileObject.java
+END
+TarEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarEntry.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/package.html
+END
+TarUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarUtils.java
+END
+TarConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarConstants.java
+END
+TarBuffer.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarBuffer.java
+END
+TarInputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarInputStream.java
+END
+TgzFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TgzFileProvider.java
+END
+Tbz2FileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/Tbz2FileProvider.java
+END
+TarFileProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/provider/tar/TarFileProvider.java
+END

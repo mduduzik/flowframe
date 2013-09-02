@@ -1,0 +1,20 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho.reporting.libformula-ui
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.2.8
+Import-Package: javax.mail;version="0",
+ javax.mail.internet;version="0",
+ javax.mail.util;version="0",
+ org.apache.commons.logging;version="0",
+ org.pentaho.reporting.libraries.base;version="1.2.8",
+ org.pentaho.reporting.libraries.base.boot;version="1.2.8",
+ org.pentaho.reporting.libraries.base.config;version="1.2.8",
+ org.pentaho.reporting.libraries.base.versioning;version="1.2.8",
+ org.pentaho.reporting.libraries.base.util;version="1.2.8",
+ org.pentaho.reporting.libraries.designtime.swing;version="1.2.8",
+ org.pentaho.reporting.libraries.formula;version="1.2.8",
+ org.pentaho.reporting.libraries.formula.function;version="1.2.8",
+ org.pentaho.reporting.libraries.formula.lvalues;version="1.2.8",
+ org.pentaho.reporting.libraries.formula.parser;version="1.2.8",
+ org.pentaho.reporting.libraries.formula.typing;version="1.2.8",
+ org.pentaho.reporting.libraries.formula.util;version="[1.2.5,1.2.7)"
+

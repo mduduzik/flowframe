@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util
+END
+DefaultCryptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/DefaultCryptor.java
+END
+MonitorInputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/MonitorInputStream.java
+END
+Messages.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/Messages.java
+END
+WeakRefFileListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/WeakRefFileListener.java
+END
+RandomAccessMode.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/RandomAccessMode.java
+END
+DelegatingFileSystemOptionsBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/DelegatingFileSystemOptionsBuilder.java
+END
+UserAuthenticatorUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/UserAuthenticatorUtils.java
+END
+OsFamily.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/OsFamily.java
+END
+EncryptUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/EncryptUtil.java
+END
+Os.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/Os.java
+END
+CombinedResources.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/CombinedResources.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/package.html
+END
+MonitorOutputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/MonitorOutputStream.java
+END
+CryptorFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/CryptorFactory.java
+END
+SharedRandomContentInputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/SharedRandomContentInputStream.java
+END
+MonitorRandomAccessContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/MonitorRandomAccessContent.java
+END
+FileObjectUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/FileObjectUtils.java
+END
+Cryptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnkettleroot/!svn/ver/16163/kettle-vfs/tags/20100924/core/src/main/java/org/apache/commons/vfs/util/Cryptor.java
+END

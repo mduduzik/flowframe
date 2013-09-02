@@ -15,8 +15,6 @@
     <orderEntry type="library" name="Maven: com.pentaho:kettle-engine:4.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.pentaho:kettle-db:4.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.pentaho:kettle-test:4.4.0" level="project" />
-    <orderEntry type="library" name="Maven: com.thoughtworks.xstream:com.springsource.com.thoughtworks.xstream:1.4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.xmlpull:com.springsource.org.xmlpull:1.1.4.c" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />
