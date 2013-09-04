@@ -82,6 +82,10 @@
         <option value="$PROJECT_DIR$/thirdparty/poi/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/spring-bridge/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/javax.inject/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

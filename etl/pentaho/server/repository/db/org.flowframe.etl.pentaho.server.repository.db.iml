@@ -57,7 +57,7 @@
     <orderEntry type="module" module-name="org.flowframe.kernel.metamodel.dao.services" />
     <orderEntry type="module" module-name="org.flowframe.thirdparty.bitronix" />
     <orderEntry type="library" name="Maven: org.codehaus.btm:btm:2.1.2" level="project" />
-    <orderEntry type="module" module-name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm" />
+    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.kernel.jpa.lob.jpacontainer.springdm:0.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.osgi:org.eclipse.osgi:3.7.0.v20110613" level="project" />
     <orderEntry type="module" module-name="org.flowframe.kernel.jpa.container.services" />
     <orderEntry type="module" module-name="org.flowframe.thirdparty.com.mysql.jdbc" />

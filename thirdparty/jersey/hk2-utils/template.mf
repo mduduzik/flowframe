@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Export-Package: org.glassfish.hk2.utilities.reflection;uses:="javax.in
+ ject";version="2.2.0",org.glassfish.hk2.utilities.cache;version="2.2.
+ 0",org.jvnet.hk2.component;version="2.2.0",org.jvnet.tiger_types;vers
+ ion="2.2.0"
+Built-By: rgrecour
+Tool: Bnd-1.15.0
+Bundle-Name: HK2 Implementation Utilities
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: Oracle Corporation
+Build-Jdk: 1.7.0_09
+Bundle-Version: 2.2.0.b14
+service: foo
+Bnd-LastModified: 1375532421588
+Bundle-ManifestVersion: 2
+Bundle-Description: HK2 Implementation Utilities
+Bundle-License: https://glassfish.java.net/nonav/public/CDDL+GPL_1_1.h
+ tml
+Bundle-SymbolicName: org.flowframe.thirdparty.org.glassfish.hk2.utils
+Bundle-DocURL: http://www.oracle.com
+Import-Package: javax.inject;version="1.0.0"
+

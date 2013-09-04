@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Application context definition for GreenPages JPA.
+	Application context definition for FF ETl Repository DB Server.
 -->
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:p="http://www.springframework.org/schema/p"
-		xmlns:context="http://www.springframework.org/schema/context"
-		xmlns:tx="http://www.springframework.org/schema/tx"
-		xsi:schemaLocation="
-			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-			
-<!--	<context:component-scan base-package="*" />
-	<context:annotation-config />-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd"
+        >
+    <!-- Flowframe props -->
+    <context:property-placeholder properties-ref="configAdminProperties"/>
 
-    <context:load-time-weaver aspectj-weaving="on" />
-	
-<!--
-    <bean id="pdfReportGen" class="org.flowframe.reporting.jasper.web.services.impl.PdfReportingServiceImpl">
-	</bean>-->
+    <!-- Flowframe Liferay ECM API-->
+    <bean id="lplDocLibService" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl" init-method="init">
+        <property name="repositoryId" value="${ff.docrepo.repository.id}"/>
+        <property name="companyId" value="${ff.docrepo.repository.companyid}"/>
+        <property name="fflogiFolderId" value="${ff.docrepo.repository.main.folderid}"/>
+        <property name="loginEmail" value="${ff.docrepo.user.email}"/>
+        <property name="loginPassword" value="${ff.docrepo.user.password}"/>
+        <property name="hostname" value="${ff.docrepo.server.hostname}"/>
+        <property name="port" value="${ff.docrepo.server.port}"/>
+        <property name="loginGroupId" value="${ff.docrepo.user.group.id}"/>
+    </bean>
+
+    <!-- Repo Impl -->
+    <bean id="dbRepoImpl" class="org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton"/>
+
+
+    <!--
+        DAO's
+    -->
+    <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.server.repository.db.resource.DatabaseMetaResource" scope="request"/>
+    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.server.repository.db.resource.DatabaseTypeResource" scope="request"/>
+    <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.server.repository.db.resource.RepositoryExplorerResource" scope="request"/>
+    <bean id="charSet" class="org.flowframe.etl.pentaho.server.repository.db.resource.reference.CharsetEncodingResource" scope="request"/>
+    <!--
+       CSVInput
+    -->
+    <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource" scope="request"/>
 </beans>

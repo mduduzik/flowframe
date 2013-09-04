@@ -16,17 +16,6 @@
  */
 package org.apache.commons.vfs.impl;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.commons.vfs.FileSystemException;
 import org.apache.commons.vfs.VfsLog;
 import org.apache.commons.vfs.operations.FileOperationProvider;
@@ -34,6 +23,16 @@ import org.apache.commons.vfs.provider.FileProvider;
 import org.apache.commons.vfs.util.Messages;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 /**
  * A {@link org.apache.commons.vfs.FileSystemManager} that configures itself
@@ -409,7 +408,8 @@ public class StandardFileSystemManager
     {
         try
         {
-            findClassLoader().loadClass(className);
+            //findClassLoader().loadClass(className);
+            Class.forName(className);
             return true;
         }
         catch (final ClassNotFoundException e)
@@ -482,7 +482,8 @@ public class StandardFileSystemManager
     {
         try
         {
-            final Class clazz = findClassLoader().loadClass(className);
+            final Class clazz = Class.forName(className);
+            //final Class clazz = findClassLoader().loadClass(className);
             return clazz.newInstance();
         }
         catch (final Exception e)

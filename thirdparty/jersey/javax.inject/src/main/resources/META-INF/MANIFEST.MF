@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Export-Package: javax.inject;version="1.0.0"
+Implementation-Version: 1
+Built-By: Mduduzi
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Bundle-Version: 2.2.0
+Build-Jdk: 1.6.0_45
+Bundle-ManifestVersion: 2
+Bundle-Description: Generic Modules subsystem
+Bundle-License: https://glassfish.java.net/nonav/public/CDDL+GPL_1_1.h
+ tml
+Bundle-SymbolicName: org.flowframe.thirdparty.jersey.javax.inject
+Bundle-DocURL: http://www.oracle.com
+Archiver-Version: Plexus Archiver
+

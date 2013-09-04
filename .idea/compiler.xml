@@ -136,6 +136,9 @@
         <module name="org.flowframe.thirdparty.jbpm-human-task-mina" />
         <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" />
         <module name="org.flowframe.thirdparty.jbpm-workitems" />
+        <module name="org.flowframe.thirdparty.jersey-server" />
+        <module name="org.flowframe.thirdparty.jersey.hk2-utils" />
+        <module name="org.flowframe.thirdparty.jersey.javax.inject" />
         <module name="org.flowframe.thirdparty.jersey.jersey-spring3" />
         <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
         <module name="org.flowframe.thirdparty.knowledge-api" />
@@ -190,6 +193,7 @@
         <module name="org.flowframe.uilegacy.vaadin.expressions" />
         <module name="org.flowframe.uilegacy.vaadin.factory" />
         <module name="org.flowframe.uilegacy.vaadin.forms" />
+        <module name="remote.services.min.impl" />
         <module name="spring-bridge" />
       </profile>
     </annotationProcessing>
@@ -343,6 +347,9 @@
       <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" target="1.6" />
       <module name="org.flowframe.thirdparty.jbpm-workitems" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey" target="1.6" />
+      <module name="org.flowframe.thirdparty.jersey-server" target="1.6" />
+      <module name="org.flowframe.thirdparty.jersey.hk2-utils" target="1.6" />
+      <module name="org.flowframe.thirdparty.jersey.javax.inject" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.jersey-spring3" target="1.6" />
       <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-api" target="1.6" />
@@ -407,6 +414,7 @@
       <module name="org.flowframe.uilegacy.vaadin.factory" target="1.6" />
       <module name="org.flowframe.uilegacy.vaadin.forms" target="1.6" />
       <module name="pentaho" target="1.6" />
+      <module name="remote.services.min.impl" target="1.6" />
       <module name="reporting" target="1.6" />
       <module name="repository" target="1.6" />
       <module name="spring-bridge" target="1.6" />

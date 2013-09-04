@@ -226,32 +226,33 @@ Import-Package: com.thoughtworks.xstream;version="1.4.1",com.thoughtwo
  "optional",org.netbeans.mdr;version="0";resolution:="optional",org.ne
  tbeans.mdr.persistence.btreeimpl.btreestorage;version="0";resolution:
  ="optional",org.pentaho.core.system;version="0";resolution:="optional
- ",org.pentaho.di.core;version="4.4",org.pentaho.di.core.changed;versi
- on="4.4",org.pentaho.di.core.database;version="4.4",org.pentaho.di.co
- re.exception;version="4.4",org.pentaho.di.core.gui;version="4.4",org.
- pentaho.di.core.logging;version="4.4",org.pentaho.di.core.row;version
- ="4.4",org.pentaho.di.core.util;version="4.4",org.pentaho.di.core.vfs
- ;version="4.4",org.pentaho.di.core.xml;version="4.4",org.pentaho.di.r
- epository;version="4.4",org.pentaho.di.trans;version="4.4",org.pentah
- o.di.trans.step;version="4.4",org.pentaho.di.trans.step.errorhandling
- ;version="4.4",org.pentaho.di.trans.steps.csvinput;version="4.4",org.
- pentaho.di.trans.steps.filterrows;version="4.4",org.pentaho.di.trans.
- steps.formula;version="4.4",org.pentaho.di.trans.steps.groupby;versio
- n="4.4",org.pentaho.di.trans.steps.selectvalues;version="4.4",org.pen
- taho.di.trans.steps.sort;version="4.4",org.pentaho.di.trans.steps.tex
- tfileinput;version="4.4",org.pentaho.messages;version="0";resolution:
- ="optional",org.pentaho.reporting.libraries.base.util;version="1.2.8"
- ,org.pentaho.reporting.libraries.formula;version="1.2.8",org.pentaho.
- reporting.libraries.formula.function;version="1.2.8",org.pentaho.repo
- rting.libraries.formula.function.information;version="1.2.8",org.pent
- aho.reporting.libraries.formula.function.logical;version="1.2.8",org.
- pentaho.reporting.libraries.formula.function.text;version="1.2.8",org
- .pentaho.reporting.libraries.formula.lvalues;version="1.2.8",org.pent
- aho.reporting.libraries.formula.operators;version="1.2.8",org.pentaho
- .reporting.libraries.formula.parser;version="1.2.8",org.pentaho.repor
- ting.libraries.formula.typing;version="1.2.8",org.pentaho.reporting.l
- ibraries.formula.typing.coretypes;version="1.2.8",org.w3c.dom;version
- ="0",org.xml.sax;version="0"
+ ",org.pentaho.di.core;version="4.4.0",org.pentaho.di.core.changed;ver
+ sion="4.4.0",org.pentaho.di.core.database;version="4.4.0",org.pentaho
+ .di.core.exception;version="4.4.0",org.pentaho.di.core.gui;version="4
+ .4.0",org.pentaho.di.core.logging;version="4.4.0",org.pentaho.di.core
+ .row;version="4.4.0",org.pentaho.di.core.util;version="4.4.0",org.pen
+ taho.di.core.vfs;version="4.4.0",org.pentaho.di.core.xml;version="4.4
+ .0",org.pentaho.di.repository;version="4.4.0",org.pentaho.di.trans;ve
+ rsion="4.4.0",org.pentaho.di.trans.step;version="4.4.0",org.pentaho.d
+ i.trans.step.errorhandling;version="4.4.0",org.pentaho.di.trans.steps
+ .csvinput;version="4.4.0",org.pentaho.di.trans.steps.filterrows;versi
+ on="4.4.0",org.pentaho.di.trans.steps.formula;version="4.4.0",org.pen
+ taho.di.trans.steps.groupby;version="4.4.0",org.pentaho.di.trans.step
+ s.selectvalues;version="4.4.0",org.pentaho.di.trans.steps.sort;versio
+ n="4.4.0",org.pentaho.di.trans.steps.textfileinput;version="4.4.0",or
+ g.pentaho.messages;version="0";resolution:="optional",org.pentaho.rep
+ orting.libraries.base.util;version="1.2.8",org.pentaho.reporting.libr
+ aries.formula;version="1.2.8",org.pentaho.reporting.libraries.formula
+ .function;version="1.2.8",org.pentaho.reporting.libraries.formula.fun
+ ction.information;version="1.2.8",org.pentaho.reporting.libraries.for
+ mula.function.logical;version="1.2.8",org.pentaho.reporting.libraries
+ .formula.function.text;version="1.2.8",org.pentaho.reporting.librarie
+ s.formula.lvalues;version="1.2.8",org.pentaho.reporting.libraries.for
+ mula.operators;version="1.2.8",org.pentaho.reporting.libraries.formul
+ a.parser;version="1.2.8",org.pentaho.reporting.libraries.formula.typi
+ ng;version="1.2.8",org.pentaho.reporting.libraries.formula.typing.cor
+ etypes;version="1.2.8",org.w3c.dom;version="0",org.xml.sax;version="0
+ "
 Specification-Version: 1
 Archiver-Version: Plexus Archiver
 

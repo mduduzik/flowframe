@@ -1,33 +1,45 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app id="WebApp_ID" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<display-name>Flowframe ETL Repository DB Server</display-name>
+<context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.eclipse.virgo.web.dm.ServerOsgiBundleXmlWebApplicationContext</param-value>
+</context-param>
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/properties-context.xml,/WEB-INF/module-context.xml,/WEB-INF/osgi-context.xml</param-value>
+</context-param>
 
-<web-app>
-  <display-name>FF Pentaho PDI ETL Server</display-name>
-  	<context-param>
-		<param-name>contextClass</param-name>
-		<param-value>org.eclipse.virgo.web.dm.ServerOsgiBundleXmlWebApplicationContext</param-value>
-	</context-param>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/module-context.xml,/WEB-INF/osgi-context.xml</param-value>
-	</context-param>
-	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-    <filter>
-        <filter-name>host-filter-name</filter-name>
-        <filter-class>org.eclipse.virgo.snaps.core.SnapHostFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>host-filter-name</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>INCLUDE</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
+<servlet>
+    <servlet-name>SpringApplication</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+        <param-name>javax.ws.rs.Application</param-name>
+        <param-value>org.flowframe.etl.pentaho.server.repository.db.MainApplication</param-value>
+    </init-param>
+    <init-param>
+        <param-name>jersey.config.server.provider.packages</param-name>
+        <param-value>org.codehaus.jackson.jaxrs,org.flowframe.etl.pentaho.repository.db.services.persistence</param-value>
+    </init-param>
+    <init-param>
+        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+        <param-value>true</param-value>
+    </init-param>
+    <init-param>
+        <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+        <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
+    </init-param>
+    <init-param>
+        <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+        <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>SpringApplication</servlet-name>
+    <url-pattern>/*</url-pattern>
+</servlet-mapping>
 
 </web-app>

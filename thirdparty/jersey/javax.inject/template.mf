@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Export-Package: javax.inject;version="1.0.0"
+Implementation-Version: 1
+Bundle-Version: 2.2.0.b14
+Bundle-ManifestVersion: 2
+Bundle-License: https://glassfish.java.net/nonav/public/CDDL+GPL_1_1.h
+ tml
+Bundle-Description: Generic Modules subsystem
+Bundle-SymbolicName: org.flowframe.thirdparty.jersey.javax.inject
+Bundle-DocURL: http://www.oracle.com
+Archiver-Version: Plexus Archiver

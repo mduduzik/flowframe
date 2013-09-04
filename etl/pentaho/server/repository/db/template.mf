@@ -4,6 +4,9 @@ Bundle-Name: FF Pentaho PDI Repository DB
 Bundle-SymbolicName: org.flowframe.etl.pentaho.server.repository.db
 Bundle-ClassPath: .,WEB-INF/classes
 Web-ContextPath: /etlrepo
+DynamicImport-Package: *
+Import-Bundle: jackson-jaxrs;version="1.9.13",
+ org.glassfish.jersey.media.jersey-media-json-jackson;version="2.2.0"
 Import-Library: org.springframework.spring;version="[3.1, 3.2)"
 Import-Package: org.flowframe.documentlibrary.remote.services;version="[0.0.1,1.0.0)",
  org.flowframe.documentlibrary.remote.services.impl;version="[0.0.1,1.0.0)",
@@ -11,9 +14,10 @@ Import-Package: org.flowframe.documentlibrary.remote.services;version="[0.0.1,1.
  org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",
  org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
  org.glassfish.jersey.filter;version="2.2",
- org.glassfish.jersey.media.multipart ;version="2.2",
- org.glassfish.jersey.server ;version="2.2",
- org.glassfish.jersey.server.spring.scope ;version="[2.2,2.3)",
+ org.glassfish.jersey.media.multipart;version="2.2",
+ org.glassfish.jersey.server;version="2.2",
+ org.glassfish.jersey.server.spring.scope;version="[2.2,2.3)",
+ org.glassfish.jersey.servlet;version="2.2",
  org.pentaho.di.core;version="4.4.0",
  org.pentaho.di.core.exception;version="4.4.0",
  org.pentaho.di.core.logging;version="4.4.0",
@@ -37,6 +41,7 @@ Import-Package: org.flowframe.documentlibrary.remote.services;version="[0.0.1,1.
  javax.servlet;version="[3.0.0, 3.1.0)",
   javax.servlet.http;version="[3.0.0,3.1.0)",
   javax.servlet.jsp.jstl.core;version="[1.2.0,2.2.0)",
+  javax.inject;version="1.0.0",
   org.eclipse.virgo.web.dm;version="[3.0.0, 4.0.0)",
   org.springframework.format.annotation;version="[3.1,3.2)",
   org.springframework.transaction.jta;version="[3.1,3.2)",
@@ -71,5 +76,6 @@ Import-Package: org.flowframe.documentlibrary.remote.services;version="[0.0.1,1.
   javax.ws.rs;version="2.0",
   javax.ws.rs.core;version="2.0",
   org.apache.commons.vfs;version="4.4.0",
+  org.apache.commons.vfs.provider.local;version="4.4.0",
   org.codehaus.jettison.json;version="1.3.3"
 Excludes-Imports: org.junit

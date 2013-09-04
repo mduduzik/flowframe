@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.documentlibrary.remote.services.impl;ver
+ sion="0.0.1";uses:="javax.persistence,org.flowframe.documentlibrary.r
+ emote.services,org.flowframe.kernel.common.mdm.domain,org.flowframe.k
+ ernel.common.mdm.domain.documentlibrary,org.flowframe.kernel.common.m
+ dm.domain.metamodel,org.flowframe.kernel.metamodel.dao.services,org.s
+ pringframework.beans.factory.annotation,org.springframework.stereotyp
+ e,org.springframework.transaction.annotation"
+Bundle-Vendor: ConX
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF DocLib Remote Services Minimal Impl
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.documentlibrary.remote.services.min
+ .impl
+Import-Package: flexjson;version="[2.0,3.0)",javax.persistence;version
+ ="0",javax.persistence.metamodel;version="0",org.aopalliance.aop;vers
+ ion="1.0.0",org.apache.http;version="[4.0,5.0)",org.apache.http.auth;
+ version="[4.0,5.0)",org.apache.http.client;version="[4.0,5.0)",org.ap
+ ache.http.client.entity;version="[4.0,5.0)",org.apache.http.client.me
+ thods;version="[4.0,5.0)",org.apache.http.conn;version="[4.0,5.0)",or
+ g.apache.http.conn.scheme;version="[4.0,5.0)",org.apache.http.entity.
+ mime;version="[4.0,5.0)",org.apache.http.entity.mime.content;version=
+ "[4.0,5.0)",org.apache.http.impl.auth;version="[4.0,5.0)",org.apache.
+ http.impl.client;version="[4.0,5.0)",org.apache.http.impl.conn;versio
+ n="[4.0,5.0)",org.apache.http.message;version="[4.0,5.0)",org.apache.
+ http.params;version="[4.0,5.0)",org.apache.http.protocol;version="[4.
+ 0,5.0)",org.apache.http.util;version="[4.0,5.0)",org.flowframe.docume
+ ntlibrary.remote.services;version="[0.0.1, 1.0.0)",org.flowframe.kern
+ el.common.mdm.dao.services.documentlibrary;version="[0.0.1, 1.0.0)",o
+ rg.flowframe.kernel.common.mdm.domain;version="[0.0.1, 1.0.0)",org.fl
+ owframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1, 1.0
+ .0)",org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1
+ , 1.0.0)",org.flowframe.kernel.common.utils;version="[0.0.1, 1.0.0)",
+ org.flowframe.kernel.metamodel.dao.services;version="[0.0.1, 1.0.0)",
+ org.springframework.aop;version="[3.1,3.2)",org.springframework.aop.f
+ ramework;version="[3.1,3.2)",org.springframework.beans.factory.annota
+ tion;version="[3.1,3.2)",org.springframework.dao;version="[3.1,3.2)",
+ org.springframework.dao.annotation;version="[3.1,3.2)",org.springfram
+ ework.dao.support;version="[3.1,3.2)",org.springframework.orm.jpa;ver
+ sion="[3.1,3.2)",org.springframework.orm.jpa.vendor;version="[3.1,3.2
+ )",org.springframework.stereotype;version="[3.1,3.2)",org.springframe
+ work.transaction;version="[3.1,3.2)",org.springframework.transaction.
+ annotation;version="[3.1,3.2)",org.springframework.transaction.aspect
+ j;version="[3.1,3.2)",org.springframework.transaction.jta;version="[3
+ .1,3.2)"
+

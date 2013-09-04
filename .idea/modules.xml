@@ -140,6 +140,9 @@
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa/org.flowframe.thirdparty.jbpm-persistence-jpa.iml" filepath="$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa/org.flowframe.thirdparty.jbpm-persistence-jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jbpm-workitems/org.flowframe.thirdparty.jbpm-workitems.iml" filepath="$PROJECT_DIR$/thirdparty/jbpm-workitems/org.flowframe.thirdparty.jbpm-workitems.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/org.flowframe.thirdparty.jersey.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/org.flowframe.thirdparty.jersey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/jersey-server/org.flowframe.thirdparty.jersey-server.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/jersey-server/org.flowframe.thirdparty.jersey-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/hk2-utils/org.flowframe.thirdparty.jersey.hk2-utils.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/hk2-utils/org.flowframe.thirdparty.jersey.hk2-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/javax.inject/org.flowframe.thirdparty.jersey.javax.inject.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/javax.inject/org.flowframe.thirdparty.jersey.javax.inject.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/jersey-spring3/org.flowframe.thirdparty.jersey.jersey-spring3.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/jersey-spring3/org.flowframe.thirdparty.jersey.jersey-spring3.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/knowledge-api/org.flowframe.thirdparty.knowledge-api.iml" filepath="$PROJECT_DIR$/thirdparty/knowledge-api/org.flowframe.thirdparty.knowledge-api.iml" />
@@ -206,6 +209,7 @@
       <module fileurl="file://$PROJECT_DIR$/uilegacy/vaadin/forms/org.flowframe.uilegacy.vaadin.forms.iml" filepath="$PROJECT_DIR$/uilegacy/vaadin/forms/org.flowframe.uilegacy.vaadin.forms.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/pentaho.iml" />
       <module fileurl="file://$PROJECT_DIR$/permissions/permissions.iml" filepath="$PROJECT_DIR$/permissions/permissions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/remote.services.min.impl.iml" filepath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/remote.services.min.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/reporting.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/reporting.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/spring-bridge/spring-bridge.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/spring-bridge/spring-bridge.iml" />
     </modules>
