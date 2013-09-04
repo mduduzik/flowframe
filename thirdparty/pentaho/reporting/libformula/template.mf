@@ -5,4 +5,10 @@ Implementation-Version: 1.2.8
 Specification-Version: 1
 Implementation-Vendor: Pentaho Corporation
 Implementation-ProductID: pdi-ce
-Import-Package: org.apache.commons.logging;version="1.1"
+Import-Package: org.apache.commons.logging;version="1.1",
+ org.pentaho.reporting.libraries.base;version="1.2.8",
+ org.pentaho.reporting.libraries.base.boot ;version="1.2.8",
+ org.pentaho.reporting.libraries.base.config ;version="1.2.8",
+ org.pentaho.reporting.libraries.base.util ;version="1.2.8",
+ org.pentaho.reporting.libraries.base.versioning ;version="1.2.8"
+

@@ -78,7 +78,16 @@
         <option value="$PROJECT_DIR$/thirdparty/pentaho/libbase/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/pentaho/libformula/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jackrabbit/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/poi/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/spring-bridge/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="Osmorc">

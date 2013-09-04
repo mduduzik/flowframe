@@ -2,7 +2,6 @@ Bundle-ManifestVersion: 2
 Bundle-Version: 0.0.1
 Bundle-Name: FF Master Data Management Domain Model
 Bundle-SymbolicName: org.flowframe.kernel.common.mdm.domain
-Fragment-Host: org.flowframe.kernel.jpa.lob.jpacontainer
 Export-Template: org.flowframe.kernel.common.mdm.domain.*;version="0.0.1",
  org.flowframe.kernel.common.mdm.constants;version="0.0.1"
 Import-Package: 

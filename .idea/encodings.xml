@@ -124,6 +124,10 @@
     <file url="file://$PROJECT_DIR$/thirdparty/hibernate-entitymanager" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hornetq-all" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/itext" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160/core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160/webdav" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/javassist" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/javax.security.jacc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jboss-errai-all" charset="UTF-8" />
@@ -132,6 +136,9 @@
     <file url="file://$PROJECT_DIR$/thirdparty/jbpm-human-task-mina" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jbpm-workitems" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jersey" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-spring3" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jersey/spring-bridge" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/knowledge-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/knowledge-internal-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/netty" charset="UTF-8" />
@@ -157,6 +164,7 @@
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/poi" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/spring-vaadin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/stripe-java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/vaadin-addon-contextmenu" charset="UTF-8" />

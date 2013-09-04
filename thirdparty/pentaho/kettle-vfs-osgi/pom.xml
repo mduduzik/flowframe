@@ -31,13 +31,13 @@
 			<version>1.2.15</version>
 		</dependency>
 		<dependency>
-			<groupId>com.conx.bi</groupId>
-			<artifactId>org.flowframe..thirdparty.jackrabbit.version160.core</artifactId>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.jackrabbit.version160.core</artifactId>
 			<version>1.6.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.conx.bi</groupId>
-			<artifactId>org.flowframe..thirdparty.jackrabbit.version160.webdav</artifactId>
+			<groupId>org.flowframe</groupId>
+			<artifactId>org.flowframe.thirdparty.jackrabbit.version160.webdav</artifactId>
 			<version>1.6.0</version>
 		</dependency>
 		<dependency>

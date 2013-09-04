@@ -49,6 +49,38 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.springsource.bundlor</groupId>
+                <artifactId>com.springsource.bundlor.maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-manifest</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+                            <outputPath>${basedir}/src/main/resources</outputPath>
+                            <!-- used to properly set-up versions for system packages -->
+                            <osgiProfilePath>${basedir}/../../../../java6-server.profile</osgiProfilePath>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-bundle</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+                            <outputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</outputPath>
+                            <!-- used to properly set-up versions for system packages -->
+                            <osgiProfilePath>${basedir}/../../../../java6-server.profile</osgiProfilePath>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
