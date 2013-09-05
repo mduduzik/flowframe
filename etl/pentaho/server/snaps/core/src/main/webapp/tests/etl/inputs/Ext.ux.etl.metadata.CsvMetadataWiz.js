@@ -146,7 +146,7 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
                             remoteSort: true,
                             autoLoad: {params: {start: 1, limit: 2}},
                             proxy: new Ext.data.ScriptTagProxy({
-                                url: 'http://localhost:8082/etlrepo/encoding/getall'
+                                url: 'http://localhost:8080/etlrepo/encoding/getall'
                             }),
                             reader: new Ext.data.JsonReader({
                                 root: 'data',

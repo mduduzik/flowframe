@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba06307f-714d-40b4-bb43-8b15d10cec5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/core/logging/LogWriter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/jersey-server/src/main/java/org/glassfish/jersey/server/internal/scanning/PackageNamesScanner.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/resources/logwriter/log4j.properties" />
-      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\thirdparty\jersey\jersey-server\src\main\java\org\glassfish\jersey\server\internal\scanning\BundleSchemeResourceFinderFactory.java" afterPath="$PROJECT_DIR$/thirdparty/jersey/jersey-server/shelved/scanning/BundleSchemeResourceFinderFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/MainApplication.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/MainApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/module-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/module-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" afterPath="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/pom.xml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/repository/db/template.mf" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/template.mf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/template.mf" afterPath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/template.mf" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\repository\db\src\main\webapp\WEB-INF\module-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWiz.js" afterPath="$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWiz.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -129,93 +116,100 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DBRepositoryWrapperImpl.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/template.mf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="applicationContext.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/applicationContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="71" selection-start="641" selection-end="662" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="properties-context.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/properties-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/web.xml">
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="56" selection-start="508" selection-end="508" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="918">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/resources/META-INF/MANIFEST.MF">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/META-INF/MANIFEST.MF">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="748">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ext.ux.etl.metadata.CsvMetadataWiz.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWiz.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="29" selection-start="1124" selection-end="1124" vertical-scroll-proportion="-6.04" vertical-offset="563" max-vertical-offset="12036">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBRepositoryWrapperImpl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="2" selection-start="4977" selection-end="5232" vertical-scroll-proportion="-7.16" vertical-offset="1606" max-vertical-offset="6919">
+            <state line="121" column="44" selection-start="5092" selection-end="5092" vertical-scroll-proportion="1.568" vertical-offset="1606" max-vertical-offset="6919">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericObjectPool.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.pool/1.3.0/com.springsource.org.apache.commons.pool-1.3.0.jar!/org/apache/commons/pool/impl/GenericObjectPool.class">
+      <file leaf-file-name="Ext.ux.etl.metadata.CsvMetadataWizTest.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWizTest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="29" selection-start="7676" selection-end="7676" vertical-scroll-proportion="-4.48" vertical-offset="2200" max-vertical-offset="2924">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PoolableConnectionFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi-sources.jar!/org/apache/commons/dbcp/PoolableConnectionFactory.java">
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/src/main/webapp/META-INF/MANIFEST.MF">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="293" column="0" selection-start="14947" selection-end="14947" vertical-scroll-proportion="0.0" vertical-offset="4487" max-vertical-offset="6766">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DriverManagerConnectionFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi-sources.jar!/org/apache/commons/dbcp/DriverManagerConnectionFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="0" selection-start="2592" selection-end="2592" vertical-scroll-proportion="0.0" vertical-offset="708" max-vertical-offset="1088">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DriverManager.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/sql/DriverManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="476" column="0" selection-start="16643" selection-end="16643" vertical-scroll-proportion="1.2912621" vertical-offset="7772" max-vertical-offset="11526">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NonRegisteringDriver.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.20/mysql-connector-java-5.1.20.jar!/com/mysql/jdbc/NonRegisteringDriver.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="34" selection-start="2608" selection-end="2608" vertical-scroll-proportion="-4.8" vertical-offset="628" max-vertical-offset="1241">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Database.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-db/org/pentaho/di/core/database/Database.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="481" column="0" selection-start="16226" selection-end="16226" vertical-scroll-proportion="0.0" vertical-offset="7041" max-vertical-offset="83147">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KettleDatabaseRepositoryConnectionDelegate.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/repository/kdr/delegates/KettleDatabaseRepositoryConnectionDelegate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="0" selection-start="5979" selection-end="5979" vertical-scroll-proportion="0.0" vertical-offset="1886" max-vertical-offset="29937">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KettleDatabaseRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/repository/kdr/KettleDatabaseRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="175" column="0" selection-start="8357" selection-end="8357" vertical-scroll-proportion="0.0" vertical-offset="1393" max-vertical-offset="29988">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectionPoolUtil.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-db/org/pentaho/di/core/database/ConnectionPoolUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="0" selection-start="4922" selection-end="4922" vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="2159">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
               <folding />
             </state>
           </provider>
@@ -239,13 +233,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/shelved/scanning/BundleSchemeResourceFinderFactory.java" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/src/main/java/org/glassfish/jersey/server/internal/scanning/BundleSchemeResourceFinderFactory.java" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/src/main/java/org/glassfish/jersey/server/internal/scanning/PackageNamesScanner.java" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/src/main/resources/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/MainApplication.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/resources/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/pom.xml" />
         <option value="C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588/src-core/org/pentaho/di/core/logging/LogWriter.java" />
@@ -255,6 +247,8 @@
         <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/template.mf" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/template.mf" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWiz.js" />
       </list>
     </option>
   </component>
@@ -919,6 +913,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="server.springdm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -945,7 +961,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -971,11 +987,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1001,11 +1017,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1035,11 +1051,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1077,11 +1093,155 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1097,7 +1257,109 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inputs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1132,18 +1394,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1228,56 +1478,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1722,9 +1922,15 @@
       <method />
     </configuration>
     <configuration default="false" name="Virgo3.6.2DEV" type="com.intellij.dmserver.run.DMServerRunConfigurationType:id" factoryName="Spring dmServer (Local)" APPLICATION_SERVER_NAME="dmServer (3.6.2.RELEASE)">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="org.flowframe.etl.pentaho.server.repository.db:war">
+          <settings DEPLOYMENT_METHOD="JMX" />
+        </artifact>
+        <artifact name="org.flowframe.etl.pentaho.server.snaps.core:war">
+          <settings DEPLOYMENT_METHOD="JMX" />
+        </artifact>
+        <artifact name="org.flowframe.etl.pentaho.server.snaps.main:war">
           <settings DEPLOYMENT_METHOD="JMX" />
         </artifact>
       </deployment>
@@ -1791,6 +1997,8 @@
         <option name="Make" enabled="false" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="org.flowframe.etl.pentaho.server.repository.db:war" />
+          <artifact name="org.flowframe.etl.pentaho.server.snaps.core:war" />
+          <artifact name="org.flowframe.etl.pentaho.server.snaps.main:war" />
         </option>
       </method>
     </configuration>
@@ -1833,12 +2041,12 @@
       <workItem from="1377948423939" duration="5605000" />
       <workItem from="1377970861817" duration="16175000" />
       <workItem from="1378039450812" duration="91024000" />
-      <workItem from="1378315483098" duration="44629000" />
+      <workItem from="1378315483098" duration="51219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158510000" />
+    <option name="totallyTimeSpent" value="165100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1611" height="876" extended-state="0" />
@@ -1850,26 +2058,26 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.75168693" sideWeight="0.09278997" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7219973" sideWeight="0.13981192" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48043185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2846395" sideWeight="0.24831308" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4480432" sideWeight="0.86018807" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3673981" sideWeight="0.2780027" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7219973" sideWeight="0.86018807" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47638327" sideWeight="0.4996865" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.75168693" sideWeight="0.90721005" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42375168" sideWeight="0.90721005" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58164644" sideWeight="0.5630094" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24952978" sideWeight="0.75303644" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24702194" sideWeight="0.24831308" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24702194" sideWeight="0.2780027" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1899,83 +2107,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi.jar!/org/apache/commons/dbcp/DriverManagerConnectionFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/pentaho/kettle-db/4.4.0/kettle-db-4.4.0.jar!/org/pentaho/di/core/database/ConnectionPoolUtil.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="24" selection-start="715" selection-end="715" vertical-scroll-proportion="-7.84" vertical-offset="59" max-vertical-offset="442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/pentaho/kettle-db/4.4.0/kettle-db-4.4.0.jar!/org/pentaho/di/core/database/Database.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="460" column="16" selection-start="34714" selection-end="34714" vertical-scroll-proportion="-6.48" vertical-offset="7641" max-vertical-offset="8024">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/jre/lib/rt.jar!/sun/jdbc/odbc/JdbcOdbcDriver.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="44" selection-start="934" selection-end="934" vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="21" selection-start="828" selection-end="848" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="1513">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="25" selection-start="2696" selection-end="2701" vertical-scroll-proportion="-4.64" vertical-offset="632" max-vertical-offset="1734">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.20/mysql-connector-java-5.1.20.jar!/com/mysql/jdbc/NonRegisteringDriver.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="34" selection-start="2608" selection-end="2608" vertical-scroll-proportion="-4.8" vertical-offset="628" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/repository/kdr/delegates/KettleDatabaseRepositoryConnectionDelegate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="0" selection-start="5979" selection-end="5979" vertical-scroll-proportion="0.0" vertical-offset="1886" max-vertical-offset="29937">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/repository/kdr/KettleDatabaseRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="0" selection-start="8357" selection-end="8357" vertical-scroll-proportion="0.0" vertical-offset="1393" max-vertical-offset="29988">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-db/org/pentaho/di/core/database/ConnectionPoolUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="0" selection-start="4922" selection-end="4922" vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="2159">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi-sources.jar!/org/apache/commons/dbcp/DriverManagerConnectionFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="2592" selection-end="2592" vertical-scroll-proportion="0.0" vertical-offset="708" max-vertical-offset="1088">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.pool/1.3.0/com.springsource.org.apache.commons.pool-1.3.0.jar!/org/apache/commons/pool/impl/GenericObjectPool.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="137" column="29" selection-start="7676" selection-end="7676" vertical-scroll-proportion="-4.48" vertical-offset="2200" max-vertical-offset="2924">
@@ -1986,14 +2117,10 @@
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi-sources.jar!/org/apache/commons/dbcp/PoolableConnectionFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="293" column="0" selection-start="14947" selection-end="14947" vertical-scroll-proportion="0.0" vertical-offset="4487" max-vertical-offset="6766">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="2" selection-start="4977" selection-end="5232" vertical-scroll-proportion="-7.16" vertical-offset="1606" max-vertical-offset="6919">
-          <folding />
+          <folding>
+            <element signature="e#0#19142#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2001,14 +2128,116 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="481" column="0" selection-start="16226" selection-end="16226" vertical-scroll-proportion="0.0" vertical-offset="7041" max-vertical-offset="83147">
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/sql/DriverManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="476" column="0" selection-start="16643" selection-end="16643" vertical-scroll-proportion="1.2912621" vertical-offset="7772" max-vertical-offset="11526">
+        <state line="476" column="0" selection-start="16643" selection-end="16643" vertical-scroll-proportion="0.0" vertical-offset="7772" max-vertical-offset="11526">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/src/main/webapp/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/properties-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="523">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="71" selection-start="641" selection-end="662" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/webapp/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="56" selection-start="508" selection-end="508" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/src/main/webapp/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="314">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWizTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/tests/etl/inputs/Ext.ux.etl.metadata.CsvMetadataWiz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="29" selection-start="1124" selection-end="1124" vertical-scroll-proportion="-6.04" vertical-offset="563" max-vertical-offset="12036">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="44" selection-start="5092" selection-end="5092" vertical-scroll-proportion="1.568" vertical-offset="1606" max-vertical-offset="6919">
           <folding />
         </state>
       </provider>
