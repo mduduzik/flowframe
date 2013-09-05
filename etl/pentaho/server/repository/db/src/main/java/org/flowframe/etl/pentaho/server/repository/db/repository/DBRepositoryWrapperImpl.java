@@ -37,8 +37,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	private static final String FOLDER_JOBS_GENERAL = "General";
 	private static final String FOLDER_JOBS_FILE_TRANSFER = "File Transfer";
 	private static final String FOLDER_JOBS_FILE_MANAGEMENT = "File Management";
-	
-	
+
 	static public final String REPO_NAME = "repo.name";// "Kettle Database Repository"
 	static public final String REPO_DESCRIPTION = "repo.description";// "Kettle Database Repository"
 	static public final String REPO_USER_NAME = "repo.user.name";//admin
@@ -61,13 +60,24 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     private Database supportingDatabase;
 
     private static CustomRepository INSTANCE = null;
+    private String reponame;
+    private String repodescription;
+    private String username;
+    private String userfullname;
+    private String userpassword;
+    private String dbhostname;
+    private String dbtype;
+    private String dbname;
+    private String dbport;
+    private String dbusername;
+    private String dbuserpassword;
 
     public static CustomRepository getINSTANCE() {
         if (INSTANCE == null) {
             INSTANCE = new DBRepositoryWrapperImpl();
             try {
                 ((DBRepositoryWrapperImpl)INSTANCE).init();
-            } catch (KettleException e) {
+            } catch (Exception e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
         }
@@ -79,28 +89,15 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		return userInfo;
 	}
 
-	public void init() throws KettleException{
+	public void init() throws KettleException, ClassNotFoundException {
 		initProperties();
         INSTANCE = this;
 	}
 
-	public void initProperties() throws KettleException {
+	public void initProperties() throws KettleException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+
 		KettleEnvironment.init();
-		
-		loadRepoProperties();
-
-		String reponame = repoProperties.getProperty(REPO_NAME);
-		String repodescription= repoProperties.getProperty(REPO_DESCRIPTION);
-		String username = repoProperties.getProperty(REPO_USER_NAME);
-		String userfullname = repoProperties.getProperty(REPO_USER_FULLNAME);
-		String userpassword = repoProperties.getProperty(REPO_USER_PWD);
-		String dbhostname= repoProperties.getProperty(REPO_DATABASE_HOSTNAME);
-		String dbtype= repoProperties.getProperty(REPO_DATABASE_TYPE);
-		String dbname= repoProperties.getProperty(REPO_DATABASE_NAME);
-		String dbport = repoProperties.getProperty(REPO_DATABASE_PORT);
-		String dbusername = repoProperties.getProperty(REPO_DATABASE_USERNAME);
-		String dbuserpassword = repoProperties.getProperty(REPO_DATABASE_PWD);
-
 		repositoryMeta = new KettleDatabaseRepositoryMeta();
 		repositoryMeta.setName(reponame);
 		repositoryMeta.setDescription(repodescription);
@@ -121,10 +118,10 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		
 		connect(username, userpassword);
 
-        supportingDatabase = new Database(loggingObject,connection);
+/*        supportingDatabase = new Database(loggingObject,connection);
         supportingDatabase.getDatabaseMeta().setUsingConnectionPool(true);
         supportingDatabase.getDatabaseMeta().setMaximumPoolSize(20);
-        supportingDatabase.connect();;
+        supportingDatabase.connect();;*/
 		
 		//Ensure root and tenant root dir's
 		rootDir = findDirectory("/conxbi");
@@ -327,5 +324,93 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 
     public void setSupportingDatabase(Database supportingDatabase) {
         this.supportingDatabase = supportingDatabase;
+    }
+
+    public String getReponame() {
+        return reponame;
+    }
+
+    public void setReponame(String reponame) {
+        this.reponame = reponame;
+    }
+
+    public String getRepodescription() {
+        return repodescription;
+    }
+
+    public void setRepodescription(String repodescription) {
+        this.repodescription = repodescription;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUserfullname() {
+        return userfullname;
+    }
+
+    public void setUserfullname(String userfullname) {
+        this.userfullname = userfullname;
+    }
+
+    public String getUserpassword() {
+        return userpassword;
+    }
+
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
+    }
+
+    public String getDbhostname() {
+        return dbhostname;
+    }
+
+    public void setDbhostname(String dbhostname) {
+        this.dbhostname = dbhostname;
+    }
+
+    public String getDbtype() {
+        return dbtype;
+    }
+
+    public void setDbtype(String dbtype) {
+        this.dbtype = dbtype;
+    }
+
+    public String getDbname() {
+        return dbname;
+    }
+
+    public void setDbname(String dbname) {
+        this.dbname = dbname;
+    }
+
+    public String getDbport() {
+        return dbport;
+    }
+
+    public void setDbport(String dbport) {
+        this.dbport = dbport;
+    }
+
+    public String getDbusername() {
+        return dbusername;
+    }
+
+    public void setDbusername(String dbusername) {
+        this.dbusername = dbusername;
+    }
+
+    public String getDbuserpassword() {
+        return dbuserpassword;
+    }
+
+    public void setDbuserpassword(String dbuserpassword) {
+        this.dbuserpassword = dbuserpassword;
     }
 }

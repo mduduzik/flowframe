@@ -38,6 +38,21 @@
             <artifactId>kettle-test</artifactId>
             <version>${wrapped.version}</version>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.15</version>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.2</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.kettle-vfs-20100924-osgi</artifactId>
+            <version>4.4.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -54,6 +69,13 @@
                         </goals>
                         <configuration>
                             <createSourcesJar>true</createSourcesJar>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.pentaho:kettle-core</include>
+                                    <include>com.pentaho:kettle-engine</include>
+                                    <include>com.pentaho:kettle-db</include>
+                                </includes>
+                            </artifactSet>
                         </configuration>
                     </execution>
                 </executions>

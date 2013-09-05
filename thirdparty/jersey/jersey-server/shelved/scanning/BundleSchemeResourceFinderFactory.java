@@ -103,10 +103,16 @@ class BundleSchemeResourceFinderFactory implements UriSchemeResourceFinderFactor
 
         @Override
         public InputStream open() {
+
             if(!accessed) {
                 try {
-                    accessed = true;
-                    return uri.toURL().openStream();
+                    if ("bundleentry".equals(this.uri.toURL().getProtocol())) {
+                       return null;
+                    }
+                    else {    //bundle
+                        accessed = true;
+                        return uri.toURL().openStream();
+                    }
                 } catch (MalformedURLException e) {
                     throw new ResourceFinderException(e);
                 } catch (IOException e) {

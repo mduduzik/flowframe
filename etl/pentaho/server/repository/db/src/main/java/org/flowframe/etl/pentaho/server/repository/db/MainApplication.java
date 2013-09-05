@@ -23,6 +23,7 @@ public class MainApplication extends ResourceConfig {
      */
     public MainApplication () {
         //packages("org.flowframe.etl.pentaho.repository.db.resource;org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput");
+        register(DatabaseTypeResource.class);
         register(RequestContextFilter.class);
         register(MultiPartFeature.class);
         register(LoggingFilter.class);
