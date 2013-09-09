@@ -49,6 +49,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="gwt" url="file://$PROJECT_DIR$/uilegacy/vaadin/addons/common" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" />
+    <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" />
@@ -86,6 +87,13 @@
         <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-utils/pom.xml" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/bpmnq/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jbpt/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/supercsv/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jflex/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

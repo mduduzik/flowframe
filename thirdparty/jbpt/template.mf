@@ -1,0 +1,7 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.jbpt
+Bundle-Name: jbpt
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.1.0
+Excluded-Imports: com.sun.org.apache.xerces.internal.dom,
+ com.sun.org.apache.xerces.internal.parsers,
+ junit.framework

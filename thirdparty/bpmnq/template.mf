@@ -1,0 +1,43 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.bpmnq
+Bundle-Name: bpmnq
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.0.3
+Import-Package: 
+ JFlex;version="1.3.5",
+ EDU.oswego.cs.dl.util.concurrent;version="1.3.4",
+ antlr;version="0",
+ antlr.collections;version="3.1.3",
+ antlr.collections.impl;version="3.1.3",
+ org.apache.commons.logging;version="0";resolution:=optional,
+ org.apache.log4j;version="0";resolution:=optional,
+ org.slf4j;version="[1.7,1.8)",
+ org.apache.xml.serialize;version="2.9.1"
+Excluded-Exports: de.hpi.bpmn.rdf, de.hpi.bpmn2.rdf
+Excluded-Imports: com.hp.hpl.jena.assembler.test,
+ com.hp.hpl.jena.db.test,
+ com.hp.hpl.jena.mem.test,
+ com.hp.hpl.jena.rdf.model.test,
+ com.hp.hpl.jena.test,
+ com.sun.jdmk.comm,
+ com.sun.msv.grammar,
+ com.sun.msv.grammar.trex,
+ com.sun.msv.reader,
+ com.sun.msv.reader.trex.ng,
+ com.sun.msv.reader.util,
+ com.sun.msv.util,
+ com.sun.msv.verifier,
+ com.sun.msv.verifier.regexp,
+ com.sun.org.apache.xerces.internal.parsers,
+ javax.jms,
+ javax.mail,
+ javax.mail.internet,
+ junit.extensions,
+ junit.framework,
+ org.apache.avalon.framework.logger,
+ org.apache.log,
+ org.apache.xml.resolver,
+ org.apache.xml.resolver.readers,
+ org.json,
+ org.osgi.framework,
+ org.relaxng.datatype
+

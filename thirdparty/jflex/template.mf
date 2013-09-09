@@ -1,0 +1,4 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.jflex
+Bundle-Name: jflex
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.3.5

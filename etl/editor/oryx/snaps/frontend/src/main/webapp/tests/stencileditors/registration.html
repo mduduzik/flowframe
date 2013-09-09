@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+	<head>
+		<title>registration wizard demo - lostbytes.de</title>    
+
+		<script type="text/javascript" src="js/libs/ext-2.0/adapter/ext/ext-base.js"></script>
+		<script type="text/javascript" src="js/libs/ext-2.0/ext-all.js"></script>
+		<link rel="stylesheet" type="text/css" href="js/libs/ext-2.0/resources/css/ext-all.css" />
+
+		<script type="text/javascript" src="js/states.js"></script>
+
+		<script type="text/javascript">
+			var registrationWizard = function() {  
+			    
+				var cardsTotal = 4;
+				
+			    var navHandler = function( direction ) {
+			       var lay = cardForm.getLayout();
+			       var i = lay.activeItem.id.split('card-')[1];
+			       var next = parseInt(i) + direction;
+			       lay.setActiveItem(next);
+			       Ext.getCmp('move-prev').setDisabled(next==0);
+			       Ext.getCmp('move-next').setDisabled(next==cardsTotal);
+				   if(next >= cardsTotal) {
+				   		Ext.getCmp('move-next').hide();
+						Ext.getCmp('move-finish').show();
+				   } else {
+				   		Ext.getCmp('move-next').show();
+						Ext.getCmp('move-finish').hide();
+				   }
+			    };
+			    
+				var cardForm = new Ext.form.FormPanel({
+			       	id: 'regFormPanel',
+					frame: true,
+					region: 'center',
+			        url: 'user.register.php',
+			        method: 'POST',
+					bodyStyle: 'padding:5px',
+			        layout:'card',
+			        activeItem: 0,
+			        defaults: {
+			            border: false
+			        },
+			        items: [{
+						id: 'card-0',
+						items: [{
+							html: '<p>Step 1 of 5</p>'
+						},{
+							xtype: 'panel',
+							layout: 'fit',
+							autoScroll: true,
+							contentEl: 'x-registration-welcome'
+						}]
+					},{
+						id: 'card-1',
+						items: [{
+							html: '<p>Step 2 of 5</p>'
+						},{
+							xtype: 'fieldset',
+							title: 'User',
+							autoHeight: true,
+							defaultType: 'textfield',
+							collapsible: true,
+							items: [{
+								fieldLabel: 'username',
+								name: 'username',
+								allowBlank: false
+							}, {
+								fieldLabel: 'password',
+								name: 'password',
+								inputType: 'password',
+								allowBlank: false
+							}, {
+								fieldLabel: 'confirm',
+								name: 'confirm',
+								inputType: 'password',
+								allowBlank: false
+							}, new Ext.form.ComboBox({
+								fieldLabel: 'language',
+								hiddenName: 'language',
+								store: new Ext.data.SimpleStore({
+									fields: ['lang', 'language'],
+									data: Ext.exampledata.language // from language.js
+								}),
+								valueField: 'lang',
+								displayField: 'language',
+								typeAhead: true,
+								mode: 'local',
+								triggerAction: 'all',
+								emptyText: 'select a ...',
+								selectOnFocus: true
+							}), {
+								fieldLabel: 'e-mail',
+								name: 'email',
+								anchor: '100%',
+								allowBlank: false
+							}]
+						}]
+					},{
+						id: 'card-2',
+						items: [{
+							html: '<p>Step 3 of 5</p>'
+						}, {
+							xtype: 'fieldset',
+							title: 'personals',
+							collapsible: true,
+							autoHeight: true,
+							defaultType: 'textfield',
+							items: [
+							new Ext.form.ComboBox({
+								fieldLabel: 'sex',
+								hiddenName: 'sex',
+								store: new Ext.data.SimpleStore({
+									fields: ['abbr', 'sex'],
+									data: Ext.exampledata.sex // from states.js
+								}),
+								valueField: 'abbr',
+								displayField: 'sex',
+								typeAhead: true,
+								mode: 'local',
+								triggerAction: 'all',
+								emptyText: 'Select a...',
+								selectOnFocus: true
+							}),{
+								fieldLabel: 'firstname',
+								name: 'firstname',
+								anchor: '100%',
+								allowBlank: false
+							}, {
+								fieldLabel: 'familyname',
+								name: 'lastname',
+								anchor: '100%',
+								allowBlank: false
+							}, new Ext.form.ComboBox({
+								fieldLabel: 'country',
+								hiddenName: 'state',
+								store: new Ext.data.SimpleStore({
+									fields: ['abbr', 'state'],
+									data: Ext.exampledata.states // from states.js
+								}),
+								valueField: 'abbr',
+								displayField: 'state',
+								typeAhead: true,
+								mode: 'local',
+								triggerAction: 'all',
+								emptyText: 'Select a...',
+								selectOnFocus: true
+							}), new Ext.form.DateField({
+								fieldLabel: 'birthday',
+								name: 'birthday',
+								allowBlank: false
+							})]
+						}]
+					},{
+						id: 'card-3',
+						items: [{
+							html: '<p>Step 4 of 5</p>'
+						},{
+							xtype: 'panel',
+							layout: 'fit',
+							contentEl: 'x-registration-aggreement',
+							autoScroll: true,
+							height: 200,
+							frame: true
+						},{
+							xtype: 'radio',
+							name: 'disc_accept',
+							value: "true",
+							boxLabel: 'I accept the license aggrement',
+							allowBlank: false
+						},{
+							xtype: 'radio',
+							name: 'disc_accept',
+							value: "false",
+							checked: true,
+							boxLabel: 'I do not accept the license aggrement'
+						}]
+					},{
+			            id: 'card-4',			
+						items: [{
+							html: '<p>Step 5 of 5</p>'
+						},{          
+							contentEl: 'x-registration-summary'
+			        	}]
+					}]
+			    });
+			    
+				var submitRegistration = function() {
+			       if ( cardForm.form.isValid() ) {
+			          Ext.MessageBox.alert('Status', 'Passed');
+			          cardForm.form.submit({
+			            waitMsg:'Registring new user...',
+			            reset: false,
+			            failure: function(result, action) {
+			              Ext.MessageBox.alert('Error', action.result.message);
+			            },
+			            success: function(result, action) {
+							Ext.Msg.show({
+							   title:'registration complete',
+							   msg: result.responseText,
+							   buttons: Ext.Msg.OK,
+							   icon: Ext.MessageBox.INFO
+							});
+						}
+			          });
+			        } else {
+			          Ext.MessageBox.alert('Status', 'Not valid');
+			        }    
+			    };
+				    
+			    var registerWin = new Ext.Window({
+			      id: 'regWindow',
+			      title: 'register a new user',
+			      width: 600,
+				  height: 380,
+			      layout: 'border',
+			      plain: true,
+			      bodyStyle:'padding:5px;',
+			      buttonAlign:'right',
+			      closable: true,
+			      modal: true,
+			      items: [{		
+					  	region: 'west',
+						width: 150,
+						html: '<img src="gfx/splash/register.jpg" />'
+					  }, cardForm
+				  ],
+				  buttons:[{
+				  	text: 'abort',
+					handler: function(){
+						registerWin.hide();
+					}
+				  },{
+				  	text: 'previous',
+					disabled: true,
+			        id: 'move-prev',
+			        handler: navHandler.createDelegate(this, [-1])
+				  },{
+				  	text: 'next',
+			        id: 'move-next',
+			        handler: navHandler.createDelegate(this, [1])
+			 	  },{
+				  	text: 'finish',
+					id: 'move-finish',
+					hidden: true,
+					handler: function() {
+						submitRegistration();
+					}
+				  }]
+			    });
+					
+			    return {
+			        init: function() {
+						registerWin.show();
+				        var nav = new Ext.KeyNav('regWindow', {
+							"enter": function() {},
+							"esc": registerWin.hide
+				        });
+			        }
+			    };
+			}();					
+			
+		Ext.onReady( function() {
+			Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+			Ext.QuickTips.init();
+			registrationWizard.init();
+		});
+		</script>
+	</head>
+	<body>
+	
+	<div id="x-registration-welcome" class="x-hide-display">
+		<h1>Welcome to the registration wizard</h1>
+		<p>This wizard will guide you true your registration setup.</p>
+		<p>Please select the 'next' button to proceed to the next panel and start the registration.</p>
+	</div>
+	
+	<div id="x-registration-aggreement" class="x-hide-display">
+       	<h1>My closable attribute is set</h1>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl. Maecenas tortor turpis, interdum non, sodales non, iaculis ac, lacus. Vestibulum auctor, tortor quis iaculis malesuada, libero lectus bibendum purus, sit amet tincidunt quam turpis vel lacus. In pellentesque nisl non sem. Suspendisse nunc sem, pretium eget, cursus a, fringilla vel, urna. Aliquam commodo ullamcorper erat. Nullam vel justo in neque porttitor laoreet. Aenean lacus dui, consequat eu, adipiscing eget, nonummy non, nisi. Morbi nunc est, dignissim non, ornare sed, luctus eu, massa. Vivamus eget quam. Vivamus tincidunt diam nec urna. Curabitur velit. Quisque dolor magna, ornare sed, elementum porta, luctus in, leo.</p>
+        <p>Donec quis dui. Sed imperdiet. Nunc consequat, est eu sollicitudin gravida, mauris ligula lacinia mauris, eu porta dui nisl in velit. Nam congue, odio id auctor nonummy, augue lectus euismod nunc, in tristique turpis dolor sed urna. Donec sit amet quam eget diam fermentum pharetra. Integer tincidunt arcu ut purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla blandit malesuada odio. Nam augue. Aenean molestie sapien in mi. Suspendisse tincidunt. Pellentesque tempus dui vitae sapien. Donec aliquam ipsum sit amet pede. Sed scelerisque mi a erat. Curabitur rutrum ullamcorper risus. Maecenas et lorem ut felis dictum viverra. Fusce sem. Donec pharetra nibh sit amet sapien.</p>
+        <p>Aenean ut orci sed ligula consectetuer pretium. Aliquam odio. Nam pellentesque enim. Nam tincidunt condimentum nisi. Maecenas convallis luctus ligula. Donec accumsan ornare risus. Vestibulum id magna a nunc posuere laoreet. Integer iaculis leo vitae nibh. Nam vulputate, mauris vitae luctus pharetra, pede neque bibendum tellus, facilisis commodo diam nisi eget lacus. Duis consectetuer pulvinar nisi. Cras interdum ultricies sem. Nullam tristique. Suspendisse elementum purus eu nisl. Nulla facilisi. Phasellus ultricies ullamcorper lorem. Sed euismod ante vitae lacus. Nam nunc leo, congue vehicula, luctus ac, tempus non, ante. Morbi suscipit purus a nulla. Sed eu diam.</p>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras imperdiet felis id velit. Ut non quam at sem dictum ullamcorper. Vestibulum pharetra purus sed pede. Aliquam ultrices, nunc in varius mattis, felis justo pretium magna, eget laoreet justo eros id eros. Aliquam elementum diam fringilla nulla. Praesent laoreet sapien vel metus. Cras tempus, sapien condimentum dictum dapibus, lorem augue fringilla orci, ut tincidunt eros nisi eget turpis. Nullam nunc nunc, eleifend et, dictum et, pharetra a, neque. Ut feugiat. Aliquam erat volutpat. Donec pretium odio nec felis. Phasellus sagittis lacus eget sapien. Donec est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        <p>Vestibulum semper. Nullam non odio. Aliquam quam. Mauris eu lectus non nunc auctor ullamcorper. Sed tincidunt molestie enim. Phasellus lobortis justo sit amet quam. Duis nulla erat, varius a, cursus in, tempor sollicitudin, mauris. Aliquam mi velit, consectetuer mattis, consequat tristique, pulvinar ac, nisl. Aliquam mattis vehicula elit. Proin quis leo sed tellus scelerisque molestie. Quisque luctus. Integer mattis. Donec id augue sed leo aliquam egestas. Quisque in sem. Donec dictum enim in dolor. Praesent non erat. Nulla ultrices vestibulum quam.</p>
+        <p>Duis hendrerit, est vel lobortis sagittis, tortor erat scelerisque tortor, sed pellentesque sem enim id metus. Maecenas at pede. Nulla velit libero, dictum at, mattis quis, sagittis vel, ante. Phasellus faucibus rutrum dui. Cras mauris elit, bibendum at, feugiat non, porta id, neque. Nulla et felis nec odio mollis vehicula. Donec elementum tincidunt mauris. Duis vel dui. Fusce iaculis enim ac nulla. In risus.</p>
+        <p>Donec gravida. Donec et enim. Morbi sollicitudin, lacus a facilisis pulvinar, odio turpis dapibus elit, in tincidunt turpis felis nec libero. Nam vestibulum tempus ipsum. In hac habitasse platea dictumst. Nulla facilisi. Donec semper ligula. Donec commodo tortor in quam. Etiam massa. Ut tempus ligula eget tellus. Curabitur id velit ut velit varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla facilisi. Fusce ornare pellentesque libero. Nunc rhoncus. Suspendisse potenti. Ut consequat, leo eu accumsan vehicula, justo sem lobortis elit, ac sollicitudin ipsum neque nec ante.</p>
+        <p>Aliquam elementum mauris id sem. Vivamus varius, est ut nonummy consectetuer, nulla quam bibendum velit, ac gravida nisi felis sit amet urna. Aliquam nec risus. Maecenas lacinia purus ut velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sit amet dui vitae lacus fermentum sodales. Donec varius dapibus nisl. Praesent at velit id risus convallis bibendum. Aliquam felis nibh, rutrum nec, blandit non, mattis sit amet, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam varius dignissim nibh. Quisque id orci ac ante hendrerit molestie. Aliquam malesuada enim non neque.</p>
+	</div>
+	
+	<div id="x-registration-summary" class="x-hide-display">
+		<h1>Almost finish</h1>
+		<p>Just click on the 'finish' button to submit your registration.</p>
+		<p>You will recieve a e-mail with your registration data and a verification - key. 
+		Be shure to archive it for later issus.</p>
+	</div>
+
+  </body>
+</html>
+
+

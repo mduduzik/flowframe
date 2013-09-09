@@ -1,0 +1,5 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.supercsv
+Bundle-Name: jbpt
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.5.1
+Excluded-Imports: spiffy.core.util

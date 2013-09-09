@@ -75,6 +75,7 @@
         <module name="org.flowframe.erp.remote.services" />
         <module name="org.flowframe.erp.remote.services.impl" />
         <module name="org.flowframe.erp.remote.services.impl.config.fragment" />
+        <module name="org.flowframe.etl.editor.oryx.snaps.frontend" />
         <module name="org.flowframe.etl.pentaho.repository.db" />
         <module name="org.flowframe.etl.pentaho.server.plugins.core" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager" />
@@ -111,6 +112,7 @@
         <module name="org.flowframe.tests.common" />
         <module name="org.flowframe.thirdparty.asm" />
         <module name="org.flowframe.thirdparty.bitronix" />
+        <module name="org.flowframe.thirdparty.bpmnq" />
         <module name="org.flowframe.thirdparty.com.google.protobuf" />
         <module name="org.flowframe.thirdparty.com.mysql.jdbc" />
         <module name="org.flowframe.thirdparty.commons-compress" />
@@ -136,10 +138,12 @@
         <module name="org.flowframe.thirdparty.jbpm-human-task-mina" />
         <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" />
         <module name="org.flowframe.thirdparty.jbpm-workitems" />
+        <module name="org.flowframe.thirdparty.jbpt" />
         <module name="org.flowframe.thirdparty.jersey-server" />
         <module name="org.flowframe.thirdparty.jersey.hk2-utils" />
         <module name="org.flowframe.thirdparty.jersey.javax.inject" />
         <module name="org.flowframe.thirdparty.jersey.jersey-spring3" />
+        <module name="org.flowframe.thirdparty.jflex" />
         <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
         <module name="org.flowframe.thirdparty.knowledge-api" />
         <module name="org.flowframe.thirdparty.knowledge-internal-api" />
@@ -166,6 +170,7 @@
         <module name="org.flowframe.thirdparty.poi" />
         <module name="org.flowframe.thirdparty.spring-vaadin-integration" />
         <module name="org.flowframe.thirdparty.stripe-java" />
+        <module name="org.flowframe.thirdparty.supercsv" />
         <module name="org.flowframe.thirdparty.vaadin" />
         <module name="org.flowframe.thirdparty.vaadin-addon-contextmenu" />
         <module name="org.flowframe.thirdparty.vaadin-addon-easyuploads" />
@@ -199,6 +204,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="distribution" target="1.6" />
+      <module name="editor" target="1.6" />
+      <module name="frontend" target="1.6" />
       <module name="kettle-all" target="1.6" />
       <module name="org.flowframe..thirdparty.pentaho-reporting-engine-library" target="1.6" />
       <module name="org.flowframe..thirdparty.pentaho.reporting.libfonts" target="1.6" />
@@ -266,6 +273,7 @@
       <module name="org.flowframe.erp.remote.services.impl" target="1.6" />
       <module name="org.flowframe.erp.remote.services.impl.config.fragment" target="1.6" />
       <module name="org.flowframe.etl" target="1.6" />
+      <module name="org.flowframe.etl.editor.oryx.snaps.frontend" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server (1)" target="1.6" />
@@ -318,6 +326,7 @@
       <module name="org.flowframe.thirdparty" target="1.6" />
       <module name="org.flowframe.thirdparty.asm" target="1.6" />
       <module name="org.flowframe.thirdparty.bitronix" target="1.6" />
+      <module name="org.flowframe.thirdparty.bpmnq" target="1.6" />
       <module name="org.flowframe.thirdparty.com.google.protobuf" target="1.6" />
       <module name="org.flowframe.thirdparty.com.mysql.jdbc" target="1.6" />
       <module name="org.flowframe.thirdparty.commons-compress" target="1.6" />
@@ -346,11 +355,13 @@
       <module name="org.flowframe.thirdparty.jbpm-human-task-mina" target="1.6" />
       <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" target="1.6" />
       <module name="org.flowframe.thirdparty.jbpm-workitems" target="1.6" />
+      <module name="org.flowframe.thirdparty.jbpt" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey-server" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.hk2-utils" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.javax.inject" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.jersey-spring3" target="1.6" />
+      <module name="org.flowframe.thirdparty.jflex" target="1.6" />
       <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-api" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-internal-api" target="1.6" />
@@ -378,6 +389,7 @@
       <module name="org.flowframe.thirdparty.poi" target="1.6" />
       <module name="org.flowframe.thirdparty.spring-vaadin-integration" target="1.6" />
       <module name="org.flowframe.thirdparty.stripe-java" target="1.6" />
+      <module name="org.flowframe.thirdparty.supercsv" target="1.6" />
       <module name="org.flowframe.thirdparty.vaadin" target="1.6" />
       <module name="org.flowframe.thirdparty.vaadin-addon-contextmenu" target="1.6" />
       <module name="org.flowframe.thirdparty.vaadin-addon-easyuploads" target="1.6" />
@@ -413,10 +425,12 @@
       <module name="org.flowframe.uilegacy.vaadin.expressions" target="1.6" />
       <module name="org.flowframe.uilegacy.vaadin.factory" target="1.6" />
       <module name="org.flowframe.uilegacy.vaadin.forms" target="1.6" />
+      <module name="oryx" target="1.6" />
       <module name="pentaho" target="1.6" />
       <module name="remote.services.min.impl" target="1.6" />
       <module name="reporting" target="1.6" />
       <module name="repository" target="1.6" />
+      <module name="snaps" target="1.6" />
       <module name="spring-bridge" target="1.6" />
     </bytecodeTargetLevel>
   </component>
