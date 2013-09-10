@@ -213,7 +213,7 @@
         </display-name>
         <servlet-name>EditorHandler</servlet-name>
         <servlet-class>
-            org.oryxeditor.server.EditorHandler
+            org.oryxeditor.server.ETLEditorHandler
         </servlet-class>
     </servlet>
 
@@ -478,13 +478,13 @@
         </servlet-class>
     </servlet>
 
-    <servlet>
+<!--    <servlet>
         <display-name>SAT solver for Compliance Template</display-name>
         <servlet-name>SATSolverForComplianceTemplate</servlet-name>
         <servlet-class>
             de.unistuttgart.complianceTemplate.SatSolver
         </servlet-class>
-    </servlet>
+    </servlet>-->
 
     <servlet>
         <display-name>TBPM Import Servlet</display-name>
@@ -786,10 +786,10 @@
         <url-pattern>/bpmn2migration</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>SATSolverForComplianceTemplate</servlet-name>
         <url-pattern>/satSolver</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <servlet-mapping>
         <servlet-name>TBPMServlet</servlet-name>

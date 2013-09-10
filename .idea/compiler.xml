@@ -273,6 +273,9 @@
       <module name="org.flowframe.erp.remote.services.impl" target="1.6" />
       <module name="org.flowframe.erp.remote.services.impl.config.fragment" target="1.6" />
       <module name="org.flowframe.etl" target="1.6" />
+      <module name="org.flowframe.etl.editor" target="1.6" />
+      <module name="org.flowframe.etl.editor.oryx" target="1.6" />
+      <module name="org.flowframe.etl.editor.oryx.snaps" target="1.6" />
       <module name="org.flowframe.etl.editor.oryx.snaps.frontend" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server" target="1.6" />

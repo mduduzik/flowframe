@@ -317,5 +317,5 @@ Import-Package: com.bpmnq;version="1.0.3",com.bpmnq.compliancechecker;
 Bundle-SymbolicName: org.flowframe.etl.editor.oryx.snaps.frontend
 Snap-Host: org.flowframe.etl.pentaho.server.snaps.main;version="[0.0.1
  ,0.1)"
-Snap-ContextPath: /editor
+Snap-ContextPath: /oryx
 

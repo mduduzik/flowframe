@@ -29,7 +29,7 @@
 				{
 					"id": "dataSource",
 					"type": "Choice",
-					"restUrl": "/backend/poem/endpoint",
+					//"restUrl": "/backend/poem/endpoint",
 					"restMethod": "GET",
 					"restParams": {
 						"userId": "skeswa",
@@ -56,7 +56,7 @@
 					{
 						"id": "template",
 						"type": "Choice",
-						"restUrl": "/backend/poem/reporting",
+						//"restUrl": "/backend/poem/reporting",
 						"restMethod": "GET",
 						"restParams": {
 							"userId": "skeswa",

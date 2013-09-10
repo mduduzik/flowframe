@@ -15,14 +15,14 @@
             "icon_url":"/bpmn2.0/bpmn2.0.png",
             "visible":true
         },
-		{
+/*		{
             "title":"Reporting Jobs",
             "namespace":"http://conxbi.com/stencilset/reporting#",
             "description":"ConX BI Reporting Job stencil set specification for processes.",
             "uri":"/reporting/reporting.json",
             "icon_url":"/bpmn2.0/bpmn2.0.png",
             "visible":true
-        },
+        },*/
 		{
             "title":"BPMN 2.0 Conversations",
             "namespace":"http://b3mn.org/stencilset/bpmn2.0conversation#",

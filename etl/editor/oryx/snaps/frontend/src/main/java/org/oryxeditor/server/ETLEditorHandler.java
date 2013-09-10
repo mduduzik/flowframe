@@ -33,27 +33,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
-public class EditorHandler extends HttpServlet {
+public class ETLEditorHandler extends HttpServlet {
 
     /**
      *
      */
-    public static final String oryx_path = "/oryx/";
     private static final String defaultSS="stencilsets/bpmn1.1/bpmn1.1.json";
     private static final long serialVersionUID = 1L;
     private Collection<String> availableProfiles;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        availableProfiles=getAvailableProfileNames();
+//        availableProfiles=getAvailableProfileNames();
 //		if(availableProfiles.size()==0)
 //			 defaultHandlerBehaviour();
-        String[] urlSplitted=request.getRequestURI().split(";");
+        List<String> profiles= Arrays.asList("default");
+/*        String[] urlSplitted=request.getRequestURI().split(";");
         ArrayList<String> profiles= new ArrayList<String>();
         if (urlSplitted.length>1){
             for(int i=1;i<urlSplitted.length;i++){
@@ -68,13 +71,17 @@ public class EditorHandler extends HttpServlet {
             profiles.retainAll(availableProfiles);
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
-        }
+        }*/
+        String defaultProfilePrefix = "default";
         String sset=null;
         JSONObject conf= new JSONObject();
         try {
-            conf = new JSONObject(FileCopyUtils.copyToString(new FileReader(this.getServletContext().
+/*            conf = new JSONObject(FileCopyUtils.copyToString(new FileReader(this.getServletContext().
                     getRealPath("/profiles") + File.separator + profiles.get(0)
-                    + ".conf")));
+                    + ".conf")));*/
+            conf = new JSONObject(FileCopyUtils.copyToString(new InputStreamReader(this.getServletContext().
+                    getResourceAsStream("/profiles"+ File.separator + defaultProfilePrefix
+                    + ".conf"))));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -93,7 +100,7 @@ public class EditorHandler extends HttpServlet {
                 "<script type='text/javascript'>" +
                         "if(!ORYX) var ORYX = {};" +
                         "if(!ORYX.CONFIG) ORYX.CONFIG = {};" +
-                        "ORYX.CONFIG.PLUGINS_CONFIG  =			ORYX.CONFIG.PROFILE_PATH + '"+profiles.get(0)+".xml';" +
+                        "ORYX.CONFIG.PLUGINS_CONFIG  =			ORYX.CONFIG.PROFILE_PATH + '"+defaultProfilePrefix+".xml';" +
                         "ORYX.CONFIG.SSET='" + sset +"';" +
                         "ORYX.CONFIG.SSEXTS=" + extString + ";"+
                         ((isTemplate) ? "ORYX.CONFIG[\"IS_TEMPLATE\"] = true;" : "ORYX.CONFIG[\"IS_TEMPLATE\"] = false;") +
@@ -106,7 +113,7 @@ public class EditorHandler extends HttpServlet {
                         "new ORYX.Editor({"+
                         "id: 'oryx-canvas123',"+
                         "stencilset: {"+
-                        "url: '"+oryx_path+"'+stencilset" +
+                        "url: '"+getRootPath(request)+"'+stencilset" +
                         "}" +
                         "})}"+
                         "else{" +
@@ -118,35 +125,38 @@ public class EditorHandler extends HttpServlet {
                         "</script>";
         response.setContentType("application/xhtml+xml");
 
-        response.getWriter().println(this.getOryxModel("Oryx-Editor",
+        response.getWriter().println(this.getOryxModel(request,"Oryx-Editor",
                 content, this.getLanguageCode(request),
                 this.getCountryCode(request), profiles));
         response.setStatus(200);
     }
-    protected String getOryxModel(String title, String content,
-                                  String languageCode, String countryCode, ArrayList<String> profiles) {
+    protected String getOryxModel(HttpServletRequest request, String title, String content,
+                                  String languageCode, String countryCode, List<String> profiles) {
 
-        return getOryxModel(title, content, languageCode, countryCode, "", profiles);
+        return getOryxModel(request, title, content, languageCode, countryCode, "", profiles);
     }
 
-    protected String getOryxModel(String title, String content,
-                                  String languageCode, String countryCode, String headExtentions, ArrayList<String> profiles) {
+    protected String getOryxModel(HttpServletRequest request, String title, String content,
+                                  String languageCode, String countryCode, String headExtentions, List<String> profiles) {
 
         String languageFiles = "";
         String profileFiles="";
 
-        if (new File(this.getOryxRootDirectory() + "/oryx/i18n/translation_"+languageCode+".js").exists()) {
-            languageFiles += "<script src=\"" + oryx_path
+        languageCode = languageCode == null ? "en_us" : languageCode;
+
+        final InputStream resourceAsStream = this.getResourceAsStream("/i18n/translation_" + languageCode + ".js");
+        if (resourceAsStream != null) {
+            languageFiles += "<script src=\"" + getRootPath(request)
                     + "i18n/translation_"+languageCode+".js\" type=\"text/javascript\" />\n";
         }
 
-        if (new File(this.getOryxRootDirectory() + "/oryx/i18n/translation_" + languageCode+"_" + countryCode + ".js").exists()) {
-            languageFiles += "<script src=\"" + oryx_path
+        if (new File(this.getRootPath(request)+"translation_" + languageCode+"_" + countryCode + ".js").exists()) {
+            languageFiles += "<script src=\"" + getRootPath(request)
                     + "i18n/translation_" + languageCode+"_" + countryCode
                     + ".js\" type=\"text/javascript\" />\n";
         }
         for(String profile: profiles){
-            profileFiles=profileFiles+ "<script src=\"" + oryx_path+"profiles/" + profile+".js\" type=\"text/javascript\" />\n";
+            profileFiles=profileFiles+ "<script src=\""+getRootPath(request)+"profiles/" + profile+".js\" type=\"text/javascript\" />\n";
 
         }
 
@@ -167,29 +177,29 @@ public class EditorHandler extends HttpServlet {
                 + "<head profile=\"http://purl.org/NET/erdf/profile\">\n"
                 + "<title>" + title + " - Oryx</title>\n"
                 + "<!-- libraries -->\n"
-                + "<script src=\"" + oryx_path + "lib/LABjs-2.0.3/LAB.min.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "lib/prototype-1.5.1.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "lib/path_parser.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "lib/ext-2.0.2/adapter/ext/ext-base.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "lib/ext-2.0.2/ext-all.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "lib/ext-2.0.2/color-field.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/LABjs-2.0.3/LAB.min.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/prototype-1.5.1.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/path_parser.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/adapter/ext/ext-base.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/ext-all.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/color-field.js\" type=\"text/javascript\" />\n"
                 + "<style media=\"screen\" type=\"text/css\">\n"
-                + "@import url(\"" + oryx_path + "lib/ext-2.0.2/resources/css/ext-all.css\");\n"
-                + "@import url(\"" + oryx_path + "lib/ext-2.0.2/resources/css/xtheme-gray.css\");\n"
+                + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/ext-all.css\");\n"
+                + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/xtheme-gray.css\");\n"
                 + "</style>\n"
 
                 + "<!-- oryx editor -->\n"
                 // EN_US is default an base language
                 + "<!-- language files -->\n"
-                + "<script src=\"" + oryx_path + "i18n/translation_en_us.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "oryx/i18n/translation_en_us.js\" type=\"text/javascript\" />\n"
                 + languageFiles
                 // Handle different profiles
                 //+ "<script src=\"" + oryx_path + "profiles/oryx.core.uncompressed.js\" type=\"text/javascript\" />\n"
-                + generateUncompressedJSFileList()
+                + generateUncompressedJSFileList(request)
                 + profileFiles
                 + headExtentions
 
-                + "<link rel=\"Stylesheet\" media=\"screen\" href=\"" + oryx_path + "css/theme_norm.css\" type=\"text/css\" />\n"
+                + "<link rel=\"Stylesheet\" media=\"screen\" href=\"" + getSharedRootPath() + "oryx/css/theme_norm.css\" type=\"text/css\" />\n"
 
                 + "<!-- erdf schemas -->\n"
                 + "<link rel=\"schema.dc\" href=\"http://purl.org/dc/elements/1.1/\" />\n"
@@ -212,6 +222,20 @@ public class EditorHandler extends HttpServlet {
                 + "</body>\n"
                 + "</html>";
     }
+
+    protected InputStream getResourceAsStream(String path) {
+        return this.getServletContext().
+                getResourceAsStream(path);
+    }
+
+    protected String getRootPath(HttpServletRequest request) {
+        return "";//getSharedRootPath() + SnapUtil.determineSnapContextPath(request);
+    }
+
+    protected String getSharedRootPath() {
+        return "/etl/";
+    }
+
     protected String getOryxRootDirectory() {
         String realPath = this.getServletContext().getRealPath("");
         File backendDir = new File(realPath);
@@ -248,44 +272,44 @@ public class EditorHandler extends HttpServlet {
         return profilNames;
     }
 
-    private String generateUncompressedJSFileList() {
+    private String generateUncompressedJSFileList(HttpServletRequest request) {
 
-        return "<script src=\"" + oryx_path + "scripts/utils.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/kickstart.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/erdfparser.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/datamanager.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/clazz.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/config.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/oryx.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/SVG/editpathhandler.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/SVG/minmaxpathhandler.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/SVG/pointspathhandler.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/SVG/svgmarker.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/SVG/svgshape.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/SVG/label.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/Math/math.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/stencil.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/property.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/propertyitem.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/complexpropertyitem.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/rules.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/stencilset.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/StencilSet/stencilsets.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/command.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/bounds.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/uiobject.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/abstractshape.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/canvas.js\" type=\"text/javascript\" />\n"
-                /*+ "<script src=\"" + oryx_path + "scripts/Core/apiHandler.js\" type=\"text/javascript\" />\n"*/
-                + "<script src=\"" + oryx_path + "scripts/Core/main.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/svgDrag.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/shape.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/Controls/control.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/Controls/docker.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/Controls/magnet.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/node.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/edge.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + oryx_path + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n";
+        return "<script src=\"" + getRootPath(request) + "scripts/utils.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/kickstart.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/erdfparser.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/datamanager.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/clazz.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/config.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/oryx.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/editpathhandler.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/minmaxpathhandler.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/pointspathhandler.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/svgmarker.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/svgshape.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/label.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/Math/math.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/stencil.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/property.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/propertyitem.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/complexpropertyitem.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/rules.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/stencilset.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/StencilSet/stencilsets.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/command.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/bounds.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/uiobject.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractshape.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/canvas.js\" type=\"text/javascript\" />\n"
+                /*+ "<script src=\"" + getRootPath(request) + "scripts/Core/apiHandler.js\" type=\"text/javascript\" />\n"*/
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/main.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/svgDrag.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/shape.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/Controls/control.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/Controls/docker.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/Controls/magnet.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/node.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/edge.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n";
     }
 }

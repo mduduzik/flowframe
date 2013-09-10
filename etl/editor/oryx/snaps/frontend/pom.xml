@@ -53,6 +53,22 @@
         <!-- Virgo -->
         <dependency>
             <groupId>org.eclipse.virgo.snaps</groupId>
+            <artifactId>org.eclipse.virgo.snaps.core</artifactId>
+            <version>3.6.2.RELEASE</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.virgo.mirrored</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.virgo.nano</groupId>
+                    <artifactId>org.eclipse.virgo.nano.core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.virgo.snaps</groupId>
             <artifactId>org.eclipse.virgo.snaps.api</artifactId>
             <version>3.6.2.RELEASE</version>
             <scope>provided</scope>

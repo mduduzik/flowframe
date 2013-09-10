@@ -61,6 +61,9 @@
       <module fileurl="file://$PROJECT_DIR$/erp/remote.services.impl/org.flowframe.erp.remote.services.impl.iml" filepath="$PROJECT_DIR$/erp/remote.services.impl/org.flowframe.erp.remote.services.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/erp/remote.services.impl.config.fragment/org.flowframe.erp.remote.services.impl.config.fragment.iml" filepath="$PROJECT_DIR$/erp/remote.services.impl.config.fragment/org.flowframe.erp.remote.services.impl.config.fragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/org.flowframe.etl.iml" filepath="$PROJECT_DIR$/etl/org.flowframe.etl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/editor/org.flowframe.etl.editor.iml" filepath="$PROJECT_DIR$/etl/editor/org.flowframe.etl.editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/org.flowframe.etl.editor.oryx.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/org.flowframe.etl.editor.oryx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/snaps/org.flowframe.etl.editor.oryx.snaps.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/snaps/org.flowframe.etl.editor.oryx.snaps.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/org.flowframe.etl.editor.oryx.snaps.frontend.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/org.flowframe.etl.editor.oryx.snaps.frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/repository.db/org.flowframe.etl.pentaho.repository.db.iml" filepath="$PROJECT_DIR$/etl/pentaho/repository.db/org.flowframe.etl.pentaho.repository.db.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" />
