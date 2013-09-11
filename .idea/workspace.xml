@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba06307f-714d-40b4-bb43-8b15d10cec5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/icons/diagram.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/icons/tMysqlOutput_icon32.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/diagram.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/config.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/shaperepository.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/shaperepository.js" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -150,49 +148,98 @@
       <file leaf-file-name="etl1.0.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="248" column="854" selection-start="15270" selection-end="15270" vertical-scroll-proportion="0.5156695" vertical-offset="4035" max-vertical-offset="5525">
+            <state line="284" column="931" selection-start="19760" selection-end="19760" vertical-scroll-proportion="2.997151" vertical-offset="3776" max-vertical-offset="5814">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="task.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/activity/task.svg">
+      <file leaf-file-name="shaperepository.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/shaperepository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="81.84" vertical-offset="2046" max-vertical-offset="2448">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="diagram.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/diagram.svg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-              <folding />
+            <state line="34" column="0" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="8432">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inclusive.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/gateway/inclusive.svg">
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.44" vertical-offset="86" max-vertical-offset="748">
+            <state line="98" column="53" selection-start="4614" selection-end="4614" vertical-scroll-proportion="-6.04" vertical-offset="1515" max-vertical-offset="4233">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oryx.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="244630" selection-start="244630" selection-end="244630" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="shaperepository.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/scripts/shaperepository.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="487" column="44" selection-start="14308" selection-end="14308" vertical-scroll-proportion="0.0" vertical-offset="7655" max-vertical-offset="8041">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oryx.debug.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.debug.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18675" column="0" selection-start="572690" selection-end="572690" vertical-scroll-proportion="0.0" vertical-offset="317347" max-vertical-offset="950589">
+              <folding>
+                <marker date="1377373762021" expanded="false" signature="67601:67616" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="609687:609704" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="773403:773438" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="777017:777032" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="791588:791623" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="795202:795217" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1226014:1226025" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1255708:1255720" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1255818:1255828" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1264338:1264350" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1264448:1264458" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1405216:1405247" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1435373:1435403" placeholder="..." />
+                <marker date="1377373762021" expanded="false" signature="1575438:1575453" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/profiles/default.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragmentRepository.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/scripts/fragmentRepository.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="60" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0" vertical-offset="807" max-vertical-offset="9673">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="bpmn2.0.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/bpmn2.0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2182" column="45" selection-start="57093" selection-end="57100" vertical-scroll-proportion="-2.9215686" vertical-offset="36945" max-vertical-offset="95659">
+            <state line="2976" column="1426" selection-start="117109" selection-end="117118" vertical-scroll-proportion="-2.4509804" vertical-offset="50467" max-vertical-offset="95659">
               <folding>
                 <marker date="1377373762308" expanded="false" signature="76839:77015" placeholder="..." />
                 <marker date="1377373762308" expanded="false" signature="92834:93010" placeholder="..." />
@@ -264,77 +311,9 @@
       <file leaf-file-name="oryx.all.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.all.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3982" column="68" selection-start="672281" selection-end="672281" vertical-scroll-proportion="0.0" vertical-offset="67885" max-vertical-offset="77605">
+            <state line="4120" column="0" selection-start="678189" selection-end="678220" vertical-scroll-proportion="0.0" vertical-offset="69912" max-vertical-offset="77605">
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisioImportConfiguration.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/execution/VisioImportConfiguration.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="416" column="66" selection-start="34282" selection-end="34282" vertical-scroll-proportion="0.0" vertical-offset="6906" max-vertical-offset="7786">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BPMNType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/java/de/unihannover/se/infocup2008/bpmn/model/BPMNType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="29" selection-start="8107" selection-end="8107" vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="2703">
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bpmn1.1.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn1.1/bpmn1.1.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4291" column="23" selection-start="110301" selection-end="110301" vertical-scroll-proportion="-6.076923" vertical-offset="72789" max-vertical-offset="196622">
-              <folding>
-                <marker date="1377373762299" expanded="false" signature="6997:7173" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="25271:25447" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="43357:43533" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="60483:60512" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="60645:60687" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="60792:60834" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="67477:67506" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="67591:67632" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="67717:67758" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="67963:68065" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="73577:73606" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="73712:73754" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="78753:78782" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="78867:78908" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="84776:84805" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="84943:84987" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="147725:147809" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="152649:152762" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="180617:180721" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="207863:207947" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="213737:213821" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="219210:219323" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="224808:224919" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="250647:250752" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="264892:264976" placeholder="..." />
-                <marker date="1377373762299" expanded="false" signature="269518:269629" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="group.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/artifact/group.svg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="24" selection-start="162" selection-end="162" vertical-scroll-proportion="-2.72" vertical-offset="0" max-vertical-offset="459">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
           </provider>
         </entry>
       </file>
@@ -356,14 +335,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/config.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/reporting.json" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/reporting-nosvg.json" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/scripts/shaperepository.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/tests/stencileditors/maintest.html" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/tests/stencileditors/maintest.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/shaperepository.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/i18n/translation_en_us.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/profiles.xml" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tFTPPut_icon32.svg" />
@@ -371,6 +348,8 @@
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/stencilsets.json" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMysqlInput_icon32.svg" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMap_icon32.svg" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/shaperepository.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/config.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json" />
       </list>
     </option>
@@ -1297,6 +1276,102 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="icons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stencilsets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bpmn2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2353,12 +2428,12 @@
       <workItem from="1378039450812" duration="91024000" />
       <workItem from="1378315483098" duration="58814000" />
       <workItem from="1378482574979" duration="58847000" />
-      <workItem from="1378729024062" duration="80701000" />
+      <workItem from="1378729024062" duration="86126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312243000" />
+    <option name="totallyTimeSpent" value="317668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -2383,7 +2458,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24426451" sideWeight="0.499375" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39811066" sideWeight="0.499375" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34278002" sideWeight="0.906875" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58164644" sideWeight="0.561875" order="7" side_tool="false" content_ui="tabs" />
@@ -2419,58 +2494,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/reporting.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="1249" selection-end="1329" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="2397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tFileInputDelimited_icon32.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="0" selection-start="5160" selection-end="5160" vertical-scroll-proportion="0.0" vertical-offset="814" max-vertical-offset="1377">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/icons/diagram.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/oryx.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="40" selection-start="2265" selection-end="2272" vertical-scroll-proportion="210.92" vertical-offset="6412" max-vertical-offset="7259">
-          <folding>
-            <marker date="1375979843899" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/Core/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="29" selection-start="4718" selection-end="4718" vertical-scroll-proportion="-5.56" vertical-offset="3040" max-vertical-offset="36669">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/bpmn2.0-nosvg.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3010" column="34" selection-start="80204" selection-end="80204" vertical-scroll-proportion="0.09282701" vertical-offset="51126" max-vertical-offset="95659">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/activity/task.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="81.84" vertical-offset="2046" max-vertical-offset="2448">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/diagram.svg">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="427">
@@ -2498,13 +2521,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.all.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3982" column="68" selection-start="672281" selection-end="672281" vertical-scroll-proportion="0.0" vertical-offset="67885" max-vertical-offset="77605">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/execution/VisioImportConfiguration.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="416" column="66" selection-start="34282" selection-end="34282" vertical-scroll-proportion="0.0" vertical-offset="6906" max-vertical-offset="7786">
@@ -2525,39 +2541,114 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="4291" column="23" selection-start="110301" selection-end="110301" vertical-scroll-proportion="-6.076923" vertical-offset="72789" max-vertical-offset="196622">
           <folding>
-            <marker date="1377373762299" expanded="false" signature="6997:7173" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="25271:25447" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="43357:43533" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="60483:60512" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="60645:60687" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="60792:60834" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="67477:67506" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="67591:67632" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="67717:67758" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="67963:68065" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="73577:73606" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="73712:73754" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="78753:78782" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="78867:78908" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="84776:84805" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="84943:84987" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="147725:147809" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="152649:152762" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="180617:180721" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="207863:207947" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="213737:213821" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="219210:219323" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="224808:224919" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="250647:250752" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="264892:264976" placeholder="..." />
-            <marker date="1377373762299" expanded="false" signature="269518:269629" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4120" column="0" selection-start="678189" selection-end="678220" vertical-scroll-proportion="0.0" vertical-offset="69912" max-vertical-offset="77605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="244630" selection-start="244630" selection-end="244630" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/scripts/shaperepository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="487" column="44" selection-start="14308" selection-end="14308" vertical-scroll-proportion="0.0" vertical-offset="7655" max-vertical-offset="8041">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.debug.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18675" column="0" selection-start="572690" selection-end="572690" vertical-scroll-proportion="0.0" vertical-offset="317347" max-vertical-offset="950589">
+          <folding>
+            <marker date="1377373762021" expanded="false" signature="67601:67616" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="609687:609704" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="773403:773438" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="777017:777032" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="791588:791623" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="795202:795217" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1226014:1226025" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1255708:1255720" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1255818:1255828" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1264338:1264350" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1264448:1264458" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1405216:1405247" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1435373:1435403" placeholder="..." />
+            <marker date="1377373762021" expanded="false" signature="1575438:1575453" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/profiles/default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/shaperepository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="8432">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="53" selection-start="4614" selection-end="4614" vertical-scroll-proportion="-6.04" vertical-offset="1515" max-vertical-offset="4233">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/plugins/scripts/fragmentRepository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="60" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0" vertical-offset="807" max-vertical-offset="9673">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/bpmn2.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2182" column="45" selection-start="57093" selection-end="57100" vertical-scroll-proportion="-2.9215686" vertical-offset="36945" max-vertical-offset="95659">
+        <state line="2976" column="1426" selection-start="117109" selection-end="117118" vertical-scroll-proportion="-2.4509804" vertical-offset="50467" max-vertical-offset="95659">
           <folding>
             <marker date="1377373762308" expanded="false" signature="76839:77015" placeholder="..." />
             <marker date="1377373762308" expanded="false" signature="92834:93010" placeholder="..." />
@@ -2627,7 +2718,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="854" selection-start="15270" selection-end="15270" vertical-scroll-proportion="0.5156695" vertical-offset="4035" max-vertical-offset="5525">
+        <state line="284" column="931" selection-start="19760" selection-end="19760" vertical-scroll-proportion="2.997151" vertical-offset="3776" max-vertical-offset="5814">
           <folding />
         </state>
       </provider>
