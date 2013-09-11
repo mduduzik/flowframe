@@ -1,44 +1,79 @@
 {
-    "title": "ETL",
+    "title": "ETL 1.0",
     "namespace": "http://etl.flowframe.org/stencilset/etlbasic#",
-    "description": "ETL",
-    "propertyPackages": [],
-    "stencils": [
+    "description": "ETL 1.0",
+    "propertyPackages": [
         {
-            "type": "node",
-            "id": "TextFileInput",
-            "title": "File Input Delimited",
-            "groups": ["Input"],
-            "description": "A data source that can be used to back reports etc.",
-            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileInputDelimited_icon32.png\"/>            <text font-size=\"11\" id=\"text_state\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
-            "icon": "tFileInputDelimited_icon32.png",
-            "mayBeRoot":		true,
-            "roles":			["TextFileInput"],
+            "name":"baseAttributes",
             "properties": [
                 {
-                    "id":"title",
+                    "id":"name",
                     "type":"String",
-                    "title":"Title",
-                    "title_de":"Titel",
+                    "title":"Name",
                     "value":"",
-                    "description":"The title of this diagram.",
-                    "description_de":"Der Titel des Diagramms.",
-                    "tooltip":"",
+                    "description":"The descriptive name of the BPMN element.",
+                    "description_de":"Bezeichnung des BPMN-Elementes.",
                     "readonly":false,
                     "optional":true,
-                    "refToView":"diagramtext",
+                    "length":"",
+                    "wrapLines" : true,
+                    "refToView":"text_name"
+                },
+                {
+                    "id":"documentation",
+                    "type":"Text",
+                    "title":"Documentation",
+                    "title_de":"Dokumentation",
+                    "value":"",
+                    "description":"This attribute is used to annotate the BPMN element, such as descriptions and other documentation.",
+                    "description_de":"Der Modellierer kann weiteren Text zur Dokumentation des BPMN-Elementes einfügen.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
+                    "wrapLines":true,
+                    "popular" : true
+                },
+                {
+                    "id":"auditing",
+                    "type":"Text",
+                    "title":"Auditing",
+                    "title_de":"Prüfung",
+                    "value":"",
+                    "description":"A hook for specifying audit related properties. Auditing can only be defined for a Process.",
+                    "description_de":"",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
                     "wrapLines":true
                 },
+                {
+                    "id":"monitoring",
+                    "type":"Text",
+                    "title":"Monitoring",
+                    "title_de":"Überwachung",
+                    "value":"",
+                    "description":"A hook for specifying monitoring related properties. Monitoring can only be defined for a Process.",
+                    "description_de":"",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
+                    "wrapLines":true
+                }
+            ]
+        },
+        {
+            "name" : "diagram",
+            "properties" : [
                 {
                     "id":"version",
                     "type":"String",
                     "title":"Version",
                     "value":"",
-                    "description":"The version number of the diagram.",
-                    "description_de":"Die Versionsnummer des Diagramms.",
+                    "description":"This defines the Version number of the Diagram.",
+                    "description_de":"Setzt die Versionsnummer des Diagramms.",
                     "readonly":false,
                     "optional":true,
-                    "length":"8"
+                    "length":"50"
                 },
                 {
                     "id":"author",
@@ -46,150 +81,199 @@
                     "title":"Author",
                     "title_de":"Autor",
                     "value":"",
-                    "description":"Holds the name of the author of the diagram.",
-                    "description_de":"Name des Autors",
-                    "readonly":false,
-                    "optional":true
-                },
-                {
-                    "id":"description",
-                    "type":"String",
-                    "title":"Description",
-                    "title_de":"Beschreibung",
-                    "value":"",
-                    "description":"A detailed description of this diagram.",
-                    "description_de":"Erweiterte Beschreibung zu dem Diagramm.",
-                    "tooltip":"",
+                    "description":"This holds the name of the author of the Diagram.",
+                    "description_de": "Name des Autors des Diagramms.",
                     "readonly":false,
                     "optional":true,
-                    "popular" : true,
-                    "wrapLines":true
+                    "length":"50"
+                },
+                {
+                    "id":"language",
+                    "type":"String",
+                    "title":"Language",
+                    "title_de":"Sprache",
+                    "value":"English",
+                    "value_de":"Deutsch",
+                    "description":"This holds the name of the language in which text is written.",
+                    "description_de":"Sprache, in welcher der Text geschrieben ist.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                },
+                {
+                    "id":"namespaces",
+                    "type":"Complex",
+                    "title":"Namespaces",
+                    "value":"",
+                    "description":"Additional namespaces and theire prefixes used in the diagram., ",
+                    "description_de":"Optionale Namespaces, die im Diagramm genutzt werden.",
+                    "readonly":false,
+                    "optional":true,
+                    "complexItems": [
+                        {
+                            "id":"prefix",
+                            "name":"Prefix",
+                            "type":"String",
+                            "value":"",
+                            "width":100,
+                            "optional":false
+                        },
+                        {
+                            "id":"url",
+                            "name":"URL",
+                            "type":"String",
+                            "value":"",
+                            "width":200,
+                            "optional":false
+                        }
+                    ]
+                },
+                {
+                    "id":"targetnamespace",
+                    "type":"String",
+                    "title":"Target Namespace",
+                    "title_de":"Ziel-Namensraum",
+                    "value":"http://www.omg.org/bpmn20",
+                    "description":"Defines the XML namespace of the elements inside the document.",
+                    "description_de":"Definiert den XML-Namensraum, der für die Elemente im Dokument verwendet wird.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                },
+                {
+                    "id":"expressionlanguage",
+                    "type":"String",
+                    "title":"ExpressionLanguage",
+                    "title_de":"Ausdruckssprache",
+                    "value":"http://www.w3.org/1999/XPath",
+                    "description":"A Language may be provided so that the syntax of expressions used in the Diagram can be understood.",
+                    "description_de":"Sprache, mit welcher im Diagramm verwendete Ausdrücke beschrieben sind.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                },
+                {
+                    "id":"typelanguage",
+                    "type":"String",
+                    "title":"TypeLanguage",
+                    "title_de":"Typsprache",
+                    "value":"http://www.w3.org/2001/XMLSchema",
+                    "description":"This attribute identifies the type system used by the elements of this Definition.",
+                    "description_de":"Definiert das Typsystem der Elemente dieses Diagramms.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                },
+                {
+                    "id":"creationdate",
+                    "type":"Date",
+                    "title":"CreationDate",
+                    "title_de":"Erstellt am",
+                    "value":"",
+                    "description":"This defines the date on which the Diagram was created.",
+                    "description_de":"Datum an dem das Diagramm erstellt wurde.",
+                    "readonly":false,
+                    "optional":true,
+                    "dateFormat":"j/m/y"
+                },
+                {
+                    "id":"modificationdate",
+                    "type":"Date",
+                    "title":"ModificationDate",
+                    "title_de":"Geändert am",
+                    "value":"",
+                    "description":"This defines the date on which the Diagram was last modified.",
+                    "description_de":"Datum der letzten Änderung.",
+                    "readonly":false,
+                    "optional":true,
+                    "dateFormat":"j/m/y"
                 }
             ]
+        }
+    ],
+    "stencils": [
+        //Inputs
+        {
+            "type": "node",
+            "id": "TextFileInput",
+            "title": "File Input Delimited",
+            "groups": ["Inputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileInputDelimited_icon32.png\"/>            <text font-size=\"11\" id=\"text_state1\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileInputDelimited_icon32.png",
+            "mayBeRoot":		true,
+            "roles":			["all","input"],
+            "propertyPackages" : ["baseAttributes"]
+        },
+        {
+            "type": "node",
+            "id": "ExcelInput",
+            "title": "File Input Excel",
+            "groups": ["Inputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileInputExcel_icon32.png\"/>            <text font-size=\"11\" id=\"text_state1\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileInputExcel_icon32.png",
+            "mayBeRoot":		true,
+            "roles":			["all","input"],
+            "propertyPackages" : ["baseAttributes"]
         },
         {
             "type": "node",
             "id": "TableInput",
             "title": "Table Input",
-            "groups": ["Input"],
+            "groups": ["Inputs"],
             "description": "A data source that can be used to back reports etc.",
-            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMysqlInput_icon32.png\"/>            <text font-size=\"11\" id=\"text_state\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMysqlInput_icon32.png\"/>            <text font-size=\"11\" id=\"text_state2\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection2\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "tMysqlInput_icon32.png",
-            "roles": ["TableInput"],
-            "properties": [
-                {
-                    "id":"title",
-                    "type":"String",
-                    "title":"Title",
-                    "title_de":"Titel",
-                    "value":"",
-                    "description":"The title of this diagram.",
-                    "description_de":"Der Titel des Diagramms.",
-                    "tooltip":"",
-                    "readonly":false,
-                    "optional":true,
-                    "refToView":"diagramtext",
-                    "wrapLines":true
-                },
-                {
-                    "id":"version",
-                    "type":"String",
-                    "title":"Version",
-                    "value":"",
-                    "description":"The version number of the diagram.",
-                    "description_de":"Die Versionsnummer des Diagramms.",
-                    "readonly":false,
-                    "optional":true,
-                    "length":"8"
-                },
-                {
-                    "id":"author",
-                    "type":"String",
-                    "title":"Author",
-                    "title_de":"Autor",
-                    "value":"",
-                    "description":"Holds the name of the author of the diagram.",
-                    "description_de":"Name des Autors",
-                    "readonly":false,
-                    "optional":true
-                },
-                {
-                    "id":"description",
-                    "type":"String",
-                    "title":"Description",
-                    "title_de":"Beschreibung",
-                    "value":"",
-                    "description":"A detailed description of this diagram.",
-                    "description_de":"Erweiterte Beschreibung zu dem Diagramm.",
-                    "tooltip":"",
-                    "readonly":false,
-                    "optional":true,
-                    "popular" : true,
-                    "wrapLines":true
-                }
-            ]
+            "roles": ["all","input"],
+            "propertyPackages" : ["baseAttributes"]
+        },
+        //Outputs
+        {
+            "type": "node",
+            "id": "TextFileOutput",
+            "title": "File Output Delimited",
+            "groups": ["Outputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileOutputDelimited_icon32.png\"/>            <text font-size=\"11\" id=\"text_state1\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileOutputDelimited_icon32.png",
+            "roles":			["all","output"],
+            "propertyPackages" : ["baseAttributes"]
         },
         {
             "type": "node",
-            "id": "TransMap",
+            "id": "ExcelOutput",
+            "title": "File Output Excel",
+            "groups": ["Outputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileOutputExcel_icon32.png\"/>            <text font-size=\"11\" id=\"text_state1\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileOutputExcel_icon32.png",
+            "roles":			["all","output"],
+            "propertyPackages" : ["baseAttributes"]
+        },
+        {
+            "type": "node",
+            "id": "TableOutput",
+            "title": "Table Output",
+            "groups": ["Outputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMysqlOutput_icon32.png\"/>            <text font-size=\"11\" id=\"text_state2\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection2\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tMysqlOutput_icon32.png",
+            "roles": ["all","output"],
+            "propertyPackages" : ["baseAttributes"]
+        },
+
+        //Transforms
+        {
+            "type": "node",
+            "id": "trans_map",
             "title": "Transform Map",
             "groups": ["Transforms"],
             "description": "A data source that can be used to back reports etc.",
-            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMap_icon32.png\"/>            <text font-size=\"11\" id=\"text_state\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMap_icon32.png\"/>            <text font-size=\"11\" id=\"text_stat3\" x=\"44\" y=\"80\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection3\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "tMap_icon32.png",
-            "roles": ["TransMap"],
-            "properties": [
-                {
-                    "id": "title",
-                    "type": "String",
-                    "title": "Title",
-                    "title_de": "Titel",
-                    "value": "",
-                    "description": "The title of this diagram.",
-                    "description_de": "Der Titel des Diagramms.",
-                    "tooltip": "",
-                    "readonly": false,
-                    "optional": true,
-                    "refToView": "diagramtext",
-                    "wrapLines": true
-                },
-                {
-                    "id": "version",
-                    "type": "String",
-                    "title": "Version",
-                    "value": "",
-                    "description": "The version number of the diagram.",
-                    "description_de": "Die Versionsnummer des Diagramms.",
-                    "readonly": false,
-                    "optional": true,
-                    "length": "8"
-                },
-                {
-                    "id": "author",
-                    "type": "String",
-                    "title": "Author",
-                    "title_de": "Autor",
-                    "value": "",
-                    "description": "Holds the name of the author of the diagram.",
-                    "description_de": "Name des Autors",
-                    "readonly": false,
-                    "optional": true
-                },
-                {
-                    "id": "description",
-                    "type": "String",
-                    "title": "Description",
-                    "title_de": "Beschreibung",
-                    "value": "",
-                    "description": "A detailed description of this diagram.",
-                    "description_de": "Erweiterte Beschreibung zu dem Diagramm.",
-                    "tooltip": "",
-                    "readonly": false,
-                    "optional": true,
-                    "popular": true,
-                    "wrapLines": true
-                }
-            ]
+            "roles": ["all","transformation","input"],
+            "propertyPackages" : ["baseAttributes"]
         },
         {
             "type": "edge",
@@ -197,38 +281,37 @@
             "title": "Connector",
             "groups": ["Relationship"],
             "description": "A precedes edges",
-            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    version=\"1.1\">    <defs>                  <marker id=\"arrowEnd\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\"                          markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\">                          <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"black\" stroke=\"black\"/>                  </marker>          </defs>     <g>         <path d=\"M50 50 L100 50\" stroke=\"black\" fill=\"none\"                  stroke-width=\"2\" marker-end=\"url(#arrowEnd)\"/>                      </g> </svg> ",
+            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    version=\"1.1\">    <defs>                  <marker id=\"arrowEnd\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\"                          markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\">                          <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"orange\" stroke=\"orange\"/>                  </marker>          </defs>     <g>         <path d=\"M50 50 L100 50\" stroke=\"orange\" fill=\"none\"                  stroke-width=\"1\" marker-end=\"url(#arrowEnd)\"/>                      </g> </svg> ",
             "icon": "association.unidirectional.png",
             "roles": ["controlflow"]
         }
     ],
     "rules": {
+        "containmentRules": [
+            {
+                "role": "all",
+                "contains": [
+                    "all"
+                ]
+            }
+        ],
         "connectionRules": [
             {
                 "role": "controlflow",
                 "connects": [
                     {
-                        "from": "TextFileInput",
-                        "to": "TransMap"
+                        "from": "input",
+                        "to": "transformation"
                     },
                     {
-                        "from": "TableInput",
-                        "to": "TransMap"
+                        "from": "transformation",
+                        "to": "input"
+                    },
+                    {
+                        "from": "transformation",
+                        "to": "output"
                     }
-                ]
-            }
-        ],
-        "containmentRules": [
-            {
-                "role": "TextFileInput",
-                "contains": [
-                    "TransMap"
-                ]
-            },
-            {
-                "role": "TableInput",
-                "contains": [
-                    "TransMap"
+
                 ]
             }
         ]

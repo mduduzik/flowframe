@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba06307f-714d-40b4-bb43-8b15d10cec5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/icons/tMap_icon32.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMap_icon32.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/icons/diagram.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/icons/tMysqlOutput_icon32.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/diagram.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json" afterPath="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -149,84 +150,191 @@
       <file leaf-file-name="etl1.0.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="228" column="35" selection-start="12177" selection-end="12177" vertical-scroll-proportion="10.308511" vertical-offset="0" max-vertical-offset="4114">
+            <state line="248" column="854" selection-start="15270" selection-end="15270" vertical-scroll-proportion="0.5156695" vertical-offset="4035" max-vertical-offset="5525">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="epc.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/epc/epc.png">
-          <provider selected="true" editor-type-id="images">
+      <file leaf-file-name="task.svg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/activity/task.svg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="81.84" vertical-offset="2046" max-vertical-offset="2448">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="epc.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/epc/epc.json">
+      <file leaf-file-name="diagram.svg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/diagram.svg">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="152" selection-start="3103" selection-end="3105" vertical-scroll-proportion="-22.09804" vertical-offset="216" max-vertical-offset="16116">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tMap_icon32.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMap_icon32.svg">
+      <file leaf-file-name="inclusive.svg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/gateway/inclusive.svg">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="0" selection-start="4994" selection-end="4994" vertical-scroll-proportion="0.0" vertical-offset="835" max-vertical-offset="1343">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.44" vertical-offset="86" max-vertical-offset="748">
               <folding />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tMapIn_icon32.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/images/conxbi/etl/tMapIn_icon32.png">
-          <provider selected="true" editor-type-id="images">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tMap_icon32.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/images/conxbi/etl/tMap_icon32.png">
-          <provider selected="true" editor-type-id="images">
+      <file leaf-file-name="bpmn2.0.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/bpmn2.0.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2182" column="45" selection-start="57093" selection-end="57100" vertical-scroll-proportion="-2.9215686" vertical-offset="36945" max-vertical-offset="95659">
+              <folding>
+                <marker date="1377373762308" expanded="false" signature="76839:77015" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="92834:93010" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="97141:97170" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="97303:97345" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="97450:97492" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="100856:100885" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="100947:100988" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="101050:101091" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="101278:101380" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="101539:101568" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="101633:101672" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="101863:101965" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="102125:102154" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="102424:102463" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="105377:105406" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="105512:105551" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="107574:107603" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="107688:107729" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="110591:110620" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="110758:110802" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="119833:119872" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="145824:145848" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="148118:148142" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="150819:150843" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="151063:151102" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="153133:153157" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="155581:155685" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="160214:160238" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="160501:160584" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="162586:162610" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="162744:162854" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="165034:165058" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="165344:165383" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="167541:167565" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="167754:167778" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="170492:170516" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="170705:170729" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="173730:173754" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="173943:173967" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="174291:174330" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="176604:176628" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="176817:176841" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="182779:182883" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="190711:190735" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="190924:190948" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="191323:191406" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="193719:193743" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="193932:193956" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="194202:194312" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="196847:196871" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="197060:197084" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="197475:197514" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="204626:204668" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="212373:212457" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="214620:214731" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="220704:220746" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="222627:222732" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="229038:229122" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="230975:231086" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="238650:238664" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="241030:241044" placeholder="..." />
+                <marker date="1377373762308" expanded="false" signature="243158:243172" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oryx.all.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.all.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3982" column="68" selection-start="672281" selection-end="672281" vertical-scroll-proportion="0.0" vertical-offset="67885" max-vertical-offset="77605">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VisioImportConfiguration.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/execution/VisioImportConfiguration.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="416" column="66" selection-start="34282" selection-end="34282" vertical-scroll-proportion="0.0" vertical-offset="6906" max-vertical-offset="7786">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BPMNType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/java/de/unihannover/se/infocup2008/bpmn/model/BPMNType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="168" column="29" selection-start="8107" selection-end="8107" vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="2703">
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bpmn1.1.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn1.1/bpmn1.1.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4291" column="23" selection-start="110301" selection-end="110301" vertical-scroll-proportion="-6.076923" vertical-offset="72789" max-vertical-offset="196622">
+              <folding>
+                <marker date="1377373762299" expanded="false" signature="6997:7173" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="25271:25447" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="43357:43533" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="60483:60512" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="60645:60687" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="60792:60834" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="67477:67506" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="67591:67632" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="67717:67758" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="67963:68065" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="73577:73606" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="73712:73754" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="78753:78782" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="78867:78908" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="84776:84805" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="84943:84987" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="147725:147809" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="152649:152762" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="180617:180721" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="207863:207947" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="213737:213821" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="219210:219323" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="224808:224919" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="250647:250752" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="264892:264976" placeholder="..." />
+                <marker date="1377373762299" expanded="false" signature="269518:269629" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group.svg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/artifact/group.svg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="24" selection-start="162" selection-end="162" vertical-scroll-proportion="-2.72" vertical-offset="0" max-vertical-offset="459">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tFileInputDelimited_icon32.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tFileInputDelimited_icon32.svg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="0" selection-start="5160" selection-end="5160" vertical-scroll-proportion="0.0" vertical-offset="814" max-vertical-offset="1377">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tFTPPut_icon32.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tFTPPut_icon32.svg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="0" selection-start="5576" selection-end="5576" vertical-scroll-proportion="0.0" vertical-offset="1022" max-vertical-offset="1462">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reporting.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/reporting.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="1249" selection-end="1329" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="2397">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tMysqlInput_icon32.svg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMysqlInput_icon32.svg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="4" selection-start="660" selection-end="5632" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -987,46 +1095,8 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1069,60 +1139,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stencilsets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stencilsets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reporting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1169,68 +1185,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="stencilsets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reporting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stencilsets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reporting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="icons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1285,64 +1239,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="etl1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stencilsets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1401,156 +1297,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="icons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stencilsets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="epc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="conxbi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2232,11 +1978,11 @@
       <recent name="org.flowframe.documentlibrary.remote.services.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\snaps\frontend\src\main\webapp\stencilsets\etl\etl1.0\view" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\snaps\frontend\src\main\webapp\stencilsets\etl\etl1.0\icons" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\snaps\frontend\src\main\webapp\stencilsets\etl" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\snaps\frontend\src\main\webapp\lib\ext-2.0.2" />
       <recent name="C:\dev\gitrepos\flowframe\thirdparty" />
-      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\snaps\frontend\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\snaps\frontend\src\main\webapp\stencilsets\etl\etl1.0" />
@@ -2607,16 +2353,16 @@
       <workItem from="1378039450812" duration="91024000" />
       <workItem from="1378315483098" duration="58814000" />
       <workItem from="1378482574979" duration="58847000" />
-      <workItem from="1378729024062" duration="68313000" />
+      <workItem from="1378729024062" duration="80701000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299855000" />
+    <option name="totallyTimeSpent" value="312243000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2630,20 +2376,20 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48043185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.305" sideWeight="0.65721995" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29" sideWeight="0.65721995" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3711201" sideWeight="0.9075" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24021593" sideWeight="0.499375" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34278002" sideWeight="0.906875" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24426451" sideWeight="0.499375" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34278002" sideWeight="0.906875" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58164644" sideWeight="0.561875" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24952978" sideWeight="0.75303644" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.219375" sideWeight="0.65721995" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2225" sideWeight="0.65721995" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2673,84 +2419,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/icons/data.object.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/icons/data.store.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/icons/end.event.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/icons/start.event.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/icons/association.unidirectional.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/view/data.object.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="227" selection-end="256" vertical-scroll-proportion="-4.08" vertical-offset="0" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMysqlInput_icon32.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="4" selection-start="660" selection-end="5632" vertical-scroll-proportion="0.0" vertical-offset="1093" max-vertical-offset="1530">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/images/conxbi/etl/tMapIn_icon32.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/images/conxbi/etl/tMap_icon32.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tFTPPut_icon32.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="0" selection-start="5576" selection-end="5576" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/tMap_icon32.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="0" selection-start="4994" selection-end="4994" vertical-scroll-proportion="0.0" vertical-offset="835" max-vertical-offset="1343">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/epc/epc.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/epc/epc.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="152" selection-start="3103" selection-end="3105" vertical-scroll-proportion="-22.09804" vertical-offset="216" max-vertical-offset="16116">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/reporting/reporting.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="0" selection-start="1249" selection-end="1329" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="2397">
@@ -2765,9 +2433,201 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/icons/diagram.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/oryx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="40" selection-start="2265" selection-end="2272" vertical-scroll-proportion="210.92" vertical-offset="6412" max-vertical-offset="7259">
+          <folding>
+            <marker date="1375979843899" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/Core/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="29" selection-start="4718" selection-end="4718" vertical-scroll-proportion="-5.56" vertical-offset="3040" max-vertical-offset="36669">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/bpmn2.0-nosvg.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3010" column="34" selection-start="80204" selection-end="80204" vertical-scroll-proportion="0.09282701" vertical-offset="51126" max-vertical-offset="95659">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/activity/task.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="81.84" vertical-offset="2046" max-vertical-offset="2448">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/view/diagram.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="427">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/gateway/inclusive.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.44" vertical-offset="86" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/view/artifact/group.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="24" selection-start="162" selection-end="162" vertical-scroll-proportion="-2.72" vertical-offset="0" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/oryx.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3982" column="68" selection-start="672281" selection-end="672281" vertical-scroll-proportion="0.0" vertical-offset="67885" max-vertical-offset="77605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/execution/VisioImportConfiguration.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="416" column="66" selection-start="34282" selection-end="34282" vertical-scroll-proportion="0.0" vertical-offset="6906" max-vertical-offset="7786">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/java/de/unihannover/se/infocup2008/bpmn/model/BPMNType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="168" column="29" selection-start="8107" selection-end="8107" vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="2703">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn1.1/bpmn1.1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4291" column="23" selection-start="110301" selection-end="110301" vertical-scroll-proportion="-6.076923" vertical-offset="72789" max-vertical-offset="196622">
+          <folding>
+            <marker date="1377373762299" expanded="false" signature="6997:7173" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="25271:25447" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="43357:43533" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="60483:60512" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="60645:60687" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="60792:60834" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="67477:67506" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="67591:67632" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="67717:67758" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="67963:68065" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="73577:73606" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="73712:73754" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="78753:78782" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="78867:78908" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="84776:84805" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="84943:84987" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="147725:147809" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="152649:152762" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="180617:180721" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="207863:207947" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="213737:213821" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="219210:219323" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="224808:224919" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="250647:250752" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="264892:264976" placeholder="..." />
+            <marker date="1377373762299" expanded="false" signature="269518:269629" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/bpmn2.0/bpmn2.0.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2182" column="45" selection-start="57093" selection-end="57100" vertical-scroll-proportion="-2.9215686" vertical-offset="36945" max-vertical-offset="95659">
+          <folding>
+            <marker date="1377373762308" expanded="false" signature="76839:77015" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="92834:93010" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="97141:97170" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="97303:97345" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="97450:97492" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="100856:100885" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="100947:100988" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="101050:101091" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="101278:101380" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="101539:101568" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="101633:101672" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="101863:101965" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="102125:102154" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="102424:102463" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="105377:105406" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="105512:105551" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="107574:107603" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="107688:107729" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="110591:110620" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="110758:110802" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="119833:119872" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="145824:145848" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="148118:148142" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="150819:150843" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="151063:151102" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="153133:153157" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="155581:155685" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="160214:160238" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="160501:160584" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="162586:162610" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="162744:162854" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="165034:165058" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="165344:165383" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="167541:167565" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="167754:167778" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="170492:170516" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="170705:170729" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="173730:173754" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="173943:173967" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="174291:174330" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="176604:176628" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="176817:176841" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="182779:182883" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="190711:190735" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="190924:190948" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="191323:191406" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="193719:193743" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="193932:193956" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="194202:194312" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="196847:196871" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="197060:197084" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="197475:197514" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="204626:204668" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="212373:212457" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="214620:214731" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="220704:220746" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="222627:222732" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="229038:229122" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="230975:231086" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="238650:238664" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="241030:241044" placeholder="..." />
+            <marker date="1377373762308" expanded="false" signature="243158:243172" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="35" selection-start="12177" selection-end="12177" vertical-scroll-proportion="10.308511" vertical-offset="0" max-vertical-offset="4114">
+        <state line="248" column="854" selection-start="15270" selection-end="15270" vertical-scroll-proportion="0.5156695" vertical-offset="4035" max-vertical-offset="5525">
           <folding />
         </state>
       </provider>
