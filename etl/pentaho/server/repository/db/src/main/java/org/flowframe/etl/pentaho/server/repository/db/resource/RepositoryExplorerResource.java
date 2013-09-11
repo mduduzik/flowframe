@@ -174,7 +174,7 @@ public class RepositoryExplorerResource {
         metadata.put("id", "metadata");
         metadata.put("text", mdDir.getName());
         metadata.put("title", mdDir.getName());
-        metadata.put("icon", "/oryx/images/conxbi/etl/package.gif");
+        metadata.put("icon", "/etl/images/conxbi/etl/package.gif");
         metadata.put("leaf", false);
         metadata.put("hasChildren", true);
         metadata.put("singleClickExpand", true);
@@ -190,7 +190,7 @@ public class RepositoryExplorerResource {
         metadataDBConnections.put("id", "metadata.dbconnections");
         metadataDBConnections.put("text", "DB Connections");
         metadataDBConnections.put("title", "DB Connections");
-        metadataDBConnections.put("icon", "/oryx/images/conxbi/etl/connection.gif");
+        metadataDBConnections.put("icon", "/etl/images/conxbi/etl/connection.gif");
         metadataDBConnections.put("leaf", false);
         metadataDBConnections.put("hasChildren", true);
         metadataDBConnections.put("singleClickExpand", true);
@@ -209,7 +209,7 @@ public class RepositoryExplorerResource {
         metadataDelimited.put("id", RepositoryUtil.generatePathID(delimitedMdDir, "CSVInput"));
         metadataDelimited.put("text", "CSV");
         metadataDelimited.put("title", "CSV");
-        metadataDelimited.put("icon", "/oryx/images/conxbi/etl/icon_delimited.gif");
+        metadataDelimited.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
         metadataDelimited.put("leaf", false);
         metadataDelimited.put("hasChildren", true);
         metadataDelimited.put("singleClickExpand", true);
@@ -228,7 +228,7 @@ public class RepositoryExplorerResource {
         metadataDExcel.put("id", "metadata.excel");
         metadataDExcel.put("text", "Excel");
         metadataDExcel.put("title", "Excel");
-        metadataDExcel.put("icon", "/oryx/images/conxbi/etl/icon_excel.gif");
+        metadataDExcel.put("icon", "/etl/images/conxbi/etl/icon_excel.gif");
         metadataDExcel.put("leaf", false);
         metadataDExcel.put("hasChildren", true);
         metadataDExcel.put("singleClickExpand", true);
@@ -250,7 +250,7 @@ public class RepositoryExplorerResource {
         subDir.put("id", RepositoryUtil.generatePathID(dir, "ExcelInput"));
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
-        subDir.put("icon", "/oryx/images/conxbi/etl/icon_excel.gif");
+        subDir.put("icon", "/etl/images/conxbi/etl/icon_excel.gif");
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
@@ -286,7 +286,7 @@ public class RepositoryExplorerResource {
                     JSONObject mdmObj = new JSONObject();
                     mdmObj.put("text", step.getName());
                     mdmObj.put("title", step.getName());
-                    mdmObj.put("icon", "/oryx/images/conxbi/etl/icon_excel.gif");
+                    mdmObj.put("icon", "/etl/images/conxbi/etl/icon_excel.gif");
                     mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
                     mdmObj.put("leaf", false);
                     mdmObj.put("hasChildren", true);
@@ -301,7 +301,7 @@ public class RepositoryExplorerResource {
                     fieldsObj.put("title", "Fields");
                     fieldsObj.put("text", "Fields");
                     fieldsObj.put("id", step.getName() + ".fields");
-                    fieldsObj.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
+                    fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
                     fieldsObj.put("leaf", false);
                     fieldsObj.put("hasChildren", true);
                     fieldsObj.put("singleClickExpand", true);
@@ -317,7 +317,7 @@ public class RepositoryExplorerResource {
                         fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
                         fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
                         fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
-                        fieldObj.put("icon", "/oryx/images/conxbi/etl/columns.gif");
+                        fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
                         fieldObj.put("leaf", true);
                         fieldObj.put("hasChildren", false);
                         fieldObj.put("singleClickExpand", false);
@@ -337,7 +337,7 @@ public class RepositoryExplorerResource {
         subDir.put("id", RepositoryUtil.generatePathID(dir, "CSVInput"));
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
-        subDir.put("icon", "/oryx/images/conxbi/etl/icon_delimited.gif");
+        subDir.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
@@ -374,7 +374,7 @@ public class RepositoryExplorerResource {
                     JSONObject mdmObj = new JSONObject();
                     mdmObj.put("text", step.getName());
                     mdmObj.put("title", step.getName());
-                    mdmObj.put("icon", "/oryx/images/conxbi/etl/icon_delimited.gif");
+                    mdmObj.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
                     mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
                     mdmObj.put("leaf", false);
                     mdmObj.put("hasChildren", true);
@@ -389,7 +389,7 @@ public class RepositoryExplorerResource {
                     fieldsObj.put("title", "Fields");
                     fieldsObj.put("text", "Fields");
                     fieldsObj.put("id", step.getName() + ".fields");
-                    fieldsObj.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
+                    fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
                     fieldsObj.put("leaf", false);
                     fieldsObj.put("hasChildren", true);
                     fieldsObj.put("singleClickExpand", true);
@@ -406,7 +406,7 @@ public class RepositoryExplorerResource {
                         fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
                         fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
                         fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
-                        fieldObj.put("icon", "/oryx/images/conxbi/etl/columns.gif");
+                        fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
                         fieldObj.put("leaf", true);
                         fieldObj.put("hasChildren", false);
                         fieldObj.put("singleClickExpand", false);
@@ -429,7 +429,7 @@ public class RepositoryExplorerResource {
         subDir.put("id", "dir/"+dir.getObjectId().toString());
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
-        subDir.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
+        subDir.put("icon", "/etl/images/conxbi/etl/folder_close.png");
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
@@ -464,7 +464,7 @@ public class RepositoryExplorerResource {
             JSONObject dbObj = new JSONObject();
             dbObj.put("text", db.getName());
             dbObj.put("title", db.getName());
-            dbObj.put("icon", "/oryx/images/conxbi/etl/connection.gif");
+            dbObj.put("icon", "/etl/images/conxbi/etl/connection.gif");
             dbObj.put("id", db.getObjectId());
             dbObj.put("leaf", false);
             dbObj.put("hasChildren", false);
@@ -481,7 +481,7 @@ public class RepositoryExplorerResource {
             tableSchemas.put("title", "Table Schemas");
             tableSchemas.put("text", "Table Schemas");
             tableSchemas.put("id", db.getName() + ".tables.schemas");
-            tableSchemas.put("icon", "/oryx/images/conxbi/etl/folder_close.png");
+            tableSchemas.put("icon", "/etl/images/conxbi/etl/folder_close.png");
             tableSchemas.put("leaf", false);
             tableSchemas.put("hasChildren", true);
             tableSchemas.put("singleClickExpand", true);
@@ -501,7 +501,7 @@ public class RepositoryExplorerResource {
                     schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
                     schemaObj.put("text", schemaName + "." + tableName);
                     schemaObj.put("title", schemaName + "." + tableName);
-                    schemaObj.put("icon", "/oryx/images/conxbi/etl/table.gif");
+                    schemaObj.put("icon", "/etl/images/conxbi/etl/table.gif");
                     schemaObj.put("leaf", false);
                     schemaObj.put("hasChildren", true);
                     schemaObj.put("singleClickExpand", true);
@@ -520,7 +520,7 @@ public class RepositoryExplorerResource {
                         column.put("id", schemaObj.get("id") + "." + name);
                         column.put("text", name + "[" + typeName + "]");
                         column.put("text", name + "[" + typeName + "]");
-                        column.put("icon", "/oryx/images/conxbi/etl/columns.gif");
+                        column.put("icon", "/etl/images/conxbi/etl/columns.gif");
                         column.put("leaf", true);
                         column.put("hasChildren", false);
                         column.put("singleClickExpand", false);
