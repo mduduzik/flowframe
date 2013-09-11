@@ -37,6 +37,25 @@
 		<plugin name="ORYX.Plugins.WaveThis"/>
         <plugin name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
 	</profile>
+    <profile name="bpmn" depends="default" stencilset="stencilsets/bpmn1.1/bpmn1.1.json">
+        <plugin name="ORYX.Plugins.BPMN2XForms"/>
+        <plugin name="ORYX.Plugins.ProcessLink"/>
+        <plugin name="ORYX.Plugins.SimplePnmlexport"/>
+        <plugin name="ORYX.Plugins.IBPMN2BPMN"/>
+        <plugin name="ORYX.Plugins.SyntaxChecker"/>
+        <plugin name="ORYX.Plugins.BPMNValidator"/>
+        <plugin name="ORYX.Plugins.StepThroughPlugin"/>
+        <plugin name="ORYX.Plugins.BPMN11"/>
+        <plugin name="ORYX.Plugins.BPMN"/>
+        <plugin name="ORYX.Plugins.QueryResultHighlighter"/>
+        <plugin name="ORYX.Plugins.BpmnLayouter"/>
+        <plugin name="ORYX.Plugins.PNExport"/>
+        <plugin name="ORYX.Plugins.BPMN2XPDL20"/>
+        <plugin name="ORYX.Plugins.BPMN2DTRPXMI"/>
+        <plugin name="ORYX.Plugins.JPDLSupport"/>
+        <plugin name="ORYX.Plugins.BPMN2YAWLMapper"/>
+        <plugin name="ORYX.Plugins.CreateProcessVariant"/>
+    </profile>
 	<profile name="bpmn" depends="default" stencilset="stencilsets/bpmn1.1/bpmn1.1.json">
 		<plugin name="ORYX.Plugins.BPMN2XForms"/>
 		<plugin name="ORYX.Plugins.ProcessLink"/>

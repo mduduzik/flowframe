@@ -478,7 +478,7 @@ NavigationTreePanel = function(mainCenterTabPanel_,mainEditorTab_) {
         loader: new Ext.tree.TreeLoader({
             requestMethod: 'GET',
             clearOnLoad: false,
-            dataUrl:'http://localhost:8082/etlrepo/explorer/getnode',
+            dataUrl:'http://localhost:8080/etlrepo/explorer/getnode',
             preloadChildren: false,
             baseParams: {
                 userid: 'userid',
