@@ -364,7 +364,7 @@ ORYX.Editor = {
 
 
             // DEFINES LEFT-AREA
-            west	: new Ext.Panel({
+/*            west	: new Ext.Panel({
                 region	: 'west',
                 layout	: 'anchor',
                 autoEl	: 'div',
@@ -373,6 +373,25 @@ ORYX.Editor = {
                 width	: ORYX.CONFIG.PANEL_LEFT_WIDTH || 200,
                 autoScroll:true,
                 cmargins: {left:0, right:0},
+                split	: true,
+                title	: "West"
+            }),*/
+            west	: new Ext.Panel({
+                region	: 'west',
+                layout	: 'fit',
+                cls		: 'x-panel-editor-east',
+                /*layout: 'accordion',
+                 layoutConfig: {
+                 // layout-specific configs go here
+                 titleCollapse: true,
+                 animate: true,
+                 activeOnTop: true
+                 },*/
+                autoEl	: 'div',
+                border	:false,
+                cmargins: {left:0, right:0},
+                collapsible	: true,
+                width	: ORYX.CONFIG.PANEL_RIGHT_WIDTH || 200,
                 split	: true,
                 title	: "West"
             }),

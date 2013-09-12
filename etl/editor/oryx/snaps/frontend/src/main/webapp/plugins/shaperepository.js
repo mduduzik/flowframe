@@ -48,7 +48,13 @@ ORYX.Plugins.ShapeRepository = {
 			autoScroll : true,
 			rootVisible : false,
 			lines : false,
-			anchors : '0, -30'
+			anchors : '0, -30',
+            tbar: [
+                'Search: ', ' ',
+                new Ext.ux.SearchField({
+                    width:'auto'
+                })
+            ]
 		})
 		var region = this.facade.addToRegion("east", panel, ORYX.I18N.ShapeRepository.title);
 

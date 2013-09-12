@@ -40,14 +40,34 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 /*        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,
             this.handleExecuteCommands.bind(this) );*/
         if (!this.navigationPanel)  {
+            var treeLoader = new Ext.tree.TreeLoader({
+                requestMethod: 'GET',
+                clearOnLoad: false,
+                dataUrl:'http://localhost:8080/etlrepo/explorer/getnode',
+                preloadChildren: false,
+                baseParams: {
+                    userid: 'userid',
+                    itemtype: 'undefined',
+                    folderObjectId: 'undefined'
+                },
+                listeners: {
+                    load: function(loader,node,response) {
+                        console.log('data loaded');
+                        node.expandChildNodes();
+                    }
+                }
+            });
+
             this.navigationPanel = new Ext.ux.ETLRepoNavigationTreePanel({
                 facade: this.facade,
-                region: 'west',
+                header : false,
+                //region: 'west',
                 id: 'navigation',
-                icon: '/oryx/images/conxbi/etl/home_nav.gif',
+                icon: '/etl/images/conxbi/etl/home_nav.gif',
                 collapsible: true,
                 title: 'Repository',
                 width: 214,
+                autoHeight: true,
                 autoScroll: true,
                 rootVisible: false,
                 cmargins: '5 0 0 0',
@@ -58,17 +78,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                         width:'auto'
                     })
                 ],
-                loader: new Ext.tree.TreeLoader({
-                    requestMethod: 'GET',
-                    clearOnLoad: false,
-                    dataUrl:'http://localhost:8080/etlrepo/explorer/getnode',
-                    preloadChildren: false,
-                    baseParams: {
-                        userid: 'userid',
-                        itemtype: 'undefined',
-                        folderObjectId: 'undefined'
-                    }
-                }),
+                loader: treeLoader,
                 // default tree elements for the navigation
                 root: new Ext.tree.AsyncTreeNode({
                     text: '',
@@ -105,52 +115,6 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 
 
 Ext.ns("Ext.ux");
-Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
-    initComponent : function(){
-        Ext.ux.SearchField.superclass.initComponent.call(this);
-        this.on('specialkey', function(f, e){
-            if(e.getKey() == e.ENTER){
-                this.onTrigger2Click();
-            }
-        }, this);
-    },
-
-    validationEvent:false,
-    validateOnBlur:false,
-    trigger1Class:'x-form-clear-trigger',
-    trigger2Class:'x-form-search-trigger',
-    hideTrigger1:true,
-    width:180,
-    hasSearch : false,
-    paramName : 'query',
-
-    onTrigger1Click : function(){
-        if(this.hasSearch){
-            this.el.dom.value = '';
-            var o = {start: 0};
-            this.store.baseParams = this.store.baseParams || {};
-            this.store.baseParams[this.paramName] = '';
-            this.store.reload({params:o});
-            this.triggers[0].hide();
-            this.hasSearch = false;
-        }
-    },
-
-    onTrigger2Click : function(){
-        var v = this.getRawValue();
-        if(v.length < 1){
-            this.onTrigger1Click();
-            return;
-        }
-        var o = {start: 0};
-        this.store.baseParams = this.store.baseParams || {};
-        this.store.baseParams[this.paramName] = v;
-        this.store.reload({params:o});
-        this.hasSearch = true;
-        this.triggers[0].show();
-    }
-});
-
 Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     facade: undefined,
     mainTabPanel: undefined,
@@ -684,6 +648,12 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         }
         return node;
     },
+/*    onRender:function() {
+        // call parent
+        Ext.ux.ETLRepoNavigationTreePanel.superclass.onRender.apply(this, arguments);
+
+        this.root.expand();
+    },*/
 
     // prevent the default context menu when you miss the node
     afterRender : function(){
