@@ -669,7 +669,8 @@ ORYX.Editor = {
                         plugin.engaged=true;
                     }
                 } catch(e) {
-                    ORYX.Log.warn("Plugin %0 is not available", value.name);
+                    ORYX.Log.error(e);
+                    ORYX.Log.error("Plugin %0 is not available", value.name);
                 }
 
             } else {

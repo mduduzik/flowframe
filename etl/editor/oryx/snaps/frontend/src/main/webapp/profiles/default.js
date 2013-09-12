@@ -28,7 +28,7 @@ $LAB.script("plugins/file.js").wait();
 $LAB.script("plugins/Layouter/containerLayouter.js").wait();
 $LAB.script("plugins/Layouter/edgeLayouter.js").wait();
 $LAB.script("plugins/waveThis.js").wait();
-$LAB.script("plugins/etl/metadata/dbconnection/dbconnectionwizard.js").wait();
+$LAB.script("plugins/etl/repository/explorer/etlreponavigation.js").wait();
 $LAB.script("plugins/toolbar.js").wait();
 $LAB.script("plugins/shapemenu.js").wait();
 $LAB.script("plugins/loading.js").wait();

@@ -183,9 +183,11 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/adapter/ext/ext-base.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/ext-all.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/color-field.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/wiz/wiz-all-debug.js\" type=\"text/javascript\" />\n"
                 + "<style media=\"screen\" type=\"text/css\">\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/ext-all.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/xtheme-gray.css\");\n"
+                + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/wiz/resources/wiz.css\");\n"
                 + "</style>\n"
 
                 + "<!-- oryx editor -->\n"

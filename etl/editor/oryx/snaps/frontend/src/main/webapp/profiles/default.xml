@@ -438,7 +438,7 @@
 
 
         <!-- ETL -->
-        <plugin engaged="true" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard" source="etl/metadata/dbconnection/dbconnectionwizard.js"/>
+        <plugin source="etl/repository/explorer/etlreponavigation.js" name="ORYX.Plugins.ETLRepoNavigation"/>
 	</plugins>
 
 	
