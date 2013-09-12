@@ -298,6 +298,8 @@ ORYX.Editor = {
 
         // DEFINITION OF THE VIEWPORT AREAS
         var _generateUIThis = this;
+
+        //Canvas
         var centerNorth_ = new Ext.Panel({
             autoHeight: true,
             cls		: 'x-panel-editor-center',
@@ -305,6 +307,8 @@ ORYX.Editor = {
             autoScroll: true,
             split: true
         });
+
+        //Canvas Property Editors
         var centerSouth_ = new Ext.Panel({
             width: ORYX.CONFIG.CANVAS_WIDTH,
             autoHeight: true,
@@ -313,7 +317,70 @@ ORYX.Editor = {
             border	:false,
             split	: true
         });
-        var center_ = new Ext.Panel({
+
+
+        //Center (tabbed Panel)
+
+
+        //1. Canvas editor (top) panel/section
+        var canvasEditor_ = new Ext.Panel({
+            region: 'center',
+            autoHeight: true,
+            minHeight: 400,
+            cls		: 'x-panel-editor-center',
+            el		: canvasParent,
+            autoScroll: true,
+            split: true
+        });
+
+        //2. Canvas editor (bottom) panel/section
+        var canvasEditorSectionPanelBasicTab_ = new Ext.TabPanel({
+            id: 'canvasEditorSectionPanelTab',
+            region: 'center',
+            minTabWidth: 115,
+            tabWidth:135,
+            enableTabScroll:true,
+            activeTab: 0,
+            defaults: {autoScroll:true}
+            //plugins: new Ext.ux.TabCloseMenu(),
+            /*items: [selectedComponentForm,problemsGrid]*/
+        });
+        var canvasEditorSectionPanel_ = new Ext.Panel({
+            region: 'south',
+            layout	: 'fit',
+            border	:false,
+            split	: true,
+            bodyStyle:'padding:0px',
+            height: 250,
+            items   :[canvasEditorSectionPanelBasicTab_]
+        });
+        var canvasEditorTab_ = new Ext.Panel({
+            title: 'New Job',
+            iconCls: 'tabs',
+            closable:true,
+            labelAlign: 'top',
+            bodyStyle:'padding:0px',
+            layout: 'border',
+            items: [
+                canvasEditor_,
+                canvasEditorSectionPanel_
+            ],
+            autoScroll: true
+        });
+
+        var center_ = new Ext.TabPanel({
+            region: 'center',
+            minTabWidth: 115,
+            tabWidth:135,
+            enableTabScroll:true,
+            activeTab: 0,
+            //plugins: new Ext.ux.TabCloseMenu(),
+            items: [canvasEditorTab_]
+        });
+
+
+
+/*        var center_ = new Ext.Panel({
             region	: 'center',
             layout: 'column',
             items: [
@@ -321,7 +388,9 @@ ORYX.Editor = {
                 centerSouth_
             ],
             autoScroll: true
-        });
+        });*/
+
+
         this.layout_regions = {
 
             // DEFINES TOP-AREA
@@ -397,7 +466,7 @@ ORYX.Editor = {
             }),
             // DEFINES CENTER-AREA (FOR THE EDITOR)
             centernorth : centerNorth_,
-            centersouth : centerSouth_,
+            centersouth : canvasEditorSectionPanelBasicTab_,
             center	: center_
         }
         //Test333
@@ -466,7 +535,7 @@ ORYX.Editor = {
         if (region.toLowerCase && this.layout_regions[region_name]) {
             var current_region = this.layout_regions[region.toLowerCase()];
 
-            current_region.add(component);
+            current_region.add(component).show();
 
             ORYX.Log.debug("original dimensions of region %0: %1 x %2", current_region.region, current_region.width, current_region.height)
 
@@ -499,6 +568,10 @@ ORYX.Editor = {
                             current_region.setTitle(title);
                         }
                         current_region.setTitle(title);
+                        break;
+                    case "centersouth":
+                        current_region.setTitle(title);
+                        current_region.setHeight(320);
                         break;
                     default :
                         current_region.setTitle(title);
