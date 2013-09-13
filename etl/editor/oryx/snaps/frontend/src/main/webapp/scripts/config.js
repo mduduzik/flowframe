@@ -194,6 +194,11 @@ ORYX.CONFIG.EVENT_WINDOW_FOCUS =            "window.focus";  // raised by plugin
 ORYX.CONFIG.EVENT_TBPM_BACKGROUND_UPDATE =	"tbpm.background";
 ORYX.CONFIG.EVENT_MODEL_SAVED =				"model.saved";
 ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE = "register.label.template";
+
+//-- ETL
+ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX = "etl.metadata.create.";
+ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX   = "etl.metadata.edit.";
+ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX = "etl.metadata.delete.";
 	
 	/* Selection Shapes Highlights */
 ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE =				5;

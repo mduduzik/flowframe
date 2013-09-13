@@ -174,12 +174,12 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 handler:function(){
                     this.ctxNode.select();
                     //this.mainEditorPanel.removeAll();
-                    Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
+                    Ext.apply(this.newDBWiz,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
                     this.mainEditorPanel.setTitle("New Database");
-                    this.mainEditorPanel.add(this.new_repoitem_database_wizard);
+                    this.mainEditorPanel.add(this.newDBWiz);
                     this.mainTabPanel.add(this.mainEditorPanel);
                     this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.new_repoitem_database_wizard.show();
+                    //this.newDBWiz.show();
                 }
             },{
                 text:'Create Folder',
@@ -193,7 +193,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
                     this.mainTabPanel.add(this.mainEditorPanel);
                     this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.new_repoitem_database_wizard.show();
+                    //this.newDBWiz.show();
                 }
             },{
                 text:'Delete Folder',
@@ -249,11 +249,11 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 handler:function(){
                     this.ctxNode.select();
                     //this.mainEditorPanel.removeAll();
-                    Ext.apply(this.new_repoitem_database_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
+                    Ext.apply(this.newDBWiz,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
                     this.mainEditorPanel.setTitle("New Database");
-                    this.mainEditorPanel.add(this.new_repoitem_database_wizard);
+                    this.mainEditorPanel.add(this.newDBWiz);
                     this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.new_repoitem_database_wizard.show();
+                    //this.newDBWiz.show();
                 }
             },{
                 text:'Edit Database',
@@ -285,7 +285,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
                     this.mainTabPanel.add(this.mainEditorPanel);
                     this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.new_repoitem_database_wizard.show();
+                    //this.newDBWiz.show();
                 }
             }]
         });
@@ -383,7 +383,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             });
 
 
-            this.new_repoitem_database_wizard = new Ext.ux.Wiz({
+            this.newDBWiz = new Ext.ux.Wiz({
                 headerConfig: {
                     title: 'Simple Wizard Example'
                 },
