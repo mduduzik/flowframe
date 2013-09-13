@@ -104,7 +104,6 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
         // Sort as Default the first column
         //this.dataSource.sort('name');
-
     }
 }
 ORYX.Plugins.ETL.Metadata.DBConnectionWizard = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionWizard);

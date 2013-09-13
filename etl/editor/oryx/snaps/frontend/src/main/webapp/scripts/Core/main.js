@@ -684,8 +684,9 @@ ORYX.Editor = {
                             callback(false,"INITFAILED");
                             return;
                         }
-                        this.loadScript("plugins/scripts/"+match.source, this.activatePluginByName.bind(this,match.name,callback,true));
-                    }
+                        //this.loadScript("plugins/scripts/"+match.source, this.activatePluginByName.bind(this,match.name,callback,true));
+                        var url = ORYX.PATH + ORYX.CONFIG.PLUGINS_FOLDER + match.source;
+                    }   this.loadScript(url, this.activatePluginByName.bind(this,match.name,callback,true));
                 }else{
                     callback(false,"NOTUSEINSTENCILSET");
                     ORYX.Log.info("Plugin need a stencilset which is not loaded'", match.name);
