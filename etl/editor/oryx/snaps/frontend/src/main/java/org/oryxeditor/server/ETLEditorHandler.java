@@ -188,6 +188,7 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<style media=\"screen\" type=\"text/css\">\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/ext-all.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/xtheme-gray.css\");\n"
+                + "@import url(\"" + getRootPath(request) + "css/icons.css\");\n"
                 + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/wiz/resources/wiz.css\");\n"
                 + "</style>\n"
 

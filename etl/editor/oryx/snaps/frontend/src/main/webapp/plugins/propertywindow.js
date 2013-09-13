@@ -123,6 +123,8 @@ ORYX.Plugins.PropertyWindow = {
 			stripeRows: true,
 			autoExpandColumn: "propertywindow_column_value",
 			width:'auto',
+            iconCls: 'property-icon',
+            title: 'Properties',
 			// the column model
 			colModel: this.columnModel,
 			enableHdMenu: false,
@@ -136,15 +138,17 @@ ORYX.Plugins.PropertyWindow = {
 			
 		});
 
-        region = this.facade.addToRegion("centerSouth", new Ext.Panel({
-            autoHeight: true,
-            layout: "fit",
-            border: false,
-            title: 'Properties',
-            items: [
-                this.grid
-            ]
-        }), ORYX.I18N.PropertyWindow.title)
+        /*new Ext.Panel({
+         autoHeight: true,
+         layout: "fit",
+         border: false,
+         iconCls: 'property-icon',
+         title: 'Properties',
+         items: [
+         this.grid
+         ]
+         }*/
+        region = this.facade.addToRegion("centerSouth", this.grid, ORYX.I18N.PropertyWindow.title);
 
 		// Register on Events
 		this.grid.on('beforeedit', this.beforeEdit, this, true);

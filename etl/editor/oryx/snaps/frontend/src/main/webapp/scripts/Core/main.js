@@ -356,7 +356,7 @@ ORYX.Editor = {
         });
         var canvasEditorTab_ = new Ext.Panel({
             title: 'New Job',
-            iconCls: 'tabs',
+            iconCls: 'process-icon',
             closable:true,
             labelAlign: 'top',
             bodyStyle:'padding:0px',
