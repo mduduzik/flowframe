@@ -620,22 +620,28 @@ ORYX.Editor = {
     },
 
     loadScript: function (url, callback){
-        var script = document.createElement("script")
-        script.type = "text/javascript";
-        if (script.readyState){  //IE
-            script.onreadystatechange = function(){
-                if (script.readyState == "loaded" || script.readyState == "complete"){
-                    script.onreadystatechange = null;
+        if (url) {
+            var script = document.createElement("script")
+            script.type = "text/javascript";
+            if (script.readyState){  //IE
+                script.onreadystatechange = function(){
+                    if (script.readyState == "loaded" || script.readyState == "complete"){
+                        script.onreadystatechange = null;
+                        callback();
+                    }
+                };
+            } else {  //Others
+                script.onload = function(){
                     callback();
-                }
-            };
-        } else {  //Others
-            script.onload = function(){
-                callback();
-            };
+                };
+            }
+            script.src = url;
+            document.getElementsByTagName("head")[0].appendChild(script);
         }
-        script.src = url;
-        document.getElementsByTagName("head")[0].appendChild(script);
+        else  {
+            ORYX.Log.warn("Editor.loadScript: URL is NULL..load aborted..");
+        }
+
     },
     /**
      * activate Plugin

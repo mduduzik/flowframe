@@ -536,6 +536,10 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
         this.currentCard = i;
         this.headPanel.updateStep(i, card.title);
 
+        //-Ensure fields are initialized
+        card.initFields();
+        card.startMonitoring();
+
         if (i == len-1) {
             this.nextButton.setText(this.finishButtonText);
         } else {
@@ -662,11 +666,12 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
             'beforecardhide'
         );
 
+        //var itemsConfig = {items: this.items};
 
         Ext.ux.Wiz.Card.superclass.initComponent.call(this);
 
+        //Ext.apply(this.form,itemsConfig);
     },
-
 // -------- helper
     isValid : function()
     {
@@ -714,6 +719,10 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
         this.on('beforecardhide', this.isValid,    this);
         this.on('show',           this.onCardShow, this);
         this.on('hide',           this.onCardHide, this);
+
+
+        this.on('render', this.isValid, this);
+
     },
 
 // -------- listener

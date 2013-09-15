@@ -1,12 +1,12 @@
-if(!ORYX.Plugins) {
+if (!ORYX.Plugins) {
     ORYX.Plugins = new Object();
 }
 
-if(!ORYX.Plugins.ETL) {
+if (!ORYX.Plugins.ETL) {
     ORYX.Plugins.ETL = new Object();
 }
 
-if(!ORYX.Plugins.ETL.Metadata) {
+if (!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
 }
 
@@ -14,21 +14,22 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
     facade: undefined,
 
-    selectDBTypeCard : undefined,
-    enterJDBCSettingsCard : undefined,
-    enterAuthCard : undefined,
+    selectDBTypeCard: undefined,
+    enterJDBCSettingsCard: undefined,
+    enterAuthCard: undefined,
+    newWizDialog: undefined,
 
-    construct: function(facade) {
+    construct: function (facade) {
         // Reference to the Editor-Interface
         this.facade = facade;
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection', this.onCreate.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection', this.onCreate.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
-        this.init();
+        //this.init();
     },
 
 
-    init: function(){
+    initWiz: function () {
         /**
          * Cards
          */
@@ -41,46 +42,67 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                 labelStyle: 'font-size:11px'
             },
             items: [
-                new Ext.form.TextField({
-                    name: 'name',
-                    fieldLabel: 'Name',
-                    allowBlank: false
-                }),
-                new Ext.form.ComboBox({
-                    name: 'databaseType',
-                    fieldLabel: 'Database Type',
-                    hiddenName:'databaseType',
-                    store: new Ext.data.Store({
-                        id: "store",
-                        remoteSort: true,
-                        autoLoad: {params:{start:1, limit:2}},
-                        proxy: new Ext.data.ScriptTagProxy({
-                            url: 'http://localhost:8082/etlrepo/databasetype/search'
-                        }),
-                        reader: new Ext.data.JsonReader({
-                            root : 'data',
-                            totalProperty: 'totalCount'
-                        }, [
-                            {name: 'id', mapping: 'id'},
-                            {name: 'code', mapping: 'code'},
-                            {name: 'description', mapping: 'description'}
-                        ])
-                    }),
+                {
+                    xtype: 'fieldset',
+                    labelWidth: 200,
+                    layoutConfig: {
+                        labelAlign: 'right'
+                    },
+                    //title:'Company details',
+                    defaults: {width: 350},	// Default config options for child items
+                    defaultType: 'textfield',
+                    autoHeight: true,
+                    bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
+                    border: false,
+                    style: {
+                        "margin-left": "10px", // when you add custom margin in IE 6...
+                        "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
+                    },
+                    items: [
+                        {
+                            fieldLabel: 'Name',
+                            name: 'name',
+                            emptyText: '<Enter name>',
+                            allowBlank: false
+                        },
+                        new Ext.form.ComboBox({
+                            name: 'databaseType',
+                            fieldLabel: 'Database Type',
+                            hiddenName: 'databaseType',
+                            store: new Ext.data.Store({
+                                id: "store",
+                                remoteSort: true,
+                                autoLoad: {params: {start: 1, limit: 2}},
+                                proxy: new Ext.data.ScriptTagProxy({
+                                    url: '/etlrepo/databasetype/search'
+                                }),
+                                reader: new Ext.data.JsonReader({
+                                    root: 'data',
+                                    totalProperty: 'totalCount'
+                                }, [
+                                    {name: 'id', mapping: 'id'},
+                                    {name: 'code', mapping: 'code'},
+                                    {name: 'description', mapping: 'description'}
+                                ])
+                            }),
 
-                    valueField:'code',
-                    displayField:'description',
-                    typeAhead: true,
-                    mode: 'local',
-                    triggerAction: 'all',
-                    emptyText:'Select a database type...',
-                    selectOnFocus:true,
-                    width:190
-                })
+                            valueField: 'code',
+                            displayField: 'description',
+                            typeAhead: true,
+                            mode: 'local',
+                            triggerAction: 'all',
+                            emptyText: 'Select a database type...',
+                            selectOnFocus: true,
+                            width: 190
+                        })
+                    ]
+                }
             ]
+
         });
 
         //2. Enter JDBC Settings
-        this.enterJDBCSettingsCard =  new Ext.ux.Wiz.Card({
+        this.enterJDBCSettingsCard = new Ext.ux.Wiz.Card({
             name: 'enterJDBCSettingsCard',
             title: 'Set the JDBC Settings',
             monitorValid: true,
@@ -88,21 +110,43 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                 labelStyle: 'font-size:11px'
             },
             items: [
-                new Ext.form.TextField({
-                    name: 'hostname',
-                    fieldLabel: 'Hostname of database server',
-                    allowBlank: false
-                }),
-                new Ext.form.NumberField({
-                    name: 'databasePort',
-                    fieldLabel: 'The TCP/IP Port',
-                    allowBlank: true
-                }),
-                new Ext.form.TextField({
-                    name: 'databaseName',
-                    fieldLabel: 'The name of the database',
-                    allowBlank: false
-                })
+                {
+                    xtype: 'fieldset',
+                    labelWidth: 200,
+                    layoutConfig: {
+                        labelAlign: 'right'
+                    },
+                    //title:'Company details',
+                    defaults: {width: 350},	// Default config options for child items
+                    defaultType: 'textfield',
+                    autoHeight: true,
+                    bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
+                    border: false,
+                    style: {
+                        "margin-left": "10px", // when you add custom margin in IE 6...
+                        "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
+                    },
+                    items: [
+                        {
+                            fieldLabel: 'Hostname of database server',
+                            name: 'hostname',
+                            emptyText: '<Enter hostname>',
+                            allowBlank: false
+                        },
+                        {
+                            fieldLabel: 'The TCP/IP Port',
+                            name: 'databasePort',
+                            emptyText: '<Enter TCP/IP Port>',
+                            allowBlank: false
+                        },
+                        {
+                            fieldLabel: 'The name of the database',
+                            name: 'databaseName',
+                            emptyText: '<Enter name of the database>',
+                            allowBlank: false
+                        }
+                    ]
+                }
             ]
         });
 
@@ -114,17 +158,38 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                 labelStyle: 'font-size:11px'
             },
             items: [
-                new Ext.form.TextField({
-                    name: 'username',
-                    fieldLabel: 'Username',
-                    allowBlank: false
-                }),
-                new Ext.form.TextField({
-                    name: 'password',
-                    fieldLabel: 'Password',
-                    allowBlank: false,
-                    inputType:"password"
-                })
+                {
+                    xtype: 'fieldset',
+                    labelWidth: 200,
+                    layoutConfig: {
+                        labelAlign: 'right'
+                    },
+                    //title:'Company details',
+                    defaults: {width: 350},	// Default config options for child items
+                    defaultType: 'textfield',
+                    autoHeight: true,
+                    bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
+                    border: false,
+                    style: {
+                        "margin-left": "10px", // when you add custom margin in IE 6...
+                        "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
+                    },
+                    items: [
+                        {
+                            fieldLabel: 'Username',
+                            name: 'username',
+                            emptyText: '<Enter usename>',
+                            allowBlank: false
+                        },
+                        {
+                            name: 'password',
+                            fieldLabel: 'Password',
+                            emptyText: '<Enter password>',
+                            allowBlank: false,
+                            inputType: "password"
+                        }
+                    ]
+                }
             ]
         });
 
@@ -143,8 +208,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                     border: false
                 }
             },
-            getSelectWizardData : function(cardids)
-            {
+            getSelectWizardData: function (cardids) {
                 var formValues = {};
                 var cards = this.cards;
                 for (var i = 0, len = cards.length; i < len; i++) {
@@ -152,15 +216,15 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                     var cardform = cards[i].form;
                     if (cardform) {
                         var values = cardform.getValues(false);
-                        Object.extend(formValues,values);
+                        Object.extend(formValues, values);
                     }
                 }
                 return formValues;
             },
 
-            onFinish: function() {
+            onFinish: function () {
                 var requestWiz = this;
-                var requestCtxNode =  requestWiz.ctxNode;
+                var requestCtxNode = requestWiz.ctxNode;
                 var requestMainEditorPanel = requestWiz.mainEditorPanel;
                 var requestMainTabPanel = requestWiz.mainTabPanel;
                 if (requestWiz.wizmode && requestWiz.wizmode === 'EDITING') {
@@ -173,18 +237,18 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                         'selectDBTypeCard',
                         'jdbcsettings',
                         'auth']);
-                    Object.extend(data,{dirObjectId:dirId});
+                    Object.extend(data, {dirObjectId: dirId});
                     var dataJson = Ext.encode(data);
-                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                         // here you can put whatever you need as header. For instance:
                         this.defaultPostHeader = "application/json; charset=utf-8;";
-                        this.defaultHeaders = {userid:'test'};
+                        this.defaultHeaders = {userid: 'test'};
                     });
                     Ext.Ajax.request({
                         url: '/etlrepo/databasemeta/add',
                         method: 'POST',
                         params: dataJson,
-                        success: function(response, opts) {
+                        success: function (response, opts) {
                             //Refresh this.ctxNode
                             if (requestCtxNode.attributes)
                                 requestCtxNode.attributes.children = false;
@@ -197,20 +261,21 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                             //requestMainEditorPanel.hide();
 
                             var db = Ext.decode(response.responseText);
-                            requestMainEditorPanel.setTitle("Editing "+db.name);
+                            requestMainEditorPanel.setTitle("Editing " + db.name);
                             requestWiz.finishButtonText = 'Save';
-                            Object.extend(requestWiz,{wizmode:'EDITING'});
+                            Object.extend(requestWiz, {wizmode: 'EDITING'});
                         },
-                        failure: function(response, opts) {}
+                        failure: function (response, opts) {
+                        }
                     });
                 }
             },
             cards: [
                 //1. Select DB type
-                this.selectDBTypeCard               ,
+                this.selectDBTypeCard,
                 //2. Enter JDBC Settings
                 this.enterJDBCSettingsCard,
-                //Auth
+                //3. Auth
                 this.enterAuthCard
             ]
         });
@@ -221,42 +286,50 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
      * @param event
      * @param arg
      */
-    onCreate: function(event, arg) {
+    onCreate: function (event, arg) {
         // Basic Dialog
         if (!this.newWizDialog) {
+            this.initWiz();
+
             this.newWizDialog = new Ext.Window({
-                autoScroll: true,
+                autoScroll: false,
                 autoCreate: true,
                 title: 'New Db Connection',
-                height: 350,
-                width: dialogWidth,
-                modal:true,
-                collapsible:false,
+                height: 450,
+                width: 800,
+                modal: true,
+                collapsible: false,
                 fixedcenter: true,
-                shadow:true,
+                shadow: true,
                 proxyDrag: true,
-                keys:[{
-                    key: 27,
-                    fn: function(){
-                        this.dialog.hide
-                    }.bind(this)
-                }],
-                items:[this.newDBWiz],
-                bodyStyle:"background-color:#FFFFFF",
-                buttons: [{
-                    text: ORYX.I18N.PropertyWindow.ok,
-                    handler: function(){
-                        this.grid.stopEditing();
-                        // store dialog input
-                        this.data = this.buildValue();
-                        this.dialog.hide()
-                    }.bind(this)
-                }, {
-                    text: ORYX.I18N.PropertyWindow.cancel,
-                    handler: function(){
-                        this.dialog.hide()
-                    }.bind(this)
-                }]
+                layout: 'fit',
+                keys: [
+                    {
+                        key: 27,
+                        fn: function () {
+                            this.newWizDialog.hide
+                        }.bind(this)
+                    }
+                ],
+                items: [this.newDBWiz],
+                bodyStyle: "background-color:#FFFFFF",
+                buttons: [
+                    {
+                        text: ORYX.I18N.PropertyWindow.ok,
+                        handler: function () {
+                            //this.grid.stopEditing();
+                            // store dialog input
+                            //this.data = this.buildValue();
+                            this.newWizDialog.hide()
+                        }.bind(this)
+                    },
+                    {
+                        text: ORYX.I18N.PropertyWindow.cancel,
+                        handler: function () {
+                            this.newWizDialog.hide()
+                        }.bind(this)
+                    }
+                ]
             });
         }
         this.newWizDialog.show();

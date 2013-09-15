@@ -9,6 +9,9 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
     // Defines the undo/redo Stack
     navigationPanel     : undefined,
 
+    // Currently selected context menu node
+    ctxNode : undefined,
+
     // Constructor
     construct: function(facade,ownPluginData){
 
@@ -168,22 +171,27 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             id:'feeds-ctx',
             items: [{
                 id: 'load',
-                icon: '/oryx/images/conxbi/etl/connection-new.png',
+                icon: '/etl/images/conxbi/etl/connection-new.png',
                 text:'Add Database',
                 scope: this,
                 handler:function(){
                     this.ctxNode.select();
                     //this.mainEditorPanel.removeAll();
-                    Ext.apply(this.newDBWiz,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
+/*                    Ext.apply(this.newDBWiz,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
                     this.mainEditorPanel.setTitle("New Database");
                     this.mainEditorPanel.add(this.newDBWiz);
                     this.mainTabPanel.add(this.mainEditorPanel);
-                    this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                    this.mainTabPanel.setActiveTab(this.mainEditorPanel);*/
+                    var eventData = {
+                        source:this.ctxNode
+                    };
+                    this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection',eventData);
+                    //Ext.apply(this.new_repoitem_folder_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
                     //this.newDBWiz.show();
-                }
+                }.bind(this)
             },{
                 text:'Create Folder',
-                icon: '/oryx/images/conxbi/etl/folder_close.png',
+                icon: '/etl/images/conxbi/etl/folder_close.png',
                 scope: this,
                 handler:function(){
                     this.ctxNode.select();
@@ -194,10 +202,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     this.mainTabPanel.add(this.mainEditorPanel);
                     this.mainTabPanel.setActiveTab(this.mainEditorPanel);
                     //this.newDBWiz.show();
-                }
+                }.bind(this)
             },{
                 text:'Delete Folder',
-                icon: '/oryx/images/conxbi/etl/folder_delete.png',
+                icon: '/etl/images/conxbi/etl/folder_delete.png',
                 scope: this,
                 handler:function(){
                     var requestWiz = this;
@@ -225,57 +233,56 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         },
                         failure: function(response, opts) {}
                     });
-                }
+                }.bind(this)
             },{
                 text:'Refresh Folder',
-                icon: '/oryx/images/conxbi/etl/refresh.gif',
+                icon: '/etl/images/conxbi/etl/refresh.gif',
                 scope: this,
                 handler:function(){
                     this.ctxNode.attributes.children = false;
                     this.ctxNode.reload();
-                }
+                }.bind(this)
             }
             ]
-        });
+        })
         this.repofolder_database_contextmenu.on('hide', this.onContextHide, this);
 
         this.repoitem_database_contextmenu = new Ext.menu.Menu({
             id:'feeds-ctx',
             items: [{
                 id: 'load',
-                icon: '/oryx/images/conxbi/etl/connection-new.png',
+                icon: '/etl/images/conxbi/etl/connection-new.png',
                 text:'Add Database',
                 scope: this,
                 handler:function(){
                     this.ctxNode.select();
-                    //this.mainEditorPanel.removeAll();
-                    Ext.apply(this.newDBWiz,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
-                    this.mainEditorPanel.setTitle("New Database");
-                    this.mainEditorPanel.add(this.newDBWiz);
-                    this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.newDBWiz.show();
-                }
+                    var eventData = {
+                        type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection',
+                        forceExecution: true
+                    };
+                    this.facade.raiseEvent(eventData,this.ctxNode);
+                }.bind(this)
             },{
                 text:'Edit Database',
-                icon: '/oryx/images/conxbi/etl/modify.gif',
+                icon: '/etl/images/conxbi/etl/modify.gif',
                 scope: this,
                 handler:function(){
                     this.ctxNode.ui.removeClass('x-node-ctx');
                     this.removeFeed(this.ctxNode.attributes.url);
                     this.ctxNode = null;
-                }
+                }.bind(this)
             },{
                 text:'Delete Database',
-                icon: '/oryx/images/conxbi/etl/connection-delete.png',
+                icon: '/etl/images/conxbi/etl/connection-delete.png',
                 scope: this,
                 handler:function(){
                     this.ctxNode.ui.removeClass('x-node-ctx');
                     this.removeFeed(this.ctxNode.attributes.url);
                     this.ctxNode = null;
-                }
+                }.bind(this)
             },{
                 text:'Create Folder',
-                icon: '/oryx/images/conxbi/etl/folder_close.png',
+                icon: '/etl/images/conxbi/etl/folder_close.png',
                 scope: this,
                 handler:function(){
                     this.ctxNode.select();
@@ -286,7 +293,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     this.mainTabPanel.add(this.mainEditorPanel);
                     this.mainTabPanel.setActiveTab(this.mainEditorPanel);
                     //this.newDBWiz.show();
-                }
+                }.bind(this)
             }]
         });
         this.repoitem_database_contextmenu.on('hide', this.onContextHide, this);

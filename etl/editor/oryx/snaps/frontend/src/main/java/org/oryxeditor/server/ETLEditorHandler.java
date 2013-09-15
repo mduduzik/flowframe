@@ -181,7 +181,7 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getSharedRootPath() + "lib/prototype-1.5.1.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getSharedRootPath() + "lib/path_parser.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/adapter/ext/ext-base.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/ext-all.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/ext-all-debug.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getSharedRootPath() + "lib/ext-2.0.2/color-field.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/wiz/wiz-all-debug.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/searchfield/js/Ext.form.SearchField.js\" type=\"text/javascript\" />\n"
