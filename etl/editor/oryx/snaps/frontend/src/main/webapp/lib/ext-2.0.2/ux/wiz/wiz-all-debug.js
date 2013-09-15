@@ -393,7 +393,22 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
 
         this.on('beforeclose', this.onBeforeClose, this);
     },
+    /**
+     * Resets wizard
+     */
+    reset : function()
+    {
+        var cards           = this.cards;
+        var cardPanelConfig = this.cardPanelConfig;
 
+        this.currentCard = 0;
+
+        for (var i = 0, len = cards.length; i < len; i++) {
+              cards[i].form.reset();
+        }
+
+        this.cardPanel.getLayout().setActiveItem(this.currentCard);
+    },
     /**
      * Creates the head- and the card-panel.
      * Be sure to have the custom {@link Ext.ux.layout.CardLayout} available

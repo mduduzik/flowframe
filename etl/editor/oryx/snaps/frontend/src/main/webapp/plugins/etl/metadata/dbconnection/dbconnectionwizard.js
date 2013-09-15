@@ -332,6 +332,10 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                 ]
             });
         }
+        else {
+            this.newDBWiz.reset();
+        }
+
         this.newWizDialog.show();
     }
 }
