@@ -13,6 +13,9 @@ if (!ORYX.Plugins.ETL.Metadata) {
 ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
     facade: undefined,
+    dbFolderId: undefined,
+    parentNavNodeId: undefined,
+    wizMode: undefined,  //EDITING, CREATE
 
     selectDBTypeCard: undefined,
     enterJDBCSettingsCard: undefined,
@@ -223,21 +226,9 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
             },
 
             onFinish: function () {
-                var requestWiz = this;
-                var requestCtxNode = requestWiz.ctxNode;
-                var requestMainEditorPanel = requestWiz.mainEditorPanel;
-                var requestMainTabPanel = requestWiz.mainTabPanel;
-                if (requestWiz.wizmode && requestWiz.wizmode === 'EDITING') {
-
-                }
-                else {
-                    var idArray = requestCtxNode.id.split('/');
-                    var dirId = idArray[1];
-                    var data = this.getSelectWizardData([
-                        'selectDBTypeCard',
-                        'jdbcsettings',
-                        'auth']);
-                    Object.extend(data, {dirObjectId: dirId});
+                if (this.wizMode === 'CREATE') {;
+                    var data = this.getSelectWizardData();
+                    Object.extend(data, {dirObjectId: this.dbFolderId});
                     var dataJson = Ext.encode(data);
                     Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                         // here you can put whatever you need as header. For instance:
@@ -249,21 +240,8 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                         method: 'POST',
                         params: dataJson,
                         success: function (response, opts) {
-                            //Refresh this.ctxNode
-                            if (requestCtxNode.attributes)
-                                requestCtxNode.attributes.children = false;
-                            requestCtxNode.select();
-                            requestCtxNode.ui.addClass('x-node-ctx');
-                            requestCtxNode.reload();
-
-
-                            //Update tab title
-                            //requestMainEditorPanel.hide();
-
                             var db = Ext.decode(response.responseText);
-                            requestMainEditorPanel.setTitle("Editing " + db.name);
-                            requestWiz.finishButtonText = 'Save';
-                            Object.extend(requestWiz, {wizmode: 'EDITING'});
+                            this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,{name:db.name,treeNodeParentId:this.parentNavNodeId});
                         },
                         failure: function (response, opts) {
                         }
@@ -279,62 +257,72 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                 this.enterAuthCard
             ]
         });
+        this.newDBWiz.addEvents(
+            /**
+             * @event ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
+             * Fires after new metadata artifact (e.g. DbConnection) has been created
+             * @param {name:'<artifact name>',treeNodeParentId:<>}
+             */
+            ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
+        );
+        this.newDBWiz.on('cancel', this.onBeforeCancel, this);
+    },
+
+    /**
+     *
+     */
+    onBeforeCancel: function() {
+        Ext.MessageBox.show({
+            title:'Save Changes?',
+            msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
+            buttons: Ext.MessageBox.YESNO,
+            fn: function(btn){
+                if (btn === 'yes'){
+                    this.newWizDialog.close();
+                }
+            }.bind(this),
+            icon: Ext.MessageBox.QUESTION
+        });
+        return false;//Don't close wizard - close dialog
     },
 
     /**
      * Handle ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection' Event
      * @param event
-     * @param arg
+     * @param arg - tree node
      */
     onCreate: function (event, arg) {
-        // Basic Dialog
-        if (!this.newWizDialog) {
-            this.initWiz();
+        this.wizMode = 'CREATE';
+        this.dbFolderId = arg.dbFolderId;
+        this.parentNavNodeId = arg.sourceNavNodeId;
 
-            this.newWizDialog = new Ext.Window({
-                autoScroll: false,
-                autoCreate: true,
-                title: 'New Db Connection',
-                height: 450,
-                width: 800,
-                modal: true,
-                collapsible: false,
-                fixedcenter: true,
-                shadow: true,
-                proxyDrag: true,
-                layout: 'fit',
-                keys: [
-                    {
-                        key: 27,
-                        fn: function () {
-                            this.newWizDialog.hide
-                        }.bind(this)
-                    }
-                ],
-                items: [this.newDBWiz],
-                bodyStyle: "background-color:#FFFFFF",
-                buttons: [
-                    {
-                        text: ORYX.I18N.PropertyWindow.ok,
-                        handler: function () {
-                            //this.grid.stopEditing();
-                            // store dialog input
-                            //this.data = this.buildValue();
-                            this.newWizDialog.hide()
-                        }.bind(this)
-                    },
-                    {
-                        text: ORYX.I18N.PropertyWindow.cancel,
-                        handler: function () {
-                            this.newWizDialog.hide()
-                        }.bind(this)
-                    }
-                ]
-            });
-        }
-        else {
-            this.newDBWiz.reset();
-        }
+        // Basic Dialog
+        this.initWiz();
+
+        this.newWizDialog = new Ext.Window({
+            autoScroll: false,
+            autoCreate: true,
+            closeAction:'destroy',
+            title: 'New Db Connection',
+            height: 450,
+            width: 800,
+            modal: true,
+            collapsible: false,
+            fixedcenter: true,
+            shadow: true,
+            proxyDrag: true,
+            layout: 'fit',
+            keys: [
+                {
+                    key: 27,
+                    fn: function () {
+                        this.newWizDialog.hide
+                    }.bind(this)
+                }
+            ],
+            items: [this.newDBWiz],
+            bodyStyle: "background-color:#FFFFFF"
+        });
 
         this.newWizDialog.show();
     }

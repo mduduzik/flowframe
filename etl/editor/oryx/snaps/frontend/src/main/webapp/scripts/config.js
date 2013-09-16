@@ -196,6 +196,7 @@ ORYX.CONFIG.EVENT_MODEL_SAVED =				"model.saved";
 ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE = "register.label.template";
 
 //-- ETL
+ORYX.CONFIG.EVENT_ETL_METADATA_CREATED       = "etl.metadata.created";
 ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX = "etl.metadata.create.";
 ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX   = "etl.metadata.edit.";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX = "etl.metadata.delete.";
