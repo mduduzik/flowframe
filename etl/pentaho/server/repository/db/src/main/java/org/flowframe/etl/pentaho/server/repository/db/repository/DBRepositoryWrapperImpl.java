@@ -71,6 +71,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     private String dbport;
     private String dbusername;
     private String dbuserpassword;
+    private DatabaseMeta connection;
 
     public static CustomRepository getINSTANCE() {
         if (INSTANCE == null) {
@@ -102,7 +103,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		repositoryMeta.setName(reponame);
 		repositoryMeta.setDescription(repodescription);
 
-		DatabaseMeta connection = new DatabaseMeta();
+		this.connection = new DatabaseMeta();
 		connection.setDatabaseType(dbtype);
 		connection.setHostname(dbhostname);
 		connection.setDBName(dbname);
@@ -118,10 +119,10 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		
 		connect(username, userpassword);
 
-/*        supportingDatabase = new Database(loggingObject,connection);
-        supportingDatabase.getDatabaseMeta().setUsingConnectionPool(true);
-        supportingDatabase.getDatabaseMeta().setMaximumPoolSize(20);
-        supportingDatabase.connect();;*/
+        supportingDatabase = new Database(loggingObject,connection);
+        //supportingDatabase.getDatabaseMeta().setUsingConnectionPool(true);
+        //supportingDatabase.getDatabaseMeta().setMaximumPoolSize(20);
+        /* supportingDatabase.connect();;*/
 		
 		//Ensure root and tenant root dir's
 		rootDir = findDirectory("/conxbi");
@@ -412,5 +413,9 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 
     public void setDbuserpassword(String dbuserpassword) {
         this.dbuserpassword = dbuserpassword;
+    }
+
+    public DatabaseMeta getDBConnectionMeta() {
+        return connection;
     }
 }

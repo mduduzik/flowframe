@@ -140,7 +140,7 @@ public class DatabaseMetaUtil {
             db = new Database(repository.getSupportingDatabase().getDatabaseMeta());
             db.connect();
             rs = db.openQuery(sql);
-            List<Object[]> rows = repository.getSupportingDatabase().getRows(rs, 0, null);
+            List<Object[]> rows = db.getRows(rs, 0, null);
             for (Object[] row : rows)
             {
                 dbIds.add(new LongObjectId(Long.valueOf(row[0].toString())));

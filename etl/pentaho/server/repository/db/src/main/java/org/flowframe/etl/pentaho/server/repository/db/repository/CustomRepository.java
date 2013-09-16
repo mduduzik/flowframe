@@ -2,6 +2,7 @@ package org.flowframe.etl.pentaho.server.repository.db.repository;
 
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.database.Database;
+import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
@@ -57,4 +58,5 @@ public interface CustomRepository extends Repository {
 
 
     public Database getSupportingDatabase();
+    public DatabaseMeta getDBConnectionMeta();
 }
