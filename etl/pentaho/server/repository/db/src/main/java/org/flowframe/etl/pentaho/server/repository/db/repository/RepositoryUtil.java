@@ -77,6 +77,17 @@ public class RepositoryUtil {
         return "/dir/"+stepMeta.getTypeId()+"#"+dir.getObjectId();
     }
 
+    static public String generatePathID(RepositoryDirectoryInterface dir, DatabaseMeta dbMeta) {
+        return "/dir/"+dir.getObjectId()+"/db/"+dbMeta.getObjectId();
+    }
+
+    static public ObjectId getDBObjectIDFromPathID(String pathID) {
+        // /dir/1/db/2
+        String[] pathTokens = pathID.split("/");
+        int len = pathTokens.length;
+        return new LongObjectId(Long.valueOf(pathTokens[4]));
+    }
+
     static public String generatePathID(RepositoryDirectoryInterface dir, String typeId) {
         return "/dir/"+typeId+"#"+dir.getObjectId();
     }

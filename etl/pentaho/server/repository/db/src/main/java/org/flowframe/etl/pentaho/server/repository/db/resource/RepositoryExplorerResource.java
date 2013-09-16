@@ -12,10 +12,13 @@ import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.ProgressMonitorListener;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
+import org.pentaho.di.core.database.util.DatabaseUtil;
+import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.repository.LongObjectId;
+import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
@@ -86,12 +89,12 @@ public class RepositoryExplorerResource {
                               @HeaderParam("folderObjectId") String folderObjectId) throws KettleException {
         Organization tenant = new Organization();
         tenant.setId(1L);
-        
+
         LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
         RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, dirObjId);
 
-        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype))   {
-            DatabaseMetaUtil.deleteDatabaseDirectory(repository,dir,tenant.getId().toString());
+        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype)) {
+            DatabaseMetaUtil.deleteDatabaseDirectory(repository, dir, tenant.getId().toString());
         }
         return Response.ok("Folder " + folderObjectId + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
@@ -117,6 +120,7 @@ public class RepositoryExplorerResource {
     public String getnode(@QueryParam("userid") String userid,
                           @QueryParam("callback") String callback,
                           @QueryParam("itemtype") String itemtype,
+                          @QueryParam("node") String nodeId,
                           @QueryParam("folderObjectId") String folderObjectId) throws KettleException, JSONException {
         Organization tenant = new Organization();
         tenant.setId(1L);
@@ -125,8 +129,12 @@ public class RepositoryExplorerResource {
         JSONObject json;
         if (itemtype == null || "undefined".equals(itemtype))
             res = exportTreeToJSONByTenant(null, repository, tenant).toString();
+        else if (nodeId != null && nodeId.indexOf("/db/") >= 0){  //DB PathId
+            json = generateDBConnectionChildrenJSON(nodeId);
+            res = json.toString();
+        }
         else {
-            json = exportTreeNodeToJSONByTenant(itemtype, folderObjectId, repository, tenant, true/*excluderootnode*/,true/*ondemand*/);
+            json = exportTreeNodeToJSONByTenant(nodeId,itemtype, folderObjectId, repository, tenant, true/*excluderootnode*/, true/*ondemand*/);
             res = json.getJSONArray("children").toString();
         }
         if (callback != null)
@@ -135,23 +143,21 @@ public class RepositoryExplorerResource {
             return res;
     }
 
-    private JSONObject exportTreeNodeToJSONByTenant(String itemtype, String folderObjectId, DBRepositoryWrapperImpl repository, Organization tenant, boolean excludeRoot, boolean ondemand) throws KettleException, JSONException {
+    private JSONObject exportTreeNodeToJSONByTenant(String nodeId, String itemtype, String folderObjectId, DBRepositoryWrapperImpl repository, Organization tenant, boolean excludeRoot, boolean ondemand) throws KettleException, JSONException {
         JSONObject res = null;
         if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype)) {
             LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
             RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
 
-            res = generateDBConnectionsJSON(ondemand,false,repository, dir, tenant.getId().toString());
-        }
-        else if (REPOSITORY_ITEM_TYPE_CSVINPUT.equals(itemtype)) {
+            res = generateDBConnectionsJSON(ondemand, false, repository, dir, tenant.getId().toString());
+        } else if (REPOSITORY_ITEM_TYPE_CSVINPUT.equals(itemtype)) {
             LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
             RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
 
             res = generateCSVMetadataJSON(ondemand, false, repository, dir);
-        }
-        else if (REPOSITORY_ITEM_TYPE_EXCELINPUT.equals(itemtype)) {
+        } else if (REPOSITORY_ITEM_TYPE_EXCELINPUT.equals(itemtype)) {
             LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
             RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
@@ -160,6 +166,8 @@ public class RepositoryExplorerResource {
         }
         return res;
     }
+
+
 
     public static JSONArray exportTreeToJSONByTenant(ProgressMonitorListener monitor, CustomRepository repo, Organization tenant) throws KettleException, JSONException {
         JSONArray treeByTenant = new JSONArray();
@@ -243,7 +251,7 @@ public class RepositoryExplorerResource {
         return treeByTenant;
     }
 
-    private static JSONObject generateExcelMetadataJSON(Boolean ondemand, boolean excludeChildrenForThisNode,  CustomRepository customRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
+    private static JSONObject generateExcelMetadataJSON(Boolean ondemand, boolean excludeChildrenForThisNode, CustomRepository customRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
         JSONObject subDir = new JSONObject();
 
         // Populate
@@ -259,7 +267,7 @@ public class RepositoryExplorerResource {
         List<RepositoryDirectoryInterface> excelMdSubDirs = dir.getChildren();
         String[] excelMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
         boolean hasChildren = !excelMdSubDirs.isEmpty() || (excelMetadataTransNames.length > 0);
-        if (excludeChildrenForThisNode)  {
+        if (excludeChildrenForThisNode) {
             subDir.put("hasChildren", hasChildren);
             subDir.put("singleClickExpand", hasChildren);
             return subDir;
@@ -272,7 +280,7 @@ public class RepositoryExplorerResource {
         List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
 
         for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
-            JSONObject subDirDir = generateCSVMetadataJSON(ondemand,excludeChildrenForThisNode, customRepository, subDir_);
+            JSONObject subDirDir = generateCSVMetadataJSON(ondemand, excludeChildrenForThisNode, customRepository, subDir_);
             childrenArray.put(subDirDir);
         }
 
@@ -348,7 +356,7 @@ public class RepositoryExplorerResource {
         List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
         String[] dbConnectionMetadataTransNames = customRepository.getTransformationNames(dir.getObjectId(), true);
         boolean hasChildren = !delimitedMdSubDirs.isEmpty() || (dbConnectionMetadataTransNames.length > 0);
-        if (excludeChildrenForThisNode)  {
+        if (excludeChildrenForThisNode) {
             subDir.put("hasChildren", hasChildren);
             subDir.put("singleClickExpand", hasChildren);
             return subDir;
@@ -360,7 +368,7 @@ public class RepositoryExplorerResource {
 
         //Do sub dirs
         for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
-            JSONObject subDirDir = generateCSVMetadataJSON(ondemand,excludeChildrenForThisNode,customRepository, subDir_);
+            JSONObject subDirDir = generateCSVMetadataJSON(ondemand, excludeChildrenForThisNode, customRepository, subDir_);
             childrenArray.put(subDirDir);
         }
 
@@ -426,7 +434,7 @@ public class RepositoryExplorerResource {
         JSONObject subDir = new JSONObject();
 
         // Populate
-        subDir.put("id", "dir/"+dir.getObjectId().toString());
+        subDir.put("id", "dir/" + dir.getObjectId().toString());
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
         subDir.put("icon", "/etl/images/conxbi/etl/folder_close.png");
@@ -441,7 +449,7 @@ public class RepositoryExplorerResource {
         Collection<DatabaseMeta> dbs = DatabaseMetaUtil.getDatabasesBySubDirAndTenantId(customRepository, dir, tenantId);
         List<RepositoryDirectoryInterface> dbConnectionsMdSubDirs = dir.getChildren();
         hasChildren = !dbConnectionsMdSubDirs.isEmpty() || !dbs.isEmpty();
-        if (excludeChildrenForThisNode)  {
+        if (excludeChildrenForThisNode) {
             subDir.put("hasChildren", hasChildren);
             subDir.put("singleClickExpand", hasChildren);
             return subDir;
@@ -454,7 +462,7 @@ public class RepositoryExplorerResource {
         //Do sub dirs
         excludeChildrenForThisNode = !excludeChildrenForThisNode && ondemand;
         for (RepositoryDirectoryInterface subDir_ : dbConnectionsMdSubDirs) {
-            JSONObject subDirDir = generateDBConnectionsJSON(ondemand,excludeChildrenForThisNode,customRepository,subDir_, tenantId);
+            JSONObject subDirDir = generateDBConnectionsJSON(ondemand, excludeChildrenForThisNode, customRepository, subDir_, tenantId);
             childrenArray.put(subDirDir);
         }
 
@@ -465,10 +473,10 @@ public class RepositoryExplorerResource {
             dbObj.put("text", db.getName());
             dbObj.put("title", db.getName());
             dbObj.put("icon", "/etl/images/conxbi/etl/connection.gif");
-            dbObj.put("id", db.getObjectId());
+            dbObj.put("id", RepositoryUtil.generatePathID(dir,db));
             dbObj.put("leaf", false);
-            dbObj.put("hasChildren", false);
-            dbObj.put("singleClickExpand", false);
+            dbObj.put("hasChildren", true);
+            dbObj.put("singleClickExpand", true);
             subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
             subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DATABASE);
             subDir.put(REPOSITORY_REPOFOLDER_OBJID, dir.getObjectId().toString());
@@ -476,7 +484,8 @@ public class RepositoryExplorerResource {
 
             //Create tables
             JSONArray dbObjTableSchemas = new JSONArray();
-            dbObj.put("children", dbObjTableSchemas);
+            if (!ondemand)
+                dbObj.put("children", dbObjTableSchemas);
             JSONObject tableSchemas = new JSONObject();
             tableSchemas.put("title", "Table Schemas");
             tableSchemas.put("text", "Table Schemas");
@@ -488,14 +497,88 @@ public class RepositoryExplorerResource {
             tableSchemas.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
 
 
-            Database dbInstance = new Database(db);
-            try {
-                dbInstance.connect();
-            } catch (Exception e) {
-                continue;
+            if (!ondemand) {
+                Database dbInstance = new Database(db);
+                try {
+                    dbInstance.connect();
+                } catch (Exception e) {
+                    continue;
+                }
+
+                Map<String, Collection<String>> tableMap = dbInstance.getTableMap();
+                for (String schemaName : tableMap.keySet())
+                    for (String tableName : tableMap.get(schemaName)) {
+                        JSONObject schemaObj = new JSONObject();
+                        schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
+                        schemaObj.put("text", schemaName + "." + tableName);
+                        schemaObj.put("title", schemaName + "." + tableName);
+                        schemaObj.put("icon", "/etl/images/conxbi/etl/table.gif");
+                        schemaObj.put("leaf", false);
+                        schemaObj.put("hasChildren", true);
+                        schemaObj.put("singleClickExpand", true);
+                        schemaObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+
+                        JSONArray columns = new JSONArray();
+                        schemaObj.put("children", columns);
+                        dbObjTableSchemas.put(schemaObj);
+
+                        RowMetaInterface fields = dbInstance.getTableFields(tableName);
+                        List<ValueMetaInterface> fvms = fields.getValueMetaList();
+                        for (ValueMetaInterface fvm : fvms) {
+                            JSONObject column = new JSONObject();
+                            String name = fvm.getName();
+                            String typeName = fvm.getTypeDesc();
+                            column.put("id", schemaObj.get("id") + "." + name);
+                            column.put("text", name + "[" + typeName + "]");
+                            column.put("text", name + "[" + typeName + "]");
+                            column.put("icon", "/etl/images/conxbi/etl/columns.gif");
+                            column.put("leaf", true);
+                            column.put("hasChildren", false);
+                            column.put("singleClickExpand", false);
+                            columns.put(column);
+                        }
+                    }
+                dbInstance.disconnect();
             }
+        }
+
+        return subDir;
+    }
+
+
+    private JSONObject generateDBConnectionChildrenJSON(String pathId) throws KettleException, JSONException {
+        ObjectId dbId = RepositoryUtil.getDBObjectIDFromPathID(pathId);
+        boolean hasChildren = false;
+        JSONObject subDir = new JSONObject();
+
+        DatabaseMeta db = DatabaseMetaUtil.getDatabaseMeta(repository,dbId);
+        JSONObject tableSchemas = new JSONObject();
+
+        //Create tables
+        JSONArray dbObjTableSchemas = new JSONArray();
+        tableSchemas.put("title", "Table Schemas");
+        tableSchemas.put("text", "Table Schemas");
+        tableSchemas.put("id", db.getName() + ".tables.schemas");
+        tableSchemas.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+        tableSchemas.put("leaf", false);
+        tableSchemas.put("hasChildren", true);
+        tableSchemas.put("singleClickExpand", true);
+        tableSchemas.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+
+
+
+        final Database dbInstance = new Database(db);
+        try {
+            dbInstance.connect();
+        } catch (Exception e) {
+            tableSchemas.put("hasChildren", false);
+            tableSchemas.put("singleClickExpand", false);
+            return tableSchemas;
+        }
+
+        try {
             Map<String, Collection<String>> tableMap = dbInstance.getTableMap();
-            for (String schemaName : tableMap.keySet())
+            for (String schemaName : tableMap.keySet()) {
                 for (String tableName : tableMap.get(schemaName)) {
                     JSONObject schemaObj = new JSONObject();
                     schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
@@ -527,9 +610,17 @@ public class RepositoryExplorerResource {
                         columns.put(column);
                     }
                 }
-            dbInstance.disconnect();
+            }
+        } catch (KettleDatabaseException e) {
+            throw e;
+        } catch (JSONException e) {
+            throw e;
+        }
+        finally {
+           if (dbInstance != null)
+               dbInstance.disconnect();
         }
 
-        return subDir;
+        return tableSchemas;
     }
 }

@@ -56,7 +56,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                 listeners: {
                     load: function(loader,node,response) {
                         console.log('data loaded');
-                        node.expandChildNodes();
+                        node.expandChildNodes(false);
                     }
                 }
             });
