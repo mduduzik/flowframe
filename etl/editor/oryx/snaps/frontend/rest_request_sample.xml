@@ -1,0 +1,35 @@
+<RestClientRequest>
+  <option name="httpMethod" value="POST" />
+  <option name="urlBase" value="http://localhost:8080" />
+  <option name="urlPath" value="/etlrepo/databasemeta/add" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="" />
+        <option name="value" value="" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="" />
+        <option name="value" value="" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parametersEnabled" value="false" />
+  <option name="haveTextToSend" value="true" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="{databaseName: &quot;d&quot;, databasePort: &quot;2&quot;, databaseType: &quot;MYSQL&quot;, dirObjectId: &quot;2&quot;, hostname: &quot;t&quot;, name: &quot;t&quot;, password: &quot;u&quot;, username: &quot;u&quot;}" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>

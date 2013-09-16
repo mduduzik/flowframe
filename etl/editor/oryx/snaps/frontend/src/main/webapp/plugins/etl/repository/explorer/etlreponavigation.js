@@ -263,11 +263,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection',
                         forceExecution: true
                     };
-                    this.dbFolderId = arg.dbFolderId;
-                    this.parentNavNodeId = arg.sourceNavNodeId;
                     this.facade.raiseEvent(eventData,{
-                            dbFolderId:this.ctxNode.node.attributes[''],
-                            sourceNavNodeId:this.ctxNode.id});
+                            dbFolderId: this.ctxNode.attributes['folderObjectId'],
+                            sourceNavNodeId: this.ctxNode.id}
+                    );
                 }.bind(this)
             },{
                 text:'Edit Database',

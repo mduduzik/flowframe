@@ -227,7 +227,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
             onFinish: function () {
                 if (this.wizMode === 'CREATE') {;
-                    var data = this.getSelectWizardData();
+                    var data = this.newDBWiz.getSelectWizardData();
                     Object.extend(data, {dirObjectId: this.dbFolderId});
                     var dataJson = Ext.encode(data);
                     Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
@@ -242,12 +242,18 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                         success: function (response, opts) {
                             var db = Ext.decode(response.responseText);
                             this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,{name:db.name,treeNodeParentId:this.parentNavNodeId});
-                        },
+                        }.bind(this),
                         failure: function (response, opts) {
-                        }
+                            Ext.MessageBox.show({
+                                title:'Add failed',
+                                msg: 'Error saving new db connection',
+                                buttons: Ext.MessageBox.OK,
+                                icon: Ext.MessageBox.ERROR
+                            });
+                        }.bind(this)
                     });
                 }
-            },
+            }.bind(this),
             cards: [
                 //1. Select DB type
                 this.selectDBTypeCard,

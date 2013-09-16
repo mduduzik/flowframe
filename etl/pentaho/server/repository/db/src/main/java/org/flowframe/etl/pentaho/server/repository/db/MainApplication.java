@@ -6,6 +6,7 @@ import org.flowframe.etl.pentaho.server.repository.db.resource.DatabaseTypeResou
 import org.flowframe.etl.pentaho.server.repository.db.resource.RepositoryExplorerResource;
 import org.flowframe.etl.pentaho.server.repository.db.resource.reference.CharsetEncodingResource;
 import org.glassfish.jersey.filter.LoggingFilter;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
@@ -26,6 +27,7 @@ public class MainApplication extends ResourceConfig {
         register(DatabaseTypeResource.class);
         register(RequestContextFilter.class);
         register(MultiPartFeature.class);
+        register(JacksonFeature.class);
         register(LoggingFilter.class);
         register(DatabaseMetaResource.class);
         register(DatabaseTypeResource.class);

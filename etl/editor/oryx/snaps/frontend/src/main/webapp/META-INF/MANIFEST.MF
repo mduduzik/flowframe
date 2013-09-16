@@ -235,16 +235,18 @@ Export-Package: de.hpi;version="0.0.1";uses:="de.hpi.bpmn",de.hpi.PTne
  focup2008.bpmn.layouter.topologicalsort;version="0.0.1";uses:="de.hpi
  .layouting.model,de.hpi.layouting.topologicalsort",de.unihannover.se.
  infocup2008.bpmn.model;version="0.0.1";uses:="de.hpi.layouting.model,
- org.json,org.w3c.dom",org.oryxeditor.bpel4chor;version="0.0.1";uses:=
- "javax.xml.namespace,org.w3c.dom",org.oryxeditor.mail;version="0.0.1"
- ;uses:="javax.mail,javax.servlet,org.apache.velocity",org.oryxeditor.
- server;version="0.0.1";uses:="de.hpi.bpmn,de.hpi.bpmn2_0.exceptions,d
- e.hpi.diagram.verification,de.hpi.epc.layouting.model,de.hpi.petrinet
- .serialization,javax.servlet,javax.servlet.http,javax.xml.transform,o
- rg.apache.batik.transcoder,org.apache.commons.configuration,org.json,
- org.oryxeditor.server.diagram,org.w3c.dom",org.oryxeditor.server.diag
- ram;version="0.0.1";uses:="org.json",org.oryxeditor.stencilset;versio
- n="0.0.1"
+ org.json,org.w3c.dom",org.flowframe.etl.editor.oryx.snaps.frontend.ut
+ ils;version="0.0.1";uses:="javax.servlet.http,org.eclipse.virgo.util.
+ osgi.manifest,org.osgi.framework",org.oryxeditor.bpel4chor;version="0
+ .0.1";uses:="javax.xml.namespace,org.w3c.dom",org.oryxeditor.mail;ver
+ sion="0.0.1";uses:="javax.mail,javax.servlet,org.apache.velocity",org
+ .oryxeditor.server;version="0.0.1";uses:="de.hpi.bpmn,de.hpi.bpmn2_0.
+ exceptions,de.hpi.diagram.verification,de.hpi.epc.layouting.model,de.
+ hpi.petrinet.serialization,javax.servlet,javax.servlet.http,javax.xml
+ .transform,org.apache.batik.transcoder,org.apache.commons.configurati
+ on,org.json,org.oryxeditor.server.diagram,org.w3c.dom",org.oryxeditor
+ .server.diagram;version="0.0.1";uses:="org.json",org.oryxeditor.stenc
+ ilset;version="0.0.1"
 Bundle-ClassPath: .,WEB-INF/classes
 Tool: Bundlor 1.0.0.RELEASE
 Import-Library: org.springframework.spring;version="[3.1, 3.2)"
@@ -287,33 +289,34 @@ Import-Package: com.bpmnq;version="1.0.3",com.bpmnq.compliancechecker;
  e.velocity.exception;version="0";resolution:="optional",org.apache.xm
  l.serialize;version="0";resolution:="optional",org.apache.xpath;versi
  on="0";resolution:="optional",org.aspectj.lang;version="0",org.eclips
- e.virgo.snaps.core;version="[3.6,3.7)",org.eclipse.virgo.web.dm;versi
- on="[3.0.0, 4.0.0)",org.jdom;version="1.1.0",org.jdom.input;version="
- 1.1.0",org.jdom.output;version="1.1.0",org.jdom.transform;version="1.
- 1.0",org.json;version="0";resolution:="optional",org.jsoup;version="1
- .5.2",org.mozilla.javascript;version="0";resolution:="optional",org.s
- pringframework.aop;version="[3.1,3.2)",org.springframework.aop.framew
- ork;version="[3.1,3.2)",org.springframework.aop.scope;version="[3.1,3
- .2)",org.springframework.beans.factory;version="[3.1,3.2)",org.spring
- framework.beans.factory.annotation;version="[3.1,3.2)",org.springfram
- ework.beans.factory.config;version="[3.1,3.2)",org.springframework.co
- ntext;version="[3.1,3.2)",org.springframework.context.weaving;version
- ="[3.1,3.2)",org.springframework.core.io;version="[3.1,3.2)",org.spri
- ngframework.dao;version="[3.1,3.2)",org.springframework.dao.annotatio
- n;version="[3.1,3.2)",org.springframework.format.annotation;version="
- [3.1,3.2)",org.springframework.jdbc.core;version="[3.1,3.2)",org.spri
- ngframework.orm.jpa;version="[3.1,3.2)",org.springframework.orm.jpa.p
- ersistenceunit;version="[3.1,3.2)",org.springframework.orm.jpa.suppor
- t;version="[3.1,3.2)",org.springframework.orm.jpa.vendor;version="[3.
- 1,3.2)",org.springframework.stereotype;version="[3.1,3.2)",org.spring
- framework.transaction;version="[3.1,3.2)",org.springframework.transac
- tion.annotation;version="[3.1,3.2)",org.springframework.transaction.a
- spectj;version="[3.1,3.2)",org.springframework.transaction.jta;versio
- n="[3.1,3.2)",org.springframework.util;version="0";resolution:="optio
- nal",org.supercsv.io;version="1.5.2",org.supercsv.prefs;version="1.5.
- 2",org.w3c.dom;version="0",org.w3c.dom.bootstrap;version="0",org.w3c.
- dom.ls;version="0",org.w3c.dom.traversal;version="0",org.xmappr;versi
- on="0";resolution:="optional",org.xml.sax;version="0"
+ e.virgo.snaps.core;version="[3.6,3.7)",org.eclipse.virgo.util.osgi.ma
+ nifest;version="0",org.eclipse.virgo.web.dm;version="[3.0.0, 4.0.0)",
+ org.jdom;version="1.1.0",org.jdom.input;version="1.1.0",org.jdom.outp
+ ut;version="1.1.0",org.jdom.transform;version="1.1.0",org.json;versio
+ n="0";resolution:="optional",org.jsoup;version="1.5.2",org.mozilla.ja
+ vascript;version="0";resolution:="optional",org.osgi.framework;versio
+ n="0",org.springframework.aop;version="[3.1,3.2)",org.springframework
+ .aop.framework;version="[3.1,3.2)",org.springframework.aop.scope;vers
+ ion="[3.1,3.2)",org.springframework.beans.factory;version="[3.1,3.2)"
+ ,org.springframework.beans.factory.annotation;version="[3.1,3.2)",org
+ .springframework.beans.factory.config;version="[3.1,3.2)",org.springf
+ ramework.context;version="[3.1,3.2)",org.springframework.context.weav
+ ing;version="[3.1,3.2)",org.springframework.core.io;version="[3.1,3.2
+ )",org.springframework.dao;version="[3.1,3.2)",org.springframework.da
+ o.annotation;version="[3.1,3.2)",org.springframework.format.annotatio
+ n;version="[3.1,3.2)",org.springframework.jdbc.core;version="[3.1,3.2
+ )",org.springframework.orm.jpa;version="[3.1,3.2)",org.springframewor
+ k.orm.jpa.persistenceunit;version="[3.1,3.2)",org.springframework.orm
+ .jpa.support;version="[3.1,3.2)",org.springframework.orm.jpa.vendor;v
+ ersion="[3.1,3.2)",org.springframework.stereotype;version="[3.1,3.2)"
+ ,org.springframework.transaction;version="[3.1,3.2)",org.springframew
+ ork.transaction.annotation;version="[3.1,3.2)",org.springframework.tr
+ ansaction.aspectj;version="[3.1,3.2)",org.springframework.transaction
+ .jta;version="[3.1,3.2)",org.springframework.util;version="0";resolut
+ ion:="optional",org.supercsv.io;version="1.5.2",org.supercsv.prefs;ve
+ rsion="1.5.2",org.w3c.dom;version="0",org.w3c.dom.bootstrap;version="
+ 0",org.w3c.dom.ls;version="0",org.w3c.dom.traversal;version="0",org.x
+ mappr;version="0";resolution:="optional",org.xml.sax;version="0"
 Bundle-SymbolicName: org.flowframe.etl.editor.oryx.snaps.frontend
 Snap-Host: org.flowframe.etl.pentaho.server.snaps.main;version="[0.0.1
  ,0.1)"
