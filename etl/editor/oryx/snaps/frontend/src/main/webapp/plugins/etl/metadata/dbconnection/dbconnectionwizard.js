@@ -241,7 +241,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                         params: dataJson,
                         success: function (response, opts) {
                             var db = Ext.decode(response.responseText);
-                            this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,{name:db.name,treeNodeParentId:this.parentNavNodeId});
+                            this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:db.name,treeNodeParentId:this.parentNavNodeId});
                             this.newWizDialog.close();
                         }.bind(this),
                         failure: function (response, opts) {
