@@ -37,6 +37,11 @@ public class DatabaseMetaUtil {
         dbMeta.getAttributes().put(ATTRIBUTE_PARENT_DIR_OBJID,dir.getObjectId().toString());
     }
 
+    public static void unsetTenantAndDirAttributes(DatabaseMeta dbMeta) {
+        dbMeta.getAttributes().remove(ATTRIBUTE_TENANT_ORG_ID);
+        dbMeta.getAttributes().remove(ATTRIBUTE_PARENT_DIR_OBJID);
+    }
+
     /**
      *    Add/Update/Delete Metadata Steps
      */
@@ -72,6 +77,12 @@ public class DatabaseMetaUtil {
         ObjectId objId = RepositoryUtil.getDBObjectIDFromPathID(pathId);
         DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(objId);
         return databaseMeta;
+    }
+
+    public static boolean deleteDatabaseMetaByPathId(CustomRepository repo, String pathId) throws KettleException {
+        ObjectId objId = RepositoryUtil.getDBObjectIDFromPathID(pathId);
+        repo.getRepositoryDatabaseDelegate().delDatabase(objId);
+        return true;
     }
 
     public static DatabaseMeta updateDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO dto) throws KettleException {
@@ -122,9 +133,19 @@ public class DatabaseMetaUtil {
         return dir;
     }
 
-    public static void deleteDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO dto) throws KettleException {
-        ObjectId id = new LongObjectId(dto.getObjectId());
-        repo.getRepositoryDatabaseDelegate().delDatabase(id);
+    public static void deleteDatabaseMeta(Organization tenant, CustomRepository repo, ObjectId objId) throws KettleException {
+        DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(objId);
+
+        unsetTenantAndDirAttributes(databaseMeta);
+
+        //Update attr removal
+        repo.getRepositoryDatabaseDelegate().saveDatabaseMeta(databaseMeta);
+        repo.getRepositoryConnectionDelegate().commit();
+
+        //Finally delete it...
+        repo.getRepositoryDatabaseDelegate().delDatabase(objId);
+
+        repo.getRepositoryConnectionDelegate().commit();
     }
 
     public static List<DatabaseMeta> getDatabasesBySubDirAndTenantId(CustomRepository repo, RepositoryDirectoryInterface dir, String tenantId) throws KettleException {

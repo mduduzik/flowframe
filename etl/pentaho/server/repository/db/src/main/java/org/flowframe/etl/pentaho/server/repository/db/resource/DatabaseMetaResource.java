@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.server.repository.db.resource;
 
 import org.flowframe.etl.pentaho.server.repository.db.model.DatabaseMetaDTO;
+import org.flowframe.etl.pentaho.server.repository.db.repository.CustomRepository;
 import org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl;
 import org.flowframe.etl.pentaho.server.repository.db.repository.DatabaseMetaUtil;
 import org.flowframe.etl.pentaho.server.repository.db.repository.RepositoryUtil;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -86,7 +88,15 @@ public class DatabaseMetaResource  {
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public DatabaseMetaDTO delete(DatabaseMetaDTO record) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Response delete(@HeaderParam("userid") String userid, DatabaseMetaDTO record) throws KettleException {
+        DatabaseInterface res = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, record.getDirPathId()).getDatabaseInterface();
+
+        //TODO: Hack
+        Organization tenant = new Organization();
+        tenant.setId(1L);
+        DatabaseMetaUtil.deleteDatabaseMeta(tenant,repository,res.getObjectId());
+
+        DatabaseMetaUtil.deleteDatabaseMetaByPathId(repository,record.getDirPathId());
+        return Response.ok("DB Connection " + res.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
 }

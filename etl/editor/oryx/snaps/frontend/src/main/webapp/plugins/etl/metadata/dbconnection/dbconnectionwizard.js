@@ -29,8 +29,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection', this.onCreate.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'DBConnection', this.onEdit.bind(this));
-        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
-        //this.init();
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'DBConnection', this.onDelete.bind(this));
     },
 
 
@@ -394,8 +393,48 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
             bodyStyle: "background-color:#FFFFFF"
         });
         this.newWizDialog.show();
+    },
+    /**
+     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'DBConnection' Event
+     * @param event
+     * @param arg - tree node
+     */
+    onDelete: function (event, arg) {
+        this.wizMode = 'EDIT';
+        this.dbFolderId = arg.parentSourceNavNodeId;
+        this.dbId = arg.sourceNavNodeId;
+        this.dbName = arg.title;
 
-
+        Ext.MessageBox.show({
+            title:'Confirm delete.',
+            msg: 'Delete '+arg.title+' ?',
+            buttons: Ext.MessageBox.YESNO,
+            fn: function(btn){
+                if (btn === 'yes'){
+                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                        // here you can put whatever you need as header. For instance:
+                        this.defaultPostHeader = "application/json; charset=utf-8;";
+                        this.defaultHeaders = {userid: 'test'};
+                    });
+                    Ext.Ajax.request({
+                        url: '/etlrepo/databasemeta/delete',
+                        method: 'DELETE',
+                        params: Ext.encode({dirPathId:this.dbId}),
+                        success: function (response, opts) {
+                            var text = Ext.encode(response.responseText);
+                            Ext.MessageBox.show({
+                                title:'Success',
+                                msg: text,
+                                buttons: Ext.MessageBox.OK,
+                                icon: Ext.MessageBox.INFO
+                            });
+                            this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_DELETED,forceExecution:true,treeNodeParentId:this.dbFolderId});
+                        }.bind(this)
+                    });
+                }
+            }.bind(this),
+            icon: Ext.MessageBox.QUESTION
+        });
     }
 }
 ORYX.Plugins.ETL.Metadata.DBConnectionWizard = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionWizard);

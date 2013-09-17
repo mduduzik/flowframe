@@ -148,6 +148,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
          */
         //-- Event listening
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED, this.onCreated.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETED, this.onDeleted.bind(this));
 
 
         this.loader.on("beforeload", function(treeLoader, node) {
@@ -292,8 +293,17 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 icon: '/etl/images/conxbi/etl/connection-delete.png',
                 scope: this,
                 handler:function(){
-                    this.ctxNode.ui.removeClass('x-node-ctx');
-                    this.removeFeed(this.ctxNode.attributes.url);
+                    this.ctxNode.select();
+                    var eventData = {
+                        type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'DBConnection',
+                        forceExecution: true
+                    };
+                    this.facade.raiseEvent(eventData,{
+                            title: 'DB Connection '+this.ctxNode.attributes['title'],
+                            sourceNavNodeId: this.ctxNode.id,
+                            parentSourceNavNodeId: this.ctxNode.parentNode.id
+                        }
+                    );
                     this.ctxNode = null;
                 }.bind(this)
             },{
@@ -325,6 +335,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             ORYX.Log.error(e);
         }
     },
+    /**
+     * On Created
+     * @param event
+     */
     onCreated : function(event) {
         var ctxNodeId = event.treeNodeParentId;
         var name = event.name;
@@ -342,6 +356,19 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         ctxNode_.reload();
     },
     /**
+     * On Deleted
+     * @param event
+     */
+    onDeleted : function(event) {
+        var ctxNodeId = event.treeNodeParentId;
+        var name = event.name;
+
+        var ctxNode_ = this.getNodeById(ctxNodeId);
+        ctxNode_.select();
+
+        ctxNode_.reload();
+    },
+    /**
      *
      * @param node
      * @param e
@@ -355,10 +382,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             }
         }
 
-        if(this.ctxNode){
-            this.ctxNode.ui.removeClass('x-node-ctx');
-            this.ctxNode = null;
-        }
+
         //if(node.isLeaf()){
         this.ctxNode = node;
         this.ctxNode.ui.addClass('x-node-ctx');
