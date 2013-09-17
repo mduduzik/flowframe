@@ -1,0 +1,8 @@
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1
+Bundle-Name: FF Pentaho PDI Repository DB Fragment : commons-dbcp
+Bundle-SymbolicName: org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp
+Fragment-Host: com.springsource.org.apache.commons.dbcp; bundle-version=1.2.2.osgi
+Import-Package: org.gjt.mm.mysql;version="5.1.20",
+  com.mysql.jdbc.jdbc2.optional;version="5.1.20",
+  com.mysql.jdbc;version="5.1.20"

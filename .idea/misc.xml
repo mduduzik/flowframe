@@ -54,6 +54,7 @@
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db" />
+    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main" />
     <file type="web" url="file://$PROJECT_DIR$/reporting/jasper/web.services" />

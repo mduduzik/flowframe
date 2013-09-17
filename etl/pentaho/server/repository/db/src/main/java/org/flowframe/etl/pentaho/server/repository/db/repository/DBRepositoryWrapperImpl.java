@@ -71,7 +71,8 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     private String dbport;
     private String dbusername;
     private String dbuserpassword;
-    private DatabaseMeta connection;
+    private DatabaseMeta pooledDBConnection;
+    private DatabaseMeta unpooledDBConnection;
 
     public static CustomRepository getINSTANCE() {
         if (INSTANCE == null) {
@@ -103,15 +104,16 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		repositoryMeta.setName(reponame);
 		repositoryMeta.setDescription(repodescription);
 
-		this.connection = new DatabaseMeta();
-		connection.setDatabaseType(dbtype);
-		connection.setHostname(dbhostname);
-		connection.setDBName(dbname);
-		connection.setDBPort(dbport);
-		connection.setUsername(dbusername);
-		connection.setPassword(dbuserpassword);
-
-		repositoryMeta.setConnection(connection);
+		this.pooledDBConnection = new DatabaseMeta();
+		pooledDBConnection.setDatabaseType(dbtype);
+		pooledDBConnection.setHostname(dbhostname);
+		pooledDBConnection.setDBName(dbname);
+		pooledDBConnection.setDBPort(dbport);
+		pooledDBConnection.setUsername(dbusername);
+		pooledDBConnection.setPassword(dbuserpassword);
+        pooledDBConnection.setUsingConnectionPool(true);
+        pooledDBConnection.setInitialPoolSize(20);
+		repositoryMeta.setConnection(pooledDBConnection);
 
 		userInfo = new UserInfo(username, userpassword, userfullname, userfullname, true);
 
@@ -119,7 +121,16 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		
 		connect(username, userpassword);
 
-        supportingDatabase = new Database(loggingObject,connection);
+
+        this.unpooledDBConnection = new DatabaseMeta();
+        unpooledDBConnection.setDatabaseType(dbtype);
+        unpooledDBConnection.setHostname(dbhostname);
+        unpooledDBConnection.setDBName(dbname);
+        unpooledDBConnection.setDBPort(dbport);
+        unpooledDBConnection.setUsername(dbusername);
+        unpooledDBConnection.setPassword(dbuserpassword);
+        unpooledDBConnection.setUsingConnectionPool(false);
+        supportingDatabase = new Database(loggingObject, unpooledDBConnection);
         //supportingDatabase.getDatabaseMeta().setUsingConnectionPool(true);
         //supportingDatabase.getDatabaseMeta().setMaximumPoolSize(20);
         /* supportingDatabase.connect();;*/
@@ -415,7 +426,11 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
         this.dbuserpassword = dbuserpassword;
     }
 
+    public DatabaseMeta getPooledDBConnectionMeta() {
+        return pooledDBConnection;
+    }
+
     public DatabaseMeta getDBConnectionMeta() {
-        return connection;
+        return unpooledDBConnection;
     }
 }

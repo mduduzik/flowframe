@@ -281,17 +281,19 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
      *
      */
     onBeforeCancel: function() {
-        Ext.MessageBox.show({
-            title:'Save Changes?',
-            msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
-            buttons: Ext.MessageBox.YESNO,
-            fn: function(btn){
-                if (btn === 'yes'){
-                    this.newWizDialog.close();
-                }
-            }.bind(this),
-            icon: Ext.MessageBox.QUESTION
-        });
+        if (this.newDBWiz.isDirty()) {
+            Ext.MessageBox.show({
+                title:'Save Changes?',
+                msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
+                buttons: Ext.MessageBox.YESNO,
+                fn: function(btn){
+                    if (btn === 'yes'){
+                        this.newWizDialog.close();
+                    }
+                }.bind(this),
+                icon: Ext.MessageBox.QUESTION
+            });
+        }
         return false;//Don't close wizard - close dialog
     },
 

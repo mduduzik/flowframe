@@ -58,5 +58,6 @@ public interface CustomRepository extends Repository {
 
 
     public Database getSupportingDatabase();
+    public DatabaseMeta getPooledDBConnectionMeta();
     public DatabaseMeta getDBConnectionMeta();
 }

@@ -81,6 +81,7 @@
         <module name="org.flowframe.etl.pentaho.server.plugins.manager" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager (1)" />
         <module name="org.flowframe.etl.pentaho.server.repository.db" />
+        <module name="org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp" />
         <module name="org.flowframe.etl.pentaho.server.services" />
         <module name="org.flowframe.etl.pentaho.server.snaps.core" />
         <module name="org.flowframe.etl.pentaho.server.snaps.main" />
@@ -284,6 +285,7 @@
       <module name="org.flowframe.etl.pentaho.server.plugins.manager" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.repository" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.repository.db" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.services" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.snaps" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.snaps.core" target="1.6" />

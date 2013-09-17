@@ -410,7 +410,7 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
         this.cardPanel.getLayout().setActiveItem(this.currentCard);
     },
     /**
-     * Loads data to forms
+     * Loads data to cards/forms
      */
     loadRecord : function(record)
     {
@@ -420,6 +420,21 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
             //cards[i].startMonitoring();
             cards[i].form.loadRecord(record);
         }
+    },
+    /**
+     * Check if dirty
+     */
+    isDirty : function()
+    {
+        var cards           = this.cards;
+        for (var i = 0, len = cards.length; i < len; i++) {
+            //cards[i].initFields();
+            //cards[i].startMonitoring();
+            if (cards[i].form.isDirty())
+                return true;
+        }
+
+        return false;
     },
     /**
      * Creates the head- and the card-panel.

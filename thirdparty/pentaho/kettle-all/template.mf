@@ -311,7 +311,8 @@ Import-Package: com.ccg.net.ethernet;version="0";resolution:="optional",
  org.snmp4j.smi;version="0";resolution:="optional",
  org.snmp4j.transport;version="0";resolution:="optional",
  org.xmlpull.v1;version="0";resolution:="optional",
- org.yaml.snakeyaml;version="0";resolution:="optional"
+ org.yaml.snakeyaml;version="0";resolution:="optional",
+ org.apache.commons.dbcp;version="[1.2.2,2.0.0)"
 Bundle-Name: kettle-*
 Excluded-Exports: org.xmlpull.v1
 Excluded-Imports: org.apache.jackrabbit.test,

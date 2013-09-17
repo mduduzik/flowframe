@@ -11,4 +11,8 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>org.flowframe.etl.pentaho.server.repository</artifactId>
+    <modules>
+        <module>db</module>
+        <module>db.fragments.commons-dbcp</module>
+    </modules>
 </project>
