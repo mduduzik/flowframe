@@ -131,7 +131,7 @@ public class RepositoryExplorerResource {
             res = exportTreeToJSONByTenant(null, repository, tenant).toString();
         else if (nodeId != null && nodeId.indexOf("/db/") >= 0){  //DB PathId
             json = generateDBConnectionChildrenJSON(nodeId);
-            res = json.toString();
+            res = json.getJSONArray("children").toString();
         }
         else {
             json = exportTreeNodeToJSONByTenant(nodeId,itemtype, folderObjectId, repository, tenant, true/*excluderootnode*/, true/*ondemand*/);
@@ -557,6 +557,7 @@ public class RepositoryExplorerResource {
 
         //Create tables
         JSONArray dbObjTableSchemas = new JSONArray();
+        tableSchemas.put("children",dbObjTableSchemas);
         tableSchemas.put("title", "Table Schemas");
         tableSchemas.put("text", "Table Schemas");
         tableSchemas.put("id", db.getName() + ".tables.schemas");

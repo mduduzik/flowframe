@@ -4,6 +4,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl;
 import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.database.Database;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,16 +31,16 @@ public class DatabaseTypeResource  {
     private DBRepositoryWrapperImpl repository;
 
 
-    public long count(String descrkeyword) {
+    public long count(Database dbInstance, String descrkeyword) {
         long totalCount = 0;
 
         try {
             String databaseTypesTable = repository.getRepositoryDatabaseDelegate().quoteTable(KettleDatabaseRepository.TABLE_R_DATABASE_TYPE);
             RowMetaAndData r = null;
             if (descrkeyword != null && !descrkeyword.isEmpty())
-                r = repository.getRepositoryConnectionDelegate().getDatabase().getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable + " WHERE description LIKE '%"+descrkeyword+"%'");
+                r = dbInstance.getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable + " WHERE description LIKE '%" + descrkeyword + "%'");
             else
-                r = repository.getRepositoryConnectionDelegate().getDatabase().getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable);
+                r = dbInstance.getOneRow("SELECT COUNT(*) FROM " + databaseTypesTable);
             if (r != null)
                 totalCount = r.getInteger(0, 0L);
         } catch (Exception e) {
@@ -64,10 +65,19 @@ public class DatabaseTypeResource  {
         else
             sql = "SELECT * FROM " + databaseTypesTable + " ORDER BY DESCRIPTION";
 
-        ResultSet resultSet = null;
-        long totalCount = count(descrkeyword);
+        Database dbInstance = null;
         try {
-            List<Object[]> results_ = repository.getRepositoryConnectionDelegate().getDatabase().getRows(sql, 0);
+            dbInstance = new Database(repository.getDBConnectionMeta());
+            try {
+                dbInstance.connect();
+            } catch (Exception e) {
+                throw e;
+            }
+
+
+            ResultSet resultSet = null;
+            long totalCount = count(dbInstance,descrkeyword);
+            List<Object[]> results_ = dbInstance.getRows(sql, 0);
             for (Object[] result : results_) {
                 JSONObject obj = new JSONObject();
                 obj.put("id", Integer.valueOf(result[0].toString()));
@@ -80,6 +90,9 @@ public class DatabaseTypeResource  {
             wrapper.put("data",types);
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
+        } finally {
+            if (dbInstance != null)
+                dbInstance.disconnect();
         }
 
         if (callback != null)
