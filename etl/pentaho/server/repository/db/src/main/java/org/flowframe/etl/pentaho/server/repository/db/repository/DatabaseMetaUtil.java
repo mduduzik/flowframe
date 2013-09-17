@@ -68,6 +68,12 @@ public class DatabaseMetaUtil {
         return databaseMeta;
     }
 
+    public static DatabaseMeta getDatabaseMetaByPathId(CustomRepository repo, String pathId) throws KettleException {
+        ObjectId objId = RepositoryUtil.getDBObjectIDFromPathID(pathId);
+        DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(objId);
+        return databaseMeta;
+    }
+
     public static DatabaseMeta updateDatabaseMeta(CustomRepository repo, RepositoryDirectoryInterface dir, DatabaseMetaDTO dto) throws KettleException {
         ObjectId id = new LongObjectId(dto.getObjectId());
         DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(id);

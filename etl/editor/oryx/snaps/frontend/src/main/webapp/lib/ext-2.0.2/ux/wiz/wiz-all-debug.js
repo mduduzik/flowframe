@@ -410,6 +410,18 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
         this.cardPanel.getLayout().setActiveItem(this.currentCard);
     },
     /**
+     * Loads data to forms
+     */
+    loadRecord : function(record)
+    {
+        var cards           = this.cards;
+        for (var i = 0, len = cards.length; i < len; i++) {
+            //cards[i].initFields();
+            //cards[i].startMonitoring();
+            cards[i].form.loadRecord(record);
+        }
+    },
+    /**
      * Creates the head- and the card-panel.
      * Be sure to have the custom {@link Ext.ux.layout.CardLayout} available
      * in order to make the card-panel work as expected by this component
@@ -712,6 +724,11 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
             if(!f.isValid){
                 f.isValid = Ext.emptyFn;
             }
+
+            if(!f.isFormField){
+                f.isFormField = Ext.emptyFn;
+            }
+
         });
 
         Ext.ux.Wiz.Card.superclass.bindHandler.call(this);

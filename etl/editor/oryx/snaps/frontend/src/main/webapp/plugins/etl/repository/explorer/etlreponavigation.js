@@ -46,7 +46,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
             var treeLoader = new Ext.tree.TreeLoader({
                 requestMethod: 'GET',
                 clearOnLoad: false,
-                dataUrl:'http://localhost:8080/etlrepo/explorer/getnode',
+                dataUrl:'/etlrepo/explorer/getnode',
                 preloadChildren: false,
                 baseParams: {
                     userid: 'userid',
@@ -56,7 +56,10 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                 listeners: {
                     load: function(loader,node,response) {
                         console.log('data loaded');
-                        node.expandChildNodes(false);
+                        if (node.isRoot && node.isRoot === true)
+                            node.expandChildNodes(false);
+                        else
+                            node.expand();
                     }
                 }
             });
@@ -273,9 +276,16 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 icon: '/etl/images/conxbi/etl/modify.gif',
                 scope: this,
                 handler:function(){
-                    this.ctxNode.ui.removeClass('x-node-ctx');
-                    this.removeFeed(this.ctxNode.attributes.url);
-                    this.ctxNode = null;
+                    this.ctxNode.select();
+                    var eventData = {
+                        type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX+'DBConnection',
+                        forceExecution: true
+                    };
+                    this.facade.raiseEvent(eventData,{
+                            title: 'DB Connection '+this.ctxNode.attributes['title'],
+                            sourceNavNodeId: this.ctxNode.id
+                        }
+                    );
                 }.bind(this)
             },{
                 text:'Delete Database',
@@ -318,12 +328,18 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     onCreated : function(event) {
         var ctxNodeId = event.treeNodeParentId;
         var name = event.name;
+
+        var ctxNode_ = this.getNodeById(ctxNodeId);
+        ctxNode_.select();
+
         Ext.MessageBox.show({
             title:'Saved',
-            msg: 'Artifact '+name+' was created successfully.',
+            msg: name+' was created successfully.',
             buttons: Ext.MessageBox.OK,
             icon: Ext.MessageBox.INFO
         });
+
+        ctxNode_.reload();
     },
     /**
      *

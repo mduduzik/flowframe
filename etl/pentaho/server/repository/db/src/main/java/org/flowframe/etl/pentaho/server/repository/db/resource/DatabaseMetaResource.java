@@ -5,6 +5,7 @@ import org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWra
 import org.flowframe.etl.pentaho.server.repository.db.repository.DatabaseMetaUtil;
 import org.flowframe.etl.pentaho.server.repository.db.repository.RepositoryUtil;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
@@ -35,7 +36,7 @@ public class DatabaseMetaResource  {
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     public DatabaseMetaDTO get(@QueryParam("pathID")String pathID) throws KettleException {
-        DatabaseMeta res = RepositoryUtil.getDatabase(repository, pathID);
+        DatabaseInterface res = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, pathID).getDatabaseInterface();
         if (res == null)
             return null;
         return new DatabaseMetaDTO((LongObjectId)res.getObjectId(),

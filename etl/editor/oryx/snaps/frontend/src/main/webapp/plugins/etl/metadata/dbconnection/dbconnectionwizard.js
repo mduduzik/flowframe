@@ -14,6 +14,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
     facade: undefined,
     dbFolderId: undefined,
+    dbId: undefined,
     parentNavNodeId: undefined,
     wizMode: undefined,  //EDITING, CREATE
 
@@ -27,6 +28,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
         this.facade = facade;
 
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection', this.onCreate.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'DBConnection', this.onEdit.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
         //this.init();
     },
@@ -332,6 +334,66 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
         });
 
         this.newWizDialog.show();
+    },
+    /**
+     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX+'DBConnection' Event
+     * @param event
+     * @param arg - tree node
+     */
+    onEdit: function (event, arg) {
+        this.wizMode = 'EDIT';
+        this.dbFolderId = arg.dbFolderId;
+        this.dbId = arg.sourceNavNodeId;
+        this.dbName = arg.title;
+
+        // Basic Dialog
+        this.initWiz();
+        this.newDBWiz.on('render',function() {
+            // Get data
+            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                // here you can put whatever you need as header. For instance:
+                this.defaultPostHeader = "application/json; charset=utf-8;";
+                this.defaultHeaders = {userid: 'test'};
+            });
+            Ext.Ajax.request({
+                url: '/etlrepo/databasemeta/get',
+                method: 'GET',
+                params: {pathID:this.dbId},
+                success: function (response, opts) {
+                    var db = Ext.decode(response.responseText);
+                    this.newWizDialog.setTitle('Editing '+this.dbName);
+                    this.newDBWiz.loadRecord({data:db});
+                }.bind(this)
+            });
+        },this);
+
+        this.newWizDialog = new Ext.Window({
+            autoScroll: false,
+            autoCreate: true,
+            closeAction:'destroy',
+            title: 'Editing...',
+            height: 450,
+            width: 800,
+            modal: true,
+            collapsible: false,
+            fixedcenter: true,
+            shadow: true,
+            proxyDrag: true,
+            layout: 'fit',
+            keys: [
+                {
+                    key: 27,
+                    fn: function () {
+                        this.newWizDialog.hide
+                    }.bind(this)
+                }
+            ],
+            items: [this.newDBWiz],
+            bodyStyle: "background-color:#FFFFFF"
+        });
+        this.newWizDialog.show();
+
+
     }
 }
 ORYX.Plugins.ETL.Metadata.DBConnectionWizard = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionWizard);

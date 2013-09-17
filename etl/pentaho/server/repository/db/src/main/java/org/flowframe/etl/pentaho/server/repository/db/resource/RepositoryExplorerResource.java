@@ -474,6 +474,7 @@ public class RepositoryExplorerResource {
             dbObj.put("title", db.getName());
             dbObj.put("icon", "/etl/images/conxbi/etl/connection.gif");
             dbObj.put("id", RepositoryUtil.generatePathID(dir,db));
+            dbObj.put("itemtype","database");
             dbObj.put("leaf", false);
             dbObj.put("hasChildren", true);
             dbObj.put("singleClickExpand", true);
