@@ -180,6 +180,8 @@ public class RepositoryExplorerResource {
 
         JSONObject metadata = new JSONObject();
         metadata.put("id", "metadata");
+        metadata.put("allowDrag", false);
+        metadata.put("allowDrop", false);
         metadata.put("text", mdDir.getName());
         metadata.put("title", mdDir.getName());
         metadata.put("icon", "/etl/images/conxbi/etl/package.gif");
@@ -196,6 +198,8 @@ public class RepositoryExplorerResource {
         //JSONObject metadataDBConnections = generateDBConnectionsJSON(true,false,repo, dbConnectionsMdDir, tenant.getId().toString());
         JSONObject metadataDBConnections = new JSONObject();
         metadataDBConnections.put("id", "metadata.dbconnections");
+        metadataDBConnections.put("allowDrag", false);
+        metadataDBConnections.put("allowDrop", false);
         metadataDBConnections.put("text", "DB Connections");
         metadataDBConnections.put("title", "DB Connections");
         metadataDBConnections.put("icon", "/etl/images/conxbi/etl/connection.gif");
@@ -215,6 +219,8 @@ public class RepositoryExplorerResource {
         //JSONObject metadataDelimited = generateCSVMetadataJSON(true,repo, delimitedMdDir);
         JSONObject metadataDelimited = new JSONObject();
         metadataDelimited.put("id", RepositoryUtil.generatePathID(delimitedMdDir, "CSVInput"));
+        metadataDelimited.put("allowDrag", false);
+        metadataDelimited.put("allowDrop", false);
         metadataDelimited.put("text", "CSV");
         metadataDelimited.put("title", "CSV");
         metadataDelimited.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
@@ -234,6 +240,8 @@ public class RepositoryExplorerResource {
         //JSONObject metadataDExcel = generateExcelMetadataJSON(true, repo, excelMdDir);
         JSONObject metadataDExcel = new JSONObject();
         metadataDExcel.put("id", "metadata.excel");
+        metadataDExcel.put("allowDrag", false);
+        metadataDExcel.put("allowDrop", false);
         metadataDExcel.put("text", "Excel");
         metadataDExcel.put("title", "Excel");
         metadataDExcel.put("icon", "/etl/images/conxbi/etl/icon_excel.gif");
@@ -256,6 +264,8 @@ public class RepositoryExplorerResource {
 
         // Populate
         subDir.put("id", RepositoryUtil.generatePathID(dir, "ExcelInput"));
+        subDir.put("allowDrag", false);
+        subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
         subDir.put("icon", "/etl/images/conxbi/etl/icon_excel.gif");
@@ -296,6 +306,8 @@ public class RepositoryExplorerResource {
                     mdmObj.put("title", step.getName());
                     mdmObj.put("icon", "/etl/images/conxbi/etl/icon_excel.gif");
                     mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
+                    mdmObj.put("allowDrag", false);
+                    mdmObj.put("allowDrop", false);
                     mdmObj.put("leaf", false);
                     mdmObj.put("hasChildren", true);
                     mdmObj.put("singleClickExpand", true);
@@ -309,6 +321,8 @@ public class RepositoryExplorerResource {
                     fieldsObj.put("title", "Fields");
                     fieldsObj.put("text", "Fields");
                     fieldsObj.put("id", step.getName() + ".fields");
+                    fieldsObj.put("allowDrag", false);
+                    fieldsObj.put("allowDrop", false);
                     fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
                     fieldsObj.put("leaf", false);
                     fieldsObj.put("hasChildren", true);
@@ -323,6 +337,8 @@ public class RepositoryExplorerResource {
                     for (ExcelInputField field : inputFields) {
                         JSONObject fieldObj = new JSONObject();
                         fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
+                        fieldObj.put("allowDrag", false);
+                        fieldObj.put("allowDrop", false);
                         fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
                         fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
                         fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
@@ -343,6 +359,8 @@ public class RepositoryExplorerResource {
 
         // Populate
         subDir.put("id", RepositoryUtil.generatePathID(dir, "CSVInput"));
+        subDir.put("allowDrag", false);
+        subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
         subDir.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
@@ -384,6 +402,8 @@ public class RepositoryExplorerResource {
                     mdmObj.put("title", step.getName());
                     mdmObj.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
                     mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
+                    mdmObj.put("allowDrag", false);
+                    mdmObj.put("allowDrop", false);
                     mdmObj.put("leaf", false);
                     mdmObj.put("hasChildren", true);
                     mdmObj.put("singleClickExpand", true);
@@ -397,6 +417,8 @@ public class RepositoryExplorerResource {
                     fieldsObj.put("title", "Fields");
                     fieldsObj.put("text", "Fields");
                     fieldsObj.put("id", step.getName() + ".fields");
+                    fieldsObj.put("allowDrag", false);
+                    fieldsObj.put("allowDrop", false);
                     fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
                     fieldsObj.put("leaf", false);
                     fieldsObj.put("hasChildren", true);
@@ -412,6 +434,8 @@ public class RepositoryExplorerResource {
                     for (TextFileInputField field : inputFields) {
                         JSONObject fieldObj = new JSONObject();
                         fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
+                        fieldObj.put("allowDrag", false);
+                        fieldObj.put("allowDrop", false);
                         fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
                         fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
                         fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
@@ -435,6 +459,8 @@ public class RepositoryExplorerResource {
 
         // Populate
         subDir.put("id", "dir/" + dir.getObjectId().toString());
+        subDir.put("allowDrag", false);
+        subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
         subDir.put("icon", "/etl/images/conxbi/etl/folder_close.png");
@@ -474,10 +500,13 @@ public class RepositoryExplorerResource {
             dbObj.put("title", db.getName());
             dbObj.put("icon", "/etl/images/conxbi/etl/connection.gif");
             dbObj.put("id", RepositoryUtil.generatePathID(dir,db));
-            dbObj.put("itemtype","database");
+            dbObj.put("allowDrag", false);
+            dbObj.put("allowDrop", false);
+            dbObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DATABASE);
             dbObj.put("leaf", false);
             dbObj.put("hasChildren", true);
             dbObj.put("singleClickExpand", true);
+
             subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
             subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DATABASE);
             subDir.put(REPOSITORY_REPOFOLDER_OBJID, dir.getObjectId().toString());
@@ -491,6 +520,8 @@ public class RepositoryExplorerResource {
             tableSchemas.put("title", "Table Schemas");
             tableSchemas.put("text", "Table Schemas");
             tableSchemas.put("id", db.getName() + ".tables.schemas");
+            tableSchemas.put("allowDrag", false);
+            tableSchemas.put("allowDrop", false);
             tableSchemas.put("icon", "/etl/images/conxbi/etl/folder_close.png");
             tableSchemas.put("leaf", false);
             tableSchemas.put("hasChildren", true);
@@ -511,6 +542,8 @@ public class RepositoryExplorerResource {
                     for (String tableName : tableMap.get(schemaName)) {
                         JSONObject schemaObj = new JSONObject();
                         schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
+                        schemaObj.put("allowDrag", false);
+                        schemaObj.put("allowDrop", false);
                         schemaObj.put("text", schemaName + "." + tableName);
                         schemaObj.put("title", schemaName + "." + tableName);
                         schemaObj.put("icon", "/etl/images/conxbi/etl/table.gif");
@@ -530,6 +563,8 @@ public class RepositoryExplorerResource {
                             String name = fvm.getName();
                             String typeName = fvm.getTypeDesc();
                             column.put("id", schemaObj.get("id") + "." + name);
+                            column.put("allowDrag", false);
+                            column.put("allowDrop", false);
                             column.put("text", name + "[" + typeName + "]");
                             column.put("text", name + "[" + typeName + "]");
                             column.put("icon", "/etl/images/conxbi/etl/columns.gif");
@@ -561,6 +596,8 @@ public class RepositoryExplorerResource {
         tableSchemas.put("title", "Table Schemas");
         tableSchemas.put("text", "Table Schemas");
         tableSchemas.put("id", db.getName() + ".tables.schemas");
+        tableSchemas.put("allowDrag", false);
+        tableSchemas.put("allowDrop", false);
         tableSchemas.put("icon", "/etl/images/conxbi/etl/folder_close.png");
         tableSchemas.put("leaf", false);
         tableSchemas.put("hasChildren", true);
@@ -584,6 +621,8 @@ public class RepositoryExplorerResource {
                 for (String tableName : tableMap.get(schemaName)) {
                     JSONObject schemaObj = new JSONObject();
                     schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
+                    schemaObj.put("allowDrag", false);
+                    schemaObj.put("allowDrop", false);
                     schemaObj.put("text", schemaName + "." + tableName);
                     schemaObj.put("title", schemaName + "." + tableName);
                     schemaObj.put("icon", "/etl/images/conxbi/etl/table.gif");
@@ -603,6 +642,8 @@ public class RepositoryExplorerResource {
                         String name = fvm.getName();
                         String typeName = fvm.getTypeDesc();
                         column.put("id", schemaObj.get("id") + "." + name);
+                        column.put("allowDrag", false);
+                        column.put("allowDrop", false);
                         column.put("text", name + "[" + typeName + "]");
                         column.put("text", name + "[" + typeName + "]");
                         column.put("icon", "/etl/images/conxbi/etl/columns.gif");
