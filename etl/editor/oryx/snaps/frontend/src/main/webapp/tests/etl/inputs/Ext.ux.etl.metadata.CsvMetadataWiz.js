@@ -37,7 +37,7 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
         addText: 'Add sample CSV file',
         buttonsAt: 'tbar',
         id: 'uppanel',
-        url: 'http://localhost:8082/etlrepo/csvinput/uploadsample',
+        url: '/etlrepo/csvinput/uploadsample',
         path: 'root',
         maxFileSize: 1048576,
         enableProgress: false,
@@ -146,7 +146,7 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
                             remoteSort: true,
                             autoLoad: {params: {start: 1, limit: 2}},
                             proxy: new Ext.data.ScriptTagProxy({
-                                url: 'http://localhost:8082/etlrepo/encoding/getall'
+                                url: '/etlrepo/encoding/getall'
                             }),
                             reader: new Ext.data.JsonReader({
                                 root: 'data',
