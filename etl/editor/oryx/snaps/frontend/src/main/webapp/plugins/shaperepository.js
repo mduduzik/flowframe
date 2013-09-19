@@ -257,7 +257,13 @@ ORYX.Plugins.ShapeRepository = {
 		});
 
 	},
-
+    /**
+     * Show select dialog window
+     *
+     * @param dragZone
+     * @param target
+     * @param event
+     */
 	drop : function(dragZone, target, event) {
 
 		this._lastOverElement = undefined;

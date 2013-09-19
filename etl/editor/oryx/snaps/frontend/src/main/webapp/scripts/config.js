@@ -201,6 +201,7 @@ ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX = "etl.metadata.create.";
 ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX   = "etl.metadata.edit.";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETED       = "etl.metadata.deleted";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX = "etl.metadata.delete.";
+ORYX.CONFIG.EVENT_ETL_METADATA_DDROP = "etl.metadata.ddrop.";
 	
 	/* Selection Shapes Highlights */
 ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE =				5;

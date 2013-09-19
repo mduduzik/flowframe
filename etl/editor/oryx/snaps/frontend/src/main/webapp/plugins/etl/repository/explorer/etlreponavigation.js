@@ -12,6 +12,8 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
     // Currently selected context menu node
     ctxNode : undefined,
 
+    modalDialogShown : undefined,
+
     // Constructor
     construct: function(facade,ownPluginData){
 
@@ -45,6 +47,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
         // Register on event for executing commands-->store all commands in a stack
 /*        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,
             this.handleExecuteCommands.bind(this) );*/
+        var thisEditor = this;
         if (!this.navigationPanel)  {
             var treeLoader = new Ext.tree.TreeLoader({
                 requestMethod: 'GET',
@@ -65,22 +68,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                             if (node.id === 'metadata.dbconnections') {//DB Connections parent node - simply expand
                                 node.expand();
                                 node.childNodes.forEach(function(childNode){
-                                    var ui = childNode.getUI();
-
-                                    // Set the tooltip
-                                    ui.elNode.setAttributeNS(null, "title", childNode.title);
-
-                                    // Register the Node on Drag and Drop
-                                    Ext.dd.Registry.register(ui.elNode, {
-                                        node : ui.node,
-                                        handles : [ ui.elNode, ui.textNode ].concat($A(ui.elNode.childNodes)), // Set
-                                        // the
-                                        // Handles
-                                        isHandle : false,
-                                        type : 'database', // Set Type of stencil
-                                        namespace : 'http://database'
-                                        // Set Namespace of stencil
-                                    });
+                                    thisEditor.registerDD(childNode,"database");
                                 });
                             }
                             //Enable DD on 'database' metadata type
@@ -88,22 +76,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                                 //Ensure rendered to access UI
                                 node.render();
 
-                                var ui = node.getUI();
-
-                                // Set the tooltip
-                                ui.elNode.setAttributeNS(null, "title", node.title);
-
-                                // Register the Node on Drag and Drop
-                                Ext.dd.Registry.register(ui.elNode, {
-                                    node : ui.node,
-                                    handles : [ ui.elNode, ui.textNode ].concat($A(ui.elNode.childNodes)), // Set
-                                    // the
-                                    // Handles
-                                    isHandle : false,
-                                    type : 'database', // Set Type of stencil
-                                    namespace : 'http://database'
-                                    // Set Namespace of stencil
-                                });
+                                thisEditor.registerDD(node,"database");
                             }
                         }
                     }
@@ -157,7 +130,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                 DragZone.afterDragDrop = this.drop.bind(this, DragZone);
                 DragZone.beforeDragOver = this.beforeDragOver.bind(this, DragZone);
                 DragZone.beforeDragEnter = function() {
-                    this._lastOverElement = false;
+                    this.modalDialogShown = false;
                     return true
                 }.bind(this);
             }
@@ -166,132 +139,43 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
             }
         }
     },
-    /**
-     * Drop handler
-     * @param dragZone
-     * @param target
-     * @param event
-     */
+    registerDD : function(node,type) {
+        var ui = node.getUI();
+
+        // Set the tooltip
+        ui.elNode.setAttributeNS(null, "title", node.title);
+
+        // Register the Node on Drag and Drop
+        Ext.dd.Registry.register(ui.elNode, {
+            mainNode : node,
+            node : ui.node,
+            handles : [ ui.elNode, ui.textNode ].concat($A(ui.elNode.childNodes)), // Set
+            // the
+            // Handles
+            isHandle : false,
+            type : type, // Set Type of stencil
+            namespace : 'http://etl.flowframe.org/stencilset/etlbasic#'
+            // Set Namespace of stencil
+        });
+    },
     drop : function(dragZone, target, event) {
+        var pr = dragZone.getProxy();
+        pr.hide();
 
-        this._lastOverElement = undefined;
-
-        // Hide the highlighting
-        /*        this.facade.raiseEvent({
-         type : ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,
-         highlightId : 'shapeRepo.added'
-         });
-         this.facade.raiseEvent({
-         type : ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,
-         highlightId : 'shapeRepo.attached'
-         });*/
-
-        // Check if drop is allowed
-        var proxy = dragZone.getProxy()
-        if (proxy.dropStatus == proxy.dropNotAllowed) {
-            return
-        }
-
-        // Check if there is a current Parent
-        if (!this._currentParent) {
-            return
-        }
-
-        var option = Ext.dd.Registry.getHandle(target.DDM.currentTarget);
-
-        var xy = event.getXY();
-        var pos = {
-            x : xy[0],
-            y : xy[1]
+        //-- Raise DD event
+        var eventData = {
+            type: ORYX.CONFIG.EVENT_ETL_METADATA_DDROP,
+            forceExecution: false //async call
+        };
+        var sourceData = {
+            dragZone : dragZone,
+            target : target,
+            event : event
         };
 
-        var a = this.facade.getCanvas().node.getScreenCTM();
-
-        // Correcting the UpperLeft-Offset
-        pos.x -= a.e;
-        pos.y -= a.f;
-        // Correcting the Zoom-Faktor
-        pos.x /= a.a;
-        pos.y /= a.d;
-        // Correting the ScrollOffset
-        pos.x -= document.documentElement.scrollLeft;
-        pos.y -= document.documentElement.scrollTop;
-        // Correct position of parent
-        var parentAbs = this._currentParent.absoluteXY();
-        pos.x -= parentAbs.x;
-        pos.y -= parentAbs.y;
-
-        // Set position
-        option['position'] = pos
-
-        // Set parent
-        if (this._canAttach && this._currentParent instanceof ORYX.Core.Node) {
-            option['parent'] = undefined;
-        } else {
-            option['parent'] = this._currentParent;
-        }
-        /*
-         var commandClass = ORYX.Core.Command.extend({
-         construct : function(option, currentParent, canAttach, position, facade) {
-         this.option = option;
-         this.currentParent = currentParent;
-         this.canAttach = canAttach;
-         this.position = position;
-         this.facade = facade;
-         this.selection = this.facade.getSelection();
-         this.shape;
-         this.parent;
-         },
-         execute : function() {
-         if (!this.shape) {
-         this.shape = this.facade.createShape(option);
-         this.parent = this.shape.parent;
-         } else {
-         this.parent.add(this.shape);
-         }
-
-         if (this.canAttach && this.currentParent instanceof ORYX.Core.Node && this.shape.dockers.length > 0) {
-
-         var docker = this.shape.dockers[0];
-
-         if (this.currentParent.parent instanceof ORYX.Core.Node) {
-         this.currentParent.parent.add(docker.parent);
-         }
-
-         docker.bounds.centerMoveTo(this.position);
-         docker.setDockedShape(this.currentParent);
-         // docker.update();
-         }
-
-         // this.currentParent.update();
-         // this.shape.update();
-
-         this.facade.setSelection([ this.shape ]);
-         this.facade.getCanvas().update();
-         this.facade.updateSelection();
-
-         },
-         rollback : function() {
-         this.facade.deleteShape(this.shape);
-
-         // this.currentParent.update();
-
-         this.facade.setSelection(this.selection.without(this.shape));
-         this.facade.getCanvas().update();
-         this.facade.updateSelection();
-
-         }
-         });
-
-         var position = this.facade.eventCoordinates(event.browserEvent);
-
-         var command = new commandClass(option, this._currentParent, this._canAttach, position, this.facade);
-
-         this.facade.executeCommands([ command ]);
-
-         this._currentParent = undefined;*/
+        this.modalDialogShown = true;
+        this.facade.raiseEvent(eventData,sourceData);
     },
-
     /**
      * On Drag Over
      *
@@ -301,119 +185,32 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
      * @returns {boolean}
      */
     beforeDragOver : function(dragZone, target, event) {
+        if (this.modalDialogShown === true)
+            return;
+        //target.lock();
+        //target.unreg();
 
-        var coord = this.facade.eventCoordinates(event.browserEvent);
-        var aShapes = this.facade.getCanvas().getAbstractShapesAtPosition(coord);
+      //Disallow drop right away before presenting user with choice
+        var pr = dragZone.getProxy();
+        pr.setStatus(pr.dropAllowed);
+        pr.sync();
+        //pr.hide();
 
-        if (aShapes.length <= 0) {
 
-            var pr = dragZone.getProxy();
-            pr.setStatus(pr.dropNotAllowed);
-            pr.sync();
 
-            return false;
-        }
 
-        var el = aShapes.last();
+        //var ui = node.getUI();
 
-        if (aShapes.lenght == 1 && aShapes[0] instanceof ORYX.Core.Canvas) {
+        //this.registerDD(ui,node.title,"database");
+        //target.unlock();
+        //pr.setStatus(pr.dropAllowed);
+        //pr.sync();
+        //var option = Ext.dd.Registry.getHandle(target.DDM.currentTarget);
+        //this.registerDD(option.mainNode,"database");
+        //
 
-            return false;
-
-        } else {
-            // check containment rules
-            var option = Ext.dd.Registry.getHandle(target.DDM.currentTarget);
-
-            var stencilSet = this.facade.getStencilSets()[option.namespace];
-
-            var stencil = stencilSet.stencil(option.type);
-
-            if (stencil.type() === "node") {
-
-                var parentCandidate = aShapes.reverse().find(function(candidate) {
-                    return (candidate instanceof ORYX.Core.Canvas || candidate instanceof ORYX.Core.Node || candidate instanceof ORYX.Core.Edge);
-                });
-
-                if (parentCandidate !== this._lastOverElement) {
-
-                    this._canAttach = undefined;
-                    this._canContain = undefined;
-
-                }
-
-                if (parentCandidate) {
-                    // check containment rule
-
-                    if (!(parentCandidate instanceof ORYX.Core.Canvas) && parentCandidate.isPointOverOffset(coord.x, coord.y) && this._canAttach == undefined) {
-
-                        this._canAttach = this.facade.getRules().canConnect({
-                            sourceShape : parentCandidate,
-                            edgeStencil : stencil,
-                            targetStencil : stencil
-                        });
-
-                        if (this._canAttach) {
-                            // Show Highlight
-                            this.facade.raiseEvent({
-                                type : ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,
-                                highlightId : "shapeRepo.attached",
-                                elements : [ parentCandidate ],
-                                style : ORYX.CONFIG.SELECTION_HIGHLIGHT_STYLE_RECTANGLE,
-                                color : ORYX.CONFIG.SELECTION_VALID_COLOR
-                            });
-
-                            this.facade.raiseEvent({
-                                type : ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,
-                                highlightId : "shapeRepo.added"
-                            });
-
-                            this._canContain = undefined;
-                        }
-
-                    }
-
-                    if (!(parentCandidate instanceof ORYX.Core.Canvas) && !parentCandidate.isPointOverOffset(coord.x, coord.y)) {
-                        this._canAttach = this._canAttach == false ? this._canAttach : undefined;
-                    }
-
-                    if (this._canContain == undefined && !this._canAttach) {
-
-                        this._canContain = this.facade.getRules().canContain({
-                            containingShape : parentCandidate,
-                            containedStencil : stencil
-                        });
-
-                        // Show Highlight
-                        this.facade.raiseEvent({
-                            type : ORYX.CONFIG.EVENT_HIGHLIGHT_SHOW,
-                            highlightId : 'shapeRepo.added',
-                            elements : [ parentCandidate ],
-                            color : this._canContain ? ORYX.CONFIG.SELECTION_VALID_COLOR : ORYX.CONFIG.SELECTION_INVALID_COLOR
-                        });
-                        this.facade.raiseEvent({
-                            type : ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE,
-                            highlightId : "shapeRepo.attached"
-                        });
-                    }
-
-                    this._currentParent = this._canContain || this._canAttach ? parentCandidate : undefined;
-                    this._lastOverElement = parentCandidate;
-                    var pr = dragZone.getProxy();
-                    pr.setStatus(this._currentParent ? pr.dropAllowed : pr.dropNotAllowed);
-                    pr.sync();
-
-                }
-            } else { // Edge
-                this._currentParent = this.facade.getCanvas();
-                var pr = dragZone.getProxy();
-                pr.setStatus(pr.dropAllowed);
-                pr.sync();
-            }
-        }
-
-        return false
+        return false;
     },
-
     handleExecuteCommands: function( evt ){
 
         //...
@@ -474,8 +271,12 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         /**
          * Event registrations
          */
+        //-- Editing
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED, this.onCreated.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETED, this.onDeleted.bind(this));
+
+        //-- Drag and Drop
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DDROP, this.onMetadataDrop.bind(this));
 
         this.getSelectionModel().on({
             'beforeselect' : function(sm, node){
@@ -677,6 +478,221 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         ctxNode_.select();
 
         ctxNode_.reload();
+    },
+    /**
+     * On MetadataDrop
+     * @param event
+     */
+    onMetadataDrop : function(event,source) {
+        var dragZone = source.dragZone;
+        var target   = source.target;
+        var event    = source.event;
+
+        var coord = this.facade.eventCoordinates(event.browserEvent);
+        var aShapes = this.facade.getCanvas().getAbstractShapesAtPosition(coord);
+
+        if (aShapes.length <= 0) {
+            return false;
+        }
+
+        var el = aShapes.last();
+
+        if (aShapes.lenght == 1 && aShapes[0] instanceof ORYX.Core.Canvas) {
+            return;
+        } else {
+            // check containment rules
+            var option = Ext.dd.Registry.getHandle(target.DDM.currentTarget);
+
+            /**
+             * Get stencils supprting this metadata
+             */
+            var stencilSet = this.facade.getStencilSets()[option.namespace];
+
+            // Get Stencils from Stencilset
+            var stencils = stencilSet.stencils(this.facade.getCanvas().getStencil(), this.facade.getRules());
+            var treeGroups = new Hash();
+
+            // Get stencils that support metadata 'option.type'
+            var stencilsByMetadata = stencils.findAll(function(value){
+                if (!value._jsonStencil || !value._jsonStencil.supportedMetadata)
+                    return false;
+
+                var index_ = value._jsonStencil.supportedMetadata.indexOf(option.type);
+                if (index_ >= 0)
+                    return true;
+                else
+                    return false;
+            });
+
+            if (stencilsByMetadata.length < 1)
+                return;
+
+            // Sort the stencils according to their position and add them to the repository
+            stencilsByMetadata = stencilsByMetadata.sortBy(function(value) {
+                return value.title;
+            });
+
+
+
+            //-- Create records
+            var data = [];
+            stencilsByMetadata.each(function (stencil) {
+                data.push([stencil._jsonStencil.icon,stencil._jsonStencil.title, true, stencil._jsonStencil.id,stencil._namespace]);
+            })
+            if (data.length == 0) {
+                return;
+            }
+
+            var reader = new Ext.data.ArrayReader({}, [
+                {name: 'icon'},
+                {name: 'title'},
+                {name: 'engaged'},
+                {name: 'type'},
+                {name: 'namespace'}
+            ]);
+
+            var newURLWin = new Ext.Window({
+                title: "Select Step",
+                //bodyStyle:	"background:white;padding:0px",
+                width: 'auto',
+                height: 'auto',
+                closeAction:'destroy',
+                modal: true,
+                //html:"<div style='font-weight:bold;margin-bottom:10px'></div><span></span>",
+                buttons: [{
+                    id: 'select',
+                    text     : 'Select',
+                    disabled : true,
+                    handler  : function(){
+                        var selection = sm.getSelected();  //always one element
+                        var option_ = {
+                          type: selection.data.type,
+                          position: coord,
+                          connectingType: undefined,
+                          connectedShape: undefined,
+                          dragging: undefined,
+                          namespace: selection.data.namespace,
+                          parent: el
+                        };
+
+                        //--Add shape
+                        var commandClass = ORYX.Core.Command.extend({
+                            construct : function(option, currentParent, canAttach, position, facade) {
+                                this.option = option;
+                                this.currentParent = currentParent;
+                                this.canAttach = canAttach;
+                                this.position = position;
+                                this.facade = facade;
+                                this.selection = this.facade.getSelection();
+                                this.shape;
+                                this.parent;
+                            },
+                            execute : function() {
+                                if (!this.shape) {
+                                    this.shape = this.facade.createShape(this.option);
+                                    this.parent = this.shape.parent;
+                                } else {
+                                    this.parent.add(this.shape);
+                                }
+
+                                if (this.canAttach && this.currentParent instanceof ORYX.Core.Node && this.shape.dockers.length > 0) {
+
+                                    var docker = this.shape.dockers[0];
+
+                                    if (this.currentParent.parent instanceof ORYX.Core.Node) {
+                                        this.currentParent.parent.add(docker.parent);
+                                    }
+
+                                    docker.bounds.centerMoveTo(this.position);
+                                    docker.setDockedShape(this.currentParent);
+                                    // docker.update();
+                                }
+
+                                // this.currentParent.update();
+                                // this.shape.update();
+
+                                this.facade.setSelection([ this.shape ]);
+                                this.facade.getCanvas().update();
+                                this.facade.updateSelection();
+
+                            },
+                            rollback : function() {
+                                this.facade.deleteShape(this.shape);
+
+                                // this.currentParent.update();
+
+                                this.facade.setSelection(this.selection.without(this.shape));
+                                this.facade.getCanvas().update();
+                                this.facade.updateSelection();
+
+                            }
+                        });
+
+                        //var position = this.facade.eventCoordinates(event.browserEvent);
+                        newURLWin.close();
+                        var command = new commandClass(option_, this._currentParent, this._canAttach, coord, this.facade);
+
+                        this.facade.executeCommands([ command ]);
+                    }.bind(this)
+                },{
+                    text     : 'Cancel',
+                    handler  : function(){
+                        newURLWin.close();
+                    }
+                }]
+            });
+
+            var sm = new Ext.grid.CheckboxSelectionModel({
+                singleSelect: true,
+                listeners: {
+                    selectionchange: function (sm, nbr, rec) {
+                        var selectBtn = newURLWin.buttons[0];//select
+                        if (sm.getCount() > 0)
+                            selectBtn.enable();
+                        else
+                            selectBtn.disable();
+                        /*                    sm.suspendEvents();
+                         sm.selectRow(nbr, true);
+                         sm.resumeEvents();*/
+                    }
+                }});
+            var grid2 = new Ext.grid.GridPanel({
+                store: new Ext.data.Store({
+                    reader: reader,
+                    data: data
+                }),
+                cm: new Ext.grid.ColumnModel([
+                    //{id: 'icon', width: 25,  renderer:function(val) {return '<img src="' + val + '">';}, sortable: false, dataIndex: 'icon'},
+                    {id: 'icon', width: 24,  renderer:function(val) {return '<img style="max-height: 16px; max-width: 16px" src="' + val + '" />';}, sortable: false, dataIndex: 'icon'},
+                    {id: 'title', width: 390, sortable: true, dataIndex: 'title'},
+                    sm
+                ]),
+                sm: sm,
+                width: 460,
+                height: 250,
+                frame: true,
+                hideHeaders: true,
+                iconCls: 'icon-grid',
+                listeners: {
+                    render: function () {
+                        var recs = [];
+                        this.grid.getStore().each(function (rec) {
+
+                            if (rec.data.engaged) {
+                                recs.push(rec);
+                            }
+                        }.bind(this));
+                        /*                    this.suspendEvents();
+                         this.selectRecords(recs);
+                         this.resumeEvents();*/
+                    }.bind(sm)
+                }
+            });
+
+
+            newURLWin.add(grid2);
+            newURLWin.show();
+        }
     },
     /**
      *
