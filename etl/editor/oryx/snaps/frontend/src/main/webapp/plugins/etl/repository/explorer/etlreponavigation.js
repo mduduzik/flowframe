@@ -624,15 +624,50 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                 this.facade.setSelection(this.selection.without(this.shape));
                                 this.facade.getCanvas().update();
                                 this.facade.updateSelection();
-
                             }
                         });
-
-                        //var position = this.facade.eventCoordinates(event.browserEvent);
-                        newURLWin.close();
                         var command = new commandClass(option_, this._currentParent, this._canAttach, coord, this.facade);
+                        this.facade.executeCommands([command]);
 
+                        //--Update metadata on shape
+                        var newShape = this.facade.getSelection()[0];
+                        var commandClass = ORYX.Core.Command.extend({
+                            construct: function(facade,metadatatype,metadataName,metadataObjId){;
+                                this.facade		= facade,
+                                this.metadatatype = metadatatype,
+                                this.metadataName = metadataName;
+                                this.metadataObjId = metadataObjId
+                            },
+                            execute: function(){
+                                newShape.setProperty('oryx-name', this.metadatatype+'-'+Ext.id());
+                                newShape.setProperty('oryx-author', 'Developer');
+                                newShape.setProperty('oryx-version', '1.0');
+                                newShape.setProperty('oryx-documentation', this.metadatatype+'-'+Ext.id());
+                                newShape.setProperty('oryx-metadatatype', this.metadatatype);
+                                newShape.setProperty('oryx-metadataname', this.metadataName);
+                                newShape.setProperty('oryx-metadataobjid', this.metadataObjId);
+
+                                this.facade.setSelection([newShape]);
+                                this.facade.getCanvas().update();
+                                this.facade.updateSelection();
+                            },
+                            rollback: function(){
+                                newShape.setProperty('oryx-metadatatype', 'R'+this.metadatatype);
+                                newShape.setProperty('oryx-metadataObjId', 'R'+this.metadataObjId);
+                                this.facade.setSelection([newShape]);
+                                this.facade.getCanvas().update();
+                                this.facade.updateSelection();
+                            }
+                        })
+                        // Instanciated the class
+                        var metadataType = dragZone.dragData.mainNode.attributes['itemtype'];
+                        var metadataName = dragZone.dragData.mainNode.text;
+                        var metadataObjId = dragZone.dragData.mainNode.id;
+                        command = new commandClass(this.facade,metadataType,metadataName,metadataObjId);
                         this.facade.executeCommands([ command ]);
+
+
+                        newURLWin.close();
                     }.bind(this)
                 },{
                     text     : 'Cancel',
