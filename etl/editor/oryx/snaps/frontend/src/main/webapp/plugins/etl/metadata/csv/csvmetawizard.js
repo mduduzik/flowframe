@@ -19,6 +19,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
     wizMode: undefined,  //EDITING, CREATE
 
     newWizDialog: undefined,
+    newCsvMetaWiz: undefined,
 
     construct: function (facade) {
         // Reference to the Editor-Interface
@@ -228,7 +229,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
         });
 
 
-        if (wizMode && wizMode === 'CREATE') {
+        if (this.wizMode && this.wizMode === 'CREATE') {
             enterSampleFileInfoCard.getForm().load({
                 method: 'GET',
                 headerConfig: {userid: 'test'},
@@ -239,7 +240,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 }
             });
         }
-        else if (wizMode && wizMode === 'EDIT') {
+        else if (this.wizMode && this.wizMode === 'EDIT') {
             enterSampleFileInfoCard.getForm().load({
                 method: 'POST',
                 headerConfig: {userid: 'test'},
@@ -502,7 +503,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
         });
 
         //-- Create New Wizard
-        newCsvMetaWiz = new Ext.ux.Wiz({
+        this.newCsvMetaWiz = new Ext.ux.Wiz({
             region: 'center',
             buttonsAt: 'bbar',
             headerConfig: {

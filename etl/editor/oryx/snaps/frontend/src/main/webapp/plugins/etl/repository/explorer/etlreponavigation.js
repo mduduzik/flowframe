@@ -67,10 +67,18 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                         else if (node.id.indexOf('metadata.') >= 0) {//Metadata folder
                             node.expand();
                         }
+/*
                         else if (node.attributes['ddenabled'] && node.attributes['ddenabled'] === 'true') {
                             node.render();
                             thisEditor.registerDD(node, node.attributes['itemtype']);
                         }
+*/
+                        node.cascade( function() {
+                            if (this.attributes['ddenabled'] && this.attributes['ddenabled'] === 'true') {
+                                this.render();
+                                thisEditor.registerDD(this, this.attributes['itemtype']);
+                            }
+                        });
                     }
                 }
             });
@@ -465,9 +473,13 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            source: this.ctxNode
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
+                            forceExecution: true
                         };
-                        this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta', eventData);
+                        this.facade.raiseEvent(eventData, {
+                                folderId: this.ctxNode.attributes['folderObjectId'],
+                                sourceNavNodeId: this.ctxNode.id}
+                        );
                     }.bind(this)
                 },
                 new Ext.menu.Separator({cmd:'sep-open'}),
@@ -546,7 +558,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CsvMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {

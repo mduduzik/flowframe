@@ -557,7 +557,7 @@ public class RepositoryExplorerResource {
                 for (String schemaName : tableMap.keySet())
                     for (String tableName : tableMap.get(schemaName)) {
                         JSONObject schemaObj = new JSONObject();
-                        schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
+                        schemaObj.put("id", RepositoryUtil.generatePathID(dir,db)+"/"+schemaName + "/" + tableName);
                         schemaObj.put("allowDrag", false);
                         schemaObj.put("allowDrop", false);
                         schemaObj.put("text", schemaName + "." + tableName);
@@ -648,6 +648,8 @@ public class RepositoryExplorerResource {
                     schemaObj.put("hasChildren", true);
                     schemaObj.put("singleClickExpand", true);
                     schemaObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                    schemaObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                    schemaObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DATABASE);
 
                     JSONArray columns = new JSONArray();
                     schemaObj.put("children", columns);
