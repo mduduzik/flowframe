@@ -303,7 +303,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
      */
     onCreate: function (event, arg) {
         this.wizMode = 'CREATE';
-        this.dbFolderId = arg.dbFolderId;
+        this.dbFolderId = arg.folderId;
         this.parentNavNodeId = arg.sourceNavNodeId;
 
         // Basic Dialog
@@ -343,9 +343,9 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
      */
     onEdit: function (event, arg) {
         this.wizMode = 'EDIT';
-        this.dbFolderId = arg.dbFolderId;
+        this.dbFolderId = arg.folderId;
         this.dbId = arg.sourceNavNodeId;
-        this.dbName = arg.title;
+        this.metaName = arg.title;
 
         // Basic Dialog
         this.initWiz();
@@ -362,7 +362,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
                 params: {pathID:this.dbId},
                 success: function (response, opts) {
                     var db = Ext.decode(response.responseText);
-                    this.newWizDialog.setTitle('Editing '+this.dbName);
+                    this.newWizDialog.setTitle('Editing '+this.metaName);
                     this.newDBWiz.loadRecord({data:db});
                 }.bind(this)
             });
@@ -403,7 +403,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
         this.wizMode = 'EDIT';
         this.dbFolderId = arg.parentSourceNavNodeId;
         this.dbId = arg.sourceNavNodeId;
-        this.dbName = arg.title;
+        this.metaName = arg.title;
 
         Ext.MessageBox.show({
             title:'Confirm delete.',

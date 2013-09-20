@@ -2,5 +2,6 @@
 <config>
 	<plugins>
 		<plugin source="etl/metadata/dbconnection/dbconnectionwizard.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
+        <plugin source="etl/metadata/csv/csvmetawizard.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaWizard"/>
 	</plugins>
 </config>

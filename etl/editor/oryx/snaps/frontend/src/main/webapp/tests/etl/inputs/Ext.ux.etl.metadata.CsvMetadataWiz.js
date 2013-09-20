@@ -258,7 +258,7 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
         items: [
             {
                 text: 'Get fields', tooltip: 'Refresh fields', iconCls: 'icon-refresh', id: 'btn-refresh', toggleHandler: function (btn, pressed) {
-                editWiz.getMetadata();
+                newCsvMetaWiz.getMetadata();
             }
             }
         ]
@@ -421,7 +421,7 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
         ],
         onCardShow: function (card) {
             Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-            editWiz.getMetadata();
+            newCsvMetaWiz.getMetadata();
         }
     });
 
@@ -476,12 +476,12 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
         items: [previewDataGrid],
         onCardShow: function (card) {
             Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-            editWiz.previewData();
+            newCsvMetaWiz.previewData();
         }
     });
 
     //-- Create New Wizard
-    editWiz = new Ext.ux.Wiz({
+    newCsvMetaWiz = new Ext.ux.Wiz({
         region: 'center',
         buttonsAt: 'bbar',
         headerConfig: {
@@ -505,7 +505,7 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
         //@Override
         onFinish : function()
         {
-            editWiz.addMetadata();
+            newCsvMetaWiz.addMetadata();
         },
         addMetadata: function () {
 
@@ -558,8 +558,8 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
                 method: 'POST',
                 params: dataJson,
                 success: function (response, opts) {
-                    editWiz.mode = 'EDITING';
-                    editWiz.onBackToFirstStep();
+                    newCsvMetaWiz.mode = 'EDITING';
+                    newCsvMetaWiz.onBackToFirstStep();
                 },
                 failure: function (response, opts) {
                 }
@@ -698,5 +698,5 @@ Ext.ux.etl.metadata.CsvMetadataWiz = function (config) {
         this.pathId = pathId;
     };
 
-    return editWiz;
+    return newCsvMetaWiz;
 };

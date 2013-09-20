@@ -4,18 +4,18 @@ if (!ORYX.Plugins)
 ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 
     // Defines the facade
-    facade                : undefined,
+    facade: undefined,
 
     // Defines the undo/redo Stack
-    navigationPanel     : undefined,
+    navigationPanel: undefined,
 
     // Currently selected context menu node
-    ctxNode : undefined,
+    ctxNode: undefined,
 
-    modalDialogShown : undefined,
+    modalDialogShown: undefined,
 
     // Constructor
-    construct: function(facade,ownPluginData){
+    construct: function (facade, ownPluginData) {
 
         this.facade = facade;
         this._currentParent;
@@ -23,36 +23,36 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
         this._canAttach = undefined;
 
         // Offers the functionality of undo
-/*        this.facade.offer({
-            name              : ORYX.I18N.Undo.undo,
-            description       : ORYX.I18N.Undo.undoDesc,
-            icon              : ORYX.PATH + "images/arrow_undo.png",
-            functionality     : this.doUndo.bind(this),
-            group             : ORYX.I18N.Undo.group,
-            isEnabled         : function(){ return this.undoStack.length > 0 }.bind(this),
-            index                        : 0
-        });*/
+        /*        this.facade.offer({
+         name              : ORYX.I18N.Undo.undo,
+         description       : ORYX.I18N.Undo.undoDesc,
+         icon              : ORYX.PATH + "images/arrow_undo.png",
+         functionality     : this.doUndo.bind(this),
+         group             : ORYX.I18N.Undo.group,
+         isEnabled         : function(){ return this.undoStack.length > 0 }.bind(this),
+         index                        : 0
+         });*/
 
         // Offers the functionality of redo
-/*        this.facade.offer({
-            name              : ORYX.I18N.Undo.redo,
-            description       : ORYX.I18N.Undo.redoDesc,
-            icon              : ORYX.PATH + "images/arrow_redo.png",
-            functionality     : this.doRedo.bind(this),
-            group             : ORYX.I18N.Undo.group,
-            isEnabled         : function(){ return this.redoStack.length > 0 }.bind(this),
-            index                       : 1
-        });*/
+        /*        this.facade.offer({
+         name              : ORYX.I18N.Undo.redo,
+         description       : ORYX.I18N.Undo.redoDesc,
+         icon              : ORYX.PATH + "images/arrow_redo.png",
+         functionality     : this.doRedo.bind(this),
+         group             : ORYX.I18N.Undo.group,
+         isEnabled         : function(){ return this.redoStack.length > 0 }.bind(this),
+         index                       : 1
+         });*/
 
         // Register on event for executing commands-->store all commands in a stack
-/*        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,
-            this.handleExecuteCommands.bind(this) );*/
+        /*        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS,
+         this.handleExecuteCommands.bind(this) );*/
         var thisEditor = this;
-        if (!this.navigationPanel)  {
+        if (!this.navigationPanel) {
             var treeLoader = new Ext.tree.TreeLoader({
                 requestMethod: 'GET',
                 clearOnLoad: false,
-                dataUrl:'/etlrepo/explorer/getnode',
+                dataUrl: '/etlrepo/explorer/getnode',
                 preloadChildren: false,
                 baseParams: {
                     userid: 'userid',
@@ -60,24 +60,16 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                     folderObjectId: 'undefined'
                 },
                 listeners: {
-                    load: function(loader,node,response) {
+                    load: function (loader, node, response) {
                         console.log('data loaded');
                         if (node.isRoot && node.isRoot === true)//1st-level nodes e.g. Metadata etc
                             node.expandChildNodes(false);
-                        else  if (node.attributes['itemtype'] && node.attributes['itemtype'] === 'database') {
-                            if (node.id === 'metadata.dbconnections') {//DB Connections parent node - simply expand
-                                node.expand();
-                                node.childNodes.forEach(function(childNode){
-                                    thisEditor.registerDD(childNode,"database");
-                                });
-                            }
-                            //Enable DD on 'database' metadata type
-                            else {
-                                //Ensure rendered to access UI
-                                node.render();
-
-                                thisEditor.registerDD(node,"database");
-                            }
+                        else if (node.id.indexOf('metadata.') >= 0) {//Metadata folder
+                            node.expand();
+                        }
+                        else if (node.attributes['ddenabled'] && node.attributes['ddenabled'] === 'true') {
+                            node.render();
+                            thisEditor.registerDD(node, node.attributes['itemtype']);
                         }
                     }
                 }
@@ -85,7 +77,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 
             this.navigationPanel = new Ext.ux.ETLRepoNavigationTreePanel({
                 facade: this.facade,
-                header : false,
+                header: false,
                 //region: 'west',
                 id: 'navigation',
                 icon: '/etl/images/conxbi/etl/home_nav.gif',
@@ -100,7 +92,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                 tbar: [
                     'Search: ', ' ',
                     new Ext.ux.SearchField({
-                        width:'auto'
+                        width: 'auto'
                     })
                 ],
                 loader: treeLoader,
@@ -125,11 +117,11 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
                 var rootNode_ = this.navigationPanel.getRootNode();
                 //-- Create a Drag-Zone for Drag'n'Drop
                 var DragZone = new Ext.dd.DragZone(rootNode_.getUI().getEl(), {
-                    shadow : !Ext.isMac
+                    shadow: !Ext.isMac
                 });
                 DragZone.afterDragDrop = this.drop.bind(this, DragZone);
                 DragZone.beforeDragOver = this.beforeDragOver.bind(this, DragZone);
-                DragZone.beforeDragEnter = function() {
+                DragZone.beforeDragEnter = function () {
                     this.modalDialogShown = false;
                     return true
                 }.bind(this);
@@ -139,7 +131,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
             }
         }
     },
-    registerDD : function(node,type) {
+    registerDD: function (node, type) {
         var ui = node.getUI();
 
         // Set the tooltip
@@ -147,18 +139,18 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 
         // Register the Node on Drag and Drop
         Ext.dd.Registry.register(ui.elNode, {
-            mainNode : node,
-            node : ui.node,
-            handles : [ ui.elNode, ui.textNode ].concat($A(ui.elNode.childNodes)), // Set
+            mainNode: node,
+            node: ui.node,
+            handles: [ ui.elNode, ui.textNode ].concat($A(ui.elNode.childNodes)), // Set
             // the
             // Handles
-            isHandle : false,
-            type : type, // Set Type of stencil
-            namespace : 'http://etl.flowframe.org/stencilset/etlbasic#'
+            isHandle: false,
+            type: type, // Set Type of stencil
+            namespace: 'http://etl.flowframe.org/stencilset/etlbasic#'
             // Set Namespace of stencil
         });
     },
-    drop : function(dragZone, target, event) {
+    drop: function (dragZone, target, event) {
         var pr = dragZone.getProxy();
         pr.hide();
 
@@ -168,13 +160,13 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
             forceExecution: false //async call
         };
         var sourceData = {
-            dragZone : dragZone,
-            target : target,
-            event : event
+            dragZone: dragZone,
+            target: target,
+            event: event
         };
 
         this.modalDialogShown = true;
-        this.facade.raiseEvent(eventData,sourceData);
+        this.facade.raiseEvent(eventData, sourceData);
     },
     /**
      * On Drag Over
@@ -184,19 +176,17 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
      * @param event
      * @returns {boolean}
      */
-    beforeDragOver : function(dragZone, target, event) {
+    beforeDragOver: function (dragZone, target, event) {
         if (this.modalDialogShown === true)
             return;
         //target.lock();
         //target.unreg();
 
-      //Disallow drop right away before presenting user with choice
+        //Disallow drop right away before presenting user with choice
         var pr = dragZone.getProxy();
         pr.setStatus(pr.dropAllowed);
         pr.sync();
         //pr.hide();
-
-
 
 
         //var ui = node.getUI();
@@ -211,19 +201,19 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 
         return false;
     },
-    handleExecuteCommands: function( evt ){
+    handleExecuteCommands: function (evt) {
 
         //...
 
     },
 
-    doUndo: function(){
+    doUndo: function () {
 
         //...
 
     },
 
-    doRedo: function(){
+    doRedo: function () {
 
         //...
     }
@@ -236,20 +226,20 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     facade: undefined,
     //Etc
     mainTabPanel: undefined,
-    mainEditorPanel_ : undefined,
-    repofolder_database_contextmenu : undefined,
-    repoitem_database_contextmenu : undefined,
-    new_repoitem_database_wizard : undefined,
+    mainEditorPanel_: undefined,
+    repofolder_database_contextmenu: undefined,
+    repoitem_database_contextmenu: undefined,
+    new_repoitem_database_wizard: undefined,
 
-/*    onRender: function(){
-        Ext.ux.ETLRepoNavigationTreePanel.superclass.onRender.apply(this, arguments);
-    },
+    /*    onRender: function(){
+     Ext.ux.ETLRepoNavigationTreePanel.superclass.onRender.apply(this, arguments);
+     },
 
-    onResize: function(){
-        Ext.ux.ETLRepoNavigationTreePanel.superclass.onResize.apply(this, arguments);
-    },*/
+     onResize: function(){
+     Ext.ux.ETLRepoNavigationTreePanel.superclass.onResize.apply(this, arguments);
+     },*/
 
-    initComponent: function(){
+    initComponent: function () {
         Ext.apply(this, {
         });
         Ext.ux.ETLRepoNavigationTreePanel.superclass.initComponent.apply(this, arguments);
@@ -258,7 +248,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         /**
          * Tree Loader
          */
-        this.loader.on("beforeload", function(treeLoader, node) {
+        this.loader.on("beforeload", function (treeLoader, node) {
             //this.baseParams.category = node.attributes.category;
             //this.baseParams.userid = 'test';
             if (node.attributes.itemtype)
@@ -271,7 +261,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         /**
          * Event registrations
          */
-        //-- Editing
+            //-- Editing
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED, this.onCreated.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETED, this.onDeleted.bind(this));
 
@@ -279,166 +269,355 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DDROP, this.onMetadataDrop.bind(this));
 
         this.getSelectionModel().on({
-            'beforeselect' : function(sm, node){
+            'beforeselect': function (sm, node) {
                 return node.isLeaf();
             },
-            'selectionchange' : function(sm, node){
-                if(node){
+            'selectionchange': function (sm, node) {
+                if (node) {
                     this.fireEvent('feedselect', node.attributes);
                 }
                 this.getTopToolbar().items.get('delete').setDisabled(!node);
             },
-            scope:this
+            scope: this
         });
 
 
         //-- Create context menu's
+        /**
+         * Database and Folders
+         */
         this.repofolder_database_contextmenu = new Ext.menu.Menu({
-            id:'feeds-ctx',
-            items: [{
-                id: 'load',
-                icon: '/etl/images/conxbi/etl/connection-new.png',
-                text:'Add Database',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.select();
-                    var eventData = {
-                        source:this.ctxNode
-                    };
-                    this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection',eventData);
-                }.bind(this)
-            },{
-                text:'Create Folder',
-                icon: '/etl/images/conxbi/etl/folder_close.png',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.select();
-                    //this.mainEditorPanel.removeAll();
-                    Ext.apply(this.new_repoitem_folder_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
-                    this.mainEditorPanel.setTitle("New Folder");
-                    this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
-                    this.mainTabPanel.add(this.mainEditorPanel);
-                    this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.newDBWiz.show();
-                }.bind(this)
-            },{
-                text:'Delete Folder',
-                icon: '/etl/images/conxbi/etl/folder_delete.png',
-                scope: this,
-                handler:function(){
-                    var requestWiz = this;
-                    var requestCtxNode =  requestWiz.ctxNode;
-
-                    var idArray = requestCtxNode.id.split('/');
-                    var dirId = idArray[1];
-                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
-                        // here you can put whatever you need as header. For instance:
-                        //this.defaultPostHeader = "application/json; charset=utf-8;";
-                        this.defaultHeaders = {
-                            userid: 'test',
-                            itemtype: 'database',
-                            folderObjectId: dirId
+            id: 'database.folder',
+            items: [
+                {
+                    id: 'addDatabaseInFolder',
+                    icon: '/etl/images/conxbi/etl/connection-new.png',
+                    text: 'Add Database',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
+                            forceExecution: true
                         };
-                    });
-                    Ext.Ajax.request({
-                        url: '/etlrepo/explorer/deletedir',
-                        method: 'DELETE',
-                        success: function(response, opts) {
-                            //Refresh this.ctxNode
-                            if (requestCtxNode.attributes)
-                                requestCtxNode.attributes.children = false;
-                            requestCtxNode.reload();
-                        },
-                        failure: function(response, opts) {}
-                    });
-                }.bind(this)
-            },{
-                text:'Refresh Folder',
-                icon: '/etl/images/conxbi/etl/refresh.gif',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.attributes.children = false;
-                    this.ctxNode.reload();
-                }.bind(this)
-            }
+                        this.facade.raiseEvent(eventData, {
+                                folderId: this.ctxNode.attributes['folderObjectId'],
+                                sourceNavNodeId: this.ctxNode.id}
+                        );
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    id: 'createFolder',
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        //this.mainEditorPanel.removeAll();
+                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                        this.mainEditorPanel.setTitle("New Folder");
+                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                        this.mainTabPanel.add(this.mainEditorPanel);
+                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                        //this.newDBWiz.show();
+                    }.bind(this)
+                },
+                {
+                    id: 'deleteFolder',
+                    text: 'Delete Folder',
+                    icon: '/etl/images/conxbi/etl/folder_delete.png',
+                    scope: this,
+                    handler: function () {
+                        var requestWiz = this;
+                        var requestCtxNode = requestWiz.ctxNode;
+
+                        var idArray = requestCtxNode.id.split('/');
+                        var dirId = idArray[1];
+                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                            // here you can put whatever you need as header. For instance:
+                            //this.defaultPostHeader = "application/json; charset=utf-8;";
+                            this.defaultHeaders = {
+                                userid: 'test',
+                                itemtype: 'database',
+                                folderObjectId: dirId
+                            };
+                        });
+                        Ext.Ajax.request({
+                            url: '/etlrepo/explorer/deletedir',
+                            method: 'DELETE',
+                            success: function (response, opts) {
+                                //Refresh this.ctxNode
+                                if (requestCtxNode.attributes)
+                                    requestCtxNode.attributes.children = false;
+                                requestCtxNode.reload();
+                            },
+                            failure: function (response, opts) {
+                            }
+                        });
+                    }.bind(this)
+                },
+                {
+                    id: 'refreshFolder',
+                    text: 'Refresh Folder',
+                    icon: '/etl/images/conxbi/etl/refresh.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.attributes.children = false;
+                        this.ctxNode.reload();
+                    }
+                }
+
             ]
-        })
+        });
         this.repofolder_database_contextmenu.on('hide', this.onContextHide, this);
 
         this.repoitem_database_contextmenu = new Ext.menu.Menu({
-            id:'feeds-ctx',
-            items: [{
-                id: 'load',
-                icon: '/etl/images/conxbi/etl/connection-new.png',
-                text:'Add Database',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.select();
-                    var eventData = {
-                        type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection',
-                        forceExecution: true
-                    };
-                    this.facade.raiseEvent(eventData,{
-                            dbFolderId: this.ctxNode.attributes['folderObjectId'],
-                            sourceNavNodeId: this.ctxNode.id}
-                    );
-                }.bind(this)
-            },{
-                text:'Edit Database',
-                icon: '/etl/images/conxbi/etl/modify.gif',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.select();
-                    var eventData = {
-                        type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX+'DBConnection',
-                        forceExecution: true
-                    };
-                    this.facade.raiseEvent(eventData,{
-                            title: 'DB Connection '+this.ctxNode.attributes['title'],
-                            sourceNavNodeId: this.ctxNode.id
-                        }
-                    );
-                }.bind(this)
-            },{
-                text:'Delete Database',
-                icon: '/etl/images/conxbi/etl/connection-delete.png',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.select();
-                    var eventData = {
-                        type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'DBConnection',
-                        forceExecution: true
-                    };
-                    this.facade.raiseEvent(eventData,{
-                            title: 'DB Connection '+this.ctxNode.attributes['title'],
-                            sourceNavNodeId: this.ctxNode.id,
-                            parentSourceNavNodeId: this.ctxNode.parentNode.id
-                        }
-                    );
-                    this.ctxNode = null;
-                }.bind(this)
-            },{
-                text:'Create Folder',
-                icon: '/etl/images/conxbi/etl/folder_close.png',
-                scope: this,
-                handler:function(){
-                    this.ctxNode.select();
-                    //this.mainEditorPanel.removeAll();
-                    Ext.apply(this.new_repoitem_folder_wizard,{ctxNode:this.ctxNode,mainEditorPanel:this.mainEditorPanel});
-                    this.mainEditorPanel.setTitle("New Folder");
-                    this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
-                    this.mainTabPanel.add(this.mainEditorPanel);
-                    this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                    //this.newDBWiz.show();
-                }.bind(this)
-            }]
+            id: 'database',
+            items: [
+                {
+                    id: 'addDatabase',
+                    icon: '/etl/images/conxbi/etl/connection-new.png',
+                    text: 'Add Database',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
+                            forceExecution: true
+                        };
+                        this.facade.raiseEvent(eventData, {
+                                folderId: this.ctxNode.attributes['folderObjectId'],
+                                sourceNavNodeId: this.ctxNode.id}
+                        );
+                    }.bind(this)
+                },
+                {
+                    id: 'editDatabase',
+                    text: 'Edit Database',
+                    icon: '/etl/images/conxbi/etl/modify.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'DBConnection',
+                            forceExecution: true
+                        };
+                        this.facade.raiseEvent(eventData, {
+                                title: 'DB Connection ' + this.ctxNode.attributes['title'],
+                                sourceNavNodeId: this.ctxNode.id
+                            }
+                        );
+                    }.bind(this)
+                },
+                {
+                    text: 'deleteDatabase',
+                    text: 'Delete Database',
+                    icon: '/etl/images/conxbi/etl/connection-delete.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'DBConnection',
+                            forceExecution: true
+                        };
+                        this.facade.raiseEvent(eventData, {
+                                title: 'DB Connection ' + this.ctxNode.attributes['title'],
+                                sourceNavNodeId: this.ctxNode.id,
+                                parentSourceNavNodeId: this.ctxNode.parentNode.id
+                            }
+                        );
+                        this.ctxNode = null;
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    id: 'createFolder',
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        //this.mainEditorPanel.removeAll();
+                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                        this.mainEditorPanel.setTitle("New Folder");
+                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                        this.mainTabPanel.add(this.mainEditorPanel);
+                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                        //this.newDBWiz.show();
+                    }.bind(this)
+                }
+            ]
         });
         this.repoitem_database_contextmenu.on('hide', this.onContextHide, this);
+
+        /**
+         * CSVMeta and Folders
+         */
+        this.repofolder_csvmeta_contextmenu = new Ext.menu.Menu({
+            id: 'csvmeta.folder',
+            items: [
+                {
+                    id: 'addCsvMeta',
+                    icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                    text: 'Add CSV Metadata',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            source: this.ctxNode
+                        };
+                        this.facade.raiseEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta', eventData);
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    id: 'createFolder',
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        //this.mainEditorPanel.removeAll();
+                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                        this.mainEditorPanel.setTitle("New Folder");
+                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                        this.mainTabPanel.add(this.mainEditorPanel);
+                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                        //this.newDBWiz.show();
+                    }.bind(this)
+                },
+                {
+                    id: 'deleteFolder',
+                    text: 'Delete Folder',
+                    icon: '/etl/images/conxbi/etl/folder_delete.png',
+                    scope: this,
+                    handler: function () {
+                        var requestWiz = this;
+                        var requestCtxNode = requestWiz.ctxNode;
+
+                        var idArray = requestCtxNode.id.split('/');
+                        var dirId = idArray[1];
+                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                            // here you can put whatever you need as header. For instance:
+                            //this.defaultPostHeader = "application/json; charset=utf-8;";
+                            this.defaultHeaders = {
+                                userid: 'test',
+                                itemtype: 'csvmeta',
+                                folderObjectId: dirId
+                            };
+                        });
+                        Ext.Ajax.request({
+                            url: '/etlrepo/explorer/deletedir',
+                            method: 'DELETE',
+                            success: function (response, opts) {
+                                //Refresh this.ctxNode
+                                if (requestCtxNode.attributes)
+                                    requestCtxNode.attributes.children = false;
+                                requestCtxNode.reload();
+                            },
+                            failure: function (response, opts) {
+                            }
+                        });
+                    }.bind(this)
+                },
+                {
+                    id: 'refreshFolder',
+                    text: 'Refresh Folder',
+                    icon: '/etl/images/conxbi/etl/refresh.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.attributes.children = false;
+                        this.ctxNode.reload();
+                    }.bind(this)
+                }
+            ]
+        })
+        this.repofolder_csvmeta_contextmenu.on('hide', this.onContextHide, this);
+
+        this.repoitem_csvmeta_contextmenu = new Ext.menu.Menu({
+            id: 'csvmeta',
+            items: [
+                {
+                    id: 'addCsvMetadata',
+                    icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                    text: 'Add CSV Metadata',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CsvMeta',
+                            forceExecution: true
+                        };
+                        this.facade.raiseEvent(eventData, {
+                                folderId: this.ctxNode.attributes['folderObjectId'],
+                                sourceNavNodeId: this.ctxNode.id}
+                        );
+                    }.bind(this)
+                },
+                {
+                    id: 'editCsvMetadata',
+                    text: 'Edit CSV Metadata',
+                    icon: '/etl/images/conxbi/etl/modify.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CsvMeta',
+                            forceExecution: true
+                        };
+                        this.facade.raiseEvent(eventData, {
+                                title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
+                                sourceNavNodeId: this.ctxNode.id
+                            }
+                        );
+                    }.bind(this)
+                },
+                {
+                    id: 'deleteCsvMetadata',
+                    text: 'Delete CSV Metadata',
+                    icon: '/etl/images/conxbi/etl/connection-delete.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CsvMeta',
+                            forceExecution: true
+                        };
+                        this.facade.raiseEvent(eventData, {
+                                title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
+                                sourceNavNodeId: this.ctxNode.id,
+                                parentSourceNavNodeId: this.ctxNode.parentNode.id
+                            }
+                        );
+                        this.ctxNode = null;
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        //this.mainEditorPanel.removeAll();
+                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                        this.mainEditorPanel.setTitle("New Folder");
+                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                        this.mainTabPanel.add(this.mainEditorPanel);
+                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                        //this.newDBWiz.show();
+                    }.bind(this)
+                }
+            ]
+        });
+        this.repoitem_csvmeta_contextmenu.on('hide', this.onContextHide, this);
+
 
         //Wizards
         try {
             //-- Register events
-            this.addEvents({feedselect:true});
+            this.addEvents({feedselect: true});
 
             this.on('contextmenu', this.onContextMenu, this);
         }
@@ -450,7 +629,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * On Created
      * @param event
      */
-    onCreated : function(event) {
+    onCreated: function (event) {
         var ctxNodeId = event.treeNodeParentId;
         var name = event.name;
 
@@ -458,8 +637,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         ctxNode_.select();
 
         Ext.MessageBox.show({
-            title:'Saved',
-            msg: name+' was created successfully.',
+            title: 'Saved',
+            msg: name + ' was created successfully.',
             buttons: Ext.MessageBox.OK,
             icon: Ext.MessageBox.INFO
         });
@@ -470,7 +649,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * On Deleted
      * @param event
      */
-    onDeleted : function(event) {
+    onDeleted: function (event) {
         var ctxNodeId = event.treeNodeParentId;
         var name = event.name;
 
@@ -483,10 +662,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * On MetadataDrop
      * @param event
      */
-    onMetadataDrop : function(event,source) {
+    onMetadataDrop: function (event, source) {
         var dragZone = source.dragZone;
-        var target   = source.target;
-        var event    = source.event;
+        var target = source.target;
+        var event = source.event;
 
         var coord = this.facade.eventCoordinates(event.browserEvent);
         var aShapes = this.facade.getCanvas().getAbstractShapesAtPosition(coord);
@@ -513,7 +692,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             var treeGroups = new Hash();
 
             // Get stencils that support metadata 'option.type'
-            var stencilsByMetadata = stencils.findAll(function(value){
+            var stencilsByMetadata = stencils.findAll(function (value) {
                 if (!value._jsonStencil || !value._jsonStencil.supportedMetadata)
                     return false;
 
@@ -528,16 +707,15 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 return;
 
             // Sort the stencils according to their position and add them to the repository
-            stencilsByMetadata = stencilsByMetadata.sortBy(function(value) {
+            stencilsByMetadata = stencilsByMetadata.sortBy(function (value) {
                 return value.title;
             });
-
 
 
             //-- Create records
             var data = [];
             stencilsByMetadata.each(function (stencil) {
-                data.push([stencil._jsonStencil.icon,stencil._jsonStencil.title, true, stencil._jsonStencil.id,stencil._namespace]);
+                data.push([stencil._jsonStencil.icon, stencil._jsonStencil.title, true, stencil._jsonStencil.id, stencil._namespace]);
             })
             if (data.length == 0) {
                 return;
@@ -556,125 +734,129 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 //bodyStyle:	"background:white;padding:0px",
                 width: 'auto',
                 height: 'auto',
-                closeAction:'destroy',
+                closeAction: 'destroy',
                 modal: true,
                 //html:"<div style='font-weight:bold;margin-bottom:10px'></div><span></span>",
-                buttons: [{
-                    id: 'select',
-                    text     : 'Select',
-                    disabled : true,
-                    handler  : function(){
-                        var selection = sm.getSelected();  //always one element
-                        var option_ = {
-                          type: selection.data.type,
-                          position: coord,
-                          connectingType: undefined,
-                          connectedShape: undefined,
-                          dragging: undefined,
-                          namespace: selection.data.namespace,
-                          parent: el
-                        };
+                buttons: [
+                    {
+                        id: 'select',
+                        text: 'Select',
+                        disabled: true,
+                        handler: function () {
+                            var selection = sm.getSelected();  //always one element
+                            var option_ = {
+                                type: selection.data.type,
+                                position: coord,
+                                connectingType: undefined,
+                                connectedShape: undefined,
+                                dragging: undefined,
+                                namespace: selection.data.namespace,
+                                parent: el
+                            };
 
-                        //--Add shape
-                        var commandClass = ORYX.Core.Command.extend({
-                            construct : function(option, currentParent, canAttach, position, facade) {
-                                this.option = option;
-                                this.currentParent = currentParent;
-                                this.canAttach = canAttach;
-                                this.position = position;
-                                this.facade = facade;
-                                this.selection = this.facade.getSelection();
-                                this.shape;
-                                this.parent;
-                            },
-                            execute : function() {
-                                if (!this.shape) {
-                                    this.shape = this.facade.createShape(this.option);
-                                    this.parent = this.shape.parent;
-                                } else {
-                                    this.parent.add(this.shape);
-                                }
-
-                                if (this.canAttach && this.currentParent instanceof ORYX.Core.Node && this.shape.dockers.length > 0) {
-
-                                    var docker = this.shape.dockers[0];
-
-                                    if (this.currentParent.parent instanceof ORYX.Core.Node) {
-                                        this.currentParent.parent.add(docker.parent);
+                            //--Add shape
+                            var commandClass = ORYX.Core.Command.extend({
+                                construct: function (option, currentParent, canAttach, position, facade) {
+                                    this.option = option;
+                                    this.currentParent = currentParent;
+                                    this.canAttach = canAttach;
+                                    this.position = position;
+                                    this.facade = facade;
+                                    this.selection = this.facade.getSelection();
+                                    this.shape;
+                                    this.parent;
+                                },
+                                execute: function () {
+                                    if (!this.shape) {
+                                        this.shape = this.facade.createShape(this.option);
+                                        this.parent = this.shape.parent;
+                                    } else {
+                                        this.parent.add(this.shape);
                                     }
 
-                                    docker.bounds.centerMoveTo(this.position);
-                                    docker.setDockedShape(this.currentParent);
-                                    // docker.update();
+                                    if (this.canAttach && this.currentParent instanceof ORYX.Core.Node && this.shape.dockers.length > 0) {
+
+                                        var docker = this.shape.dockers[0];
+
+                                        if (this.currentParent.parent instanceof ORYX.Core.Node) {
+                                            this.currentParent.parent.add(docker.parent);
+                                        }
+
+                                        docker.bounds.centerMoveTo(this.position);
+                                        docker.setDockedShape(this.currentParent);
+                                        // docker.update();
+                                    }
+
+                                    // this.currentParent.update();
+                                    // this.shape.update();
+
+                                    this.facade.setSelection([ this.shape ]);
+                                    this.facade.getCanvas().update();
+                                    this.facade.updateSelection();
+
+                                },
+                                rollback: function () {
+                                    this.facade.deleteShape(this.shape);
+
+                                    // this.currentParent.update();
+
+                                    this.facade.setSelection(this.selection.without(this.shape));
+                                    this.facade.getCanvas().update();
+                                    this.facade.updateSelection();
                                 }
+                            });
+                            var command = new commandClass(option_, this._currentParent, this._canAttach, coord, this.facade);
+                            this.facade.executeCommands([command]);
 
-                                // this.currentParent.update();
-                                // this.shape.update();
+                            //--Update metadata on shape
+                            var newShape = this.facade.getSelection()[0];
+                            var commandClass = ORYX.Core.Command.extend({
+                                construct: function (facade, metadatatype, metadataName, metadataObjId) {
+                                    ;
+                                    this.facade = facade,
+                                        this.metadatatype = metadatatype,
+                                        this.metadataName = metadataName;
+                                    this.metadataObjId = metadataObjId
+                                },
+                                execute: function () {
+                                    newShape.setProperty('oryx-name', this.metadatatype + '-' + Ext.id());
+                                    newShape.setProperty('oryx-author', 'Developer');
+                                    newShape.setProperty('oryx-version', '1.0');
+                                    newShape.setProperty('oryx-documentation', this.metadatatype + '-' + Ext.id());
+                                    newShape.setProperty('oryx-metadatatype', this.metadatatype);
+                                    newShape.setProperty('oryx-metadataname', this.metadataName);
+                                    newShape.setProperty('oryx-metadataobjid', this.metadataObjId);
 
-                                this.facade.setSelection([ this.shape ]);
-                                this.facade.getCanvas().update();
-                                this.facade.updateSelection();
-
-                            },
-                            rollback : function() {
-                                this.facade.deleteShape(this.shape);
-
-                                // this.currentParent.update();
-
-                                this.facade.setSelection(this.selection.without(this.shape));
-                                this.facade.getCanvas().update();
-                                this.facade.updateSelection();
-                            }
-                        });
-                        var command = new commandClass(option_, this._currentParent, this._canAttach, coord, this.facade);
-                        this.facade.executeCommands([command]);
-
-                        //--Update metadata on shape
-                        var newShape = this.facade.getSelection()[0];
-                        var commandClass = ORYX.Core.Command.extend({
-                            construct: function(facade,metadatatype,metadataName,metadataObjId){;
-                                this.facade		= facade,
-                                this.metadatatype = metadatatype,
-                                this.metadataName = metadataName;
-                                this.metadataObjId = metadataObjId
-                            },
-                            execute: function(){
-                                newShape.setProperty('oryx-name', this.metadatatype+'-'+Ext.id());
-                                newShape.setProperty('oryx-author', 'Developer');
-                                newShape.setProperty('oryx-version', '1.0');
-                                newShape.setProperty('oryx-documentation', this.metadatatype+'-'+Ext.id());
-                                newShape.setProperty('oryx-metadatatype', this.metadatatype);
-                                newShape.setProperty('oryx-metadataname', this.metadataName);
-                                newShape.setProperty('oryx-metadataobjid', this.metadataObjId);
-
-                                this.facade.setSelection([newShape]);
-                                this.facade.getCanvas().update();
-                                this.facade.updateSelection();
-                            },
-                            rollback: function(){
-                                newShape.setProperty('oryx-metadatatype', 'R'+this.metadatatype);
-                                newShape.setProperty('oryx-metadataObjId', 'R'+this.metadataObjId);
-                                this.facade.setSelection([newShape]);
-                                this.facade.getCanvas().update();
-                                this.facade.updateSelection();
-                            }
-                        })
-                        // Instanciated the class
-                        var metadataType = dragZone.dragData.mainNode.attributes['itemtype'];
-                        var metadataName = dragZone.dragData.mainNode.text;
-                        var metadataObjId = dragZone.dragData.mainNode.id;
-                        command = new commandClass(this.facade,metadataType,metadataName,metadataObjId);
-                        this.facade.executeCommands([ command ]);
+                                    this.facade.setSelection([newShape]);
+                                    this.facade.getCanvas().update();
+                                    this.facade.updateSelection();
+                                },
+                                rollback: function () {
+                                    newShape.setProperty('oryx-metadatatype', 'R' + this.metadatatype);
+                                    newShape.setProperty('oryx-metadataObjId', 'R' + this.metadataObjId);
+                                    this.facade.setSelection([newShape]);
+                                    this.facade.getCanvas().update();
+                                    this.facade.updateSelection();
+                                }
+                            })
+                            // Instanciated the class
+                            var metadataType = dragZone.dragData.mainNode.attributes['itemtype'];
+                            var metadataName = dragZone.dragData.mainNode.text;
+                            var metadataObjId = dragZone.dragData.mainNode.id;
+                            command = new commandClass(this.facade, metadataType, metadataName, metadataObjId);
+                            this.facade.executeCommands([ command ]);
 
 
-                        newURLWin.close();
-                    }.bind(this)
-                },{
-                    text     : 'Cancel',
-                    handler  : function(){
-                        newURLWin.close();
+                            newURLWin.close();
+                        }.bind(this)
+                    },
+                    {
+                        text: 'Cancel',
+                        handler: function () {
+                            newURLWin.close();
+                        }
                     }
-                }]
+                ]
             });
 
             var sm = new Ext.grid.CheckboxSelectionModel({
@@ -698,7 +880,9 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 }),
                 cm: new Ext.grid.ColumnModel([
                     //{id: 'icon', width: 25,  renderer:function(val) {return '<img src="' + val + '">';}, sortable: false, dataIndex: 'icon'},
-                    {id: 'icon', width: 24,  renderer:function(val) {return '<img style="max-height: 16px; max-width: 16px" src="' + val + '" />';}, sortable: false, dataIndex: 'icon'},
+                    {id: 'icon', width: 24, renderer: function (val) {
+                        return '<img style="max-height: 16px; max-width: 16px" src="' + val + '" />';
+                    }, sortable: false, dataIndex: 'icon'},
                     {id: 'title', width: 390, sortable: true, dataIndex: 'title'},
                     sm
                 ]),
@@ -734,37 +918,87 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * @param node
      * @param e
      */
-    onContextMenu : function(node, e){
-        if (node.attributes.itemtype && node.attributes.itemtype === 'database') {
-            if (!node.attributes.itemcontainertype) {//database  leaf
-                this.menu = this.repoitem_database_contextmenu;
-            } else if (node.attributes.itemcontainertype && node.attributes.itemcontainertype === 'repofolder') {
-                this.menu = this.repofolder_database_contextmenu;
-            }
+    onContextMenu: function (node, e) {
+        if (node.attributes.menugroup && node.attributes.menugroup === 'database') {
+            this.menu = this.repoitem_database_contextmenu;
         }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'database.folder') {
+            this.menu = this.repofolder_database_contextmenu;
+            if (node.id === 'metadata.dbconnections')
+                this.getItemById(this.menu,'deleteFolder').setDisabled(true);
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'csvmeta') {
+            this.menu = this.repoitem_csvmeta_contextmenu;
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'csvmeta.folder') {
+            this.menu = this.repofolder_csvmeta_contextmenu;
+            if (node.id === 'metadata.csvmeta')
+                this.getItemById(this.menu,'deleteFolder').setDisabled(true);
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'excelmeta') {
+            this.menu = this.repoitem_excelmeta_contextmenu;
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'excelmeta.folder') {
+            this.menu = this.repofolder_csvmeta_contextmenu;
+            if (node.id === 'metadata.excelmeta')
+                this.getItemById(this.menu,'deleteFolder').setDisabled(true);
+        }
+        else
+            return;
 
 
         //if(node.isLeaf()){
         this.ctxNode = node;
         this.ctxNode.ui.addClass('x-node-ctx');
-        if (this.menu.items)
-            this.menu.items.get('load').setDisabled(node.isSelected());
+        //if (this.menu.items)
+        //    this.menu.items.get('load').setDisabled(node.isSelected());
         this.menu.showAt(e.getXY());
         //}
     },
+    getItemById:function(menu,id) {
+        var open;
+        var item = menu.items.find(function(i) {
+            return id === i.id;
+        });
 
-    onContextHide : function(){
-        if(this.ctxNode){
+        return item;
+    },
+     // eo function getItemByCmd
+    onContextHide: function () {
+        if (this.ctxNode) {
             this.ctxNode.ui.removeClass('x-node-ctx');
             this.ctxNode = null;
         }
     },
 
     // prevent the default context menu when you miss the node
-    afterRender : function(){
+    afterRender: function () {
         Ext.ux.ETLRepoNavigationTreePanel.superclass.afterRender.call(this);
-        this.el.on('contextmenu', function(e){
+        this.el.on('contextmenu', function (e) {
             e.preventDefault();
         });
+    },
+    menuGroups : {
+        database: [
+            'addDatabase',
+            'editDatabase',
+            'deleteDatabase'
+        ],
+        csvmeta: [
+            'addCsvMeta',
+            'editCsvMeta',
+            'deleteCsvMeta'
+        ],
+        excelmeta: [
+            'addExcelMeta',
+            'editExcelMeta',
+            'deleteExcelMeta'
+        ],
+        folder: [
+            'addFolder',
+            'editFolder',
+            'deleteFolder',
+            'refreshFolder'
+        ]
     }
 });

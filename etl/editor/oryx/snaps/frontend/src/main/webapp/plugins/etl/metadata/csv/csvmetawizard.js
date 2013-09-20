@@ -13,14 +13,11 @@ if (!ORYX.Plugins.ETL.Metadata) {
 ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
 
     facade: undefined,
-    dbFolderId: undefined,
-    dbId: undefined,
+    folderId: undefined,
+    metaId: undefined,
     parentNavNodeId: undefined,
     wizMode: undefined,  //EDITING, CREATE
 
-    selectDBTypeCard: undefined,
-    enterJDBCSettingsCard: undefined,
-    enterAuthCard: undefined,
     newWizDialog: undefined,
 
     construct: function (facade) {
@@ -59,7 +56,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             addText: 'Add sample CSV file',
             buttonsAt: 'tbar',
             id: 'uppanel',
-            url: '/etlrepo/csvinput/uploadsample',
+            url: '/etlrepo/csvmeta/uploadsample',
             path: 'root',
             maxFileSize: 1048576,
             enableProgress: false,
@@ -235,7 +232,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             enterSampleFileInfoCard.getForm().load({
                 method: 'GET',
                 headerConfig: {userid: 'test'},
-                url: '/etlrepo/csvinput/onnew',
+                url: '/etlrepo/csvmeta/onnew',
                 waitMsg: 'Getting new record...',
                 success: function (fp, o) {
                     //msg('Success', 'Processed file "'+o.result.file+'" on the server');
@@ -247,7 +244,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 method: 'POST',
                 headerConfig: {userid: 'test'},
                 params: {pathId:pathId},
-                url: '/etlrepo/csvinput/onedit',
+                url: '/etlrepo/csvmeta/onedit',
                 waitMsg: 'Getting record '+pathId+'...',
                 success: function (fp, o) {
                     //msg('Success', 'Processed file "'+o.result.file+'" on the server');
@@ -282,7 +279,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             items: [
                 {
                     text: 'Get fields', tooltip: 'Refresh fields', iconCls: 'icon-refresh', id: 'btn-refresh', toggleHandler: function (btn, pressed) {
-                    editWiz.getMetadata();
+                    newCsvMetaWiz.getMetadata();
                 }
                 }
             ]
@@ -445,14 +442,14 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             ],
             onCardShow: function (card) {
                 Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-                editWiz.getMetadata();
+                newCsvMetaWiz.getMetadata();
             }
         });
 
         //Preview data
         var previewDataDS = new Ext.data.Store({
             proxy: new Ext.data.HttpProxy({
-                url: '/etlrepo/csvinput/previewdata',
+                url: '/etlrepo/csvmeta/previewdata',
                 method: 'POST',
                 headers: {
                     'userid': 'test'
@@ -500,12 +497,12 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             items: [previewDataGrid],
             onCardShow: function (card) {
                 Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-                editWiz.previewData();
+                newCsvMetaWiz.previewData();
             }
         });
 
         //-- Create New Wizard
-        editWiz = new Ext.ux.Wiz({
+        newCsvMetaWiz = new Ext.ux.Wiz({
             region: 'center',
             buttonsAt: 'bbar',
             headerConfig: {
@@ -529,7 +526,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             //@Override
             onFinish : function()
             {
-                editWiz.addMetadata();
+                newCsvMetaWiz.addMetadata();
             },
             addMetadata: function () {
 
@@ -578,12 +575,12 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     this.defaultHeaders = {userid: 'test'};
                 });
                 Ext.Ajax.request({
-                    url: '/etlrepo/csvinput/add',
+                    url: '/etlrepo/csvmeta/add',
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
-                        editWiz.mode = 'EDITING';
-                        editWiz.onBackToFirstStep();
+                        newCsvMetaWiz.mode = 'EDITING';
+                        newCsvMetaWiz.onBackToFirstStep();
                     },
                     failure: function (response, opts) {
                     }
@@ -677,7 +674,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     this.defaultHeaders = {userid: 'test'};
                 });
                 Ext.Ajax.request({
-                    url: '/etlrepo/csvinput/ongetmetadata',
+                    url: '/etlrepo/csvmeta/ongetmetadata',
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
@@ -711,7 +708,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 return formValues;
             }
         });
-        this.newDBWiz.addEvents(
+        this.newCsvMetaWiz.addEvents(
             /**
              * @event ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
              * Fires after new metadata artifact (e.g. DbConnection) has been created
@@ -719,14 +716,14 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
              */
             ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
         );
-        this.newDBWiz.on('cancel', this.onBeforeCancel, this);
+        this.newCsvMetaWiz.on('cancel', this.onBeforeCancel, this);
     },
 
     /**
      *
      */
     onBeforeCancel: function() {
-        if (this.newDBWiz.isDirty()) {
+        if (this.newCsvMetaWiz.isDirty()) {
             Ext.MessageBox.show({
                 title:'Save Changes?',
                 msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
@@ -749,7 +746,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
      */
     onCreate: function (event, arg) {
         this.wizMode = 'CREATE';
-        this.dbFolderId = arg.dbFolderId;
+        this.folderId = arg.folderId;
         this.parentNavNodeId = arg.sourceNavNodeId;
 
         // Basic Dialog
@@ -759,7 +756,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             autoScroll: false,
             autoCreate: true,
             closeAction:'destroy',
-            title: 'New Db Connection',
+            title: 'New CSV Metadata',
             height: 450,
             width: 800,
             modal: true,
@@ -776,7 +773,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     }.bind(this)
                 }
             ],
-            items: [this.newDBWiz],
+            items: [this.newCsvMetaWiz],
             bodyStyle: "background-color:#FFFFFF"
         });
 
@@ -789,13 +786,13 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
      */
     onEdit: function (event, arg) {
         this.wizMode = 'EDIT';
-        this.dbFolderId = arg.dbFolderId;
-        this.dbId = arg.sourceNavNodeId;
-        this.dbName = arg.title;
+        this.folderId = arg.folderId;
+        this.metaId = arg.sourceNavNodeId;
+        this.metaName = arg.title;
 
         // Basic Dialog
         this.initWiz();
-        this.newDBWiz.on('render',function() {
+        this.newCsvMetaWiz.on('render',function() {
             // Get data
             Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                 // here you can put whatever you need as header. For instance:
@@ -805,11 +802,11 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             Ext.Ajax.request({
                 url: '/etlrepo/csvmeta/get',
                 method: 'GET',
-                params: {pathID:this.dbId},
+                params: {pathID:this.metaId},
                 success: function (response, opts) {
                     var db = Ext.decode(response.responseText);
-                    this.newWizDialog.setTitle('Editing '+this.dbName);
-                    this.newDBWiz.loadRecord({data:db});
+                    this.newWizDialog.setTitle('Editing '+this.metaName);
+                    this.newCsvMetaWiz.loadRecord({data:db});
                 }.bind(this)
             });
         },this);
@@ -835,7 +832,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     }.bind(this)
                 }
             ],
-            items: [this.newDBWiz],
+            items: [this.newCsvMetaWiz],
             bodyStyle: "background-color:#FFFFFF"
         });
         this.newWizDialog.show();
@@ -847,9 +844,9 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
      */
     onDelete: function (event, arg) {
         this.wizMode = 'EDIT';
-        this.dbFolderId = arg.parentSourceNavNodeId;
-        this.dbId = arg.sourceNavNodeId;
-        this.dbName = arg.title;
+        this.folderId = arg.parentSourceNavNodeId;
+        this.metaId = arg.sourceNavNodeId;
+        this.metaName = arg.title;
 
         Ext.MessageBox.show({
             title:'Confirm delete.',
@@ -865,7 +862,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     Ext.Ajax.request({
                         url: '/etlrepo/csvmeta/delete',
                         method: 'DELETE',
-                        params: Ext.encode({dirPathId:this.dbId}),
+                        params: Ext.encode({dirPathId:this.metaId}),
                         success: function (response, opts) {
                             var text = Ext.encode(response.responseText);
                             Ext.MessageBox.show({
@@ -874,7 +871,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                                 buttons: Ext.MessageBox.OK,
                                 icon: Ext.MessageBox.INFO
                             });
-                            this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_DELETED,forceExecution:true,treeNodeParentId:this.dbFolderId});
+                            this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_DELETED,forceExecution:true,treeNodeParentId:this.folderId});
                         }.bind(this)
                     });
                 }
