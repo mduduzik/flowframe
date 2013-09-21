@@ -2,7 +2,7 @@
  * Ext JS Library 2.3.0
  * Copyright(c) 2006-2009, Ext JS, LLC.
  * licensing@extjs.com
- *
+ * 
  * http://extjs.com/license
  */
 
@@ -66,7 +66,7 @@ Ext.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
             name: this.name||this.getId(),
             cls: 'x-form-file',
             tag: 'input',
-            type: 'file',
+            type: this.buttonCfg.type,
             size: 1
         });
 
@@ -77,6 +77,12 @@ Ext.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
             renderTo: this.wrap,
             cls: 'x-form-file-btn' + (btnCfg.iconCls ? ' x-btn-icon' : '')
         }));
+
+        if (btnCfg.disabled)
+            this.button.disable();
+
+        if (btnCfg && btnCfg.enabled && btnCfg.enabled === false)
+            this.button.disable();
 
         if(this.buttonOnly){
             this.el.hide();
@@ -124,6 +130,5 @@ Ext.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
     alignErrorIcon : function(){
         this.errorIcon.alignTo(this.wrap, 'tl-tr', [2, 0]);
     }
-
 });
 Ext.reg('fileuploadfield', Ext.form.FileUploadField);

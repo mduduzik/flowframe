@@ -191,6 +191,8 @@ public class ETLEditorHandler extends HttpServlet {
                 //-- recordform -->
                 + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/recordform/js/Ext.ux.util.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/recordform/js/Ext.ux.grid.Search.js\" type=\"text/javascript\" />\n"
+                //-- FileUploadField
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploadfield/js/Ext.form.FileUploadField.js\"></script>\n"
                 //-- FileUploader
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/WebPage.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.BrowseButton.js\"></script>\n"
@@ -201,12 +203,15 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.ThemeCombo.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.IconCombo.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.LangSelectCombo.js\"></script>\n"
-                + "<style media=\"screen\" type=\"text/css\">\n"
+                ///-- Inline style for resource imports
+                + "<style>\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/ext-all.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/xtheme-gray.css\");\n"
                 + "@import url(\"" + getRootPath(request) + "css/icons.css\");\n"
                 //-- Wiz
                 + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/wiz/resources/wiz.css\");\n"
+                //-- FileuploadField
+                + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploadfield/css/fileuploadfield.css\");\n"
                 //-- Fileuploader
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/icons.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/webpage.css\");\n"

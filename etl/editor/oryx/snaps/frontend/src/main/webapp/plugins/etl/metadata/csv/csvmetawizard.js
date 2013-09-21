@@ -66,8 +66,116 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
         /**
          * Cards
          */
-        var enterSampleFileInfoCard = new Ext.ux.Wiz.Card({
-            id: "getfields",
+        var uploadSampleFileCard = new Ext.ux.Wiz.Card({
+            id: "uploadsamplefile",
+            title: 'Upload Sample CSV file',
+            monitorValid: true,
+            isUpload: true,
+            defaults: {
+                labelStyle: 'font-size:11px',
+                labelAlign: 'right',
+                align: 'left'
+            },
+            layout: 'column',
+
+            items: [
+                {
+                    xtype: 'fieldset',
+                    labelWidth: 200,
+                    layoutConfig: {
+                        labelAlign: 'right'
+                    },
+                    //title:'Company details',
+                    defaults: {width: 350},	// Default config options for child items
+                    defaultType: 'textfield',
+                    autoHeight: true,
+                    bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
+                    border: false,
+                    style: {
+                        "margin-left": "10px", // when you add custom margin in IE 6...
+                        "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
+                    },
+                    items: [
+                        {
+                            fieldLabel: 'File Repository ID',
+                            name: 'fileEntryId',
+                            emptyText: '<Upload sample file below>',
+                            disabled: true,
+                            allowBlank: false,
+                            required: true,
+                            getSubmitData: getDisabledFieldValue
+                        },
+                        {
+                            id: 'uploadsamplefile.filename',
+                            xtype: 'fileuploadfield',
+                            fieldLabel: 'Filename',
+                            name: 'filename',
+                            emptyText: '<Browse and select file first>',
+                            disabled: true,
+                            allowBlank: false,
+                            getSubmitData: getDisabledFieldValue,
+                            buttonCfg: {
+                                text: '',
+                                iconCls: 'up-icon',
+                                disabled : true,
+                                type: 'button',
+                                buttonOnly: true,
+                                handler: function(){
+                                    var options = {
+                                        url: '/etlrepo/csvmeta/uploadsample',
+                                        enctype: 'multipart/form-data',
+                                        isUpload: true,
+                                        success: function(fp, o){
+                                            msg('Success', 'Processed file "'+o.result.file+'" on the server');
+                                        }
+                                    };
+                                    options.form = uploadSampleFileCard.form.el;
+                                    // request upload
+                                    Ext.Ajax.request(options);
+                                }
+                            }
+
+                        },
+                        {
+                            xtype: 'fileuploadfield',
+                            id: 'form-file',
+                            emptyText: 'Select a CSV file',
+                            fieldLabel: 'Local File to Upload',
+                            name: 'file',
+                            buttonCfg: {
+                                text: '',
+                                iconCls: 'find-job-icon',
+                                type: 'file',
+                                buttonOnly: true,
+                                handler: function(){
+                                    this.button.enable();
+                                }
+                            },
+                            listeners:{
+                                fileselected:function(field,value){
+                                    var field = Ext.getCmp('uploadsamplefile.filename');
+                                    field.setValue(value);
+                                    field.button.enable();
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            isValid: function () {
+                var formPanel = Ext.getCmp('uploadsamplefile');
+                if (!formPanel.form.findField('filename') || !formPanel.form.findField('fileEntryId'))
+                    return false;
+
+                var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
+                valid = valid || formPanel.form.findField('filename').validate();
+                valid = valid || formPanel.form.findField('fileEntryId').validate();
+
+                return valid;
+            }
+        });
+        var enterMetadataSettingsCard = new Ext.ux.Wiz.Card({
+            id: "entermetadatasettings",
             title: 'Enter/change settings',
             monitorValid: true,
             defaults: {
@@ -95,18 +203,6 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                         "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
                     },
                     items: [
-                        /*                        {
-                         xtype: 'uploadpanel',
-                         id: 'form-file',
-                         emptyText: 'Select a sample CSV file',
-                         fieldLabel: 'Filename',
-                         name: 'filename',
-                         buttonCfg: {
-                         text: '',
-                         iconCls: 'upload-icon'
-                         },
-                         allowBlank: false
-                         },*/
                         {
                             fieldLabel: 'Metadata Name',
                             name: 'name',
@@ -197,26 +293,14 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                             width: 15
                         }
                     ]
-                },
-                uploaderPanel
-            ],
-            isValid: function () {
-                var formPanel = Ext.getCmp('getfields');
-                if (!formPanel.form.findField('filename') || !formPanel.form.findField('fileEntryId'))
-                    return false;
-
-                var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
-                valid = valid || formPanel.form.findField('filename').validate();
-                valid = valid || formPanel.form.findField('fileEntryId').validate();
-
-                return valid;
-            }
+                }
+            ]
         });
         // relay uploader events
         /*    uploaderPanel.relayEvents(uploaderPanel.uploader, [
          'allfinished'
          ]);*/
-        uploaderPanel.on({allfinished: {scope: this, fn: function () {
+/*        uploaderPanel.on({allfinished: {scope: this, fn: function () {
             var formPanel = Ext.getCmp('getfields');
             var rec = uploaderPanel.store.getAt(0);//Only first response
             formPanel.form.findField('filename').setValue(rec.data.fileName, true);
@@ -226,11 +310,11 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
 
             uploaderPanel.removeAll();
         }}
-        });
+        });*/
 
 
         if (this.wizMode && this.wizMode === 'CREATE') {
-            enterSampleFileInfoCard.getForm().load({
+/*            enterSampleFileInfoCard.getForm().load({
                 method: 'GET',
                 headerConfig: {userid: 'test'},
                 url: '/etlrepo/csvmeta/onnew',
@@ -238,7 +322,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 success: function (fp, o) {
                     //msg('Success', 'Processed file "'+o.result.file+'" on the server');
                 }
-            });
+            });*/
         }
         else if (this.wizMode && this.wizMode === 'EDIT') {
             enterSampleFileInfoCard.getForm().load({
@@ -517,7 +601,8 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 }
             },
             cards: [
-                enterSampleFileInfoCard,
+                uploadSampleFileCard,
+                enterMetadataSettingsCard,
                 getMetadataCard,
                 previewDataCard
             ],

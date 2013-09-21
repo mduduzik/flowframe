@@ -181,7 +181,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                                      FormDataMultiPart mpFileUpload) throws Exception {
 
         //Get file handle
-        FormDataBodyPart fileBP = getFileBodyPart("ext-gen", mpFileUpload);
+        FormDataBodyPart fileBP = getFileBodyPart("file", mpFileUpload);//from form field of name:file
         String fileName = fileBP.getContentDisposition().getFileName();
         Long fileSize = Long.valueOf(fileSizeStr);
         String mimeType = fileBP.getContentDisposition().getType();
