@@ -44,7 +44,6 @@ import org.pentaho.di.trans.steps.textfileinput.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -170,8 +169,9 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
 
     @Path("/uploadsample")
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadSampleFile(@FormDataParam("cmd") String command,
+    public String uploadSampleFile(@FormDataParam("cmd") String command,
                                      @FormDataParam("APC_UPLOAD_PROGRESS") String progress,
                                      @FormDataParam("UPLOAD_IDENTIFIER") String identifier,
                                      @FormDataParam("MAX_FILE_SIZE") String fileSizeStr,
@@ -179,18 +179,31 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                                      @FormDataParam("path") String path,
                                      @FormDataParam("dir") String dir,
                                      FormDataMultiPart mpFileUpload) throws Exception {
+        final JSONObject res = new JSONObject();
+        res.put("success","true");
 
-        //Get file handle
-        FormDataBodyPart fileBP = getFileBodyPart("file", mpFileUpload);//from form field of name:file
-        String fileName = fileBP.getContentDisposition().getFileName();
-        Long fileSize = Long.valueOf(fileSizeStr);
-        String mimeType = fileBP.getContentDisposition().getType();
-        InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
+        try {
+            //Get file handle
+            FormDataBodyPart fileBP = getFileBodyPart("file", mpFileUpload);//from form field of name:file
+            String fileName = fileBP.getContentDisposition().getFileName();
+            //Long fileSize = Long.valueOf(fileSizeStr);
+            String mimeType = fileBP.getContentDisposition().getType();
+            InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
 
-        //Save sample to ECM
-        FileEntry fe = addOrUpdateSampleFile(sampleCSVInputStream, fileName, mimeType);
+            //Save sample to ECM
+            FileEntry fe = addOrUpdateSampleFile(sampleCSVInputStream, fileName, mimeType);
 
-        return Response.status(200).entity("{fileentryid: " + fe.getFileEntryId() + ",progress:" + fileSize + ",success:true,filelocation:" + Long.toString(fe.getFileEntryId()) + "}").build();
+            //Result
+            res.put("fileName",fileName);
+            res.put("fileentryid",fe.getFileEntryId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            res.put("success","false");
+            res.put("errorMessage",e.getMessage());
+            return res.toString();
+        }
+
+        return res.toString();
 
     }
 

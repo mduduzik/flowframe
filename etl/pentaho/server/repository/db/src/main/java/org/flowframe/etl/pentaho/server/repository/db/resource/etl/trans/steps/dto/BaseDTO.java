@@ -2,6 +2,8 @@ package org.flowframe.etl.pentaho.server.repository.db.resource.etl.trans.steps.
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 import java.io.Serializable;
 
@@ -22,10 +24,12 @@ abstract public class BaseDTO implements Serializable {
         return serializer.deepSerialize(this);
     }
 
-    public Object fromDTO(Class type) {
-        String thisJson = toJSON();
+    public Object fromDTO(Class type) throws JSONException {
+        final String thisJson = toJSON();
+        final JSONObject obj = new JSONObject(thisJson);
+        obj.remove("class");
         JSONDeserializer metaDeserializer = new JSONDeserializer();
-        return metaDeserializer.deserialize(thisJson,type);
+        return metaDeserializer.deserialize(obj.toString(),type);
     }
 
     public String getSubDirObjId() {

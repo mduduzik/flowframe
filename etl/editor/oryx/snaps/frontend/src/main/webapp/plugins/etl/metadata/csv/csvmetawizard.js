@@ -36,7 +36,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             var me = this,
                 data = null;
             data = {};
-            data[me.getName()] = '' + me.getValue();
+            data[me.name] = '' + me.getValue();
             return data;
         };
         var getCheckboxFieldValue = function () {
@@ -45,9 +45,9 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             var val = me.getValue();
             data = {};
             if (val === 'on')
-                data[me.getName()] = true;
+                data[me.name] = true;
             else
-                data[me.getName()] = false;
+                data[me.name] = false;
 
             return data;
         };
@@ -97,6 +97,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     },
                     items: [
                         {
+                            id: 'uploadsamplefile.fileEntryId',
                             fieldLabel: 'File Repository ID',
                             name: 'fileEntryId',
                             emptyText: '<Upload sample file below>',
@@ -126,8 +127,27 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                                         enctype: 'multipart/form-data',
                                         isUpload: true,
                                         success: function(fp, o){
-                                            msg('Success', 'Processed file "'+o.result.file+'" on the server');
-                                        }
+                                            var jsonResp = fp.responseText.substring(fp.responseText.indexOf("{"), fp.responseText.lastIndexOf("}") + 1);
+                                            var rec = Ext.decode(jsonResp);
+
+                                            var formPanel = Ext.getCmp('uploadsamplefile');
+
+                                            //Update fileName field
+                                            var field = formPanel.form.findField('uploadsamplefile.filename');
+                                            field.setValue(rec.fileName);
+                                            field.button.disable();
+
+                                            //Update uploadsamplefile.fileEntryId
+                                            field = formPanel.form.findField('uploadsamplefile.fileEntryId');
+                                            field.setValue(rec.fileentryid);
+
+                                            //Clear fileuploadfield.form-file
+                                            field = formPanel.form.findField('fileuploadfield.form-file');
+                                            field.reset();
+                                        }.bind(this),
+                                        failure: function(fp, o){
+                                            Oryx.Log.error('Error uploading file...')
+                                        }.bind(this)
                                     };
                                     options.form = uploadSampleFileCard.form.el;
                                     // request upload
@@ -138,7 +158,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                         },
                         {
                             xtype: 'fileuploadfield',
-                            id: 'form-file',
+                            id: 'fileuploadfield.form-file',
                             emptyText: 'Select a CSV file',
                             fieldLabel: 'Local File to Upload',
                             name: 'file',
@@ -164,12 +184,12 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             ],
             isValid: function () {
                 var formPanel = Ext.getCmp('uploadsamplefile');
-                if (!formPanel.form.findField('filename') || !formPanel.form.findField('fileEntryId'))
+                if (!formPanel.form.findField('uploadsamplefile.filename') || !formPanel.form.findField('uploadsamplefile.fileEntryId'))
                     return false;
 
                 var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
-                valid = valid || formPanel.form.findField('filename').validate();
-                valid = valid || formPanel.form.findField('fileEntryId').validate();
+                valid = valid || formPanel.form.findField('uploadsamplefile.filename').validate();
+                valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();
 
                 return valid;
             }
@@ -208,21 +228,6 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                             name: 'name',
                             emptyText: '<Enter name>',
                             allowBlank: false
-                        },
-                        {
-                            fieldLabel: 'Filename',
-                            name: 'filename',
-                            emptyText: '<Upload sample file below>',
-                            disabled: true,
-                            allowBlank: false,
-                            getSubmitData: getDisabledFieldValue
-                        },
-                        {
-                            fieldLabel: 'File Repository ID',
-                            name: 'fileEntryId',
-                            disabled: true,
-                            allowBlank: false,
-                            getSubmitData: getDisabledFieldValue
                         },
                         {
                             fieldLabel: 'Row Number Field',
@@ -314,7 +319,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
 
 
         if (this.wizMode && this.wizMode === 'CREATE') {
-/*            enterSampleFileInfoCard.getForm().load({
+            enterMetadataSettingsCard.getForm().load({
                 method: 'GET',
                 headerConfig: {userid: 'test'},
                 url: '/etlrepo/csvmeta/onnew',
@@ -322,7 +327,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 success: function (fp, o) {
                     //msg('Success', 'Processed file "'+o.result.file+'" on the server');
                 }
-            });*/
+            });
         }
         else if (this.wizMode && this.wizMode === 'EDIT') {
             enterSampleFileInfoCard.getForm().load({
@@ -527,8 +532,8 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             ],
             onCardShow: function (card) {
                 Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-                newCsvMetaWiz.getMetadata();
-            }
+                this.newCsvMetaWiz.getMetadata();
+            }.bind(this)
         });
 
         //Preview data
@@ -582,8 +587,8 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             items: [previewDataGrid],
             onCardShow: function (card) {
                 Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-                newCsvMetaWiz.previewData();
-            }
+                this.newCsvMetaWiz.previewData();
+            }.bind(this)
         });
 
         //-- Create New Wizard
@@ -612,16 +617,15 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             //@Override
             onFinish : function()
             {
-                newCsvMetaWiz.addMetadata();
+                this.newCsvMetaWiz.addMetadata();
             },
             addMetadata: function () {
-
                 //-- Form data
                 var data = this.getSelectWizardData([]);//Form
-                var formPanel = Ext.getCmp('getfields');
-                var filenameValue = formPanel.form.findField('filename').getSubmitData();
+                var formPanel = Ext.getCmp('uploadsamplefile');
+                var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
                 Ext.apply(data, filenameValue);
-                var feValue = formPanel.form.findField('fileEntryId').getSubmitData();
+                var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
                 Ext.apply(data, feValue);
 
                 //--Fields
@@ -665,11 +669,11 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
-                        newCsvMetaWiz.mode = 'EDITING';
-                        newCsvMetaWiz.onBackToFirstStep();
-                    },
+                        this.newCsvMetaWiz.mode = 'EDITING';
+                        this.newCsvMetaWiz.onBackToFirstStep();
+                    }.bind(this),
                     failure: function (response, opts) {
-                    }
+                    }.bind(this)
                 });
             },
             //Called by 'preview' data
@@ -677,10 +681,10 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
 
                 //-- Form data
                 var data = this.getSelectWizardData([]);//Form
-                var formPanel = Ext.getCmp('getfields');
-                var filenameValue = formPanel.form.findField('filename').getSubmitData();
+                var formPanel = Ext.getCmp('uploadsamplefile');
+                var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
                 Ext.apply(data, filenameValue);
-                var feValue = formPanel.form.findField('fileEntryId').getSubmitData();
+                var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
                 Ext.apply(data, feValue);
 
                 //--Fields
@@ -723,11 +727,14 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 var data = this.getSelectWizardData([]);
 
                 //-- Normalize data
-                var formPanel = Ext.getCmp('getfields');
-                var filenameValue = formPanel.form.findField('filename').getSubmitData();
+                var data = this.getSelectWizardData([]);//Form
+                var formPanel = Ext.getCmp('uploadsamplefile');
+                var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
                 Ext.apply(data, filenameValue);
-                var feValue = formPanel.form.findField('fileEntryId').getSubmitData();
+                var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
                 Ext.apply(data, feValue);
+
+
 
                 //a hack: checkboxes are returning 'on' for true
                 if (data.headerPresent === 'on')

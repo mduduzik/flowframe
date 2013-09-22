@@ -1,5 +1,9 @@
 package org.flowframe.etl.pentaho.server.repository.db.resource.etl.trans.steps.csvinput.dto;
 
+import flexjson.JSONDeserializer;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.repository.db.resource.etl.trans.steps.dto.BaseDTO;
 import org.flowframe.etl.pentaho.server.repository.db.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
@@ -224,4 +228,28 @@ public class CsvInputMetaDTO extends BaseDTO {
         this.newlinePossibleInFields = newlinePossibleInFields;
     }
 
+    @Override
+    public Object fromDTO(Class type) throws JSONException {
+        final String thisJson = toJSON();
+        final JSONObject obj = new JSONObject(thisJson);
+        obj.remove("class");
+
+        final JSONDeserializer metaDeserializer = new JSONDeserializer();
+        JSONArray ifls = null;
+        List<TextFileInputField> fieldList = null;
+        if (obj.has("inputFields") && obj.get("inputFields") != JSONObject.NULL){
+            fieldList = new ArrayList<TextFileInputField>();
+            ifls = (JSONArray) obj.get("inputFields");
+            for (int i=0;i<ifls.length(); i++){
+                ((JSONObject)ifls.get(i)).remove("class");
+                fieldList.add((TextFileInputField)metaDeserializer.deserialize(((JSONObject)ifls.get(i)).toString(),TextFileInputField.class));
+            }
+        }
+        obj.remove("inputFields");
+        final CsvInputMeta meta = (CsvInputMeta)metaDeserializer.deserialize(obj.toString(),type);
+        if (fieldList != null) {
+            meta.setInputFields(fieldList.toArray(new TextFileInputField[]{}));
+        }
+        return meta;
+    }
 }

@@ -74,6 +74,7 @@
                                     <include>com.pentaho:kettle-core</include>
                                     <include>com.pentaho:kettle-engine</include>
                                     <include>com.pentaho:kettle-db</include>
+                                    <include>com.pentaho:kettle-test</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
