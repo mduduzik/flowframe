@@ -160,6 +160,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         meta_.setFilename(metaDTO_.getFileEntryId());
 
         CsvInputMetaDTO dto = new CsvInputMetaDTO(meta_);
+        dto.setName(csvInputStep.getName());
         dto.setPathId(pathID);
 
         return dto.toJSON();

@@ -617,11 +617,11 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             //@Override
             onFinish : function()
             {
-                this.newCsvMetaWiz.addMetadata();
+                this.addMetadata();
             },
             addMetadata: function () {
                 //-- Form data
-                var data = this.getSelectWizardData([]);//Form
+                var data = this.newCsvMetaWiz.getSelectWizardData([]);//Form
                 var formPanel = Ext.getCmp('uploadsamplefile');
                 var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
                 Ext.apply(data, filenameValue);
@@ -657,7 +657,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
 
 
                 //--Submit
-                Ext.apply(data,{subDirObjId:5})
+                Ext.apply(data,{subDirObjId:this.folderId})
                 var dataJson = Ext.encode(data);
                 Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                     // here you can put whatever you need as header. For instance:
@@ -669,13 +669,14 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
-                        this.newCsvMetaWiz.mode = 'EDITING';
-                        this.newCsvMetaWiz.onBackToFirstStep();
+                        var meta = Ext.decode(response.responseText);
+                        this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:meta.name,treeNodeParentId:this.parentNavNodeId});
+                        this.newWizDialog.close();
                     }.bind(this),
                     failure: function (response, opts) {
                     }.bind(this)
                 });
-            },
+            }.bind(this),
             //Called by 'preview' data
             previewData: function () {
 
