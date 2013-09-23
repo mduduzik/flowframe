@@ -9,6 +9,8 @@ import org.pentaho.di.repository.RepositoryObjectType;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 
+import java.util.Arrays;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Mduduzi
@@ -112,6 +114,36 @@ public class RepositoryUtil {
         StepMeta stepMeta = trans.getStep(stepIndex);
 
         return stepMeta;
+    }
+
+    static public synchronized String saveStep(CustomRepository repo, String pathID, StepMeta stepMeta) {
+        try {
+            StepMeta storedStep = getStep(repo,pathID);
+            TransMeta trans = storedStep.getParentTransMeta();
+            int[] indeces = trans.getStepIndexes(Arrays.asList(new StepMeta[]{storedStep}));
+            trans.setStep(indeces[0],stepMeta);
+
+            repo.getRepositoryTransDelegate().saveTransformation(trans,"updated step",null,true);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathID;
+    }
+
+    static public synchronized String deleteStep(CustomRepository repo, String pathID) {
+        try {
+            StepMeta storedStep = getStep(repo,pathID);
+            TransMeta trans = storedStep.getParentTransMeta();
+            int[] indeces = trans.getStepIndexes(Arrays.asList(new StepMeta[]{storedStep}));
+            trans.removeStep(indeces[0]);
+
+            repo.getRepositoryTransDelegate().saveTransformation(trans,"deleted step",null,true);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathID;
     }
 
     static public synchronized String addStep(CustomRepository repo, String dirObjId, StepMeta stepMeta) {

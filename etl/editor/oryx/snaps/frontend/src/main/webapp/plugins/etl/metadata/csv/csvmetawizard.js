@@ -301,46 +301,6 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 }
             ]
         });
-        // relay uploader events
-        /*    uploaderPanel.relayEvents(uploaderPanel.uploader, [
-         'allfinished'
-         ]);*/
-/*        uploaderPanel.on({allfinished: {scope: this, fn: function () {
-            var formPanel = Ext.getCmp('getfields');
-            var rec = uploaderPanel.store.getAt(0);//Only first response
-            formPanel.form.findField('filename').setValue(rec.data.fileName, true);
-            formPanel.form.findField('fileEntryId').setValue(rec.data.fileentryid, true);
-
-            enterSampleFileInfoCard.fireEvent('clientvalidation', enterSampleFileInfoCard, true);
-
-            uploaderPanel.removeAll();
-        }}
-        });*/
-
-
-        if (this.wizMode && this.wizMode === 'CREATE') {
-            enterMetadataSettingsCard.getForm().load({
-                method: 'GET',
-                headerConfig: {userid: 'test'},
-                url: '/etlrepo/csvmeta/onnew',
-                waitMsg: 'Getting new record...',
-                success: function (fp, o) {
-                    //msg('Success', 'Processed file "'+o.result.file+'" on the server');
-                }
-            });
-        }
-        else if (this.wizMode && this.wizMode === 'EDIT') {
-            enterSampleFileInfoCard.getForm().load({
-                method: 'POST',
-                headerConfig: {userid: 'test'},
-                params: {pathId:pathId},
-                url: '/etlrepo/csvmeta/onedit',
-                waitMsg: 'Getting record '+pathId+'...',
-                success: function (fp, o) {
-                    //msg('Success', 'Processed file "'+o.result.file+'" on the server');
-                }
-            });
-        }
 
         //Get Metadata
         var MetadataFieldModel = Ext.data.Record.create([
@@ -617,8 +577,71 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             //@Override
             onFinish : function()
             {
-                this.addMetadata();
+                if (this.wizMode === 'CREATE')
+                    this.addMetadata();
+                else if (this.wizMode === 'EDIT')
+                    this.saveMetadata();
             },
+            saveMetadata: function () {
+                //-- Form data
+                if (this.newCsvMetaWiz.isDirty()) {
+                    var data = this.newCsvMetaWiz.getSelectWizardData([]);//Form
+                    var formPanel = Ext.getCmp('uploadsamplefile');
+                    var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
+                    Ext.apply(data, filenameValue);
+                    var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
+                    Ext.apply(data, feValue);
+
+                    //--Fields
+                    var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//fields
+                    Ext.apply(data, fields);
+
+                    //-- Normalize data
+                    //a hack: checkboxes are returning 'on' for true
+                    if (data.headerPresent === 'on')
+                        data.headerPresent = true;
+                    else
+                        data.headerPresent = false;
+                    if (data.includingFilename === 'on')
+                        data.includingFilename = true;
+                    else
+                        data.includingFilename = false;
+                    if (data.isaddresult === 'on')
+                        data.isaddresult = true;
+                    else
+                        data.isaddresult = false;
+                    if (data.lazyConversionActive === 'on')
+                        data.lazyConversionActive = true;
+                    else
+                        data.lazyConversionActive = false;
+                    if (data.newlinePossibleInFields === 'on')
+                        data.newlinePossibleInFields = true;
+                    else
+                        data.newlinePossibleInFields = false;
+
+
+                    //--Submit
+                    Ext.apply(data,{pathId:this.metaId,subDirObjId:this.folderId})
+                    var dataJson = Ext.encode(data);
+                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                        // here you can put whatever you need as header. For instance:
+                        this.defaultPostHeader = "application/json; charset=utf-8;";
+                        this.defaultHeaders = {userid: 'test'};
+                    });
+                    Ext.Ajax.request({
+                        url: '/etlrepo/csvmeta/save',
+                        method: 'POST',
+                        params: dataJson,
+                        success: function (response, opts) {
+                            var meta = Ext.decode(response.responseText);
+                            this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:meta.name,treeNodeParentId:this.parentNavNodeId});
+                            this.newWizDialog.close();
+                        }.bind(this),
+                        failure: function (response, opts) {
+                        }.bind(this)
+                    });
+                }
+            }.bind(this),
             addMetadata: function () {
                 //-- Form data
                 var data = this.newCsvMetaWiz.getSelectWizardData([]);//Form
@@ -894,13 +917,15 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 this.defaultHeaders = {userid: 'test'};
             });
             Ext.Ajax.request({
-                url: '/etlrepo/csvmeta/get',
+                url: '/etlrepo/csvmeta/onedit',
                 method: 'GET',
-                params: {pathID:this.metaId},
+                params: {pathId:this.metaId},
                 success: function (response, opts) {
-                    var db = Ext.decode(response.responseText);
-                    this.newWizDialog.setTitle('Editing '+this.metaName);
-                    this.newCsvMetaWiz.loadRecord({data:db});
+                    var rec = Ext.decode(response.responseText);
+                    this.newCsvMetaWiz.loadRecord({data:rec});
+                    //read-only field hack - update 'filename' field
+                    var field = Ext.getCmp('uploadsamplefile.filename');
+                    field.setValue(rec.filename);
                 }.bind(this)
             });
         },this);
@@ -929,10 +954,11 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             items: [this.newCsvMetaWiz],
             bodyStyle: "background-color:#FFFFFF"
         });
+        this.newWizDialog.setTitle('Editing '+this.metaName);
         this.newWizDialog.show();
     },
     /**
-     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'DBConnection' Event
+     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'CSVMeta' Event
      * @param event
      * @param arg - tree node
      */
@@ -956,7 +982,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     Ext.Ajax.request({
                         url: '/etlrepo/csvmeta/delete',
                         method: 'DELETE',
-                        params: Ext.encode({dirPathId:this.metaId}),
+                        params: Ext.encode({name:this.metaName,pathId:this.metaId}),
                         success: function (response, opts) {
                             var text = Ext.encode(response.responseText);
                             Ext.MessageBox.show({

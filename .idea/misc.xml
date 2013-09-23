@@ -90,11 +90,11 @@
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
         <option value="$PROJECT_DIR$/etl/editor/pom.xml" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/bpmnq/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jbpt/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/supercsv/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jflex/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -102,9 +102,6 @@
         <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/pom.xml" />
       </set>
     </option>
-  </component>
-  <component name="Osmorc">
-    <option name="manifestSynchronizationType" value="AutomaticallySynchronize" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />

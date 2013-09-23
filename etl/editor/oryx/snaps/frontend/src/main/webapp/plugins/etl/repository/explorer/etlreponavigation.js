@@ -575,7 +575,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CsvMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {
@@ -593,7 +593,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CsvMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {

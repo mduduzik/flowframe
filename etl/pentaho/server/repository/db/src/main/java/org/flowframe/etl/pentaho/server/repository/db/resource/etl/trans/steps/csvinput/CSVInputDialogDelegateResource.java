@@ -44,6 +44,7 @@ import org.pentaho.di.trans.steps.textfileinput.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -82,7 +83,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
     }
 
     @Path("/onedit")
-    @POST
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws Exception {
 
@@ -92,6 +93,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         CsvInputMetaDTO dto = new CsvInputMetaDTO(res);
         FileEntry fe = ecmService.getFileEntryById(res.getFilename());
         dto.setFilename(fe.getName());
+        dto.setName(res.getParentStepMeta().getName());
         dto.setFileEntryId(fe.getFileEntryId()+"");
 
         return dto.toJSON();
@@ -166,7 +168,36 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
         return dto.toJSON();
     }
 
+    @Path("/save")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String onSave(@HeaderParam("userid") String userid,
+                        CsvInputMetaDTO metaDTO_) throws Exception {
+        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
+        meta_.setFilename(metaDTO_.getFileEntryId());
+        String csvInputPid = registry.getPluginId(StepPluginType.class, meta_);
+        StepMeta csvInputStep = new StepMeta(csvInputPid, metaDTO_.getName(), meta_);
+        String pathID = RepositoryUtil.saveStep(repository, metaDTO_.getPathId(), csvInputStep);
 
+        meta_ = (CsvInputMeta)csvInputStep.getStepMetaInterface();
+        meta_.setFilename(metaDTO_.getFileEntryId());
+
+        CsvInputMetaDTO dto = new CsvInputMetaDTO(meta_);
+        dto.setName(csvInputStep.getName());
+        dto.setPathId(pathID);
+
+        return dto.toJSON();
+    }
+
+    @DELETE
+    @Path("/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response onDelete(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws KettleException, JSONException {
+        String pathID = RepositoryUtil.deleteStep(repository, metaDTO_.getPathId());
+
+        return Response.ok("CSVMeta " + metaDTO_.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
+    }
 
     @Path("/uploadsample")
     @POST

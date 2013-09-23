@@ -12,7 +12,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.kernel.jpa.lob.jpacontainer.springdm:0.0.1" level="project" />
     <orderEntry type="module" module-name="org.flowframe.scheduling.remote.services" />
     <orderEntry type="module" module-name="org.flowframe.kernel.common.mdm.domain" />
     <orderEntry type="library" name="Maven: org.springframework.osgi:org.springframework.osgi.core:1.2.1" level="project" />
@@ -116,7 +115,6 @@
     <orderEntry type="library" name="Maven: com.stripe:stripe-java:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.2" level="project" />
     <orderEntry type="module" module-name="org.flowframe.thirdparty.stripe-java" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.stripe-java:sources:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-api:2.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-common-utilities:2.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.ws.xmlschema:xmlschema-core:2.0.1" level="project" />

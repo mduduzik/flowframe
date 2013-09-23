@@ -205,19 +205,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="distribution" target="1.6" />
-      <module name="editor" target="1.6" />
-      <module name="frontend" target="1.6" />
       <module name="kettle-all" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho-reporting-engine-library" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libfonts" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libformat" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libformula-ui" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libloader" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libpixie" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.librepository" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libserializer" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libswing" target="1.6" />
-      <module name="org.flowframe..thirdparty.pentaho.reporting.libxml" target="1.6" />
       <module name="org.flowframe.bpm" target="1.6" />
       <module name="org.flowframe.bpm.jbpm" target="1.6" />
       <module name="org.flowframe.bpm.jbpm.bpmserver" target="1.6" />
@@ -280,7 +268,6 @@
       <module name="org.flowframe.etl.editor.oryx.snaps.frontend" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server" target="1.6" />
-      <module name="org.flowframe.etl.pentaho.server (1)" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.plugins.core" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.plugins.manager" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.repository" target="1.6" />
@@ -306,7 +293,6 @@
       <module name="org.flowframe.kernel.jpa" target="1.6" />
       <module name="org.flowframe.kernel.jpa.container.services" target="1.6" />
       <module name="org.flowframe.kernel.jpa.container.services.impl" target="1.6" />
-      <module name="org.flowframe.kernel.jpa.lob.jpacontainer.springdm" target="1.6" />
       <module name="org.flowframe.kernel.json" target="1.6" />
       <module name="org.flowframe.kernel.metamodel" target="1.6" />
       <module name="org.flowframe.kernel.metamodel.dao.services" target="1.6" />
@@ -430,12 +416,9 @@
       <module name="org.flowframe.uilegacy.vaadin.expressions" target="1.6" />
       <module name="org.flowframe.uilegacy.vaadin.factory" target="1.6" />
       <module name="org.flowframe.uilegacy.vaadin.forms" target="1.6" />
-      <module name="oryx" target="1.6" />
       <module name="pentaho" target="1.6" />
       <module name="remote.services.min.impl" target="1.6" />
       <module name="reporting" target="1.6" />
-      <module name="repository" target="1.6" />
-      <module name="snaps" target="1.6" />
       <module name="spring-bridge" target="1.6" />
     </bytecodeTargetLevel>
   </component>
