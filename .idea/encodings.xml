@@ -17,6 +17,22 @@
     <file url="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/vaadin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/deployment" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/documentlibrary" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/drools-jbpm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/ds" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/jdbc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/jpa" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/kernel" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/metamodel" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/pageflow" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/portal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/reporting" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/tm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/ui" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/distribution/ui/component" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/documentlibrary" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/documentlibrary/remote.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/documentlibrary/remote.services.impl" charset="UTF-8" />
@@ -70,6 +86,8 @@
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/utils" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/snaps" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core" charset="UTF-8" />

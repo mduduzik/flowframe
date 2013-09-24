@@ -82,7 +82,7 @@
         <module name="org.flowframe.etl.pentaho.server.plugins.manager (1)" />
         <module name="org.flowframe.etl.pentaho.server.repository.db" />
         <module name="org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp" />
-        <module name="org.flowframe.etl.pentaho.server.services" />
+        <module name="org.flowframe.etl.pentaho.server.repository.shared" />
         <module name="org.flowframe.etl.pentaho.server.snaps.core" />
         <module name="org.flowframe.etl.pentaho.server.snaps.main" />
         <module name="org.flowframe.etl.pentaho.server.springdm" />
@@ -222,6 +222,22 @@
       <module name="org.flowframe.bpm.jbpm.ui.pageflow.services" target="1.6" />
       <module name="org.flowframe.bpm.jbpm.ui.pageflow.services.impl" target="1.6" />
       <module name="org.flowframe.bpm.jbpm.ui.pageflow.vaadin" target="1.6" />
+      <module name="org.flowframe.deployment" target="1.6" />
+      <module name="org.flowframe.distribution" target="1.6" />
+      <module name="org.flowframe.distribution.common" target="1.6" />
+      <module name="org.flowframe.distribution.documentlibrary" target="1.6" />
+      <module name="org.flowframe.distribution.drools-jbpm" target="1.6" />
+      <module name="org.flowframe.distribution.ds" target="1.6" />
+      <module name="org.flowframe.distribution.jdbc" target="1.6" />
+      <module name="org.flowframe.distribution.jpa" target="1.6" />
+      <module name="org.flowframe.distribution.kernel" target="1.6" />
+      <module name="org.flowframe.distribution.metamodel" target="1.6" />
+      <module name="org.flowframe.distribution.pageflow" target="1.6" />
+      <module name="org.flowframe.distribution.portal" target="1.6" />
+      <module name="org.flowframe.distribution.reporting" target="1.6" />
+      <module name="org.flowframe.distribution.tm" target="1.6" />
+      <module name="org.flowframe.distribution.ui" target="1.6" />
+      <module name="org.flowframe.distribution.ui.component" target="1.6" />
       <module name="org.flowframe.documentlibrary" target="1.6" />
       <module name="org.flowframe.documentlibrary.remote.services" target="1.6" />
       <module name="org.flowframe.documentlibrary.remote.services.impl" target="1.6" />
@@ -273,6 +289,8 @@
       <module name="org.flowframe.etl.pentaho.server.repository" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.repository.db" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.server.repository.services" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.server.repository.shared" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.services" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.snaps" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.snaps.core" target="1.6" />
@@ -420,6 +438,7 @@
       <module name="remote.services.min.impl" target="1.6" />
       <module name="reporting" target="1.6" />
       <module name="spring-bridge" target="1.6" />
+      <module name="utils" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

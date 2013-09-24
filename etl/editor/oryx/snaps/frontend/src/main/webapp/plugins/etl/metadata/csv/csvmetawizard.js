@@ -57,7 +57,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
             addText: 'Add sample CSV file',
             buttonsAt: 'tbar',
             id: 'uppanel',
-            url: '/etlrepo/csvmeta/uploadsample',
+            url: '/etl/core/csvmeta/uploadsample',
             path: 'root',
             maxFileSize: 1048576,
             enableProgress: false,
@@ -123,7 +123,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                                 buttonOnly: true,
                                 handler: function(){
                                     var options = {
-                                        url: '/etlrepo/csvmeta/uploadsample',
+                                        url: '/etl/core/csvmeta/uploadsample',
                                         enctype: 'multipart/form-data',
                                         isUpload: true,
                                         success: function(fp, o){
@@ -499,7 +499,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
         //Preview data
         var previewDataDS = new Ext.data.Store({
             proxy: new Ext.data.HttpProxy({
-                url: '/etlrepo/csvmeta/previewdata',
+                url: '/etl/core/csvmeta/previewdata',
                 method: 'POST',
                 headers: {
                     'userid': 'test'
@@ -629,7 +629,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                         this.defaultHeaders = {userid: 'test'};
                     });
                     Ext.Ajax.request({
-                        url: '/etlrepo/csvmeta/save',
+                        url: '/etl/core/csvmeta/save',
                         method: 'POST',
                         params: dataJson,
                         success: function (response, opts) {
@@ -688,7 +688,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     this.defaultHeaders = {userid: 'test'};
                 });
                 Ext.Ajax.request({
-                    url: '/etlrepo/csvmeta/add',
+                    url: '/etl/core/csvmeta/add',
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
@@ -791,7 +791,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                     this.defaultHeaders = {userid: 'test'};
                 });
                 Ext.Ajax.request({
-                    url: '/etlrepo/csvmeta/ongetmetadata',
+                    url: '/etl/core/csvmeta/ongetmetadata',
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
@@ -917,7 +917,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                 this.defaultHeaders = {userid: 'test'};
             });
             Ext.Ajax.request({
-                url: '/etlrepo/csvmeta/onedit',
+                url: '/etl/core/csvmeta/onedit',
                 method: 'GET',
                 params: {pathId:this.metaId},
                 success: function (response, opts) {
@@ -980,7 +980,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
                         this.defaultHeaders = {userid: 'test'};
                     });
                     Ext.Ajax.request({
-                        url: '/etlrepo/csvmeta/delete',
+                        url: '/etl/core/csvmeta/delete',
                         method: 'DELETE',
                         params: Ext.encode({name:this.metaName,pathId:this.metaId}),
                         success: function (response, opts) {

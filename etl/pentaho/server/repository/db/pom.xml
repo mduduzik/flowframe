@@ -69,6 +69,13 @@
             <version>0.0.1</version>
         </dependency>
 
+        <!-- Flowframe : ETl Repository Shared -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.etl.pentaho.server.repository.shared</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>

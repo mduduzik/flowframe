@@ -14,5 +14,6 @@
     <modules>
         <module>db</module>
         <module>db.fragments.commons-dbcp</module>
+        <module>utils</module>
     </modules>
 </project>

@@ -1,6 +1,6 @@
 package com.conx.bi.etl.pentaho.server.repository.db.tests;
 
-import org.flowframe.etl.pentaho.server.repository.db.repository.CustomRepository;
+import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
 public class DBRepositoryWrapperImplTests extends AbstractJUnit4SpringContextTests {
 
 	@Autowired
-	private CustomRepository repository;
+	private ICustomRepository repository;
 	private RepositoryDirectoryInterface rootDir;
 	private RepositoryDirectoryInterface testDir;
 	

@@ -48,6 +48,8 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="gwt" url="file://$PROJECT_DIR$/uilegacy/vaadin/addons/common" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/utils" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" />
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
@@ -55,6 +57,7 @@
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp" />
+    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main" />
     <file type="web" url="file://$PROJECT_DIR$/reporting/jasper/web.services" />
@@ -95,13 +98,21 @@
         <option value="$PROJECT_DIR$/thirdparty/supercsv/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jflex/pom.xml" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/services/pom.xml" />
+        <option value="$PROJECT_DIR$/deployment/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/shared/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/utils/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/services/pom.xml" />
         <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/pom.xml" />
       </set>
     </option>
+  </component>
+  <component name="Osmorc">
+    <option name="frameworkInstanceName" value="dmServer (3.6.2.RELEASE) Framework" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />

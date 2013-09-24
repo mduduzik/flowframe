@@ -12,6 +12,7 @@ Import-Package: org.flowframe.documentlibrary.remote.services;version="[0.0.1,1.
  org.flowframe.kernel.common.mdm.domain.documentlibrary;version="[0.0.1,1.0.0)",
  org.flowframe.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",
  org.flowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)",
+ org.flowframe.etl.pentaho.server.repository.util;version="[0.0.1,1.0.0)",
  org.gjt.mm.mysql;version="5.1.20",
  com.mysql.jdbc.jdbc2.optional;version="5.1.20",
  com.mysql.jdbc;version="5.1.20",

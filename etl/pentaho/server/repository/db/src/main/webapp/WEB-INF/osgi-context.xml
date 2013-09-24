@@ -6,9 +6,6 @@
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
-	
-<!--	<osgi:reference id="kernelPersistenceJpaDataSource" interface="javax.sql.DataSource" filter="(module=KERNEL.MAIN)"></osgi:reference>
-	
-	<osgi:service ref="pdfReportGen" interface="org.flowframe.reporting.remote.services.IReportGenerator">	
-	</osgi:service>-->
+	<osgi:service ref="dbRepository" interface="org.flowframe.etl.pentaho.server.repository.util.ICustomRepository">
+	</osgi:service>
 </beans>

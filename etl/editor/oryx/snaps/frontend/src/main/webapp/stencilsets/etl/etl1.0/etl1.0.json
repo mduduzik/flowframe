@@ -243,8 +243,15 @@
                     {
                         "from": "input",
                         "to": "output"
+                    },
+                    {
+                        "from": "input",
+                        "to": "input"
+                    },
+                    {
+                        "from": "output",
+                        "to": "output"
                     }
-
                 ]
             }
         ]

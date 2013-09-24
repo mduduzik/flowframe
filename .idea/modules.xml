@@ -21,6 +21,22 @@
       <module fileurl="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services/org.flowframe.bpm.jbpm.ui.pageflow.services.iml" filepath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services/org.flowframe.bpm.jbpm.ui.pageflow.services.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services.impl/org.flowframe.bpm.jbpm.ui.pageflow.services.impl.iml" filepath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services.impl/org.flowframe.bpm.jbpm.ui.pageflow.services.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/vaadin/org.flowframe.bpm.jbpm.ui.pageflow.vaadin.iml" filepath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/vaadin/org.flowframe.bpm.jbpm.ui.pageflow.vaadin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deployment/org.flowframe.deployment.iml" filepath="$PROJECT_DIR$/deployment/org.flowframe.deployment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/org.flowframe.distribution.iml" filepath="$PROJECT_DIR$/distribution/org.flowframe.distribution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/common/org.flowframe.distribution.common.iml" filepath="$PROJECT_DIR$/distribution/common/org.flowframe.distribution.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/documentlibrary/org.flowframe.distribution.documentlibrary.iml" filepath="$PROJECT_DIR$/distribution/documentlibrary/org.flowframe.distribution.documentlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/drools-jbpm/org.flowframe.distribution.drools-jbpm.iml" filepath="$PROJECT_DIR$/distribution/drools-jbpm/org.flowframe.distribution.drools-jbpm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/ds/org.flowframe.distribution.ds.iml" filepath="$PROJECT_DIR$/distribution/ds/org.flowframe.distribution.ds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/jdbc/org.flowframe.distribution.jdbc.iml" filepath="$PROJECT_DIR$/distribution/jdbc/org.flowframe.distribution.jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/jpa/org.flowframe.distribution.jpa.iml" filepath="$PROJECT_DIR$/distribution/jpa/org.flowframe.distribution.jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/kernel/org.flowframe.distribution.kernel.iml" filepath="$PROJECT_DIR$/distribution/kernel/org.flowframe.distribution.kernel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/metamodel/org.flowframe.distribution.metamodel.iml" filepath="$PROJECT_DIR$/distribution/metamodel/org.flowframe.distribution.metamodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/pageflow/org.flowframe.distribution.pageflow.iml" filepath="$PROJECT_DIR$/distribution/pageflow/org.flowframe.distribution.pageflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/portal/org.flowframe.distribution.portal.iml" filepath="$PROJECT_DIR$/distribution/portal/org.flowframe.distribution.portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/reporting/org.flowframe.distribution.reporting.iml" filepath="$PROJECT_DIR$/distribution/reporting/org.flowframe.distribution.reporting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/tm/org.flowframe.distribution.tm.iml" filepath="$PROJECT_DIR$/distribution/tm/org.flowframe.distribution.tm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/ui/org.flowframe.distribution.ui.iml" filepath="$PROJECT_DIR$/distribution/ui/org.flowframe.distribution.ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distribution/ui/component/org.flowframe.distribution.ui.component.iml" filepath="$PROJECT_DIR$/distribution/ui/component/org.flowframe.distribution.ui.component.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentlibrary/org.flowframe.documentlibrary.iml" filepath="$PROJECT_DIR$/documentlibrary/org.flowframe.documentlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentlibrary/remote.services/org.flowframe.documentlibrary.remote.services.iml" filepath="$PROJECT_DIR$/documentlibrary/remote.services/org.flowframe.documentlibrary.remote.services.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/org.flowframe.documentlibrary.remote.services.impl.iml" filepath="$PROJECT_DIR$/documentlibrary/remote.services.impl/org.flowframe.documentlibrary.remote.services.impl.iml" />
@@ -72,7 +88,7 @@
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/repository/org.flowframe.etl.pentaho.server.repository.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/repository/org.flowframe.etl.pentaho.server.repository.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/org.flowframe.etl.pentaho.server.repository.db.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/repository/db/org.flowframe.etl.pentaho.server.repository.db.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp/org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp/org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/services/org.flowframe.etl.pentaho.server.services.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/services/org.flowframe.etl.pentaho.server.services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared/org.flowframe.etl.pentaho.server.repository.shared.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/repository/shared/org.flowframe.etl.pentaho.server.repository.shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/snaps/org.flowframe.etl.pentaho.server.snaps.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/snaps/org.flowframe.etl.pentaho.server.snaps.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core/org.flowframe.etl.pentaho.server.snaps.core.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/snaps/core/org.flowframe.etl.pentaho.server.snaps.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/org.flowframe.etl.pentaho.server.snaps.main.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/snaps/main/org.flowframe.etl.pentaho.server.snaps.main.iml" />

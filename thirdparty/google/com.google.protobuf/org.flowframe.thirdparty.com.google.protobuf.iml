@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="Osmorc" name="OSGi">
-      <configuration manifestGenerationMode="Manually" manifestLocation="src/main/resources/META-INF/MANIFEST.MF" jarfileLocation="org.flowframe.thirdparty.com.google.protobuf-2.4.1.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="instructions.Bundle-Activator" bundleSymbolicName="org.flowframe.org.flowframe.thirdparty.com.google.protobuf" bundleVersion="instructions.Bundle-Version" ignoreFilePattern="" useProjectDefaultManifestFileLocation="false" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
-        <additionalProperties>
-          <property key="Bundle-Description" value="This bundle simply wraps com.google.protobuf.jar for use as an OSGI bundle." />
-          <property key="Bundle-Vendor" value="Apache Felix Project" />
-          <property key="Bundle-DocURL" value="http://felix.apache.org/" />
-          <property key="-include" value="src/main/resources/META-INF/MANIFEST.MF" />
-          <property key="Bundle-Name" value="org.flowframe.org.flowframe.thirdparty.com.google.protobuf" />
-          <property key="Include-Resource" value="META-INF/MANIFEST.MF=$MODULE_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
-        </additionalProperties>
-        <additionalJARContents />
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />

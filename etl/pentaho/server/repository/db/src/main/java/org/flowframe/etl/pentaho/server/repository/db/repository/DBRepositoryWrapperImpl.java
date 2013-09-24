@@ -1,5 +1,6 @@
 package org.flowframe.etl.pentaho.server.repository.db.repository;
 
+import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.database.Database;
@@ -17,7 +18,7 @@ import org.pentaho.di.repository.kdr.delegates.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements CustomRepository {
+public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements ICustomRepository {
     public static final LoggingObjectInterface loggingObject = new SimpleLoggingObject("DBRepositoryWrapperImpl repository", LoggingObjectType.REPOSITORY, null);
 
     private static final String FOLDER_METADATA = "Metadata";
@@ -59,7 +60,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 
     private Database supportingDatabase;
 
-    private static CustomRepository INSTANCE = null;
+    private static ICustomRepository INSTANCE = null;
     private String reponame;
     private String repodescription;
     private String username;
@@ -74,11 +75,11 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     private DatabaseMeta pooledDBConnection;
     private DatabaseMeta unpooledDBConnection;
 
-    public static CustomRepository getINSTANCE() {
+    public static ICustomRepository getINSTANCE() {
         if (INSTANCE == null) {
             INSTANCE = new DBRepositoryWrapperImpl();
             try {
-                ((DBRepositoryWrapperImpl)INSTANCE).init();
+                ((ICustomRepository)INSTANCE).init();
             } catch (Exception e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
