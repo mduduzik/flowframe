@@ -5,5 +5,4 @@
       xsi:schemaLocation="
 		        http://www.eclipse.org/virgo/schema/plan
 		        http://www.eclipse.org/virgo/schema/plan/eclipse-virgo-plan.xsd">
-    <artifact type="bundle" name="org.flowframe.etl.pentaho.server.repository.services" version="0.0.1"/>
 </plan>

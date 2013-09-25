@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1376463846329
+Build-Jdk: 1.7.0_21
+Built-By: lkramoli
+Bundle-Description: Jersey container providers umbrella project module
+Bundle-DocURL: http://www.oracle.com/
+Bundle-License: http://glassfish.java.net/public/CDDL+GPL_1_1.html
+Bundle-ManifestVersion: 2
+Bundle-Name: jersey-container-grizzly2-http
+Bundle-SymbolicName: org.glassfish.jersey.containers.jersey-container-gr
+ izzly2-http
+Bundle-Vendor: Oracle Corporation
+Bundle-Version: 2.2.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.glassfish.jersey.grizzly2.httpserver;uses:="org.glas
+ sfish.grizzly.http.server,org.glassfish.grizzly,org.glassfish.jersey.se
+ rver,org.glassfish.hk2.api,org.glassfish.jersey.server.spi,org.glassfis
+ h.jersey.internal.util.collection,javax.ws.rs.core,org.glassfish.hk2.ut
+ ilities.binding,org.glassfish.jersey.internal.inject,org.glassfish.jers
+ ey.process.internal,javax.inject,org.glassfish.jersey.internal.util,org
+ .glassfish.jersey.message.internal,org.glassfish.jersey.internal,org.gl
+ assfish.grizzly.utils,org.glassfish.grizzly.http.util,org.glassfish.gri
+ zzly.http,org.glassfish.jersey.server.internal,javax.ws.rs,org.glassfis
+ h.grizzly.ssl";version="2.2.0"
+Import-Package: javax.inject;version="[1.0,2)",javax.ws.rs;version="[2.0
+ ,3)",javax.ws.rs.core;version="[2.0,3)",org.glassfish.grizzly;version="
+ [2.3,3)",org.glassfish.grizzly.http;version="[2.3,3)",org.glassfish.gri
+ zzly.http.server;version="[2.3,3)",org.glassfish.grizzly.http.util;vers
+ ion="[2.3,3)",org.glassfish.grizzly.ssl;version="[2.3,3)",org.glassfish
+ .grizzly.utils;version="[2.3,3)",org.glassfish.hk2.api;version="[2.2,3)
+ ",org.glassfish.hk2.utilities.binding;version="[2.2,3)",org.glassfish.j
+ ersey.internal;version="[2.2,3)",org.glassfish.jersey.internal.inject;v
+ ersion="[2.2,3)",org.glassfish.jersey.internal.util;version="[2.2,3)",o
+ rg.glassfish.jersey.internal.util.collection;version="[2.2,3)",org.glas
+ sfish.jersey.message.internal;version="[2.2,3)",org.glassfish.jersey.pr
+ ocess.internal;version="[2.2,3)",org.glassfish.jersey.server;version="[
+ 2.2,3)",org.glassfish.jersey.server.internal;version="[2.2,3)",org.glas
+ sfish.jersey.server.spi;version="[2.2,3)"
+Tool: Bnd-1.50.0
+
+

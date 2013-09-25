@@ -4,30 +4,46 @@
 
 <web-app>
   <display-name>FF Pentaho PDI ETL Core</display-name>
-  	<context-param>
-		<param-name>contextClass</param-name>
-		<param-value>org.eclipse.virgo.web.dm.ServerOsgiBundleXmlWebApplicationContext</param-value>
-	</context-param>
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.eclipse.virgo.web.dm.ServerOsgiBundleXmlWebApplicationContext</param-value>
+    </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/properties-context.xml,/WEB-INF/applicationContext.xml,/WEB-INF/osgi-context.xml</param-value>
     </context-param>
-	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
-    <filter>
-        <filter-name>host-filter-name</filter-name>
-        <filter-class>org.eclipse.virgo.snaps.core.SnapHostFilter</filter-class>
-    </filter>
+    <servlet>
+        <servlet-name>SpringApplication</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>org.flowframe.etl.pentaho.server.snaps.org.flowframe.etl.pentaho.server.plugins.core.MainApplication</param-value>
+        </init-param>
+        <!--    <init-param>
+                <param-name>jersey.config.server.provider.packages</param-name>
+                <param-value>org.codehaus.jackson.jaxrs,org.flowframe.etl.pentaho.repository.db.services.persistence</param-value>
+            </init-param>-->
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+            <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+            <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
-    <filter-mapping>
-        <filter-name>host-filter-name</filter-name>
+    <servlet-mapping>
+        <servlet-name>SpringApplication</servlet-name>
         <url-pattern>/*</url-pattern>
-        <dispatcher>INCLUDE</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
-
+    </servlet-mapping>
 </web-app>

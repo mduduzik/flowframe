@@ -11,7 +11,7 @@ Import-Template:
   com.conx.awbtracker.core.services.*;version="1.0.0",
   com.conx.awbtracker.core.exception.*;version="1.0.0",
   com.conx.awbtracker.core.types.*;version="1.0.0",
-  com.conx.awbtracker.core.utils.*;version="1.0.0",
+  com.conx.awbtracker.org.flowframe.etl.pentaho.server.plugins.core.utils.*;version="1.0.0",
   com.conx.awbtracker.refdata.dao.services;version="1.0.0",
   iata.flightmanifest._1;version="1.0.0",
   iata.statusmessage._1;version="1.0.0",

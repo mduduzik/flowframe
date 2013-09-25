@@ -52,7 +52,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
             var treeLoader = new Ext.tree.TreeLoader({
                 requestMethod: 'GET',
                 clearOnLoad: false,
-                dataUrl: '/etlrepo/explorer/getnode',
+                dataUrl: '/etl/core/explorer/getnode',
                 preloadChildren: false,
                 baseParams: {
                     userid: 'userid',
@@ -352,7 +352,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             };
                         });
                         Ext.Ajax.request({
-                            url: '/etlrepo/explorer/deletedir',
+                            url: '/etl/core/explorer/deletedir',
                             method: 'DELETE',
                             success: function (response, opts) {
                                 //Refresh this.ctxNode
@@ -520,7 +520,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             };
                         });
                         Ext.Ajax.request({
-                            url: '/etlrepo/explorer/deletedir',
+                            url: '/etl/core/explorer/deletedir',
                             method: 'DELETE',
                             success: function (response, opts) {
                                 //Refresh this.ctxNode

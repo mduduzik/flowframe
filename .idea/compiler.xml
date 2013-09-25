@@ -122,6 +122,9 @@
         <module name="org.flowframe.thirdparty.drools-core" />
         <module name="org.flowframe.thirdparty.drools-persistence" />
         <module name="org.flowframe.thirdparty.flexjson" />
+        <module name="org.flowframe.thirdparty.grizzly-framework" />
+        <module name="org.flowframe.thirdparty.grizzly-http" />
+        <module name="org.flowframe.thirdparty.grizzly-http-server" />
         <module name="org.flowframe.thirdparty.gwt-console-rpc" />
         <module name="org.flowframe.thirdparty.gwt-console-server-integration" />
         <module name="org.flowframe.thirdparty.hibernate.annotations.commons" />
@@ -140,6 +143,8 @@
         <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" />
         <module name="org.flowframe.thirdparty.jbpm-workitems" />
         <module name="org.flowframe.thirdparty.jbpt" />
+        <module name="org.flowframe.thirdparty.jersey-container-grizzly2-http" />
+        <module name="org.flowframe.thirdparty.jersey-container-grizzly2-servlet" />
         <module name="org.flowframe.thirdparty.jersey-server" />
         <module name="org.flowframe.thirdparty.jersey.hk2-utils" />
         <module name="org.flowframe.thirdparty.jersey.javax.inject" />
@@ -345,6 +350,9 @@
       <module name="org.flowframe.thirdparty.drools-persistence" target="1.6" />
       <module name="org.flowframe.thirdparty.flexjson" target="1.6" />
       <module name="org.flowframe.thirdparty.google" target="1.6" />
+      <module name="org.flowframe.thirdparty.grizzly-framework" target="1.6" />
+      <module name="org.flowframe.thirdparty.grizzly-http" target="1.6" />
+      <module name="org.flowframe.thirdparty.grizzly-http-server" target="1.6" />
       <module name="org.flowframe.thirdparty.gwt-console-rpc" target="1.6" />
       <module name="org.flowframe.thirdparty.gwt-console-server-integration" target="1.6" />
       <module name="org.flowframe.thirdparty.hibernate.annotations.commons" target="1.6" />
@@ -366,6 +374,8 @@
       <module name="org.flowframe.thirdparty.jbpm-workitems" target="1.6" />
       <module name="org.flowframe.thirdparty.jbpt" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey" target="1.6" />
+      <module name="org.flowframe.thirdparty.jersey-container-grizzly2-http" target="1.6" />
+      <module name="org.flowframe.thirdparty.jersey-container-grizzly2-servlet" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey-server" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.hk2-utils" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.javax.inject" target="1.6" />

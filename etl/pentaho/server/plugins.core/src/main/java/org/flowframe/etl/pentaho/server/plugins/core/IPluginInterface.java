@@ -8,5 +8,4 @@ import org.pentaho.di.core.plugins.PluginInterface;
  */
 public interface IPluginInterface extends PluginInterface {
     public java.lang.Class<? extends BaseResource> getRESTResourceType();
-    public String
 }

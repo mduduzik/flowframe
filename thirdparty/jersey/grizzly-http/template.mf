@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1376084532747
+Build-Jdk: 1.7.0_25
+Built-By: catsnac
+Bundle-Description: Grizzly Bill of Materials (BOM)
+Bundle-DocURL: http://www.oracle.com
+Bundle-License: http://glassfish.java.net/public/CDDL+GPL.html
+Bundle-ManifestVersion: 2
+Bundle-Name: grizzly-http
+Bundle-SymbolicName: org.glassfish.grizzly.http
+Bundle-Vendor: Oracle Corporation
+Bundle-Version: 2.3.5
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.glassfish.grizzly.http.io;uses:="org.glassfish.grizz
+ ly,org.glassfish.grizzly.utils,org.glassfish.grizzly.http.util,org.glas
+ sfish.grizzly.memory,org.glassfish.grizzly.http,org.glassfish.grizzly.f
+ ilterchain,org.glassfish.grizzly.impl,org.glassfish.grizzly.asyncqueue"
+ ;version="2.3.5",org.glassfish.grizzly.http;uses:="org.glassfish.grizzl
+ y.memory,org.glassfish.grizzly.utils,org.glassfish.grizzly.http.util,or
+ g.glassfish.grizzly.filterchain,org.glassfish.grizzly,org.glassfish.gri
+ zzly.compression.zip,org.glassfish.grizzly.attributes,org.glassfish.gri
+ zzly.monitoring,org.glassfish.grizzly.ssl,javax.net.ssl,org.glassfish.g
+ rizzly.compression.lzma";version="2.3.5",org.glassfish.grizzly.http.uti
+ l;uses:="org.glassfish.grizzly,org.glassfish.grizzly.utils,org.glassfis
+ h.grizzly.memory,org.glassfish.grizzly.http,org.glassfish.grizzly.local
+ ization";version="2.3.5"
+implementation-version: 2.3.5
+Import-Package: javax.net.ssl,org.glassfish.grizzly;version="2.3.5",org.
+ glassfish.grizzly.asyncqueue;version="2.3.5",org.glassfish.grizzly.attr
+ ibutes;version="2.3.5",org.glassfish.grizzly.compression.lzma;version="
+ 2.3.5",org.glassfish.grizzly.compression.zip;version="2.3.5",org.glassf
+ ish.grizzly.filterchain;version="2.3.5",org.glassfish.grizzly.impl;vers
+ ion="2.3.5",org.glassfish.grizzly.localization;version="2.3.5",org.glas
+ sfish.grizzly.memory;version="2.3.5",org.glassfish.grizzly.monitoring;v
+ ersion="2.3.5",org.glassfish.grizzly.ssl;version="2.3.5",org.glassfish.
+ grizzly.utils;version="2.3.5"
+mode: development
+package: org.glassfish.grizzly
+Tool: Bnd-1.50.0
+url: http://grizzly.java.net/grizzly-http

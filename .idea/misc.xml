@@ -54,6 +54,7 @@
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" />
+    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp" />
@@ -101,6 +102,11 @@
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/services/pom.xml" />
         <option value="$PROJECT_DIR$/deployment/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/shared/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-http/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-servlet/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-grizzly-framework/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
