@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>ExtJS Example : Custom Vertical TabPanel</title>
+    <link rel="stylesheet" type="text/css" href="/etl/lib/ext-2.0.2/resources/css/ext-all.css">
+    
+	
+	<!-- VrTabPanel extension -->
+    <link rel="stylesheet" type="text/css" href="Ext.ux.tot2ivn.VrTabPanel.css" />
+    
+	<!-- Common Styles for the examples -->
+	<link rel="stylesheet" type="text/css" href="tabs-example.css" />	
+    <link rel="stylesheet" type="text/css" href="../shared/examples.css" />
+	
+    <!-- GC -->
+ 	<!-- LIBS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/etl/lib/ext-2.0.2/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="/etl/lib/ext-2.0.2/ext-all-debug.js"></script>
+
+ 	<!-- ENDLIBS -->    
+	
+    <!-- VrTabPanel extension -->
+    <script type="text/javascript" src="Ext.ux.tot2ivn.VrTabPanel.js"></script>
+	
+	<!-- Example -->
+    <script type="text/javascript" src="tabs-example.js"></script>
+    
+</head>
+<body>
+<script type="text/javascript" src="../shared/examples.js"></script><!-- EXAMPLES -->
+
+<h1>Vertical Tab Panel Examples</h1>
+<p>Note that the js and css is not minified so it is readable. See <a href="tabs-example.js">tabs-example.js</a> for the tab creation code
+and <a href="tabs-example.css">tabs-example.css</a> for the css.</p>
+
+    <h3>Tabs with auto height that resize to the content. Built from existing markup.</h3><br>
+
+    <!-- container for the existing markup tabs -->
+    <div id="tabs1">
+        <div id="script" class="x-hide-display">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl. Maecenas tortor turpis, interdum non, sodales non, iaculis ac, lacus.<br/><br/> Vestibulum auctor, tortor quis iaculis malesuada, libero lectus bibendum purus, sit amet tincidunt quam turpis vel lacus. In pellentesque nisl non sem. Suspendisse nunc sem, pretium eget, cursus a, fringilla vel, urna.</p>
+        </div>
+        <div id="markup" class="x-hide-display">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui. Pellentesque ut nisl. Maecenas tortor turpis, interdum non, sodales non, iaculis ac, lacus. Vestibulum auctor, tortor quis iaculis malesuada, libero lectus bibendum purus, sit amet tincidunt quam turpis vel lacus. In pellentesque nisl non sem. Suspendisse nunc sem, pretium eget, cursus a, fringilla vel, urna.<br/><br/>Aliquam commodo ullamcorper erat. Nullam vel justo in neque porttitor laoreet. Aenean lacus dui, consequat eu, adipiscing eget, nonummy non, nisi. Morbi nunc est, dignissim non, ornare sed, luctus eu, massa. Vivamus eget quam. Vivamus tincidunt diam nec urna. Curabitur velit.</p>
+        </div>
+    </div>
+
+    <br>
+	<div id="tabs2">
+		<h3>Tabs with no tab strip and a fixed height that scroll the content. Built entirely with javascript.</h3>
+		<ul class="list">
+		<li>Tab 1 is a normal tab with content passed when adding it.</li>
+		<li>Tab 2 is loaded via Ajax.</li>
+		<li>Tab 3 is loaded via Ajax too. It was set up to pass parameters when loaded.</li>
+		<li>Tab 4 has an event listener attached.</li>
+		<li>Tab 5 is disabled.</li>
+		</ul><br>
+	</div>
+	
+	<br>
+	<br>
+    <h3>Vertical Tabs ( Ext.ux.tot2ivn.VrTabPanel ) nested inside Horizontal TabPanel ( Ext.TabPanel ).</h3>
+	<br/>
+	<div id="tabs4">
+	</div>
+	
+	<br>
+	<br>
+    <h3>Horizontal Tabs ( Ext.TabPanel ) nested inside Vertical TabPanel.</h3>
+	<br/>
+	<div id="tabs3">
+	</div>
+</body>
+</html>

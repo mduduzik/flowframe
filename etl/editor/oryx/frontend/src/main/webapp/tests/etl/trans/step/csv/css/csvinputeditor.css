@@ -1,0 +1,28 @@
+/** vim: ts=4:sw=4:nu:fdc=4:nospell
+ *
+ * A CSS File for Tabs in Form Example
+ *
+ * @author    Ing.Jozef Sakáloš
+ * @copyright (c) 2008, by Ing. Jozef Sakáloš
+ * @date      29. May 2008
+ * @version   $Id: tabsinform.css 78 2008-06-06 09:22:10Z jozo $
+ *
+ * @license tabsinform.css is licensed under the terms of the Open Source
+ * LGPL 3.0 license. Commercial use is permitted to the extent that the 
+ * code/component(s) do NOT become part of another Open Source or Commercially
+ * licensed development library or toolkit without explicit permission.
+ * 
+ * License details: http://www.gnu.org/licenses/lgpl.html
+ */
+
+#tabsinform-win .x-panel-body, #tabsinform-win .x-tab-panel-body {
+	background:transparent;
+}
+.x-tab-with-icon .x-tab-right {
+	padding-left:6px;
+}
+.x-tab-with-icon .x-tab-left {
+	padding-right:2px;
+}
+ 
+/* eof */

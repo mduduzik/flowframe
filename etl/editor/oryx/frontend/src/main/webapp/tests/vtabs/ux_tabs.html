@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>ExtJS Example : Custom Vertical TabPanel</title>
+    <link rel="stylesheet" type="text/css" href="/etl/lib/ext-2.0.2/resources/css/ext-all.css">
+    
+	
+	<!-- VrTabPanel extension -->
+    <link rel="stylesheet" type="text/css" href="ux_VerticalTabPanel.css" />
+    
+	<!-- Common Styles for the examples -->
+	<link rel="stylesheet" type="text/css" href="tabs-example.css" />	
+    <link rel="stylesheet" type="text/css" href="../shared/examples.css" />
+	
+    <!-- GC -->
+ 	<!-- LIBS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/etl/lib/ext-2.0.2/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="/etl/lib/ext-2.0.2/ext-all-debug.js"></script>
+
+ 	<!-- ENDLIBS -->    
+	
+    <!-- VrTabPanel extension -->
+    <script type="text/javascript" src="ux_VerticalTabPanel.js"></script>
+	
+	<!-- Example -->
+    <!--<script type="text/javascript" src="tabs-example.js"></script>-->
+    
+</head>
+<body>
+<script type="text/javascript">
+Ext.onReady( function() {
+    Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+    Ext.QuickTips.init();
+
+    var tabpanel1 = new Ext.ux.VerticalTabPanel({
+        activeTab: 0,
+        tabPosition:'left',  //choose 'left' or 'right' for vertical tabs; 'top' or 'bottom' for horizontal tabs
+        textAlign:'right',
+        width:500,
+        height:200,
+        tabWidth:100,
+        defaults:{autoScroll: true},
+        items:[{
+            title: 'By category',
+            html: "Show content by category... "
+        },{
+            title: 'Folder',
+            html: "Show folder content... "
+        }    ]  });
+
+    var viewport = new Ext.Viewport({
+        layout:'border',
+        items:[tabpanel1
+        ]
+    });
+});
+</script>
+</body>
+</html>

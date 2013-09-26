@@ -26,7 +26,7 @@
     </bean>
 
     <!-- Repo Impl -->
-<!--    <bean id="dbRepoImpl" class="org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton">
+    <bean id="repository" class="org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton">
         <property name="reponame" value="${ff.etl.repo.name}"/>
         <property name="repodescription" value="${ff.etl.repo.description}"/>
         <property name="username" value="${ff.etl.repo.user.name}"/>
@@ -38,7 +38,7 @@
         <property name="dbtype" value="${ff.etl.repo.database.type}"/>
         <property name="dbname" value="${ff.etl.repo.database.name}"/>
         <property name="dbport" value="${ff.etl.repo.database.port}"/>
-    </bean>-->
+    </bean>
 
 
     <!--

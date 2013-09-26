@@ -1,0 +1,421 @@
+{
+    "title": "ETL 1.0",
+    "namespace": "http://etl.flowframe.org/stencilset/etlbasic#",
+    "description": "ETL 1.0",
+    "propertyPackages": [
+        {
+            "name":"baseAttributes",
+            "properties": [
+                {
+                    "id":"name",
+                    "type":"String",
+                    "title":"Name",
+                    "value":"",
+                    "description":"The descriptive name of the BPMN element.",
+                    "description_de":"Bezeichnung des BPMN-Elementes.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
+                    "wrapLines" : true,
+                    "refToView":"text_name"
+                },
+                {
+                    "id":"documentation",
+                    "type":"Text",
+                    "title":"Documentation",
+                    "title_de":"Dokumentation",
+                    "value":"",
+                    "description":"This attribute is used to annotate the BPMN element, such as descriptions and other documentation.",
+                    "description_de":"Der Modellierer kann weiteren Text zur Dokumentation des BPMN-Elementes einfügen.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
+                    "wrapLines":true,
+                    "popular" : false
+                },
+                {
+                    "id":"version",
+                    "type":"String",
+                    "title":"Version",
+                    "value":"",
+                    "description":"This defines the Version number of the Diagram.",
+                    "description_de":"Setzt die Versionsnummer des Diagramms.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                },
+                {
+                    "id":"author",
+                    "type":"String",
+                    "title":"Author",
+                    "title_de":"Autor",
+                    "value":"",
+                    "description":"This holds the name of the author of the Diagram.",
+                    "description_de": "Name des Autors des Diagramms.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                }
+            ]
+        },
+        {
+            "name":"metadataAttributes",
+            "properties": [
+                {
+                    "id":"metadatatype",
+                    "type":"String",
+                    "title":"Metadata Type",
+                    "value":"",
+                    "description":"Metadata type (e.g. TextFileInput.)",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines" : false,
+                    "popular" : true
+                },
+                {
+                    "id":"metadataName",
+                    "type":"Text",
+                    "title":"Metadata Name",
+                    "value":"",
+                    "description":"Metadata Name",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                },
+                {
+                    "id":"metadataObjId",
+                    "type":"Text",
+                    "title":"Metadata ID",
+                    "value":"",
+                    "description":"Metadata ID",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+            ]
+        }
+    ],
+    "stencils": [
+        //Inputs
+        {
+            "type": "node",
+            "id": "CsvInput",
+            "title": "CSV file input",
+            "supportedMetadata":["csvmeta"],
+            "groups": ["Inputs"],
+            "description": "CSV file input",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileInputDelimited_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileInputDelimited_icon32.png",
+            "mayBeRoot":		true,
+            "roles":			["all","input"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"],
+            "properties": [
+                {
+                    "id":"distribute",
+                    "type":"Boolean",
+                    "title":"Distribute?",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "refToView":"",
+                    "length":"30"
+                },
+                {
+                    "id":"fileNameField",
+                    "type":"String",
+                    "title":"Filename Field",
+                    "value":"",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"50",
+                    "wrapLines":false
+                },
+                {
+                    "id":"rowNumField",
+                    "type":"String",
+                    "title":"Rownum Field",
+                    "value":"",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"50",
+                    "wrapLines":false
+                },
+                {
+                    "id":"includeFilename",
+                    "type":"Boolean",
+                    "title":"Include Filename",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "refToView":"",
+                    "length":"30"
+                },
+                {
+                    "id":"separator",
+                    "type":"String",
+                    "title":"Separator",
+                    "value":",",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"50",
+                    "wrapLines":false
+                },
+                {
+                    "id":"enclosure",
+                    "type":"String",
+                    "title":"Enclosure",
+                    "value":"&quot;",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"50",
+                    "wrapLines":false
+                },
+                {
+                    "id":"header",
+                    "type":"Boolean",
+                    "title":"Header",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"30"
+                },
+                {
+                    "id":"bufferSize",
+                    "type":"Integer",
+                    "title":"Buffer Size",
+                    "value":5000,
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "min":"0"
+                },
+                {
+                    "id":"lazyConversion",
+                    "type":"Boolean",
+                    "title":"Lazy Conversion",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"30"
+                },
+                {
+                    "id":"lazyConversion",
+                    "type":"Boolean",
+                    "title":"Lazy Conversion",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"30"
+                },
+                {
+                    "id":"addFilenameResult",
+                    "type":"Boolean",
+                    "title":"Add Filename Result",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"30"
+                },
+                {
+                    "id":"parallel",
+                    "type":"Boolean",
+                    "title":"Parallel",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"30"
+                },
+                {
+                    "id":"newlinePossible",
+                    "type":"Boolean",
+                    "title":"Parallel",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"30"
+                },
+                {
+                    "id":"encoding",
+                    "type":"String",
+                    "title":"Encoding",
+                    "value":"",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "length":"50",
+                    "wrapLines":false
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "TextFileInput",
+            "title": "File Input Delimited",
+            "supportedMetadata":["csvmeta","textfilemeta"],
+            "groups": ["Inputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileInputDelimited_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileInputDelimited_icon32.png",
+            "mayBeRoot":		true,
+            "roles":			["all","input"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        {
+            "type": "node",
+            "id": "ExcelInput",
+            "title": "File Input Excel",
+            "supportedMetadata":["excelmeta"],
+            "groups": ["Inputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileInputExcel_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileInputExcel_icon32.png",
+            "mayBeRoot":		true,
+            "roles":			["all","input"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        {
+            "type": "node",
+            "id": "TableInput",
+            "title": "Table Input",
+            "supportedMetadata":["database"],
+            "groups": ["Inputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMysqlInput_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection2\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tMysqlInput_icon32.png",
+            "roles": ["all","input"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        //Outputs
+        {
+            "type": "node",
+            "id": "TextFileOutput",
+            "title": "File Output Delimited",
+            "supportedMetadata":["csvmeta","textfilemeta"],
+            "groups": ["Outputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileOutputDelimited_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileOutputDelimited_icon32.png",
+            "roles":			["all","output"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        {
+            "type": "node",
+            "id": "ExcelOutput",
+            "title": "File Output Excel",
+            "supportedMetadata":["excelmeta"],
+            "groups": ["Outputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tFileOutputExcel_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tFileOutputExcel_icon32.png",
+            "roles":			["all","output"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        {
+            "type": "node",
+            "id": "TableOutput",
+            "title": "Table Output",
+            "supportedMetadata":["database"],
+            "groups": ["Outputs"],
+            "description": "A data source that can be used to back reports etc.",
+            "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMysqlOutput_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection2\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tMysqlOutput_icon32.png",
+            "roles": ["all","output"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+
+        //Transforms
+        {
+            "type": "node",
+            "id": "trans_map",
+            "title": "Transform Map",
+            "supportedMetadata":["database","csvmeta","excelmeta"],
+            "groups": ["Transforms"],
+            "description": "A data source that can be used to back reports etc.",
+            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tMap_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection3\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tMap_icon32.png",
+            "roles": ["all","transformation","input"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        //Logging
+        {
+            "type": "node",
+            "id": "row_log",
+            "title": "Row Log",
+            "groups": ["Logging"],
+            "description": "A data source that can be used to back reports etc.",
+            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/tLogRow_icon32.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"middle center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection3\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
+            "icon": "tLogRow_icon32.png",
+            "roles": ["all","output"],
+            "propertyPackages" : ["baseAttributes","metadataAttributes"]
+        },
+        //Relationships
+        {
+            "type": "edge",
+            "id": "connector",
+            "title": "Connector",
+            "groups": ["Relationship"],
+            "description": "A precedes edges",
+            "view": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    version=\"1.1\">    <defs>                  <marker id=\"arrowEnd\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\"                          markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\">                          <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"orange\" stroke=\"orange\"/>                  </marker>          </defs>     <g>         <path d=\"M50 50 L100 50\" stroke=\"orange\" fill=\"none\"                  stroke-width=\"1\" marker-end=\"url(#arrowEnd)\"/>                      </g> </svg> ",
+            "icon": "association.unidirectional.png",
+            "roles": ["controlflow"]
+        }
+    ],
+    "rules": {
+        "containmentRules": [
+            {
+                "role": "all",
+                "contains": [
+                    "all"
+                ]
+            }
+        ],
+        "connectionRules": [
+            {
+                "role": "controlflow",
+                "connects": [
+                    {
+                        "from": "input",
+                        "to": "transformation"
+                    },
+                    {
+                        "from": "transformation",
+                        "to": "input"
+                    },
+                    {
+                        "from": "transformation",
+                        "to": "output"
+                    },
+                    {
+                        "from": "input",
+                        "to": "output"
+                    },
+                    {
+                        "from": "input",
+                        "to": "input"
+                    },
+                    {
+                        "from": "output",
+                        "to": "output"
+                    }
+                ]
+            }
+        ]
+    }
+}

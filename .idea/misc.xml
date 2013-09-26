@@ -51,6 +51,7 @@
     <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/utils" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" />
+    <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" />
@@ -68,7 +69,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/repository.db/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.manager/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server.springdm/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
@@ -77,7 +77,6 @@
         <option value="$PROJECT_DIR$/etl/pentaho/server/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/core/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/commons-math/pom.xml" />
@@ -93,12 +92,10 @@
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
         <option value="$PROJECT_DIR$/etl/editor/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/bpmnq/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jbpt/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/supercsv/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jflex/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/services/pom.xml" />
         <option value="$PROJECT_DIR$/deployment/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/shared/pom.xml" />
@@ -107,10 +104,13 @@
         <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-grizzly-framework/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/json20090211/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/repository/utils/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/services/pom.xml" />
         <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/pom.xml" />

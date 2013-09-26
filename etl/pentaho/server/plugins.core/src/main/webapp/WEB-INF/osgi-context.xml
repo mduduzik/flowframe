@@ -7,5 +7,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 	
+<!--
     <osgi:reference id="repository" interface="org.flowframe.etl.pentaho.server.repository.util.ICustomRepository"/>
+-->
 </beans>

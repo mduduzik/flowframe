@@ -1,0 +1,4 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.json20090211
+Bundle-Name: org.flowframe.thirdparty.json20090211
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.0.1

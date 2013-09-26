@@ -123,7 +123,7 @@ ORYX.Plugins.PropertyWindow = {
 			stripeRows: true,
 			autoExpandColumn: "propertywindow_column_value",
 			width:'auto',
-            iconCls: 'property-icon',
+            iconCls: 'palette-icon',
             title: 'Properties',
 			// the column model
 			colModel: this.columnModel,

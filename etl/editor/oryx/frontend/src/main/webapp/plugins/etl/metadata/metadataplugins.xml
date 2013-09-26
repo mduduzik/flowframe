@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<plugins>
+		<plugin source="etl/metadata/dbconnection/dbconnectionwizard.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
+        <plugin source="etl/metadata/csv/csvmetawizard.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaWizard"/>
+        <plugin source="etl/trans/step/csv/csvinputeditor.js" name="ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow"/>
+	</plugins>
+</config>

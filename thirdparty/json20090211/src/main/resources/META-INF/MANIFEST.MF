@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Export-Package: org.json;version="0.0.1"
+Build-Jdk: 1.6.0_45
+Built-By: Mduduzi
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: org.flowframe.thirdparty.json20090211
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: org.flowframe.thirdparty.json20090211
+Archiver-Version: Plexus Archiver
+

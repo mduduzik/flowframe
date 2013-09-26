@@ -75,8 +75,8 @@
         <module name="org.flowframe.erp.remote.services" />
         <module name="org.flowframe.erp.remote.services.impl" />
         <module name="org.flowframe.erp.remote.services.impl.config.fragment" />
-        <module name="org.flowframe.etl.editor.oryx.snaps.frontend" />
-        <module name="org.flowframe.etl.pentaho.repository.db" />
+        <module name="org.flowframe.etl.editor.oryx.frontend" />
+        <module name="org.flowframe.etl.editor.oryx.snaps.frontend (1)" />
         <module name="org.flowframe.etl.pentaho.server.plugins.core" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager (1)" />
@@ -150,6 +150,7 @@
         <module name="org.flowframe.thirdparty.jersey.javax.inject" />
         <module name="org.flowframe.thirdparty.jersey.jersey-spring3" />
         <module name="org.flowframe.thirdparty.jflex" />
+        <module name="org.flowframe.thirdparty.json20090211" />
         <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
         <module name="org.flowframe.thirdparty.knowledge-api" />
         <module name="org.flowframe.thirdparty.knowledge-internal-api" />
@@ -285,6 +286,7 @@
       <module name="org.flowframe.etl" target="1.6" />
       <module name="org.flowframe.etl.editor" target="1.6" />
       <module name="org.flowframe.etl.editor.oryx" target="1.6" />
+      <module name="org.flowframe.etl.editor.oryx.frontend" target="1.6" />
       <module name="org.flowframe.etl.editor.oryx.snaps" target="1.6" />
       <module name="org.flowframe.etl.editor.oryx.snaps.frontend" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />
@@ -381,6 +383,7 @@
       <module name="org.flowframe.thirdparty.jersey.javax.inject" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.jersey-spring3" target="1.6" />
       <module name="org.flowframe.thirdparty.jflex" target="1.6" />
+      <module name="org.flowframe.thirdparty.json20090211" target="1.6" />
       <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-api" target="1.6" />
       <module name="org.flowframe.thirdparty.knowledge-internal-api" target="1.6" />

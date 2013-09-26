@@ -1,0 +1,230 @@
+<html>
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ext.ux.Wiz - SimpleWizard</title>
+
+    <script src="/etl/lib/prototype-1.5.1.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/etl/lib/ext-2.0.2/resources/css/ext-all.css"/>
+
+    <!-- GC -->
+    <!-- LIBS -->
+    <script type="text/javascript" src="/etl/lib/ext-2.0.2/adapter/ext/ext-base.js"></script>
+    <!-- ENDLIBS -->
+
+    <script type="text/javascript" src="/etl/lib/ext-2.0.2/ext-all-debug.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/etl/oryx/lib/ext-2.0.2/ux/wiz/resources/wiz.css"/>
+    <script type="text/javascript" src="/etl/oryx/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js"></script>
+
+
+
+    <style>
+        .search-item {
+            font:normal 11px tahoma, arial, helvetica, sans-serif;
+            padding:3px 10px 3px 10px;
+            border:1px solid #fff;
+            border-bottom:1px solid #eeeeee;
+            white-space:normal;
+            color:#555;
+        }
+        .search-item h3 {
+            display:block;
+            font:inherit;
+            font-weight:bold;
+            color:#222;
+        }
+
+        .search-item h3 span {
+            float: right;
+            font-weight:normal;
+            margin:0 0 5px 5px;
+            width:100px;
+            display:block;
+            clear:none;
+        }
+    </style>
+</head>
+
+<body>
+<script type="text/javascript">
+
+
+    Ext.onReady(function () {
+
+        Ext.QuickTips.init();
+
+        var wizard = new Ext.ux.Wiz({
+            headerConfig: {
+                title: 'Simple Wizard Example'
+            },
+
+            cardPanelConfig: {
+                defaults: {
+                    baseCls: 'x-small-editor',
+                    bodyStyle: 'padding:40px 15px 5px 120px;background-color:#F6F6F6;',
+                    border: false
+                }
+            },
+            getSelectWizardData : function(cardids)
+            {
+                var formValues = {};
+                var cards = this.cards;
+                for (var i = 0, len = cards.length; i < len; i++) {
+
+                    var cardform = cards[i].form;
+                    if (cardform) {
+                        var values = cardform.getValues(false);
+                        Object.extend(formValues,values);
+                    }
+                }
+                return formValues;
+            },
+
+            onFinish: function() {
+                var data = this.getSelectWizardData([
+                    'selectdatabasetype',
+                    'jdbcsettings',
+                    'auth']);
+                Object.extend(data,{dirObjectId:'2'});
+                var dataJson = Ext.encode(data);
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function(method, uri, cb, data, options){
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid:'test'};
+                });
+                Ext.Ajax.request({
+                    url: '/etlrepo/databasemeta/add',
+                    method: 'POST',
+                    params: dataJson,
+                    success: function(response, opts) {},
+                    failure: function(response, opts) {}
+                });
+            },
+            cards: [
+                // second card with input fields last/firstname
+                new Ext.ux.Wiz.Card({
+                    id: "selectdatabasetype",
+                    title: 'Enter name and select database type',
+                    monitorValid: true,
+                    defaults: {
+                        labelStyle: 'font-size:11px'
+                    },
+                    items: [
+                        new Ext.form.TextField({
+                            name: 'name',
+                            fieldLabel: 'Name',
+                            allowBlank: false
+                        }),
+                        new Ext.form.ComboBox({
+                            name: 'databaseType',
+                            fieldLabel: 'Database Type',
+                            hiddenName:'databaseType',
+                            store: new Ext.data.Store({
+                                id: "store",
+                                remoteSort: true,
+                                autoLoad: {params:{start:1, limit:2}},
+                                proxy: new Ext.data.ScriptTagProxy({
+                                    url: 'http://localhost:8082/etlrepo/databasetype/search'
+                                }),
+                                reader: new Ext.data.JsonReader({
+                                    root : 'data',
+                                    totalProperty: 'totalCount'
+                                }, [
+                                    {name: 'id', mapping: 'id'},
+                                    {name: 'code', mapping: 'code'},
+                                    {name: 'description', mapping: 'description'}
+                                ])
+                            }),
+
+                            valueField:'code',
+                            displayField:'description',
+                            typeAhead: true,
+                            mode: 'local',
+                            triggerAction: 'all',
+                            emptyText:'Select a database type...',
+                            selectOnFocus:true,
+                            width:190
+                        })
+                    ]
+                }),
+                // JDBC Settings
+                new Ext.ux.Wiz.Card({
+                    name: 'jdbcsettings',
+                    title: 'Set the JDBC Settings',
+                    monitorValid: true,
+                    defaults: {
+                        labelStyle: 'font-size:11px'
+                    },
+                    items: [
+                        new Ext.form.TextField({
+                            name: 'hostname',
+                            fieldLabel: 'Hostname of database server',
+                            allowBlank: false
+                        }),
+                        new Ext.form.NumberField({
+                            name: 'databasePort',
+                            fieldLabel: 'The TCP/IP Port',
+                            allowBlank: true
+                        }),
+                        new Ext.form.TextField({
+                            name: 'databaseName',
+                            fieldLabel: 'The name of the database',
+                            allowBlank: false
+                        })
+                    ]
+                }),
+                //Auth
+                new Ext.ux.Wiz.Card({
+                    name: 'auth',
+                    title: 'Enter username and password',
+                    monitorValid: true,
+                    defaults: {
+                        labelStyle: 'font-size:11px'
+                    },
+                    items: [
+                        new Ext.form.TextField({
+                            name: 'username',
+                            fieldLabel: 'Username',
+                            allowBlank: false
+                        }),
+                        new Ext.form.TextField({
+                            name: 'password',
+                            fieldLabel: 'Password',
+                            allowBlank: false,
+                            inputType:"password"
+                        })
+                    ]
+                })
+
+            ]
+        });
+
+        // show the wizard
+        var panel = new Ext.Panel({
+            title       : 'Navigation',
+            layout      : 'fit',
+            split       : true,
+            width       : 500,
+            height      : 400,
+            collapsible : false,
+            margins     : '3 0 3 3',
+            cmargins    : '3 3 3 3',
+            items       : [
+                wizard
+            ]
+        });
+
+        new Ext.Viewport({
+            layout: 'fit',
+            title: 'Ext Layout Browser',
+            items: [wizard
+            ],
+            renderTo: Ext.getBody()
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
