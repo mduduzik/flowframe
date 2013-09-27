@@ -339,9 +339,9 @@ ORYX.Editor = {
             region: 'center',
             minTabWidth: 115,
             tabWidth:135,
-            enableTabScroll:true,
+            enableTabScroll:false,
             activeTab: 0,
-            defaults: {autoScroll:true}
+            //defaults: {autoScroll:true}
             //plugins: new Ext.ux.TabCloseMenu(),
             /*items: [selectedComponentForm,problemsGrid]*/
         });
@@ -352,7 +352,7 @@ ORYX.Editor = {
             border	:false,
             split	: true,
             bodyStyle:'padding:0px',
-            height: 250,
+            height: 200,
             items   :[canvasEditorSectionPanelBasicTab_
             ]
         });

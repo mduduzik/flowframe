@@ -36,7 +36,7 @@
 }
 
 .ux-vertical-tabs ul.x-tab-strip li .x-tab-strip-inner {
-  padding: 6px 3px;
+  padding: 0px 3px;
 }
 
 .ux-vertical-tabs .x-tab-left, .ux-vertical-tabs .x-tab-strip .x-tab-with-icon .x-tab-right, .ux-vertical-tabs .x-tab-strip-top .x-tab-right {
