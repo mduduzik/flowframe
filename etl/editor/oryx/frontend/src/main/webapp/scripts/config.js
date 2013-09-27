@@ -8,6 +8,7 @@ if(!ORYX.CONFIG) ORYX.CONFIG = {};
 //This is usually the name of the war file!
 ORYX.CONFIG.ROOT_PATH =					"/etl/oryx/";
 ORYX.CONFIG.WEB_URL = "http://oryx-project.org";
+ORYX.CONFIG.PROPERTY_PREFIX  = "oryx-";
 	
 ORYX.CONFIG.VERSION_URL =				ORYX.CONFIG.ROOT_PATH + "VERSION";
 ORYX.CONFIG.LICENSE_URL =				ORYX.CONFIG.ROOT_PATH + "LICENSE";
