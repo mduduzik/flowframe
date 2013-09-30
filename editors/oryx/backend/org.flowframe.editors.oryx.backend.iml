@@ -21,19 +21,13 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.hibernate.core:3.6.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.hibernate.annotations.commons:3.2.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.javassist:3.12.0.GA" level="project" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.asm:3.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.hibernate.entitymanager:3.6.0.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.com.mysql.jdbc:5.1.20" level="project" />
     <orderEntry type="library" name="Maven: com.conx.bi:com.conx.bi.remoting.client.soap:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:3.0.6.RELEASE" level="project" />

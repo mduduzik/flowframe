@@ -45,6 +45,7 @@
       <module fileurl="file://$PROJECT_DIR$/ds/dao.services/org.flowframe.ds.dao.services.iml" filepath="$PROJECT_DIR$/ds/dao.services/org.flowframe.ds.dao.services.iml" />
       <module fileurl="file://$PROJECT_DIR$/ds/dao.services.impl/org.flowframe.ds.dao.services.impl.iml" filepath="$PROJECT_DIR$/ds/dao.services.impl/org.flowframe.ds.dao.services.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/ds/domain/org.flowframe.ds.domain.iml" filepath="$PROJECT_DIR$/ds/domain/org.flowframe.ds.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/editors/oryx/backend/org.flowframe.editors.oryx.backend.iml" filepath="$PROJECT_DIR$/editors/oryx/backend/org.flowframe.editors.oryx.backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/erp/org.flowframe.erp.iml" filepath="$PROJECT_DIR$/erp/org.flowframe.erp.iml" />
       <module fileurl="file://$PROJECT_DIR$/erp/app.contractmanagement/org.flowframe.erp.app.contractmanagement.iml" filepath="$PROJECT_DIR$/erp/app.contractmanagement/org.flowframe.erp.app.contractmanagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/erp/app.contractmanagement/business.services/org.flowframe.erp.app.contractmanagement.business.services.iml" filepath="$PROJECT_DIR$/erp/app.contractmanagement/business.services/org.flowframe.erp.app.contractmanagement.business.services.iml" />

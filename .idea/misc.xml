@@ -51,6 +51,7 @@
     <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/utils" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" />
+    <file type="web" url="file://$PROJECT_DIR$/editors/oryx/backend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
@@ -105,6 +106,7 @@
         <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/json20090211/pom.xml" />
+        <option value="$PROJECT_DIR$/editors/oryx/backend/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -52,6 +52,7 @@
         <module name="org.flowframe.ds.dao.services" />
         <module name="org.flowframe.ds.dao.services.impl" />
         <module name="org.flowframe.ds.domain" />
+        <module name="org.flowframe.editors.oryx.backend" />
         <module name="org.flowframe.erp.app.contractmanagement.business.services" />
         <module name="org.flowframe.erp.app.contractmanagement.business.services.impl" />
         <module name="org.flowframe.erp.app.contractmanagement.dao.services" />
@@ -252,6 +253,7 @@
       <module name="org.flowframe.ds.dao.services" target="1.6" />
       <module name="org.flowframe.ds.dao.services.impl" target="1.6" />
       <module name="org.flowframe.ds.domain" target="1.6" />
+      <module name="org.flowframe.editors.oryx.backend" target="1.6" />
       <module name="org.flowframe.erp" target="1.6" />
       <module name="org.flowframe.erp.app.contractmanagement" target="1.6" />
       <module name="org.flowframe.erp.app.contractmanagement.business.services" target="1.6" />

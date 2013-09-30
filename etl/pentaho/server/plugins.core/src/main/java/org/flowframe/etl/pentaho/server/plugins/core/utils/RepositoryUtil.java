@@ -21,6 +21,8 @@ import java.util.Arrays;
  * To change this template use File | Settings | File Templates.
  */
 public class RepositoryUtil {
+    public static final String ATTRIBUTE_TRANSFORMATION_JSON_NOTE_ID            = "TRANSFORMATION_JSON_NOTE_ID";
+    public static final String ATTRIBUTE_TRANSFORMATION_SVG_NOTE_ID            = "TRANSFORMATION_SVG_NOTE_ID";
 
     public static String DATABASES_TRANSFORMTION_NAME = "databases";
     public static String CSVFILE_STEPS_TRANSFORMTION_NAME = "csvfile_steps_metadata";

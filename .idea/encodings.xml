@@ -42,6 +42,7 @@
     <file url="file://$PROJECT_DIR$/ds/dao.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ds/dao.services.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ds/domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editors/oryx/backend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp/app.contractmanagement" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp/app.contractmanagement/business.services" charset="UTF-8" />
