@@ -60,42 +60,21 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
         //creating rowaction of the grid
         // Create RowActions Plugin
         this.action = new Ext.ux.grid.RowActions({
-            header:'Actions'
-//			,autoWidth:false
-//			,hideMode:'display'
+            header:''
+//            ,autoWidth:true
+//            ,hideMode:'display'
             ,keepSelection:true
             ,actions:[{
-                iconIndex:'action1'
-                ,qtipIndex:'qtip1'
-                ,iconCls:'icon-open'
-                ,tooltip:'Open'
+                iconIndex: 'selectCallback'
+                ,iconCls:'dots_button'
+                ,qtipIndex:'selectQtip'
+                ,hideIndex:'hideSelect'
             },{
-                iconCls:'icon-wrench'
-                ,tooltip:'Configure'
-                ,qtipIndex:'qtip2'
-                ,iconIndex:'action2'
-                ,hideIndex:'hide2'
+                iconIndex: 'editCallback'
+                ,iconCls:'application_form_edit'
+                ,qtipIndex:'editQtip'
+                ,hideIndex:'hideEdit'
 //				,text:'Open'
-            },{
-                iconIndex:'action3'
-                ,qtipIndex:'qtip3'
-                ,iconCls:'icon-user'
-                ,tooltip:'User'
-                //,style:'background-color:yellow'
-            }]
-            ,groupActions:[{
-                iconCls:'icon-del-table'
-                ,qtip:'Remove Table'
-            },{
-                iconCls:'icon-add-table'
-                ,qtip:'Add Table - with callback'
-                ,callback:function(grid, records, action, groupId) {
-                    Ext.ux.Toast.msg('Callback: icon-add-table', 'Group: <b>{0}</b>, action: <b>{1}</b>, records: <b>{2}</b>', groupId, action, records.length);
-                }.bind(this)
-            },{
-                iconCls:'icon-graph'
-                ,qtip:'View Graph'
-                ,align:'left'
             }]
             ,callbacks:{
                 'icon-plus':function(grid, record, action, row, col) {
@@ -158,13 +137,12 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
                 {name: 'value'},
                 {name: 'icons'},
                 {name: 'gridProperties'},
-                {name: 'action1', type: 'string'},
-                {name: 'action2', type: 'string'},
-                {name: 'action3', type: 'string'},
-                {name: 'qtip1', type: 'string'},
-                {name: 'qtip2', type: 'string'},
-                {name: 'qtip3', type: 'string'},
-                {name: 'hide2', type: 'boolean'}
+                {name: 'selectCallback', type: 'string'},
+                {name: 'selectQtip', type: 'string'},
+                {name: 'hideSelect', type: 'boolean'},
+                {name: 'editCallback', type: 'string'},
+                {name: 'editQtip', type: 'string'},
+                {name: 'hideEdit', type: 'boolean'}
             ]),
             sortInfo: {field: 'category', direction: "ASC"},
             sortData : function(f, direction){
@@ -749,24 +727,38 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
                 // Push to the properties-array
                 if (pair.visible()) {
-                    if (pair.category()) {
-                        this.properties.push([pair.category(), name, attribute, icons, {
-                            editor: editorGrid,
-                            propId: key,
-                            type: pair.type(),
-                            tooltip: pair.description(),
-                            renderer: editorRenderer
-                        }]);
+                    var props_ = [pair.category(), name, attribute, icons, {
+                        editor: editorGrid,
+                        propId: key,
+                        type: pair.type(),
+                        tooltip: pair.description(),
+                        renderer: editorRenderer
+                    }];
+                    var select = pair.type();
+                    if (select && select === 'select')
+                        props_ = props_.concat([
+                            'select_icon',
+                            'Change '+name+'('+attribute+')',
+                            false,
+                            'edit_icon',
+                            'Edit '+name+'('+attribute+')',
+                            false
+                        ]);
+                    else
+                        props_ = props_.concat([
+                            undefined,
+                            undefined,
+                            true,
+                            undefined,
+                            undefined,
+                            true
+                        ]);
+
+
+                    if (!pair.category()) {
+                        props_[0]='Other';
                     }
-                    else {
-                        this.properties.push(['Other', name, attribute, icons, {
-                            editor: editorGrid,
-                            propId: key,
-                            type: pair.type(),
-                            tooltip: pair.description(),
-                            renderer: editorRenderer
-                        }]);
-                    }
+                    this.properties.push(props_);
                 }
 
             }).bind(this));

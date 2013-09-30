@@ -80,7 +80,7 @@
                 {
                     "id":"metadataName",
                     "category":"Metadata",
-                    "type":"Text",
+                    "type":"Select",
                     "title":"Metadata Name",
                     "value":"",
                     "description":"Metadata Name",
