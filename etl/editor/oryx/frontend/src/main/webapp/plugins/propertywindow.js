@@ -131,7 +131,9 @@ ORYX.Plugins.PropertyWindow = {
 			enableHdMenu: false,
 			view: new Ext.grid.GroupingView({
 				forceFit: true,
-				groupTextTpl: '{[values.rs.first().data.popular ? ORYX.I18N.PropertyWindow.oftenUsed : ORYX.I18N.PropertyWindow.moreProps]}'
+				groupTextTpl: '<p style="text-align:left;">{[values.rs.first().data.popular ? ORYX.I18N.PropertyWindow.oftenUsed : ORYX.I18N.PropertyWindow.moreProps]}</p>',
+                bodyStyle: 'text-align: left;'
+
 			}),
 			
 			// the data store

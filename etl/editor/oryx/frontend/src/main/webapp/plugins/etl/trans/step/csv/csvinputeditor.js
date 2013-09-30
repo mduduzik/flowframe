@@ -17,8 +17,6 @@ if (!ORYX.Plugins.ETL.Trans.Step) {
 ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
     facade: undefined,
-    componentEditor: undefined,
-    currentRecord: undefined,
 
     construct: function (facade) {
         // Reference to the Editor-Interface
@@ -46,9 +44,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
         this.currentDateFormat;
 
         // the properties array
-        this.popularProperties = [];
         this.properties = [];
-        this.currentRecord = {};
 
         /* The currently selected shapes whos properties will shown */
         this.shapeSelection = new Hash();
@@ -58,316 +54,185 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
         this.updaterFlag = false;
 
+        this.updaterFlag = false;
+
+
+        //creating rowaction of the grid
+        // Create RowActions Plugin
+        this.action = new Ext.ux.grid.RowActions({
+            header:'Actions'
+//			,autoWidth:false
+//			,hideMode:'display'
+            ,keepSelection:true
+            ,actions:[{
+                iconIndex:'action1'
+                ,qtipIndex:'qtip1'
+                ,iconCls:'icon-open'
+                ,tooltip:'Open'
+            },{
+                iconCls:'icon-wrench'
+                ,tooltip:'Configure'
+                ,qtipIndex:'qtip2'
+                ,iconIndex:'action2'
+                ,hideIndex:'hide2'
+//				,text:'Open'
+            },{
+                iconIndex:'action3'
+                ,qtipIndex:'qtip3'
+                ,iconCls:'icon-user'
+                ,tooltip:'User'
+                //,style:'background-color:yellow'
+            }]
+            ,groupActions:[{
+                iconCls:'icon-del-table'
+                ,qtip:'Remove Table'
+            },{
+                iconCls:'icon-add-table'
+                ,qtip:'Add Table - with callback'
+                ,callback:function(grid, records, action, groupId) {
+                    Ext.ux.Toast.msg('Callback: icon-add-table', 'Group: <b>{0}</b>, action: <b>{1}</b>, records: <b>{2}</b>', groupId, action, records.length);
+                }.bind(this)
+            },{
+                iconCls:'icon-graph'
+                ,qtip:'View Graph'
+                ,align:'left'
+            }]
+            ,callbacks:{
+                'icon-plus':function(grid, record, action, row, col) {
+                    Ext.ux.Toast.msg('Callback: icon-plus', 'You have clicked row: <b>{0}</b>, action: <b>{0}</b>', row, action);
+                }.bind(this)
+            }
+        });
+
+        // dummy action event handler - just outputs some arguments to console
+        this.action.on({
+            action:function(grid, record, action, row, col) {
+                Ext.ux.Toast.msg('Event: action', 'You have clicked row: <b>{0}</b>, action: <b>{1}</b>', row, action);
+            }
+            ,beforeaction:function() {
+                Ext.ux.Toast.msg('Event: beforeaction', 'You can cancel the action by returning false from this event handler.');
+            }
+            ,beforegroupaction:function() {
+                Ext.ux.Toast.msg('Event: beforegroupaction', 'You can cancel the action by returning false from this event handler.');
+            }
+            ,groupaction:function(grid, records, action, groupId) {
+                Ext.ux.Toast.msg('Event: groupaction', 'Group: <b>{0}</b>, action: <b>{1}</b>, records: <b>{2}</b>', groupId, action, records.length);
+            }
+        });
+
         // creating the column model of the grid.
-        this.componentEditor = {
-            xtype: 'form',
-            id: 'componentEditor',
+        this.columnModel = new Ext.grid.ColumnModel([
+            {
+                //id: 'name',
+                header: ORYX.I18N.PropertyWindow.name,
+                dataIndex: 'name',
+                width: 90,
+                sortable: true,
+                renderer: this.tooltipRenderer.bind(this)
+            }, {
+                //id: 'value',
+                header: ORYX.I18N.PropertyWindow.value,
+                dataIndex: 'value',
+                id: 'propertywindow_column_value',
+                width: 110,
+                editor: new Ext.form.TextField({
+                    allowBlank: false
+                }),
+                renderer: this.renderer.bind(this)
+            },
+            this.action,
+            {
+                header: "Category",
+                dataIndex: 'category',
+                hidden: true,
+                sortable: true
+            }
+        ]);
+
+        // creating the store for the model.
+        this.dataSource = new Ext.data.GroupingStore({
+            proxy: new Ext.data.MemoryProxy(this.properties),
+            reader: new Ext.data.ArrayReader({}, [
+                {name: 'category'},
+                {name: 'name'},
+                {name: 'value'},
+                {name: 'icons'},
+                {name: 'gridProperties'},
+                {name: 'action1', type: 'string'},
+                {name: 'action2', type: 'string'},
+                {name: 'action3', type: 'string'},
+                {name: 'qtip1', type: 'string'},
+                {name: 'qtip2', type: 'string'},
+                {name: 'qtip3', type: 'string'},
+                {name: 'hide2', type: 'boolean'}
+            ]),
+            sortInfo: {field: 'category', direction: "ASC"},
+            sortData : function(f, direction){
+                direction = direction || 'ASC';
+                var st = this.fields.get(f).sortType;
+                var fn = function(r1, r2){
+                    var v1 = st(r1.data[f]), v2 = st(r2.data[f]);
+                    var p1 = r1.data['category'], p2  = r2.data['category'];
+                    return p1 && !p2 ? -1 : (!p1 && p2 ? 1 : (v1 > v2 ? 1 : (v1 < v2 ? -1 : 0)));
+                };
+                this.data.sort(direction, fn);
+                if(this.snapshot && this.snapshot != this.data){
+                    this.snapshot.sort(direction, fn);
+                }
+            },
+            groupField: 'category'
+        });
+        this.dataSource.load();
+
+        this.grid = new Ext.grid.EditorGridPanel({
+            clicksToEdit: 1,
+            stripeRows: true,
+            autoExpandColumn: "propertywindow_column_value",
             width:'auto',
             iconCls: 'palette-icon',
-            title: 'Component',
-            border: false,
-            url: 'tabsinform.php',
-            layout: 'fit',
-            anchor: '100% 100%',
-            items: [{
-                    xtype: 'verticaltabpanel',
-                    activeItem: 0,
-                    border: false,
-                    tabPosition:'left',  //choose 'left' or 'right' for vertical tabs; 'top' or 'bottom' for horizontal tabs
-                    textAlign:'right'
-                    // this line is necessary for anchoring to work at
-                    // lower level containers and for full height of tabs
-                    , anchor: '100% 100%'
+            title: 'Step Properties',
+            // the column model
+            colModel: this.columnModel,
+            enableHdMenu: false,
+            view: new Ext.grid.GroupingView({
+                forceFit: true,
+                groupTextTpl: '<p style="text-align:left;">{[values.rs.first().data.category ? values.rs.first().data.category : ORYX.I18N.PropertyWindow.moreProps]}</p>',
+                bodyStyle: 'text-align: left;'
 
-                    // only fields from an active tab are submitted
-                    // if the following line is not persent
-                    , deferredRender: false
+            }),
+            plugins:[this.action],
+            // the data store
+            store: this.dataSource
 
-                    // tabs
-                    , defaults: {
-                        layout: 'form',
-                        labelWidth: 200,
-                        width: 350,
-                        defaultType: 'textfield',
-                        layoutConfig: {
-                            labelAlign: 'left'
-                        }
-                    },
-                    items: [
-                        {
-                            title: 'Metadata',
-                            border: false,
-                            defaults: {
-                                anchor: '-20',
-                                layoutConfig: {
-                                    labelAlign: 'left'
-                                },
-                            }
-                            // fields
-                            , items: [
-                            {
-                                //title: 'Sample File',
-                                xtype: 'fieldset',
-                                border: false,
-                                labelWidth: 200,
-                                defaults: {width: 350},	// Default config options for child items
-                                defaultType: 'textfield',
-                                autoHeight: true,
-                                items: [
-                                    {
-                                        fieldLabel: 'Metadata Name',
-                                        id: ORYX.CONFIG.PROPERTY_PREFIX+'oryx-metadataname',
-                                        name: ORYX.CONFIG.PROPERTY_PREFIX+'metadataname',
-                                        emptyText: '<Enter name>',
-                                        allowBlank: false
-                                    },
-                                    {
-                                        id: 'fileEntryId',
-                                        fieldLabel: 'Metadata ID',
-                                        name: 'fileEntryId',
-                                        emptyText: '<Upload sample file below>',
-                                        disabled: true,
-                                        allowBlank: false,
-                                        required: true
-                                        //getSubmitData: getDisabledFieldValue
-                                    },
-                                    {
-                                        id: 'uploadsamplefile.fileEntryId',
-                                        fieldLabel: 'File Repository ID',
-                                        name: 'fileEntryId',
-                                        emptyText: '<Upload sample file below>',
-                                        disabled: true,
-                                        allowBlank: false,
-                                        required: true
-                                        //getSubmitData: getDisabledFieldValue
-                                    },
-                                    {
-                                        id: 'uploadsamplefile.filename',
-                                        xtype: 'textfield',
-                                        fieldLabel: 'Filename',
-                                        name: 'filename',
-                                        emptyText: '<Browse and select file first>',
-                                        disabled: true,
-                                        allowBlank: false
-                                        //getSubmitData: getDisabledFieldValue
+        });
 
-                                    },
-                                    {
-                                        xtype: 'textfield',
-                                        id: 'fileuploadfield.form-file',
-                                        emptyText: 'Select a CSV file',
-                                        fieldLabel: 'Local File to Upload',
-                                        name: 'file'
-                                    }
-                                ]
-                            }
-                        ]
-                        },
-                        {
-                            title: 'Basic Settings', autoScroll: true, defaults: {anchor: '-20'}
+        /*new Ext.Panel({
+         autoHeight: true,
+         layout: "fit",
+         border: false,
+         iconCls: 'property-icon',
+         title: 'Properties',
+         items: [
+         this.grid
+         ]
+         }*/
+        region = this.facade.addToRegion("centerSouth", this.grid, "Component");
 
-                            // fields
-                            , items: [
-                            {
-                                xtype: 'fieldset',
-                                labelWidth: 200,
-                                layoutConfig: {
-                                    labelAlign: 'left'
-                                },
-                                //title:'Company details',
-                                defaults: {width: 350, align: 'left'},	// Default config options for child items
-                                defaultType: 'textfield',
-                                autoHeight: true,
-                                border: false,
-                                items: [
-                                    {
-                                        fieldLabel: 'Row Number Field',
-                                        name: 'rowNumField'
-                                    },
-                                    {
-                                        xtype: 'checkbox',
-                                        fieldLabel: 'Header Present',
-                                        name: 'headerPresent',
-                                        width: 15
-                                    },
-                                    {
-                                        fieldLabel: 'Delimiter',
-                                        name: 'delimiter'
-                                    },
-                                    {
-                                        fieldLabel: 'Enclosure',
-                                        name: 'enclosure'
-                                    },
-                                    {
-                                        xtype: 'numberfield',
-                                        fieldLabel: 'Buffer Size',
-                                        name: 'bufferSize',
-                                        style: 'text-align: left'
-                                    },
-                                    {
-                                        xtype: 'checkbox',
-                                        fieldLabel: 'Lazy Conversion',
-                                        name: 'lazyConversionActive',
-                                        width: 15
-                                    },
-                                    {
-                                        xtype: 'combo',
-                                        name: 'encoding',
-                                        fieldLabel: 'Encoding',
-                                        hiddenName: 'encoding',
-                                        store: new Ext.data.Store({
-                                            id: "store",
-                                            remoteSort: true,
-                                            autoLoad: {params: {start: 1, limit: 2}},
-                                            proxy: new Ext.data.ScriptTagProxy({
-                                                url: '/etlrepo/encoding/getall'
-                                            }),
-                                            reader: new Ext.data.JsonReader({
-                                                root: 'data',
-                                                totalProperty: 'totalCount'
-                                            }, [
-                                                {name: 'id', mapping: 'id'},
-                                                {name: 'code', mapping: 'code'},
-                                                {name: 'description', mapping: 'description'}
-                                            ])
-                                        }),
+        // Register on Events
+        this.grid.on('beforeedit', this.beforeEdit, this, true);
+        this.grid.on('afteredit', this.afterEdit, this, true);
+        this.grid.view.on('refresh', this.hideMoreAttrs, this, true);
 
-                                        valueField: 'code',
-                                        displayField: 'description',
-                                        typeAhead: true,
-                                        mode: 'local',
-                                        triggerAction: 'all',
-                                        emptyText: 'Select encoding...',
-                                        selectOnFocus: true,
-                                        width: 190
-                                    }
-                                    ,
-                                    {
-                                        xtype: 'checkbox',
-                                        fieldLabel: 'Newline Possible In Fields',
-                                        name: 'newlinePossibleInFields',
-                                        width: 15
-                                    }
-                                ]
-                            }
-                        ]
-                        },
-                        {
-                            title: 'Fields'
+        //this.grid.on(ORYX.CONFIG.EVENT_KEYDOWN, this.keyDown, this, true);
 
-                            // fields
-                            , items: [
-                            {
-                                xtype: 'fieldset',
-                                labelWidth: 200,
-                                layoutConfig: {
-                                    labelAlign: 'right'
-                                },
-                                //title:'Company details',
-                                defaults: {width: 350},	// Default config options for child items
-                                defaultType: 'textfield',
-                                autoHeight: true,
-                                bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
-                                border: false,
-                                style: {
-                                    "margin-left": "10px", // when you add custom margin in IE 6...
-                                    "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
-                                },
-                                items: [
-                                    {
-                                        fieldLabel: 'Metadata Name',
-                                        name: 'name',
-                                        emptyText: '<Enter name>',
-                                        allowBlank: false
-                                    },
-                                    {
-                                        fieldLabel: 'Row Number Field',
-                                        name: 'rowNumField'
-                                    },
-                                    {
-                                        xtype: 'checkbox',
-                                        fieldLabel: 'Header Present',
-                                        name: 'headerPresent',
-                                        width: 15
-                                    },
-                                    {
-                                        fieldLabel: 'Delimiter',
-                                        name: 'delimiter'
-                                    },
-                                    {
-                                        fieldLabel: 'Enclosure',
-                                        name: 'enclosure'
-                                    },
-                                    {
-                                        xtype: 'numberfield',
-                                        fieldLabel: 'Buffer Size',
-                                        name: 'bufferSize',
-                                        style: 'text-align: left'
-                                    },
-                                    {
-                                        xtype: 'checkbox',
-                                        fieldLabel: 'Lazy Conversion',
-                                        name: 'lazyConversionActive',
-                                        width: 15
-                                    },
-                                    {
-                                        xtype: 'combo',
-                                        name: 'encoding',
-                                        fieldLabel: 'Encoding',
-                                        hiddenName: 'encoding',
-                                        store: new Ext.data.Store({
-                                            id: "store",
-                                            remoteSort: true,
-                                            autoLoad: {params: {start: 1, limit: 2}},
-                                            proxy: new Ext.data.ScriptTagProxy({
-                                                url: '/etlrepo/encoding/getall'
-                                            }),
-                                            reader: new Ext.data.JsonReader({
-                                                root: 'data',
-                                                totalProperty: 'totalCount'
-                                            }, [
-                                                {name: 'id', mapping: 'id'},
-                                                {name: 'code', mapping: 'code'},
-                                                {name: 'description', mapping: 'description'}
-                                            ])
-                                        }),
+        // Renderer the Grid
+        this.grid.enableColumnMove = false;
+        //this.grid.render();
 
-                                        valueField: 'code',
-                                        displayField: 'description',
-                                        typeAhead: true,
-                                        mode: 'local',
-                                        triggerAction: 'all',
-                                        emptyText: 'Select encoding...',
-                                        selectOnFocus: true,
-                                        width: 190
-                                    }
-                                    ,
-                                    {
-                                        xtype: 'checkbox',
-                                        fieldLabel: 'Newline Possible In Fields',
-                                        name: 'newlinePossibleInFields',
-                                        width: 15
-                                    }
-                                ]
-                            }
-                        ]
-                        },
-                        {
-                            title: 'Preview'
-                        },
-                        {
-                            title: 'View'
-                        },
-                        {
-                            title: 'Documentation'
-                        }
-                    ]
+        // Sort as Default the first column
+        //this.dataSource.sort('name');
 
-                }
-                ]
-        }
-
-        region = this.facade.addToRegion("centerSouth", this.componentEditor, "Component");
+        region = this.facade.addToRegion("centerSouth", panel, "Component");
 
         // Register on Events
         /*		this.grid.on('beforeedit', this.beforeEdit, this, true);
@@ -634,43 +499,9 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
      */
     identifyCommonProperties: function () {
         this.shapeSelection.commonProperties.clear();
-
-        /*
-         * A common property is a property, that is part of
-         * the stencil definition of the first and all other stencils.
-         */
         var stencils = this.getStencilSetOfSelection();
-        var firstStencil = stencils.values().first();
-        var comparingStencils = stencils.values().without(firstStencil);
-
-
-        if (comparingStencils.length == 0) {
-            this.shapeSelection.commonProperties = firstStencil.properties();
-        } else {
-            var properties = new Hash();
-
-            /* put all properties of on stencil in a Hash */
-            firstStencil.properties().each(function (property) {
-                properties[property.namespace() + '-' + property.id()
-                    + '-' + property.type()] = property;
-            });
-
-            /* Calculate intersection of properties. */
-
-            comparingStencils.each(function (stencil) {
-                var intersection = new Hash();
-                stencil.properties().each(function (property) {
-                    if (properties[property.namespace() + '-' + property.id()
-                        + '-' + property.type()]) {
-                        intersection[property.namespace() + '-' + property.id()
-                            + '-' + property.type()] = property;
-                    }
-                });
-                properties = intersection;
-            });
-
-            this.shapeSelection.commonProperties = properties.values();
-        }
+        var firstStencil = stencils.values().first();//one/first selection allowed
+        this.shapeSelection.commonProperties = firstStencil.properties();
     },
 
     onSelectionChanged: function (event) {
@@ -690,24 +521,13 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
             this.shapeSelection.shapes = [event.subSelection];
         }
 
-        if (this.shapeSelection.shapes.length == 0)
-            Ext.getCmp('componentEditor').hide();
-        else
-            Ext.getCmp('componentEditor').show();
-
         this.setPropertyWindowTitle();
-        //this.identifyCommonProperties();
-        //this.setCommonPropertiesValues();
+        this.identifyCommonProperties();
+        this.setCommonPropertiesValues();
 
-        var firstShape = this.shapeSelection.shapes.first();
-        firstShape.properties.each(function (prop) {
-            this.currentRecord[''+prop.key] = prop.value;
-        }.bind(this));
         // Create the Properties
 
-        var componentEditor_ = Ext.getCmp('componentEditor');
-        componentEditor_.form.loadRecord({data:this.currentRecord});
-        //this.createProperties();
+        this.createProperties();
     },
 
     /**
@@ -715,23 +535,240 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
      * selected shapes.
      */
     createProperties: function () {
-        this.properties = new Hash();
-        this.popularProperties = [];
+        this.properties = [];
+        this.categoryProperties = [];
 
-        if(this.shapeSelection.commonProperties) {
+        if (this.shapeSelection.commonProperties) {
 
             // add new property lines
-            this.shapeSelection.commonProperties.each((function(pair, index) {
+            this.shapeSelection.commonProperties.each((function (pair, index) {
 
                 var key = pair.prefix() + "-" + pair.id();
 
                 // Get the property pair
-                var fieldName   = pair.id();
-                var name		= pair.title();
-                var icons		= [];
-                var attribute	= this.shapeSelection.commonPropertiesValues[key];
+                var name = pair.title();
+                var icons = [];
+                var attribute = this.shapeSelection.commonPropertiesValues[key];
 
-                this.currentRecord[''+fieldName] = attribute;
+                var editorGrid = undefined;
+                var editorRenderer = null;
+
+                var refToViewFlag = false;
+
+                if (!pair.readonly()) {
+                    switch (pair.type()) {
+                        case ORYX.CONFIG.TYPE_STRING:
+                            // If the Text is MultiLine
+                            if (pair.wrapLines()) {
+                                // Set the Editor as TextArea
+                                var editorTextArea = new Ext.form.TextArea({alignment: "tl-tl", allowBlank: pair.optional(), msgTarget: 'title', maxLength: pair.length()});
+                                editorTextArea.on('keyup', function (textArea, event) {
+                                    this.editDirectly(key, textArea.getValue());
+                                }.bind(this));
+
+                                editorGrid = new Ext.Editor(editorTextArea);
+                            } else {
+                                // If not, set the Editor as InputField
+                                var editorInput = new Ext.form.TextField({allowBlank: pair.optional(), msgTarget: 'title', maxLength: pair.length()});
+                                editorInput.on('keyup', function (input, event) {
+                                    this.editDirectly(key, input.getValue());
+                                }.bind(this));
+
+                                // reverts the shape if the editor field is invalid
+                                editorInput.on('blur', function (input) {
+                                    if (!input.isValid(false))
+                                        this.updateAfterInvalid(key);
+                                }.bind(this));
+
+                                editorInput.on("specialkey", function (input, e) {
+                                    if (!input.isValid(false))
+                                        this.updateAfterInvalid(key);
+                                }.bind(this));
+
+                                editorGrid = new Ext.Editor(editorInput);
+                            }
+                            break;
+                        case ORYX.CONFIG.TYPE_BOOLEAN:
+                            // Set the Editor as a CheckBox
+                            var editorCheckbox = new Ext.form.Checkbox();
+                            editorCheckbox.on('check', function (c, checked) {
+                                this.editDirectly(key, checked);
+                            }.bind(this));
+
+                            editorGrid = new Ext.Editor(editorCheckbox);
+                            break;
+                        case ORYX.CONFIG.TYPE_INTEGER:
+                            // Set as an Editor for Integers
+                            var numberField = new Ext.form.NumberField({allowBlank: pair.optional(), allowDecimals: false, msgTarget: 'title', minValue: pair.min(), maxValue: pair.max()});
+                            numberField.on('keyup', function (input, event) {
+                                this.editDirectly(key, input.getValue());
+                            }.bind(this));
+
+                            editorGrid = new Ext.Editor(numberField);
+                            break;
+                        case ORYX.CONFIG.TYPE_FLOAT:
+                            // Set as an Editor for Float
+                            var numberField = new Ext.form.NumberField({ allowBlank: pair.optional(), allowDecimals: true, msgTarget: 'title', minValue: pair.min(), maxValue: pair.max()});
+                            numberField.on('keyup', function (input, event) {
+                                this.editDirectly(key, input.getValue());
+                            }.bind(this));
+
+                            editorGrid = new Ext.Editor(numberField);
+
+                            break;
+                        case ORYX.CONFIG.TYPE_COLOR:
+                            // Set as a ColorPicker
+                            // Ext1.0 editorGrid = new gEdit(new form.ColorField({ allowBlank: pair.optional(),  msgTarget:'title' }));
+
+                            var editorPicker = new Ext.ux.ColorField({ allowBlank: pair.optional(), msgTarget: 'title', facade: this.facade });
+
+                            /*this.facade.registerOnEvent(ORYX.CONFIG.EVENT_COLOR_CHANGE, function(option) {
+                             this.editDirectly(key, option.value);
+                             }.bind(this));*/
+
+                            editorGrid = new Ext.Editor(editorPicker);
+
+                            break;
+                        case ORYX.CONFIG.TYPE_CHOICE:
+                            var items = pair.items();
+                            if (console) {
+                                console.log(pair);
+                            }
+                            var options = [];
+                            items.each(function (value) {
+                                if (value.value() == attribute)
+                                    attribute = value.title();
+
+                                if (value.refToView()[0])
+                                    refToViewFlag = true;
+
+                                options.push([value.icon(), value.title(), value.value()]);
+
+                                icons.push({
+                                    name: value.title(),
+                                    icon: value.icon()
+                                });
+                            });
+
+                            var store = new Ext.data.SimpleStore({
+                                fields: [
+                                    {name: 'icon'},
+                                    {name: 'title'},
+                                    {name: 'value'}
+                                ],
+                                data: options // from states.js
+                            });
+
+                            // Set the grid Editor
+
+                            var editorCombo = new Ext.form.ComboBox({
+                                tpl: '<tpl for="."><div class="x-combo-list-item">{[(values.icon) ? "<img src=\'" + values.icon + "\' />" : ""]} {title}</div></tpl>',
+                                store: store,
+                                displayField: 'title',
+                                valueField: 'value',
+                                typeAhead: true,
+                                mode: 'local',
+                                triggerAction: 'all',
+                                selectOnFocus: true
+                            });
+
+                            editorCombo.on('select', function (combo, record, index) {
+                                this.editDirectly(key, combo.getValue());
+                            }.bind(this))
+
+                            editorGrid = new Ext.Editor(editorCombo);
+
+                            break;
+                        case ORYX.CONFIG.TYPE_DATE:
+                            var currFormat = ORYX.I18N.PropertyWindow.dateFormat
+                            if (!(attribute instanceof Date))
+                                attribute = Date.parseDate(attribute, currFormat)
+                            editorGrid = new Ext.Editor(new Ext.form.DateField({ allowBlank: pair.optional(), format: currFormat, msgTarget: 'title'}));
+                            break;
+
+                        case ORYX.CONFIG.TYPE_TEXT:
+
+                            var cf = new Ext.form.ComplexTextField({
+                                allowBlank: pair.optional(),
+                                dataSource: this.dataSource,
+                                grid: this.grid,
+                                row: index,
+                                facade: this.facade
+                            });
+                            cf.on('dialogClosed', this.dialogClosed, {scope: this, row: index, col: 1, field: cf});
+                            editorGrid = new Ext.Editor(cf);
+                            break;
+
+                        // extended by Kerstin (start)
+                        case ORYX.CONFIG.TYPE_COMPLEX:
+
+                            var cf = new Ext.form.ComplexListField({ allowBlank: pair.optional()}, pair.complexItems(), key, this.facade);
+                            cf.on('dialogClosed', this.dialogClosed, {scope: this, row: index, col: 1, field: cf});
+                            editorGrid = new Ext.Editor(cf);
+                            break;
+                        // extended by Kerstin (end)
+
+                        // extended by Gerardo (Start)
+                        case "CPNString":
+                            var editorInput = new Ext.form.TextField(
+                                {
+                                    allowBlank: pair.optional(),
+                                    msgTarget: 'title',
+                                    maxLength: pair.length(),
+                                    enableKeyEvents: true
+                                });
+
+                            editorInput.on('keyup', function (input, event) {
+                                this.editDirectly(key, input.getValue());
+                                console.log(input.getValue());
+                                alert("huhu");
+                            }.bind(this));
+
+                            editorGrid = new Ext.Editor(editorInput);
+                            break;
+                        // extended by Gerardo (End)
+
+                        default:
+                            var editorInput = new Ext.form.TextField({ allowBlank: pair.optional(), msgTarget: 'title', maxLength: pair.length(), enableKeyEvents: true});
+                            editorInput.on('keyup', function (input, event) {
+                                this.editDirectly(key, input.getValue());
+                            }.bind(this));
+
+                            editorGrid = new Ext.Editor(editorInput);
+                    }
+
+
+                    // Register Event to enable KeyDown
+                    editorGrid.on('beforehide', this.facade.enableEvent.bind(this, ORYX.CONFIG.EVENT_KEYDOWN));
+                    editorGrid.on('specialkey', this.specialKeyDown.bind(this));
+
+                } else if (pair.type() === ORYX.CONFIG.TYPE_URL || pair.type() === ORYX.CONFIG.TYPE_DIAGRAM_LINK) {
+                    attribute = String(attribute).search("http") !== 0 ? ("http://" + attribute) : attribute;
+                    attribute = "<a href='" + attribute + "' target='_blank'>" + attribute.split("://")[1] + "</a>"
+                }
+
+                // Push to the properties-array
+                if (pair.visible()) {
+                    if (pair.category()) {
+                        this.properties.push([pair.category(), name, attribute, icons, {
+                            editor: editorGrid,
+                            propId: key,
+                            type: pair.type(),
+                            tooltip: pair.description(),
+                            renderer: editorRenderer
+                        }]);
+                    }
+                    else {
+                        this.properties.push(['Other', name, attribute, icons, {
+                            editor: editorGrid,
+                            propId: key,
+                            type: pair.type(),
+                            tooltip: pair.description(),
+                            renderer: editorRenderer
+                        }]);
+                    }
+                }
+
             }).bind(this));
         }
 
@@ -752,12 +789,9 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
     },
 
     setProperties: function () {
-        var props = this.popularProperties.concat(this.properties);
+        //var props = this.popularProperties.concat(this.properties);
 
-        var props = this.shapeSelection.commonProperties;
-
-        var componentEditor_ = Ext.getCmp('componentEditor');
-        componentEditor_.form.loadRecord(this.currentRecord);
+        this.dataSource.loadData(this.properties);
     }
 }
 ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = Clazz.extend(ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow);

@@ -227,6 +227,14 @@ ORYX.Core.StencilSet.Property = Clazz.extend({
 	setPopular: function() {
 		this._jsonProp.popular = true;
 	},
+
+    category: function() {
+        return this._jsonProp.category;
+    },
+
+    setCategory: function(cat) {
+        this._jsonProp.category = cat;
+    },
 	
 	directlyEditable: function() {
 		return this._jsonProp.directlyEditable;

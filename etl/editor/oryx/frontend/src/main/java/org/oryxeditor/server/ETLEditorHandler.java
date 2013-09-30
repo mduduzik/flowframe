@@ -203,6 +203,9 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.ThemeCombo.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.IconCombo.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.LangSelectCombo.js\"></script>\n"
+                //-- RowActions
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/js/Ext.ux.Toast.js\"></script>\n"
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/js/Ext.ux.grid.RowActions.js\"></script>\n"
                 // VrTabPanel extension
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/verticaltab/js/ux_VerticalTabPanel.js\"></script>\n"
                 ///-- Inline style for resource imports
@@ -223,6 +226,8 @@ public class ETLEditorHandler extends HttpServlet {
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/Ext.ux.IconCombo.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/empty.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/img/extjs.ico\");\n"
+                // Rowactions extension
+                + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/css/Ext.ux.grid.RowActions.css\");\n"
                 // VrTabPanel extension
                 + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/verticaltab/css/ux_VerticalTabPanel.css\");\n"
                 + "</style>\n"

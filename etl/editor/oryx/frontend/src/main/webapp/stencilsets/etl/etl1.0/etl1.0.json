@@ -8,6 +8,7 @@
             "properties": [
                 {
                     "id":"name",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Name",
                     "value":"",
@@ -21,6 +22,7 @@
                 },
                 {
                     "id":"documentation",
+                    "category":"Basic Settings",
                     "type":"Text",
                     "title":"Documentation",
                     "title_de":"Dokumentation",
@@ -35,6 +37,7 @@
                 },
                 {
                     "id":"version",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Version",
                     "value":"",
@@ -63,6 +66,7 @@
             "properties": [
                 {
                     "id":"metadatatype",
+                    "category":"Metadata",
                     "type":"String",
                     "title":"Metadata Type",
                     "value":"",
@@ -75,6 +79,7 @@
                 },
                 {
                     "id":"metadataName",
+                    "category":"Metadata",
                     "type":"Text",
                     "title":"Metadata Name",
                     "value":"",
@@ -87,6 +92,7 @@
                 },
                 {
                     "id":"metadataObjId",
+                    "category":"Metadata",
                     "type":"Text",
                     "title":"Metadata ID",
                     "value":"",
@@ -117,6 +123,7 @@
             "properties": [
                 {
                     "id":"distribute",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Distribute?",
                     "value":"true",
@@ -128,6 +135,7 @@
                 },
                 {
                     "id":"fileNameField",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Filename Field",
                     "value":"",
@@ -139,6 +147,7 @@
                 },
                 {
                     "id":"rowNumField",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Rownum Field",
                     "value":"",
@@ -150,6 +159,7 @@
                 },
                 {
                     "id":"includeFilename",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Include Filename",
                     "value":"true",
@@ -161,6 +171,7 @@
                 },
                 {
                     "id":"separator",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Separator",
                     "value":",",
@@ -172,6 +183,7 @@
                 },
                 {
                     "id":"enclosure",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Enclosure",
                     "value":"&quot;",
@@ -183,6 +195,7 @@
                 },
                 {
                     "id":"header",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Header",
                     "value":"true",
@@ -193,6 +206,7 @@
                 },
                 {
                     "id":"bufferSize",
+                    "category":"Basic Settings",
                     "type":"Integer",
                     "title":"Buffer Size",
                     "value":5000,
@@ -203,6 +217,7 @@
                 },
                 {
                     "id":"lazyConversion",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Lazy Conversion",
                     "value":"true",
@@ -213,6 +228,7 @@
                 },
                 {
                     "id":"lazyConversion",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Lazy Conversion",
                     "value":"true",
@@ -223,6 +239,7 @@
                 },
                 {
                     "id":"addFilenameResult",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Add Filename Result",
                     "value":"true",
@@ -233,6 +250,7 @@
                 },
                 {
                     "id":"parallel",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Parallel",
                     "value":"true",
@@ -243,6 +261,7 @@
                 },
                 {
                     "id":"newlinePossible",
+                    "category":"Basic Settings",
                     "type":"Boolean",
                     "title":"Parallel",
                     "value":"true",
@@ -253,6 +272,7 @@
                 },
                 {
                     "id":"encoding",
+                    "category":"Basic Settings",
                     "type":"String",
                     "title":"Encoding",
                     "value":"",
