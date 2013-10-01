@@ -56,5 +56,8 @@ public class ConverterTest extends AbstractJUnit4SpringContextTests {
 	public final void testConversion() throws KettleException, JSONException {
         TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, modelJson);
 		assertNotNull(transMeta);
+
+        String transMetaContent = transMeta.getXML();
+        assertNotNull(transMetaContent);
 	}
 }

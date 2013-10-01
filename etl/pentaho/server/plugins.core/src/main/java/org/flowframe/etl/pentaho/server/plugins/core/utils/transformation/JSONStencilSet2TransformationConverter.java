@@ -36,6 +36,8 @@ public class JSONStencilSet2TransformationConverter {
         JSONObject childShape = null;
         String type = null;
         StepMeta stepMeta = null;
+
+        //-- Create steps
         for (int index = 0; index < childShapes.length(); index++ ){
             childShape = (JSONObject)childShapes.get(index);
 
@@ -53,22 +55,33 @@ public class JSONStencilSet2TransformationConverter {
             //================== Outtputs
             if ("TableOutput".equals(type)) {
                 //Lookup db
-                DatabaseMeta db = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, getStringProperty(childShape, "targettable"));
+                String pathId = getStringProperty(childShape, "metadataobjid");
+                String targettable = getStringProperty(childShape, "targettable");
+                if (targettable == null || targettable.isEmpty()) {//Get from default metadata
+                    targettable = RepositoryUtil.getDBTablenameFromPathID(pathId);
+                }
+                DatabaseMeta db = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, pathId);
                 transMeta.addDatabase(db);
 
                 //Create meta
                 TableOutputMeta tom = new TableOutputMeta();
                 tom.setDatabaseMeta(db);
-                tom.setTableName( getStringProperty(childShape, "targettable"));
+                tom.setTableName(targettable);
 
                 String fromid = registry.getPluginId(StepPluginType.class, tom);
-                stepMeta = new StepMeta(fromid, getStringProperty(childShape, "database-ext-gen728"), (StepMetaInterface)tom);
-                stepMeta.setName(getStringProperty(childShape,"name"));
+                stepMeta = new StepMeta(fromid, getStringProperty(childShape,"name"), (StepMetaInterface)tom);
 
                 transMeta.addStep(stepMeta);
                 name2StepMeta.put(getStringProperty(childShape,"name"),stepMeta);
             }
+        }
 
+
+        //-- Create hops
+        for (int index = 0; index < childShapes.length(); index++ ){
+            childShape = (JSONObject)childShapes.get(index);
+
+            type = ((JSONObject)childShape.get("stencil")).getString("id");
             //================== Hops
             if ("connector".equals(type)) {
                 //Get from:
@@ -85,28 +98,31 @@ public class JSONStencilSet2TransformationConverter {
         return transMeta;
     }
 
-    private static String findFromStepName(JSONArray childShapes, JSONObject childShape) throws JSONException {
-        String stepResourceId = childShape.getString("resourceId");
+    private static String findFromStepName(JSONArray childShapes, JSONObject edgeShape) throws JSONException {
+        String edgeResourceId = edgeShape.getString("resourceId");
         StepMeta stepMeta = null;
         for (int index = 0; index < childShapes.length(); index++ ){
             JSONObject childShape_ = (JSONObject) childShapes.get(index);
-            JSONObject outgoing = (JSONObject)(((JSONArray) childShape_.get("outgoing")).get(0));
-            String resourceId = outgoing.getString("resourceId");
-            if (stepResourceId == resourceId) {
-                return getStringProperty(childShape_,"name");
+            final JSONArray outgoingArray = (JSONArray) childShape_.get("outgoing");
+            if (outgoingArray.length() > 0) {
+                JSONObject outgoing = (JSONObject)outgoingArray.get(0);
+                String resourceId = outgoing.getString("resourceId");
+                if (edgeResourceId.equals(resourceId)) {
+                    return getStringProperty(childShape_,"name");
+                }
             }
         }
 
         return null;
     }
 
-    private static String findToStepName(JSONArray childShapes, JSONObject childShape) throws JSONException {
-        String targetStepResourceid = ((JSONObject)childShape.get("target")).getString("resourceId");
+    private static String findToStepName(JSONArray childShapes, JSONObject edgeShape) throws JSONException {
+        String edgeTargetResourceid = ((JSONObject) edgeShape.get("target")).getString("resourceId");
         StepMeta stepMeta = null;
         for (int index = 0; index < childShapes.length(); index++ ){
             JSONObject childShape_ = (JSONObject) childShapes.get(index);
             String rcId = childShape_.getString("resourceId");
-            if (targetStepResourceid == rcId) {
+            if (edgeTargetResourceid.equals(rcId)) {
                 return getStringProperty(childShape_,"name");
             }
         }

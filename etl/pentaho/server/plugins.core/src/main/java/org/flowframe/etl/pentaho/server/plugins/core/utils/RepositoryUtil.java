@@ -87,6 +87,13 @@ public class RepositoryUtil {
         return "/dir/"+dir.getObjectId()+"/db/"+dbMeta.getObjectId();
     }
 
+    static public String getDBTablenameFromPathID(String pathID) {
+        // /dir/2/db/2/schema/ffmdmrepoetl/table/r_transformation
+        String[] pathTokens = pathID.split("/");
+        int len = pathTokens.length;
+        return pathTokens[8];
+    }
+
     static public ObjectId getDBObjectIDFromPathID(String pathID) {
         // /dir/1/db/2
         String[] pathTokens = pathID.split("/");

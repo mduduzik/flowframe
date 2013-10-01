@@ -27,15 +27,15 @@
     },
     "childShapes": [
         {
-            "resourceId": "oryx_153CFD59-2A7D-4A9B-9E30-F192A66E2C52",
+            "resourceId": "oryx_F8362CF1-462B-4053-A6B9-7AC71EA38A3B",
             "properties": {
-                "name": "database-ext-gen728",
-                "documentation": "database-ext-gen729",
+                "name": "database-ext-gen730",
+                "documentation": "database-ext-gen731",
                 "version": "1.0",
                 "author": "Developer",
                 "metadatatype": "database",
                 "metadataname": "ffmdmrepoetl.r_transformation",
-                "metadataobjid": "test2.tables.schemas.table.ffmdmrepoetl.r_transformation",
+                "metadataobjid": "/dir/2/db/2/schema/ffmdmrepoetl/table/r_transformation",
                 "targetschema": "",
                 "targettable": "",
                 "commitsize": 1000,
@@ -58,12 +58,12 @@
             ],
             "bounds": {
                 "lowerRight": {
-                    "x": 812,
-                    "y": 152
+                    "x": 692,
+                    "y": 107
                 },
                 "upperLeft": {
-                    "x": 780,
-                    "y": 120
+                    "x": 660,
+                    "y": 75
                 }
             },
             "dockers": [
@@ -71,10 +71,10 @@
             ]
         },
         {
-            "resourceId": "oryx_7646123B-3937-4229-A982-09C677AA34B6",
+            "resourceId": "oryx_82696B1F-8413-407A-A8DF-675A439DDD88",
             "properties": {
-                "name": "csvmeta-ext-gen979",
-                "documentation": "csvmeta-ext-gen980",
+                "name": "csvmeta-ext-gen891",
+                "documentation": "csvmeta-ext-gen892",
                 "version": "1.0",
                 "author": "Developer",
                 "metadatatype": "csvmeta",
@@ -102,17 +102,17 @@
             ],
             "outgoing": [
                 {
-                    "resourceId": "oryx_D4E15FD5-38C8-4AE1-B096-11C8DD74A577"
+                    "resourceId": "oryx_1FDB07C8-46E8-4B1A-8DB0-8F39D23AA86D"
                 }
             ],
             "bounds": {
                 "lowerRight": {
-                    "x": 212,
-                    "y": 152
+                    "x": 269.5454559326172,
+                    "y": 106.03408813476562
                 },
                 "upperLeft": {
-                    "x": 180,
-                    "y": 120
+                    "x": 237.5454559326172,
+                    "y": 74.03408813476562
                 }
             },
             "dockers": [
@@ -120,7 +120,7 @@
             ]
         },
         {
-            "resourceId": "oryx_D4E15FD5-38C8-4AE1-B096-11C8DD74A577",
+            "resourceId": "oryx_1FDB07C8-46E8-4B1A-8DB0-8F39D23AA86D",
             "properties": {
 
             },
@@ -132,17 +132,17 @@
             ],
             "outgoing": [
                 {
-                    "resourceId": "oryx_153CFD59-2A7D-4A9B-9E30-F192A66E2C52"
+                    "resourceId": "oryx_F8362CF1-462B-4053-A6B9-7AC71EA38A3B"
                 }
             ],
             "bounds": {
                 "lowerRight": {
-                    "x": 779.6640628426383,
-                    "y": 136.48305890446412
+                    "x": 659.1745390005534,
+                    "y": 90.98161777843211
                 },
                 "upperLeft": {
-                    "x": 212.46484340736168,
-                    "y": 136.01352312678588
+                    "x": 270.5355120889718,
+                    "y": 90.55702027689244
                 }
             },
             "dockers": [
@@ -156,7 +156,7 @@
                 }
             ],
             "target": {
-                "resourceId": "oryx_153CFD59-2A7D-4A9B-9E30-F192A66E2C52"
+                "resourceId": "oryx_F8362CF1-462B-4053-A6B9-7AC71EA38A3B"
             }
         }
     ],

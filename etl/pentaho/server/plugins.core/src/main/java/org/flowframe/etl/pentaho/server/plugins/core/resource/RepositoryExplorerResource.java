@@ -639,9 +639,10 @@ public class RepositoryExplorerResource {
         try {
             Map<String, Collection<String>> tableMap = dbInstance.getTableMap();
             for (String schemaName : tableMap.keySet()) {
+                schemaName = (schemaName != null?schemaName.trim():"");
                 for (String tableName : tableMap.get(schemaName)) {
                     JSONObject schemaObj = new JSONObject();
-                    schemaObj.put("id", db.getName() + ".tables.schemas.table." + schemaName + "." + tableName);
+                    schemaObj.put("id", pathId + "/schema/" + schemaName + "/table/" + tableName);
                     schemaObj.put("allowDrag", false);
                     schemaObj.put("allowDrop", false);
                     schemaObj.put("text", schemaName + "." + tableName);
