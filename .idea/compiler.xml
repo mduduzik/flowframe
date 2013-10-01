@@ -78,6 +78,7 @@
         <module name="org.flowframe.erp.remote.services.impl.config.fragment" />
         <module name="org.flowframe.etl.editor.oryx.frontend" />
         <module name="org.flowframe.etl.editor.oryx.snaps.frontend (1)" />
+        <module name="org.flowframe.etl.pentaho.server.carte.standalone.impl" />
         <module name="org.flowframe.etl.pentaho.server.plugins.core" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager (1)" />
@@ -207,10 +208,12 @@
         <module name="org.flowframe.uilegacy.vaadin.factory" />
         <module name="org.flowframe.uilegacy.vaadin.forms" />
         <module name="remote.services.min.impl" />
+        <module name="services" />
         <module name="spring-bridge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="carte" target="1.6" />
       <module name="distribution" target="1.6" />
       <module name="kettle-all" target="1.6" />
       <module name="org.flowframe.bpm" target="1.6" />
@@ -293,6 +296,7 @@
       <module name="org.flowframe.etl.editor.oryx.snaps.frontend" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.server.carte.standalone.impl" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.plugins.core" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.plugins.manager" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.repository" target="1.6" />
@@ -452,6 +456,7 @@
       <module name="pentaho" target="1.6" />
       <module name="remote.services.min.impl" target="1.6" />
       <module name="reporting" target="1.6" />
+      <module name="services" target="1.6" />
       <module name="spring-bridge" target="1.6" />
       <module name="utils" target="1.6" />
     </bytecodeTargetLevel>

@@ -83,6 +83,9 @@
     <file url="file://$PROJECT_DIR$/etl/pentaho/repository.db" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/etl/pentaho/server/carte" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/etl/pentaho/server/carte/services" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository" charset="UTF-8" />

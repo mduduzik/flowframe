@@ -107,6 +107,7 @@
         <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/json20090211/pom.xml" />
         <option value="$PROJECT_DIR$/editors/oryx/backend/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -17,6 +17,7 @@
         <module>plugins.core</module>
         <module>snaps</module>
         <module>repository</module>
+        <module>carte</module>
     </modules>
     <build>
         <plugins>

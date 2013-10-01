@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Application context definition for FF ETl Repository DB Server.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd"
+        >
+    <!-- Flowframe props -->
+    <context:property-placeholder properties-ref="configAdminProperties"/>
+
+    <!-- Standalone Remote Carte -->
+    <bean id="standaloneCarte" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.StandaloneCarteServerImpl" init-method="init" scope="singleton">
+        <property name="hostname" value="localhost"/>
+        <property name="port" value="8383"/>
+    </bean>
+</beans>

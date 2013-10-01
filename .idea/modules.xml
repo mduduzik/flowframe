@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/carte/carte.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/carte/carte.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/editor/editor.iml" filepath="$PROJECT_DIR$/etl/editor/editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" />
@@ -82,6 +83,7 @@
       <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/org.flowframe.etl.editor.oryx.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/org.flowframe.etl.editor.oryx.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/frontend/org.flowframe.etl.editor.oryx.frontend.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/frontend/org.flowframe.etl.editor.oryx.frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/org.flowframe.etl.pentaho.server.carte.standalone.impl.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/org.flowframe.etl.pentaho.server.carte.standalone.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager/org.flowframe.etl.pentaho.server.plugins.manager.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/plugins.manager/org.flowframe.etl.pentaho.server.plugins.manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/org.flowframe.etl.pentaho.server.repository.db.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/repository/db/org.flowframe.etl.pentaho.server.repository.db.iml" />
@@ -242,6 +244,7 @@
       <module fileurl="file://$PROJECT_DIR$/permissions/permissions.iml" filepath="$PROJECT_DIR$/permissions/permissions.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/remote.services.min.impl.iml" filepath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/remote.services.min.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/reporting.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/reporting/reporting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/carte/services/services.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/carte/services/services.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/snaps/snaps.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/snaps/snaps.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/spring-bridge/spring-bridge.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/spring-bridge/spring-bridge.iml" />
     </modules>

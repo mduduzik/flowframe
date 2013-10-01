@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Export-Package: org.flowframe.etl.pentaho.server.carte.services;versio
+ n="0.0.1";uses:="org.pentaho.di.trans,org.pentaho.di.www"
+Bundle-Version: 0.0.1
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: FF Pentaho PDI Carte Services
+Bundle-ManifestVersion: 2
+Import-Package: org.pentaho.di.core;version="4.4.0",org.pentaho.di.cor
+ e.database;version="4.4.0",org.pentaho.di.core.exception;version="4.4
+ .0",org.pentaho.di.core.logging;version="4.4.0",org.pentaho.di.core.p
+ lugins;version="4.4.0",org.pentaho.di.core.row;version="4.4.0",org.pe
+ ntaho.di.core.util;version="4.4.0",org.pentaho.di.core.variables;vers
+ ion="4.4.0",org.pentaho.di.core.vfs;version="4.4.0",org.pentaho.di.i1
+ 8n;version="4.4.0",org.pentaho.di.repository;version="4.4.0",org.pent
+ aho.di.repository.filerep;version="4.4.0",org.pentaho.di.repository.k
+ dr;version="4.4.0",org.pentaho.di.repository.kdr.delegates;version="4
+ .4.0",org.pentaho.di.trans;version="4.4.0",org.pentaho.di.trans.debug
+ ;version="4.4.0",org.pentaho.di.trans.step;version="4.4.0",org.pentah
+ o.di.trans.step.errorhandling;version="4.4.0",org.pentaho.di.trans.st
+ eps.csvinput;version="4.4.0",org.pentaho.di.trans.steps.dummytrans;ve
+ rsion="4.4.0",org.pentaho.di.trans.steps.excelinput;version="4.4.0",o
+ rg.pentaho.di.trans.steps.injector;version="4.4.0",org.pentaho.di.tra
+ ns.steps.textfileinput;version="4.4.0",org.pentaho.di.www;version="4.
+ 4.0"
+Bundle-SymbolicName: org.flowframe.etl.pentaho.server.carte.services
+
