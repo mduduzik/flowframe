@@ -1,7 +1,8 @@
 package org.flowframe.etl.pentaho.server.carte.standalone.impl.utils;
 
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.kernel.common.utils.StringUtil;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -26,7 +27,7 @@ public class XML2JSONTransformer {
         return res;
     }
 
-    public static JSONObject transform(String xmlContent) throws TransformerException, JSONException, IOException, URISyntaxException {
+    public static JSONArray transform(String xmlContent) throws TransformerException, JSONException, IOException, URISyntaxException {
 
         try {
             InputStream xsltStream = XML2JSONTransformer.class.getResourceAsStream("/xslt/xmltojsonv1.xsl");
@@ -42,8 +43,10 @@ public class XML2JSONTransformer {
             trans.setParameter("confDoc",configDoc);
             StringWriter output = new StringWriter();
             trans.transform(xmlContentSource, new StreamResult(output));
-            final String res = output.toString();
-            return new JSONObject(res);
+            String res = output.toString();
+            res = StringUtil.replace(res,":,",":\"\",");
+            res = StringUtil.replace(res,":}",":\"\"}");
+            return new JSONArray(res);
         } catch (TransformerException e) {
             throw e;
         }

@@ -1,13 +1,14 @@
 package org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.tests;
 
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.XML2JSONTransformer;
 import org.flowframe.kernel.common.utils.StringUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.www.SlaveServerTransStatus;
 import org.springframework.util.Assert;
 
 import javax.xml.transform.TransformerException;
@@ -39,8 +40,19 @@ public class UtilsTest {
         InputStream is = UtilsTest.class.getResourceAsStream("/samples/trans_status_response.xml");
         Assert.notNull(is);
         String xml = StringUtil.read(is);
+        SlaveServerTransStatus resp = SlaveServerTransStatus.fromXML(xml);
+        if (resp.getErrorDescription() == null)
+            resp.setErrorDescription("null");
+        if (resp.getLoggingString() == null)
+            resp.setLoggingString("null");
+
+        String logText = resp.getLoggingString();
         Assert.notNull(xml);
-        JSONObject json = XML2JSONTransformer.transform(xml);
+
+        xml = StringUtil.replace(resp.getXML(),"<log_text/>","");
+        xml = StringUtil.replace(xml,"<logging_string/>","");
+
+        JSONArray json = XML2JSONTransformer.transform(xml);
         Assert.notNull(json);
 	}
 }

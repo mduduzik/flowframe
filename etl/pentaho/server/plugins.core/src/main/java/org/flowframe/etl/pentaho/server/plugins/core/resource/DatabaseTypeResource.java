@@ -67,7 +67,7 @@ public class DatabaseTypeResource  {
 
         Database dbInstance = null;
         try {
-            dbInstance = new Database(repository.getDBConnectionMeta());
+            dbInstance = new Database(repository.getPooledDBConnectionMeta());
             try {
                 dbInstance.connect();
             } catch (Exception e) {

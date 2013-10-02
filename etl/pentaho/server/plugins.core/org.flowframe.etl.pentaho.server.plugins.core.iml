@@ -159,6 +159,8 @@
     <orderEntry type="library" name="Maven: org.apache.log4j:com.springsource.org.apache.log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jettison:com.springsource.org.codehaus.jettison:1.0.1" level="project" />
     <orderEntry type="module" module-name="org.flowframe.etl.pentaho.server.repository.db" />
+    <orderEntry type="module" module-name="services" />
+    <orderEntry type="module" module-name="org.flowframe.etl.pentaho.server.carte.standalone.impl" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.commons:com.springsource.org.apache.commons.validator:1.3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.oro:com.springsource.org.apache.oro:2.0.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mozilla.javascript:com.springsource.org.mozilla.javascript:1.7.0.R2" level="project" />

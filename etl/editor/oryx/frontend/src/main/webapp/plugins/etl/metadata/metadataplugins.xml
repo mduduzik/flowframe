@@ -4,5 +4,6 @@
 		<plugin source="etl/metadata/dbconnection/dbconnectionwizard.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
         <plugin source="etl/metadata/csv/csvmetawizard.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaWizard"/>
         <plugin source="etl/trans/step/csv/csvinputeditor.js" name="ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow"/>
+        <plugin source="etl/job/etljobrunner.js" name="ORYX.Plugins.ETL.Job.ETLJobRunner"/>
 	</plugins>
 </config>

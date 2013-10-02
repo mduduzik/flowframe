@@ -29,6 +29,14 @@
     background-image:url(/etl/images/silk/icons/application_form_edit.png) !important;
 }
 
+.run_exc_icon {
+    background-image:url(/etl/images/conxbi/etl/run_exc.gif) !important;
+}
+
+.process_run_icon {
+    background-image:url(/etl/images/conxbi/etl/process_run.gif) !important;
+}
+
 
 
 

@@ -10,4 +10,5 @@
 <!--
     <osgi:reference id="repository" interface="org.flowframe.etl.pentaho.server.repository.util.ICustomRepository"/>
 -->
+    <osgi:reference id="carteJobService" interface="org.flowframe.etl.pentaho.server.carte.services.ICarteJobService"/>
 </beans>

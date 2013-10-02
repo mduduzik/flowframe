@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba06307f-714d-40b4-bb43-8b15d10cec5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/resources/samples/trans_status_response.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/xmltojsonv1.xsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/META-INF/spring/osgi-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/META-INF/spring/osgi-context.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/TransformationJobServiceResource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/DatabaseMetaUtil.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/DatabaseMetaUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/DatabaseTypeResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/DatabaseTypeResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/osgi-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/osgi-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/template.mf" afterPath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/template.mf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -123,7 +132,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java" line="60" class="org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.tests.ConverterTest" package="org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.tests">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java" line="54" class="org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.tests.ConverterTest" package="org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -138,7 +147,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/StandaloneCarteServerImpl.java" line="205" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.StandaloneCarteServerImpl" package="org.flowframe.etl.pentaho.server.carte.standalone.impl">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java" line="55" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.tests.UtilsTest" package="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -153,7 +162,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java" line="54" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.tests.BasicTest" package="org.flowframe.etl.pentaho.server.carte.standalone.impl.tests">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java" line="48" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.tests.UtilsTest" package="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -168,7 +177,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java" line="36" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.XML2JSONTransformer" package="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java" line="62" class="org.flowframe.etl.pentaho.server.carte.standalone.impl.tests.BasicTest" package="org.flowframe.etl.pentaho.server.carte.standalone.impl.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -194,95 +203,98 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StandaloneCarteServerImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/StandaloneCarteServerImpl.java">
+      <file leaf-file-name="TransformationJobServiceResource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/TransformationJobServiceResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="203" column="53" selection-start="7264" selection-end="7264" vertical-scroll-proportion="0.0" vertical-offset="2723" max-vertical-offset="3383">
+            <state line="38" column="41" selection-start="1414" selection-end="1414" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="765">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java">
+      <file leaf-file-name="toolbar.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/toolbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1625" selection-end="1625" vertical-scroll-proportion="0.0" vertical-offset="415" max-vertical-offset="1088">
+            <state line="108" column="16" selection-start="3787" selection-end="3808" vertical-scroll-proportion="-7.2" vertical-offset="1656" max-vertical-offset="5933">
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BPMServerImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bpm/jbpm/bpmserver/src/main/java/org/flowframe/bpm/jbpm/bpmserver/BPMServerImpl.java">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="422" column="69" selection-start="13641" selection-end="13690" vertical-scroll-proportion="0.0" vertical-offset="5552" max-vertical-offset="17187">
+            <state line="366" column="0" selection-start="10476" selection-end="10542" vertical-scroll-proportion="-25.96" vertical-offset="5573" max-vertical-offset="38454">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseStripeSONWSServicesImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/src/main/java/org/flowframe/erp/integration/adaptors/stripe/BaseStripeSONWSServicesImpl.java">
+      <file leaf-file-name="csvinputeditor.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="59" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.0" vertical-offset="617" max-vertical-offset="3196">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBRepositoryWrapperImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="62" selection-start="6411" selection-end="6411" vertical-scroll-proportion="0.0" vertical-offset="2169" max-vertical-offset="7259">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringUtil.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kernel/common.utils/src/main/java/org/flowframe/kernel/common/utils/StringUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1220" column="26" selection-start="32771" selection-end="32771" vertical-scroll-proportion="0.0" vertical-offset="20320" max-vertical-offset="55335">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XML2JSONTransformer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="34" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.56962025" vertical-offset="653" max-vertical-offset="969">
+            <state line="117" column="49" selection-start="4102" selection-end="4102" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="22304">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1380744182678" expanded="true" signature="6412:6428" placeholder="..." />
+                <marker date="1380744182678" expanded="true" signature="9575:9592" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="xmltojsonv1.xsl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/xmltojsonv1.xsl">
+      <file leaf-file-name="etljobrunner.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="26" selection-start="1132" selection-end="1139" vertical-scroll-proportion="-10.0" vertical-offset="243" max-vertical-offset="8823">
+            <state line="384" column="28" selection-start="18160" selection-end="18160" vertical-scroll-proportion="0.6004566" vertical-offset="6265" max-vertical-offset="16864">
+              <folding>
+                <marker date="1380746699469" expanded="true" signature="20136:20153" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="metadataplugins.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="68" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/config.xml">
+      <file leaf-file-name="icons.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3332">
+            <state line="35" column="17" selection-start="835" selection-end="851" vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="935">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UtilsTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java">
+      <file leaf-file-name="default.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="50" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="697">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="7366" max-vertical-offset="7803">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.conf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
               <folding />
             </state>
           </provider>
@@ -306,22 +318,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/services/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/services/template.mf" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/template.mf" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/META-INF/spring/module-context.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/resources/META-INF/BasicTests-module-context.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/services/src/main/java/org/flowframe/etl/pentaho/server/carte/services/ICarteJobService.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/StandaloneCarteServerImpl.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/META-INF/spring/osgi-context.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/resources/samples/trans_status_response.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/xmltojsonv1.xsl" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/template.mf" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/osgi-context.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/JobServiceResource.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/DatabaseMetaUtil.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/DatabaseTypeResource.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/TransformationJobServiceResource.java" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/runetljob.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" />
       </list>
     </option>
   </component>
@@ -678,7 +690,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins.core" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -704,19 +716,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins.core" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -742,91 +746,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins.core" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins.core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins.core" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -856,101 +780,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="carte" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carte" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="standalone.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carte" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="standalone.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="carte" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="standalone.impl" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -962,11 +796,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xslt" />
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -992,11 +822,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="carte" />
+              <option name="myItemId" value="snaps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="standalone.impl" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1008,11 +838,103 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="conxbi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1041,8 +963,294 @@
               <option name="myItemId" value="carte" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="standalone.impl" />
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1220,11 +1428,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.flowframe.etl.pentaho.server.plugins.core.resource.carte" />
       <recent name="org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.tests" />
       <recent name="org.flowframe.etl.pentaho.server.carte.standalone.impl.tests" />
       <recent name="org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.tests" />
       <recent name="org.flowframe.etl.pentaho.server.snaps.core.utils" />
-      <recent name="org.flowframe.etl.pentaho.server.snaps.core.resource.reference" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\server\carte\standalone.impl\src\main\resources\xslt" />
@@ -1339,7 +1547,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.UtilsTest">
+  <component name="RunManager" selected="Spring dmServer.Virgo3.6.2DEV">
     <configuration default="false" name="RDF2PDI.xsl" type="XSLT" factoryName="XSLT" temporary="true">
       <option name="myOutputFile" />
       <option name="myOpenOutputFile" value="false" />
@@ -1837,8 +2045,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.UtilsTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.BasicTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.BasicTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.UtilsTest" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.ConverterTest" />
         <item index="3" class="java.lang.String" itemvalue="XSLT.RDF2PDI.xsl" />
       </list>
@@ -1906,12 +2114,12 @@
       <workItem from="1380293788723" duration="54796000" />
       <workItem from="1380501807018" duration="8408000" />
       <workItem from="1380518981784" duration="52062000" />
-      <workItem from="1380724078181" duration="4906000" />
+      <workItem from="1380724078181" duration="21219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="908732000" />
+    <option name="totallyTimeSpent" value="925045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-2" width="1616" height="876" extended-state="0" />
@@ -1929,25 +2137,25 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48043185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19375" sideWeight="0.5074224" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.345625" sideWeight="0.705803" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32793522" sideWeight="0.9075" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24021593" sideWeight="0.584375" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4925776" sideWeight="0.69625" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29419702" sideWeight="0.69625" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30364373" sideWeight="0.70125" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24952978" sideWeight="0.75303644" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19" sideWeight="0.5074224" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.076875" sideWeight="0.705803" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65047234" sideWeight="0.7975" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1981,118 +2189,127 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/editors/oryx/frontend/src/main/java/org/oryxeditor/bpel4chor/BPELExportPostprocessor.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/DatabaseMetaResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="529" column="22" selection-start="18302" selection-end="18302" vertical-scroll-proportion="0.0" vertical-offset="12774" max-vertical-offset="13787">
+        <state line="0" column="8" selection-start="8" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/DatabaseTypeResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="0" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0" vertical-offset="618" max-vertical-offset="1598">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/editors/oryx/frontend/src/main/webapp/xslt/RDF2BPEL.xslt">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/transformation/tests/ConverterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="31756">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/www/SlaveServerTransStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="11" selection-start="3960" selection-end="3960" vertical-scroll-proportion="0.0" vertical-offset="5665" max-vertical-offset="6154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/editors/oryx/backend/src/main/java/org/b3mn/poem/Representation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="354" column="0" selection-start="10973" selection-end="11512" vertical-scroll-proportion="0.0" vertical-offset="4896" max-vertical-offset="6511">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/resources/samples/trans_status_response.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="7430" selection-end="7430" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1625" selection-end="1625" vertical-scroll-proportion="0.0" vertical-offset="670" max-vertical-offset="1088">
+        <state line="50" column="8" selection-start="1663" selection-end="1759" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1071">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/src/main/java/org/flowframe/erp/integration/adaptors/stripe/BaseStripeSONWSServicesImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="59" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.0" vertical-offset="617" max-vertical-offset="3196">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kernel/common.utils/src/main/java/org/flowframe/kernel/common/utils/StringUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1220" column="26" selection-start="32771" selection-end="32771" vertical-scroll-proportion="0.0" vertical-offset="20320" max-vertical-offset="55335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bpm/jbpm/bpmserver/src/main/java/org/flowframe/bpm/jbpm/bpmserver/BPMServerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="422" column="69" selection-start="13641" selection-end="13690" vertical-scroll-proportion="0.0" vertical-offset="5552" max-vertical-offset="17187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/StandaloneCarteServerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="53" selection-start="7264" selection-end="7264" vertical-scroll-proportion="0.0" vertical-offset="2723" max-vertical-offset="3383">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="62" selection-start="6411" selection-end="6411" vertical-scroll-proportion="0.0" vertical-offset="2169" max-vertical-offset="7259">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="388" selection-end="388" vertical-scroll-proportion="0.40669855" vertical-offset="0" max-vertical-offset="418">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3332">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/resources/xslt/xmltojsonv1.xsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="26" selection-start="1132" selection-end="1139" vertical-scroll-proportion="-10.0" vertical-offset="243" max-vertical-offset="8823">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/tests/UtilsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="50" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+        <state line="19" column="13" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/utils/XML2JSONTransformer.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/test/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/tests/BasicTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="34" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.56962025" vertical-offset="653" max-vertical-offset="969">
+        <state line="59" column="0" selection-start="1974" selection-end="2146" vertical-scroll-proportion="0.0" vertical-offset="815" max-vertical-offset="1921">
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="78" selection-start="3897" selection-end="3897" vertical-scroll-proportion="0.0" vertical-offset="1143" max-vertical-offset="6171">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7803">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="68" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/TransformationJobServiceResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="41" selection-start="1414" selection-end="1414" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="17" selection-start="835" selection-end="851" vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="49" selection-start="4102" selection-end="4102" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="22304">
+          <folding>
+            <marker date="1380744182678" expanded="true" signature="6412:6428" placeholder="..." />
+            <marker date="1380744182678" expanded="true" signature="9575:9592" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="366" column="0" selection-start="10476" selection-end="10542" vertical-scroll-proportion="-25.96" vertical-offset="5573" max-vertical-offset="38454">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/toolbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="16" selection-start="3787" selection-end="3808" vertical-scroll-proportion="-7.2" vertical-offset="1656" max-vertical-offset="5933">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="384" column="28" selection-start="18160" selection-end="18160" vertical-scroll-proportion="0.6004566" vertical-offset="6265" max-vertical-offset="16864">
+          <folding>
+            <marker date="1380746699469" expanded="true" signature="20136:20153" placeholder="..." />
           </folding>
         </state>
       </provider>

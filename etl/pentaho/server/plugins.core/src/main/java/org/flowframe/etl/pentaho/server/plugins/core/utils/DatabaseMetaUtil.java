@@ -170,7 +170,7 @@ public class DatabaseMetaUtil {
         ResultSet rs = null;
         Database db = null;
         try {
-            db = new Database(repository.getSupportingDatabase().getDatabaseMeta());
+            db = new Database(repository.getPooledDBConnectionMeta());
             db.connect();
             rs = db.openQuery(sql);
             List<Object[]> rows = db.getRows(rs, 0, null);
