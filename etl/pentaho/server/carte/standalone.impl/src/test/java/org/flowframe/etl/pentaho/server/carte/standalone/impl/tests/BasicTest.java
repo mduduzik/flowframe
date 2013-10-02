@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.www.SlaveServerStatus;
+import org.pentaho.di.www.SlaveServerTransStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -47,5 +48,11 @@ public class BasicTest extends AbstractJUnit4SpringContextTests {
 	public final void testGetStatus() throws KettleException, JSONException {
         SlaveServerStatus res = jobService.getCarteStatus();
         assertNotNull(res);
+
+        SlaveServerTransStatus resp = jobService.startTransformationJob("Row generator test");
+        assertNotNull(resp);
+
+        resp = jobService.getTransformationJobStatus("Row generator test");
+        assertNotNull(resp);
 	}
 }

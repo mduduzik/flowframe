@@ -71,8 +71,7 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
 
         String response = executeHttpGet(AddTransServlet.CONTEXT_PATH,
                 new HashMap(){{
-                    put("xml","Y");
-                    put("test","test");}},
+                    put("xml","Y");}},
                 transConfig.getXML(),
                 null);
 
@@ -92,11 +91,11 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
     public SlaveServerTransStatus startTransformationJob(final String transName) {
         final String carteObjectId = UUID.randomUUID().toString();
         try {
-            String response = executeHttpGet(StartExecutionTransServlet.CONTEXT_PATH,
+            String response = executeHttpGet(StartTransServlet.CONTEXT_PATH,
                     new HashMap(){{
                         put("xml","Y");
                         put("name",transName);
-                        put("id",carteObjectId);}},
+                        /*put("id",carteObjectId);*/}},
                     null,
                     null);
             return SlaveServerTransStatus.fromXML(response);
@@ -124,7 +123,7 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
     @Override
     public SlaveServerTransStatus getTransformationJobStatus(final String transName) {
         try {
-            String response = executeHttpGet(GetStatusServlet.CONTEXT_PATH,
+            String response = executeHttpGet(GetTransStatusServlet.CONTEXT_PATH,
                     new HashMap(){{
                         put("xml","Y");
                         put("name",transName);}},
