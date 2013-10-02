@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.flowframe.etl.pentaho.server.carte.services;versio
- n="0.0.1";uses:="org.pentaho.di.trans,org.pentaho.di.www"
+ n="0.0.1";uses:="org.pentaho.di.core.exception,org.pentaho.di.trans,o
+ rg.pentaho.di.www"
 Bundle-Version: 0.0.1
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: FF Pentaho PDI Carte Services

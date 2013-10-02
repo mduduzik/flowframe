@@ -2,14 +2,21 @@ package org.flowframe.etl.pentaho.server.carte.standalone.impl;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.impl.conn.SchemeRegistryFactory;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.util.EntityUtils;
 import org.flowframe.etl.pentaho.server.carte.services.ICarteJobService;
 import org.pentaho.di.core.exception.KettleException;
@@ -17,10 +24,7 @@ import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.trans.TransConfiguration;
 import org.pentaho.di.trans.TransExecutionConfiguration;
 import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.www.AddTransServlet;
-import org.pentaho.di.www.GetStatusServlet;
-import org.pentaho.di.www.SlaveServerStatus;
-import org.pentaho.di.www.SlaveServerTransStatus;
+import org.pentaho.di.www.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -29,6 +33,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Mduduzi on 10/1/13.
@@ -38,6 +43,7 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
     private String port;
     private HttpHost targetHost;
     private DefaultHttpClient httpclient;
+    private BasicAuthCache authCache;
 
     public void init() {
         targetHost = new HttpHost(hostname, Integer.valueOf(port), "http");
@@ -45,6 +51,17 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
         cxMgr.setMaxTotal(100);
         cxMgr.setDefaultMaxPerRoute(20);
         httpclient = new DefaultHttpClient(cxMgr);
+        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_0);
+
+        httpclient.getCredentialsProvider().setCredentials(new AuthScope(targetHost.getHostName(), targetHost.getPort()),
+                new UsernamePasswordCredentials("cluster", "cluster"));
+
+        // Create AuthCache instance
+        authCache = new BasicAuthCache();
+        // Generate BASIC scheme object and add it to the local
+        // auth cache
+        BasicScheme basicAuth = new BasicScheme();
+        authCache.put(targetHost, basicAuth);
     }
 
     @Override
@@ -72,13 +89,51 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
     }
 
     @Override
-    public SlaveServerTransStatus startTransformationJob(String transName) {
-        return null;
+    public SlaveServerTransStatus startTransformationJob(final String transName) {
+        final String carteObjectId = UUID.randomUUID().toString();
+        try {
+            String response = executeHttpGet(StartExecutionTransServlet.CONTEXT_PATH,
+                    new HashMap(){{
+                        put("xml","Y");
+                        put("name",transName);
+                        put("id",carteObjectId);}},
+                    null,
+                    null);
+            return SlaveServerTransStatus.fromXML(response);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException(ex);
+        }
     }
 
     @Override
-    public SlaveServerTransStatus getTransformationJobStatus(String transName) {
-        return null;
+    public SlaveServerTransStatus getTransformationJobStatus(final String transName,final String carteObjectId) {
+        try {
+            String response = executeHttpGet(GetStatusServlet.CONTEXT_PATH,
+                    new HashMap(){{
+                        put("xml","Y");
+                        put("name",transName);
+                        put("id",carteObjectId);}},
+                    null,
+                    null);
+            return SlaveServerTransStatus.fromXML(response);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException(ex);
+        }
+    }
+
+    @Override
+    public SlaveServerTransStatus getTransformationJobStatus(final String transName) {
+        try {
+            String response = executeHttpGet(GetStatusServlet.CONTEXT_PATH,
+                    new HashMap(){{
+                        put("xml","Y");
+                        put("name",transName);}},
+                    null,
+                    null);
+            return SlaveServerTransStatus.fromXML(response);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException(ex);
+        }
     }
 
     @Override
@@ -129,18 +184,23 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
         }
     }
 
-    private String executeHttpGet(String contextPath, Map<String,Object> params, String content, String contextType) throws IOException, URISyntaxException {
-        HttpGetWithEntity get = new HttpGetWithEntity(contextPath);
-        HttpParams httpParams = new BasicHttpParams();
+    private String executeHttpGet(String contextPath, Map<String,String> params, String content, String contextType) throws IOException, URISyntaxException {
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath(contextPath);
         for (String key : params.keySet()){
-            httpParams.setParameter(key, params.get(key));
+            builder.setParameter(key, params.get(key));
         }
+        URI uri = builder.build();
+
+        HttpGetWithEntity get = new HttpGetWithEntity(uri.toString());
 
         if (content != null)
             get.setEntity(new StringEntity(content, ContentType.create("text/xml", "UTF-8")));
-        get.setParams(httpParams);
 
-        HttpResponse resp = httpclient.execute(targetHost,get);
+        HttpResponse resp = httpclient.execute(targetHost,get,ctx);
         System.out.println(resp.getStatusLine());
 
         String response = null;

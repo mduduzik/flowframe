@@ -24,6 +24,8 @@ public interface ICarteJobService {
 
     public SlaveServerTransStatus getTransformationJobStatus(String transName);
 
+    public SlaveServerTransStatus getTransformationJobStatus(String transName, String carteObjectId);
+
     public SlaveServerTransStatus pauseTransformationJob(String transName);
 
     /**
