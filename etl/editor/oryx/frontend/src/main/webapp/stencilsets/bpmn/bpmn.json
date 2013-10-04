@@ -5158,7 +5158,7 @@
 				{ name:   "End Event",
 				  groups: ["End Events"],
 				  icon:   "new_event_end.png",
-				  properties: { result: "None" }},
+				  metricData: { result: "None" }},
 
 				{ name: "End Cancel Event",
 				  groups: ["End Events"],

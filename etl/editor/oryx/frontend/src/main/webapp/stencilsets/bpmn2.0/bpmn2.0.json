@@ -4427,7 +4427,7 @@
 				"fromtoall",
 				"IntermediateEventsMorph"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"trigger",
 					"type":"String",
@@ -4942,7 +4942,7 @@
 				"Endevents_all",
 				"EndEventsMorph"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"trigger",
 					"type":"String",

@@ -34,5 +34,6 @@ public class MainApplication extends ResourceConfig {
         register(RepositoryExplorerResource.class);
         register(CharsetEncodingResource.class);
         register(CSVInputDialogDelegateResource.class);
+
     }
 }

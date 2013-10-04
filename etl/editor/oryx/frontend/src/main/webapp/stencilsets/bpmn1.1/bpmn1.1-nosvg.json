@@ -1640,7 +1640,7 @@
 				"ActivitiesMorph"
 			],
  			"layout" : [{"type" : "layout.bpmn11.subprocess"}],
-			"properties": [
+			"metricData": [
 				{
 					"id":"id",
 					"type":"String",

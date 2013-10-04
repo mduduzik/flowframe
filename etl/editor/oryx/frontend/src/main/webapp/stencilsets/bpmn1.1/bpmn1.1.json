@@ -5454,7 +5454,7 @@
 				"Startevents_all",
 				"StartEventsMorph"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"id",
 					"type":"String",
@@ -10412,7 +10412,7 @@
 				"Endevents_all",
 				"EndEventsMorph"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"id",
 					"type":"String",

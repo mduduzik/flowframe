@@ -152,7 +152,7 @@
 				"annotatable",
 				"useCaseMorph"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"name",
 					"type":"String",
@@ -524,7 +524,7 @@
 				"IncludeExtendMorph",
 				"IncludeExtend"
 			],
-			"properties": [
+			"metricData": [
 			    {
 					"id":"include",
 					"type":"String",

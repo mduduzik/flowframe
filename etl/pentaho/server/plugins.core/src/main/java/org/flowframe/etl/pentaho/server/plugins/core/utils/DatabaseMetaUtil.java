@@ -71,12 +71,16 @@ public class DatabaseMetaUtil {
 
     public static DatabaseMeta getDatabaseMeta(ICustomRepository repo, ObjectId dbId) throws KettleException {
         DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(dbId);
+        databaseMeta.setUsingConnectionPool(true);
+        databaseMeta.setInitialPoolSize(10);
         return databaseMeta;
     }
 
     public static DatabaseMeta getDatabaseMetaByPathId(ICustomRepository repo, String pathId) throws KettleException {
         ObjectId objId = RepositoryUtil.getDBObjectIDFromPathID(pathId);
         DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(objId);
+        databaseMeta.setUsingConnectionPool(true);
+        databaseMeta.setInitialPoolSize(10);
         return databaseMeta;
     }
 

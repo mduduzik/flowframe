@@ -651,7 +651,7 @@
 				"activityContent",
 				"andOr"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"name",
 					"type":"String",

@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Export-Package: org.mortbay.jetty.testing;version="6.1.26";uses:="java
+ x.servlet.http,org.mortbay.io,org.mortbay.jetty,org.mortbay.jetty.ser
+ vlet,org.mortbay.util"
+Build-Jdk: 1.6.0_45
+Built-By: Mduduzi
+Bundle-Version: 6.1.26
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: jflex
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: org.flowframe.thirdparty.jetty-servlet-tester
+Import-Package: javax.servlet.http;version="0",org.mortbay.io;version=
+ "[6.1,6.2)",org.mortbay.io.bio;version="[6.1,6.2)",org.mortbay.jetty;
+ version="[6.1,6.2)",org.mortbay.jetty.nio;version="[6.1,6.2)",org.mor
+ tbay.jetty.servlet;version="[6.1,6.2)",org.mortbay.util;version="[6.1
+ ,6.2)"
+Archiver-Version: Plexus Archiver
+

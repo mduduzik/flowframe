@@ -1,11 +1,13 @@
 package org.flowframe.etl.pentaho.server.carte.standalone.impl;
 
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
@@ -25,6 +27,8 @@ import org.pentaho.di.trans.TransConfiguration;
 import org.pentaho.di.trans.TransExecutionConfiguration;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.www.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -39,6 +43,8 @@ import java.util.UUID;
  * Created by Mduduzi on 10/1/13.
  */
 public class StandaloneCarteServerImpl implements ICarteJobService {
+    private static final Logger logger = LoggerFactory
+            .getLogger(StandaloneCarteServerImpl.class);
     private String hostname;
     private String port;
     private HttpHost targetHost;
@@ -69,10 +75,13 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
         TransExecutionConfiguration transExecConfig = new TransExecutionConfiguration();
         TransConfiguration transConfig = new TransConfiguration(transMeta, transExecConfig);
 
-        String response = executeHttpGet(AddTransServlet.CONTEXT_PATH,
-                new HashMap(){{
-                    put("xml","Y");}},
-                transConfig.getXML(),
+        final String content = transConfig.getXML();
+        String response = executeHttpPost(AddTransServlet.CONTEXT_PATH + "/",
+                new HashMap() {{
+                    put("xml", "Y");
+                    put("length", content.length() + "");
+                }},
+                content,
                 null);
 
         Document document = XMLHandler.loadXMLString(response);
@@ -127,6 +136,25 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
                     new HashMap(){{
                         put("xml","Y");
                         put("name",transName);}},
+                    null,
+                    null);
+            return SlaveServerTransStatus.fromXML(response);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException(ex);
+        }
+    }
+
+    @Override
+    public SlaveServerTransStatus executeTransformationJob(final String transName, final String level) {
+        try {
+            String response = executeHttpGet(ExecuteTransServlet.CONTEXT_PATH,
+                    new HashMap(){{
+                        put("xml","Y");
+                        put("rep","ffmdmrepoetl");
+                        put("user","admin");
+                        put("pass","admin");
+                        put("level",level);
+                        put("trans",transName);}},
                     null,
                     null);
             return SlaveServerTransStatus.fromXML(response);
@@ -196,8 +224,13 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
 
         HttpGetWithEntity get = new HttpGetWithEntity(uri.toString());
 
-        if (content != null)
-            get.setEntity(new StringEntity(content, ContentType.create("text/xml", "UTF-8")));
+        if (content != null)  {
+            //get.setHeader("Content-Length",""+content.length());
+            StringEntity entity = new StringEntity(content, ContentType.create("text/xml", "UTF-8"));
+            long len = entity.getContentLength();
+            get.setEntity(entity);
+            printRequest(get);
+        }
 
         HttpResponse resp = httpclient.execute(targetHost,get,ctx);
         System.out.println(resp.getStatusLine());
@@ -208,6 +241,46 @@ public class StandaloneCarteServerImpl implements ICarteJobService {
         }
 
         return response;
+    }
+
+    private String executeHttpPost(String contextPath, Map<String,String> params, String content, String contextType) throws IOException, URISyntaxException {
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath(contextPath);
+        for (String key : params.keySet()){
+            builder.setParameter(key, params.get(key));
+        }
+        URI uri = builder.build();
+
+        HttpPost get = new HttpPost(uri.toString());
+
+        if (content != null)  {
+            //get.setHeader("Content-Length",""+content.length());
+            StringEntity entity = new StringEntity(content, ContentType.create("text/xml", "UTF-8"));
+            long len = entity.getContentLength();
+            get.setEntity(entity);
+        }
+
+        HttpResponse resp = httpclient.execute(targetHost,get,ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+
+        return response;
+    }
+
+    private void printRequest(HttpGetWithEntity request) {
+        logger.info("*** Request headers ***");
+        Header[] requestHeaders = request.getAllHeaders();
+        for(Header header : requestHeaders) {
+            logger.info(header.toString());
+        }
+        logger.info("***********************");
     }
 
     public class HttpGetWithEntity extends HttpEntityEnclosingRequestBase {

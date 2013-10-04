@@ -3167,7 +3167,7 @@
 				"tc",
 				"fromtoall"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"id",
 					"type":"String",

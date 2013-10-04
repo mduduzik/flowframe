@@ -96,7 +96,7 @@
 		}
 	
 	], 
-		"properties": [
+		"metricData": [
 		{
 			"roles": [
 				"Task"

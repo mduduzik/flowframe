@@ -113,7 +113,7 @@
 		},
  		{
  			"name":"catchEventAttributes",
- 			"properties":[
+ 			"metricData":[
  				{
 					"id":"eventdefinitionref",
 					"type":"String",
@@ -747,7 +747,7 @@
 		},
 		{
 			"name":"operation",
-			"properties": [
+			"metricData": [
 				{
 					"id":"operationname",
 					"type":"String",
@@ -4386,7 +4386,7 @@
 				"choreography_sequence_start",
 				"IntermediateEventsMorph"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"trigger",
 					"type":"String",

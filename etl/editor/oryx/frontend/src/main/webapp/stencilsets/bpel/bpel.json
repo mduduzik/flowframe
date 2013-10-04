@@ -2676,7 +2676,7 @@
 				raiseEvent({type:ORYX.CONFIG.EVENT_LAYOUT_BPEL_SINGLECHILD,shape:shape});
  			},*/
  			"layout":[{"type":"layout.BPEL.singlechild"}],
-			"properties": [
+			"metricData": [
 				{
 					"id":"condition_expressionLanguage",
 					"prefix":"oryx",
@@ -3498,7 +3498,7 @@
 				raiseEvent({type:ORYX.CONFIG.EVENT_LAYOUT_BPEL_VERTICAL,shape:shape});	
  			},*/
  			"layout":[{"type":"layout.BPEL.vertical"}],
-			"properties": [
+			"metricData": [
 				{
 					"id":"name",
 					"prefix":"oryx",

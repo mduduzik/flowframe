@@ -114,7 +114,7 @@
 			"view":        "diagram.svg",
 			"icon":        "diagram.png",
 			"roles":       [],
-			"properties" : [
+			"metricData" : [
 				{
 					"id" : "Name",
 					"type" : "String",

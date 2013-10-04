@@ -10,7 +10,7 @@
 				"fromtoall",
 				"TextAnnotation"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"refuri",
 					"type":"url",

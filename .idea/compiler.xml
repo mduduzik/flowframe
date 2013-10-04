@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="distribution" />
         <module name="kettle-all" />
+        <module name="kettle-engine" />
         <module name="org.flowframe..thirdparty.pentaho-reporting-engine-library" />
         <module name="org.flowframe..thirdparty.pentaho.reporting.libfonts" />
         <module name="org.flowframe..thirdparty.pentaho.reporting.libformat" />
@@ -151,6 +152,7 @@
         <module name="org.flowframe.thirdparty.jersey.hk2-utils" />
         <module name="org.flowframe.thirdparty.jersey.javax.inject" />
         <module name="org.flowframe.thirdparty.jersey.jersey-spring3" />
+        <module name="org.flowframe.thirdparty.jetty-servlet-tester" />
         <module name="org.flowframe.thirdparty.jflex" />
         <module name="org.flowframe.thirdparty.json20090211" />
         <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
@@ -216,6 +218,7 @@
       <module name="carte" target="1.6" />
       <module name="distribution" target="1.6" />
       <module name="kettle-all" target="1.6" />
+      <module name="kettle-engine" target="1.6" />
       <module name="org.flowframe.bpm" target="1.6" />
       <module name="org.flowframe.bpm.jbpm" target="1.6" />
       <module name="org.flowframe.bpm.jbpm.bpmserver" target="1.6" />
@@ -388,6 +391,7 @@
       <module name="org.flowframe.thirdparty.jersey.hk2-utils" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.javax.inject" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.jersey-spring3" target="1.6" />
+      <module name="org.flowframe.thirdparty.jetty-servlet-tester" target="1.6" />
       <module name="org.flowframe.thirdparty.jflex" target="1.6" />
       <module name="org.flowframe.thirdparty.json20090211" target="1.6" />
       <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" target="1.6" />

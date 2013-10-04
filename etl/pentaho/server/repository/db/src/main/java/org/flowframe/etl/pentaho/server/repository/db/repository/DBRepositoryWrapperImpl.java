@@ -31,6 +31,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	private static final String FOLDER_TRANS_INPUTS = "Inputs";
 	private static final String FOLDER_TRANS_OUTPUTS = "Outputs";
 	private static final String FOLDER_TRANS_TRANSFORMS = "Transforms";
+    private static final String FOLDER_TRANS_TRANSFORMS_DRAFTS = "Drafts";
 	private static final String FOLDER_TRANS_MAPPINGS = "Mappings";
 	
 	
@@ -281,6 +282,15 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 			dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_TRANSFORMS);
 		return dir;	
 	}
+
+    @Override
+    public RepositoryDirectoryInterface provideTransformDraftsDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface transStepDirectory = provideTransformTransStepDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_TRANSFORMS_DRAFTS);
+        if (dir == null)
+            dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_TRANSFORMS_DRAFTS);
+        return dir;
+    }
 
 	@Override
 	public RepositoryDirectoryInterface provideTransformMappingsTransStepDirectoryForTenant(Organization tenant) throws KettleException {

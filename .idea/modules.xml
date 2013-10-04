@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/editor/editor.iml" filepath="$PROJECT_DIR$/etl/editor/editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/kettle-engine.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/kettle-engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/org.flowframe.bpm.iml" filepath="$PROJECT_DIR$/bpm/org.flowframe.bpm.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/jbpm/org.flowframe.bpm.jbpm.iml" filepath="$PROJECT_DIR$/bpm/jbpm/org.flowframe.bpm.jbpm.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm/jbpm/bpmserver/org.flowframe.bpm.jbpm.bpmserver.iml" filepath="$PROJECT_DIR$/bpm/jbpm/bpmserver/org.flowframe.bpm.jbpm.bpmserver.iml" />
@@ -173,6 +174,7 @@
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/hk2-utils/org.flowframe.thirdparty.jersey.hk2-utils.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/hk2-utils/org.flowframe.thirdparty.jersey.hk2-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/javax.inject/org.flowframe.thirdparty.jersey.javax.inject.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/javax.inject/org.flowframe.thirdparty.jersey.javax.inject.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jersey/jersey-spring3/org.flowframe.thirdparty.jersey.jersey-spring3.iml" filepath="$PROJECT_DIR$/thirdparty/jersey/jersey-spring3/org.flowframe.thirdparty.jersey.jersey-spring3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdparty/jetty-servlet-tester/org.flowframe.thirdparty.jetty-servlet-tester.iml" filepath="$PROJECT_DIR$/thirdparty/jetty-servlet-tester/org.flowframe.thirdparty.jetty-servlet-tester.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/jflex/org.flowframe.thirdparty.jflex.iml" filepath="$PROJECT_DIR$/thirdparty/jflex/org.flowframe.thirdparty.jflex.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/json20090211/org.flowframe.thirdparty.json20090211.iml" filepath="$PROJECT_DIR$/thirdparty/json20090211/org.flowframe.thirdparty.json20090211.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi.iml" />

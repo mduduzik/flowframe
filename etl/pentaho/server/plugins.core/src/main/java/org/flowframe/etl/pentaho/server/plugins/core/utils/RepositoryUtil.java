@@ -2,6 +2,7 @@ package org.flowframe.etl.pentaho.server.plugins.core.utils;
 
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.etl.pentaho.server.repository.util.TransformationMetaUtil;
+import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
@@ -105,6 +106,44 @@ public class RepositoryUtil {
         return "/dir/"+typeId+"#"+dir.getObjectId();
     }
 
+    /**
+     *
+     * Transformations
+     *
+     */
+    static public synchronized String addOrReplaceTransMetaDraft(Organization tenant, ICustomRepository repo, TransMeta transMeta) {
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface draftsDir = repo.provideTransformDraftsDirectoryForTenant(tenant);
+            ObjectId transId = repo.getRepositoryTransDelegate().getTransformationID(transMeta.getName(), draftsDir.getObjectId());
+            if (transId != null) {
+                repo.deleteTransformation(transId);
+            }
+            transMeta.setRepositoryDirectory(draftsDir);
+            repo.getRepositoryTransDelegate().saveTransformation(transMeta,"drafts trans",null,true);
+
+            return transMeta.getName();
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    static public synchronized void purgeTransMetaDrafts(Organization tenant, ICustomRepository repo, TransMeta transMeta) {
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface draftsDir = repo.provideTransformDraftsDirectoryForTenant(tenant);
+            draftsDir.clear();
+            ObjectId transId = repo.getRepositoryTransDelegate().getTransformationID(transMeta.getName(), draftsDir.getObjectId());
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    /**
+     *
+     * Steps
+     *
+     */
     static public StepMeta getStep(ICustomRepository repo, String pathID) {
        // /trans/1/step/2
         String[] pathTokens = pathID.split("/");

@@ -4,7 +4,7 @@
 	"description":"Petrinet extension for adding an execution time and propability to transitions",
 	"extends":"http://b3mn.org/stencilset/petrinet#",
 	"stencils":[],
-	"properties": [
+	"metricData": [
 		{
 			"roles": [
 				"transition"

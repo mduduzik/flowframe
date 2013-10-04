@@ -122,6 +122,18 @@
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties": [
                 {
+                    "id":"filename",
+                    "category":"Basic Settings",
+                    "type":"String",
+                    "title":"Local Filename",
+                    "value":"true",
+                    "description":"",
+                    "readonly":false,
+                    "optional":false,
+                    "refToView":"",
+                    "length":"255"
+                },
+                {
                     "id":"distribute",
                     "category":"Basic Settings",
                     "type":"Boolean",
@@ -227,17 +239,6 @@
                     "length":"30"
                 },
                 {
-                    "id":"lazyConversion",
-                    "category":"Basic Settings",
-                    "type":"Boolean",
-                    "title":"Lazy Conversion",
-                    "value":"true",
-                    "description":"",
-                    "readonly":false,
-                    "optional":false,
-                    "length":"30"
-                },
-                {
                     "id":"addFilenameResult",
                     "category":"Basic Settings",
                     "type":"Boolean",
@@ -263,7 +264,7 @@
                     "id":"newlinePossible",
                     "category":"Basic Settings",
                     "type":"Boolean",
-                    "title":"Parallel",
+                    "title":"Newline Possible",
                     "value":"true",
                     "description":"",
                     "readonly":false,

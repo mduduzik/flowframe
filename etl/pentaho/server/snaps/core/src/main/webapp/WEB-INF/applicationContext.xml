@@ -48,6 +48,8 @@
     <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.server.snaps.org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseTypeResource" scope="request"/>
     <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.server.snaps.org.flowframe.etl.pentaho.server.plugins.core.resource.RepositoryExplorerResource" scope="request"/>
     <bean id="charSet" class="org.flowframe.etl.pentaho.server.snaps.org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource" scope="request"/>
+
+
     <!--
        CSVInput
     -->

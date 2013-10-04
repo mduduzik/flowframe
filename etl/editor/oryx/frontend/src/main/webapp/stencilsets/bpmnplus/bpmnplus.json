@@ -1204,7 +1204,7 @@
 				"fromtoall"
 			],
 			
-			"properties": [
+			"metricData": [
 
 				{
 					"id":"categories",

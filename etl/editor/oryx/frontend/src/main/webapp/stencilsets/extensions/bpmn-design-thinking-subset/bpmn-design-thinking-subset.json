@@ -179,7 +179,7 @@
 	"removeproperties": [
 		{
 			"stencil": "BPMNDiagram",
-			"properties": [
+			"metricData": [
                 "version",
                 "author",
                 "language",

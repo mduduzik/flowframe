@@ -108,6 +108,8 @@
         <option value="$PROJECT_DIR$/thirdparty/json20090211/pom.xml" />
         <option value="$PROJECT_DIR$/editors/oryx/backend/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jetty-servlet-tester/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

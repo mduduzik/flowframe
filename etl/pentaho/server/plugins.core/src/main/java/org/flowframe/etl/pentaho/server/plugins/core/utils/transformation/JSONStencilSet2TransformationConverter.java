@@ -14,6 +14,7 @@ import org.pentaho.di.trans.TransHopMeta;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.step.StepMetaInterface;
+import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.tableoutput.TableOutputMeta;
 
 import java.util.HashMap;
@@ -48,6 +49,7 @@ public class JSONStencilSet2TransformationConverter {
                 //Lookup meta
                 stepMeta = RepositoryUtil.getStep(repository, getStringProperty(childShape, "metadataobjid"));
                 stepMeta.setName(getStringProperty(childShape,"name"));
+                ((CsvInputMeta)stepMeta.getStepMetaInterface()).setFilename(getStringProperty(childShape, "filename"));
                 transMeta.addStep(stepMeta);
                 name2StepMeta.put(getStringProperty(childShape,"name"),stepMeta);
             }

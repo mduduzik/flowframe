@@ -2402,7 +2402,7 @@
 				"Startevents_all",
                                 "bpmnElement"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"id",
 					"type":"String",

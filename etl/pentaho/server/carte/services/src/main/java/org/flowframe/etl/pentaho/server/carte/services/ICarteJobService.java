@@ -28,6 +28,8 @@ public interface ICarteJobService {
 
     public SlaveServerTransStatus pauseTransformationJob(String transName);
 
+    public SlaveServerTransStatus executeTransformationJob(final String transName, final String level);
+
     /**
      *
      * general

@@ -342,7 +342,7 @@
 			"roles": [
 				"diagramcontent"
 			],
-			"properties": [
+			"metricData": [
 				{
 					"id":"Label",
 					"type":"String",

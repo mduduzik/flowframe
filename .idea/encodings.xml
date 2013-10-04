@@ -176,6 +176,7 @@
     <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-spring3" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jersey/spring-bridge" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jetty-servlet-tester" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jflex" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/json20090211" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/knowledge-api" charset="UTF-8" />
@@ -187,6 +188,7 @@
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/distribution" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-engine" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting" charset="UTF-8" />

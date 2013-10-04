@@ -223,7 +223,7 @@
 			"view":"controlflow.svg",
 			"icon":"controlflow.png",
 			"roles": [],
-			"properties": []
+			"metricData": []
 		}
 	],
 	"rules": {
