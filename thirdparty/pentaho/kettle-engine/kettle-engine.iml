@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Maven: com.pentaho:kettle-engine:4.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.pentaho:kettle-core:4.4.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet:3.0.0.v201103241009" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />

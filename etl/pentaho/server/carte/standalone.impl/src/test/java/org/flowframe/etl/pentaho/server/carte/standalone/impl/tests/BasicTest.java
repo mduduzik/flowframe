@@ -95,8 +95,8 @@ public class BasicTest extends AbstractJUnit4SpringContextTests {
 
 
 */
-        SlaveServerTransStatus res = jobService.executeTransformationJob("/conxbi/tenant/Organization-1/Trans/Steps/Transforms/Drafts/oryx-canvas123","detailed");
-        assertNotNull(res);
+        SlaveServerTransStatus resp = jobService.executeTransformationJob("/conxbi/tenant/Organization-1/Trans/Steps/Transforms/Drafts/oryx-canvas123","detailed");
+        assertNotNull(resp);
     }
 
 

@@ -1,0 +1,34 @@
+<transstatus>
+    <transname>oryx-canvas123</transname>
+    <id>efba9150-6ff2-46ba-ac93-24501616a197</id>
+    <status_desc>Waiting</status_desc>
+    <error_desc/>
+    <paused>N</paused>
+    <stepstatuslist>
+        <stepstatus><stepname>csvmeta-ext-gen779</stepname><copy>0</copy><linesRead>0</linesRead><linesWritten>21379</linesWritten><linesInput>21380</linesInput><linesOutput>0</linesOutput><linesUpdated>0</linesUpdated><linesRejected>0</linesRejected><errors>0</errors><statusDescription>Finished</statusDescription><seconds>1.2</seconds><speed> 18,227</speed><priority>-</priority><stopped>N</stopped><paused>N</paused></stepstatus>
+        <stepstatus><stepname>database-ext-gen937</stepname><copy>0</copy><linesRead>21379</linesRead><linesWritten>21379</linesWritten><linesInput>0</linesInput><linesOutput>21379</linesOutput><linesUpdated>0</linesUpdated><linesRejected>0</linesRejected><errors>0</errors><statusDescription>Finished</statusDescription><seconds>2.3</seconds><speed> 9,410</speed><priority>-</priority><stopped>N</stopped><paused>N</paused></stepstatus>
+    </stepstatuslist>
+    <first_log_line_nr>0</first_log_line_nr>
+    <last_log_line_nr>39</last_log_line_nr>
+    <result><lines_input>0</lines_input>
+        <lines_output>0</lines_output>
+        <lines_read>0</lines_read>
+        <lines_written>0</lines_written>
+        <lines_updated>0</lines_updated>
+        <lines_rejected>0</lines_rejected>
+        <lines_deleted>0</lines_deleted>
+        <nr_errors>0</nr_errors>
+        <nr_files_retrieved>0</nr_files_retrieved>
+        <entry_nr>0</entry_nr>
+        <result>N</result>
+        <exit_status>0</exit_status>
+        <is_stopped>N</is_stopped>
+        <log_channel_id>db6f4ff3-7aee-4d6c-b548-61a9f8d3bf5a</log_channel_id>
+        <log_text/>
+        <result-file></result-file><result-rows></result-rows></result><logging_string><![CDATA[2013/10/04 15:09:10 - oryx-canvas123 - Dispatching started for transformation [oryx-canvas123]
+2013/10/04 15:09:10 - database-ext-gen937.0 - Connected to database [test] (commit=1000)
+2013/10/04 15:09:10 - csvmeta-ext-gen779.0 - Header row skipped in file &apos;C:\\devtools\\pdi-ce-4.4.0-stable\\data-integration\\samples\\transformations\\files\\Zipssortedbycitystate.csv&apos;
+2013/10/04 15:09:11 - csvmeta-ext-gen779.0 - Finished processing (I=21380, O=0, R=0, W=21379, U=0, E=0)
+2013/10/04 15:09:12 - database-ext-gen937.0 - Finished processing (I=0, O=21379, R=21379, W=21379, U=0, E=0)
+]]></logging_string>
+</transstatus>

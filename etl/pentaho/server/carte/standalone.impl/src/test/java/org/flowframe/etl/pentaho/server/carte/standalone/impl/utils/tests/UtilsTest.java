@@ -6,6 +6,7 @@ import org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.XML2JSONTran
 import org.flowframe.kernel.common.utils.StringUtil;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.www.SlaveServerTransStatus;
@@ -34,7 +35,7 @@ public class UtilsTest {
 	public void tearDownAfter() throws Exception {
 	}
 
-
+    @Ignore
 	@Test
 	public final void testXML2JSONTransformer() throws KettleException, JSONException, IOException, TransformerException, URISyntaxException {
         InputStream is = UtilsTest.class.getResourceAsStream("/samples/trans_status_response.xml");
@@ -55,4 +56,21 @@ public class UtilsTest {
         JSONArray json = XML2JSONTransformer.transform(xml);
         Assert.notNull(json);
 	}
+
+    @Test
+    public final void testXML2JSONTransformerWithError() throws KettleException, JSONException, IOException, TransformerException, URISyntaxException {
+        InputStream is = UtilsTest.class.getResourceAsStream("/samples/trans_status_response_error1.xml");
+        Assert.notNull(is);
+        String xml = StringUtil.read(is);
+        SlaveServerTransStatus resp = SlaveServerTransStatus.fromXML(xml);
+
+        String logText = resp.getLoggingString();
+        Assert.notNull(xml);
+
+/*        xml = StringUtil.replace(resp.getXML(),"<log_text/>","");
+        xml = StringUtil.replace(xml,"<logging_string/>","");*/
+
+        JSONArray json = XML2JSONTransformer.transform(xml);
+        Assert.notNull(json);
+    }
 }

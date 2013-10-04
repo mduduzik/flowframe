@@ -44,17 +44,13 @@ public class TransformationJobServiceResource extends BaseDialogDelegateResource
 
         TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, jsonModel);
 
-        String transName = RepositoryUtil.addOrReplaceTransMetaDraft(tenant,repository,transMeta);
-
-        //-- Add trans to carte
-        SlaveServerTransStatus resp = carteJobService.addTransformationJob(transMeta);
+        String transNameWithDirPath = RepositoryUtil.addOrReplaceTransMetaDraft(tenant,repository,transMeta);
 
         //-- Execute trans
-        resp = carteJobService.startTransformationJob(transMeta.getName());
+        SlaveServerTransStatus resp = carteJobService.executeTransformationJob(transNameWithDirPath,"detailed");
 
-        resp = carteJobService.getTransformationJobStatus("Row generator test");
         String xml = resp.getXML();
-        JSONArray json = XML2JSONTransformer.transform(xml);
+        JSONArray json = XML2JSONTransformer.transform(xml,tmpDir);
 
 
         return json.toString();

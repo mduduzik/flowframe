@@ -122,7 +122,7 @@ public class RepositoryUtil {
             transMeta.setRepositoryDirectory(draftsDir);
             repo.getRepositoryTransDelegate().saveTransformation(transMeta,"drafts trans",null,true);
 
-            return transMeta.getName();
+            return transMeta.getPathAndName();
         } catch (KettleException e) {
             throw new IllegalArgumentException(e);
         }

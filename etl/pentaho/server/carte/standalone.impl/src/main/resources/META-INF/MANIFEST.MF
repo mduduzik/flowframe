@@ -38,7 +38,7 @@ Import-Package: javax.xml.transform;version="0",javax.xml.transform.st
  mytrans;version="4.4.0",org.pentaho.di.trans.steps.excelinput;version
  ="4.4.0",org.pentaho.di.trans.steps.injector;version="4.4.0",org.pent
  aho.di.trans.steps.textfileinput;version="4.4.0",org.pentaho.di.www;v
- ersion="4.4.0",org.w3c.dom;version="0"
+ ersion="4.4.0",org.slf4j;version="[1.6,1.9)",org.w3c.dom;version="0"
 Bundle-SymbolicName: org.flowframe.etl.pentaho.server.carte.standalone
  .impl
 
