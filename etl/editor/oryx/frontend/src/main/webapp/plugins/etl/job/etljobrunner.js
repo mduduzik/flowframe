@@ -163,6 +163,30 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         this.createStepMetricGrid();
 
         // creating the column model of the grid.
+/*        this.loggingPanelTemplate = new Ext.XTemplate(
+            '<span style="border: 0pt; background: #ffffff;font-size: 8pt; important;">{logging_string}</span>'
+        );
+        this.loggingPanel = new Ext.Panel({
+            id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.loggingPanel',
+            title: 'Logging',
+            autoScroll: true,
+            defaults: {anchor: '-20'},
+            html: '<p>Run transformation</p>'
+        });*/
+
+        this.loggingField = new Ext.form.TextArea({
+           style: 'border: 0pt; background: #ffffff;font-size: 8pt; important;'
+        });
+        this.loggingPanel = {
+            xtype: 'form',
+            layout:'fit',
+            items: [
+                this.loggingField
+            ]
+        }
+
+
+
         var panel = {
             width:'auto',
             iconCls: 'run_exc_icon',
@@ -172,6 +196,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
             items: [
                 this.toolbar,
                 {
+                    id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel',
                     region: 'center',
                     xtype: 'tabpanel',
                     width:'auto',
@@ -193,21 +218,11 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                         layout:'fit'
                     },
                     items: [
+                        this.loggingPanel,
+                        this.stepMetricGrid,
                         {
                             title: 'Execution History'
-                        },
-                        {
-                            title: 'Logging', autoScroll: true, defaults: {anchor: '-20'}
-
-                            // fields
-                            , items: [
-                            {
-                                border: false,
-                                html: '<textarea id="translog" cols="150" rows="15" wrap="off" name="Transformation log" readonly="readonly" style="border: 0pt; background: #ffffff;font-size: 8pt; important;">2013/10/02 13:46:39 - A.0 - LineNr : 50000</textarea>'
-                            }
-                        ]
-                        },
-                        this.stepMetricGrid
+                        }
                         ,
                         {
                             title: 'Performance Graph'
@@ -219,8 +234,8 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         }
 
 
-        region = this.facade.addToRegion("centerSouth", panel, "Run");
-        region.render();
+        this.region = this.facade.addToRegion("centerSouth", panel, "Run");
+        this.region.render();
         this.toolbar.add(button);
         this.toolbar.add('-');
         this.toolbar.add('->');
@@ -331,17 +346,40 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
             method: 'POST',
             asynchronous: false,
             parameters: params,
-            onSuccess: (function(transport) {
-                var loc = transport.getResponseHeader("location");
-                if (loc) {
-                    this.processURI = loc;
-                }
-                else {
-                    this.processURI = url;
-                }
+            onSuccess: (function(response) {
+                var data = Ext.decode(response.responseText)[0];
+                var status = data.transstatus;
 
-                var modelUri="/model"+this.processURI.split("model")[1].replace(/self\/?$/i,"");
-                location.hash="#"+modelUri;
+                //Update log
+                var trace = status.logging_string;
+                var tabPanel = Ext.getCmp('ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel');
+                var tabs = tabPanel.find( 'title', 'Logging' );
+                tabPanel.setActiveTab(tabs[0]);
+                this.loggingField.setRawValue(trace);
+                //var html = this.loggingPanelTemplate.applyTemplate(status);
+                //this.loggingPanelTemplate.overwrite(tabs[0].body,trace);
+
+                //Step Metric Grid
+                var stepList = status.stepstatuslist.stepstatus;
+                for (var i = 0; i < stepList.length; i++) {
+                    var step =  stepList[i];
+                    this.stepMetricData.push([
+                        step.stepname,
+                        step.linesRead,
+                        step.linesWritten,
+                        step.linesInput,
+                        step.linesOutput,
+                        step.linesUpdated,
+                        step.linesRejected,
+                        step.errors,
+                        step.seconds,
+                        step.speed,
+                        step.stopped,
+                        step.paused
+                    ]);
+                }
+                this.stepMetricDataSource.loadData(this.stepMetricData);
+
             }).bind(this),
             onFailure: (function(transport) {
                 // raise loading disable event.
