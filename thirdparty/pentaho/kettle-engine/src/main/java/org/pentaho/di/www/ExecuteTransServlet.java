@@ -23,6 +23,7 @@
 package org.pentaho.di.www;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.spi.LoggingEvent;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleException;
@@ -46,7 +47,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.UUID;
 import java.util.zip.GZIPOutputStream;
 
@@ -159,7 +162,17 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CarteServlet
                 CarteObjectEntry entry = new CarteObjectEntry(transMeta.getName(), carteObjectId);
                 String status = trans.getStatus();
                 int lastLineNr = CentralLogStore.getLastBufferLineNr();
-                String logText = CentralLogStore.getAppender().getBuffer(trans.getLogChannel().getLogChannelId(), false, startLineNr, lastLineNr).toString();
+                List<org.apache.log4j.spi.LoggingEvent> logEvents = CentralLogStore.getAppender().getLogBufferFromTo(trans.getLogChannel().getLogChannelId(), false, startLineNr, lastLineNr);
+                StringBuffer stringBuffer = new StringBuffer(10000);
+                int index = startLineNr;
+                String record;
+                for (LoggingEvent event : logEvents) {
+                    if (logEvents.size() == 1 || stringBuffer.length() == 0)
+                        stringBuffer.append("["+(index++)+",\""+encodeJson(new Date(event.getTimeStamp()).toString())+"\",\""+encodeJson(event.getMessage().toString())+"\"]");
+                    else
+                        stringBuffer.append(",["+(index++)+",\""+encodeJson(new Date(event.getTimeStamp()).toString())+"\",\""+encodeJson(event.getMessage().toString())+"\"]");
+                }
+                String logText = "{\"records\":["+stringBuffer.toString()+"]}";
 
                 response.setContentType("text/xml");
                 response.setCharacterEncoding(Const.XML_ENCODING);
@@ -213,6 +226,20 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CarteServlet
 
             out.println(new WebResult(WebResult.STRING_ERROR, BaseMessages.getString(PKG, "ExecuteTransServlet.Error.UnexpectedError", Const.CR + Const.getStackTracker(ex))));
         }
+    }
+
+    private String encodeJson(String message) {
+        message = message.replaceAll("\\[","%5B");
+        message = message.replaceAll("\\]","%5D");
+        message = message.replaceAll("\\{","%7B");
+        message = message.replaceAll("\\}","%7D");
+        message = message.replaceAll(":","%3A");
+        message = message.replaceAll(";","%3B");
+        message = message.replaceAll(",","%2C");
+        message = message.replaceAll("\"","%22");
+        message = message.replaceAll("'","%27");
+        message = message.replaceAll("\\\\","%5C");
+        return message;
     }
 
     private TransMeta loadTransformation(Repository repository, String trans) throws KettleException {

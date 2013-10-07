@@ -130,6 +130,45 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
 
         return this.stepMetricGrid;
     },
+    createLoggingGrid: function() {
+        this.loggingGrid = new Ext.grid.GridPanel({
+            title: 'Logging',
+            stripeRows: true,
+            autoExpandColumn: 'loggingColumnModel.message',
+            width:'auto',
+            // the column model
+            colModel: new Ext.grid.ColumnModel({
+                defaultWidth: 60,
+                columns: [
+                    {
+                        header: '',
+                        dataIndex: 'linenr',
+                        width: 15,
+                        sortable: true
+                    },
+                    {
+                        header: 'TS',
+                        dataIndex: 'ts',
+                        sortable: true
+                    },
+                    {
+                        id: 'loggingColumnModel.message',
+                        header: 'Message',
+                        dataIndex: 'message',
+                        sortable: true
+                    }
+                ]}),
+            //enableHdMenu: true,
+            store: new Ext.data.Store({
+                proxy: new Ext.data.MemoryProxy(this.stepMetricData),
+                reader: new Ext.data.ArrayReader({}, [
+                    {name: 'linenr'},
+                    {name: 'ts'},
+                    {name: 'message'}
+                ])
+            })
+        });
+    },
     init: function () {
         // the properties array
         this.stepMetricData = [];
@@ -161,6 +200,9 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
 
         //create step metrics grid
         this.createStepMetricGrid();
+
+        //create logging grid
+        this.createLoggingGrid();
 
         // creating the column model of the grid.
 /*        this.loggingPanelTemplate = new Ext.XTemplate(
@@ -218,7 +260,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                         layout:'fit'
                     },
                     items: [
-                        this.loggingPanel,
+                        this.loggingGrid,
                         this.stepMetricGrid,
                         {
                             title: 'Execution History'
@@ -339,6 +381,21 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         win.show();
     },
 
+    unescapeHTML: function (str) {
+        str = str.replace(/&quot;/g,'\"');
+        str = str.replace(/&apos;/g,"'");
+        str = str.replace(/%5B/g,'[');
+        str = str.replace(/%5D/g,']');
+        str = str.replace(/%7B/g,'{');
+        str = str.replace(/%7D/g,'}');
+        str = str.replace(/%3A/g,':');
+        str = str.replace(/%3B/g,';');
+        str = str.replace(/%2C/g,',');
+        str = str.replace(/%22/g,'"');
+        str = str.replace(/%27/g,'\'');
+        str = str.replace(/%5C/g,'\\');
+        return str;
+    },
     sendRunRequest: function(url, params){
 
         // Send the request to the server.
@@ -350,12 +407,28 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                 var data = Ext.decode(response.responseText)[0];
                 var status = data.transstatus;
 
-                //Update log
+                //Update logEEx
                 var trace = status.logging_string;
+                trace = trace.replace(/&quot;/g,'\"');
+                trace = trace.replace(/&apos;/g,"'");
+                var traceData = Ext.decode(trace);
+
+                var logList = traceData.records;
+                this.logData = [];
+                for (var i = 0; i < logList.length; i++) {
+                    var log =  logList[i];
+                    this.logData.push([
+                        log[0],
+                        this.unescapeHTML(log[1]),
+                        this.unescapeHTML(log[2])
+                    ]);
+                }
+                this.loggingGrid.store.loadData(this.logData);
+
                 var tabPanel = Ext.getCmp('ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel');
                 var tabs = tabPanel.find( 'title', 'Logging' );
                 tabPanel.setActiveTab(tabs[0]);
-                this.loggingField.setRawValue(trace);
+                //this.loggingField.setRawValue(trace);
                 //var html = this.loggingPanelTemplate.applyTemplate(status);
                 //this.loggingPanelTemplate.overwrite(tabs[0].body,trace);
 

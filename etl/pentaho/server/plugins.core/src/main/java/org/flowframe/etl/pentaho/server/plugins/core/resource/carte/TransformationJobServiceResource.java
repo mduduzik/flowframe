@@ -9,6 +9,7 @@ import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.utils.HTMLUtil;
+import org.flowframe.kernel.common.utils.StringUtil;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.trans.TransMeta;
@@ -34,6 +35,8 @@ public class TransformationJobServiceResource extends BaseDialogDelegateResource
     @Autowired
     private ICarteJobService carteJobService;
 
+    private HTMLUtil htmlUtil = new HTMLUtil();
+
 
     @Path("/execute")
     @POST
@@ -49,11 +52,11 @@ public class TransformationJobServiceResource extends BaseDialogDelegateResource
 
         //-- Execute trans
         SlaveServerTransStatus resp = carteJobService.executeTransformationJob(transNameWithDirPath,"detailed");
-        resp.setLoggingString(HTMLUtil.escape(resp.getLoggingString()));
-
         String xml = resp.getXML();
-        JSONArray json = XML2JSONTransformer.transform(xml,tmpDir);
 
+        JSONArray json = XML2JSONTransformer.transform(xml,tmpDir);
+        //String jsonStr = StringUtil.replace(json.toString(), "&quot;", "\"");
+        //jsonStr = StringUtil.replace(jsonStr,"&apos;","'");
 
         return json.toString();
     }
