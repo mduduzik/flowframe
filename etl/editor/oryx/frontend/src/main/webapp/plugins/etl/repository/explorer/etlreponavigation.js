@@ -85,7 +85,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
 
             this.navigationPanel = new Ext.ux.ETLRepoNavigationTreePanel({
                 facade: this.facade,
-                header: false,
+                header: true,
                 //region: 'west',
                 id: 'navigation',
                 icon: '/etl/images/conxbi/etl/home_nav.gif',

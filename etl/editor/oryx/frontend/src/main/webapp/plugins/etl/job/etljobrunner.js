@@ -138,12 +138,12 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
             width:'auto',
             // the column model
             colModel: new Ext.grid.ColumnModel({
-                defaultWidth: 60,
+                defaultWidth: 120,
                 columns: [
                     {
-                        header: '',
+                        header: 'Line',
                         dataIndex: 'linenr',
-                        width: 15,
+                        width: 50,
                         sortable: true
                     },
                     {
@@ -380,7 +380,9 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
 
         win.show();
     },
-
+    padDigits: function(number, digits) {
+        return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+    },
     unescapeHTML: function (str) {
         str = str.replace(/&quot;/g,'\"');
         str = str.replace(/&apos;/g,"'");
@@ -418,7 +420,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                 for (var i = 0; i < logList.length; i++) {
                     var log =  logList[i];
                     this.logData.push([
-                        log[0],
+                        this.padDigits(log([0],5)),
                         this.unescapeHTML(log[1]),
                         this.unescapeHTML(log[2])
                     ]);

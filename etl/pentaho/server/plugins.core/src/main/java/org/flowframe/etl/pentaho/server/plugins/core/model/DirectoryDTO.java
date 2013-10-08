@@ -14,6 +14,13 @@ public class DirectoryDTO implements Serializable {
     private long dirObjectId;
     private String itemtype;
 
+    private DirectoryDTO parent;
+
+    public DirectoryDTO(String name, long dirObjectId) {
+        this.name = name;
+        this.dirObjectId = dirObjectId;
+    }
+
     public DirectoryDTO() {}
 
     public String getName() {
@@ -38,5 +45,13 @@ public class DirectoryDTO implements Serializable {
 
     public void setItemtype(String itemtype) {
         this.itemtype = itemtype;
+    }
+
+    public DirectoryDTO getParent() {
+        return parent;
+    }
+
+    public void setParent(DirectoryDTO parent) {
+        this.parent = parent;
     }
 }

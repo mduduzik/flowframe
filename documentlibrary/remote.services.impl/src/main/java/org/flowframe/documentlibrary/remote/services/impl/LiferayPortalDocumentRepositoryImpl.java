@@ -128,7 +128,39 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return initialized;
 	}
 
-	@Override
+    @Override
+    public List<Folder> getSubFolders(String parentFolderId) throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws//dlapp/get-folders");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("parentFolderId ", parentFolderId ));
+        params.add(new BasicNameValuePair("repositoryId", repositoryId));
+        // params.add(new BasicNameValuePair("name", "Receive1"));
+        // params.add(new BasicNameValuePair("description", "Receive1"));
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println("getFolderById Status:[" + resp.getStatusLine() + "]");
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("getFolderById Res:[" + response + "]");
+
+        JSONDeserializer<List<Folder>> deserializer = new JSONDeserializer<List<Folder>>();
+        List<Folder> fldrs = deserializer.deserialize(response, Folder.class);
+
+        return fldrs;
+    }
+
+
+    @Override
 	public Folder getFolderById(String folderId) throws Exception {
 		// Add AuthCache to the execution context
 		BasicHttpContext ctx = new BasicHttpContext();

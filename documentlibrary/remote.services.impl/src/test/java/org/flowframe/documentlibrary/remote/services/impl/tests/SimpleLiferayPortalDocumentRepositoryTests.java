@@ -1,15 +1,6 @@
 package org.flowframe.documentlibrary.remote.services.impl.tests;
 
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,13 +10,15 @@ import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.util.EntityUtils;
-import org.aspectj.lang.annotation.After;
 import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Ignore
 public class SimpleLiferayPortalDocumentRepositoryTests {
@@ -34,7 +27,8 @@ public class SimpleLiferayPortalDocumentRepositoryTests {
 	public void setUp() throws Exception {
 		
 	}	
-  
+
+    @Ignore
     @Test
     public void testDownloadFileEntryAsStream() throws Exception {
     	LiferayPortalDocumentRepositoryImpl.initProperties();

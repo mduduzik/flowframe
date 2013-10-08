@@ -11,6 +11,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
@@ -37,12 +38,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -53,8 +53,8 @@ import java.util.Properties;
 @Service
 public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepository {
 
-	@PersistenceContext
-	private EntityManager em;
+	//@PersistenceContext
+	//private EntityManager em;
 
 	static public final String FFDOCREPO_SERVER_HOSTNAME = "ffdocrepo.server.hostname";// localhost
 	static public final String FFDOCREPO_SERVER_PORT = "ffdocrepo.server.port";// 8080
@@ -128,7 +128,37 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return initialized;
 	}
 
-	@Override
+
+    @Override
+    public List<Folder> getSubFolders(String parentFolderId) throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/secure/jsonws/dlapp/get-folders");
+        builder.setParameter("parentFolderId", parentFolderId);
+        builder.setParameter("repositoryId", repositoryId);
+        URI uri = builder.build();
+
+        HttpGet get = new HttpGet(uri.toString());
+        HttpResponse resp = httpclient.execute(targetHost, get, ctx);
+        System.out.println("getFolderById Status:[" + resp.getStatusLine() + "]");
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("getFolderById Res:[" + response + "]");
+
+        JSONDeserializer<List<Folder>> deserializer = new JSONDeserializer<List<Folder>>();
+        List<Folder> fldrs = deserializer.deserialize(response, List.class);
+
+        return fldrs;
+    }
+
+
+    @Override
 	public Folder getFolderById(String folderId) throws Exception {
 		// Add AuthCache to the execution context
 		BasicHttpContext ctx = new BasicHttpContext();
@@ -704,7 +734,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		assert (newFolder != null) : "Could not create a folder for this entity";
 		entity.setDocFolder(newFolder);
 		
-		entity = em.merge(entity);
+		//entity = em.merge(entity);
 		
 		return entity;
 	}

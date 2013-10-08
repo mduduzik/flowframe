@@ -223,7 +223,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
 
             //Save sample to ECM
-            FileEntry fe = addOrUpdateSampleFile(sampleCSVInputStream, fileName, mimeType);
+            FileEntry fe = addOrUpdateDocLibFile(sampleCSVInputStream, fileName, mimeType);
 
             //Result
             res.put("fileName",fileName);
@@ -302,7 +302,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             String samplefileEntryId = inputMetadata.getFilename();
             FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
             InputStream in = ecmService.getFileAsStream(samplefileEntryId, null);
-            fileObject = writeSampleFileToVFSTemp(in, fe.getName() + ".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
+            fileObject = writeFileToVFSTemp(in, fe.getName() + ".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
             if (!(fileObject instanceof LocalFile)) {
                 // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
                 //
@@ -459,9 +459,9 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
             String samplefileEntryId = inputMetadata.getFilename();
             FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
             InputStream in = ecmService.getFileAsStream(samplefileEntryId, null);
-            file = writeSampleStreamToTempFile(in, fe.getName() + ".wip");
+            file = writeStreamToTempFile(in, fe.getName() + ".wip");
 /*
-            fileObject = writeSampleFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
+            fileObject = writeFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
             if (!(fileObject instanceof LocalFile)) {
                 // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
                 //

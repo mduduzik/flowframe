@@ -1,14 +1,14 @@
 package org.flowframe.documentlibrary.remote.services;
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
-
 import org.flowframe.kernel.common.mdm.domain.BaseEntity;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.DocType;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
 
 
 public interface IRemoteDocumentRepository {
@@ -21,8 +21,10 @@ public interface IRemoteDocumentRepository {
 	 * 
 	 */
 	public BaseEntity provideFolderForEntity(BaseEntity entity) throws Exception;
-	
-	public Folder getFolderById(String folderId)  throws Exception;
+
+    public List<Folder> getSubFolders(String parentFolderId) throws Exception;
+
+    public Folder getFolderById(String folderId)  throws Exception;
 	
 	public boolean folderExists(String parentFolderId, String name) throws Exception;	
 	

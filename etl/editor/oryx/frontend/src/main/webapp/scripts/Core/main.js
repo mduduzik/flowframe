@@ -467,7 +467,7 @@ ORYX.Editor = {
                 collapsible	: true,
                 width	: ORYX.CONFIG.PANEL_RIGHT_WIDTH || 200,
                 split	: true,
-                title	: "West"
+                title	: "Explorer"
             }),
             // DEFINES CENTER-AREA (FOR THE EDITOR)
             centernorth : centerNorth_,
@@ -568,11 +568,11 @@ ORYX.Editor = {
                         current_region.setTitle(title);
                         break;
                     case "west":
-                        if (current_region.title != "West"){
+/*                        if (current_region.title != "West"){
                             title = current_region.title + " and " + title;
                             current_region.setTitle(title);
                         }
-                        current_region.setTitle(title);
+                        current_region.setTitle(title);*/
                         break;
                     case "centersouth":
                         current_region.setTitle(title);
