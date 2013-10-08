@@ -2,35 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4940673c-6d92-487e-93af-22ebd078883e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DocLibExplorerResourceTests-module-context.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/resources/META-INF/LiferayPortalDocumentRepositorySimpleTests-module-context.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/LiferayPortalDocumentRepositorySimpleTests.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/persistence.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/BaseDialogDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/BaseDialogDelegateResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/csvinput/CSVInputDialogDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/csvinput/CSVInputDialogDelegateResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/DirectoryDTO.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/DirectoryDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileTreePanel.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileTreePanel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/MainApplication.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/MainApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/SimpleLiferayPortalDocumentRepositoryTests.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/SimpleLiferayPortalDocumentRepositoryTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.xml" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/etlreponavigation.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/etlreponavigation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/main.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/plugins.xml" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/plugins.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/template.mf" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/template.mf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/template.mf" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/template.mf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -102,7 +78,37 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" line="42" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests.DocLibExplorerResourceTests" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" line="82" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" line="47" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests.DocLibExplorerResourceTests" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" line="46" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests.DocLibExplorerResourceTests" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -127,46 +133,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DocLibExplorerResourceTests-module-context.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DocLibExplorerResourceTests-module-context.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="11" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DocLibExplorerResourceTests.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="63" selection-start="1440" selection-end="1491" vertical-scroll-proportion="0.16932908" vertical-offset="389" max-vertical-offset="969">
+            <state line="47" column="16" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.33333334" vertical-offset="665" max-vertical-offset="1275">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Folder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kernel/common.mdm/mdm.domain/src/main/java/org/flowframe/kernel/common/mdm/domain/documentlibrary/Folder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="0" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0" vertical-offset="886" max-vertical-offset="3978">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml">
+      <file leaf-file-name="DocLibExplorerResource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="42" selection-start="2321" selection-end="2321" vertical-scroll-proportion="-2.88" vertical-offset="761" max-vertical-offset="6613">
+            <state line="143" column="0" selection-start="6082" selection-end="6082" vertical-scroll-proportion="0.0" vertical-offset="2290" max-vertical-offset="3026">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractJavaResourceMethodDispatcher.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.2/jersey-server-2.2-sources.jar!/org/glassfish/jersey/server/model/internal/AbstractJavaResourceMethodDispatcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="0" selection-start="6652" selection-end="6652" vertical-scroll-proportion="0.0" vertical-offset="1338" max-vertical-offset="2176">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/persistence.xml">
+      <file leaf-file-name="BaseDelegateResource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="57" selection-start="604" selection-end="604" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="374">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IRemoteDocumentRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="11" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0" vertical-offset="174" max-vertical-offset="1462">
+            <state line="114" column="0" selection-start="3885" selection-end="3885" vertical-scroll-proportion="0.0" vertical-offset="1508" max-vertical-offset="2057">
               <folding />
             </state>
           </provider>
@@ -175,46 +185,55 @@
       <file leaf-file-name="LiferayPortalDocumentRepositoryImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="44" selection-start="5842" selection-end="5842" vertical-scroll-proportion="-3.2" vertical-offset="2283" max-vertical-offset="14161">
+            <state line="279" column="31" selection-start="11033" selection-end="11033" vertical-scroll-proportion="-2.34" vertical-offset="4626" max-vertical-offset="14892">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6451#6465#0" expanded="true" />
+                <element signature="e#6677#6685#0" expanded="true" />
+                <element signature="e#7364#7379#0" expanded="true" />
+                <element signature="e#8522#8537#0" expanded="true" />
+                <element signature="e#9938#9953#0" expanded="true" />
+                <element signature="e#11804#11815#0" expanded="true" />
+                <element signature="e#12462#12477#0" expanded="true" />
+                <element signature="e#13479#13494#0" expanded="true" />
+                <element signature="e#16842#16857#0" expanded="true" />
+                <element signature="e#17875#17890#0" expanded="true" />
+                <element signature="e#29085#29100#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/template.mf">
+      <file leaf-file-name="IRemoteDocumentRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="2" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.0" vertical-offset="404" max-vertical-offset="918">
+            <state line="13" column="17" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="1462">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransformationJobServiceResource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/TransformationJobServiceResource.java">
+      <file leaf-file-name="FileEntry.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kernel/common.mdm/mdm.domain/src/main/java/org/flowframe/kernel/common/mdm/domain/documentlibrary/FileEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="13" selection-start="1430" selection-end="1430" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="833">
+            <state line="17" column="13" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="1875" max-vertical-offset="5865">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StandaloneCarteServerImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/StandaloneCarteServerImpl.java">
+      <file leaf-file-name="BeanObjectFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/3.1/flexjson-3.1-sources.jar!/flexjson/factories/BeanObjectFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="0" selection-start="7830" selection-end="8059" vertical-scroll-proportion="0.0" vertical-offset="3000" max-vertical-offset="4556">
+            <state line="16" column="0" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="561">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/pom.xml">
+      <file leaf-file-name="JSONTokener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/3.1/flexjson-3.1-sources.jar!/flexjson/JSONTokener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="258" column="0" selection-start="10023" selection-end="10252" vertical-scroll-proportion="-4.12" vertical-offset="4283" max-vertical-offset="6494">
+            <state line="347" column="0" selection-start="10041" selection-end="10041" vertical-scroll-proportion="0.0" vertical-offset="5642" max-vertical-offset="9792">
               <folding />
             </state>
           </provider>
@@ -238,21 +257,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/BaseDialogDelegateResource.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/DirectoryDTO.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/LiferayPortalDocumentRepositorySimpleTests.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/resources/META-INF/LiferayPortalDocumentRepositorySimpleTests-module-context.xml" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/SimpleLiferayPortalDocumentRepositoryTests.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/template.mf" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DocLibExplorerResourceTests-module-context.xml" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/template.mf" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileTreePanel.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
       </list>
     </option>
@@ -1173,6 +1192,56 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="doclib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pentaho" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins.core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="carte" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1857,11 +1926,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Core" />
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1903,15 +1968,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ext-2.0.2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ux" />
+              <option name="myItemId" value="etl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1953,29 +2014,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ext-2.0.2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ux" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fileuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1983,93 +2022,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
+              <option name="myItemId" value="repository" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ext-2.0.2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ux" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fileuploader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ext-2.0.2" />
+              <option name="myItemId" value="explorer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2651,8 +2608,8 @@
     <recent_temporary>
       <list size="3">
         <item index="0" class="java.lang.String" itemvalue="JUnit.DocLibExplorerResourceTests.testGetSubFolders" />
-        <item index="1" class="java.lang.String" itemvalue="Maven.org.flowframe.etl.pentaho.server.plugins.core [test]" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.LiferayPortalDocumentRepositorySimpleTests.testGetSubFolders" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.LiferayPortalDocumentRepositorySimpleTests.testGetSubFolders" />
+        <item index="2" class="java.lang.String" itemvalue="Maven.org.flowframe.etl.pentaho.server.plugins.core [test]" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -2668,12 +2625,12 @@
       <updated>1381089839728</updated>
       <workItem from="1381089839114" duration="398000" />
       <workItem from="1381090290198" duration="1125000" />
-      <workItem from="1381111678290" duration="37387000" />
+      <workItem from="1381111678290" duration="43821000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38910000" />
+    <option name="totallyTimeSpent" value="45344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="860" extended-state="0" />
@@ -2691,7 +2648,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20896465" sideWeight="0.5255172" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26767677" sideWeight="0.6951724" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827586" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2699,12 +2656,12 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37241378" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47448274" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3048276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2556818" sideWeight="0.5255172" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29482323" sideWeight="0.6951724" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2728,120 +2685,133 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DBRepositoryWrapperImplTests-module-context.xml">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+        <state line="100" column="42" selection-start="3841" selection-end="3841" vertical-scroll-proportion="0.0" vertical-offset="1191" max-vertical-offset="4233">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bpm/jbpm/bpmserver/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/2.1/flexjson-2.1-sources.jar!/flexjson/JSONDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="42" selection-start="3057" selection-end="3057" vertical-scroll-proportion="0.0" vertical-offset="1629" max-vertical-offset="3876">
+        <state line="181" column="13" selection-start="9232" selection-end="9232" vertical-scroll-proportion="-0.04987531" vertical-offset="2995" max-vertical-offset="4947">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bpm/jbpm/taskserver.persistence/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2.jar!/org/junit/internal/runners/statements/RunAfters.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="27" selection-start="2862" selection-end="3410" vertical-scroll-proportion="0.0" vertical-offset="1772" max-vertical-offset="2584">
+        <state line="13" column="16" selection-start="612" selection-end="612" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/template.mf">
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/3.1/flexjson-3.1-sources.jar!/flexjson/JSONTokener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="59" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1802">
+        <state line="347" column="0" selection-start="10041" selection-end="10041" vertical-scroll-proportion="0.0" vertical-offset="5642" max-vertical-offset="9792">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bpm/jbpm/bpmserver.persistence/bin/src/main/resources/META-INF/persistence.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/3.1/flexjson-3.1-sources.jar!/flexjson/factories/BeanObjectFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="8" selection-start="535" selection-end="594" vertical-scroll-proportion="-3.2" vertical-offset="73" max-vertical-offset="1122">
+        <state line="16" column="0" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="561">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/3.1/flexjson-3.1-sources.jar!/flexjson/ObjectBinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="258" column="0" selection-start="10023" selection-end="10252" vertical-scroll-proportion="-4.12" vertical-offset="4283" max-vertical-offset="6494">
+        <state line="96" column="0" selection-start="4355" selection-end="4355" vertical-scroll-proportion="0.3018018" vertical-offset="1413" max-vertical-offset="6103">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/persistence.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/flexjson/flexjson/3.1/flexjson-3.1-sources.jar!/flexjson/JSONDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="57" selection-start="604" selection-end="604" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="374">
+        <state line="183" column="0" selection-start="9326" selection-end="9326" vertical-scroll-proportion="0.3018018" vertical-offset="2977" max-vertical-offset="6715">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="40" selection-start="388" selection-end="388" vertical-scroll-proportion="0.37199125" vertical-offset="0" max-vertical-offset="457">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kernel/common.mdm/mdm.domain/src/main/java/org/flowframe/kernel/common/mdm/domain/documentlibrary/FileEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="1875" max-vertical-offset="5865">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="11" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0" vertical-offset="174" max-vertical-offset="1462">
+        <state line="13" column="17" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="1462">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="18" selection-start="5433" selection-end="6824" vertical-scroll-proportion="0.0" vertical-offset="1676" max-vertical-offset="13396">
+        <state line="114" column="0" selection-start="3885" selection-end="3885" vertical-scroll-proportion="0.0" vertical-offset="1516" max-vertical-offset="2057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="0" selection-start="6082" selection-end="6082" vertical-scroll-proportion="0.0" vertical-offset="2290" max-vertical-offset="3026">
           <folding>
-            <element signature="e#6698#6712#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.2/jersey-server-2.2-sources.jar!/org/glassfish/jersey/server/model/internal/AbstractJavaResourceMethodDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="42" selection-start="2321" selection-end="2321" vertical-scroll-proportion="-2.88" vertical-offset="761" max-vertical-offset="6613">
+        <state line="148" column="0" selection-start="6652" selection-end="6652" vertical-scroll-proportion="0.0" vertical-offset="1338" max-vertical-offset="2176">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DocLibExplorerResourceTests-module-context.xml">
+    <entry file="file://$PROJECT_DIR$/kernel/common.mdm/mdm.domain/src/main/java/org/flowframe/kernel/common/mdm/domain/documentlibrary/Folder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="11" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/carte/TransformationJobServiceResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="13" selection-start="1430" selection-end="1430" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="833">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/src/main/java/org/flowframe/etl/pentaho/server/carte/standalone/impl/StandaloneCarteServerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="0" selection-start="7830" selection-end="8059" vertical-scroll-proportion="0.0" vertical-offset="3000" max-vertical-offset="4556">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="2" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.0" vertical-offset="404" max-vertical-offset="918">
+        <state line="69" column="0" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0" vertical-offset="880" max-vertical-offset="3978">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="44" selection-start="5842" selection-end="5842" vertical-scroll-proportion="-3.2" vertical-offset="2283" max-vertical-offset="14161">
+        <state line="279" column="31" selection-start="11033" selection-end="11033" vertical-scroll-proportion="-2.34" vertical-offset="4626" max-vertical-offset="14892">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6451#6465#0" expanded="true" />
+            <element signature="e#6677#6685#0" expanded="true" />
+            <element signature="e#7364#7379#0" expanded="true" />
+            <element signature="e#8522#8537#0" expanded="true" />
+            <element signature="e#9938#9953#0" expanded="true" />
+            <element signature="e#11804#11815#0" expanded="true" />
+            <element signature="e#12462#12477#0" expanded="true" />
+            <element signature="e#13479#13494#0" expanded="true" />
+            <element signature="e#16842#16857#0" expanded="true" />
+            <element signature="e#17875#17890#0" expanded="true" />
+            <element signature="e#29085#29100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/tests/DocLibExplorerResourceTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="63" selection-start="1440" selection-end="1491" vertical-scroll-proportion="0.16932908" vertical-offset="389" max-vertical-offset="969">
-          <folding />
+        <state line="47" column="16" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.33333334" vertical-offset="665" max-vertical-offset="1275">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

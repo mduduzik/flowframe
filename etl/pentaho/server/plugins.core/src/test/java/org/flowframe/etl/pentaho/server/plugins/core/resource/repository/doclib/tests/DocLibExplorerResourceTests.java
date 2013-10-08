@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.tests;
 
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
@@ -42,6 +43,9 @@ public class DocLibExplorerResourceTests extends AbstractJUnit4SpringContextTest
         Folder parentFldr = provideTenantFolder();
         List<Folder> fldrs = repository.getSubFolders(parentFldr.getFolderId() + "");
         org.junit.Assert.assertNotNull(fldrs);
+
+        List<FileEntry> fes = repository.getFileEntries(parentFldr.getFolderId() + "");
+        org.junit.Assert.assertNotNull(fes);
     }
 
 

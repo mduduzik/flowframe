@@ -86,6 +86,7 @@ ORYX.Plugins.DOCRepoNavigation = Clazz.extend({
                 //region: 'west',
                 id: 'docNavigation',
                 icon: '/etl/images/conxbi/etl/home_nav.gif',
+                url: '/etl/core/docexplorer/getnode',
                 collapsible: true,
                 title: 'Files',
                 autoWidth: true,

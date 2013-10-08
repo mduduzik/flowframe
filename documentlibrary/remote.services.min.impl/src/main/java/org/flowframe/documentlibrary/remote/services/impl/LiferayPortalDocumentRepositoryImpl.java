@@ -1,6 +1,7 @@
 package org.flowframe.documentlibrary.remote.services.impl;
 
 import flexjson.JSONDeserializer;
+import flexjson.ObjectBinder;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -47,6 +48,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @Transactional
@@ -151,10 +153,20 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
         }
         System.out.println("getFolderById Res:[" + response + "]");
 
-        JSONDeserializer<List<Folder>> deserializer = new JSONDeserializer<List<Folder>>();
-        List<Folder> fldrs = deserializer.deserialize(response, List.class);
+        final JSONDeserializer<ArrayList<Map>> deserializer = new JSONDeserializer<ArrayList<Map>>().use(null, ArrayList.class);
+        final List<Map> fldrs = deserializer.deserialize(response);
 
-        return fldrs;
+        final List<Folder> folders = new ArrayList<Folder>();
+        Folder fldr = null;
+        for (Map fldrMap : fldrs){
+            ObjectBinder binder = new ObjectBinder();
+            fldrMap.put("class",Folder.class.getName());
+            fldr = (Folder)binder.bind( fldrMap );
+            folders.add(fldr);
+            folders.add(fldr);
+        }
+
+        return folders;
     }
 
 
@@ -259,8 +271,39 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 	@Override
 	public List<FileEntry> getFileEntries(String folderId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        URIBuilder builder = new URIBuilder();
+        builder.setPath("/api/secure/jsonws/dlapp/get-file-entries");
+        builder.setParameter("folderId", folderId);
+        builder.setParameter("repositoryId", repositoryId);
+        URI uri = builder.build();
+
+        HttpGet get = new HttpGet(uri.toString());
+        HttpResponse resp = httpclient.execute(targetHost, get, ctx);
+        System.out.println("getFileEntries Status:[" + resp.getStatusLine() + "]");
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("getFileEntries Res:[" + response + "]");
+
+        JSONDeserializer<ArrayList<Map>> deserializer = new JSONDeserializer<ArrayList<Map>>().use(null, ArrayList.class);
+        List<Map> feMapList = deserializer.deserialize(response);
+
+        List<FileEntry> fes = new ArrayList<FileEntry>();
+        FileEntry fe = null;
+        for (Map feMap : feMapList){
+            ObjectBinder binder = new ObjectBinder();
+            feMap.put("class",FileEntry.class.getName());
+            fe = (FileEntry)binder.bind( feMap );
+            fes.add(fe);
+        }
+
+        return fes;
 	}
 
 	@Override

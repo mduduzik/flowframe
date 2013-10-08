@@ -258,7 +258,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	/**
 	 * @cfg {String} url URL to use when communicating with server
 	 */
-	,url:'http://localhost:8082/etlrepo/CSVInput/uploadsample'
+	,url:'http://localhost/list'
 	// }}}
 
 	// overrides

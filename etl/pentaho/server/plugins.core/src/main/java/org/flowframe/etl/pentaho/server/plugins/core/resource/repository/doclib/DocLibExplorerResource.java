@@ -23,7 +23,7 @@ import java.util.List;
  * Time: 6:32 PM
  * To change this template use File | Settings | File Templates.
  */
-@Path("explorer")
+@Path("docexplorer")
 @Component
 public class DocLibExplorerResource extends BaseDelegateResource {
     public static String REPOSITORY_ITEM_TYPE = "itemtype";
@@ -72,7 +72,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     }
 
 
-    @GET
+    @POST
     @Path("/getnode")
     @Produces(MediaType.TEXT_PLAIN)
     public String getnode(@QueryParam("userid") String userid,
@@ -126,7 +126,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             for (Folder subFldr : fldrs) {
                 JSONObject subFldrObj = new JSONObject();
                 subFldrObj.put("id", subFldr.getFolderId());
-                subFldrObj.put("allowDrag", false);
+                subFldrObj.put("allowDrag", true);
                 subFldrObj.put("allowDrop", false);
                 subFldrObj.put("text", subFldr.getName());
                 subFldrObj.put("title", subFldr.getName());
