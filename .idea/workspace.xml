@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4940673c-6d92-487e-93af-22ebd078883e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileTreePanel.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileTreePanel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileUploader.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileUploader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/docreponavigation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -108,7 +104,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" line="152" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" line="177" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -123,7 +119,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" line="102" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java" line="127" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource" package="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -166,15 +162,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ext.ux.UploadPanel.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.UploadPanel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="709" column="38" selection-start="17495" selection-end="17495" vertical-scroll-proportion="-14.04" vertical-offset="11702" max-vertical-offset="13192">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Ext.ux.FileTreeMenu.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.FileTreeMenu.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -190,10 +177,19 @@
       <file leaf-file-name="DocLibExplorerResource.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="271" column="70" selection-start="11611" selection-end="11635" vertical-scroll-proportion="0.5450122" vertical-offset="4383" max-vertical-offset="5814">
+            <state line="167" column="51" selection-start="7295" selection-end="7295" vertical-scroll-proportion="0.6" vertical-offset="2572" max-vertical-offset="6239">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MediaType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0-sources.jar!/javax/ws/rs/core/MediaType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="212" column="101" selection-start="9146" selection-end="9146" vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="6103">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -235,15 +231,6 @@
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/csv/csvmetawizard.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="129" column="44" selection-start="4867" selection-end="4976" vertical-scroll-proportion="0.0" vertical-offset="2076" max-vertical-offset="17136">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseDelegateResource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="66" selection-start="4294" selection-end="4294" vertical-scroll-proportion="0.0" vertical-offset="1559" max-vertical-offset="2040">
               <folding />
             </state>
           </provider>
@@ -1740,15 +1727,15 @@
       <updated>1381089839728</updated>
       <workItem from="1381089839114" duration="398000" />
       <workItem from="1381090290198" duration="1125000" />
-      <workItem from="1381111678290" duration="82864000" />
+      <workItem from="1381111678290" duration="85835000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84387000" />
+    <option name="totallyTimeSpent" value="87358000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1600" height="860" extended-state="0" />
+    <frame x="0" y="0" width="1600" height="860" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1763,7 +1750,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17929293" sideWeight="0.59034485" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17929293" sideWeight="0.7131035" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827586" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1771,10 +1758,10 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37241378" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28689656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28689656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17929293" sideWeight="0.12137931" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17929293" sideWeight="0.12137931" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26073232" sideWeight="0.7131035" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1800,27 +1787,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="74" selection-start="1908" selection-end="1909" vertical-scroll-proportion="173.56" vertical-offset="4526" max-vertical-offset="5576">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.all.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3384" column="4237" selection-start="367667" selection-end="367667" vertical-scroll-proportion="0.0" vertical-offset="57397" max-vertical-offset="77605">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="5" selection-start="1376" selection-end="1376" vertical-scroll-proportion="-6.1153846" vertical-offset="317" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="23" selection-start="1712" selection-end="1731" vertical-scroll-proportion="0.0" vertical-offset="973" max-vertical-offset="38488">
@@ -1923,9 +1889,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/media/jersey-media-multipart/2.2/jersey-media-multipart-2.2-sources.jar!/org/glassfish/jersey/media/multipart/BodyPart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="21" selection-start="2782" selection-end="2790" vertical-scroll-proportion="0.26376146" vertical-offset="106" max-vertical-offset="4913">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.jar!/javax/ws/rs/core/MediaType.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="11" selection-start="2984" selection-end="2984" vertical-scroll-proportion="0.0" vertical-offset="637" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0-sources.jar!/javax/ws/rs/core/MediaType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="212" column="101" selection-start="9146" selection-end="9146" vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="6103">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/repository/doclib/DocLibExplorerResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="70" selection-start="11611" selection-end="11635" vertical-scroll-proportion="0.5450122" vertical-offset="4383" max-vertical-offset="5814">
+        <state line="167" column="51" selection-start="7295" selection-end="7295" vertical-scroll-proportion="0.6" vertical-offset="2572" max-vertical-offset="6239">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

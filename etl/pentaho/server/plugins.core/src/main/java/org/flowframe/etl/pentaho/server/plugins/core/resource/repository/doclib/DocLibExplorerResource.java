@@ -9,14 +9,14 @@ import org.flowframe.etl.pentaho.server.plugins.core.resource.BaseDelegateResour
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
-import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataMultiPart;
-import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.glassfish.jersey.media.multipart.*;
+import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +55,31 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public static String REPOSITORY_FOLDER_INBOX = "INBOX";
     public static String REPOSITORY_FOLDER_OUTBOX = "OUTBOX";
     public static String REPOSITORY_FOLDER_SAMPLES = "SAMPLES";
+
+    @GET
+    @Path("/getfile")
+    @Produces("multipart/mixed")
+    public Response getfile(@HeaderParam("userid") String userid,
+                            @QueryParam("path") String path,
+                            @QueryParam("pathId") String pathId) throws Exception {
+        FileEntry fe = ecmService.getFileEntryById(pathId);
+        InputStream reportStream = ecmService.getFileAsStream(pathId, null);
+        BodyPart sourcePart = new StreamDataBodyPart(fe.getTitle(), reportStream);
+
+        if (StringUtils.contains(fe.getMimeType(),'/')) {
+            String mimeTypeParts[] = StringUtils.split(fe.getMimeType(),'/');
+            sourcePart.setMediaType(new MediaType(mimeTypeParts[0],mimeTypeParts[1]));
+        }
+        else {
+            sourcePart.setMediaType(MediaType.APPLICATION_OCTET_STREAM_TYPE);
+        }
+
+
+        MultiPart multiPart = new MultiPart().
+                bodyPart(sourcePart);
+
+        return Response.ok(multiPart, MultiPartMediaTypes.MULTIPART_MIXED_TYPE).build();
+    }
 
     @POST
     @Path("/adddir")
