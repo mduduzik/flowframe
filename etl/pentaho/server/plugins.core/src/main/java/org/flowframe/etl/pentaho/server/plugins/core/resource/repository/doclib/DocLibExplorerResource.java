@@ -1,5 +1,6 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -8,13 +9,18 @@ import org.flowframe.etl.pentaho.server.plugins.core.resource.BaseDelegateResour
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -71,6 +77,48 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         return Response.ok("Folder " + folderObjectId + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
 
+    @Path("/upload")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public String uploadFile(@FormDataParam("cmd") String command,
+                                   @FormDataParam("APC_UPLOAD_PROGRESS") String progress,
+                                   @FormDataParam("UPLOAD_IDENTIFIER") String identifier,
+                                   @FormDataParam("MAX_FILE_SIZE") String fileSizeStr,
+
+                                   @FormDataParam("path") String path,
+                                   @FormDataParam("pathId") String pathId,
+                                   @FormDataParam("dir") String dir,
+                                   FormDataMultiPart mpFileUpload) throws Exception {
+        final JSONObject res = new JSONObject();
+        res.put("success","true");
+
+        try {
+            //Get file handle
+            FormDataBodyPart fileBP = getFileBodyPart("ext-gen", mpFileUpload);//from form field of name:file
+            String fileName = fileBP.getContentDisposition().getFileName();
+            //Long fileSize = Long.valueOf(fileSizeStr);
+            String mimeType = fileBP.getContentDisposition().getType();
+            InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
+
+            //Save sample to ECM
+            FileEntry fe = addOrUpdateDocLibFile(pathId,sampleCSVInputStream, fileName, mimeType);
+
+            //Result
+            res.put("fileName",fileName);
+            res.put("fileentryid",fe.getFileEntryId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            res.put("success","false");
+            res.put("errorMessage",e.getMessage());
+            return res.toString();
+        }
+
+        return res.toString();
+
+    }
+
+
 
     @POST
     @Path("/getnode")
@@ -78,15 +126,18 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public String getnode(@QueryParam("userid") String userid,
                           @QueryParam("callback") String callback,
                           @QueryParam("itemtype") String itemtype,
-                          @QueryParam("node") String nodeId,
-                          @QueryParam("folderObjectId") String folderObjectId) throws Exception {
+                          @FormParam("node") String nodeId,
+                          @FormParam("path") String path) throws Exception {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
         Folder fldr = null;
-        if (folderObjectId == null)//Root
+        if (nodeId == null || !NumberUtils.isNumber(nodeId))//Root
         {
             fldr = provideTenantFolder();
+        }
+        else {
+            fldr = ecmService.getFolderById(nodeId);
         }
         JSONObject json = generateFolderChildrenJSON(fldr);
         final String res = json.getJSONArray("children").toString();
@@ -147,9 +198,9 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 feObj.put("id", fe.getFileEntryId());
                 feObj.put("allowDrag", true);
                 feObj.put("allowDrop", false);
-                feObj.put("text", fe.getName());
-                feObj.put("title", fe.getName());
-                feObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+                feObj.put("text", fe.getTitle());
+                feObj.put("title", fe.getTitle());
+                feObj.put("icon", "/etl/images/conxbi/etl/documentation.gif");
                 feObj.put("leaf", true);
                 feObj.put("hasChildren", false);
                 feObj.put("singleClickExpand", false);
@@ -168,5 +219,22 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
 
         return fldr;
+    }
+
+    private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {
+        List<FormDataBodyPart> fileBPList = null;
+        Map<String, List<FormDataBodyPart>> fields = multiPart.getFields();
+        for (String key_ : fields.keySet()) {
+            //handleInputStream(field.getValueAs(InputStream.class));
+            List<FormDataBodyPart> list = fields.get(key_);
+            if (key_.indexOf(startsWidth_) >= 0) {
+                fileBPList = list;
+                break;
+            }
+        }
+
+        FormDataBodyPart fileBP = fileBPList.get(0);
+
+        return fileBP;
     }
 }

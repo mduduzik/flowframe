@@ -115,14 +115,13 @@ public abstract class BaseDelegateResource {
         return etlSamplesFolder;
     }
 
-    protected FileEntry addOrUpdateDocLibFile(InputStream in, String fileName, String mimeType) throws Exception {
+    protected FileEntry addOrUpdateDocLibFile(String folderId, InputStream in, String fileName, String mimeType) throws Exception {
         FileEntry sampleFileEntry = null;
 
-        Folder fldr = provideTenantFolder();
-        boolean fExists = ecmService.fileEntryExists(Long.toString(fldr.getFolderId()), fileName);
+        boolean fExists = ecmService.fileEntryExists(folderId, fileName);
 
         File file = writeStreamToFile(in, fileName);
-        sampleFileEntry = ecmService.addorUpdateFileEntry(Long.toString(fldr.getFolderId()), file, mimeType, fileName, fileName);
+        sampleFileEntry = ecmService.addorUpdateFileEntry(folderId, file, mimeType, fileName, fileName);
         file.delete();
 
         return sampleFileEntry;

@@ -1,6 +1,7 @@
 if (!ORYX.Plugins)
     ORYX.Plugins = new Object();
 
+
 ORYX.Plugins.DOCRepoNavigation = Clazz.extend({
 
     // Defines the facade
@@ -87,6 +88,7 @@ ORYX.Plugins.DOCRepoNavigation = Clazz.extend({
                 id: 'docNavigation',
                 icon: '/etl/images/conxbi/etl/home_nav.gif',
                 url: '/etl/core/docexplorer/getnode',
+                uploadUrl: '/etl/core/docexplorer/upload',
                 collapsible: true,
                 title: 'Files',
                 autoWidth: true,

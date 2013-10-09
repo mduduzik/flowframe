@@ -61,6 +61,8 @@ var ID_PREFIX = "resource";
 function init() {
 
 
+    Ext.QuickTips.interceptTitles = true;
+    Ext.QuickTips.init();
 
     /* When the blank image url is not set programatically to a local
 

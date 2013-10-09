@@ -25206,7 +25206,7 @@ Ext.extend(Ext.menu.Item, Ext.menu.BaseItem, {
         this.text = text;
         if(this.rendered){
             this.el.update(String.format(
-                '<img src="{0}" class="x-menu-item-icon {2}">{1}',
+                '<img src="{0}" class="x-menu-item-icon {2}" />{1}',
                 this.icon || Ext.BLANK_IMAGE_URL, this.text, this.iconCls || ''));
             this.parentMenu.autoWidth();
         }

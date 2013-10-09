@@ -254,6 +254,11 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	 * @cfg {Boolean} topMenu true to create top toolbar with menu in addition to contextmenu
 	 */
 	,topMenu:false
+    /**
+     * @cfg {String} url URL to use when communicating with server
+     */
+    ,uploadUrl:'http://localhost/upload'
+    // }}}
 
 	/**
 	 * @cfg {String} url URL to use when communicating with server
@@ -1032,6 +1037,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 			path = path.replace(/\/[^\/]+$/, '', path);
 		}
 		uploadPanel.setPath(path);
+        uploadPanel.setPathId(menu.node.id);
 
 	} // eo function onBeforeUpload
 	// }}}

@@ -163,7 +163,6 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
             fldrMap.put("class",Folder.class.getName());
             fldr = (Folder)binder.bind( fldrMap );
             folders.add(fldr);
-            folders.add(fldr);
         }
 
         return folders;

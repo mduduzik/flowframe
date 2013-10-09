@@ -77,11 +77,11 @@ Ext.ux.FileTreeMenu = function(config) {
 			,iconCls:this.reloadIconCls
 			,cmd:'reload'
 		},{
-			 text:this.expandText + ' (Ctrl+&nbsp;&rarr;)'
+			 text:this.expandText + ' (Ctrl+Right)'
 			,iconCls:this.expandIconCls
 			,cmd:'expand'
 		},{
-			 text:this.collapseText + ' (Ctrl+&nbsp;&larr;)'
+			 text:this.collapseText + ' (Ctrl+Left)'
 			,iconCls:this.collapseIconCls
 			,cmd:'collapse'
 		}

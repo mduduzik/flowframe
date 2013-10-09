@@ -269,7 +269,7 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 	 * @return {Object} params
 	 */
 	,getParams:function(record, params) {
-		var p = {path:this.path};
+		var p = {path:this.path,pathId:this.pathId};
 		Ext.apply(p, this.baseParams || {}, params || {});
 		return p;
 	}
@@ -432,6 +432,15 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 		}
 	} // eo function requestProgress
 	// }}}
+    // {{{
+    /**
+     * pathId setter
+     * @private
+     */
+    ,setPathId:function(pathId) {
+        this.pathId = pathId;
+    } // eo setPathId
+    // }}}
 	// {{{
 	/**
 	 * path setter
