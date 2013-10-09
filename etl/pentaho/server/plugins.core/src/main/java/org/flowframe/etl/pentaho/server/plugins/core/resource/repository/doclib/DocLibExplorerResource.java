@@ -1,10 +1,10 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.server.plugins.core.model.DirectoryDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.BaseDelegateResource;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -48,33 +47,76 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public static String REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME = "ontime";
     public static String REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME = "menugroup";
     public static String REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME = "ddenabled";
+    private static final String REPOSITORY_UI_TREE_NODE_CAN_DELETE = "candelete";
+    private static final String REPOSITORY_UI_TREE_NODE_CAN_UPLOAD = "canupload";
+    private static final String REPOSITORY_UI_TREE_NODE_CAN_DOWNLOAD = "candownload";
+
+
+    public static String REPOSITORY_FOLDER_INBOX = "INBOX";
+    public static String REPOSITORY_FOLDER_OUTBOX = "OUTBOX";
+    public static String REPOSITORY_FOLDER_SAMPLES = "SAMPLES";
 
     @POST
     @Path("/adddir")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public DirectoryDTO adddir(@HeaderParam("userid") String userid, DirectoryDTO record) throws Exception {
-        DirectoryDTO parent = record.getParent();
-        Folder fldr = null;
-        if (parent != null) {
-            fldr = ecmService.getFolderById(Long.toString(parent.getDirObjectId()));
+    public String adddir(@HeaderParam("userid") String userid,
+                               @QueryParam("callback") String callback,
+                               @FormParam("dir") String path,
+                               @FormParam("parentPathId") String parentPathId) throws Exception {
+        final JSONObject res = new JSONObject();
+        res.put("success",true);
+
+        try {
+            String[] tokens = StringUtils.split(path, '/');
+            String name = tokens[tokens.length-1];
+
+            Folder fldr = ecmService.addFolder(parentPathId,name,name);
+            res.put("id",fldr.getFolderId());
+            res.put("allowDrag", true);
+            res.put("allowDrop", false);
+            res.put("text", fldr.getName());
+            res.put("title", fldr.getName());
+            updateAttributes(fldr, res, path);
+            res.put("leaf", false);
+            res.put("hasChildren", true);
+            res.put("singleClickExpand", true);
+            res.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+            res.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+        } catch (Exception e) {
+            e.printStackTrace();
+            res.put("success", false);
+            res.put("errorMessage",e.getMessage());
         }
-        else
-        {
-            fldr = provideTenantFolder();
-        }
-        fldr =  ecmService.addFolder(Long.toString(fldr.getFolderId()),record.getName(),record.getName());
-        return new DirectoryDTO(fldr.getName(), fldr.getFolderId());
+
+        return res.toString();
     }
 
-    @DELETE
+    @POST
     @Path("/deletedir")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response deletedir(@HeaderParam("userid") String userid,
-                              @HeaderParam("itemtype") String itemtype,
-                              @HeaderParam("folderObjectId") String folderObjectId) throws Exception {
-        ecmService.deleteFolderById(folderObjectId);
-        return Response.ok("Folder " + folderObjectId + " deleted successfully", MediaType.TEXT_PLAIN).build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deletedir(@HeaderParam("userid") String userid,
+                              @FormParam("isleaf") Boolean isleaf,
+                              @FormParam("path") String path,
+                              @FormParam("pathId") String pathId,
+                              @FormParam("parentPathId") String parentPathId) throws Exception {
+
+        final JSONObject res = new JSONObject();
+        res.put("success",true);
+
+        try {
+            if (isleaf) {  //File
+                ecmService.deleteFileEntryById(parentPathId,pathId);
+            }
+            else { //Dir
+                ecmService.deleteFolderById(pathId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            res.put("success", false);
+            res.put("errorMessage",e.getMessage());
+        }
+
+        return res.toString();
     }
 
     @Path("/upload")
@@ -91,7 +133,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                                    @FormDataParam("dir") String dir,
                                    FormDataMultiPart mpFileUpload) throws Exception {
         final JSONObject res = new JSONObject();
-        res.put("success","true");
+        res.put("success",true);
 
         try {
             //Get file handle
@@ -109,7 +151,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             res.put("fileentryid",fe.getFileEntryId());
         } catch (Exception e) {
             e.printStackTrace();
-            res.put("success","false");
+            res.put("success", false);
             res.put("errorMessage",e.getMessage());
             return res.toString();
         }
@@ -135,11 +177,14 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         if (nodeId == null || !NumberUtils.isNumber(nodeId))//Root
         {
             fldr = provideTenantFolder();
+            ensureInboxFolder(fldr);
+            ensureOutboxFolder(fldr);
+            ensureSamplesFolder(fldr);
         }
         else {
             fldr = ecmService.getFolderById(nodeId);
         }
-        JSONObject json = generateFolderChildrenJSON(fldr);
+        JSONObject json = generateFolderChildrenJSON(fldr,path);
         final String res = json.getJSONArray("children").toString();
 
         if (callback != null)
@@ -148,7 +193,28 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             return res;
     }
 
-    private JSONObject generateFolderChildrenJSON(Folder folder) throws Exception {
+    private void ensureInboxFolder(Folder parentFldr) throws Exception {
+       boolean exists = ecmService.folderExists(Long.toString(parentFldr.getFolderId()),REPOSITORY_FOLDER_INBOX);
+        if (!exists) {
+            ecmService.addFolder(Long.toString(parentFldr.getFolderId()),REPOSITORY_FOLDER_INBOX,"All incoming files");
+        }
+    }
+
+    private void ensureOutboxFolder(Folder parentFldr) throws Exception {
+        boolean exists = ecmService.folderExists(Long.toString(parentFldr.getFolderId()),REPOSITORY_FOLDER_OUTBOX);
+        if (!exists) {
+            ecmService.addFolder(Long.toString(parentFldr.getFolderId()),REPOSITORY_FOLDER_OUTBOX,"All outgoing files");
+        }
+    }
+
+    private void ensureSamplesFolder(Folder parentFldr) throws Exception {
+        boolean exists = ecmService.folderExists(Long.toString(parentFldr.getFolderId()),REPOSITORY_FOLDER_SAMPLES);
+        if (!exists) {
+            ecmService.addFolder(Long.toString(parentFldr.getFolderId()),REPOSITORY_FOLDER_SAMPLES,"All sample files");
+        }
+    }
+
+    private JSONObject generateFolderChildrenJSON(Folder folder, String path) throws Exception {
         boolean hasChildren = false;
         JSONObject fldr = new JSONObject();
 
@@ -159,7 +225,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             fldr.put("allowDrop", false);
             fldr.put("text", folder.getName());
             fldr.put("title", folder.getName());
-            fldr.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+            updateAttributes(folder, fldr, path);
             fldr.put("leaf", false);
             fldr.put("hasChildren", false);
             fldr.put("singleClickExpand", false);
@@ -181,7 +247,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 subFldrObj.put("allowDrop", false);
                 subFldrObj.put("text", subFldr.getName());
                 subFldrObj.put("title", subFldr.getName());
-                subFldrObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+                updateAttributes(subFldr, subFldrObj, path);
                 subFldrObj.put("leaf", false);
                 subFldrObj.put("hasChildren", true);
                 subFldrObj.put("singleClickExpand", true);
@@ -200,6 +266,12 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 feObj.put("allowDrop", false);
                 feObj.put("text", fe.getTitle());
                 feObj.put("title", fe.getTitle());
+                feObj.put(REPOSITORY_UI_TREE_NODE_CAN_UPLOAD, true);
+                feObj.put(REPOSITORY_UI_TREE_NODE_CAN_DOWNLOAD, true);
+                feObj.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, true);
+                if (StringUtils.contains(path,REPOSITORY_FOLDER_OUTBOX)) {
+                    feObj.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, false);
+                }
                 feObj.put("icon", "/etl/images/conxbi/etl/documentation.gif");
                 feObj.put("leaf", true);
                 feObj.put("hasChildren", false);
@@ -219,6 +291,30 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
 
         return fldr;
+    }
+
+    private void updateAttributes(Folder fldr, JSONObject fldrJson, String path) throws JSONException {
+        fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_UPLOAD, true);
+        fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_DOWNLOAD, true);
+
+        // Icon and Delete?
+        if (REPOSITORY_FOLDER_INBOX.equals(fldr.getName())) {
+            fldrJson.put("icon", "/etl/images/conxbi/folder-inbox.png");
+            fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, false);
+        }
+        else if (REPOSITORY_FOLDER_OUTBOX.equals(fldr.getName())) {
+            fldrJson.put("icon", "/etl/images/conxbi/folder-outbox.png");
+            fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, false);
+            fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_UPLOAD, false);
+        }
+        else if (REPOSITORY_FOLDER_SAMPLES.equals(fldr.getName())) {
+            fldrJson.put("icon", "/etl/images/folder_page.png");
+            fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, false);
+        }
+        else {
+            fldrJson.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+            fldrJson.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, true);
+        }
     }
 
     private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {

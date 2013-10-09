@@ -577,7 +577,10 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 		// process ajax success
 		if(true === success) {
 			try {
-				o = Ext.decode(response.responseText);
+                if (response.responseText.indexOf("</pre>") > -1) {//ExtJS Bug: response is wrapped with <pre></pre>
+                    response.responseText = response.responseText.substring(response.responseText.indexOf("{"), response.responseText.lastIndexOf("}") + 1);
+                }
+   				o = Ext.decode(response.responseText);
 			}
 			catch(e) {
 				this.processFailure(options, response, this.jsonErrorText);

@@ -396,8 +396,28 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 	@Override
 	public FileEntry deleteFileEntryById(String folderId, String fileEntryId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+        //
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlapp/delete-file-entry");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("fileEntryId", fileEntryId));
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println("deleteFileEntryById Status:[" + resp.getStatusLine() + "]");
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("deleteFileEntryById Res:[" + response + "]");
+
+        return null;
 	}
 
 	public static Properties loadLiferayProperties() {

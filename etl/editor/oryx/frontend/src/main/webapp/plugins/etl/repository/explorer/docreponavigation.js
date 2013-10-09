@@ -89,6 +89,8 @@ ORYX.Plugins.DOCRepoNavigation = Clazz.extend({
                 icon: '/etl/images/conxbi/etl/home_nav.gif',
                 url: '/etl/core/docexplorer/getnode',
                 uploadUrl: '/etl/core/docexplorer/upload',
+                newdirUrl: '/etl/core/docexplorer/adddir',
+                deleteUrl: '/etl/core/docexplorer/deletedir',
                 collapsible: true,
                 title: 'Files',
                 autoWidth: true,
