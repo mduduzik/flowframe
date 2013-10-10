@@ -1291,7 +1291,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		var path;
 		if(node.isLeaf()) {
 			path = this.getPath(node);
-			url = this.hrefPrefix + path + this.hrefSuffix;
+			url = '/etl/core/docexplorer/getfile?pathId='+node.id;//this.hrefPrefix + path + this.hrefSuffix;
 
 			// fire beforeopen event
 			if(true !== this.eventsSuspended && false === this.fireEvent('beforeopen', this, node.text, url, mode)) {

@@ -58,12 +58,15 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
     @GET
     @Path("/getfile")
-    @Produces("multipart/mixed")
+    //@Produces("application/octet-stream")
     public Response getfile(@HeaderParam("userid") String userid,
                             @QueryParam("path") String path,
                             @QueryParam("pathId") String pathId) throws Exception {
         FileEntry fe = ecmService.getFileEntryById(pathId);
         InputStream reportStream = ecmService.getFileAsStream(pathId, null);
+
+        ContentDisposition contentDisposition = ContentDisposition.type("attachment")
+                .fileName(fe.getTitle()).creationDate(fe.getCreateDate()).build();
         BodyPart sourcePart = new StreamDataBodyPart(fe.getTitle(), reportStream);
 
         if (StringUtils.contains(fe.getMimeType(),'/')) {
@@ -78,7 +81,8 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         MultiPart multiPart = new MultiPart().
                 bodyPart(sourcePart);
 
-        return Response.ok(multiPart, MultiPartMediaTypes.MULTIPART_MIXED_TYPE).build();
+        //return Response.ok(multiPart).header("Content-Disposition",contentDisposition).build();
+        return Response.ok(reportStream).type(fe.getMimeType()).header("Content-Disposition",contentDisposition).build();//;header("Content-Disposition",contentDisposition).build();
     }
 
     @POST
@@ -165,11 +169,11 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             FormDataBodyPart fileBP = getFileBodyPart("ext-gen", mpFileUpload);//from form field of name:file
             String fileName = fileBP.getContentDisposition().getFileName();
             //Long fileSize = Long.valueOf(fileSizeStr);
-            String mimeType = fileBP.getContentDisposition().getType();
+            String mediaType = fileBP.getMediaType().toString();
             InputStream sampleCSVInputStream = fileBP.getValueAs(InputStream.class);
 
             //Save sample to ECM
-            FileEntry fe = addOrUpdateDocLibFile(pathId,sampleCSVInputStream, fileName, mimeType);
+            FileEntry fe = addOrUpdateDocLibFile(pathId,sampleCSVInputStream, fileName, mediaType);
 
             //Result
             res.put("fileName",fileName);
@@ -297,7 +301,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 if (StringUtils.contains(path,REPOSITORY_FOLDER_OUTBOX)) {
                     feObj.put(REPOSITORY_UI_TREE_NODE_CAN_DELETE, false);
                 }
-                feObj.put("icon", "/etl/images/conxbi/etl/documentation.gif");
+                feObj.put("iconCls", "file-"+fe.getExtension());
                 feObj.put("leaf", true);
                 feObj.put("hasChildren", false);
                 feObj.put("singleClickExpand", false);

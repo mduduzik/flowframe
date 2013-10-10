@@ -100,8 +100,16 @@
 {
 	background-image: url(../img/icons/mime/wordprocessing.png) ! important;
 }
- .file-xls  
-,.file-ods 
+.file-csv
+{
+    background-image: url(../img/icons/mime/doc_excel_csv.png) ! important;
+}
+.file-xls
+,.file-xlsx
+{
+    background-image: url(../img/icons/mime/icon_excel.gif) ! important;
+}
+.file-ods
 ,.file-xlc 
 ,.file-xll 
 ,.file-xlm 
@@ -120,7 +128,7 @@
 .file-php  {
 	background-image: url(../img/icons/mime/source_php.png) ! important;
 }
- .file-7z 
+.file-7z
 ,.file-a 
 ,.file-ace 
 ,.file-arj  

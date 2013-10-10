@@ -269,7 +269,7 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 	 * @return {Object} params
 	 */
 	,getParams:function(record, params) {
-		var p = {path:this.path};
+		var p = {path:this.path,pathId:this.pathId};
 		Ext.apply(p, this.baseParams || {}, params || {});
 		return p;
 	}
@@ -432,6 +432,15 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 		}
 	} // eo function requestProgress
 	// }}}
+    // {{{
+    /**
+     * pathId setter
+     * @private
+     */
+    ,setPathId:function(pathId) {
+        this.pathId = pathId;
+    } // eo setPathId
+    // }}}
 	// {{{
 	/**
 	 * path setter
@@ -568,7 +577,10 @@ Ext.extend(Ext.ux.FileUploader, Ext.util.Observable, {
 		// process ajax success
 		if(true === success) {
 			try {
-				o = Ext.decode(response.responseText);
+                if (response.responseText.indexOf("</pre>") > -1) {//ExtJS Bug: response is wrapped with <pre></pre>
+                    response.responseText = response.responseText.substring(response.responseText.indexOf("{"), response.responseText.lastIndexOf("}") + 1);
+                }
+   				o = Ext.decode(response.responseText);
 			}
 			catch(e) {
 				this.processFailure(options, response, this.jsonErrorText);

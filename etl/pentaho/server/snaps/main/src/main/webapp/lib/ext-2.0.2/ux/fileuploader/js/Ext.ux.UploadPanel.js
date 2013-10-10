@@ -257,6 +257,12 @@ Ext.ux.UploadPanel = Ext.extend(Ext.Panel, {
 		// }}}
 		// {{{
 		// create view
+/*        + '<div class="ux-up-item">'
+            + '<div class="ux-up-icon-file {fileCls}"></div>'
+            + '<div class="ux-up-text x-unselectable" qtip="{fileName}">{shortName}</div>'
+            + '<div id="remove-{[values.input.id]}" class="ux-up-icon-state ux-up-icon-{state}" qtip="{[this.scope.getQtip(values)]}"></div>'
+            + '</div>'
+        + '</tpl>'*/
 		Ext.apply(this, {
 			items:[{
 				 xtype:'dataview'
@@ -267,13 +273,11 @@ Ext.ux.UploadPanel = Ext.extend(Ext.Panel, {
 				,emptyText:this.emptyText
 				,tpl: this.tpl || new Ext.XTemplate(
 					  '<tpl for=".">'
-					+ '<div class="ux-up-item">'
-//					+ '<div class="ux-up-indicator">&#160;</div>'
-					+ '<div class="ux-up-icon-file {fileCls}">&#160;</div>'
+                    + '<div class="ux-up-item">'
+                    + '<div class="ux-up-icon-file {fileCls}"/>'
 					+ '<div class="ux-up-text x-unselectable" qtip="{fileName}">{shortName}</div>'
-					+ '<div id="remove-{[values.input.id]}" class="ux-up-icon-state ux-up-icon-{state}"'
-					+ 'qtip="{[this.scope.getQtip(values)]}">&#160;</div>'
-					+ '</div>'
+                    + '<div id="remove-{[values.input.id]}" class="ux-up-icon-state ux-up-icon-{state}"/>'
+                    + '</div>'
 					+ '</tpl>'
 					, {scope:this}
 				)
@@ -668,6 +672,7 @@ Ext.ux.UploadPanel = Ext.extend(Ext.Panel, {
 		if(true !== this.eventsSuspended && false === this.fireEvent('beforeupload', this)) {
 			return false;
 		}
+        this.uploader.setUrl(this.url);
 		this.uploader.upload();
 	} // eo function onUpload
 	// }}}
@@ -677,9 +682,18 @@ Ext.ux.UploadPanel = Ext.extend(Ext.Panel, {
 	 */
 	,setUrl:function(url) {
 		this.url = url;
-		this.uploader.setUrl(url);
+		//this.uploader.setUrl(url);
 	} // eo function setUrl
 	// }}}
+    // {{{
+    /**
+     * url setter
+     */
+    ,setUploadUrl:function(url) {
+        //this.url = url;
+        this.uploader.setUrl(url);
+    } // eo function setUrl
+    // }}}
 	// {{{
 	/**
 	 * path setter
@@ -688,6 +702,14 @@ Ext.ux.UploadPanel = Ext.extend(Ext.Panel, {
 		this.uploader.setPath(path);
 	} // eo function setPath
 	// }}}
+    // {{{
+    /**
+     * pathId setter
+     */
+    ,setPathId:function(pathId) {
+        this.uploader.setPathId(pathId);
+    } // eo function setPathId
+    // }}}
 	// {{{
 	/**
 	 * Updates buttons states depending on uploading state

@@ -192,6 +192,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	 * @cfg {String} newdirUrl URL to use when creating new directory; 
 	 * this.url is used if not set (defaults to undefined)
 	 */
+    ,newdirUrl: 'http://localhost/newdir'
 
 	/**
 	 * @cfg {String} openMode Default file open mode. This mode is used when user dblclicks 
@@ -254,11 +255,16 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	 * @cfg {Boolean} topMenu true to create top toolbar with menu in addition to contextmenu
 	 */
 	,topMenu:false
+    /**
+     * @cfg {String} url URL to use when communicating with server
+     */
+    ,uploadUrl:'http://localhost/upload'
+    // }}}
 
 	/**
 	 * @cfg {String} url URL to use when communicating with server
 	 */
-	,url:'http://localhost:8082/etlrepo/CSVInput/uploadsample'
+	,url:'http://localhost/list'
 	// }}}
 
 	// overrides
@@ -592,6 +598,9 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 
 			// try to decode JSON response
 			try {
+                if (response.responseText.indexOf("</pre>") > -1) {//ExtJS Bug: response is wrapped with <pre></pre>
+                    response.responseText = response.responseText.substring(response.responseText.indexOf("{"), response.responseText.lastIndexOf("}") + 1);
+                }
 				o = Ext.decode(response.responseText);
 			}
 			catch(ex) {
@@ -610,6 +619,10 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 
 					case 'newdir':
 						if(true !== this.eventsSuspended) {
+                            options.node.id = o.id;
+                            options.node.icon = o.icon;
+                            options.node.attributes.canupload = o.canupload;
+                            options.node.attributes.candownload = o.candownload;
 							this.fireEvent('newdir', this, options.node);
 						}
 					break;
@@ -768,7 +781,10 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 					,node:node
 					,params:{
 						 cmd:'delete'
-						,file:this.getPath(node)
+                        ,isleaf: node.leaf
+						,path:this.getPath(node)
+                        ,pathId:node.id
+                        ,parentPathId:node.parentNode.id
 					}
 				};
 				Ext.Ajax.request(options);
@@ -1032,6 +1048,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 			path = path.replace(/\/[^\/]+$/, '', path);
 		}
 		uploadPanel.setPath(path);
+        uploadPanel.setPathId(menu.node.id);
 
 	} // eo function onBeforeUpload
 	// }}}
@@ -1043,6 +1060,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	,onAllFinished:function(uploader) {
 		var menu = this.getContextMenu();
 		(menu.node.isLeaf() ? menu.node.parentNode : menu.node).reload();
+        this.hideContextMenu();
 	} // eo function onAllFinished
 	// }}}
 	// {{{
@@ -1207,6 +1225,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	 */
 	,onNewDir:function(editor) {
 		var path = this.getPath(editor.editNode);
+        var parentPathId =  editor.editNode.parentNode.id;
 		var options = {
 			 url:this.newdirUrl || this.url
 			,method:this.method
@@ -1214,8 +1233,9 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 			,node:editor.editNode
 			,callback:this.cmdCallback
 			,params:{
-				 cmd:'newdir'
+				cmd:'newdir'
 				,dir:path
+                ,parentPathId: parentPathId
 			}
 		};
 		Ext.Ajax.request(options);
@@ -1271,7 +1291,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		var path;
 		if(node.isLeaf()) {
 			path = this.getPath(node);
-			url = this.hrefPrefix + path + this.hrefSuffix;
+			url = '/etl/core/docexplorer/getfile?pathId='+node.id;//this.hrefPrefix + path + this.hrefSuffix;
 
 			// fire beforeopen event
 			if(true !== this.eventsSuspended && false === this.fireEvent('beforeopen', this, node.text, url, mode)) {
@@ -1442,6 +1462,10 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		var menu = this.getContextMenu();
 		menu.node = node;
 
+        var candelete = node.attributes.candelete;
+        var canupload = node.attributes.canupload;
+        var candownload = node.attributes.candownload;
+
 		// set node name
 		menu.getItemByCmd('nodename').setText(Ext.util.Format.ellipsis(node.text, 22));
 
@@ -1450,11 +1474,11 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		menu.setItemDisabled('reload', node.isLeaf());
 		menu.setItemDisabled('expand', node.isLeaf());
 		menu.setItemDisabled('collapse', node.isLeaf());
-		menu.setItemDisabled('delete', node === this.root || node.disabled);
-		menu.setItemDisabled('rename', this.readOnly || node === this.root || node.disabled);
+		menu.setItemDisabled('delete', node === this.root || node.disabled || !candelete);
+		menu.setItemDisabled('rename', this.readOnly || node === this.root || node.disabled || !candelete);
 		menu.setItemDisabled('newdir', this.readOnly || (node.isLeaf() ? node.parentNode.disabled : node.disabled));
-		menu.setItemDisabled('upload', node.isLeaf() ? node.parentNode.disabled : node.disabled);
-		menu.setItemDisabled('upload-panel', node.isLeaf() ? node.parentNode.disabled : node.disabled);
+		menu.setItemDisabled('upload', !canupload || node.isLeaf() ? node.parentNode.disabled : node.disabled);
+		menu.setItemDisabled('upload-panel', !canupload || node.isLeaf() ? node.parentNode.disabled : node.disabled);
 		
 		// show/hide logic
 		menu.getItemByCmd('open').setVisible(this.enableOpen);

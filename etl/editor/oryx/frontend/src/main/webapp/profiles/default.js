@@ -34,3 +34,5 @@ $LAB.script("plugins/etl/metadata/metadataeditorrepository.js").wait();
 $LAB.script("plugins/toolbar.js").wait();
 $LAB.script("plugins/shapemenu.js").wait();
 $LAB.script("plugins/loading.js").wait();
+$LAB.script("plugins/validator.js").wait();
+$LAB.script("plugins/syntaxchecker.js").wait();
