@@ -203,6 +203,10 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.ThemeCombo.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.IconCombo.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/fileuploader/js/Ext.ux.form.LangSelectCombo.js\"></script>\n"
+                //-- Portal
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/portal/js/Portal.js\"></script>\n"
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/portal/js/PortalColumn.js\"></script>\n"
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/portal/js/Portlet.js\"></script>\n"
                 //-- RowActions
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/js/Ext.ux.Toast.js\"></script>\n"
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/js/Ext.ux.grid.RowActions.js\"></script>\n"
@@ -226,6 +230,8 @@ public class ETLEditorHandler extends HttpServlet {
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/Ext.ux.IconCombo.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/empty.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/img/extjs.ico\");\n"
+                //-- Portal
+                + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/portal/css/portal.css\");\n"
                 // Rowactions extension
                 + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/css/Ext.ux.grid.RowActions.css\");\n"
                 // VrTabPanel extension
@@ -345,7 +351,7 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractshape.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/canvas.js\" type=\"text/javascript\" />\n"
                 /*+ "<script src=\"" + getRootPath(request) + "scripts/Core/apiHandler.js\" type=\"text/javascript\" />\n"*/
-                + "<script src=\"" + getRootPath(request) + "scripts/Core/main.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/etlmain.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/svgDrag.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/shape.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/Controls/control.js\" type=\"text/javascript\" />\n"
