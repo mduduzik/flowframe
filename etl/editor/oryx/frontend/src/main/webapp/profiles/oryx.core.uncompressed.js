@@ -4917,7 +4917,234 @@ ORYX.Core.SVG.Label = Clazz.extend({
 	},
 	
 	toString: function() { return "Label " + this.id }
- });/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}if(!ORYX.Core) {ORYX.Core = {};}if(!ORYX.Core.Math) {ORYX.Core.Math = {};}	/** * Calculate the middle point between two given points * @param {x:double, y:double} point1 * @param {x:double, y:double} point2 * @return the middle point */ORYX.Core.Math.midPoint = function(point1, point2) {	return 	{				x: (point1.x + point2.x) / 2.0,				y: (point1.y + point2.y) / 2.0			}}			/** * Returns a TRUE if the point is over a line (defined by * point1 and point 2). In Addition a threshold can be set, * which defines the weight of those line. *  * @param {int} pointX - Point X * @param {int} pointY - Point Y * @param {int} lPoint1X - Line first Point X * @param {int} lPoint1Y - Line first Point Y * @param {int} lPoint2X - Line second Point X * @param {int} lPoint2Y - Line second Point y * @param {int} offset {optional} - maximal distance to line * @class ORYX.Core.Math.prototype */ORYX.Core.Math.isPointInLine = function (pointX, pointY, lPoint1X, lPoint1Y, lPoint2X, lPoint2Y, offset) {	offset = offset ? Math.abs(offset) : 1;		// Check if the edge is vertical	if(Math.abs(lPoint1X-lPoint2X)<=offset && Math.abs(pointX-lPoint1X)<=offset && pointY-Math.max(lPoint1Y, lPoint2Y)<=offset && Math.min(lPoint1Y, lPoint2Y)-pointY<=offset) {		return true	}	// Check if the edge is horizontal	if(Math.abs(lPoint1Y-lPoint2Y)<=offset && Math.abs(pointY-lPoint1Y)<=offset && pointX-Math.max(lPoint1X, lPoint2X)<=offset && Math.min(lPoint1X, lPoint2X)-pointX<=offset) {		return true	}	if(pointX > Math.max(lPoint1X, lPoint2X) || pointX < Math.min(lPoint1X, lPoint2X)) {		return false	}	if(pointY > Math.max(lPoint1Y, lPoint2Y) || pointY < Math.min(lPoint1Y, lPoint2Y)) {		return false	}				var s = (lPoint1Y - lPoint2Y) / (lPoint1X - lPoint2X);		return 	Math.abs(pointY - ((s * pointX) + lPoint1Y - s * lPoint1X)) < offset}/** * Get a boolean if the point is in the polygone *  */ORYX.Core.Math.isPointInEllipse = function (pointX, pointY, cx, cy, rx, ry) {	if(cx === undefined || cy === undefined || rx === undefined || ry === undefined) {		throw "ORYX.Core.Math.isPointInEllipse needs a ellipse with these properties: x, y, radiusX, radiusY"	} 	    var tx = (pointX - cx) / rx;    var ty = (pointY - cy) / ry;	    return tx * tx + ty * ty < 1.0;}	/** * Get a boolean if the point is in the polygone * @param {int} pointX * @param {int} pointY * @param {[int]} Cornerpoints of the Polygone (x,y,x,y,...) */ORYX.Core.Math.isPointInPolygone = function(pointX, pointY, polygone){	if (arguments.length < 3) {		throw "ORYX.Core.Math.isPointInPolygone needs two arguments"	}		var lastIndex = polygone.length-1;		if (polygone[0] !== polygone[lastIndex - 1] || polygone[1] !== polygone[lastIndex]) {		polygone.push(polygone[0]);		polygone.push(polygone[1]);	}		var crossings = 0;	var x1, y1, x2, y2, d;	    for (var i = 0; i < polygone.length - 3; ) {        x1=polygone[i];        y1=polygone[++i];        x2=polygone[++i];        y2=polygone[i+1];        d=(pointY - y1) * (x2 - x1) - (pointX - x1) * (y2 - y1);        if ((y1 >= pointY) != (y2 >= pointY)) {            crossings += y2 - y1 >= 0 ? d >= 0 : d <= 0;        }        if (!d && Math.min(x1,x2) <= pointX && pointX <= Math.max(x1,x2)            && Math.min(y1,y2) <= pointY && pointY <= Math.max(y1,y2)) {            return true;        }    }	return (crossings%2)?true:false;}/** *	Calculates the distance between a point and a line. It is also testable, if  *  the distance orthogonal to the line, matches the segment of the line. *   *  @param {float} lineP1 *  	The starting point of the line segment *  @param {float} lineP2 *  	The end point of the line segment *  @param {Point} point *  	The point to calculate the distance to. *  @param {boolean} toSegmentOnly *  	Flag to signal if only the segment of the line shell be evaluated. */ORYX.Core.Math.distancePointLinie = function(									lineP1, 									lineP2, 									point, 									toSegmentOnly) {		var intersectionPoint = 				ORYX.Core.Math.getPointOfIntersectionPointLine(lineP1, 																lineP2, 																point, 																toSegmentOnly);		if(!intersectionPoint) {		return null;	}		return ORYX.Core.Math.getDistancePointToPoint(point, intersectionPoint);};/** * Calculates the distance between two points. *  * @param {point} point1 * @param {point} point2 */ORYX.Core.Math.getDistancePointToPoint = function(point1, point2) {	return Math.sqrt(Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2));};/** * Returns the intersection point of a line and a point that defines a line * orthogonal to the given line. *  *  @param {float} lineP1 *  	The starting point of the line segment *  @param {float} lineP2 *  	The end point of the line segment *  @param {Point} point *  	The point to calculate the distance to. *  @param {boolean} onSegmentOnly *  	Flag to signal if only the segment of the line shell be evaluated. */ORYX.Core.Math.getPointOfIntersectionPointLine = function(													lineP1, 													lineP2, 													point, 													onSegmentOnly) {	/* 	 * [P3 - P1 - u(P2 - P1)] dot (P2 - P1) = 0	 * u =((x3-x1)(x2-x1)+(y3-y1)(y2-y1))/(p2-p1)²	 */	var denominator = Math.pow(lineP2.x - lineP1.x, 2) 						+ Math.pow(lineP2.y - lineP1.y, 2);	if(denominator == 0) {		return undefined;	}		var u = ((point.x - lineP1.x) * (lineP2.x - lineP1.x)  			+ (point.y - lineP1.y) * (lineP2.y - lineP1.y))			/ denominator;				if(onSegmentOnly) {		if (!(0 <= u && u <= 1)) {			return undefined;		}	}		pointOfIntersection = new Object();	pointOfIntersection.x = lineP1.x + u * (lineP2.x - lineP1.x);	pointOfIntersection.y = lineP1.y + u * (lineP2.y - lineP1.y);			return pointOfIntersection;												};/**
+ });/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+if(!ORYX.Core) {ORYX.Core = {};}
+if(!ORYX.Core.Math) {ORYX.Core.Math = {};}
+	
+/**
+ * Calculate the middle point between two given points
+ * @param {x:double, y:double} point1
+ * @param {x:double, y:double} point2
+ * @return the middle point
+ */
+ORYX.Core.Math.midPoint = function(point1, point2) {
+	return 	{
+				x: (point1.x + point2.x) / 2.0,
+				y: (point1.y + point2.y) / 2.0
+			}
+}
+			
+/**
+ * Returns a TRUE if the point is over a line (defined by
+ * point1 and point 2). In Addition a threshold can be set,
+ * which defines the weight of those line.
+ * 
+ * @param {int} pointX - Point X
+ * @param {int} pointY - Point Y
+ * @param {int} lPoint1X - Line first Point X
+ * @param {int} lPoint1Y - Line first Point Y
+ * @param {int} lPoint2X - Line second Point X
+ * @param {int} lPoint2Y - Line second Point y
+ * @param {int} offset {optional} - maximal distance to line
+ * @class ORYX.Core.Math.prototype
+ */
+ORYX.Core.Math.isPointInLine = function (pointX, pointY, lPoint1X, lPoint1Y, lPoint2X, lPoint2Y, offset) {
+
+	offset = offset ? Math.abs(offset) : 1;
+	
+	// Check if the edge is vertical
+	if(Math.abs(lPoint1X-lPoint2X)<=offset && Math.abs(pointX-lPoint1X)<=offset && pointY-Math.max(lPoint1Y, lPoint2Y)<=offset && Math.min(lPoint1Y, lPoint2Y)-pointY<=offset) {
+		return true
+	}
+
+	// Check if the edge is horizontal
+	if(Math.abs(lPoint1Y-lPoint2Y)<=offset && Math.abs(pointY-lPoint1Y)<=offset && pointX-Math.max(lPoint1X, lPoint2X)<=offset && Math.min(lPoint1X, lPoint2X)-pointX<=offset) {
+		return true
+	}
+
+	if(pointX > Math.max(lPoint1X, lPoint2X) || pointX < Math.min(lPoint1X, lPoint2X)) {
+		return false
+	}
+
+	if(pointY > Math.max(lPoint1Y, lPoint2Y) || pointY < Math.min(lPoint1Y, lPoint2Y)) {
+		return false
+	}
+			
+	var s = (lPoint1Y - lPoint2Y) / (lPoint1X - lPoint2X);
+	
+	return 	Math.abs(pointY - ((s * pointX) + lPoint1Y - s * lPoint1X)) < offset
+}
+
+/**
+ * Get a boolean if the point is in the polygone
+ * 
+ */
+ORYX.Core.Math.isPointInEllipse = function (pointX, pointY, cx, cy, rx, ry) {
+
+	if(cx === undefined || cy === undefined || rx === undefined || ry === undefined) {
+		throw "ORYX.Core.Math.isPointInEllipse needs a ellipse with these properties: x, y, radiusX, radiusY"
+	} 
+	
+    var tx = (pointX - cx) / rx;
+    var ty = (pointY - cy) / ry;
+	
+    return tx * tx + ty * ty < 1.0;
+}
+	
+/**
+ * Get a boolean if the point is in the polygone
+ * @param {int} pointX
+ * @param {int} pointY
+ * @param {[int]} Cornerpoints of the Polygone (x,y,x,y,...)
+ */
+ORYX.Core.Math.isPointInPolygone = function(pointX, pointY, polygone){
+
+	if (arguments.length < 3) {
+		throw "ORYX.Core.Math.isPointInPolygone needs two arguments"
+	}
+	
+	var lastIndex = polygone.length-1;
+	
+	if (polygone[0] !== polygone[lastIndex - 1] || polygone[1] !== polygone[lastIndex]) {
+		polygone.push(polygone[0]);
+		polygone.push(polygone[1]);
+	}
+	
+	var crossings = 0;
+
+	var x1, y1, x2, y2, d;
+	
+    for (var i = 0; i < polygone.length - 3; ) {
+        x1=polygone[i];
+        y1=polygone[++i];
+        x2=polygone[++i];
+        y2=polygone[i+1];
+        d=(pointY - y1) * (x2 - x1) - (pointX - x1) * (y2 - y1);
+
+        if ((y1 >= pointY) != (y2 >= pointY)) {
+            crossings += y2 - y1 >= 0 ? d >= 0 : d <= 0;
+        }
+        if (!d && Math.min(x1,x2) <= pointX && pointX <= Math.max(x1,x2)
+            && Math.min(y1,y2) <= pointY && pointY <= Math.max(y1,y2)) {
+            return true;
+        }
+    }
+	return (crossings%2)?true:false;
+}
+
+/**
+ *	Calculates the distance between a point and a line. It is also testable, if 
+ *  the distance orthogonal to the line, matches the segment of the line.
+ *  
+ *  @param {float} lineP1
+ *  	The starting point of the line segment
+ *  @param {float} lineP2
+ *  	The end point of the line segment
+ *  @param {Point} point
+ *  	The point to calculate the distance to.
+ *  @param {boolean} toSegmentOnly
+ *  	Flag to signal if only the segment of the line shell be evaluated.
+ */
+ORYX.Core.Math.distancePointLinie = function(
+									lineP1, 
+									lineP2, 
+									point, 
+									toSegmentOnly) {
+	
+	var intersectionPoint = 
+				ORYX.Core.Math.getPointOfIntersectionPointLine(lineP1, 
+																lineP2, 
+																point, 
+																toSegmentOnly);
+	
+	if(!intersectionPoint) {
+		return null;
+	}
+	
+	return ORYX.Core.Math.getDistancePointToPoint(point, intersectionPoint);
+};
+
+/**
+ * Calculates the distance between two points.
+ * 
+ * @param {point} point1
+ * @param {point} point2
+ */
+ORYX.Core.Math.getDistancePointToPoint = function(point1, point2) {
+	return Math.sqrt(Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2));
+};
+
+/**
+ * Returns the intersection point of a line and a point that defines a line
+ * orthogonal to the given line.
+ * 
+ *  @param {float} lineP1
+ *  	The starting point of the line segment
+ *  @param {float} lineP2
+ *  	The end point of the line segment
+ *  @param {Point} point
+ *  	The point to calculate the distance to.
+ *  @param {boolean} onSegmentOnly
+ *  	Flag to signal if only the segment of the line shell be evaluated.
+ */
+ORYX.Core.Math.getPointOfIntersectionPointLine = function(
+													lineP1, 
+													lineP2, 
+													point, 
+													onSegmentOnly) {
+
+	/* 
+	 * [P3 - P1 - u(P2 - P1)] dot (P2 - P1) = 0
+	 * u =((x3-x1)(x2-x1)+(y3-y1)(y2-y1))/(p2-p1)²
+	 */
+	var denominator = Math.pow(lineP2.x - lineP1.x, 2) 
+						+ Math.pow(lineP2.y - lineP1.y, 2);
+	if(denominator == 0) {
+		return undefined;
+	}
+	
+	var u = ((point.x - lineP1.x) * (lineP2.x - lineP1.x)  
+			+ (point.y - lineP1.y) * (lineP2.y - lineP1.y))
+			/ denominator;
+			
+	if(onSegmentOnly) {
+		if (!(0 <= u && u <= 1)) {
+			return undefined;
+		}
+	}
+	
+	pointOfIntersection = new Object();
+	pointOfIntersection.x = lineP1.x + u * (lineP2.x - lineP1.x);
+	pointOfIntersection.y = lineP1.y + u * (lineP2.y - lineP1.y);	
+	
+	return pointOfIntersection;												
+};/**
  * Copyright (c) 2006
  * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
  *
@@ -8465,7 +8692,308 @@ ORYX.Core.Bounds = {
 	}
  };
  
-ORYX.Core.Bounds = Clazz.extend(ORYX.Core.Bounds);/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}if(!ORYX.Core) {ORYX.Core = {};}/** * @classDescription Abstract base class for all objects that have a graphical representation * within the editor. * @extends Clazz */ORYX.Core.UIObject = {	/**	 * Constructor of the UIObject class.	 */	construct: function(options) {					this.isChanged = true;			//Flag, if UIObject has been changed since last update.		this.isResized = true;		this.isVisible = true;			//Flag, if UIObject's display attribute is set to 'inherit' or 'none'		this.isSelectable = false;		//Flag, if UIObject is selectable.		this.isResizable = false;		//Flag, if UIObject is resizable.		this.isMovable = false;			//Flag, if UIObject is movable.				this.id = ORYX.Editor.provideId();	//get unique id		this.parent = undefined;		//parent is defined, if this object is added to another uiObject.		this.node = undefined;			//this is a reference to the SVG representation, either locally or in DOM.		this.children = [];				//array for all add uiObjects				this.bounds = new ORYX.Core.Bounds();		//bounds with undefined values		this._changedCallback = this._changed.bind(this);	//callback reference for calling _changed		this.bounds.registerCallback(this._changedCallback);	//set callback in bounds				if(options && options.eventHandlerCallback) {			this.eventHandlerCallback = options.eventHandlerCallback;		}	},		/**	 * Sets isChanged flag to true. Callback for the bounds object.	 */	_changed: function(bounds, isResized) {		this.isChanged = true;		if(this.bounds == bounds)			this.isResized = isResized || this.isResized;	},		/**	 * If something changed, this method calls the refresh method that must be implemented by subclasses.	 */	update: function() {		if(this.isChanged) {			this.refresh();			this.isChanged = false;						//call update of all children			this.children.each(function(value) {				value.update();			});		}	},		/**	 * Is called in update method, if isChanged is set to true. Sub classes should call the super class method.	 */	refresh: function() {			},		/**	 * @return {Array} Array of all child UIObjects.	 */	getChildren: function() {		return this.children.clone();	},		/**	 * @return {Array} Array of all parent UIObjects.	 */	getParents: function(){		var parents = [];		var parent = this.parent;		while(parent){			parents.push(parent);			parent = parent.parent;		}		return parents;	},		/**	 * Returns TRUE if the given parent is one of the UIObjects parents or the UIObject themselves, otherwise FALSE.	 * @param {UIObject} parent	 * @return {Boolean} 	 */	isParent: function(parent){		var cparent = this;		while(cparent){			if (cparent === parent){				return true;			}			cparent = cparent.parent;		}		return false;	},		/**	 * @return {String} Id of this UIObject	 */	getId: function() {		return this.id;	},		/**	 * Method for accessing child uiObjects by id.	 * @param {String} id	 * @param {Boolean} deep	 * 	 * @return {UIObject} If found, it returns the UIObject with id.	 */	getChildById: function(id, deep) {		return this.children.find(function(uiObj) {			if(uiObj.getId() === id) {				return uiObj;			} else {				if(deep) {					var obj = uiObj.getChildById(id, deep);					if(obj) {						return obj;					}				}			}		});	},		/**	 * Adds an UIObject to this UIObject and sets the parent of the	 * added UIObject. It is also added to the SVG representation of this	 * UIObject.	 * @param {UIObject} uiObject	 */	add: function(uiObject) {		//add uiObject, if it is not already a child of this object		if (!(this.children.member(uiObject))) {			//if uiObject is child of another parent, remove it from that parent.			if(uiObject.parent) {				uiObject.remove(uiObject);			}						//add uiObject to children			this.children.push(uiObject);						//set parent reference			uiObject.parent = this;						//add uiObject.node to this.node			uiObject.node = this.node.appendChild(uiObject.node);						//register callback to get informed, if child is changed			uiObject.bounds.registerCallback(this._changedCallback);								if(this.eventHandlerCallback)				this.eventHandlerCallback({type:ORYX.CONFIG.EVENT_SHAPEADDED,shape:uiObject})			//uiObject.update();		} else {			ORYX.Log.info("add: ORYX.Core.UIObject is already a child of this object.");		}	},		/**	 * Removes UIObject from this UIObject. The SVG representation will also	 * be removed from this UIObject's SVG representation.	 * @param {UIObject} uiObject	 */	remove: function(uiObject) {		//if uiObject is a child of this object, remove it.		if (this.children.member(uiObject)) {			//remove uiObject from children			this.children = this._uiObjects.without(uiObject);						//delete parent reference of uiObject			uiObject.parent = undefined;						//delete uiObject.node from this.node			uiObject.node = this.node.removeChild(uiObject.node);						//unregister callback to get informed, if child is changed			uiObject.bounds.unregisterCallback(this._changedCallback);		} else {			ORYX.Log.info("remove: ORYX.Core.UIObject is not a child of this object.");		}			},		/**	 * Calculates absolute bounds of this UIObject.	 */	absoluteBounds: function() {		if(this.parent) {			var absUL = this.absoluteXY();			return new ORYX.Core.Bounds(absUL.x, absUL.y,							absUL.x + this.bounds.width(),							absUL.y + this.bounds.height());		} else {			return this.bounds.clone();		}	},	/**	 * @return {Point} The absolute position of this UIObject.	 */	absoluteXY: function() {		if(this.parent) {			var pXY = this.parent.absoluteXY();					return {x: pXY.x + this.bounds.upperLeft().x , y: pXY.y + this.bounds.upperLeft().y};					} else {			return {x: this.bounds.upperLeft().x , y: this.bounds.upperLeft().y};		}	},	/**	 * @return {Point} The absolute position from the Center of this UIObject.	 */	absoluteCenterXY: function() {		if(this.parent) {			var pXY = this.parent.absoluteXY();					return {x: pXY.x + this.bounds.center().x , y: pXY.y + this.bounds.center().y};					} else {			return {x: this.bounds.center().x , y: this.bounds.center().y};		}	},		/**	 * Hides this UIObject and all its children.	 */	hide: function() {		this.node.setAttributeNS(null, 'display', 'none');		this.isVisible = false;		this.children.each(function(uiObj) {			uiObj.hide();			});	},		/**	 * Enables visibility of this UIObject and all its children.	 */	show: function() {		this.node.setAttributeNS(null, 'display', 'inherit');		this.isVisible = true;		this.children.each(function(uiObj) {			uiObj.show();			});			},		addEventHandlers: function(node) {				node.addEventListener(ORYX.CONFIG.EVENT_MOUSEDOWN, this._delegateEvent.bind(this), false);		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE, this._delegateEvent.bind(this), false);			node.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this._delegateEvent.bind(this), false);		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEOVER, this._delegateEvent.bind(this), false);		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEOUT, this._delegateEvent.bind(this), false);		node.addEventListener('click', this._delegateEvent.bind(this), false);		node.addEventListener(ORYX.CONFIG.EVENT_DBLCLICK, this._delegateEvent.bind(this), false);				},			_delegateEvent: function(event) {		if(this.eventHandlerCallback) {			this.eventHandlerCallback(event, this);		}	},		toString: function() { return "UIObject " + this.id } }; ORYX.Core.UIObject = Clazz.extend(ORYX.Core.UIObject);/**
+ORYX.Core.Bounds = Clazz.extend(ORYX.Core.Bounds);/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+if(!ORYX.Core) {ORYX.Core = {};}
+
+
+/**
+ * @classDescription Abstract base class for all objects that have a graphical representation
+ * within the editor.
+ * @extends Clazz
+ */
+ORYX.Core.UIObject = {
+	/**
+	 * Constructor of the UIObject class.
+	 */
+	construct: function(options) {	
+		
+		this.isChanged = true;			//Flag, if UIObject has been changed since last update.
+		this.isResized = true;
+		this.isVisible = true;			//Flag, if UIObject's display attribute is set to 'inherit' or 'none'
+		this.isSelectable = false;		//Flag, if UIObject is selectable.
+		this.isResizable = false;		//Flag, if UIObject is resizable.
+		this.isMovable = false;			//Flag, if UIObject is movable.
+		
+		this.id = ORYX.Editor.provideId();	//get unique id
+		this.parent = undefined;		//parent is defined, if this object is added to another uiObject.
+		this.node = undefined;			//this is a reference to the SVG representation, either locally or in DOM.
+		this.children = [];				//array for all add uiObjects
+		
+		this.bounds = new ORYX.Core.Bounds();		//bounds with undefined values
+
+		this._changedCallback = this._changed.bind(this);	//callback reference for calling _changed
+		this.bounds.registerCallback(this._changedCallback);	//set callback in bounds
+		
+		if(options && options.eventHandlerCallback) {
+			this.eventHandlerCallback = options.eventHandlerCallback;
+		}
+	},
+	
+	/**
+	 * Sets isChanged flag to true. Callback for the bounds object.
+	 */
+	_changed: function(bounds, isResized) {
+		this.isChanged = true;
+		if(this.bounds == bounds)
+			this.isResized = isResized || this.isResized;
+	},
+	
+	/**
+	 * If something changed, this method calls the refresh method that must be implemented by subclasses.
+	 */
+	update: function() {
+		if(this.isChanged) {
+			this.refresh();
+			this.isChanged = false;
+			
+			//call update of all children
+			this.children.each(function(value) {
+				value.update();
+			});
+		}
+	},
+	
+	/**
+	 * Is called in update method, if isChanged is set to true. Sub classes should call the super class method.
+	 */
+	refresh: function() {
+		
+	},
+	
+	/**
+	 * @return {Array} Array of all child UIObjects.
+	 */
+	getChildren: function() {
+		return this.children.clone();
+	},
+	
+	/**
+	 * @return {Array} Array of all parent UIObjects.
+	 */
+	getParents: function(){
+		var parents = [];
+		var parent = this.parent;
+		while(parent){
+			parents.push(parent);
+			parent = parent.parent;
+		}
+		return parents;
+	},
+	
+	/**
+	 * Returns TRUE if the given parent is one of the UIObjects parents or the UIObject themselves, otherwise FALSE.
+	 * @param {UIObject} parent
+	 * @return {Boolean} 
+	 */
+	isParent: function(parent){
+		var cparent = this;
+		while(cparent){
+			if (cparent === parent){
+				return true;
+			}
+			cparent = cparent.parent;
+		}
+		return false;
+	},
+	
+	/**
+	 * @return {String} Id of this UIObject
+	 */
+	getId: function() {
+		return this.id;
+	},
+	
+	/**
+	 * Method for accessing child uiObjects by id.
+	 * @param {String} id
+	 * @param {Boolean} deep
+	 * 
+	 * @return {UIObject} If found, it returns the UIObject with id.
+	 */
+	getChildById: function(id, deep) {
+		return this.children.find(function(uiObj) {
+			if(uiObj.getId() === id) {
+				return uiObj;
+			} else {
+				if(deep) {
+					var obj = uiObj.getChildById(id, deep);
+					if(obj) {
+						return obj;
+					}
+				}
+			}
+		});
+	},
+	
+	/**
+	 * Adds an UIObject to this UIObject and sets the parent of the
+	 * added UIObject. It is also added to the SVG representation of this
+	 * UIObject.
+	 * @param {UIObject} uiObject
+	 */
+	add: function(uiObject) {
+		//add uiObject, if it is not already a child of this object
+		if (!(this.children.member(uiObject))) {
+			//if uiObject is child of another parent, remove it from that parent.
+			if(uiObject.parent) {
+				uiObject.remove(uiObject);
+			}
+			
+			//add uiObject to children
+			this.children.push(uiObject);
+			
+			//set parent reference
+			uiObject.parent = this;
+			
+			//add uiObject.node to this.node
+			uiObject.node = this.node.appendChild(uiObject.node);
+			
+			//register callback to get informed, if child is changed
+			uiObject.bounds.registerCallback(this._changedCallback);
+			
+		
+			if(this.eventHandlerCallback)
+				this.eventHandlerCallback({type:ORYX.CONFIG.EVENT_SHAPEADDED,shape:uiObject})
+			//uiObject.update();
+		} else {
+			ORYX.Log.info("add: ORYX.Core.UIObject is already a child of this object.");
+		}
+	},
+	
+	/**
+	 * Removes UIObject from this UIObject. The SVG representation will also
+	 * be removed from this UIObject's SVG representation.
+	 * @param {UIObject} uiObject
+	 */
+	remove: function(uiObject) {
+		//if uiObject is a child of this object, remove it.
+		if (this.children.member(uiObject)) {
+			//remove uiObject from children
+			this.children = this._uiObjects.without(uiObject);
+			
+			//delete parent reference of uiObject
+			uiObject.parent = undefined;
+			
+			//delete uiObject.node from this.node
+			uiObject.node = this.node.removeChild(uiObject.node);
+			
+			//unregister callback to get informed, if child is changed
+			uiObject.bounds.unregisterCallback(this._changedCallback);
+		} else {
+			ORYX.Log.info("remove: ORYX.Core.UIObject is not a child of this object.");
+		}
+		
+	},
+	
+	/**
+	 * Calculates absolute bounds of this UIObject.
+	 */
+	absoluteBounds: function() {
+		if(this.parent) {
+			var absUL = this.absoluteXY();
+			return new ORYX.Core.Bounds(absUL.x, absUL.y,
+							absUL.x + this.bounds.width(),
+							absUL.y + this.bounds.height());
+		} else {
+			return this.bounds.clone();
+		}
+	},
+
+	/**
+	 * @return {Point} The absolute position of this UIObject.
+	 */
+	absoluteXY: function() {
+		if(this.parent) {
+			var pXY = this.parent.absoluteXY();		
+			return {x: pXY.x + this.bounds.upperLeft().x , y: pXY.y + this.bounds.upperLeft().y};
+			
+		} else {
+			return {x: this.bounds.upperLeft().x , y: this.bounds.upperLeft().y};
+		}
+	},
+
+	/**
+	 * @return {Point} The absolute position from the Center of this UIObject.
+	 */
+	absoluteCenterXY: function() {
+		if(this.parent) {
+			var pXY = this.parent.absoluteXY();		
+			return {x: pXY.x + this.bounds.center().x , y: pXY.y + this.bounds.center().y};
+			
+		} else {
+			return {x: this.bounds.center().x , y: this.bounds.center().y};
+		}
+	},
+	
+	/**
+	 * Hides this UIObject and all its children.
+	 */
+	hide: function() {
+		this.node.setAttributeNS(null, 'display', 'none');
+		this.isVisible = false;
+		this.children.each(function(uiObj) {
+			uiObj.hide();	
+		});
+	},
+	
+	/**
+	 * Enables visibility of this UIObject and all its children.
+	 */
+	show: function() {
+		this.node.setAttributeNS(null, 'display', 'inherit');
+		this.isVisible = true;
+		this.children.each(function(uiObj) {
+			uiObj.show();	
+		});		
+	},
+	
+	addEventHandlers: function(node) {
+		
+		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEDOWN, this._delegateEvent.bind(this), false);
+		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE, this._delegateEvent.bind(this), false);	
+		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this._delegateEvent.bind(this), false);
+		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEOVER, this._delegateEvent.bind(this), false);
+		node.addEventListener(ORYX.CONFIG.EVENT_MOUSEOUT, this._delegateEvent.bind(this), false);
+		node.addEventListener('click', this._delegateEvent.bind(this), false);
+		node.addEventListener(ORYX.CONFIG.EVENT_DBLCLICK, this._delegateEvent.bind(this), false);
+			
+	},
+		
+	_delegateEvent: function(event) {
+		if(this.eventHandlerCallback) {
+			this.eventHandlerCallback(event, this);
+		}
+	},
+	
+	toString: function() { return "UIObject " + this.id }
+ };
+ ORYX.Core.UIObject = Clazz.extend(ORYX.Core.UIObject);/**
  * Copyright (c) 2006
  * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
  *
@@ -8979,7 +9507,746 @@ ORYX.Core.AbstractShape.JSONHelper = {
          return Ext.encode(this);
      }
  }
-/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}/**   @namespace Namespace for the Oryx core elements.   @name ORYX.Core*/if(!ORYX.Core) {ORYX.Core = {};}/** * @class Oryx canvas. * @extends ORYX.Core.AbstractShape * */ORYX.Core.Canvas = ORYX.Core.AbstractShape.extend({    /** @lends ORYX.Core.Canvas.prototype */	/**	 * Defines the current zoom level	 */	zoomLevel:1,	/**	 * Constructor	 */	construct: function(options) {		arguments.callee.$.construct.apply(this, arguments);		if(!(options && options.width && options.height)) {					ORYX.Log.fatal("Canvas is missing mandatory parameters options.width and options.height.");			return;		}					//TODO: set document resource id		this.resourceId = options.id;		this.nodes = [];				this.edges = [];				//init svg document		this.rootNode = ORYX.Editor.graft("http://www.w3.org/2000/svg", options.parentNode,			['svg', {id: this.id, width: options.width, height: options.height},				['defs', {}]			]);					this.rootNode.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");		this.rootNode.setAttribute("xmlns:svg", "http://www.w3.org/2000/svg");		this._htmlContainer = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", options.parentNode,			['div', {id: "oryx_canvas_htmlContainer", style:"position:absolute; top:5px"}]);				this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg", this.rootNode,			['g', {},				['g', {"class": "stencils"},					['g', {"class": "me"}],					['g', {"class": "children"}],					['g', {"class": "edge"}]				],				['g', {"class":"svgcontainer"}]			]);				/*		var off = 2 * ORYX.CONFIG.GRID_DISTANCE;		var size = 3;		var d = "";		for(var i = 0; i <= options.width; i += off)			for(var j = 0; j <= options.height; j += off)				d = d + "M" + (i - size) + " " + j + " l" + (2*size) + " 0 m" + (-size) + " " + (-size) + " l0 " + (2*size) + " m0" + (-size) + " ";									ORYX.Editor.graft("http://www.w3.org/2000/svg", this.node.firstChild.firstChild,			['path', {d:d , stroke:'#000000', 'stroke-width':'0.15px'},]);		*/				//Global definition of default font for shapes		//Definitions in the SVG definition of a stencil will overwrite these settings for		// that stencil.		/*if(navigator.platform.indexOf("Mac") > -1) {			this.node.setAttributeNS(null, 'stroke', 'black');			this.node.setAttributeNS(null, 'stroke-width', '0.5px');			this.node.setAttributeNS(null, 'font-family', 'Skia');			//this.node.setAttributeNS(null, 'letter-spacing', '2px');			this.node.setAttributeNS(null, 'font-size', ORYX.CONFIG.LABEL_DEFAULT_LINE_HEIGHT);		} else {			this.node.setAttributeNS(null, 'stroke', 'none');			this.node.setAttributeNS(null, 'font-family', 'Verdana');			this.node.setAttributeNS(null, 'font-size', ORYX.CONFIG.LABEL_DEFAULT_LINE_HEIGHT);		}*/				this.node.setAttributeNS(null, 'stroke', 'black');		this.node.setAttributeNS(null, 'font-family', 'Verdana, sans-serif');		this.node.setAttributeNS(null, 'font-size-adjust', 'none');		this.node.setAttributeNS(null, 'font-style', 'normal');		this.node.setAttributeNS(null, 'font-variant', 'normal');		this.node.setAttributeNS(null, 'font-weight', 'normal');		this.node.setAttributeNS(null, 'line-heigth', 'normal');				this.node.setAttributeNS(null, 'font-size', ORYX.CONFIG.LABEL_DEFAULT_LINE_HEIGHT);					this.bounds.set(0,0,options.width, options.height);				this.addEventHandlers(this.rootNode.parentNode);				//disable context menu		this.rootNode.oncontextmenu = function() {return false;};	},		focus: function(){		// TODO make sure I didn't break anything	},		update: function() {				this.nodes.each(function(node) {			this._traverseForUpdate(node);		}.bind(this));				// call stencil's layout callback		// (needed for row layouting of xforms)		//this.getStencil().layout(this);				var layoutEvents = this.getStencil().layout();				if(layoutEvents) {			layoutEvents.each(function(event) {						// setup additional attributes				event.shape = this;				event.forceExecution = true;				event.target = this.rootNode;								// do layouting								this._delegateEvent(event);			}.bind(this))		}				this.nodes.invoke("_update");				this.edges.invoke("_update", true);				/*this.children.each(function(child) {			child._update();		});*/	},		_traverseForUpdate: function(shape) {		var childRet = shape.isChanged;		shape.getChildNodes(false, function(child) {			if(this._traverseForUpdate(child)) {				childRet = true;			}		}.bind(this));				if(childRet) {			shape.layout();			return true;		} else {			return false;		}	},		layout: function() {							},		/**	 * 	 * @param {Object} deep	 * @param {Object} iterator	 */	getChildNodes: function(deep, iterator) {		if(!deep && !iterator) {			return this.nodes.clone();		} else {			var result = [];			this.nodes.each(function(uiObject) {				if(iterator) {					iterator(uiObject);				}				result.push(uiObject);								if(deep && uiObject instanceof ORYX.Core.Shape) {					result = result.concat(uiObject.getChildNodes(deep, iterator));				}			});				return result;		}	},		/**	 * buggy crap! use base class repository instead!	 * @param {Object} iterator	 *//*	getChildEdges: function(iterator) {		if(iterator) {			this.edges.each(function(edge) {				iterator(edge);			});		}				return this.edges.clone();	},*/		/**	 * Overrides the UIObject.add method. Adds uiObject to the correct sub node.	 * @param {UIObject} uiObject	 */	add: function(uiObject) {		//if uiObject is child of another UIObject, remove it.		if(uiObject instanceof ORYX.Core.UIObject) {			if (!(this.children.member(uiObject))) {				//if uiObject is child of another parent, remove it from that parent.				if(uiObject.parent) {					uiObject.parent.remove(uiObject);				}				//add uiObject to the Canvas				this.children.push(uiObject);				//set parent reference				uiObject.parent = this;				//add uiObject.node to this.node depending on the type of uiObject				if(uiObject instanceof ORYX.Core.Shape) {					if(uiObject instanceof ORYX.Core.Edge) {						uiObject.addMarkers(this.rootNode.getElementsByTagNameNS(NAMESPACE_SVG, "defs")[0]);						uiObject.node = this.node.childNodes[0].childNodes[2].appendChild(uiObject.node);						this.edges.push(uiObject);					} else {						uiObject.node = this.node.childNodes[0].childNodes[1].appendChild(uiObject.node);						this.nodes.push(uiObject);					}				} else {	//UIObject					uiObject.node = this.node.appendChild(uiObject.node);				}				uiObject.bounds.registerCallback(this._changedCallback);									if(this.eventHandlerCallback)					this.eventHandlerCallback({type:ORYX.CONFIG.EVENT_SHAPEADDED,shape:uiObject})			} else {								ORYX.Log.warn("add: ORYX.Core.UIObject is already a child of this object.");			}		} else {			ORYX.Log.fatal("add: Parameter is not of type ORYX.Core.UIObject.");		}	},	/**	 * Overrides the UIObject.remove method. Removes uiObject.	 * @param {UIObject} uiObject	 */	remove: function(uiObject) {		//if uiObject is a child of this object, remove it.		if (this.children.member(uiObject)) {			//remove uiObject from children			this.children = this.children.without(uiObject);			//delete parent reference of uiObject			uiObject.parent = undefined;			//delete uiObject.node from this.node			if(uiObject instanceof ORYX.Core.Shape) {				if(uiObject instanceof ORYX.Core.Edge) {					uiObject.removeMarkers();					uiObject.node = this.node.childNodes[0].childNodes[2].removeChild(uiObject.node);					this.edges = this.edges.without(uiObject);				} else {					uiObject.node = this.node.childNodes[0].childNodes[1].removeChild(uiObject.node);					this.nodes = this.nodes.without(uiObject);				}			} else {	//UIObject					uiObject.node = this.node.removeChild(uiObject.node);			}			uiObject.bounds.unregisterCallback(this._changedCallback);		} else {			ORYX.Log.warn("remove: ORYX.Core.UIObject is not a child of this object.");		}	},        /**     * Creates shapes out of the given collection of shape objects and adds them to the canvas.     * @example      * canvas.addShapeObjects({         bounds:{ lowerRight:{ y:510, x:633 }, upperLeft:{ y:146, x:210 } },         resourceId:"oryx_F0715955-50F2-403D-9851-C08CFE70F8BD",         childShapes:[],         properties:{},         stencil:{           id:"Subprocess"         },         outgoing:[{resourceId: 'aShape'}],         target: {resourceId: 'aShape'}       });     * @param {Object} shapeObjects      * @param {Function} [eventHandler] An event handler passed to each newly created shape (as eventHandlerCallback)     * @return {Array} A collection of ORYX.Core.Shape     * @methodOf ORYX.Core.Canvas.prototype     */    addShapeObjects: function(shapeObjects, eventHandler){        if(!shapeObjects) return;                /*FIXME This implementation is very evil! At first, all shapes are created on          canvas. In a second step, the attributes are applied. There must be a distinction          between the configuration phase (where the outgoings, for example, are just named),          and the creation phase (where the outgoings are evaluated). This must be reflected          in code to provide a nicer API/ implementation!!! */                var addShape = function(shape, parent){            // Try to create a new Shape            try {                // Create a new Stencil                var stencil = ORYX.Core.StencilSet.stencil(this.getStencil().namespace() + shape.stencil.id );                    // Create a new Shape                var ShapeClass = (stencil.type() == "node") ? ORYX.Core.Node : ORYX.Core.Edge;                var newShape = new ShapeClass(                  {'eventHandlerCallback': eventHandler},                  stencil);                                // Set the resource id                newShape.resourceId = shape.resourceId;                                // Set parent to json object to be used later                // Due to the nested json structure, normally shape.parent is not set/ must not be set.                 // In special cases, it can be easier to set this directly instead of a nested structure.                shape.parent = "#" + ((shape.parent && shape.parent.resourceId) || parent.resourceId);                                // Add the shape to the canvas                this.add( newShape );                return {                  json: shape,                  object: newShape                };            } catch(e) {                ORYX.Log.warn("LoadingContent: Stencil could not create.");            }        }.bind(this);                /** Builds up recursively a flatted array of shapes, including a javascript object and json representation         * @param {Object} shape Any object that has Object#childShapes         */        var addChildShapesRecursively = function(shape){            var addedShapes = [];                        shape.childShapes.each(function(childShape){  			  /*  			   *  workaround for Chrome, for some reason an undefined shape is given  			   */            	var xy=addShape(childShape, shape);  			  if(!(typeof xy ==="undefined")){  					addedShapes.push(xy);  			  }              addedShapes = addedShapes.concat(addChildShapesRecursively(childShape));            });                        return addedShapes;        }.bind(this);        var shapes = addChildShapesRecursively({            childShapes: shapeObjects,             resourceId: this.resourceId        });                            // prepare deserialisation parameter        shapes.each(            function(shape){            	var properties = [];                for(field in shape.json.properties){                    properties.push({                      prefix: 'oryx',                      name: field,                      value: shape.json.properties[field]                    });                  }                                    // Outgoings                  shape.json.outgoing.each(function(out){                    properties.push({                      prefix: 'raziel',                      name: 'outgoing',                      value: "#"+out.resourceId                    });                  });                                    // Target                   // (because of a bug, the first outgoing is taken when there is no target,                  // can be removed after some time)                  if(shape.object instanceof ORYX.Core.Edge) {	                  var target = shape.json.target || shape.json.outgoing[0];	                  if(target){	                    properties.push({	                      prefix: 'raziel',	                      name: 'target',	                      value: "#"+target.resourceId	                    });	                  }                  }                                    // Bounds                  if (shape.json.bounds) {                      properties.push({                          prefix: 'oryx',                          name: 'bounds',                          value: shape.json.bounds.upperLeft.x + "," + shape.json.bounds.upperLeft.y + "," + shape.json.bounds.lowerRight.x + "," + shape.json.bounds.lowerRight.y                      });                  }                                    //Dockers [{x:40, y:50}, {x:30, y:60}] => "40 50 30 60  #"                  if(shape.json.dockers){                    properties.push({                      prefix: 'oryx',                      name: 'dockers',                      value: shape.json.dockers.inject("", function(dockersStr, docker){                        return dockersStr + docker.x + " " + docker.y + " ";                      }) + " #"                    });                  }                                    //Parent                  properties.push({                    prefix: 'raziel',                    name: 'parent',                    value: shape.json.parent                  });                              shape.__properties = properties;	         }.bind(this)        );          // Deserialize the properties from the shapes        // This can't be done earlier because Shape#deserialize expects that all referenced nodes are already there                // first, deserialize all nodes        shapes.each(function(shape) {        	if(shape.object instanceof ORYX.Core.Node) {        		shape.object.deserialize(shape.__properties);        	}        });                // second, deserialize all edges        shapes.each(function(shape) {        	if(shape.object instanceof ORYX.Core.Edge) {        		shape.object.deserialize(shape.__properties);        	}        });               return shapes.pluck("object");    },        /**     * Updates the size of the canvas, regarding to the containg shapes.     */    updateSize: function(){        // Check the size for the canvas        var maxWidth    = 0;        var maxHeight   = 0;        var offset      = 100;        this.getChildShapes(true, function(shape){            var b = shape.bounds;            maxWidth    = Math.max( maxWidth, b.lowerRight().x + offset)            maxHeight   = Math.max( maxHeight, b.lowerRight().y + offset)        });                 if( this.bounds.width() < maxWidth || this.bounds.height() < maxHeight ){            this.setSize({width: Math.max(this.bounds.width(), maxWidth), height: Math.max(this.bounds.height(), maxHeight)})        }    },	getRootNode: function() {		return this.rootNode;	},		getSvgContainer: function() {		return this.node.childNodes[1];	},		getHTMLContainer: function() {		return this._htmlContainer;	},		/**	 * Return all elements of the same highest level	 * @param {Object} elements	 */	getShapesWithSharedParent: function(elements) {		// If there is no elements, return []		if(!elements || elements.length < 1) { return [] }		// If there is one element, return this element		if(elements.length == 1) { return elements}		return elements.findAll(function(value){			var parentShape = value.parent;			while(parentShape){				if(elements.member(parentShape)) return false;				parentShape = parentShape.parent			}			return true;		});			},	setSize: function(size, dontSetBounds) {		if(!size || !size.width || !size.height){return}				if(this.rootNode.parentNode){			this.rootNode.parentNode.style.width = size.width + 'px';			this.rootNode.parentNode.style.height = size.height + 'px';		}				this.rootNode.setAttributeNS(null, 'width', size.width);		this.rootNode.setAttributeNS(null, 'height', size.height);		//this._htmlContainer.style.top = "-" + (size.height + 4) + 'px';				if( !dontSetBounds ){			this.bounds.set({a:{x:0,y:0},b:{x:size.width/this.zoomLevel,y:size.height/this.zoomLevel}})				}	},		/**	 * Returns an SVG document of the current process.	 * @param {Boolean} escapeText Use true, if you want to parse it with an XmlParser,	 * 					false, if you want to use the SVG document in browser on client side.	 */	getSVGRepresentation: function(escapeText) {		// Get the serialized svg image source        var svgClone = this.getRootNode().cloneNode(true);				this._removeInvisibleElements(svgClone);				var x1, y1, x2, y2;		try {			var bb = this.getRootNode().childNodes[1].getBBox();			x1 = bb.x;			y1 = bb.y;			x2 = bb.x + bb.width;			y2 = bb.y + bb.height;		} catch(e) {			this.getChildShapes(true).each(function(shape) {				var absBounds = shape.absoluteBounds();				var ul = absBounds.upperLeft();				var lr = absBounds.lowerRight();				if(x1 == undefined) {					x1 = ul.x;					y1 = ul.y;					x2 = lr.x;					y2 = lr.y;				} else {					x1 = Math.min(x1, ul.x);					y1 = Math.min(y1, ul.y);					x2 = Math.max(x2, lr.x);					y2 = Math.max(y2, lr.y);				}			});		}				var margin = 50;				var width, height, tx, ty;		if(x1 == undefined) {			width = 0;			height = 0;			tx = 0;			ty = 0;		} else {			width = x2 - x1;			height = y2 - y1;			tx = -x1+margin/2;			ty = -y1+margin/2;		}		 				        // Set the width and height        svgClone.setAttributeNS(null, 'width', width + margin);        svgClone.setAttributeNS(null, 'height', height + margin);				svgClone.childNodes[1].firstChild.setAttributeNS(null, 'transform', 'translate(' + tx + ", " + ty + ')');				//remove scale factor		svgClone.childNodes[1].removeAttributeNS(null, 'transform');				try{			var svgCont = svgClone.childNodes[1].childNodes[1];			svgCont.parentNode.removeChild(svgCont);		} catch(e) {}		if(escapeText) {			$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'tspan')).each(function(elem) {				elem.textContent = elem.textContent.escapeHTML();			});						$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'text')).each(function(elem) {				if(elem.childNodes.length == 0)					elem.textContent = elem.textContent.escapeHTML();			});		}				// generating absolute urls for the pdf-exporter		$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'image')).each(function(elem) {			var href = elem.getAttributeNS("http://www.w3.org/1999/xlink","href");						if(!href.match("^(http|https)://")) {				href = window.location.protocol + "//" + window.location.host + href;				elem.setAttributeNS("http://www.w3.org/1999/xlink", "href", href);			}		});						// escape all links		$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'a')).each(function(elem) {			elem.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", (elem.getAttributeNS("http://www.w3.org/1999/xlink","href")||"").escapeHTML());		});		        return svgClone;	},		/**   	* Removes all nodes (and its children) that has the	* attribute visibility set to "hidden"	*/	_removeInvisibleElements: function(element) {		var index = 0;		while(index < element.childNodes.length) {			var child = element.childNodes[index];			if(child.getAttributeNS &&				child.getAttributeNS(null, "visibility") === "hidden") {				element.removeChild(child);			} else {				this._removeInvisibleElements(child);				index++; 			}		}			},		/**	 * This method checks all shapes on the canvas and removes all shapes that	 * contain invalid bounds values or dockers values(NaN)	 */	/*cleanUp: function(parent) {		if (!parent) {			parent = this;		}		parent.getChildShapes().each(function(shape){			var a = shape.bounds.a;			var b = shape.bounds.b;			if (isNaN(a.x) || isNaN(a.y) || isNaN(b.x) || isNaN(b.y)) {				parent.remove(shape);			}			else {				shape.getDockers().any(function(docker) {					a = docker.bounds.a;					b = docker.bounds.b;					if (isNaN(a.x) || isNaN(a.y) || isNaN(b.x) || isNaN(b.y)) {						parent.remove(shape);						return true;					}					return false;				});				shape.getMagnets().any(function(magnet) {					a = magnet.bounds.a;					b = magnet.bounds.b;					if (isNaN(a.x) || isNaN(a.y) || isNaN(b.x) || isNaN(b.y)) {						parent.remove(shape);						return true;					}					return false;				});				this.cleanUp(shape);			}		}.bind(this));	},*/	_delegateEvent: function(event) {		if(this.eventHandlerCallback && ( event.target == this.rootNode || event.target == this.rootNode.parentNode )) {			this.eventHandlerCallback(event, this);		}	},		toString: function() { return "Canvas " + this.id },        /**     * Calls {@link ORYX.Core.AbstractShape#toJSON} and adds some stencil set information.     */    toJSON: function() {        var json = arguments.callee.$.toJSON.apply(this, arguments);        //		if(ORYX.CONFIG.STENCILSET_HANDLER.length > 0) {//			json.stencilset = {//				url: this.getStencil().stencilSet().namespace()//	        };//		} else {			json.stencilset = {				url: this.getStencil().stencilSet().source(),				namespace: this.getStencil().stencilSet().namespace()	        };	//		}                        return json;    } });/**
+/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+
+/**
+   @namespace Namespace for the Oryx core elements.
+   @name ORYX.Core
+*/
+if(!ORYX.Core) {ORYX.Core = {};}
+
+/**
+ * @class Oryx canvas.
+ * @extends ORYX.Core.AbstractShape
+ *
+ */
+ORYX.Core.Canvas = ORYX.Core.AbstractShape.extend({
+    /** @lends ORYX.Core.Canvas.prototype */
+
+	/**
+	 * Defines the current zoom level
+	 */
+	zoomLevel:1,
+
+	/**
+	 * Constructor
+	 */
+	construct: function(options) {
+		arguments.callee.$.construct.apply(this, arguments);
+
+		if(!(options && options.width && options.height)) {
+		
+			ORYX.Log.fatal("Canvas is missing mandatory parameters options.width and options.height.");
+			return;
+		}
+			
+		//TODO: set document resource id
+		this.resourceId = options.id;
+
+		this.nodes = [];
+		
+		this.edges = [];
+		
+		//init svg document
+		this.rootNode = ORYX.Editor.graft("http://www.w3.org/2000/svg", options.parentNode,
+			['svg', {id: this.id, width: options.width, height: options.height},
+				['defs', {}]
+			]);
+			
+		this.rootNode.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+		this.rootNode.setAttribute("xmlns:svg", "http://www.w3.org/2000/svg");
+
+		this._htmlContainer = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", options.parentNode,
+			['div', {id: "oryx_canvas_htmlContainer", style:"position:absolute; top:5px"}]);
+		
+		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg", this.rootNode,
+			['g', {},
+				['g', {"class": "stencils"},
+					['g', {"class": "me"}],
+					['g', {"class": "children"}],
+					['g', {"class": "edge"}]
+				],
+				['g', {"class":"svgcontainer"}]
+			]);
+		
+		/*
+		var off = 2 * ORYX.CONFIG.GRID_DISTANCE;
+		var size = 3;
+		var d = "";
+		for(var i = 0; i <= options.width; i += off)
+			for(var j = 0; j <= options.height; j += off)
+				d = d + "M" + (i - size) + " " + j + " l" + (2*size) + " 0 m" + (-size) + " " + (-size) + " l0 " + (2*size) + " m0" + (-size) + " ";
+							
+		ORYX.Editor.graft("http://www.w3.org/2000/svg", this.node.firstChild.firstChild,
+			['path', {d:d , stroke:'#000000', 'stroke-width':'0.15px'},]);
+		*/
+		
+		//Global definition of default font for shapes
+		//Definitions in the SVG definition of a stencil will overwrite these settings for
+		// that stencil.
+		/*if(navigator.platform.indexOf("Mac") > -1) {
+			this.node.setAttributeNS(null, 'stroke', 'black');
+			this.node.setAttributeNS(null, 'stroke-width', '0.5px');
+			this.node.setAttributeNS(null, 'font-family', 'Skia');
+			//this.node.setAttributeNS(null, 'letter-spacing', '2px');
+			this.node.setAttributeNS(null, 'font-size', ORYX.CONFIG.LABEL_DEFAULT_LINE_HEIGHT);
+		} else {
+			this.node.setAttributeNS(null, 'stroke', 'none');
+			this.node.setAttributeNS(null, 'font-family', 'Verdana');
+			this.node.setAttributeNS(null, 'font-size', ORYX.CONFIG.LABEL_DEFAULT_LINE_HEIGHT);
+		}*/
+		
+		this.node.setAttributeNS(null, 'stroke', 'black');
+		this.node.setAttributeNS(null, 'font-family', 'Verdana, sans-serif');
+		this.node.setAttributeNS(null, 'font-size-adjust', 'none');
+		this.node.setAttributeNS(null, 'font-style', 'normal');
+		this.node.setAttributeNS(null, 'font-variant', 'normal');
+		this.node.setAttributeNS(null, 'font-weight', 'normal');
+		this.node.setAttributeNS(null, 'line-heigth', 'normal');
+		
+		this.node.setAttributeNS(null, 'font-size', ORYX.CONFIG.LABEL_DEFAULT_LINE_HEIGHT);
+			
+		this.bounds.set(0,0,options.width, options.height);
+		
+		this.addEventHandlers(this.rootNode.parentNode);
+		
+		//disable context menu
+		this.rootNode.oncontextmenu = function() {return false;};
+	},
+	
+	focus: function(){
+		// TODO make sure I didn't break anything
+	},
+	
+	update: function() {
+		
+		this.nodes.each(function(node) {
+			this._traverseForUpdate(node);
+		}.bind(this));
+		
+		// call stencil's layout callback
+		// (needed for row layouting of xforms)
+		//this.getStencil().layout(this);
+		
+		var layoutEvents = this.getStencil().layout();
+		
+		if(layoutEvents) {
+			layoutEvents.each(function(event) {
+		
+				// setup additional attributes
+				event.shape = this;
+				event.forceExecution = true;
+				event.target = this.rootNode;
+				
+				// do layouting
+				
+				this._delegateEvent(event);
+			}.bind(this))
+		}
+		
+		this.nodes.invoke("_update");
+		
+		this.edges.invoke("_update", true);
+		
+		/*this.children.each(function(child) {
+			child._update();
+		});*/
+	},
+	
+	_traverseForUpdate: function(shape) {
+		var childRet = shape.isChanged;
+		shape.getChildNodes(false, function(child) {
+			if(this._traverseForUpdate(child)) {
+				childRet = true;
+			}
+		}.bind(this));
+		
+		if(childRet) {
+			shape.layout();
+			return true;
+		} else {
+			return false;
+		}
+	},
+	
+	layout: function() {
+		
+		
+		
+	},
+	
+	/**
+	 * 
+	 * @param {Object} deep
+	 * @param {Object} iterator
+	 */
+	getChildNodes: function(deep, iterator) {
+		if(!deep && !iterator) {
+			return this.nodes.clone();
+		} else {
+			var result = [];
+			this.nodes.each(function(uiObject) {
+				if(iterator) {
+					iterator(uiObject);
+				}
+				result.push(uiObject);
+				
+				if(deep && uiObject instanceof ORYX.Core.Shape) {
+					result = result.concat(uiObject.getChildNodes(deep, iterator));
+				}
+			});
+	
+			return result;
+		}
+	},
+	
+	/**
+	 * buggy crap! use base class repository instead!
+	 * @param {Object} iterator
+	 */
+/*	getChildEdges: function(iterator) {
+		if(iterator) {
+			this.edges.each(function(edge) {
+				iterator(edge);
+			});
+		}
+		
+		return this.edges.clone();
+	},
+*/	
+	/**
+	 * Overrides the UIObject.add method. Adds uiObject to the correct sub node.
+	 * @param {UIObject} uiObject
+	 */
+	add: function(uiObject) {
+		//if uiObject is child of another UIObject, remove it.
+		if(uiObject instanceof ORYX.Core.UIObject) {
+			if (!(this.children.member(uiObject))) {
+				//if uiObject is child of another parent, remove it from that parent.
+				if(uiObject.parent) {
+					uiObject.parent.remove(uiObject);
+				}
+
+				//add uiObject to the Canvas
+				this.children.push(uiObject);
+
+				//set parent reference
+				uiObject.parent = this;
+
+				//add uiObject.node to this.node depending on the type of uiObject
+				if(uiObject instanceof ORYX.Core.Shape) {
+					if(uiObject instanceof ORYX.Core.Edge) {
+						uiObject.addMarkers(this.rootNode.getElementsByTagNameNS(NAMESPACE_SVG, "defs")[0]);
+						uiObject.node = this.node.childNodes[0].childNodes[2].appendChild(uiObject.node);
+						this.edges.push(uiObject);
+					} else {
+						uiObject.node = this.node.childNodes[0].childNodes[1].appendChild(uiObject.node);
+						this.nodes.push(uiObject);
+					}
+				} else {	//UIObject
+					uiObject.node = this.node.appendChild(uiObject.node);
+				}
+
+				uiObject.bounds.registerCallback(this._changedCallback);
+					
+				if(this.eventHandlerCallback)
+					this.eventHandlerCallback({type:ORYX.CONFIG.EVENT_SHAPEADDED,shape:uiObject})
+			} else {
+				
+				ORYX.Log.warn("add: ORYX.Core.UIObject is already a child of this object.");
+			}
+		} else {
+
+			ORYX.Log.fatal("add: Parameter is not of type ORYX.Core.UIObject.");
+		}
+	},
+
+	/**
+	 * Overrides the UIObject.remove method. Removes uiObject.
+	 * @param {UIObject} uiObject
+	 */
+	remove: function(uiObject) {
+		//if uiObject is a child of this object, remove it.
+		if (this.children.member(uiObject)) {
+			//remove uiObject from children
+			this.children = this.children.without(uiObject);
+
+			//delete parent reference of uiObject
+			uiObject.parent = undefined;
+
+			//delete uiObject.node from this.node
+			if(uiObject instanceof ORYX.Core.Shape) {
+				if(uiObject instanceof ORYX.Core.Edge) {
+					uiObject.removeMarkers();
+					uiObject.node = this.node.childNodes[0].childNodes[2].removeChild(uiObject.node);
+					this.edges = this.edges.without(uiObject);
+				} else {
+					uiObject.node = this.node.childNodes[0].childNodes[1].removeChild(uiObject.node);
+					this.nodes = this.nodes.without(uiObject);
+				}
+			} else {	//UIObject
+					uiObject.node = this.node.removeChild(uiObject.node);
+			}
+
+			uiObject.bounds.unregisterCallback(this._changedCallback);
+		} else {
+
+			ORYX.Log.warn("remove: ORYX.Core.UIObject is not a child of this object.");
+		}
+	},
+    
+    /**
+     * Creates shapes out of the given collection of shape objects and adds them to the canvas.
+     * @example 
+     * canvas.addShapeObjects({
+         bounds:{ lowerRight:{ y:510, x:633 }, upperLeft:{ y:146, x:210 } },
+         resourceId:"oryx_F0715955-50F2-403D-9851-C08CFE70F8BD",
+         childShapes:[],
+         properties:{},
+         stencil:{
+           id:"Subprocess"
+         },
+         outgoing:[{resourceId: 'aShape'}],
+         target: {resourceId: 'aShape'}
+       });
+     * @param {Object} shapeObjects 
+     * @param {Function} [eventHandler] An event handler passed to each newly created shape (as eventHandlerCallback)
+     * @return {Array} A collection of ORYX.Core.Shape
+     * @methodOf ORYX.Core.Canvas.prototype
+     */
+    addShapeObjects: function(shapeObjects, eventHandler){
+        if(!shapeObjects) return;
+        
+        /*FIXME This implementation is very evil! At first, all shapes are created on
+          canvas. In a second step, the attributes are applied. There must be a distinction
+          between the configuration phase (where the outgoings, for example, are just named),
+          and the creation phase (where the outgoings are evaluated). This must be reflected
+          in code to provide a nicer API/ implementation!!! */
+        
+        var addShape = function(shape, parent){
+            // Try to create a new Shape
+            try {
+                // Create a new Stencil
+                var stencil = ORYX.Core.StencilSet.stencil(this.getStencil().namespace() + shape.stencil.id );
+    
+                // Create a new Shape
+                var ShapeClass = (stencil.type() == "node") ? ORYX.Core.Node : ORYX.Core.Edge;
+                var newShape = new ShapeClass(
+                  {'eventHandlerCallback': eventHandler},
+                  stencil);
+                
+                // Set the resource id
+                newShape.resourceId = shape.resourceId;
+                
+                // Set parent to json object to be used later
+                // Due to the nested json structure, normally shape.parent is not set/ must not be set. 
+                // In special cases, it can be easier to set this directly instead of a nested structure.
+                shape.parent = "#" + ((shape.parent && shape.parent.resourceId) || parent.resourceId);
+                
+                // Add the shape to the canvas
+                this.add( newShape );
+
+                return {
+                  json: shape,
+                  object: newShape
+                };
+            } catch(e) {
+                ORYX.Log.warn("LoadingContent: Stencil could not create.");
+            }
+        }.bind(this);
+        
+        /** Builds up recursively a flatted array of shapes, including a javascript object and json representation
+         * @param {Object} shape Any object that has Object#childShapes
+         */
+        var addChildShapesRecursively = function(shape){
+            var addedShapes = [];
+            
+            shape.childShapes.each(function(childShape){
+  			  /*
+  			   *  workaround for Chrome, for some reason an undefined shape is given
+  			   */
+            	var xy=addShape(childShape, shape);
+  			  if(!(typeof xy ==="undefined")){
+  					addedShapes.push(xy);
+  			  }
+              addedShapes = addedShapes.concat(addChildShapesRecursively(childShape));
+            });
+            
+            return addedShapes;
+        }.bind(this);
+
+        var shapes = addChildShapesRecursively({
+            childShapes: shapeObjects, 
+            resourceId: this.resourceId
+        });
+                    
+
+        // prepare deserialisation parameter
+        shapes.each(
+            function(shape){
+            	var properties = [];
+                for(field in shape.json.properties){
+                    properties.push({
+                      prefix: 'oryx',
+                      name: field,
+                      value: shape.json.properties[field]
+                    });
+                  }
+                  
+                  // Outgoings
+                  shape.json.outgoing.each(function(out){
+                    properties.push({
+                      prefix: 'raziel',
+                      name: 'outgoing',
+                      value: "#"+out.resourceId
+                    });
+                  });
+                  
+                  // Target 
+                  // (because of a bug, the first outgoing is taken when there is no target,
+                  // can be removed after some time)
+                  if(shape.object instanceof ORYX.Core.Edge) {
+	                  var target = shape.json.target || shape.json.outgoing[0];
+	                  if(target){
+	                    properties.push({
+	                      prefix: 'raziel',
+	                      name: 'target',
+	                      value: "#"+target.resourceId
+	                    });
+	                  }
+                  }
+                  
+                  // Bounds
+                  if (shape.json.bounds) {
+                      properties.push({
+                          prefix: 'oryx',
+                          name: 'bounds',
+                          value: shape.json.bounds.upperLeft.x + "," + shape.json.bounds.upperLeft.y + "," + shape.json.bounds.lowerRight.x + "," + shape.json.bounds.lowerRight.y
+                      });
+                  }
+                  
+                  //Dockers [{x:40, y:50}, {x:30, y:60}] => "40 50 30 60  #"
+                  if(shape.json.dockers){
+                    properties.push({
+                      prefix: 'oryx',
+                      name: 'dockers',
+                      value: shape.json.dockers.inject("", function(dockersStr, docker){
+                        return dockersStr + docker.x + " " + docker.y + " ";
+                      }) + " #"
+                    });
+                  }
+                  
+                  //Parent
+                  properties.push({
+                    prefix: 'raziel',
+                    name: 'parent',
+                    value: shape.json.parent
+                  });
+            
+                  shape.__properties = properties;
+	         }.bind(this)
+        );
+  
+        // Deserialize the properties from the shapes
+        // This can't be done earlier because Shape#deserialize expects that all referenced nodes are already there
+        
+        // first, deserialize all nodes
+        shapes.each(function(shape) {
+        	if(shape.object instanceof ORYX.Core.Node) {
+        		shape.object.deserialize(shape.__properties);
+        	}
+        });
+        
+        // second, deserialize all edges
+        shapes.each(function(shape) {
+        	if(shape.object instanceof ORYX.Core.Edge) {
+        		shape.object.deserialize(shape.__properties);
+        	}
+        });
+       
+        return shapes.pluck("object");
+    },
+    
+    /**
+     * Updates the size of the canvas, regarding to the containg shapes.
+     */
+    updateSize: function(){
+        // Check the size for the canvas
+        var maxWidth    = 0;
+        var maxHeight   = 0;
+        var offset      = 100;
+        this.getChildShapes(true, function(shape){
+            var b = shape.bounds;
+            maxWidth    = Math.max( maxWidth, b.lowerRight().x + offset)
+            maxHeight   = Math.max( maxHeight, b.lowerRight().y + offset)
+        }); 
+        
+        if( this.bounds.width() < maxWidth || this.bounds.height() < maxHeight ){
+            this.setSize({width: Math.max(this.bounds.width(), maxWidth), height: Math.max(this.bounds.height(), maxHeight)})
+        }
+    },
+
+	getRootNode: function() {
+		return this.rootNode;
+	},
+	
+	getSvgContainer: function() {
+		return this.node.childNodes[1];
+	},
+	
+	getHTMLContainer: function() {
+		return this._htmlContainer;
+	},	
+
+	/**
+	 * Return all elements of the same highest level
+	 * @param {Object} elements
+	 */
+	getShapesWithSharedParent: function(elements) {
+
+		// If there is no elements, return []
+		if(!elements || elements.length < 1) { return [] }
+		// If there is one element, return this element
+		if(elements.length == 1) { return elements}
+
+		return elements.findAll(function(value){
+			var parentShape = value.parent;
+			while(parentShape){
+				if(elements.member(parentShape)) return false;
+				parentShape = parentShape.parent
+			}
+			return true;
+		});		
+
+	},
+
+	setSize: function(size, dontSetBounds) {
+		if(!size || !size.width || !size.height){return}
+		
+		if(this.rootNode.parentNode){
+			this.rootNode.parentNode.style.width = size.width + 'px';
+			this.rootNode.parentNode.style.height = size.height + 'px';
+		}
+		
+		this.rootNode.setAttributeNS(null, 'width', size.width);
+		this.rootNode.setAttributeNS(null, 'height', size.height);
+
+		//this._htmlContainer.style.top = "-" + (size.height + 4) + 'px';		
+		if( !dontSetBounds ){
+			this.bounds.set({a:{x:0,y:0},b:{x:size.width/this.zoomLevel,y:size.height/this.zoomLevel}})		
+		}
+	},
+	
+	/**
+	 * Returns an SVG document of the current process.
+	 * @param {Boolean} escapeText Use true, if you want to parse it with an XmlParser,
+	 * 					false, if you want to use the SVG document in browser on client side.
+	 */
+	getSVGRepresentation: function(escapeText) {
+		// Get the serialized svg image source
+        var svgClone = this.getRootNode().cloneNode(true);
+		
+		this._removeInvisibleElements(svgClone);
+		
+		var x1, y1, x2, y2;
+		try {
+			var bb = this.getRootNode().childNodes[1].getBBox();
+			x1 = bb.x;
+			y1 = bb.y;
+			x2 = bb.x + bb.width;
+			y2 = bb.y + bb.height;
+		} catch(e) {
+			this.getChildShapes(true).each(function(shape) {
+				var absBounds = shape.absoluteBounds();
+				var ul = absBounds.upperLeft();
+				var lr = absBounds.lowerRight();
+				if(x1 == undefined) {
+					x1 = ul.x;
+					y1 = ul.y;
+					x2 = lr.x;
+					y2 = lr.y;
+				} else {
+					x1 = Math.min(x1, ul.x);
+					y1 = Math.min(y1, ul.y);
+					x2 = Math.max(x2, lr.x);
+					y2 = Math.max(y2, lr.y);
+				}
+			});
+		}
+		
+		var margin = 50;
+		
+		var width, height, tx, ty;
+		if(x1 == undefined) {
+			width = 0;
+			height = 0;
+			tx = 0;
+			ty = 0;
+		} else {
+			width = x2 - x1;
+			height = y2 - y1;
+			tx = -x1+margin/2;
+			ty = -y1+margin/2;
+		}
+		 
+		
+		
+        // Set the width and height
+        svgClone.setAttributeNS(null, 'width', width + margin);
+        svgClone.setAttributeNS(null, 'height', height + margin);
+		
+		svgClone.childNodes[1].firstChild.setAttributeNS(null, 'transform', 'translate(' + tx + ", " + ty + ')');
+		
+		//remove scale factor
+		svgClone.childNodes[1].removeAttributeNS(null, 'transform');
+		
+		try{
+			var svgCont = svgClone.childNodes[1].childNodes[1];
+			svgCont.parentNode.removeChild(svgCont);
+		} catch(e) {}
+
+		if(escapeText) {
+			$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'tspan')).each(function(elem) {
+				elem.textContent = elem.textContent.escapeHTML();
+			});
+			
+			$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'text')).each(function(elem) {
+				if(elem.childNodes.length == 0)
+					elem.textContent = elem.textContent.escapeHTML();
+			});
+		}
+		
+		// generating absolute urls for the pdf-exporter
+		$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'image')).each(function(elem) {
+			var href = elem.getAttributeNS("http://www.w3.org/1999/xlink","href");
+			
+			if(!href.match("^(http|https)://")) {
+				href = window.location.protocol + "//" + window.location.host + href;
+				elem.setAttributeNS("http://www.w3.org/1999/xlink", "href", href);
+			}
+		});
+		
+		
+		// escape all links
+		$A(svgClone.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'a')).each(function(elem) {
+			elem.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", (elem.getAttributeNS("http://www.w3.org/1999/xlink","href")||"").escapeHTML());
+		});
+		
+        return svgClone;
+	},
+	
+	/**   
+	* Removes all nodes (and its children) that has the
+	* attribute visibility set to "hidden"
+	*/
+	_removeInvisibleElements: function(element) {
+		var index = 0;
+		while(index < element.childNodes.length) {
+			var child = element.childNodes[index];
+			if(child.getAttributeNS &&
+				child.getAttributeNS(null, "visibility") === "hidden") {
+				element.removeChild(child);
+			} else {
+				this._removeInvisibleElements(child);
+				index++; 
+			}
+		}
+		
+	},
+	
+	/**
+	 * This method checks all shapes on the canvas and removes all shapes that
+	 * contain invalid bounds values or dockers values(NaN)
+	 */
+	/*cleanUp: function(parent) {
+		if (!parent) {
+			parent = this;
+		}
+		parent.getChildShapes().each(function(shape){
+			var a = shape.bounds.a;
+			var b = shape.bounds.b;
+			if (isNaN(a.x) || isNaN(a.y) || isNaN(b.x) || isNaN(b.y)) {
+				parent.remove(shape);
+			}
+			else {
+				shape.getDockers().any(function(docker) {
+					a = docker.bounds.a;
+					b = docker.bounds.b;
+					if (isNaN(a.x) || isNaN(a.y) || isNaN(b.x) || isNaN(b.y)) {
+						parent.remove(shape);
+						return true;
+					}
+					return false;
+				});
+				shape.getMagnets().any(function(magnet) {
+					a = magnet.bounds.a;
+					b = magnet.bounds.b;
+					if (isNaN(a.x) || isNaN(a.y) || isNaN(b.x) || isNaN(b.y)) {
+						parent.remove(shape);
+						return true;
+					}
+					return false;
+				});
+				this.cleanUp(shape);
+			}
+		}.bind(this));
+	},*/
+
+	_delegateEvent: function(event) {
+		if(this.eventHandlerCallback && ( event.target == this.rootNode || event.target == this.rootNode.parentNode )) {
+			this.eventHandlerCallback(event, this);
+		}
+	},
+	
+	toString: function() { return "Canvas " + this.id },
+    
+    /**
+     * Calls {@link ORYX.Core.AbstractShape#toJSON} and adds some stencil set information.
+     */
+    toJSON: function() {
+        var json = arguments.callee.$.toJSON.apply(this, arguments);
+        
+//		if(ORYX.CONFIG.STENCILSET_HANDLER.length > 0) {
+//			json.stencilset = {
+//				url: this.getStencil().stencilSet().namespace()
+//	        };
+//		} else {
+			json.stencilset = {
+				url: this.getStencil().stencilSet().source(),
+				namespace: this.getStencil().stencilSet().namespace()
+	        };	
+//		}
+        
+        
+        return json;
+    }
+ });/**
 
  * Copyright (c) 2006
 
@@ -9144,7 +10411,7 @@ ORYX.Editor = {
         //meta data about the model for the signavio warehouse
         //directory, new, name, description, revision, model (the model data)
 
-        this.modelMetaData = config;
+        this.transModelMetaData = config;
 
         var model = config;
         if(config.model) {
@@ -9186,7 +10453,7 @@ ORYX.Editor = {
         }
 
         // CREATES the canvas
-        this._createCanvas(model.stencil ? model.stencil.id : null, model.properties);
+        this._createTransformationCanvas(model.stencil ? model.stencil.id : null, model.properties);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -9705,7 +10972,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createCanvas: function(stencilType, canvasConfig) {
+    _createTransformationCanvas: function(stencilType, canvasConfig) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -9730,7 +10997,7 @@ ORYX.Editor = {
         div.addClassName("ORYX_Editor");
 
         // create the canvas
-        this._canvas = new ORYX.Core.Canvas({
+        this._transformationCanvas = new ORYX.Core.Canvas({
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
@@ -9750,7 +11017,7 @@ ORYX.Editor = {
                 });
             }
 
-            this._canvas.deserialize(properties);
+            this._transformationCanvas.deserialize(properties);
         }
 
     },
@@ -10360,7 +11627,7 @@ ORYX.Editor = {
     },
 
     getCanvas: function() {
-        return this._canvas;
+        return this._transformationCanvas;
     },
 
 
@@ -10543,7 +11810,7 @@ ORYX.Editor = {
      * @return {Object} Meta data about the model
      */
     getModelMetaData: function() {
-        return this.modelMetaData;
+        return this.transModelMetaData;
     },
 
     /* Event-Handler Methods */
@@ -11130,8 +12397,839 @@ ORYX.Editor.makeExtModalWindowKeysave = function(facade) {
             Ext.Window.superclass.beforeDestroy.call(this);
         }
     });
-}/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}if(!ORYX.Core) {ORYX.Core = {};}ORYX.Core.UIEnableDrag = function(event, uiObj, option) {	this.uiObj = uiObj;	var upL = uiObj.bounds.upperLeft();	var a = uiObj.node.getScreenCTM();	this.faktorXY= {x: a.a, y: a.d};		this.scrollNode = uiObj.node.ownerSVGElement.parentNode.parentNode;		this.offSetPosition =  {		x: Event.pointerX(event) - (upL.x * this.faktorXY.x),		y: Event.pointerY(event) - (upL.y * this.faktorXY.y)};	this.offsetScroll	= {x:this.scrollNode.scrollLeft,y:this.scrollNode.scrollTop};			this.dragCallback = ORYX.Core.UIDragCallback.bind(this);	this.disableCallback = ORYX.Core.UIDisableDrag.bind(this);	this.movedCallback = option ? option.movedCallback : undefined;	this.upCallback = option ? option.upCallback : undefined;		document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this.disableCallback, true);	document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE, 	this.dragCallback , false);};ORYX.Core.UIDragCallback = function(event) {	var position = {		x: Event.pointerX(event) - this.offSetPosition.x,		y: Event.pointerY(event) - this.offSetPosition.y}	position.x 	-= this.offsetScroll.x - this.scrollNode.scrollLeft; 	position.y 	-= this.offsetScroll.y - this.scrollNode.scrollTop;	position.x /= this.faktorXY.x;	position.y /= this.faktorXY.y;	this.uiObj.bounds.moveTo(position);	//this.uiObj.update();	if(this.movedCallback)		this.movedCallback(event);		Event.stop(event);};ORYX.Core.UIDisableDrag = function(event) {	document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE, this.dragCallback, false);	document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this.disableCallback, true);		if(this.upCallback)		this.upCallback(event);			this.upCallback = undefined;	this.movedCallback = undefined;				Event.stop(event);	};/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}if(!ORYX.Core) {ORYX.Core = {};}/** * @classDescription Base class for Shapes. * @extends ORYX.Core.AbstractShape */ORYX.Core.Shape = {	/**	 * Constructor	 */	construct: function(options, stencil) {		// call base class constructor		arguments.callee.$.construct.apply(this, arguments);				this.dockers = [];		this.magnets = [];				this._defaultMagnet;				this.incoming = [];		this.outgoing = [];				this.nodes = [];				this._dockerChangedCallback = this._dockerChanged.bind(this);				//Hash map for all labels. Labels are not treated as children of shapes.		this._labels = new Hash();				// create SVG node		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg",			null,			['g', {id:this.id},				['g', {"class": "stencils"},					['g', {"class": "me"}],					['g', {"class": "children", style:"overflow:hidden"}],					['g', {"class": "edge"}]				],				['g', {"class": "controls"},					['g', {"class": "dockers"}],					['g', {"class": "magnets"}]								]			]);	},	/**	 * If changed flag is set, refresh method is called.	 */	update: function() {		//if(this.isChanged) {			//this.layout();
-		//}	},		/**	 * !!!Not called from any sub class!!!	 */	_update: function() {	},		/**	 * Calls the super class refresh method	 *  and updates the svg elements that are referenced by a property.	 */	refresh: function() {		//call base class refresh method		arguments.callee.$.refresh.apply(this, arguments);				if(this.node.ownerDocument) {			//adjust SVG to properties' values			var me = this;			this.propertiesChanged.each((function(propChanged) {				if(propChanged.value) {					var prop = this.properties[propChanged.key];					var property = this.getStencil().property(propChanged.key);					this.propertiesChanged[propChanged.key] = false;					//handle choice properties					if(property.type() == ORYX.CONFIG.TYPE_CHOICE) {						//iterate all references to SVG elements						property.refToView().each((function(ref) {							//if property is referencing a label, update the label							if(ref !== "") {								var label = this._labels[this.id + ref];								if (label) {									// if a choice is not valid anymore (due to changed stencil set), choose the default value									if ("undefined" == typeof(property.item(prop)) || !property.item(prop)) {										label.text(property.value()); // standard value of the stencil set									}									else {										label.text(property.item(prop).value());									}								}							}						}).bind(this));													//if the choice's items are referencing SVG elements						// show the selected and hide all other referenced SVG						// elements						var refreshedSvgElements = new Hash();						property.items().each((function(item) {							item.refToView().each((function(itemRef) {								if(itemRef == "") { this.propertiesChanged[propChanged.key] = true; return; }																var svgElem = this.node.ownerDocument.getElementById(this.id + itemRef);									if(!svgElem) { this.propertiesChanged[propChanged.key] = true; return; }																								/* Do not refresh the same svg element multiple times */								if(!refreshedSvgElements[svgElem.id] || prop == item.value()) {									svgElem.setAttributeNS(null, 'display', ((prop == item.value()) ? 'inherit' : 'none'));									refreshedSvgElements[svgElem.id] = svgElem;								}																// Reload the href if there is an image-tag								if(ORYX.Editor.checkClassType(svgElem, SVGImageElement)) {									svgElem.setAttributeNS('http://www.w3.org/1999/xlink', 'href', svgElem.getAttributeNS('http://www.w3.org/1999/xlink', 'href'));								}							}).bind(this));						}).bind(this));											} else { //handle properties that are not of type choice						//iterate all references to SVG elements						property.refToView().each((function(ref) {							//if the property does not reference an SVG element,							// do nothing							if(ref === "") { this.propertiesChanged[propChanged.key] = true; return; }									var refId = this.id + ref;							//get the SVG element							var svgElem = this.node.ownerDocument.getElementById(refId);							//if the SVG element can not be found							if(!svgElem || !(svgElem.ownerSVGElement)) { 								//if the referenced SVG element is a SVGAElement, it cannot								// be found with getElementById (Firefox bug).								// this is a work around								if(property.type() === ORYX.CONFIG.TYPE_URL || property.type() === ORYX.CONFIG.TYPE_DIAGRAM_LINK) {									var svgElems = this.node.ownerDocument.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'a');																		svgElem = $A(svgElems).find(function(elem) {										return elem.getAttributeNS(null, 'id') === refId;									});																		if(!svgElem) { this.propertiesChanged[propChanged.key] = true; return; } 								} else {									this.propertiesChanged[propChanged.key] = true;									return;								}												}														if (property.complexAttributeToView()) {								var label = this._labels[refId];								if (label) {									try {								    	propJson = prop.evalJSON();								    	var value = propJson[property.complexAttributeToView()]								    	label.text(value ? value : prop);								    } catch (e) {								    	label.text(prop);								    }								}															} else {								switch (property.type()) {									case ORYX.CONFIG.TYPE_BOOLEAN:																					if (typeof prop == "string")											prop = prop === "true"											svgElem.setAttributeNS(null, 'display', (!(prop === property.inverseBoolean())) ? 'inherit' : 'none');																				break;									case ORYX.CONFIG.TYPE_COLOR:										if(property.fill()) {											if (svgElem.tagName.toLowerCase() === "stop"){												svgElem.setAttributeNS(null, "stop-color", prop);																								// Adjust stop color of the others												if (svgElem.parentNode.tagName.toLowerCase() === "radialgradient"){													ORYX.Utils.adjustGradient(svgElem.parentNode, svgElem);												}											} else {												svgElem.setAttributeNS(null, 'fill', prop);											}										}										if(property.stroke()) {											svgElem.setAttributeNS(null, 'stroke', prop);										}										break;									case ORYX.CONFIG.TYPE_STRING:										var label = this._labels[refId];										if (label) {											label.text(prop);										}										break;									case ORYX.CONFIG.TYPE_INTEGER:										var label = this._labels[refId];										if (label) {											label.text(prop);										}										break;									case ORYX.CONFIG.TYPE_FLOAT:										if(property.fillOpacity()) {											svgElem.setAttributeNS(null, 'fill-opacity', prop);										} 										if(property.strokeOpacity()) {											svgElem.setAttributeNS(null, 'stroke-opacity', prop);										}										if(!property.fillOpacity() && !property.strokeOpacity()) {											var label = this._labels[refId];											if (label) {												label.text(prop);											}										}										break;									case ORYX.CONFIG.TYPE_URL:									case ORYX.CONFIG.TYPE_DIAGRAM_LINK:										//TODO what is the dafault path?										var hrefAttr = svgElem.getAttributeNodeNS('http://www.w3.org/1999/xlink', 'xlink:href');										if(hrefAttr) {											hrefAttr.textContent = prop;										} else {											svgElem.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', prop);										}											break;								}							}						}).bind(this));																	}									}			}).bind(this));						//update labels			this._labels.values().each(function(label) {				label.update();			});		}	},		layout: function() {		//this.getStencil().layout(this)		var layoutEvents = this.getStencil().layout()		if(this instanceof ORYX.Core.Node && layoutEvents) {			layoutEvents.each(function(event) {								// setup additional attributes				event.shape = this;				event.forceExecution = true;								// do layouting				this._delegateEvent(event);			}.bind(this))					}	},		/**	 * Returns an array of Label objects.	 */	getLabels: function() {		return this._labels.values();	},	/**	 * Returns an array of dockers of this object.	 */	getDockers: function() {		return this.dockers;	},		getMagnets: function() {		return this.magnets;	},		getDefaultMagnet: function() {		if(this._defaultMagnet) {			return this._defaultMagnet;		} else if (this.magnets.length > 0) {			return this.magnets[0];		} else {			return undefined;		}	},	getParentShape: function() {		return this.parent;	},		getIncomingShapes: function(iterator) {		if(iterator) {			this.incoming.each(iterator);		}		return this.incoming;	},		getIncomingNodes: function(iterator) {        return this.incoming.select(function(incoming){            var isNode = (incoming instanceof ORYX.Core.Node);            if(isNode && iterator) iterator(incoming);            return isNode;        });    },			getOutgoingShapes: function(iterator) {		if(iterator) {			this.outgoing.each(iterator);		}		return this.outgoing;	},        getOutgoingNodes: function(iterator) {        return this.outgoing.select(function(out){            var isNode = (out instanceof ORYX.Core.Node);            if(isNode && iterator) iterator(out);            return isNode;        });    },		getAllDockedShapes: function(iterator) {		var result = this.incoming.concat(this.outgoing);		if(iterator) {			result.each(iterator);		}		return result	},	getCanvas: function() {		if(this.parent instanceof ORYX.Core.Canvas) {			return this.parent;		} else if(this.parent instanceof ORYX.Core.Shape) {			return this.parent.getCanvas();		} else {			return undefined;		}	},		/**	 * 	 * @param {Object} deep	 * @param {Object} iterator	 */	getChildNodes: function(deep, iterator) {		if(!deep && !iterator) {			return this.nodes.clone();		} else {			var result = [];			this.nodes.each(function(uiObject) {				if(!uiObject.isVisible){return}				if(iterator) {					iterator(uiObject);				}				result.push(uiObject);								if(deep && uiObject instanceof ORYX.Core.Shape) {					result = result.concat(uiObject.getChildNodes(deep, iterator));				}			});				return result;		}	},		/**	 * Overrides the UIObject.add method. Adds uiObject to the correct sub node.	 * @param {UIObject} uiObject	 * @param {Number} index	 */	add: function(uiObject, index) {		//parameter has to be an UIObject, but		// must not be an Edge.		if(uiObject instanceof ORYX.Core.UIObject 			&& !(uiObject instanceof ORYX.Core.Edge)) {						if (!(this.children.member(uiObject))) {				//if uiObject is child of another parent, remove it from that parent.				if(uiObject.parent) {					uiObject.parent.remove(uiObject);				}				//add uiObject to this Shape				if(index != undefined)					this.children.splice(index, 0, uiObject);				else					this.children.push(uiObject);				//set parent reference				uiObject.parent = this;				//add uiObject.node to this.node depending on the type of uiObject				var parent;				if(uiObject instanceof ORYX.Core.Node) {					parent = this.node.childNodes[0].childNodes[1];					this.nodes.push(uiObject);				} else if(uiObject instanceof ORYX.Core.Controls.Control) {					var ctrls = this.node.childNodes[1];					if(uiObject instanceof ORYX.Core.Controls.Docker) {						parent = ctrls.childNodes[0];						if (this.dockers.length >= 2){							this.dockers.splice(index!==undefined?Math.min(index, this.dockers.length-1):this.dockers.length-1, 0, uiObject);						} else {							this.dockers.push(uiObject);						}					} else if(uiObject instanceof ORYX.Core.Controls.Magnet) {						parent = ctrls.childNodes[1];						this.magnets.push(uiObject);					} else {						parent = ctrls;					}				} else {	//UIObject					parent = this.node;				}				if(index != undefined && index < parent.childNodes.length)					uiObject.node = parent.insertBefore(uiObject.node, parent.childNodes[index]);				else					uiObject.node = parent.appendChild(uiObject.node);									this._changed();				//uiObject.bounds.registerCallback(this._changedCallback);												if(this.eventHandlerCallback)					this.eventHandlerCallback({type:ORYX.CONFIG.EVENT_SHAPEADDED,shape:uiObject})								} else {				ORYX.Log.warn("add: ORYX.Core.UIObject is already a child of this object.");			}		} else {			ORYX.Log.warn("add: Parameter is not of type ORYX.Core.UIObject.");		}	},	/**	 * Overrides the UIObject.remove method. Removes uiObject.	 * @param {UIObject} uiObject	 */	remove: function(uiObject) {		//if uiObject is a child of this object, remove it.		if (this.children.member(uiObject)) {			//remove uiObject from children			this.children = this.children.without(uiObject);			//delete parent reference of uiObject			uiObject.parent = undefined;			//delete uiObject.node from this.node			if(uiObject instanceof ORYX.Core.Shape) {				if(uiObject instanceof ORYX.Core.Edge) {					uiObject.removeMarkers();					uiObject.node = this.node.childNodes[0].childNodes[2].removeChild(uiObject.node);				} else {					uiObject.node = this.node.childNodes[0].childNodes[1].removeChild(uiObject.node);					this.nodes = this.nodes.without(uiObject);				}			} else if(uiObject instanceof ORYX.Core.Controls.Control) {				if (uiObject instanceof ORYX.Core.Controls.Docker) {					uiObject.node = this.node.childNodes[1].childNodes[0].removeChild(uiObject.node);					this.dockers = this.dockers.without(uiObject);				} else if (uiObject instanceof ORYX.Core.Controls.Magnet) {					uiObject.node = this.node.childNodes[1].childNodes[1].removeChild(uiObject.node);					this.magnets = this.magnets.without(uiObject);				} else {					uiObject.node = this.node.childNodes[1].removeChild(uiObject.node);				}			}			this._changed();			//uiObject.bounds.unregisterCallback(this._changedCallback);		} else {			ORYX.Log.warn("remove: ORYX.Core.UIObject is not a child of this object.");		}	},		/**	 * Calculate the Border Intersection Point between two points	 * @param {PointA}	 * @param {PointB}	 */	getIntersectionPoint: function() {					var pointAX, pointAY, pointBX, pointBY;				// Get the the two Points			switch(arguments.length) {			case 2:				pointAX = arguments[0].x;				pointAY = arguments[0].y;				pointBX = arguments[1].x;				pointBY = arguments[1].y;				break;			case 4:				pointAX = arguments[0];				pointAY = arguments[1];				pointBX = arguments[2];				pointBY = arguments[3];				break;			default:				throw "getIntersectionPoints needs two or four arguments";		}								// Defined an include and exclude point		var includePointX, includePointY, excludePointX, excludePointY;		var bounds = this.absoluteBounds();				if(this.isPointIncluded(pointAX, pointAY, bounds)){			includePointX = pointAX;			includePointY = pointAY;		} else {			excludePointX = pointAX;			excludePointY = pointAY;		}		if(this.isPointIncluded(pointBX, pointBY, bounds)){			includePointX = pointBX;			includePointY = pointBY;		} else {			excludePointX = pointBX;			excludePointY = pointBY;		}						// If there is no inclue or exclude Shape, than return		if(!includePointX || !includePointY || !excludePointX || !excludePointY) {			return undefined;		}		var midPointX = 0;		var midPointY = 0;						var refPointX, refPointY;				var minDifferent = 1;		// Get the UpperLeft and LowerRight		//var ul = bounds.upperLeft();		//var lr = bounds.lowerRight();				var i = 0;				while(true) {			// Calculate the midpoint of the current to points				var midPointX = Math.min(includePointX, excludePointX) + ((Math.max(includePointX, excludePointX) - Math.min(includePointX, excludePointX)) / 2.0);			var midPointY = Math.min(includePointY, excludePointY) + ((Math.max(includePointY, excludePointY) - Math.min(includePointY, excludePointY)) / 2.0);									// Set the new midpoint by the means of the include of the bounds			if(this.isPointIncluded(midPointX, midPointY, bounds)){				includePointX = midPointX;				includePointY = midPointY;			} else {				excludePointX = midPointX;				excludePointY = midPointY;			}									// Calc the length of the line			var length = Math.sqrt(Math.pow(includePointX - excludePointX, 2) + Math.pow(includePointY - excludePointY, 2))			// Calc a point one step from the include point			refPointX = includePointX + ((excludePointX - includePointX) / length),			refPointY = includePointY + ((excludePointY - includePointY) / length)											// If the reference point not in the bounds, break			if(!this.isPointIncluded(refPointX, refPointY, bounds)) {				break			}												}		// Return the last includepoint		return {x:refPointX , y:refPointY};	},           /**     * Calculate if the point is inside the Shape     * @param {PointX}     * @param {PointY}      */    isPointIncluded: function(){		return  false	},        /**     * Calculate if the point is over an special offset area     * @param {Point}     */    isPointOverOffset: function(){		return  this.isPointIncluded.apply( this , arguments )	},			_dockerChanged: function() {	},			/**	 * Create a Docker for this Edge	 *	 */	createDocker: function(index, position) {		var docker = new ORYX.Core.Controls.Docker({eventHandlerCallback: this.eventHandlerCallback});		docker.bounds.registerCallback(this._dockerChangedCallback);		if(position) {			docker.bounds.centerMoveTo(position);		}		this.add(docker, index);				return docker	},	/**	 * Get the serialized object	 * return Array with hash-entrees (prefix, name, value)	 * Following values will given:	 * 		Bounds	 * 		Outgoing Shapes	 * 		Parent	 */	serialize: function() {		var serializedObject = arguments.callee.$.serialize.apply(this);		// Add the bounds		serializedObject.push({name: 'bounds', prefix:'oryx', value: this.bounds.serializeForERDF(), type: 'literal'});		// Add the outgoing shapes		this.getOutgoingShapes().each((function(followingShape){			serializedObject.push({name: 'outgoing', prefix:'raziel', value: '#'+ERDF.__stripHashes(followingShape.resourceId), type: 'resource'});					}).bind(this));		// Add the parent shape, if the parent not the canvas		//if(this.parent instanceof ORYX.Core.Shape){			serializedObject.push({name: 'parent', prefix:'raziel', value: '#'+ERDF.__stripHashes(this.parent.resourceId), type: 'resource'});			//}							return serializedObject;	},					deserialize: function(serialze){		arguments.callee.$.deserialize.apply(this, arguments);				// Set the Bounds		var bounds = serialze.find(function(ser){ return (ser.prefix+"-"+ser.name) == 'oryx-bounds'});		if(bounds) {			var b = bounds.value.replace(/,/g, " ").split(" ").without("");			if(this instanceof ORYX.Core.Edge){				this.dockers.first().bounds.centerMoveTo(parseFloat(b[0]), parseFloat(b[1]));				this.dockers.last().bounds.centerMoveTo(parseFloat(b[2]), parseFloat(b[3]));			} else {				this.bounds.set(parseFloat(b[0]), parseFloat(b[1]), parseFloat(b[2]), parseFloat(b[3]));			}					}	},			/**	 * Private methods.	 */	/**	 * Child classes have to overwrite this method for initializing a loaded	 * SVG representation.	 * @param {SVGDocument} svgDocument	 */	_init: function(svgDocument) {		//adjust ids		this._adjustIds(svgDocument, 0);	},	_adjustIds: function(element, idIndex) {		if(element instanceof Element) {			var eid = element.getAttributeNS(null, 'id');			if(eid && eid !== "") {				element.setAttributeNS(null, 'id', this.id + eid);			} else {				element.setAttributeNS(null, 'id', this.id + "_" + this.id + "_" + idIndex);				idIndex++;			}						// Replace URL in fill attribute			var fill = element.getAttributeNS(null, 'fill');			if (fill&&fill.include("url(#")){				fill = fill.replace(/url\(#/g, 'url(#'+this.id);				element.setAttributeNS(null, 'fill', fill);			}						if(element.hasChildNodes()) {				for(var i = 0; i < element.childNodes.length; i++) {					idIndex = this._adjustIds(element.childNodes[i], idIndex);				}			}		}		return idIndex;	},	toString: function() { return "ORYX.Core.Shape " + this.getId() }};ORYX.Core.Shape = ORYX.Core.AbstractShape.extend(ORYX.Core.Shape);/**
+}/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+if(!ORYX.Core) {ORYX.Core = {};}
+
+
+ORYX.Core.UIEnableDrag = function(event, uiObj, option) {
+
+	this.uiObj = uiObj;
+	var upL = uiObj.bounds.upperLeft();
+
+	var a = uiObj.node.getScreenCTM();
+	this.faktorXY= {x: a.a, y: a.d};
+	
+	this.scrollNode = uiObj.node.ownerSVGElement.parentNode.parentNode;
+	
+	this.offSetPosition =  {
+		x: Event.pointerX(event) - (upL.x * this.faktorXY.x),
+		y: Event.pointerY(event) - (upL.y * this.faktorXY.y)};
+
+	this.offsetScroll	= {x:this.scrollNode.scrollLeft,y:this.scrollNode.scrollTop};
+		
+	this.dragCallback = ORYX.Core.UIDragCallback.bind(this);
+	this.disableCallback = ORYX.Core.UIDisableDrag.bind(this);
+
+	this.movedCallback = option ? option.movedCallback : undefined;
+	this.upCallback = option ? option.upCallback : undefined;
+	
+	document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this.disableCallback, true);
+	document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE, 	this.dragCallback , false);
+
+};
+
+ORYX.Core.UIDragCallback = function(event) {
+
+	var position = {
+		x: Event.pointerX(event) - this.offSetPosition.x,
+		y: Event.pointerY(event) - this.offSetPosition.y}
+
+	position.x 	-= this.offsetScroll.x - this.scrollNode.scrollLeft; 
+	position.y 	-= this.offsetScroll.y - this.scrollNode.scrollTop;
+
+	position.x /= this.faktorXY.x;
+	position.y /= this.faktorXY.y;
+
+	this.uiObj.bounds.moveTo(position);
+	//this.uiObj.update();
+
+	if(this.movedCallback)
+		this.movedCallback(event);
+	
+	Event.stop(event);
+
+};
+
+ORYX.Core.UIDisableDrag = function(event) {
+	document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEMOVE, this.dragCallback, false);
+	document.documentElement.removeEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this.disableCallback, true);
+	
+	if(this.upCallback)
+		this.upCallback(event);
+		
+	this.upCallback = undefined;
+	this.movedCallback = undefined;		
+	
+	Event.stop(event);	
+};
+/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+if(!ORYX.Core) {ORYX.Core = {};}
+
+/**
+ * @classDescription Base class for Shapes.
+ * @extends ORYX.Core.AbstractShape
+ */
+ORYX.Core.Shape = {
+
+	/**
+	 * Constructor
+	 */
+	construct: function(options, stencil) {
+		// call base class constructor
+		arguments.callee.$.construct.apply(this, arguments);
+		
+		this.dockers = [];
+		this.magnets = [];
+		
+		this._defaultMagnet;
+		
+		this.incoming = [];
+		this.outgoing = [];
+		
+		this.nodes = [];
+		
+		this._dockerChangedCallback = this._dockerChanged.bind(this);
+		
+		//Hash map for all labels. Labels are not treated as children of shapes.
+		this._labels = new Hash();
+		
+		// create SVG node
+		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg",
+			null,
+			['g', {id:this.id},
+				['g', {"class": "stencils"},
+					['g', {"class": "me"}],
+					['g', {"class": "children", style:"overflow:hidden"}],
+					['g', {"class": "edge"}]
+				],
+				['g', {"class": "controls"},
+					['g', {"class": "dockers"}],
+					['g', {"class": "magnets"}]				
+				]
+			]);
+	},
+
+	/**
+	 * If changed flag is set, refresh method is called.
+	 */
+	update: function() {
+		//if(this.isChanged) {
+			//this.layout();
+		//}
+	},
+	
+	/**
+	 * !!!Not called from any sub class!!!
+	 */
+	_update: function() {
+
+	},
+	
+	/**
+	 * Calls the super class refresh method
+	 *  and updates the svg elements that are referenced by a property.
+	 */
+	refresh: function() {
+		//call base class refresh method
+		arguments.callee.$.refresh.apply(this, arguments);
+		
+		if(this.node.ownerDocument) {
+			//adjust SVG to properties' values
+			var me = this;
+			this.propertiesChanged.each((function(propChanged) {
+				if(propChanged.value) {
+					var prop = this.properties[propChanged.key];
+					var property = this.getStencil().property(propChanged.key);
+					this.propertiesChanged[propChanged.key] = false;
+
+					//handle choice properties
+					if(property.type() == ORYX.CONFIG.TYPE_CHOICE) {
+						//iterate all references to SVG elements
+						property.refToView().each((function(ref) {
+							//if property is referencing a label, update the label
+							if(ref !== "") {
+								var label = this._labels[this.id + ref];
+								if (label) {
+									// if a choice is not valid anymore (due to changed stencil set), choose the default value
+									if ("undefined" == typeof(property.item(prop)) || !property.item(prop)) {
+										label.text(property.value()); // standard value of the stencil set
+									}
+									else {
+										label.text(property.item(prop).value());
+									}
+								}
+							}
+						}).bind(this));
+							
+						//if the choice's items are referencing SVG elements
+						// show the selected and hide all other referenced SVG
+						// elements
+						var refreshedSvgElements = new Hash();
+						property.items().each((function(item) {
+							item.refToView().each((function(itemRef) {
+								if(itemRef == "") { this.propertiesChanged[propChanged.key] = true; return; }
+								
+								var svgElem = this.node.ownerDocument.getElementById(this.id + itemRef);
+	
+								if(!svgElem) { this.propertiesChanged[propChanged.key] = true; return; }
+								
+								
+								/* Do not refresh the same svg element multiple times */
+								if(!refreshedSvgElements[svgElem.id] || prop == item.value()) {
+									svgElem.setAttributeNS(null, 'display', ((prop == item.value()) ? 'inherit' : 'none'));
+									refreshedSvgElements[svgElem.id] = svgElem;
+								}
+								
+								// Reload the href if there is an image-tag
+								if(ORYX.Editor.checkClassType(svgElem, SVGImageElement)) {
+									svgElem.setAttributeNS('http://www.w3.org/1999/xlink', 'href', svgElem.getAttributeNS('http://www.w3.org/1999/xlink', 'href'));
+								}
+							}).bind(this));
+						}).bind(this));
+						
+					} else { //handle properties that are not of type choice
+						//iterate all references to SVG elements
+						property.refToView().each((function(ref) {
+							//if the property does not reference an SVG element,
+							// do nothing
+
+							if(ref === "") { this.propertiesChanged[propChanged.key] = true; return; }
+		
+							var refId = this.id + ref;
+
+							//get the SVG element
+							var svgElem = this.node.ownerDocument.getElementById(refId);
+
+							//if the SVG element can not be found
+							if(!svgElem || !(svgElem.ownerSVGElement)) { 
+								//if the referenced SVG element is a SVGAElement, it cannot
+								// be found with getElementById (Firefox bug).
+								// this is a work around
+								if(property.type() === ORYX.CONFIG.TYPE_URL || property.type() === ORYX.CONFIG.TYPE_DIAGRAM_LINK) {
+									var svgElems = this.node.ownerDocument.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'a');
+									
+									svgElem = $A(svgElems).find(function(elem) {
+										return elem.getAttributeNS(null, 'id') === refId;
+									});
+									
+									if(!svgElem) { this.propertiesChanged[propChanged.key] = true; return; } 
+								} else {
+									this.propertiesChanged[propChanged.key] = true;
+									return;
+								}					
+							}
+							
+							if (property.complexAttributeToView()) {
+								var label = this._labels[refId];
+								if (label) {
+									try {
+								    	propJson = prop.evalJSON();
+								    	var value = propJson[property.complexAttributeToView()]
+								    	label.text(value ? value : prop);
+								    } catch (e) {
+								    	label.text(prop);
+								    }
+								}
+								
+							} else {
+
+								switch (property.type()) {
+									case ORYX.CONFIG.TYPE_BOOLEAN:	
+										
+										if (typeof prop == "string")
+											prop = prop === "true"
+	
+										svgElem.setAttributeNS(null, 'display', (!(prop === property.inverseBoolean())) ? 'inherit' : 'none');
+										
+										break;
+									case ORYX.CONFIG.TYPE_COLOR:
+										if(property.fill()) {
+											if (svgElem.tagName.toLowerCase() === "stop"){
+												svgElem.setAttributeNS(null, "stop-color", prop);
+												
+												// Adjust stop color of the others
+												if (svgElem.parentNode.tagName.toLowerCase() === "radialgradient"){
+													ORYX.Utils.adjustGradient(svgElem.parentNode, svgElem);
+												}
+											} else {
+												svgElem.setAttributeNS(null, 'fill', prop);
+											}
+										}
+										if(property.stroke()) {
+											svgElem.setAttributeNS(null, 'stroke', prop);
+										}
+										break;
+									case ORYX.CONFIG.TYPE_STRING:
+										var label = this._labels[refId];
+										if (label) {
+											label.text(prop);
+										}
+										break;
+									case ORYX.CONFIG.TYPE_INTEGER:
+										var label = this._labels[refId];
+										if (label) {
+											label.text(prop);
+										}
+										break;
+									case ORYX.CONFIG.TYPE_FLOAT:
+										if(property.fillOpacity()) {
+											svgElem.setAttributeNS(null, 'fill-opacity', prop);
+										} 
+										if(property.strokeOpacity()) {
+											svgElem.setAttributeNS(null, 'stroke-opacity', prop);
+										}
+										if(!property.fillOpacity() && !property.strokeOpacity()) {
+											var label = this._labels[refId];
+											if (label) {
+												label.text(prop);
+											}
+										}
+										break;
+									case ORYX.CONFIG.TYPE_URL:
+									case ORYX.CONFIG.TYPE_DIAGRAM_LINK:
+										//TODO what is the dafault path?
+										var hrefAttr = svgElem.getAttributeNodeNS('http://www.w3.org/1999/xlink', 'xlink:href');
+										if(hrefAttr) {
+											hrefAttr.textContent = prop;
+										} else {
+											svgElem.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', prop);
+										}	
+										break;
+								}
+							}
+						}).bind(this));
+						
+						
+					}
+					
+				}
+			}).bind(this));
+			
+			//update labels
+			this._labels.values().each(function(label) {
+				label.update();
+			});
+		}
+	},
+	
+	layout: function() {
+		//this.getStencil().layout(this)
+		var layoutEvents = this.getStencil().layout()
+		if(this instanceof ORYX.Core.Node && layoutEvents) {
+			layoutEvents.each(function(event) {
+				
+				// setup additional attributes
+				event.shape = this;
+				event.forceExecution = true;
+				
+				// do layouting
+				this._delegateEvent(event);
+			}.bind(this))
+			
+		}
+	},
+	
+	/**
+	 * Returns an array of Label objects.
+	 */
+	getLabels: function() {
+		return this._labels.values();
+	},
+
+	/**
+	 * Returns an array of dockers of this object.
+	 */
+	getDockers: function() {
+		return this.dockers;
+	},
+	
+	getMagnets: function() {
+		return this.magnets;
+	},
+	
+	getDefaultMagnet: function() {
+		if(this._defaultMagnet) {
+			return this._defaultMagnet;
+		} else if (this.magnets.length > 0) {
+			return this.magnets[0];
+		} else {
+			return undefined;
+		}
+	},
+
+	getParentShape: function() {
+		return this.parent;
+	},
+	
+	getIncomingShapes: function(iterator) {
+		if(iterator) {
+			this.incoming.each(iterator);
+		}
+		return this.incoming;
+	},
+	
+	getIncomingNodes: function(iterator) {
+        return this.incoming.select(function(incoming){
+            var isNode = (incoming instanceof ORYX.Core.Node);
+            if(isNode && iterator) iterator(incoming);
+            return isNode;
+        });
+    },
+	
+	
+	getOutgoingShapes: function(iterator) {
+		if(iterator) {
+			this.outgoing.each(iterator);
+		}
+		return this.outgoing;
+	},
+    
+    getOutgoingNodes: function(iterator) {
+        return this.outgoing.select(function(out){
+            var isNode = (out instanceof ORYX.Core.Node);
+            if(isNode && iterator) iterator(out);
+            return isNode;
+        });
+    },
+	
+	getAllDockedShapes: function(iterator) {
+		var result = this.incoming.concat(this.outgoing);
+		if(iterator) {
+			result.each(iterator);
+		}
+		return result
+	},
+
+	getCanvas: function() {
+		if(this.parent instanceof ORYX.Core.Canvas) {
+			return this.parent;
+		} else if(this.parent instanceof ORYX.Core.Shape) {
+			return this.parent.getCanvas();
+		} else {
+			return undefined;
+		}
+	},
+	
+	/**
+	 * 
+	 * @param {Object} deep
+	 * @param {Object} iterator
+	 */
+	getChildNodes: function(deep, iterator) {
+		if(!deep && !iterator) {
+			return this.nodes.clone();
+		} else {
+			var result = [];
+			this.nodes.each(function(uiObject) {
+				if(!uiObject.isVisible){return}
+				if(iterator) {
+					iterator(uiObject);
+				}
+				result.push(uiObject);
+				
+				if(deep && uiObject instanceof ORYX.Core.Shape) {
+					result = result.concat(uiObject.getChildNodes(deep, iterator));
+				}
+			});
+	
+			return result;
+		}
+	},
+	
+	/**
+	 * Overrides the UIObject.add method. Adds uiObject to the correct sub node.
+	 * @param {UIObject} uiObject
+	 * @param {Number} index
+	 */
+	add: function(uiObject, index) {
+		//parameter has to be an UIObject, but
+		// must not be an Edge.
+		if(uiObject instanceof ORYX.Core.UIObject 
+			&& !(uiObject instanceof ORYX.Core.Edge)) {
+			
+			if (!(this.children.member(uiObject))) {
+				//if uiObject is child of another parent, remove it from that parent.
+				if(uiObject.parent) {
+					uiObject.parent.remove(uiObject);
+				}
+
+				//add uiObject to this Shape
+				if(index != undefined)
+					this.children.splice(index, 0, uiObject);
+				else
+					this.children.push(uiObject);
+
+				//set parent reference
+				uiObject.parent = this;
+
+				//add uiObject.node to this.node depending on the type of uiObject
+				var parent;
+				if(uiObject instanceof ORYX.Core.Node) {
+					parent = this.node.childNodes[0].childNodes[1];
+					this.nodes.push(uiObject);
+				} else if(uiObject instanceof ORYX.Core.Controls.Control) {
+					var ctrls = this.node.childNodes[1];
+					if(uiObject instanceof ORYX.Core.Controls.Docker) {
+						parent = ctrls.childNodes[0];
+						if (this.dockers.length >= 2){
+							this.dockers.splice(index!==undefined?Math.min(index, this.dockers.length-1):this.dockers.length-1, 0, uiObject);
+						} else {
+							this.dockers.push(uiObject);
+						}
+					} else if(uiObject instanceof ORYX.Core.Controls.Magnet) {
+						parent = ctrls.childNodes[1];
+						this.magnets.push(uiObject);
+					} else {
+						parent = ctrls;
+					}
+				} else {	//UIObject
+					parent = this.node;
+				}
+
+				if(index != undefined && index < parent.childNodes.length)
+					uiObject.node = parent.insertBefore(uiObject.node, parent.childNodes[index]);
+				else
+					uiObject.node = parent.appendChild(uiObject.node);
+					
+				this._changed();
+				//uiObject.bounds.registerCallback(this._changedCallback);
+				
+				
+				if(this.eventHandlerCallback)
+					this.eventHandlerCallback({type:ORYX.CONFIG.EVENT_SHAPEADDED,shape:uiObject})
+					
+			} else {
+
+				ORYX.Log.warn("add: ORYX.Core.UIObject is already a child of this object.");
+			}
+		} else {
+
+			ORYX.Log.warn("add: Parameter is not of type ORYX.Core.UIObject.");
+		}
+	},
+
+	/**
+	 * Overrides the UIObject.remove method. Removes uiObject.
+	 * @param {UIObject} uiObject
+	 */
+	remove: function(uiObject) {
+		//if uiObject is a child of this object, remove it.
+		if (this.children.member(uiObject)) {
+			//remove uiObject from children
+			this.children = this.children.without(uiObject);
+
+			//delete parent reference of uiObject
+			uiObject.parent = undefined;
+
+			//delete uiObject.node from this.node
+			if(uiObject instanceof ORYX.Core.Shape) {
+				if(uiObject instanceof ORYX.Core.Edge) {
+					uiObject.removeMarkers();
+					uiObject.node = this.node.childNodes[0].childNodes[2].removeChild(uiObject.node);
+				} else {
+					uiObject.node = this.node.childNodes[0].childNodes[1].removeChild(uiObject.node);
+					this.nodes = this.nodes.without(uiObject);
+				}
+			} else if(uiObject instanceof ORYX.Core.Controls.Control) {
+				if (uiObject instanceof ORYX.Core.Controls.Docker) {
+					uiObject.node = this.node.childNodes[1].childNodes[0].removeChild(uiObject.node);
+					this.dockers = this.dockers.without(uiObject);
+				} else if (uiObject instanceof ORYX.Core.Controls.Magnet) {
+					uiObject.node = this.node.childNodes[1].childNodes[1].removeChild(uiObject.node);
+					this.magnets = this.magnets.without(uiObject);
+				} else {
+					uiObject.node = this.node.childNodes[1].removeChild(uiObject.node);
+				}
+			}
+
+			this._changed();
+			//uiObject.bounds.unregisterCallback(this._changedCallback);
+		} else {
+
+			ORYX.Log.warn("remove: ORYX.Core.UIObject is not a child of this object.");
+		}
+	},
+	
+	/**
+	 * Calculate the Border Intersection Point between two points
+	 * @param {PointA}
+	 * @param {PointB}
+	 */
+	getIntersectionPoint: function() {
+			
+		var pointAX, pointAY, pointBX, pointBY;
+		
+		// Get the the two Points	
+		switch(arguments.length) {
+			case 2:
+				pointAX = arguments[0].x;
+				pointAY = arguments[0].y;
+				pointBX = arguments[1].x;
+				pointBY = arguments[1].y;
+				break;
+			case 4:
+				pointAX = arguments[0];
+				pointAY = arguments[1];
+				pointBX = arguments[2];
+				pointBY = arguments[3];
+				break;
+			default:
+				throw "getIntersectionPoints needs two or four arguments";
+		}
+		
+		
+		
+		// Defined an include and exclude point
+		var includePointX, includePointY, excludePointX, excludePointY;
+
+		var bounds = this.absoluteBounds();
+		
+		if(this.isPointIncluded(pointAX, pointAY, bounds)){
+			includePointX = pointAX;
+			includePointY = pointAY;
+		} else {
+			excludePointX = pointAX;
+			excludePointY = pointAY;
+		}
+
+		if(this.isPointIncluded(pointBX, pointBY, bounds)){
+			includePointX = pointBX;
+			includePointY = pointBY;
+		} else {
+			excludePointX = pointBX;
+			excludePointY = pointBY;
+		}
+				
+		// If there is no inclue or exclude Shape, than return
+		if(!includePointX || !includePointY || !excludePointX || !excludePointY) {
+			return undefined;
+		}
+
+		var midPointX = 0;
+		var midPointY = 0;		
+		
+		var refPointX, refPointY;
+		
+		var minDifferent = 1;
+		// Get the UpperLeft and LowerRight
+		//var ul = bounds.upperLeft();
+		//var lr = bounds.lowerRight();
+		
+		var i = 0;
+		
+		while(true) {
+			// Calculate the midpoint of the current to points	
+			var midPointX = Math.min(includePointX, excludePointX) + ((Math.max(includePointX, excludePointX) - Math.min(includePointX, excludePointX)) / 2.0);
+			var midPointY = Math.min(includePointY, excludePointY) + ((Math.max(includePointY, excludePointY) - Math.min(includePointY, excludePointY)) / 2.0);
+			
+			
+			// Set the new midpoint by the means of the include of the bounds
+			if(this.isPointIncluded(midPointX, midPointY, bounds)){
+				includePointX = midPointX;
+				includePointY = midPointY;
+			} else {
+				excludePointX = midPointX;
+				excludePointY = midPointY;
+			}			
+			
+			// Calc the length of the line
+			var length = Math.sqrt(Math.pow(includePointX - excludePointX, 2) + Math.pow(includePointY - excludePointY, 2))
+			// Calc a point one step from the include point
+			refPointX = includePointX + ((excludePointX - includePointX) / length),
+			refPointY = includePointY + ((excludePointY - includePointY) / length)
+					
+			
+			// If the reference point not in the bounds, break
+			if(!this.isPointIncluded(refPointX, refPointY, bounds)) {
+				break
+			}
+							
+			
+		}
+
+		// Return the last includepoint
+		return {x:refPointX , y:refPointY};
+	},
+
+   
+    
+    /**
+     * Calculate if the point is inside the Shape
+     * @param {PointX}
+     * @param {PointY} 
+     */
+    isPointIncluded: function(){
+		return  false
+	},
+
+    
+    /**
+     * Calculate if the point is over an special offset area
+     * @param {Point}
+     */
+    isPointOverOffset: function(){
+		return  this.isPointIncluded.apply( this , arguments )
+	},
+		
+	_dockerChanged: function() {
+
+	},
+		
+	/**
+	 * Create a Docker for this Edge
+	 *
+	 */
+	createDocker: function(index, position) {
+		var docker = new ORYX.Core.Controls.Docker({eventHandlerCallback: this.eventHandlerCallback});
+		docker.bounds.registerCallback(this._dockerChangedCallback);
+		if(position) {
+			docker.bounds.centerMoveTo(position);
+		}
+		this.add(docker, index);
+		
+		return docker
+	},
+
+	/**
+	 * Get the serialized object
+	 * return Array with hash-entrees (prefix, name, value)
+	 * Following values will given:
+	 * 		Bounds
+	 * 		Outgoing Shapes
+	 * 		Parent
+	 */
+	serialize: function() {
+		var serializedObject = arguments.callee.$.serialize.apply(this);
+
+		// Add the bounds
+		serializedObject.push({name: 'bounds', prefix:'oryx', value: this.bounds.serializeForERDF(), type: 'literal'});
+
+		// Add the outgoing shapes
+		this.getOutgoingShapes().each((function(followingShape){
+			serializedObject.push({name: 'outgoing', prefix:'raziel', value: '#'+ERDF.__stripHashes(followingShape.resourceId), type: 'resource'});			
+		}).bind(this));
+
+		// Add the parent shape, if the parent not the canvas
+		//if(this.parent instanceof ORYX.Core.Shape){
+			serializedObject.push({name: 'parent', prefix:'raziel', value: '#'+ERDF.__stripHashes(this.parent.resourceId), type: 'resource'});	
+		//}			
+		
+		return serializedObject;
+	},
+		
+		
+	deserialize: function(serialze){
+		arguments.callee.$.deserialize.apply(this, arguments);
+		
+		// Set the Bounds
+		var bounds = serialze.find(function(ser){ return (ser.prefix+"-"+ser.name) == 'oryx-bounds'});
+		if(bounds) {
+			var b = bounds.value.replace(/,/g, " ").split(" ").without("");
+			if(this instanceof ORYX.Core.Edge){
+				this.dockers.first().bounds.centerMoveTo(parseFloat(b[0]), parseFloat(b[1]));
+				this.dockers.last().bounds.centerMoveTo(parseFloat(b[2]), parseFloat(b[3]));
+			} else {
+				this.bounds.set(parseFloat(b[0]), parseFloat(b[1]), parseFloat(b[2]), parseFloat(b[3]));
+			}			
+		}
+	},
+
+		
+	/**
+	 * Private methods.
+	 */
+
+	/**
+	 * Child classes have to overwrite this method for initializing a loaded
+	 * SVG representation.
+	 * @param {SVGDocument} svgDocument
+	 */
+	_init: function(svgDocument) {
+		//adjust ids
+		this._adjustIds(svgDocument, 0);
+	},
+
+	_adjustIds: function(element, idIndex) {
+		if(element instanceof Element) {
+			var eid = element.getAttributeNS(null, 'id');
+			if(eid && eid !== "") {
+				element.setAttributeNS(null, 'id', this.id + eid);
+			} else {
+				element.setAttributeNS(null, 'id', this.id + "_" + this.id + "_" + idIndex);
+				idIndex++;
+			}
+			
+			// Replace URL in fill attribute
+			var fill = element.getAttributeNS(null, 'fill');
+			if (fill&&fill.include("url(#")){
+				fill = fill.replace(/url\(#/g, 'url(#'+this.id);
+				element.setAttributeNS(null, 'fill', fill);
+			}
+			
+			if(element.hasChildNodes()) {
+				for(var i = 0; i < element.childNodes.length; i++) {
+					idIndex = this._adjustIds(element.childNodes[i], idIndex);
+				}
+			}
+		}
+		return idIndex;
+	},
+
+	toString: function() { return "ORYX.Core.Shape " + this.getId() }
+};
+ORYX.Core.Shape = ORYX.Core.AbstractShape.extend(ORYX.Core.Shape);/**
  * Copyright (c) 2006
  * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
  *
@@ -11168,9 +13266,2790 @@ if(!ORYX.Core.Controls) {ORYX.Core.Controls = {};}
 ORYX.Core.Controls.Control = ORYX.Core.UIObject.extend({
 	
 	toString: function() { return "Control " + this.id; }
- });/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}if(!ORYX.Core) {ORYX.Core = {};}if(!ORYX.Core.Controls) {ORYX.Core.Controls = {};}/** * @classDescription Represents a movable docker that can be bound to a shape. Dockers are used * for positioning shape objects. * @extends {Control} *  * TODO absoluteXY und absoluteCenterXY von einem Docker liefern falsche Werte!!! */ORYX.Core.Controls.Docker = ORYX.Core.Controls.Control.extend({	/**	 * Constructor	 */	construct: function() {		arguments.callee.$.construct.apply(this, arguments);				this.isMovable = true;				// Enables movability		this.bounds.set(0, 0, 16, 16);		// Set the bounds		this.referencePoint = undefined;		// Refrenzpoint 		this._dockedShapeBounds = undefined;				this._dockedShape = undefined;		this._oldRefPoint1 = undefined;		this._oldRefPoint2 = undefined;				//this.anchors = [];		this.anchorLeft;		this.anchorRight;		this.anchorTop;		this.anchorBottom;		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg",			null,			['g']);		// The DockerNode reprasentation		this._dockerNode = ORYX.Editor.graft("http://www.w3.org/2000/svg",			this.node,			['g', {"pointer-events":"all"},					['circle', {cx:"8", cy:"8", r:"8", stroke:"none", fill:"none"}],					['circle', {cx:"8", cy:"8", r:"3", stroke:"black", fill:"red", "stroke-width":"1"}]				]);					// The ReferenzNode reprasentation			this._referencePointNode = ORYX.Editor.graft("http://www.w3.org/2000/svg",			this.node,				['g', {"pointer-events":"none"},				['circle', {cx: this.bounds.upperLeft().x, cy: this.bounds.upperLeft().y, r: 3, fill:"red", "fill-opacity":0.4}]]);		// Hide the Docker		this.hide();				//Add to the EventHandler		this.addEventHandlers(this.node);		// Buffer the Update Callback for un-/register on Event-Handler 		this._updateCallback = this._changed.bind(this);	},		update: function() {		// If there have an DockedShape			if(this._dockedShape) {			if(this._dockedShapeBounds && this._dockedShape instanceof ORYX.Core.Node) {				// Calc the delta of width and height of the lastBounds and the current Bounds				var dswidth = this._dockedShapeBounds.width();				var dsheight = this._dockedShapeBounds.height();				if(!dswidth)					dswidth = 1;				if(!dsheight)					dsheight = 1;					var widthDelta = 	this._dockedShape.bounds.width() 	/ dswidth;				var heightDelta = 	this._dockedShape.bounds.height() 	/ dsheight;								// If there is an different				if(widthDelta !== 1.0 || heightDelta !== 1.0) {					// Set the delta					this.referencePoint.x *= widthDelta;					this.referencePoint.y *= heightDelta;				}					// Clone these bounds				this._dockedShapeBounds = this._dockedShape.bounds.clone();							}						// Get the first and the last Docker of the parent Shape			var dockerIndex = this.parent.dockers.indexOf(this)			var dock1 = this;			var dock2 = this.parent.dockers.length > 1 ? 							(dockerIndex === 0?							// If there is the first element							 	this.parent.dockers[dockerIndex + 1]:	// then take the next docker								this.parent.dockers[dockerIndex - 1]):  // if not, then take the docker before							undefined;						// Calculate the first absolute Refenzpoint 			var absoluteReferenzPoint1 = dock1.getDockedShape() ? 				dock1.getAbsoluteReferencePoint() : 				dock1.bounds.center();			// Calculate the last absolute Refenzpoint 			var absoluteReferenzPoint2 = dock2 && dock2.getDockedShape() ? 				dock2.getAbsoluteReferencePoint() : 				dock2 ? 					dock2.bounds.center() :					undefined;			// If there is no last absolute Referenzpoint					if(!absoluteReferenzPoint2) {				// Calculate from the middle of the DockedShape				var center = this._dockedShape.absoluteCenterXY();				var minDimension = this._dockedShape.bounds.width() * this._dockedShape.bounds.height(); 				absoluteReferenzPoint2 = {					x: absoluteReferenzPoint1.x + (center.x - absoluteReferenzPoint1.x) * -minDimension,					y: absoluteReferenzPoint1.y + (center.y - absoluteReferenzPoint1.y) * -minDimension				}			}						var newPoint = undefined;						/*if (!this._oldRefPoint1 || !this._oldRefPoint2 ||				absoluteReferenzPoint1.x !== this._oldRefPoint1.x ||				absoluteReferenzPoint1.y !== this._oldRefPoint1.y ||				absoluteReferenzPoint2.x !== this._oldRefPoint2.x ||				absoluteReferenzPoint2.y !== this._oldRefPoint2.y) {*/								// Get the new point for the Docker, calucalted by the intersection point of the Shape and the two points				newPoint = this._dockedShape.getIntersectionPoint(absoluteReferenzPoint1, absoluteReferenzPoint2);								// If there is new point, take the referencepoint as the new point				if(!newPoint) {					newPoint = this.getAbsoluteReferencePoint();				}								if(this.parent && this.parent.parent) {					var grandParentPos = this.parent.parent.absoluteXY();					newPoint.x -= grandParentPos.x;					newPoint.y -= grandParentPos.y;				}								// Set the bounds to the new point				this.bounds.centerMoveTo(newPoint)							this._oldRefPoint1 = absoluteReferenzPoint1;				this._oldRefPoint2 = absoluteReferenzPoint2;			} 			/*else {				newPoint = this.bounds.center();			}*/							//	}				// Call the super class		arguments.callee.$.update.apply(this, arguments);	},	/**	 * Calls the super class refresh method and updates the view of the docker.	 */	refresh: function() {		arguments.callee.$.refresh.apply(this, arguments);				// Refresh the dockers node		var p = this.bounds.upperLeft();		this._dockerNode.setAttributeNS(null, 'transform','translate(' + p.x + ', ' + p.y + ')');				// Refresh the referencepoints node		p = Object.clone(this.referencePoint);				if(p && this._dockedShape){			var upL 			if(this.parent instanceof ORYX.Core.Edge) {				upL = this._dockedShape.absoluteXY();			} else {				upL = this._dockedShape.bounds.upperLeft();
-			}			p.x += upL.x;			p.y += upL.y;		} else {			p = this.bounds.center();		}					this._referencePointNode.setAttributeNS(null, 'transform','translate(' + p.x + ', ' + p.y + ')');	},	/**	 * Set the reference point	 * @param {Object} point	 */		setReferencePoint: function(point) {		// Set the referencepoint		if(this.referencePoint !== point &&			(!this.referencePoint || 			!point ||			this.referencePoint.x !== point.x || 			this.referencePoint.y !== point.y)) {							this.referencePoint = point;			this._changed();					}				// Update directly, because the referencepoint has no influence of the bounds		//this.refresh();	},		/**	 * Get the absolute referencepoint	 */	getAbsoluteReferencePoint: function() {		if(!this.referencePoint || !this._dockedShape) {			return undefined;		} else {			var absUL = this._dockedShape.absoluteXY();			return {							x: this.referencePoint.x + absUL.x,						y: this.referencePoint.y + absUL.y					}		}	},			/**	 * Set the docked Shape from the docker	 * @param {Object} shape	 */	setDockedShape: function(shape) {		// If there is an old docked Shape		if(this._dockedShape) {			this._dockedShape.bounds.unregisterCallback(this._updateCallback)						// Delete the Shapes from the incoming and outgoing array			// If this Docker the incoming of the Shape			if(this === this.parent.dockers.first()) {								this.parent.incoming = this.parent.incoming.without(this._dockedShape);				this._dockedShape.outgoing = this._dockedShape.outgoing.without(this.parent);						// If this Docker the outgoing of the Shape				} else if (this === this.parent.dockers.last()){					this.parent.outgoing = this.parent.outgoing.without(this._dockedShape);				this._dockedShape.incoming = this._dockedShape.incoming.without(this.parent);										}					}				// Set the new Shape		this._dockedShape = shape;		this._dockedShapeBounds = undefined;		var referencePoint = undefined;				// If there is an Shape, register the updateCallback if there are changes in the shape bounds		if(this._dockedShape) {						// Add the Shapes to the incoming and outgoing array			// If this Docker the incoming of the Shape			if(this === this.parent.dockers.first()) {								this.parent.incoming.push(shape);				shape.outgoing.push(this.parent);						// If this Docker the outgoing of the Shape				} else if (this === this.parent.dockers.last()){					this.parent.outgoing.push(shape);				shape.incoming.push(this.parent);										}						// Get the bounds and set the new referencepoint			var bounds = this.bounds;			var absUL = shape.absoluteXY();						/*if(shape.parent){				var b = shape.parent.bounds.upperLeft();				absUL.x -= b.x;				absUL.y -= b.y;
-			}*/						referencePoint = {				x: bounds.center().x - absUL.x,				y: bounds.center().y - absUL.y			}										this._dockedShapeBounds = this._dockedShape.bounds.clone();						this._dockedShape.bounds.registerCallback(this._updateCallback);						// Set the color of the docker as docked			this.setDockerColor(ORYX.CONFIG.DOCKER_DOCKED_COLOR);						} else {			// Set the color of the docker as undocked			this.setDockerColor(ORYX.CONFIG.DOCKER_UNDOCKED_COLOR);		}		// Set the referencepoint		this.setReferencePoint(referencePoint);		this._changed();		//this.update();	},		/**	 * Get the docked Shape	 */	getDockedShape: function() {		return this._dockedShape;	},	/**	 * Returns TRUE if the docker has a docked shape	 */	isDocked: function() {		return !!this._dockedShape;	},			/**	 * Set the Color of the Docker	 * @param {Object} color	 */	setDockerColor: function(color) {		this._dockerNode.lastChild.setAttributeNS(null, "fill", color);	},		/**	 * Hides this UIObject and all its children.	 */	hide: function() {		this.node.setAttributeNS(null, 'visibility', 'hidden');				this.children.each(function(uiObj) {			uiObj.hide();			});					},		/**	 * Enables visibility of this UIObject and all its children.	 */	show: function() {		this.node.setAttributeNS(null, 'visibility', 'visible');				this.children.each(function(uiObj) {			uiObj.show();			});			},		toString: function() { return "Docker " + this.id }});/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if(!ORYX) {var ORYX = {};}if(!ORYX.Core) {ORYX.Core = {};}if(!ORYX.Core.Controls) {ORYX.Core.Controls = {};}/** * @classDescription Represents a magnet that is part of another shape and can * be attached to dockers. Magnets are used for linking edge objects * to other Shape objects. * @extends {Control} */ORYX.Core.Controls.Magnet = ORYX.Core.Controls.Control.extend({			/**	 * Constructor	 */	construct: function() {		arguments.callee.$.construct.apply(this, arguments);				//this.anchors = [];		this.anchorLeft;		this.anchorRight;		this.anchorTop;		this.anchorBottom;				this.bounds.set(0, 0, 16, 16);				//graft magnet's root node into owner's control group.		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg",			null,			['g', {"pointer-events":"all"},					['circle', {cx:"8", cy:"8", r:"4", stroke:"none", fill:"red", "fill-opacity":"0.3"}],				]);					this.hide();	},		update: function() {		arguments.callee.$.update.apply(this, arguments);				//this.isChanged = true;	},		_update: function() {				arguments.callee.$.update.apply(this, arguments);				//this.isChanged = true;	},		refresh: function() {		arguments.callee.$.refresh.apply(this, arguments);		var p = this.bounds.upperLeft();		/*if(this.parent) {			var parentPos = this.parent.bounds.upperLeft();			p.x += parentPos.x;			p.y += parentPos.y;		}*/				this.node.setAttributeNS(null, 'transform','translate(' + p.x + ', ' + p.y + ')');	},		show: function() {		//this.refresh();		arguments.callee.$.show.apply(this, arguments);	},		toString: function() {		return "Magnet " + this.id;	}});/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **//** * Init namespaces */if (!ORYX) {    var ORYX = {};}if (!ORYX.Core) {    ORYX.Core = {};}/** * @classDescription Abstract base class for all Nodes. * @extends ORYX.Core.Shape */ORYX.Core.Node = {    /**     * Constructor     * @param options {Object} A container for arguments.     * @param stencil {Stencil}     */    construct: function(options, stencil){        arguments.callee.$.construct.apply(this, arguments);                this.isSelectable = true;        this.isMovable = true;		this._dockerUpdated = false;                this._oldBounds = new ORYX.Core.Bounds(); //init bounds with undefined values        this._svgShapes = []; //array of all SVGShape objects of        // SVG representation                //TODO vielleicht in shape verschieben?        this.minimumSize = undefined; // {width:..., height:...}        this.maximumSize = undefined;                //TODO vielleicht in shape oder uiobject verschieben?        // vielleicht sogar isResizable ersetzen?        this.isHorizontallyResizable = false;        this.isVerticallyResizable = false;                this.dataId = undefined;                this._init(this._stencil.view());    },            /**     * This method checks whether the shape is resized correctly and calls the     * super class update method.     */    _update: function(){				this.dockers.invoke("update");		if (this.isChanged) {			var bounds = this.bounds;            var oldBounds = this._oldBounds;									if (this.isResized) {							var widthDelta = bounds.width() / oldBounds.width();				var heightDelta = bounds.height() / oldBounds.height();								//iterate over all relevant svg elements and resize them				this._svgShapes.each(function(svgShape){					//adjust width					if (svgShape.isHorizontallyResizable) {						svgShape.width = svgShape.oldWidth * widthDelta;					}					//adjust height					if (svgShape.isVerticallyResizable) {						svgShape.height = svgShape.oldHeight * heightDelta;					}										//check, if anchors are set					var anchorOffset;					var leftIncluded = svgShape.anchorLeft;					var rightIncluded = svgShape.anchorRight;										if (rightIncluded) {						anchorOffset = oldBounds.width() - (svgShape.oldX + svgShape.oldWidth);						if (leftIncluded) {							svgShape.width = bounds.width() - svgShape.x - anchorOffset;						}						else {							svgShape.x = bounds.width() - (anchorOffset + svgShape.width);						}					}					else 						if (!leftIncluded) {							svgShape.x = widthDelta * svgShape.oldX;							if (!svgShape.isHorizontallyResizable) {								svgShape.x = svgShape.x + svgShape.width * widthDelta / 2 - svgShape.width / 2;							}						}										var topIncluded = svgShape.anchorTop;					var bottomIncluded = svgShape.anchorBottom;										if (bottomIncluded) {						anchorOffset = oldBounds.height() - (svgShape.oldY + svgShape.oldHeight);						if (topIncluded) {							svgShape.height = bounds.height() - svgShape.y - anchorOffset;						}						else {							// Hack for choreography task layouting							if (!svgShape._isYLocked) {								svgShape.y = bounds.height() - (anchorOffset + svgShape.height);							}						}					}					else 						if (!topIncluded) {							svgShape.y = heightDelta * svgShape.oldY;							if (!svgShape.isVerticallyResizable) {								svgShape.y = svgShape.y + svgShape.height * heightDelta / 2 - svgShape.height / 2;							}						}				});								//check, if the current bounds is unallowed horizontally or vertically resized				var p = {					x: 0,					y: 0				};				if (!this.isHorizontallyResizable && bounds.width() !== oldBounds.width()) {					p.x = oldBounds.width() - bounds.width();				}				if (!this.isVerticallyResizable && bounds.height() !== oldBounds.height()) {					p.y = oldBounds.height() - bounds.height();				}				if (p.x !== 0 || p.y !== 0) {					bounds.extend(p);				}								//check, if the current bounds are between maximum and minimum bounds				p = {					x: 0,					y: 0				};				var widthDifference, heightDifference;				if (this.minimumSize) {									ORYX.Log.debug("Shape (%0)'s min size: (%1x%2)", this, this.minimumSize.width, this.minimumSize.height);					widthDifference = this.minimumSize.width - bounds.width();					if (widthDifference > 0) {						p.x += widthDifference;					}					heightDifference = this.minimumSize.height - bounds.height();					if (heightDifference > 0) {						p.y += heightDifference;					}				}				if (this.maximumSize) {									ORYX.Log.debug("Shape (%0)'s max size: (%1x%2)", this, this.maximumSize.width, this.maximumSize.height);					widthDifference = bounds.width() - this.maximumSize.width;					if (widthDifference > 0) {						p.x -= widthDifference;					}					heightDifference = bounds.height() - this.maximumSize.height;					if (heightDifference > 0) {						p.y -= heightDifference;					}				}				if (p.x !== 0 || p.y !== 0) {					bounds.extend(p);				}								//update magnets								var widthDelta = bounds.width() / oldBounds.width();				var heightDelta = bounds.height() / oldBounds.height();								var leftIncluded, rightIncluded, topIncluded, bottomIncluded, center, newX, newY;								this.magnets.each(function(magnet){					leftIncluded = magnet.anchorLeft;					rightIncluded = magnet.anchorRight;					topIncluded = magnet.anchorTop;					bottomIncluded = magnet.anchorBottom;										center = magnet.bounds.center();										if (leftIncluded) {						newX = center.x;					}					else 						if (rightIncluded) {							newX = bounds.width() - (oldBounds.width() - center.x)						}						else {							newX = center.x * widthDelta;						}										if (topIncluded) {						newY = center.y;					}					else 						if (bottomIncluded) {							newY = bounds.height() - (oldBounds.height() - center.y);						}						else {							newY = center.y * heightDelta;						}										if (center.x !== newX || center.y !== newY) {						magnet.bounds.centerMoveTo(newX, newY);					}				});								//set new position of labels				this.getLabels().each(function(label){					leftIncluded = label.anchorLeft;					rightIncluded = label.anchorRight;					topIncluded = label.anchorTop;					bottomIncluded = label.anchorBottom;															if (leftIncluded) {										}					else 						if (rightIncluded) {							label.x = bounds.width() - (oldBounds.width() - label.oldX)						}						else {							label.x *= widthDelta;						}										if (topIncluded) {										}					else 						if (bottomIncluded) {							label.y = bounds.height() - (oldBounds.height() - label.oldY);						}						else {							label.y *= heightDelta;						}				});								//update docker				var docker = this.dockers[0];				if (docker) {					docker.bounds.unregisterCallback(this._dockerChangedCallback);					if (!this._dockerUpdated) {						docker.bounds.centerMoveTo(this.bounds.center());						this._dockerUpdated = false;					}										docker.update();					docker.bounds.registerCallback(this._dockerChangedCallback);				}				this.isResized = false;			}                        this.refresh();						this.isChanged = false;						this._oldBounds = this.bounds.clone();        }				this.children.each(function(value) {			if(!(value instanceof ORYX.Core.Controls.Docker)) {				value._update();			}		});				if (this.dockers.length > 0&&!this.dockers.first().getDockedShape()) {			this.dockers.each(function(docker){				docker.bounds.centerMoveTo(this.bounds.center())			}.bind(this))		}				/*this.incoming.each((function(edge) {			if(!(this.dockers[0] && this.dockers[0].getDockedShape() instanceof ORYX.Core.Node))				edge._update(true);		}).bind(this));				this.outgoing.each((function(edge) {			if(!(this.dockers[0] && this.dockers[0].getDockedShape() instanceof ORYX.Core.Node))				edge._update(true);		}).bind(this)); */    },        /**     * This method repositions and resizes the SVG representation     * of the shape.     */    refresh: function(){        arguments.callee.$.refresh.apply(this, arguments);                /** Movement */        var x = this.bounds.upperLeft().x;        var y = this.bounds.upperLeft().y;                //set translation in transform attribute        /*var attributeTransform = document.createAttributeNS(ORYX.CONFIG.NAMESPACE_SVG, "transform");        attributeTransform.nodeValue = "translate(" + x + ", " + y + ")";        this.node.firstChild.setAttributeNode(attributeTransform);*/		// Move owner element		this.node.firstChild.setAttributeNS(null, "transform", "translate(" + x + ", " + y + ")");		// Move magnets		this.node.childNodes[1].childNodes[1].setAttributeNS(null, "transform", "translate(" + x + ", " + y + ")");                /** Resize */                //iterate over all relevant svg elements and update them        this._svgShapes.each(function(svgShape){            svgShape.update();        });    },        _dockerChanged: function(){		var docker = this.dockers[0];                //set the bounds of the the association        this.bounds.centerMoveTo(docker.bounds.center());        		this._dockerUpdated = true;        //this._update(true);    },        /**     * This method traverses a tree of SVGElements and returns     * all SVGShape objects. For each basic shape or path element     * a SVGShape object is initialized.     *     * @param svgNode {SVGElement}     * @return {Array} Array of SVGShape objects     */    _initSVGShapes: function(svgNode){        var svgShapes = [];        try {            var svgShape = new ORYX.Core.SVG.SVGShape(svgNode);            svgShapes.push(svgShape);        }         catch (e) {            //do nothing        }                if (svgNode.hasChildNodes()) {            for (var i = 0; i < svgNode.childNodes.length; i++) {                svgShapes = svgShapes.concat(this._initSVGShapes(svgNode.childNodes[i]));            }        }                return svgShapes;    },        /**     * Calculate if the point is inside the Shape     * @param {PointX}     * @param {PointY}      * @param {absoluteBounds} optional: for performance     */    isPointIncluded: function(pointX, pointY, absoluteBounds){        // If there is an arguments with the absoluteBounds        var absBounds = absoluteBounds && absoluteBounds instanceof ORYX.Core.Bounds ? absoluteBounds : this.absoluteBounds();                if (!absBounds.isIncluded(pointX, pointY)) {			return false;		} else {					}			                //point = Object.clone(point);        var ul = absBounds.upperLeft();        var x = pointX - ul.x;        var y = pointY - ul.y;					var i=0;		do {			var isPointIncluded = this._svgShapes[i++].isPointIncluded( x, y );		} while( !isPointIncluded && i < this._svgShapes.length)				return isPointIncluded;        /*return this._svgShapes.any(function(svgShape){            return svgShape.isPointIncluded(point);        });*/    },         /**     * Calculate if the point is over an special offset area     * @param {Point}     */    isPointOverOffset: function( pointX, pointY ){       		var isOverEl = arguments.callee.$.isPointOverOffset.apply( this , arguments );				if (isOverEl) {							        // If there is an arguments with the absoluteBounds	        var absBounds = this.absoluteBounds();	        absBounds.widen( - ORYX.CONFIG.BORDER_OFFSET );				        if ( !absBounds.isIncluded( pointX, pointY )) {	            return true;	        }				}				return false;			},	       serialize: function(){        var result = arguments.callee.$.serialize.apply(this);                // Add the docker's bounds        // nodes only have at most one docker!        this.dockers.each((function(docker){			if (docker.getDockedShape()) {				var center = docker.referencePoint;				center = center ? center : docker.bounds.center();				result.push({					name: 'docker',					prefix: 'oryx',					value: $H(center).values().join(','),					type: 'literal'				});			}        }).bind(this));                // Get the spezific serialized object from the stencil        try {            //result = this.getStencil().serialize(this, result);			var serializeEvent = this.getStencil().serialize();						/*			 * call serialize callback by reference, result should be found			 * in serializeEvent.result			 */			if(serializeEvent.type) {				serializeEvent.shape = this;				serializeEvent.data = result;				serializeEvent.result = undefined;				serializeEvent.forceExecution = true;								this._delegateEvent(serializeEvent);								if(serializeEvent.result) {					result = serializeEvent.result;				}			}        }         catch (e) {        }        return result;    },        deserialize: function(data){    	arguments.callee.$.deserialize.apply(this, [data]);			    try {            //data = this.getStencil().deserialize(this, data);			var deserializeEvent = this.getStencil().deserialize();						/*			 * call serialize callback by reference, result should be found			 * in serializeEventInfo.result			 */			if(deserializeEvent.type) {				deserializeEvent.shape = this;				deserializeEvent.data = data;				deserializeEvent.result = undefined;				deserializeEvent.forceExecution = true;								this._delegateEvent(deserializeEvent);				if(deserializeEvent.result) {					data = deserializeEvent.result;				}			}        }         catch (e) {        }				// Set the outgoing shapes		var outgoing = data.findAll(function(ser){ return (ser.prefix+"-"+ser.name) == 'raziel-outgoing'});		outgoing.each((function(obj){			// TODO: Look at Canvas			if(!this.parent) {return};											// Set outgoing Shape			var next = this.getCanvas().getChildShapeByResourceId(obj.value);																				if(next){				if(next instanceof ORYX.Core.Edge) {					//Set the first docker of the next shape					next.dockers.first().setDockedShape(this);					next.dockers.first().setReferencePoint(next.dockers.first().bounds.center());				} else if(next.dockers.length > 0) { //next is a node and next has a docker					next.dockers.first().setDockedShape(this);					//next.dockers.first().setReferencePoint({x: this.bounds.width() / 2.0, y: this.bounds.height() / 2.0});				}			}						}).bind(this));                if (this.dockers.length === 1) {            var dockerPos;            dockerPos = data.find(function(entry){                return (entry.prefix + "-" + entry.name === "oryx-dockers");            });                        if (dockerPos) {                var points = dockerPos.value.replace(/,/g, " ").split(" ").without("").without("#");				if (points.length === 2 && this.dockers[0].getDockedShape()) {                    this.dockers[0].setReferencePoint({                        x: parseFloat(points[0]),                        y: parseFloat(points[1])                    });                }                else {                    this.dockers[0].bounds.centerMoveTo(parseFloat(points[0]), parseFloat(points[1]));                }            }        }    },        /**     * This method excepts the SVGDoucment that is the SVG representation     * of this shape.     * The bounds of the shape are calculated, the SVG representation's upper left point     * is moved to 0,0 and it the method sets if this shape is resizable.     *     * @param {SVGDocument} svgDocument     */    _init: function(svgDocument){        arguments.callee.$._init.apply(this, arguments);		        var svgNode = svgDocument.getElementsByTagName("g")[0]; //outer most g node        // set all required attributes        var attributeTitle = svgDocument.ownerDocument.createAttributeNS(null, "title");        attributeTitle.nodeValue = this.getStencil().title();        svgNode.setAttributeNode(attributeTitle);                var attributeId = svgDocument.ownerDocument.createAttributeNS(null, "id");        attributeId.nodeValue = this.id;        svgNode.setAttributeNode(attributeId);                //         var stencilTargetNode = this.node.childNodes[0].childNodes[0]; //<g class=me>"        svgNode = stencilTargetNode.appendChild(svgNode);                // Add to the EventHandler        this.addEventHandlers(svgNode);                /**set minimum and maximum size*/        var minSizeAttr = svgNode.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "minimumSize");        if (minSizeAttr) {            minSizeAttr = minSizeAttr.replace("/,/g", " ");            var minSizeValues = minSizeAttr.split(" ");            minSizeValues = minSizeValues.without("");                        if (minSizeValues.length > 1) {                this.minimumSize = {                    width: parseFloat(minSizeValues[0]),                    height: parseFloat(minSizeValues[1])                };            }            else {                //set minimumSize to (1,1), so that width and height of the stencil can never be (0,0)                this.minimumSize = {                    width: 1,                    height: 1                };            }        }                var maxSizeAttr = svgNode.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "maximumSize");        if (maxSizeAttr) {            maxSizeAttr = maxSizeAttr.replace("/,/g", " ");            var maxSizeValues = maxSizeAttr.split(" ");            maxSizeValues = maxSizeValues.without("");                        if (maxSizeValues.length > 1) {                this.maximumSize = {                    width: parseFloat(maxSizeValues[0]),                    height: parseFloat(maxSizeValues[1])                };            }        }                if (this.minimumSize && this.maximumSize &&        (this.minimumSize.width > this.maximumSize.width ||        this.minimumSize.height > this.maximumSize.height)) {                    //TODO wird verschluckt!!!            throw this + ": Minimum Size must be greater than maxiumSize.";        }                /**get current bounds and adjust it to upperLeft == (0,0)*/        //initialize all SVGShape objects        this._svgShapes = this._initSVGShapes(svgNode);                //get upperLeft and lowerRight of stencil        var upperLeft = {            x: undefined,            y: undefined        };        var lowerRight = {            x: undefined,            y: undefined        };        var me = this;        this._svgShapes.each(function(svgShape){            upperLeft.x = (upperLeft.x !== undefined) ? Math.min(upperLeft.x, svgShape.x) : svgShape.x;            upperLeft.y = (upperLeft.y !== undefined) ? Math.min(upperLeft.y, svgShape.y) : svgShape.y;            lowerRight.x = (lowerRight.x !== undefined) ? Math.max(lowerRight.x, svgShape.x + svgShape.width) : svgShape.x + svgShape.width;            lowerRight.y = (lowerRight.y !== undefined) ? Math.max(lowerRight.y, svgShape.y + svgShape.height) : svgShape.y + svgShape.height;                        /** set if resizing is enabled */            //TODO isResizable durch die beiden anderen booleans ersetzen?            if (svgShape.isHorizontallyResizable) {                me.isHorizontallyResizable = true;                me.isResizable = true;            }            if (svgShape.isVerticallyResizable) {                me.isVerticallyResizable = true;                me.isResizable = true;            }            if (svgShape.anchorTop && svgShape.anchorBottom) {                me.isVerticallyResizable = true;                me.isResizable = true;            }            if (svgShape.anchorLeft && svgShape.anchorRight) {                me.isHorizontallyResizable = true;                me.isResizable = true;            }        });                //move all SVGShapes by -upperLeft        this._svgShapes.each(function(svgShape){            svgShape.x -= upperLeft.x;            svgShape.y -= upperLeft.y;            svgShape.update();        });                //set bounds of shape        //the offsets are also needed for positioning the magnets and the docker        var offsetX = upperLeft.x;        var offsetY = upperLeft.y;                lowerRight.x -= offsetX;        lowerRight.y -= offsetY;        upperLeft.x = 0;        upperLeft.y = 0;                //prevent that width or height of initial bounds is 0        if (lowerRight.x === 0) {            lowerRight.x = 1;        }        if (lowerRight.y === 0) {            lowerRight.y = 1;        }                this._oldBounds.set(upperLeft, lowerRight);        this.bounds.set(upperLeft, lowerRight);                /**initialize magnets */                var magnets = svgDocument.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_ORYX, "magnets");                if (magnets && magnets.length > 0) {                    magnets = $A(magnets[0].getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_ORYX, "magnet"));                        var me = this;            magnets.each(function(magnetElem){                var magnet = new ORYX.Core.Controls.Magnet({                    eventHandlerCallback: me.eventHandlerCallback                });                var cx = parseFloat(magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cx"));                var cy = parseFloat(magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cy"));                magnet.bounds.centerMoveTo({                    x: cx - offsetX,                    y: cy - offsetY                });                                //get anchors                var anchors = magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "anchors");                if (anchors) {                    anchors = anchors.replace("/,/g", " ");                    anchors = anchors.split(" ").without("");                    for(var i = 0; i < anchors.length; i++) {						switch(anchors[i].toLowerCase()) {							case "left":								magnet.anchorLeft = true;								break;							case "right":								magnet.anchorRight = true;								break;							case "top":								magnet.anchorTop = true;								break;							case "bottom":								magnet.anchorBottom = true;								break;						}					}                }                                me.add(magnet);                                //check, if magnet is default magnet                if (!this._defaultMagnet) {                    var defaultAttr = magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "default");                    if (defaultAttr && defaultAttr.toLowerCase() === "yes") {                        me._defaultMagnet = magnet;                    }                }            });        }        else {            // Add a Magnet in the Center of Shape			            var magnet = new ORYX.Core.Controls.Magnet();            magnet.bounds.centerMoveTo(this.bounds.width() / 2, this.bounds.height() / 2);            this.add(magnet);        }                /**initialize docker */        var dockerElem = svgDocument.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_ORYX, "docker");                if (dockerElem && dockerElem.length > 0) {            dockerElem = dockerElem[0];            var docker = this.createDocker();            var cx = parseFloat(dockerElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cx"));            var cy = parseFloat(dockerElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cy"));            docker.bounds.centerMoveTo({                x: cx - offsetX,                y: cy - offsetY            });                        //get anchors            var anchors = dockerElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "anchors");            if (anchors) {                anchors = anchors.replace("/,/g", " ");                anchors = anchors.split(" ").without("");                				for(var i = 0; i < anchors.length; i++) {					switch(anchors[i].toLowerCase()) {						case "left":							docker.anchorLeft = true;							break;						case "right":							docker.anchorRight = true;							break;						case "top":							docker.anchorTop = true;							break;						case "bottom":							docker.anchorBottom = true;							break;					}				}            }        }                /**initialize labels*/        var textElems = svgNode.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'text');        $A(textElems).each((function(textElem){            var label = new ORYX.Core.SVG.Label({                textElement: textElem,				shapeId: this.id            });            label.x -= offsetX;            label.y -= offsetY;            this._labels[label.id] = label;        }).bind(this));    },		/**	 * Override the Method, that a docker is not shown	 *	 */	createDocker: function() {		var docker = new ORYX.Core.Controls.Docker({eventHandlerCallback: this.eventHandlerCallback});		docker.bounds.registerCallback(this._dockerChangedCallback);				this.dockers.push( docker );		docker.parent = this;		docker.bounds.registerCallback(this._changedCallback);						return docker			},	        toString: function(){        return this._stencil.title() + " " + this.id    }};ORYX.Core.Node = ORYX.Core.Shape.extend(ORYX.Core.Node);/** * Copyright (c) 2006 * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner * * Permission is hereby granted, free of charge, to any person obtaining a * copy of this software and associated documentation files (the "Software"), * to deal in the Software without restriction, including without limitation * the rights to use, copy, modify, merge, publish, distribute, sublicense, * and/or sell copies of the Software, and to permit persons to whom the * Software is furnished to do so, subject to the following conditions: * * The above copyright notice and this permission notice shall be included in * all copies or substantial portions of the Software. * * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER * DEALINGS IN THE SOFTWARE. **/NAMESPACE_SVG = "http://www.w3.org/2000/svg";NAMESPACE_ORYX = "http://www.b3mn.org/oryx";/** * Init namespaces */if (!ORYX) {    var ORYX = {};}if (!ORYX.Core) {    ORYX.Core = {};}/** * @classDescription Abstract base class for all connections. * @extends {ORYX.Core.Shape} * @param options {Object} * * TODO da die verschiebung der Edge nicht ueber eine *  translation gemacht wird, die sich auch auf alle kind UIObjects auswirkt, *  muessen die kinder hier beim verschieben speziell betrachtet werden. *  Das sollte ueberarbeitet werden. * */ORYX.Core.Edge = {    /**     * Constructor     * @param {Object} options     * @param {Stencil} stencil     */    construct: function(options, stencil){        arguments.callee.$.construct.apply(this, arguments);                this.isMovable = true;        this.isSelectable = true;        this._dockerUpdated = false;                this._markers = new Hash(); //a hash map of SVGMarker objects where keys are the marker ids        this._paths = [];        this._interactionPaths = [];        this._dockersByPath = new Hash();        this._markersByPath = new Hash();				/* Data structures to store positioning information of attached child nodes */ 		this.attachedNodePositionData = new Hash();                //TODO was muss hier initial erzeugt werden?        var stencilNode = this.node.childNodes[0].childNodes[0];        stencilNode = ORYX.Editor.graft("http://www.w3.org/2000/svg", stencilNode, ['g', {            "pointer-events": "painted"        }]);                //Add to the EventHandler        this.addEventHandlers(stencilNode);                        this._oldBounds = this.bounds.clone();                //load stencil        this._init(this._stencil.view());                if (stencil instanceof Array) {            this.deserialize(stencil);        }            },        _update: function(force){		if(this._dockerUpdated || this.isChanged || force) {						this.dockers.invoke("update");				        if (this.bounds.width() === 0 || this.bounds.height() === 0) {	        	            this.bounds.moveBy({	                x: this.bounds.width() === 0 ? -1 : 0,	                y: this.bounds.height() === 0 ? -1 : 0	            });	            	            this.bounds.extend({	                x: this.bounds.width() === 0 ? 2 : 0,	                y: this.bounds.height() === 0 ? 2 : 0	            });	            	        }	        	        // TODO: Bounds muss abhaengig des Eltern-Shapes gesetzt werden	        var upL = this.bounds.upperLeft();	        var oldUpL = this._oldBounds.upperLeft();	        var oldWidth = this._oldBounds.width() === 0 ? this.bounds.width() : this._oldBounds.width();	        var oldHeight = this._oldBounds.height() === 0 ? this.bounds.height() : this._oldBounds.height();	        var diffX = upL.x - oldUpL.x;	        var diffY = upL.y - oldUpL.y;	        var diffWidth = this.bounds.width() / oldWidth;	        var diffHeight = this.bounds.height() / oldHeight;	        	        this.dockers.each((function(docker){	            // Unregister on BoundsChangedCallback	            docker.bounds.unregisterCallback(this._dockerChangedCallback);	            	            // If there is any changes at the edge and is there is not an DockersUpdate	            // set the new bounds to the docker	            if (!this._dockerUpdated) {	                docker.bounds.moveBy(diffX, diffY);	                	                if (diffWidth !== 1 || diffHeight !== 1) {	                    var relX = docker.bounds.upperLeft().x - upL.x;	                    var relY = docker.bounds.upperLeft().y - upL.y;	                    	                    docker.bounds.moveTo(upL.x + relX * diffWidth, upL.y + relY * diffHeight);	                }	            }	            // Do Docker update and register on DockersBoundChange	            docker.update();	            docker.bounds.registerCallback(this._dockerChangedCallback);	            	        }).bind(this));	        	        if (this._dockerUpdated) {	            var a = this.dockers.first().bounds.center();	            var b = this.dockers.first().bounds.center();	            	            this.dockers.each((function(docker){	                var center = docker.bounds.center();	                a.x = Math.min(a.x, center.x);	                a.y = Math.min(a.y, center.y);	                b.x = Math.max(b.x, center.x);	                b.y = Math.max(b.y, center.y);	            }).bind(this));	            	            //set the bounds of the the association	            this.bounds.set(Object.clone(a), Object.clone(b));	        }						//reposition labels			this.getLabels().each(function(label) {				switch (label.edgePosition) {					case "freeMoved" :			        	label.x=label.x;			        	label.y=label.y;				        	break;					case "starttop":						var angle = this._getAngle(this.dockers[0], this.dockers[1]);						var pos = this.dockers.first().bounds.center();												if (angle <= 90 || angle > 270) {							label.horizontalAlign("left");							label.verticalAlign("bottom");							label.x = pos.x + label.getOffsetTop();							label.y = pos.y - label.getOffsetTop();							label.rotate(360 - angle, pos);						} else {							label.horizontalAlign("right");							label.verticalAlign("bottom");							label.x = pos.x - label.getOffsetTop();							label.y = pos.y - label.getOffsetTop();							label.rotate(180 - angle, pos);						}												break;					case "startbottom":						var angle = this._getAngle(this.dockers[0], this.dockers[1]);						var pos = this.dockers.first().bounds.center();												if (angle <= 90 || angle > 270) {							label.horizontalAlign("left");							label.verticalAlign("top");							label.x = pos.x + label.getOffsetBottom();							label.y = pos.y + label.getOffsetBottom();							label.rotate(360 - angle, pos);						} else {							label.horizontalAlign("right");							label.verticalAlign("top");							label.x = pos.x - label.getOffsetBottom();							label.y = pos.y + label.getOffsetBottom();							label.rotate(180 - angle, pos);						}												break;					case "midtop":						var numOfDockers = this.dockers.length;						if(numOfDockers%2 == 0) {							var angle = this._getAngle(this.dockers[numOfDockers/2-1], this.dockers[numOfDockers/2])							var pos1 = this.dockers[numOfDockers/2-1].bounds.center();							var pos2 = this.dockers[numOfDockers/2].bounds.center();							var pos = {x:(pos1.x + pos2.x)/2.0, y:(pos1.y+pos2.y)/2.0};														label.horizontalAlign("center");							label.verticalAlign("bottom");							label.x = pos.x;							label.y = pos.y - label.getOffsetTop();															if (angle <= 90 || angle > 270) {								label.rotate(360 - angle, pos);							} else {								label.rotate(180 - angle, pos);							}						} else {							var index = parseInt(numOfDockers/2);							var angle = this._getAngle(this.dockers[index], this.dockers[index+1])							var pos = this.dockers[index].bounds.center();														if (angle <= 90 || angle > 270) {								label.horizontalAlign("left");								label.verticalAlign("bottom");								label.x = pos.x + label.getOffsetTop();								label.y = pos.y - label.getOffsetTop();								label.rotate(360 - angle, pos);							} else {								label.horizontalAlign("right");								label.verticalAlign("bottom");								label.x = pos.x - label.getOffsetTop();								label.y = pos.y - label.getOffsetTop();								label.rotate(180 - angle, pos);							}						}												break;					case "midbottom":						var numOfDockers = this.dockers.length;						if(numOfDockers%2 == 0) {							var angle = this._getAngle(this.dockers[numOfDockers/2-1], this.dockers[numOfDockers/2])							var pos1 = this.dockers[numOfDockers/2-1].bounds.center();							var pos2 = this.dockers[numOfDockers/2].bounds.center();							var pos = {x:(pos1.x + pos2.x)/2.0, y:(pos1.y+pos2.y)/2.0};														label.horizontalAlign("center");							label.verticalAlign("top");							label.x = pos.x;							label.y = pos.y + label.getOffsetTop();														if (angle <= 90 || angle > 270) {								label.rotate(360 - angle, pos);							} else {								label.rotate(180 - angle, pos);							}						} else {							var index = parseInt(numOfDockers/2);							var angle = this._getAngle(this.dockers[index], this.dockers[index+1])							var pos = this.dockers[index].bounds.center();														if (angle <= 90 || angle > 270) {								label.horizontalAlign("left");								label.verticalAlign("top");								label.x = pos.x + label.getOffsetBottom();								label.y = pos.y + label.getOffsetBottom();								label.rotate(360 - angle, pos);							} else {								label.horizontalAlign("right");								label.verticalAlign("top");								label.x = pos.x - label.getOffsetBottom();								label.y = pos.y + label.getOffsetBottom();								label.rotate(180 - angle, pos);							}						}												break;					case "endtop":						var length = this.dockers.length;						var angle = this._getAngle(this.dockers[length-2], this.dockers[length-1]);						var pos = this.dockers.last().bounds.center();												if (angle <= 90 || angle > 270) {							label.horizontalAlign("right");							label.verticalAlign("bottom");							label.x = pos.x - label.getOffsetTop();							label.y = pos.y - label.getOffsetTop();							label.rotate(360 - angle, pos);						} else {							label.horizontalAlign("left");							label.verticalAlign("bottom");							label.x = pos.x + label.getOffsetTop();							label.y = pos.y - label.getOffsetTop();							label.rotate(180 - angle, pos);						}												break;					case "endbottom":						var length = this.dockers.length;						var angle = this._getAngle(this.dockers[length-2], this.dockers[length-1]);						var pos = this.dockers.last().bounds.center();												if (angle <= 90 || angle > 270) {							label.horizontalAlign("right");							label.verticalAlign("top");							label.x = pos.x - label.getOffsetBottom();							label.y = pos.y + label.getOffsetBottom();							label.rotate(360 - angle, pos);						} else {							label.horizontalAlign("left");							label.verticalAlign("top");							label.x = pos.x + label.getOffsetBottom();							label.y = pos.y + label.getOffsetBottom();							label.rotate(180 - angle, pos);						}												break;			}			}.bind(this));			this.children.each(function(value) {				if(value instanceof ORYX.Core.Node) {					this.calculatePositionOfAttachedChildNode.call(this, value);				}			}.bind(this));						this.refreshAttachedNodes();			this.refresh();						this.isChanged = false;			this._dockerUpdated = false;						this._oldBounds = this.bounds.clone();        }		    },		/**	 *  Moves a point to the upperLeft of a node's bounds.	 *  	 *  @param {point} point	 *  	The point to move	 *  @param {ORYX.Core.Bounds} bounds	 *  	The Bounds of the related noe	 */	movePointToUpperLeftOfNode: function(point, bounds) {		point.x -= bounds.width()/2;		point.y -= bounds.height()/2;	},		/**	 * Refreshes the visual representation of edge's attached nodes.	 */		refreshAttachedNodes: function() {		this.attachedNodePositionData.values().each(function(nodeData) {			var startPoint = nodeData.segment.docker1.bounds.center();			var endPoint = nodeData.segment.docker2.bounds.center();			this.relativizePoint(startPoint);			this.relativizePoint(endPoint);						var newNodePosition = new Object();						/* Calculate new x-coordinate */			newNodePosition.x = startPoint.x 								+ nodeData.relativDistanceFromDocker1									* (endPoint.x - startPoint.x);						/* Calculate new y-coordinate */			newNodePosition.y = startPoint.y 								+ nodeData.relativDistanceFromDocker1									* (endPoint.y - startPoint.y);						/* Convert new position to the upper left of the node */			this.movePointToUpperLeftOfNode(newNodePosition, nodeData.node.bounds);						/* Move node to its new position */			nodeData.node.bounds.moveTo(newNodePosition);			nodeData.node._update();										}.bind(this));	},		/**	 * Calculates the position of an edge's child node. The node is placed on 	 * the path of the edge.	 * 	 * @param {node}	 * 		The node to calculate the new position	 * @return {Point}	 * 		The calculated upper left point of the node's shape.	 */	calculatePositionOfAttachedChildNode: function(node) {		/* Initialize position */		var position = new Object();		position.x = 0;		position.y = 0;				/* Case: Node was just added */		if(!this.attachedNodePositionData[node.getId()]) {			this.attachedNodePositionData[node.getId()] = new Object();			this.attachedNodePositionData[node.getId()]					.relativDistanceFromDocker1 = 0;			this.attachedNodePositionData[node.getId()].node = node;			this.attachedNodePositionData[node.getId()].segment = new Object();			this.findEdgeSegmentForNode(node);		}else if(node.isChanged) {			this.findEdgeSegmentForNode(node);		}							},		/**	 * Finds the appropriate edge segement for a node.	 * The segment is choosen, which has the smallest distance to the node.	 * 	 * @param {ORYX.Core.Node} node	 * 		The concerning node	 */	findEdgeSegmentForNode: function(node) {		var length = this.dockers.length;		var smallestDistance = undefined;				for(i=1;i<length;i++) {			var lineP1 = this.dockers[i-1].bounds.center();			var lineP2 = this.dockers[i].bounds.center();			this.relativizePoint(lineP1);			this.relativizePoint(lineP2);			//position übergeben hier			var nodeCenterPoint = node.bounds.center();			var distance = ORYX.Core.Math.distancePointLinie(															lineP1,															lineP2, 															nodeCenterPoint, 															true);						if((distance || distance == 0) && ((!smallestDistance && smallestDistance != 0) 						|| distance < smallestDistance)) {								smallestDistance = distance;								this.attachedNodePositionData[node.getId()].segment.docker1 = 													this.dockers[i-1];				this.attachedNodePositionData[node.getId()].segment.docker2 = 													this.dockers[i];				}						/* Either the distance does not match the segment or the distance			 * between docker1 and docker2 is 0			 * 			 * In this case choose the nearest docker as attaching point.			 * 			 */			if(!distance && !smallestDistance && smallestDistance != 0) {				(ORYX.Core.Math.getDistancePointToPoint(nodeCenterPoint, lineP1)					< ORYX.Core.Math.getDistancePointToPoint(nodeCenterPoint, lineP2)) ?					this.attachedNodePositionData[node.getId()].relativDistanceFromDocker1 = 0 :					this.attachedNodePositionData[node.getId()].relativDistanceFromDocker1 = 1;				this.attachedNodePositionData[node.getId()].segment.docker1 = 													this.dockers[i-1];				this.attachedNodePositionData[node.getId()].segment.docker2 = 													this.dockers[i];			}		}				/* Calculate position on edge segment for the node */		if(smallestDistance || smallestDistance == 0) {			this.attachedNodePositionData[node.getId()].relativDistanceFromDocker1 =			this.getLineParameterForPosition(					this.attachedNodePositionData[node.getId()].segment.docker1,					this.attachedNodePositionData[node.getId()].segment.docker2,					node);		}	},		/**	 * Returns the value of the scalar to determine the position of the node on 	 * line defined by docker1 and docker2.	 * 	 * @param {point} docker1	 * 		The docker that defines the start of the line segment	 * @param {point} docker2	 * 		The docker that defines the end of the line segment	 * @param {ORYX.Core.Node} node	 * 		The concerning node	 * 	 * @return {float} positionParameter	 * 		The scalar value to determine the position on the line	 */	getLineParameterForPosition: function(docker1, docker2, node) {		var dockerPoint1 = docker1.bounds.center();		var dockerPoint2 = docker2.bounds.center();		this.relativizePoint(dockerPoint1);		this.relativizePoint(dockerPoint2);				var intersectionPoint = ORYX.Core.Math.getPointOfIntersectionPointLine(									dockerPoint1,									dockerPoint2,									node.bounds.center(), true);		if(!intersectionPoint) {			return 0;		}				var relativeDistance = 			ORYX.Core.Math.getDistancePointToPoint(intersectionPoint, dockerPoint1) /			ORYX.Core.Math.getDistancePointToPoint(dockerPoint1, dockerPoint2);				return relativeDistance;	},	/**	 * Makes point relative to the upper left of the edge's bound.	 * 	 * @param {point} point	 * 		The point to relativize	 */	relativizePoint: function(point) {		point.x -= this.bounds.upperLeft().x;		point.y -= this.bounds.upperLeft().y;			},        refresh: function(){        //call base class refresh method        arguments.callee.$.refresh.apply(this, arguments);                //TODO consider points for marker mids        var lastPoint;        this._paths.each((function(path, index){            var dockers = this._dockersByPath[path.id];            var c = undefined;			var d = undefined;            if (lastPoint) {                d = "M" + lastPoint.x + " " + lastPoint.y;            }            else {                c = dockers[0].bounds.center();                lastPoint = c;                                d = "M" + c.x + " " + c.y;            }                        for (var i = 1; i < dockers.length; i++) {                // for each docker, draw a line to the center                c = dockers[i].bounds.center();                d = d + "L" + c.x + " " + c.y + " ";                lastPoint = c;            }                        path.setAttributeNS(null, "d", d);            this._interactionPaths[index].setAttributeNS(null, "d", d);                    }).bind(this));						/* move child shapes of an edge */		if(this.getChildNodes().length > 0) {	        var x = this.bounds.upperLeft().x;	        var y = this.bounds.upperLeft().y;	        			this.node.firstChild.childNodes[1].setAttributeNS(null, "transform", "translate(" + x + ", " + y + ")");		}		    },        /**     * Calculate the Border Intersection Point between two points     * @param {PointA}     * @param {PointB}     */    getIntersectionPoint: function(){            var length = Math.floor(this.dockers.length / 2)                return ORYX.Core.Math.midPoint(this.dockers[length - 1].bounds.center(), this.dockers[length].bounds.center())    },            /**     * Calculate if the point is inside the Shape     * @param {PointX}     * @param {PointY}      */    isPointIncluded: function(pointX, pointY){            var isbetweenAB = this.absoluteBounds().isIncluded(pointX, pointY, 												ORYX.CONFIG.OFFSET_EDGE_BOUNDS);        		var isPointIncluded = undefined;		        if (isbetweenAB && this.dockers.length > 0) {					var i = 0;			var point1, point2;									do {							point1 = this.dockers[i].bounds.center();				point2 = this.dockers[++i].bounds.center();								isPointIncluded = ORYX.Core.Math.isPointInLine(pointX, pointY, 											point1.x, point1.y, 											point2.x, point2.y, 											ORYX.CONFIG.OFFSET_EDGE_BOUNDS);							} while (!isPointIncluded && i < this.dockers.length - 1)					}				return isPointIncluded;    },          /**     * Calculate if the point is over an special offset area     * @param {Point}     */    isPointOverOffset: function(){		return  false	},		/**	* Returns the angle of the line between two dockers	* (0 - 359.99999999)	*/	_getAngle: function(docker1, docker2) {		var p1 = docker1.absoluteCenterXY();		var p2 = docker2.absoluteCenterXY();				if(p1.x == p2.x && p1.y == p2.y)			return 0;		var angle = Math.asin(Math.sqrt(Math.pow(p1.y-p2.y, 2))					/(Math.sqrt(Math.pow(p2.x-p1.x, 2)+Math.pow(p1.y-p2.y, 2))))					*180/Math.PI;				if(p2.x >= p1.x && p2.y <= p1.y)			return angle;		else if(p2.x < p1.x && p2.y <= p1.y)			return 180 - angle;		else if(p2.x < p1.x && p2.y > p1.y)			return 180 + angle;		else			return 360 - angle;	},	        alignDockers: function(){        this._update(true);                var firstPoint = this.dockers.first().bounds.center();        var lastPoint = this.dockers.last().bounds.center();                var deltaX = lastPoint.x - firstPoint.x;        var deltaY = lastPoint.y - firstPoint.y;                var numOfDockers = this.dockers.length - 1;                this.dockers.each((function(docker, index){            var part = index / numOfDockers;            docker.bounds.unregisterCallback(this._dockerChangedCallback);            docker.bounds.moveTo(firstPoint.x + part * deltaX, firstPoint.y + part * deltaY);            docker.bounds.registerCallback(this._dockerChangedCallback);        }).bind(this));                this._dockerChanged();    },    	add: function(shape){        arguments.callee.$.add.apply(this, arguments);				// If the new shape is a Docker which is not contained		if (shape instanceof ORYX.Core.Controls.Docker && this.dockers.include(shape)){			// Add it to the dockers list ordered by paths					var pathArray = this._dockersByPath.values()[0];			if (pathArray) {				pathArray.splice(this.dockers.indexOf(shape), 0, shape);			}						/* Perform nessary adjustments on the edge's child shapes */			this.handleChildShapesAfterAddDocker(shape);		}	},		/**	 * Performs nessary adjustments on the edge's child shapes.	 * 	 * @param {ORYX.Core.Controls.Docker} docker	 * 		The added docker	 */	handleChildShapesAfterAddDocker: function(docker) {		/* Ensure type of Docker */		if(!docker instanceof ORYX.Core.Controls.Docker) {return undefined;}				var index = this.dockers.indexOf(docker);		if(!(0 < index && index < this.dockers.length - 1)) {		/* Exception: Expect added docker between first and last node of the edge */			return undefined;		} 					/* Get child nodes concerning the segment of the new docker */		var startDocker = this.dockers[index-1];		var endDocker = this.dockers[index+1];				/* Adjust the position of edge's child nodes */		var segmentElements = 			this.getAttachedNodePositionDataForSegment(startDocker, endDocker);				var lengthSegmentPart1 = ORYX.Core.Math.getDistancePointToPoint(										startDocker.bounds.center(),										docker.bounds.center());		var lengthSegmentPart2 = ORYX.Core.Math.getDistancePointToPoint(										endDocker.bounds.center(),										docker.bounds.center());												if(!(lengthSegmentPart1 + lengthSegmentPart2)) {return;}				var relativDockerPosition = lengthSegmentPart1 / (lengthSegmentPart1 + lengthSegmentPart2);					segmentElements.each(function(nodePositionData) {			/* Assign child node to the new segment */			if(nodePositionData.value.relativDistanceFromDocker1 < relativDockerPosition) {				/* Case: before added Docker */				nodePositionData.value.segment.docker2 = docker;				nodePositionData.value.relativDistanceFromDocker1 = 					nodePositionData.value.relativDistanceFromDocker1 / relativDockerPosition;			} else {				/* Case: after added Docker */				nodePositionData.value.segment.docker1 = docker;				var newFullDistance = 1 - relativDockerPosition;				var relativPartOfSegment = 							nodePositionData.value.relativDistanceFromDocker1							- relativDockerPosition;								nodePositionData.value.relativDistanceFromDocker1 = 										relativPartOfSegment / newFullDistance;							}		})				/* Update attached nodes visual representation */		this.refreshAttachedNodes();	},		/**	 *	Returns elements from {@link attachedNodePositiondata} that match the	 *  segement defined by startDocker and endDocker.	 *  	 *  @param {ORYX.Core.Controls.Docker} startDocker	 *  	The docker defining the begin of the segment.	 *  @param {ORYX.Core.Controls.Docker} endDocker	 *  	The docker defining the begin of the segment.	 *  	 *  @return {Hash} attachedNodePositionData	 *  	Child elements matching the segment	 */	getAttachedNodePositionDataForSegment: function(startDocker, endDocker) {		/* Ensure that the segment is defined correctly */		if(!((startDocker instanceof ORYX.Core.Controls.Docker) 			&& (endDocker instanceof ORYX.Core.Controls.Docker))) {				return [];			}					/* Get elements of the segment */		var elementsOfSegment = 			this.attachedNodePositionData.findAll(function(nodePositionData) {				return nodePositionData.value.segment.docker1 === startDocker &&						nodePositionData.value.segment.docker2 === endDocker;			});				/* Return a Hash in each case */		if(!elementsOfSegment) {return [];}				return elementsOfSegment;	},		/**	 * Removes an edge's child shape	 */	remove: function(shape) {		arguments.callee.$.remove.apply(this, arguments);				if(this.attachedNodePositionData[shape.getId()]) {			delete this.attachedNodePositionData[shape.getId()];		}				/* Adjust child shapes if neccessary */		if(shape instanceof ORYX.Core.Controls.Docker) {			this.handleChildShapesAfterRemoveDocker(shape);		}	},		/**	 * 	Adjusts the child shapes of an edges after a docker was removed.	 * 		 *  @param{ORYX.Core.Controls.Docker} docker	 *  	The removed docker.	 */	handleChildShapesAfterRemoveDocker: function(docker) {		/* Ensure docker type */		if(!(docker instanceof ORYX.Core.Controls.Docker)) {return;}				this.attachedNodePositionData.each(function(nodePositionData) {			if(nodePositionData.value.segment.docker1 === docker) {				/* The new start of the segment is the predecessor of docker2. */				var index = this.dockers.indexOf(nodePositionData.value.segment.docker2);				if(index == -1) {return;}				nodePositionData.value.segment.docker1 = this.dockers[index - 1];			} 			else if(nodePositionData.value.segment.docker2 === docker) {				/* The new end of the segment is the successor of docker1. */				var index = this.dockers.indexOf(nodePositionData.value.segment.docker1);				if(index == -1) {return;}				nodePositionData.value.segment.docker2 = this.dockers[index + 1];			}		}.bind(this));				/* Update attached nodes visual representation */		this.refreshAttachedNodes();	},		/**     *@deprecated Use the .createDocker() Method and set the point via the bounds     */    addDocker: function(position, exDocker){        var lastDocker;		var result;        this._dockersByPath.any((function(pair){            return pair.value.any((function(docker, index){                if (!lastDocker) {                    lastDocker = docker;                    return false;                }                else {                    var point1 = lastDocker.bounds.center();                    var point2 = docker.bounds.center();                                        if (ORYX.Core.Math.isPointInLine(position.x, position.y, point1.x, point1.y, point2.x, point2.y, 10)) {                        var path = this._paths.find(function(path){                            return path.id === pair.key;                        });                        if (path) {                            var allowAttr = path.getAttributeNS(NAMESPACE_ORYX, 'allowDockers');                            if (allowAttr && allowAttr.toLowerCase() === "no") {                                return true;                            }                        }                        var newDocker = (exDocker) ? exDocker : this.createDocker(this.dockers.indexOf(lastDocker) + 1, position);						newDocker.bounds.centerMoveTo(position);                        if(exDocker)							this.add(newDocker, this.dockers.indexOf(lastDocker) + 1);                        // Remove new Docker from 'to add' dockers						//pair.value = pair.value.without(newDocker);						//pair.value.splice(this.dockers.indexOf(lastDocker) + 1, 0, newDocker);						// Remove the Docker from the Docker list and add the Docker to the new position                        //this.dockers = this.dockers.without(newDocker);                        //this.dockers.splice(this.dockers.indexOf(lastDocker) + 1, 0, newDocker);                        //this._update(true);						result = newDocker;                        return true;                    }                    else {                        lastDocker = docker;                        return false;                    }                }            }).bind(this));        }).bind(this));		return result;    },        removeDocker: function(docker){        if (this.dockers.length > 2 && !(this.dockers.first() === docker)) {            this._dockersByPath.any((function(pair){                if (pair.value.member(docker)) {                    if (docker === pair.value.last()) {                        return true;                    }                    else {                        this.remove(docker);                        this._dockersByPath[pair.key] = pair.value.without(docker);                        this.isChanged = true;                        this._dockerChanged();                        return true;                    }                }                return false;            }).bind(this));        }    },		/**	 * Removes all dockers from the edge which are on 	 * the line between two dockers	 * @return {Object} Removed dockers in an indicied array 	 * (key is the removed position of the docker, value is docker themselve)	 */	removeUnusedDockers:function(){		var marked = $H({});				this.dockers.each(function(docker, i){			if (i==0||i==this.dockers.length-1){ return }			var previous = this.dockers[i-1];						/* Do not consider already removed dockers */			if(marked.values().indexOf(previous) != -1 && this.dockers[i-2]) {				previous = this.dockers[i-2];			}			var next = this.dockers[i+1];						var cp = previous.getDockedShape() && previous.referencePoint ? previous.getAbsoluteReferencePoint() : previous.bounds.center();			var cn = next.getDockedShape() && next.referencePoint ? next.getAbsoluteReferencePoint() : next.bounds.center();			var cd = docker.bounds.center();						if (ORYX.Core.Math.isPointInLine(cd.x, cd.y, cp.x, cp.y, cn.x, cn.y, 1)){				marked[i] = docker;			}		}.bind(this))				marked.each(function(docker){			this.removeDocker(docker.value);		}.bind(this))				if (marked.values().length > 0){			this._update(true);		}				return marked;	},        /**     * Initializes the Edge after loading the SVG representation of the edge.     * @param {SVGDocument} svgDocument     */    _init: function(svgDocument){        arguments.callee.$._init.apply(this, arguments);                var minPointX, minPointY, maxPointX, maxPointY;                //init markers        var defs = svgDocument.getElementsByTagNameNS(NAMESPACE_SVG, "defs");        if (defs.length > 0) {            defs = defs[0];            var markerElements = $A(defs.getElementsByTagNameNS(NAMESPACE_SVG, "marker"));            var marker;            var me = this;            markerElements.each(function(markerElement){                try {                    marker = new ORYX.Core.SVG.SVGMarker(markerElement.cloneNode(true));                    me._markers[marker.id] = marker;                    var textElements = $A(marker.element.getElementsByTagNameNS(NAMESPACE_SVG, "text"));                    var label;                    textElements.each(function(textElement){                        label = new ORYX.Core.SVG.Label({                            textElement: textElement,							shapeId: this.id                        });                        me._labels[label.id] = label;                    });                }                 catch (e) {                }            });        }                        var gs = svgDocument.getElementsByTagNameNS(NAMESPACE_SVG, "g");        if (gs.length <= 0) {            throw "Edge: No g element found.";        }        var g = gs[0];                        g.setAttributeNS(null, "id", null);                var isFirst = true;                $A(g.childNodes).each((function(path, index){            if (ORYX.Editor.checkClassType(path, SVGPathElement)) {                path = path.cloneNode(false);                                var pathId = this.id + "_" + index;                path.setAttributeNS(null, "id", pathId);                this._paths.push(path);                                //check, if markers are set and update the id                var markersByThisPath = [];                var markerUrl = path.getAttributeNS(null, "marker-start");                                if (markerUrl && markerUrl !== "") {                    markerUrl = markerUrl.strip();                    markerUrl = markerUrl.replace(/^url\(#/, '');                    var markerStartId = this.id.concat(markerUrl.replace(/\)$/, ''));                    path.setAttributeNS(null, "marker-start", "url(#" + markerStartId + ")");                                        markersByThisPath.push(this._markers[markerStartId]);                }                                markerUrl = path.getAttributeNS(null, "marker-mid");                                if (markerUrl && markerUrl !== "") {                    markerUrl = markerUrl.strip();                    markerUrl = markerUrl.replace(/^url\(#/, '');                    var markerMidId = this.id.concat(markerUrl.replace(/\)$/, ''));                    path.setAttributeNS(null, "marker-mid", "url(#" + markerMidId + ")");                                        markersByThisPath.push(this._markers[markerMidId]);                }                                markerUrl = path.getAttributeNS(null, "marker-end");                                if (markerUrl && markerUrl !== "") {                    markerUrl = markerUrl.strip();                    markerUrl = markerUrl.replace(/^url\(#/, '');                    var markerEndId = this.id.concat(markerUrl.replace(/\)$/, ''));                    path.setAttributeNS(null, "marker-end", "url(#" + markerEndId + ")");                                        markersByThisPath.push(this._markers[markerEndId]);                }                                this._markersByPath[pathId] = markersByThisPath;                                //init dockers                var parser = new PathParser();                var handler = new ORYX.Core.SVG.PointsPathHandler();                parser.setHandler(handler);                parser.parsePath(path);                                if (handler.points.length < 4) {                    throw "Edge: Path has to have two or more points specified.";                }                                this._dockersByPath[pathId] = [];                				for (var i = 0; i < handler.points.length; i += 2) {					//handler.points.each((function(point, pIndex){					var x = handler.points[i];					var y = handler.points[i+1];					if (isFirst || i > 0) {						var docker = new ORYX.Core.Controls.Docker({							eventHandlerCallback: this.eventHandlerCallback						});						docker.bounds.centerMoveTo(x,y);						docker.bounds.registerCallback(this._dockerChangedCallback);						this.add(docker, this.dockers.length);												//this._dockersByPath[pathId].push(docker);												//calculate minPoint and maxPoint						if (minPointX) {							minPointX = Math.min(x, minPointX);							minPointY = Math.min(y, minPointY);						}						else {							minPointX = x;							minPointY = y;						}												if (maxPointX) {							maxPointX = Math.max(x, maxPointX);							maxPointY = Math.max(y, maxPointY);						}						else {							maxPointX = x;							maxPointY = y;						}					}					//}).bind(this));				}                isFirst = false;            }        }).bind(this));                this.bounds.set(minPointX, minPointY, maxPointX, maxPointY);                if (this.bounds.width() === 0 || this.bounds.height() === 0) {            this.bounds.extend({                x: this.bounds.width() === 0 ? 2 : 0,                y: this.bounds.height() === 0 ? 2 : 0            });                        this.bounds.moveBy({                x: this.bounds.width() === 0 ? -1 : 0,                y: this.bounds.height() === 0 ? -1 : 0            });                    }                this._oldBounds = this.bounds.clone();                //add paths to this.node        this._paths.reverse();        var paths = [];        this._paths.each((function(path){            paths.push(this.node.childNodes[0].childNodes[0].childNodes[0].appendChild(path));        }).bind(this));                this._paths = paths;                //init interaction path        this._paths.each((function(path){            var iPath = path.cloneNode(false);			iPath.setAttributeNS(null, "id", undefined);            iPath.setAttributeNS(null, "stroke-width", 10);            iPath.setAttributeNS(null, "visibility", "hidden");            iPath.setAttributeNS(null, "stroke-dasharray", null);            iPath.setAttributeNS(null, "stroke", "black");            iPath.setAttributeNS(null, "fill", "none");            this._interactionPaths.push(this.node.childNodes[0].childNodes[0].childNodes[0].appendChild(iPath));        }).bind(this));                this._paths.reverse();        this._interactionPaths.reverse();				/**initialize labels*/        var textElems = svgDocument.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'text');        		$A(textElems).each((function(textElem){            var label = new ORYX.Core.SVG.Label({                textElement: textElem,				shapeId: this.id            });            this.node.childNodes[0].childNodes[0].appendChild(label.node);            this._labels[label.id] = label;        }).bind(this)); 		        //set title        this.node.childNodes[0].childNodes[0].setAttributeNS(null, "title", this.getStencil().title());                this.propertiesChanged.each(function(pair){            pair.value = true;        });		        //this._update(true);    },        /**     * Adds all necessary markers of this Edge to the SVG document.     * Has to be called, while this.node is part of DOM.     */    addMarkers: function(defs){        this._markers.each(function(marker){            if (!defs.ownerDocument.getElementById(marker.value.id)) {                marker.value.element = defs.appendChild(marker.value.element);            }        });    },        /**     * Removes all necessary markers of this Edge from the SVG document.     * Has to be called, while this.node is part of DOM.     */    removeMarkers: function(){        var svgElement = this.node.ownerSVGElement;        if (svgElement) {            var defs = svgElement.getElementsByTagNameNS(NAMESPACE_SVG, "defs");            if (defs.length > 0) {                defs = defs[0];                this._markers.each(function(marker){                    var foundMarker = defs.ownerDocument.getElementById(marker.value.id);                    if (foundMarker) {                        marker.value.element = defs.removeChild(marker.value.element);                    }                });            }        }    },        /**     * Calls when a docker has changed     */    _dockerChanged: function(){            //this._update(true);		this._dockerUpdated = true;            },        serialize: function(){        var result = arguments.callee.$.serialize.apply(this);                //add dockers triple        var value = "";        this._dockersByPath.each((function(pair){            pair.value.each(function(docker){                var position = docker.getDockedShape() && docker.referencePoint ? docker.referencePoint : docker.bounds.center();                value = value.concat(position.x + " " + position.y + " ");            });                        value += " # ";        }).bind(this));        result.push({            name: 'dockers',            prefix: 'oryx',            value: value,            type: 'literal'        });                //add parent triple dependant on the dockedShapes        //TODO change this when canvas becomes a resource/*        var source = this.dockers.first().getDockedShape();        var target = this.dockers.last().getDockedShape();        var sharedParent;        if (source && target) {            //get shared parent            while (source.parent) {                source = source.parent;                if (source instanceof ORYX.Core.Canvas) {                    sharedParent = source;                    break;                }                else {                    var targetParent = target.parent;                    var found;                    while (targetParent) {                        if (source === targetParent) {                            sharedParent = source;                            found = true;                            break;                        }                        else {                            targetParent = targetParent.parent;                        }                    }                    if (found) {                        break;                    }                }            }        }        else             if (source) {                sharedParent = source.parent;            }            else                 if (target) {                    sharedParent = target.parent;                }*/                //if (sharedParent) {/*            result.push({                name: 'parent',                prefix: 'raziel',                //value: '#' + ERDF.__stripHashes(sharedParent.resourceId),                value: '#' + ERDF.__stripHashes(this.getCanvas().resourceId),                type: 'resource'            });*/        //}				//serialize target and source		var lastDocker = this.dockers.last();				var target = lastDocker.getDockedShape();				if(target) {			result.push({				name: 'target',				prefix: 'raziel',				value: '#' + ERDF.__stripHashes(target.resourceId),				type: 'resource'			});		}                try {            //result = this.getStencil().serialize(this, result);			var serializeEvent = this.getStencil().serialize();						/*			 * call serialize callback by reference, result should be found			 * in serializeEvent.result			 */			if(serializeEvent.type) {				serializeEvent.shape = this;				serializeEvent.data = result;				serializeEvent.result = undefined;				serializeEvent.forceExecution = true;								this._delegateEvent(serializeEvent);								if(serializeEvent.result) {					result = serializeEvent.result;				}			}        }         catch (e) {        }        return result;    },        deserialize: function(data){        try {            //data = this.getStencil().deserialize(this, data);						var deserializeEvent = this.getStencil().deserialize();						/*			 * call serialize callback by reference, result should be found			 * in serializeEventInfo.result			 */			if(deserializeEvent.type) {				deserializeEvent.shape = this;				deserializeEvent.data = data;				deserializeEvent.result = undefined;				deserializeEvent.forceExecution = true;								this._delegateEvent(deserializeEvent);				if(deserializeEvent.result) {					data = deserializeEvent.result;				}			}        }         catch (e) {        }        		// Set the outgoing shapes		var target = data.find(function(ser) {return (ser.prefix+"-"+ser.name) == 'raziel-target'});		var targetShape;		if(target) {			targetShape = this.getCanvas().getChildShapeByResourceId(target.value);		}				var outgoing = data.findAll(function(ser){ return (ser.prefix+"-"+ser.name) == 'raziel-outgoing'});		outgoing.each((function(obj){			// TODO: Look at Canvas			if(!this.parent) {return};											// Set outgoing Shape			var next = this.getCanvas().getChildShapeByResourceId(obj.value);																		if(next){				if(next == targetShape) {					// If this is an edge, set the last docker to the next shape					this.dockers.last().setDockedShape(next);					this.dockers.last().setReferencePoint({x: next.bounds.width() / 2.0, y: next.bounds.height() / 2.0});				} else if(next instanceof ORYX.Core.Edge) {					//Set the first docker of the next shape					next.dockers.first().setDockedShape(this);					//next.dockers.first().setReferencePoint({x: this.bounds.width() / 2.0, y: this.bounds.height() / 2.0});				} /*else if(next.dockers.length > 0) { //next is a node and next has a docker					next.dockers.first().setDockedShape(this);					next.dockers.first().setReferencePoint({x: this.bounds.width() / 2.0, y: this.bounds.height() / 2.0});				}*/			}						}).bind(this));		        arguments.callee.$.deserialize.apply(this, [data]);                var oryxDockers = data.find(function(obj){            return (obj.prefix === "oryx" &&            obj.name === "dockers");        });		        if (oryxDockers) {            var dataByPath = oryxDockers.value.split("#").without("").without(" ");                        dataByPath.each((function(data, index){                var values = data.replace(/,/g, " ").split(" ").without("");                                //for each docker two values must be defined                if (values.length % 2 === 0) {                    var path = this._paths[index];                                        if (path) {                        if (index === 0) {                            while (this._dockersByPath[path.id].length > 2) {                                this.removeDocker(this._dockersByPath[path.id][1]);                            }                        }                        else {                            while (this._dockersByPath[path.id].length > 1) {                                this.removeDocker(this._dockersByPath[path.id][0]);                            }                        }                                                var dockersByPath = this._dockersByPath[path.id];                                                if (index === 0) {                            //set position of first docker                            var x = parseFloat(values.shift());                            var y = parseFloat(values.shift());                                                        if (dockersByPath.first().getDockedShape()) {                                dockersByPath.first().setReferencePoint({                                    x: x,                                    y: y                                });                            }                            else {                                dockersByPath.first().bounds.centerMoveTo(x, y);                            }                        }                                                //set position of last docker                        y = parseFloat(values.pop());                        x = parseFloat(values.pop());                                                if (dockersByPath.last().getDockedShape()) {                            dockersByPath.last().setReferencePoint({                                x: x,                                y: y                            });                        }                        else {                            dockersByPath.last().bounds.centerMoveTo(x, y);                        }                                                //add additional dockers                        for (var i = 0; i < values.length; i++) {                            x = parseFloat(values[i]);                            y = parseFloat(values[++i]);                                                        var newDocker = this.createDocker();                            newDocker.bounds.centerMoveTo(x, y);                                                        //this.dockers = this.dockers.without(newDocker);                            //this.dockers.splice(this.dockers.indexOf(dockersByPath.last()), 0, newDocker);                            //dockersByPath.splice(this.dockers.indexOf(dockersByPath.last()), 0, newDocker);						}                    }                }            }).bind(this));        }        else {            this.alignDockers();        }		this._changed();    },        toString: function(){        return this.getStencil().title() + " " + this.id;    },        /**     * @return {ORYX.Core.Shape} Returns last docked shape or null.     */    getTarget: function(){        return this.dockers.last() ? this.dockers.last().getDockedShape() : null;    },		/**	 * @return {ORYX.Core.Shape} Returns the first docked shape or null	 */	getSource: function() {		return this.dockers.first() ? this.dockers.first().getDockedShape() : null;	},		/**	 * Checks whether the edge is at least docked to one shape.	 * 	 * @return {boolean} True if edge is docked	 */	isDocked: function() {		var isDocked = false;		this.dockers.each(function(docker) {			if(docker.isDocked()) {				isDocked = true;				throw $break;			}		});		return isDocked;	},        /**     * Calls {@link ORYX.Core.AbstractShape#toJSON} and add a some stencil set information.     */    toJSON: function() {        var json = arguments.callee.$.toJSON.apply(this, arguments);                if(this.getTarget()) {            json.target = {                resourceId: this.getTarget().resourceId            };        }                return json;    }};ORYX.Core.Edge = ORYX.Core.Shape.extend(ORYX.Core.Edge);/**
+ });/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+if(!ORYX.Core) {ORYX.Core = {};}
+if(!ORYX.Core.Controls) {ORYX.Core.Controls = {};}
+
+
+/**
+ * @classDescription Represents a movable docker that can be bound to a shape. Dockers are used
+ * for positioning shape objects.
+ * @extends {Control}
+ * 
+ * TODO absoluteXY und absoluteCenterXY von einem Docker liefern falsche Werte!!!
+ */
+ORYX.Core.Controls.Docker = ORYX.Core.Controls.Control.extend({
+	/**
+	 * Constructor
+	 */
+	construct: function() {
+		arguments.callee.$.construct.apply(this, arguments);
+		
+		this.isMovable = true;				// Enables movability
+		this.bounds.set(0, 0, 16, 16);		// Set the bounds
+		this.referencePoint = undefined;		// Refrenzpoint 
+		this._dockedShapeBounds = undefined;		
+		this._dockedShape = undefined;
+		this._oldRefPoint1 = undefined;
+		this._oldRefPoint2 = undefined;
+		
+		//this.anchors = [];
+		this.anchorLeft;
+		this.anchorRight;
+		this.anchorTop;
+		this.anchorBottom;
+
+		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg",
+			null,
+			['g']);
+
+		// The DockerNode reprasentation
+		this._dockerNode = ORYX.Editor.graft("http://www.w3.org/2000/svg",
+			this.node,
+			['g', {"pointer-events":"all"},
+					['circle', {cx:"8", cy:"8", r:"8", stroke:"none", fill:"none"}],
+					['circle', {cx:"8", cy:"8", r:"3", stroke:"black", fill:"red", "stroke-width":"1"}]
+				]);
+			
+		// The ReferenzNode reprasentation	
+		this._referencePointNode = ORYX.Editor.graft("http://www.w3.org/2000/svg",
+			this.node,	
+			['g', {"pointer-events":"none"},
+				['circle', {cx: this.bounds.upperLeft().x, cy: this.bounds.upperLeft().y, r: 3, fill:"red", "fill-opacity":0.4}]]);
+
+		// Hide the Docker
+		this.hide();
+		
+		//Add to the EventHandler
+		this.addEventHandlers(this.node);
+
+		// Buffer the Update Callback for un-/register on Event-Handler 
+		this._updateCallback = this._changed.bind(this);
+	},
+	
+	update: function() {
+		// If there have an DockedShape	
+		if(this._dockedShape) {
+			if(this._dockedShapeBounds && this._dockedShape instanceof ORYX.Core.Node) {
+				// Calc the delta of width and height of the lastBounds and the current Bounds
+				var dswidth = this._dockedShapeBounds.width();
+				var dsheight = this._dockedShapeBounds.height();
+				if(!dswidth)
+					dswidth = 1;
+				if(!dsheight)
+					dsheight = 1;	
+				var widthDelta = 	this._dockedShape.bounds.width() 	/ dswidth;
+				var heightDelta = 	this._dockedShape.bounds.height() 	/ dsheight;
+				
+				// If there is an different
+				if(widthDelta !== 1.0 || heightDelta !== 1.0) {
+					// Set the delta
+					this.referencePoint.x *= widthDelta;
+					this.referencePoint.y *= heightDelta;
+				}
+	
+				// Clone these bounds
+				this._dockedShapeBounds = this._dockedShape.bounds.clone();				
+			}
+			
+			// Get the first and the last Docker of the parent Shape
+			var dockerIndex = this.parent.dockers.indexOf(this)
+			var dock1 = this;
+			var dock2 = this.parent.dockers.length > 1 ? 
+							(dockerIndex === 0?							// If there is the first element
+							 	this.parent.dockers[dockerIndex + 1]:	// then take the next docker
+								this.parent.dockers[dockerIndex - 1]):  // if not, then take the docker before
+							undefined;
+			
+			// Calculate the first absolute Refenzpoint 
+			var absoluteReferenzPoint1 = dock1.getDockedShape() ? 
+				dock1.getAbsoluteReferencePoint() : 
+				dock1.bounds.center();
+
+			// Calculate the last absolute Refenzpoint 
+			var absoluteReferenzPoint2 = dock2 && dock2.getDockedShape() ? 
+				dock2.getAbsoluteReferencePoint() : 
+				dock2 ? 
+					dock2.bounds.center() :
+					undefined;
+
+			// If there is no last absolute Referenzpoint		
+			if(!absoluteReferenzPoint2) {
+				// Calculate from the middle of the DockedShape
+				var center = this._dockedShape.absoluteCenterXY();
+				var minDimension = this._dockedShape.bounds.width() * this._dockedShape.bounds.height(); 
+				absoluteReferenzPoint2 = {
+					x: absoluteReferenzPoint1.x + (center.x - absoluteReferenzPoint1.x) * -minDimension,
+					y: absoluteReferenzPoint1.y + (center.y - absoluteReferenzPoint1.y) * -minDimension
+				}
+			}
+			
+			var newPoint = undefined;
+			
+			/*if (!this._oldRefPoint1 || !this._oldRefPoint2 ||
+				absoluteReferenzPoint1.x !== this._oldRefPoint1.x ||
+				absoluteReferenzPoint1.y !== this._oldRefPoint1.y ||
+				absoluteReferenzPoint2.x !== this._oldRefPoint2.x ||
+				absoluteReferenzPoint2.y !== this._oldRefPoint2.y) {*/
+				
+				// Get the new point for the Docker, calucalted by the intersection point of the Shape and the two points
+				newPoint = this._dockedShape.getIntersectionPoint(absoluteReferenzPoint1, absoluteReferenzPoint2);
+				
+				// If there is new point, take the referencepoint as the new point
+				if(!newPoint) {
+					newPoint = this.getAbsoluteReferencePoint();
+				}
+				
+				if(this.parent && this.parent.parent) {
+					var grandParentPos = this.parent.parent.absoluteXY();
+					newPoint.x -= grandParentPos.x;
+					newPoint.y -= grandParentPos.y;
+				}
+				
+				// Set the bounds to the new point
+				this.bounds.centerMoveTo(newPoint)
+			
+				this._oldRefPoint1 = absoluteReferenzPoint1;
+				this._oldRefPoint2 = absoluteReferenzPoint2;
+			} 
+			/*else {
+				newPoint = this.bounds.center();
+			}*/
+			
+			
+	//	}
+		
+		// Call the super class
+		arguments.callee.$.update.apply(this, arguments);
+	},
+
+	/**
+	 * Calls the super class refresh method and updates the view of the docker.
+	 */
+	refresh: function() {
+		arguments.callee.$.refresh.apply(this, arguments);
+		
+		// Refresh the dockers node
+		var p = this.bounds.upperLeft();
+		this._dockerNode.setAttributeNS(null, 'transform','translate(' + p.x + ', ' + p.y + ')');
+		
+		// Refresh the referencepoints node
+		p = Object.clone(this.referencePoint);
+		
+		if(p && this._dockedShape){
+			var upL 
+			if(this.parent instanceof ORYX.Core.Edge) {
+				upL = this._dockedShape.absoluteXY();
+			} else {
+				upL = this._dockedShape.bounds.upperLeft();
+			}
+			p.x += upL.x;
+			p.y += upL.y;
+		} else {
+			p = this.bounds.center();
+		}			
+
+		this._referencePointNode.setAttributeNS(null, 'transform','translate(' + p.x + ', ' + p.y + ')');
+	},
+
+	/**
+	 * Set the reference point
+	 * @param {Object} point
+	 */	
+	setReferencePoint: function(point) {
+		// Set the referencepoint
+		if(this.referencePoint !== point &&
+			(!this.referencePoint || 
+			!point ||
+			this.referencePoint.x !== point.x || 
+			this.referencePoint.y !== point.y)) {
+				
+			this.referencePoint = point;
+			this._changed();			
+		}
+
+		
+		// Update directly, because the referencepoint has no influence of the bounds
+		//this.refresh();
+	},
+	
+	/**
+	 * Get the absolute referencepoint
+	 */
+	getAbsoluteReferencePoint: function() {
+		if(!this.referencePoint || !this._dockedShape) {
+			return undefined;
+		} else {
+			var absUL = this._dockedShape.absoluteXY();
+			return {	
+						x: this.referencePoint.x + absUL.x,
+						y: this.referencePoint.y + absUL.y
+					}
+		}
+	},	
+	
+	/**
+	 * Set the docked Shape from the docker
+	 * @param {Object} shape
+	 */
+	setDockedShape: function(shape) {
+
+		// If there is an old docked Shape
+		if(this._dockedShape) {
+			this._dockedShape.bounds.unregisterCallback(this._updateCallback)
+			
+			// Delete the Shapes from the incoming and outgoing array
+			// If this Docker the incoming of the Shape
+			if(this === this.parent.dockers.first()) {
+				
+				this.parent.incoming = this.parent.incoming.without(this._dockedShape);
+				this._dockedShape.outgoing = this._dockedShape.outgoing.without(this.parent);
+			
+			// If this Docker the outgoing of the Shape	
+			} else if (this === this.parent.dockers.last()){
+	
+				this.parent.outgoing = this.parent.outgoing.without(this._dockedShape);
+				this._dockedShape.incoming = this._dockedShape.incoming.without(this.parent);
+							
+			}
+			
+		}
+
+		
+		// Set the new Shape
+		this._dockedShape = shape;
+		this._dockedShapeBounds = undefined;
+		var referencePoint = undefined;
+		
+		// If there is an Shape, register the updateCallback if there are changes in the shape bounds
+		if(this._dockedShape) {
+			
+			// Add the Shapes to the incoming and outgoing array
+			// If this Docker the incoming of the Shape
+			if(this === this.parent.dockers.first()) {
+				
+				this.parent.incoming.push(shape);
+				shape.outgoing.push(this.parent);
+			
+			// If this Docker the outgoing of the Shape	
+			} else if (this === this.parent.dockers.last()){
+	
+				this.parent.outgoing.push(shape);
+				shape.incoming.push(this.parent);
+							
+			}
+			
+			// Get the bounds and set the new referencepoint
+			var bounds = this.bounds;
+			var absUL = shape.absoluteXY();
+			
+			/*if(shape.parent){
+				var b = shape.parent.bounds.upperLeft();
+				absUL.x -= b.x;
+				absUL.y -= b.y;
+			}*/
+			
+			referencePoint = {
+				x: bounds.center().x - absUL.x,
+				y: bounds.center().y - absUL.y
+			}	
+						
+			this._dockedShapeBounds = this._dockedShape.bounds.clone();
+			
+			this._dockedShape.bounds.registerCallback(this._updateCallback);
+			
+			// Set the color of the docker as docked
+			this.setDockerColor(ORYX.CONFIG.DOCKER_DOCKED_COLOR);				
+		} else {
+			// Set the color of the docker as undocked
+			this.setDockerColor(ORYX.CONFIG.DOCKER_UNDOCKED_COLOR);
+		}
+
+		// Set the referencepoint
+		this.setReferencePoint(referencePoint);
+		this._changed();
+		//this.update();
+	},
+	
+	/**
+	 * Get the docked Shape
+	 */
+	getDockedShape: function() {
+		return this._dockedShape;
+	},
+
+	/**
+	 * Returns TRUE if the docker has a docked shape
+	 */
+	isDocked: function() {
+		return !!this._dockedShape;
+	},
+		
+	/**
+	 * Set the Color of the Docker
+	 * @param {Object} color
+	 */
+	setDockerColor: function(color) {
+		this._dockerNode.lastChild.setAttributeNS(null, "fill", color);
+	},
+	
+	/**
+	 * Hides this UIObject and all its children.
+	 */
+	hide: function() {
+		this.node.setAttributeNS(null, 'visibility', 'hidden');
+		
+		this.children.each(function(uiObj) {
+			uiObj.hide();	
+		});				
+	},
+	
+	/**
+	 * Enables visibility of this UIObject and all its children.
+	 */
+	show: function() {
+		this.node.setAttributeNS(null, 'visibility', 'visible');
+		
+		this.children.each(function(uiObj) {
+			uiObj.show();	
+		});		
+	},
+	
+	toString: function() { return "Docker " + this.id }
+});/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if(!ORYX) {var ORYX = {};}
+if(!ORYX.Core) {ORYX.Core = {};}
+if(!ORYX.Core.Controls) {ORYX.Core.Controls = {};}
+
+
+/**
+ * @classDescription Represents a magnet that is part of another shape and can
+ * be attached to dockers. Magnets are used for linking edge objects
+ * to other Shape objects.
+ * @extends {Control}
+ */
+ORYX.Core.Controls.Magnet = ORYX.Core.Controls.Control.extend({
+		
+	/**
+	 * Constructor
+	 */
+	construct: function() {
+		arguments.callee.$.construct.apply(this, arguments);
+		
+		//this.anchors = [];
+		this.anchorLeft;
+		this.anchorRight;
+		this.anchorTop;
+		this.anchorBottom;
+		
+		this.bounds.set(0, 0, 16, 16);
+		
+		//graft magnet's root node into owner's control group.
+		this.node = ORYX.Editor.graft("http://www.w3.org/2000/svg",
+			null,
+			['g', {"pointer-events":"all"},
+					['circle', {cx:"8", cy:"8", r:"4", stroke:"none", fill:"red", "fill-opacity":"0.3"}],
+				]);
+			
+		this.hide();
+	},
+	
+	update: function() {
+		arguments.callee.$.update.apply(this, arguments);
+		
+		//this.isChanged = true;
+	},
+	
+	_update: function() {		
+		arguments.callee.$.update.apply(this, arguments);
+		
+		//this.isChanged = true;
+	},
+	
+	refresh: function() {
+		arguments.callee.$.refresh.apply(this, arguments);
+
+		var p = this.bounds.upperLeft();
+		/*if(this.parent) {
+			var parentPos = this.parent.bounds.upperLeft();
+			p.x += parentPos.x;
+			p.y += parentPos.y;
+		}*/
+		
+		this.node.setAttributeNS(null, 'transform','translate(' + p.x + ', ' + p.y + ')');
+	},
+	
+	show: function() {
+		//this.refresh();
+		arguments.callee.$.show.apply(this, arguments);
+	},
+	
+	toString: function() {
+		return "Magnet " + this.id;
+	}
+});
+
+/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+
+/**
+ * Init namespaces
+ */
+if (!ORYX) {
+    var ORYX = {};
+}
+if (!ORYX.Core) {
+    ORYX.Core = {};
+}
+
+/**
+ * @classDescription Abstract base class for all Nodes.
+ * @extends ORYX.Core.Shape
+ */
+ORYX.Core.Node = {
+
+    /**
+     * Constructor
+     * @param options {Object} A container for arguments.
+     * @param stencil {Stencil}
+     */
+    construct: function(options, stencil){
+        arguments.callee.$.construct.apply(this, arguments);
+        
+        this.isSelectable = true;
+        this.isMovable = true;
+		this._dockerUpdated = false;
+        
+        this._oldBounds = new ORYX.Core.Bounds(); //init bounds with undefined values
+        this._svgShapes = []; //array of all SVGShape objects of
+        // SVG representation
+        
+        //TODO vielleicht in shape verschieben?
+        this.minimumSize = undefined; // {width:..., height:...}
+        this.maximumSize = undefined;
+        
+        //TODO vielleicht in shape oder uiobject verschieben?
+        // vielleicht sogar isResizable ersetzen?
+        this.isHorizontallyResizable = false;
+        this.isVerticallyResizable = false;
+        
+        this.dataId = undefined;
+        
+        this._init(this._stencil.view());
+    },
+        
+    /**
+     * This method checks whether the shape is resized correctly and calls the
+     * super class update method.
+     */
+    _update: function(){
+		
+		this.dockers.invoke("update");
+		if (this.isChanged) {
+
+			var bounds = this.bounds;
+            var oldBounds = this._oldBounds;
+						
+			if (this.isResized) {
+			
+				var widthDelta = bounds.width() / oldBounds.width();
+				var heightDelta = bounds.height() / oldBounds.height();
+				
+				//iterate over all relevant svg elements and resize them
+				this._svgShapes.each(function(svgShape){
+					//adjust width
+					if (svgShape.isHorizontallyResizable) {
+						svgShape.width = svgShape.oldWidth * widthDelta;
+					}
+					//adjust height
+					if (svgShape.isVerticallyResizable) {
+						svgShape.height = svgShape.oldHeight * heightDelta;
+					}
+					
+					//check, if anchors are set
+					var anchorOffset;
+					var leftIncluded = svgShape.anchorLeft;
+					var rightIncluded = svgShape.anchorRight;
+					
+					if (rightIncluded) {
+						anchorOffset = oldBounds.width() - (svgShape.oldX + svgShape.oldWidth);
+						if (leftIncluded) {
+							svgShape.width = bounds.width() - svgShape.x - anchorOffset;
+						}
+						else {
+							svgShape.x = bounds.width() - (anchorOffset + svgShape.width);
+						}
+					}
+					else 
+						if (!leftIncluded) {
+							svgShape.x = widthDelta * svgShape.oldX;
+							if (!svgShape.isHorizontallyResizable) {
+								svgShape.x = svgShape.x + svgShape.width * widthDelta / 2 - svgShape.width / 2;
+							}
+						}
+					
+					var topIncluded = svgShape.anchorTop;
+					var bottomIncluded = svgShape.anchorBottom;
+					
+					if (bottomIncluded) {
+						anchorOffset = oldBounds.height() - (svgShape.oldY + svgShape.oldHeight);
+						if (topIncluded) {
+							svgShape.height = bounds.height() - svgShape.y - anchorOffset;
+						}
+						else {
+							// Hack for choreography task layouting
+							if (!svgShape._isYLocked) {
+								svgShape.y = bounds.height() - (anchorOffset + svgShape.height);
+							}
+						}
+					}
+					else 
+						if (!topIncluded) {
+							svgShape.y = heightDelta * svgShape.oldY;
+							if (!svgShape.isVerticallyResizable) {
+								svgShape.y = svgShape.y + svgShape.height * heightDelta / 2 - svgShape.height / 2;
+							}
+						}
+				});
+				
+				//check, if the current bounds is unallowed horizontally or vertically resized
+				var p = {
+					x: 0,
+					y: 0
+				};
+				if (!this.isHorizontallyResizable && bounds.width() !== oldBounds.width()) {
+					p.x = oldBounds.width() - bounds.width();
+				}
+				if (!this.isVerticallyResizable && bounds.height() !== oldBounds.height()) {
+					p.y = oldBounds.height() - bounds.height();
+				}
+				if (p.x !== 0 || p.y !== 0) {
+					bounds.extend(p);
+				}
+				
+				//check, if the current bounds are between maximum and minimum bounds
+				p = {
+					x: 0,
+					y: 0
+				};
+				var widthDifference, heightDifference;
+				if (this.minimumSize) {
+				
+					ORYX.Log.debug("Shape (%0)'s min size: (%1x%2)", this, this.minimumSize.width, this.minimumSize.height);
+					widthDifference = this.minimumSize.width - bounds.width();
+					if (widthDifference > 0) {
+						p.x += widthDifference;
+					}
+					heightDifference = this.minimumSize.height - bounds.height();
+					if (heightDifference > 0) {
+						p.y += heightDifference;
+					}
+				}
+				if (this.maximumSize) {
+				
+					ORYX.Log.debug("Shape (%0)'s max size: (%1x%2)", this, this.maximumSize.width, this.maximumSize.height);
+					widthDifference = bounds.width() - this.maximumSize.width;
+					if (widthDifference > 0) {
+						p.x -= widthDifference;
+					}
+					heightDifference = bounds.height() - this.maximumSize.height;
+					if (heightDifference > 0) {
+						p.y -= heightDifference;
+					}
+				}
+				if (p.x !== 0 || p.y !== 0) {
+					bounds.extend(p);
+				}
+				
+				//update magnets
+				
+				var widthDelta = bounds.width() / oldBounds.width();
+				var heightDelta = bounds.height() / oldBounds.height();
+				
+				var leftIncluded, rightIncluded, topIncluded, bottomIncluded, center, newX, newY;
+				
+				this.magnets.each(function(magnet){
+					leftIncluded = magnet.anchorLeft;
+					rightIncluded = magnet.anchorRight;
+					topIncluded = magnet.anchorTop;
+					bottomIncluded = magnet.anchorBottom;
+					
+					center = magnet.bounds.center();
+					
+					if (leftIncluded) {
+						newX = center.x;
+					}
+					else 
+						if (rightIncluded) {
+							newX = bounds.width() - (oldBounds.width() - center.x)
+						}
+						else {
+							newX = center.x * widthDelta;
+						}
+					
+					if (topIncluded) {
+						newY = center.y;
+					}
+					else 
+						if (bottomIncluded) {
+							newY = bounds.height() - (oldBounds.height() - center.y);
+						}
+						else {
+							newY = center.y * heightDelta;
+						}
+					
+					if (center.x !== newX || center.y !== newY) {
+						magnet.bounds.centerMoveTo(newX, newY);
+					}
+				});
+				
+				//set new position of labels
+				this.getLabels().each(function(label){
+					leftIncluded = label.anchorLeft;
+					rightIncluded = label.anchorRight;
+					topIncluded = label.anchorTop;
+					bottomIncluded = label.anchorBottom;
+					
+					
+					if (leftIncluded) {
+					
+					}
+					else 
+						if (rightIncluded) {
+							label.x = bounds.width() - (oldBounds.width() - label.oldX)
+						}
+						else {
+							label.x *= widthDelta;
+						}
+					
+					if (topIncluded) {
+					
+					}
+					else 
+						if (bottomIncluded) {
+							label.y = bounds.height() - (oldBounds.height() - label.oldY);
+						}
+						else {
+							label.y *= heightDelta;
+						}
+				});
+				
+				//update docker
+				var docker = this.dockers[0];
+				if (docker) {
+					docker.bounds.unregisterCallback(this._dockerChangedCallback);
+					if (!this._dockerUpdated) {
+						docker.bounds.centerMoveTo(this.bounds.center());
+						this._dockerUpdated = false;
+					}
+					
+					docker.update();
+					docker.bounds.registerCallback(this._dockerChangedCallback);
+				}
+				this.isResized = false;
+			}
+            
+            this.refresh();
+			
+			this.isChanged = false;
+			
+			this._oldBounds = this.bounds.clone();
+        }
+		
+		this.children.each(function(value) {
+			if(!(value instanceof ORYX.Core.Controls.Docker)) {
+				value._update();
+			}
+		});
+		
+		if (this.dockers.length > 0&&!this.dockers.first().getDockedShape()) {
+			this.dockers.each(function(docker){
+				docker.bounds.centerMoveTo(this.bounds.center())
+			}.bind(this))
+		}
+		
+		/*this.incoming.each((function(edge) {
+			if(!(this.dockers[0] && this.dockers[0].getDockedShape() instanceof ORYX.Core.Node))
+				edge._update(true);
+		}).bind(this));
+		
+		this.outgoing.each((function(edge) {
+			if(!(this.dockers[0] && this.dockers[0].getDockedShape() instanceof ORYX.Core.Node))
+				edge._update(true);
+		}).bind(this)); */
+    },
+    
+    /**
+     * This method repositions and resizes the SVG representation
+     * of the shape.
+     */
+    refresh: function(){
+        arguments.callee.$.refresh.apply(this, arguments);
+        
+        /** Movement */
+        var x = this.bounds.upperLeft().x;
+        var y = this.bounds.upperLeft().y;
+        
+        //set translation in transform attribute
+        /*var attributeTransform = document.createAttributeNS(ORYX.CONFIG.NAMESPACE_SVG, "transform");
+        attributeTransform.nodeValue = "translate(" + x + ", " + y + ")";
+        this.node.firstChild.setAttributeNode(attributeTransform);*/
+		// Move owner element
+		this.node.firstChild.setAttributeNS(null, "transform", "translate(" + x + ", " + y + ")");
+		// Move magnets
+		this.node.childNodes[1].childNodes[1].setAttributeNS(null, "transform", "translate(" + x + ", " + y + ")");
+        
+        /** Resize */
+        
+        //iterate over all relevant svg elements and update them
+        this._svgShapes.each(function(svgShape){
+            svgShape.update();
+        });
+    },
+    
+    _dockerChanged: function(){
+		var docker = this.dockers[0];
+        
+        //set the bounds of the the association
+        this.bounds.centerMoveTo(docker.bounds.center());
+        
+		this._dockerUpdated = true;
+        //this._update(true);
+    },
+    
+    /**
+     * This method traverses a tree of SVGElements and returns
+     * all SVGShape objects. For each basic shape or path element
+     * a SVGShape object is initialized.
+     *
+     * @param svgNode {SVGElement}
+     * @return {Array} Array of SVGShape objects
+     */
+    _initSVGShapes: function(svgNode){
+        var svgShapes = [];
+        try {
+            var svgShape = new ORYX.Core.SVG.SVGShape(svgNode);
+            svgShapes.push(svgShape);
+        } 
+        catch (e) {
+            //do nothing
+        }
+        
+        if (svgNode.hasChildNodes()) {
+            for (var i = 0; i < svgNode.childNodes.length; i++) {
+                svgShapes = svgShapes.concat(this._initSVGShapes(svgNode.childNodes[i]));
+            }
+        }
+        
+        return svgShapes;
+    },
+    
+    /**
+     * Calculate if the point is inside the Shape
+     * @param {PointX}
+     * @param {PointY} 
+     * @param {absoluteBounds} optional: for performance
+     */
+    isPointIncluded: function(pointX, pointY, absoluteBounds){
+        // If there is an arguments with the absoluteBounds
+        var absBounds = absoluteBounds && absoluteBounds instanceof ORYX.Core.Bounds ? absoluteBounds : this.absoluteBounds();
+        
+        if (!absBounds.isIncluded(pointX, pointY)) {
+			return false;
+		} else {
+			
+		}
+			
+        
+        //point = Object.clone(point);
+        var ul = absBounds.upperLeft();
+        var x = pointX - ul.x;
+        var y = pointY - ul.y;		
+	
+		var i=0;
+		do {
+			var isPointIncluded = this._svgShapes[i++].isPointIncluded( x, y );
+		} while( !isPointIncluded && i < this._svgShapes.length)
+		
+		return isPointIncluded;
+
+        /*return this._svgShapes.any(function(svgShape){
+            return svgShape.isPointIncluded(point);
+        });*/
+    },
+ 
+    
+    /**
+     * Calculate if the point is over an special offset area
+     * @param {Point}
+     */
+    isPointOverOffset: function( pointX, pointY ){       
+		var isOverEl = arguments.callee.$.isPointOverOffset.apply( this , arguments );
+		
+		if (isOverEl) {
+						
+	        // If there is an arguments with the absoluteBounds
+	        var absBounds = this.absoluteBounds();
+	        absBounds.widen( - ORYX.CONFIG.BORDER_OFFSET );
+			
+	        if ( !absBounds.isIncluded( pointX, pointY )) {
+	            return true;
+	        }		
+		}
+		
+		return false;
+		
+	},
+	   
+    serialize: function(){
+        var result = arguments.callee.$.serialize.apply(this);
+        
+        // Add the docker's bounds
+        // nodes only have at most one docker!
+        this.dockers.each((function(docker){
+			if (docker.getDockedShape()) {
+				var center = docker.referencePoint;
+				center = center ? center : docker.bounds.center();
+				result.push({
+					name: 'docker',
+					prefix: 'oryx',
+					value: $H(center).values().join(','),
+					type: 'literal'
+				});
+			}
+        }).bind(this));
+        
+        // Get the spezific serialized object from the stencil
+        try {
+            //result = this.getStencil().serialize(this, result);
+
+			var serializeEvent = this.getStencil().serialize();
+			
+			/*
+			 * call serialize callback by reference, result should be found
+			 * in serializeEvent.result
+			 */
+			if(serializeEvent.type) {
+				serializeEvent.shape = this;
+				serializeEvent.data = result;
+				serializeEvent.result = undefined;
+				serializeEvent.forceExecution = true;
+				
+				this._delegateEvent(serializeEvent);
+				
+				if(serializeEvent.result) {
+					result = serializeEvent.result;
+				}
+			}
+        } 
+        catch (e) {
+        }
+        return result;
+    },
+    
+    deserialize: function(data){
+    	arguments.callee.$.deserialize.apply(this, [data]);
+		
+	    try {
+            //data = this.getStencil().deserialize(this, data);
+
+			var deserializeEvent = this.getStencil().deserialize();
+			
+			/*
+			 * call serialize callback by reference, result should be found
+			 * in serializeEventInfo.result
+			 */
+			if(deserializeEvent.type) {
+				deserializeEvent.shape = this;
+				deserializeEvent.data = data;
+				deserializeEvent.result = undefined;
+				deserializeEvent.forceExecution = true;
+				
+				this._delegateEvent(deserializeEvent);
+				if(deserializeEvent.result) {
+					data = deserializeEvent.result;
+				}
+			}
+        } 
+        catch (e) {
+        }
+		
+		// Set the outgoing shapes
+		var outgoing = data.findAll(function(ser){ return (ser.prefix+"-"+ser.name) == 'raziel-outgoing'});
+		outgoing.each((function(obj){
+			// TODO: Look at Canvas
+			if(!this.parent) {return};
+								
+			// Set outgoing Shape
+			var next = this.getCanvas().getChildShapeByResourceId(obj.value);
+																	
+			if(next){
+				if(next instanceof ORYX.Core.Edge) {
+					//Set the first docker of the next shape
+					next.dockers.first().setDockedShape(this);
+					next.dockers.first().setReferencePoint(next.dockers.first().bounds.center());
+				} else if(next.dockers.length > 0) { //next is a node and next has a docker
+					next.dockers.first().setDockedShape(this);
+					//next.dockers.first().setReferencePoint({x: this.bounds.width() / 2.0, y: this.bounds.height() / 2.0});
+				}
+			}	
+			
+		}).bind(this));
+        
+        if (this.dockers.length === 1) {
+            var dockerPos;
+            dockerPos = data.find(function(entry){
+                return (entry.prefix + "-" + entry.name === "oryx-dockers");
+            });
+            
+            if (dockerPos) {
+                var points = dockerPos.value.replace(/,/g, " ").split(" ").without("").without("#");
+				if (points.length === 2 && this.dockers[0].getDockedShape()) {
+                    this.dockers[0].setReferencePoint({
+                        x: parseFloat(points[0]),
+                        y: parseFloat(points[1])
+                    });
+                }
+                else {
+                    this.dockers[0].bounds.centerMoveTo(parseFloat(points[0]), parseFloat(points[1]));
+                }
+            }
+        }
+    },
+    
+    /**
+     * This method excepts the SVGDoucment that is the SVG representation
+     * of this shape.
+     * The bounds of the shape are calculated, the SVG representation's upper left point
+     * is moved to 0,0 and it the method sets if this shape is resizable.
+     *
+     * @param {SVGDocument} svgDocument
+     */
+    _init: function(svgDocument){
+        arguments.callee.$._init.apply(this, arguments);
+		
+        var svgNode = svgDocument.getElementsByTagName("g")[0]; //outer most g node
+        // set all required attributes
+        var attributeTitle = svgDocument.ownerDocument.createAttributeNS(null, "title");
+        attributeTitle.nodeValue = this.getStencil().title();
+        svgNode.setAttributeNode(attributeTitle);
+        
+        var attributeId = svgDocument.ownerDocument.createAttributeNS(null, "id");
+        attributeId.nodeValue = this.id;
+        svgNode.setAttributeNode(attributeId);
+        
+        // 
+        var stencilTargetNode = this.node.childNodes[0].childNodes[0]; //<g class=me>"
+        svgNode = stencilTargetNode.appendChild(svgNode);
+        
+        // Add to the EventHandler
+        this.addEventHandlers(svgNode);
+        
+        /**set minimum and maximum size*/
+        var minSizeAttr = svgNode.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "minimumSize");
+        if (minSizeAttr) {
+            minSizeAttr = minSizeAttr.replace("/,/g", " ");
+            var minSizeValues = minSizeAttr.split(" ");
+            minSizeValues = minSizeValues.without("");
+            
+            if (minSizeValues.length > 1) {
+                this.minimumSize = {
+                    width: parseFloat(minSizeValues[0]),
+                    height: parseFloat(minSizeValues[1])
+                };
+            }
+            else {
+                //set minimumSize to (1,1), so that width and height of the stencil can never be (0,0)
+                this.minimumSize = {
+                    width: 1,
+                    height: 1
+                };
+            }
+        }
+        
+        var maxSizeAttr = svgNode.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "maximumSize");
+        if (maxSizeAttr) {
+            maxSizeAttr = maxSizeAttr.replace("/,/g", " ");
+            var maxSizeValues = maxSizeAttr.split(" ");
+            maxSizeValues = maxSizeValues.without("");
+            
+            if (maxSizeValues.length > 1) {
+                this.maximumSize = {
+                    width: parseFloat(maxSizeValues[0]),
+                    height: parseFloat(maxSizeValues[1])
+                };
+            }
+        }
+        
+        if (this.minimumSize && this.maximumSize &&
+        (this.minimumSize.width > this.maximumSize.width ||
+        this.minimumSize.height > this.maximumSize.height)) {
+        
+            //TODO wird verschluckt!!!
+            throw this + ": Minimum Size must be greater than maxiumSize.";
+        }
+        
+        /**get current bounds and adjust it to upperLeft == (0,0)*/
+        //initialize all SVGShape objects
+        this._svgShapes = this._initSVGShapes(svgNode);
+        
+        //get upperLeft and lowerRight of stencil
+        var upperLeft = {
+            x: undefined,
+            y: undefined
+        };
+        var lowerRight = {
+            x: undefined,
+            y: undefined
+        };
+        var me = this;
+        this._svgShapes.each(function(svgShape){
+            upperLeft.x = (upperLeft.x !== undefined) ? Math.min(upperLeft.x, svgShape.x) : svgShape.x;
+            upperLeft.y = (upperLeft.y !== undefined) ? Math.min(upperLeft.y, svgShape.y) : svgShape.y;
+            lowerRight.x = (lowerRight.x !== undefined) ? Math.max(lowerRight.x, svgShape.x + svgShape.width) : svgShape.x + svgShape.width;
+            lowerRight.y = (lowerRight.y !== undefined) ? Math.max(lowerRight.y, svgShape.y + svgShape.height) : svgShape.y + svgShape.height;
+            
+            /** set if resizing is enabled */
+            //TODO isResizable durch die beiden anderen booleans ersetzen?
+            if (svgShape.isHorizontallyResizable) {
+                me.isHorizontallyResizable = true;
+                me.isResizable = true;
+            }
+            if (svgShape.isVerticallyResizable) {
+                me.isVerticallyResizable = true;
+                me.isResizable = true;
+            }
+            if (svgShape.anchorTop && svgShape.anchorBottom) {
+                me.isVerticallyResizable = true;
+                me.isResizable = true;
+            }
+            if (svgShape.anchorLeft && svgShape.anchorRight) {
+                me.isHorizontallyResizable = true;
+                me.isResizable = true;
+            }
+        });
+        
+        //move all SVGShapes by -upperLeft
+        this._svgShapes.each(function(svgShape){
+            svgShape.x -= upperLeft.x;
+            svgShape.y -= upperLeft.y;
+            svgShape.update();
+        });
+        
+        //set bounds of shape
+        //the offsets are also needed for positioning the magnets and the docker
+        var offsetX = upperLeft.x;
+        var offsetY = upperLeft.y;
+        
+        lowerRight.x -= offsetX;
+        lowerRight.y -= offsetY;
+        upperLeft.x = 0;
+        upperLeft.y = 0;
+        
+        //prevent that width or height of initial bounds is 0
+        if (lowerRight.x === 0) {
+            lowerRight.x = 1;
+        }
+        if (lowerRight.y === 0) {
+            lowerRight.y = 1;
+        }
+        
+        this._oldBounds.set(upperLeft, lowerRight);
+        this.bounds.set(upperLeft, lowerRight);
+        
+        /**initialize magnets */
+        
+        var magnets = svgDocument.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_ORYX, "magnets");
+        
+        if (magnets && magnets.length > 0) {
+        
+            magnets = $A(magnets[0].getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_ORYX, "magnet"));
+            
+            var me = this;
+            magnets.each(function(magnetElem){
+                var magnet = new ORYX.Core.Controls.Magnet({
+                    eventHandlerCallback: me.eventHandlerCallback
+                });
+                var cx = parseFloat(magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cx"));
+                var cy = parseFloat(magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cy"));
+                magnet.bounds.centerMoveTo({
+                    x: cx - offsetX,
+                    y: cy - offsetY
+                });
+                
+                //get anchors
+                var anchors = magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "anchors");
+                if (anchors) {
+                    anchors = anchors.replace("/,/g", " ");
+                    anchors = anchors.split(" ").without("");
+                    for(var i = 0; i < anchors.length; i++) {
+						switch(anchors[i].toLowerCase()) {
+							case "left":
+								magnet.anchorLeft = true;
+								break;
+							case "right":
+								magnet.anchorRight = true;
+								break;
+							case "top":
+								magnet.anchorTop = true;
+								break;
+							case "bottom":
+								magnet.anchorBottom = true;
+								break;
+						}
+					}
+                }
+                
+                me.add(magnet);
+                
+                //check, if magnet is default magnet
+                if (!this._defaultMagnet) {
+                    var defaultAttr = magnetElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "default");
+                    if (defaultAttr && defaultAttr.toLowerCase() === "yes") {
+                        me._defaultMagnet = magnet;
+                    }
+                }
+            });
+        }
+        else {
+            // Add a Magnet in the Center of Shape			
+            var magnet = new ORYX.Core.Controls.Magnet();
+            magnet.bounds.centerMoveTo(this.bounds.width() / 2, this.bounds.height() / 2);
+            this.add(magnet);
+        }
+        
+        /**initialize docker */
+        var dockerElem = svgDocument.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_ORYX, "docker");
+        
+        if (dockerElem && dockerElem.length > 0) {
+            dockerElem = dockerElem[0];
+            var docker = this.createDocker();
+            var cx = parseFloat(dockerElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cx"));
+            var cy = parseFloat(dockerElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "cy"));
+            docker.bounds.centerMoveTo({
+                x: cx - offsetX,
+                y: cy - offsetY
+            });
+            
+            //get anchors
+            var anchors = dockerElem.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, "anchors");
+            if (anchors) {
+                anchors = anchors.replace("/,/g", " ");
+                anchors = anchors.split(" ").without("");
+                
+				for(var i = 0; i < anchors.length; i++) {
+					switch(anchors[i].toLowerCase()) {
+						case "left":
+							docker.anchorLeft = true;
+							break;
+						case "right":
+							docker.anchorRight = true;
+							break;
+						case "top":
+							docker.anchorTop = true;
+							break;
+						case "bottom":
+							docker.anchorBottom = true;
+							break;
+					}
+				}
+            }
+        }
+        
+        /**initialize labels*/
+        var textElems = svgNode.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'text');
+        $A(textElems).each((function(textElem){
+            var label = new ORYX.Core.SVG.Label({
+                textElement: textElem,
+				shapeId: this.id
+            });
+            label.x -= offsetX;
+            label.y -= offsetY;
+            this._labels[label.id] = label;
+        }).bind(this));
+    },
+	
+	/**
+	 * Override the Method, that a docker is not shown
+	 *
+	 */
+	createDocker: function() {
+		var docker = new ORYX.Core.Controls.Docker({eventHandlerCallback: this.eventHandlerCallback});
+		docker.bounds.registerCallback(this._dockerChangedCallback);
+		
+		this.dockers.push( docker );
+		docker.parent = this;
+		docker.bounds.registerCallback(this._changedCallback);		
+		
+		return docker		
+	},	
+    
+    toString: function(){
+        return this._stencil.title() + " " + this.id
+    }
+};
+ORYX.Core.Node = ORYX.Core.Shape.extend(ORYX.Core.Node);
+/**
+ * Copyright (c) 2006
+ * Martin Czuchra, Nicolas Peters, Daniel Polak, Willi Tscheschner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ **/
+NAMESPACE_SVG = "http://www.w3.org/2000/svg";
+NAMESPACE_ORYX = "http://www.b3mn.org/oryx";
+
+
+/**
+ * Init namespaces
+ */
+if (!ORYX) {
+    var ORYX = {};
+}
+if (!ORYX.Core) {
+    ORYX.Core = {};
+}
+
+
+/**
+ * @classDescription Abstract base class for all connections.
+ * @extends {ORYX.Core.Shape}
+ * @param options {Object}
+ *
+ * TODO da die verschiebung der Edge nicht ueber eine
+ *  translation gemacht wird, die sich auch auf alle kind UIObjects auswirkt,
+ *  muessen die kinder hier beim verschieben speziell betrachtet werden.
+ *  Das sollte ueberarbeitet werden.
+ *
+ */
+ORYX.Core.Edge = {
+    /**
+     * Constructor
+     * @param {Object} options
+     * @param {Stencil} stencil
+     */
+    construct: function(options, stencil){
+        arguments.callee.$.construct.apply(this, arguments);
+        
+        this.isMovable = true;
+        this.isSelectable = true;
+
+        this._dockerUpdated = false;
+        
+        this._markers = new Hash(); //a hash map of SVGMarker objects where keys are the marker ids
+        this._paths = [];
+        this._interactionPaths = [];
+        this._dockersByPath = new Hash();
+        this._markersByPath = new Hash();
+		
+		/* Data structures to store positioning information of attached child nodes */ 
+		this.attachedNodePositionData = new Hash();
+        
+        //TODO was muss hier initial erzeugt werden?
+        var stencilNode = this.node.childNodes[0].childNodes[0];
+        stencilNode = ORYX.Editor.graft("http://www.w3.org/2000/svg", stencilNode, ['g', {
+            "pointer-events": "painted"
+        }]);
+        
+        //Add to the EventHandler
+        this.addEventHandlers(stencilNode);
+        
+        
+        this._oldBounds = this.bounds.clone();
+        
+        //load stencil
+        this._init(this._stencil.view());
+        
+        if (stencil instanceof Array) {
+            this.deserialize(stencil);
+        }
+        
+    },
+    
+    _update: function(force){
+		if(this._dockerUpdated || this.isChanged || force) {
+			
+			this.dockers.invoke("update");
+			
+	        if (this.bounds.width() === 0 || this.bounds.height() === 0) {
+	        
+	            this.bounds.moveBy({
+	                x: this.bounds.width() === 0 ? -1 : 0,
+	                y: this.bounds.height() === 0 ? -1 : 0
+	            });
+	            
+	            this.bounds.extend({
+	                x: this.bounds.width() === 0 ? 2 : 0,
+	                y: this.bounds.height() === 0 ? 2 : 0
+	            });
+	            
+	        }
+	        
+	        // TODO: Bounds muss abhaengig des Eltern-Shapes gesetzt werden
+	        var upL = this.bounds.upperLeft();
+	        var oldUpL = this._oldBounds.upperLeft();
+	        var oldWidth = this._oldBounds.width() === 0 ? this.bounds.width() : this._oldBounds.width();
+	        var oldHeight = this._oldBounds.height() === 0 ? this.bounds.height() : this._oldBounds.height();
+	        var diffX = upL.x - oldUpL.x;
+	        var diffY = upL.y - oldUpL.y;
+	        var diffWidth = this.bounds.width() / oldWidth;
+	        var diffHeight = this.bounds.height() / oldHeight;
+	        
+	        this.dockers.each((function(docker){
+	            // Unregister on BoundsChangedCallback
+	            docker.bounds.unregisterCallback(this._dockerChangedCallback);
+	            
+	            // If there is any changes at the edge and is there is not an DockersUpdate
+	            // set the new bounds to the docker
+	            if (!this._dockerUpdated) {
+	                docker.bounds.moveBy(diffX, diffY);
+	                
+	                if (diffWidth !== 1 || diffHeight !== 1) {
+	                    var relX = docker.bounds.upperLeft().x - upL.x;
+	                    var relY = docker.bounds.upperLeft().y - upL.y;
+	                    
+	                    docker.bounds.moveTo(upL.x + relX * diffWidth, upL.y + relY * diffHeight);
+	                }
+	            }
+	            // Do Docker update and register on DockersBoundChange
+	            docker.update();
+	            docker.bounds.registerCallback(this._dockerChangedCallback);
+	            
+	        }).bind(this));
+	        
+	        if (this._dockerUpdated) {
+	            var a = this.dockers.first().bounds.center();
+	            var b = this.dockers.first().bounds.center();
+	            
+	            this.dockers.each((function(docker){
+	                var center = docker.bounds.center();
+	                a.x = Math.min(a.x, center.x);
+	                a.y = Math.min(a.y, center.y);
+	                b.x = Math.max(b.x, center.x);
+	                b.y = Math.max(b.y, center.y);
+	            }).bind(this));
+	            
+	            //set the bounds of the the association
+	            this.bounds.set(Object.clone(a), Object.clone(b));
+	        }
+			
+
+
+			//reposition labels
+			this.getLabels().each(function(label) {
+				switch (label.edgePosition) {
+					case "freeMoved" :
+			        	label.x=label.x;
+			        	label.y=label.y;	
+			        	break;
+					case "starttop":
+						var angle = this._getAngle(this.dockers[0], this.dockers[1]);
+						var pos = this.dockers.first().bounds.center();
+						
+						if (angle <= 90 || angle > 270) {
+							label.horizontalAlign("left");
+							label.verticalAlign("bottom");
+							label.x = pos.x + label.getOffsetTop();
+							label.y = pos.y - label.getOffsetTop();
+							label.rotate(360 - angle, pos);
+						} else {
+							label.horizontalAlign("right");
+							label.verticalAlign("bottom");
+							label.x = pos.x - label.getOffsetTop();
+							label.y = pos.y - label.getOffsetTop();
+							label.rotate(180 - angle, pos);
+						}
+						
+						break;
+					case "startbottom":
+						var angle = this._getAngle(this.dockers[0], this.dockers[1]);
+						var pos = this.dockers.first().bounds.center();
+						
+						if (angle <= 90 || angle > 270) {
+							label.horizontalAlign("left");
+							label.verticalAlign("top");
+							label.x = pos.x + label.getOffsetBottom();
+							label.y = pos.y + label.getOffsetBottom();
+							label.rotate(360 - angle, pos);
+						} else {
+							label.horizontalAlign("right");
+							label.verticalAlign("top");
+							label.x = pos.x - label.getOffsetBottom();
+							label.y = pos.y + label.getOffsetBottom();
+							label.rotate(180 - angle, pos);
+						}
+						
+						break;
+					case "midtop":
+						var numOfDockers = this.dockers.length;
+						if(numOfDockers%2 == 0) {
+							var angle = this._getAngle(this.dockers[numOfDockers/2-1], this.dockers[numOfDockers/2])
+							var pos1 = this.dockers[numOfDockers/2-1].bounds.center();
+							var pos2 = this.dockers[numOfDockers/2].bounds.center();
+							var pos = {x:(pos1.x + pos2.x)/2.0, y:(pos1.y+pos2.y)/2.0};
+							
+							label.horizontalAlign("center");
+							label.verticalAlign("bottom");
+							label.x = pos.x;
+							label.y = pos.y - label.getOffsetTop();
+								
+							if (angle <= 90 || angle > 270) {
+								label.rotate(360 - angle, pos);
+							} else {
+								label.rotate(180 - angle, pos);
+							}
+						} else {
+							var index = parseInt(numOfDockers/2);
+							var angle = this._getAngle(this.dockers[index], this.dockers[index+1])
+							var pos = this.dockers[index].bounds.center();
+							
+							if (angle <= 90 || angle > 270) {
+								label.horizontalAlign("left");
+								label.verticalAlign("bottom");
+								label.x = pos.x + label.getOffsetTop();
+								label.y = pos.y - label.getOffsetTop();
+								label.rotate(360 - angle, pos);
+							} else {
+								label.horizontalAlign("right");
+								label.verticalAlign("bottom");
+								label.x = pos.x - label.getOffsetTop();
+								label.y = pos.y - label.getOffsetTop();
+								label.rotate(180 - angle, pos);
+							}
+						}
+						
+						break;
+					case "midbottom":
+						var numOfDockers = this.dockers.length;
+						if(numOfDockers%2 == 0) {
+							var angle = this._getAngle(this.dockers[numOfDockers/2-1], this.dockers[numOfDockers/2])
+							var pos1 = this.dockers[numOfDockers/2-1].bounds.center();
+							var pos2 = this.dockers[numOfDockers/2].bounds.center();
+							var pos = {x:(pos1.x + pos2.x)/2.0, y:(pos1.y+pos2.y)/2.0};
+							
+							label.horizontalAlign("center");
+							label.verticalAlign("top");
+							label.x = pos.x;
+							label.y = pos.y + label.getOffsetTop();
+							
+							if (angle <= 90 || angle > 270) {
+								label.rotate(360 - angle, pos);
+							} else {
+								label.rotate(180 - angle, pos);
+							}
+						} else {
+							var index = parseInt(numOfDockers/2);
+							var angle = this._getAngle(this.dockers[index], this.dockers[index+1])
+							var pos = this.dockers[index].bounds.center();
+							
+							if (angle <= 90 || angle > 270) {
+								label.horizontalAlign("left");
+								label.verticalAlign("top");
+								label.x = pos.x + label.getOffsetBottom();
+								label.y = pos.y + label.getOffsetBottom();
+								label.rotate(360 - angle, pos);
+							} else {
+								label.horizontalAlign("right");
+								label.verticalAlign("top");
+								label.x = pos.x - label.getOffsetBottom();
+								label.y = pos.y + label.getOffsetBottom();
+								label.rotate(180 - angle, pos);
+							}
+						}
+						
+						break;
+					case "endtop":
+						var length = this.dockers.length;
+						var angle = this._getAngle(this.dockers[length-2], this.dockers[length-1]);
+						var pos = this.dockers.last().bounds.center();
+						
+						if (angle <= 90 || angle > 270) {
+							label.horizontalAlign("right");
+							label.verticalAlign("bottom");
+							label.x = pos.x - label.getOffsetTop();
+							label.y = pos.y - label.getOffsetTop();
+							label.rotate(360 - angle, pos);
+						} else {
+							label.horizontalAlign("left");
+							label.verticalAlign("bottom");
+							label.x = pos.x + label.getOffsetTop();
+							label.y = pos.y - label.getOffsetTop();
+							label.rotate(180 - angle, pos);
+						}
+						
+						break;
+					case "endbottom":
+						var length = this.dockers.length;
+						var angle = this._getAngle(this.dockers[length-2], this.dockers[length-1]);
+						var pos = this.dockers.last().bounds.center();
+						
+						if (angle <= 90 || angle > 270) {
+							label.horizontalAlign("right");
+							label.verticalAlign("top");
+							label.x = pos.x - label.getOffsetBottom();
+							label.y = pos.y + label.getOffsetBottom();
+							label.rotate(360 - angle, pos);
+						} else {
+							label.horizontalAlign("left");
+							label.verticalAlign("top");
+							label.x = pos.x + label.getOffsetBottom();
+							label.y = pos.y + label.getOffsetBottom();
+							label.rotate(180 - angle, pos);
+						}
+						
+						break;
+			}
+			}.bind(this));
+
+			this.children.each(function(value) {
+				if(value instanceof ORYX.Core.Node) {
+					this.calculatePositionOfAttachedChildNode.call(this, value);
+				}
+			}.bind(this));
+			
+			this.refreshAttachedNodes();
+			this.refresh();
+			
+			this.isChanged = false;
+			this._dockerUpdated = false;
+			
+			this._oldBounds = this.bounds.clone();
+        }
+		
+
+    },
+	
+	/**
+	 *  Moves a point to the upperLeft of a node's bounds.
+	 *  
+	 *  @param {point} point
+	 *  	The point to move
+	 *  @param {ORYX.Core.Bounds} bounds
+	 *  	The Bounds of the related noe
+	 */
+	movePointToUpperLeftOfNode: function(point, bounds) {
+		point.x -= bounds.width()/2;
+		point.y -= bounds.height()/2;
+	},
+	
+	/**
+	 * Refreshes the visual representation of edge's attached nodes.
+	 */	
+	refreshAttachedNodes: function() {
+		this.attachedNodePositionData.values().each(function(nodeData) {
+			var startPoint = nodeData.segment.docker1.bounds.center();
+			var endPoint = nodeData.segment.docker2.bounds.center();
+			this.relativizePoint(startPoint);
+			this.relativizePoint(endPoint);
+			
+			var newNodePosition = new Object();
+			
+			/* Calculate new x-coordinate */
+			newNodePosition.x = startPoint.x 
+								+ nodeData.relativDistanceFromDocker1
+									* (endPoint.x - startPoint.x);
+			
+			/* Calculate new y-coordinate */
+			newNodePosition.y = startPoint.y 
+								+ nodeData.relativDistanceFromDocker1
+									* (endPoint.y - startPoint.y);
+			
+			/* Convert new position to the upper left of the node */
+			this.movePointToUpperLeftOfNode(newNodePosition, nodeData.node.bounds);
+			
+			/* Move node to its new position */
+			nodeData.node.bounds.moveTo(newNodePosition);
+			nodeData.node._update();					
+			
+		}.bind(this));
+	},
+	
+	/**
+	 * Calculates the position of an edge's child node. The node is placed on 
+	 * the path of the edge.
+	 * 
+	 * @param {node}
+	 * 		The node to calculate the new position
+	 * @return {Point}
+	 * 		The calculated upper left point of the node's shape.
+	 */
+	calculatePositionOfAttachedChildNode: function(node) {
+		/* Initialize position */
+		var position = new Object();
+		position.x = 0;
+		position.y = 0;
+		
+		/* Case: Node was just added */
+		if(!this.attachedNodePositionData[node.getId()]) {
+			this.attachedNodePositionData[node.getId()] = new Object();
+			this.attachedNodePositionData[node.getId()]
+					.relativDistanceFromDocker1 = 0;
+			this.attachedNodePositionData[node.getId()].node = node;
+			this.attachedNodePositionData[node.getId()].segment = new Object();
+			this.findEdgeSegmentForNode(node);
+		}else if(node.isChanged) {
+			this.findEdgeSegmentForNode(node);
+		}
+		
+		
+		
+	},
+	
+	/**
+	 * Finds the appropriate edge segement for a node.
+	 * The segment is choosen, which has the smallest distance to the node.
+	 * 
+	 * @param {ORYX.Core.Node} node
+	 * 		The concerning node
+	 */
+	findEdgeSegmentForNode: function(node) {
+		var length = this.dockers.length;
+		var smallestDistance = undefined;
+		
+		for(i=1;i<length;i++) {
+			var lineP1 = this.dockers[i-1].bounds.center();
+			var lineP2 = this.dockers[i].bounds.center();
+			this.relativizePoint(lineP1);
+			this.relativizePoint(lineP2);
+			//position übergeben hier
+			var nodeCenterPoint = node.bounds.center();
+			var distance = ORYX.Core.Math.distancePointLinie(
+															lineP1,
+															lineP2, 
+															nodeCenterPoint, 
+															true);
+			
+			if((distance || distance == 0) && ((!smallestDistance && smallestDistance != 0) 
+						|| distance < smallestDistance)) {
+				
+				smallestDistance = distance;
+				
+				this.attachedNodePositionData[node.getId()].segment.docker1 = 
+													this.dockers[i-1];
+				this.attachedNodePositionData[node.getId()].segment.docker2 = 
+													this.dockers[i];
+	
+			}
+			
+			/* Either the distance does not match the segment or the distance
+			 * between docker1 and docker2 is 0
+			 * 
+			 * In this case choose the nearest docker as attaching point.
+			 * 
+			 */
+			if(!distance && !smallestDistance && smallestDistance != 0) {
+				(ORYX.Core.Math.getDistancePointToPoint(nodeCenterPoint, lineP1)
+					< ORYX.Core.Math.getDistancePointToPoint(nodeCenterPoint, lineP2)) ?
+					this.attachedNodePositionData[node.getId()].relativDistanceFromDocker1 = 0 :
+					this.attachedNodePositionData[node.getId()].relativDistanceFromDocker1 = 1;
+				this.attachedNodePositionData[node.getId()].segment.docker1 = 
+													this.dockers[i-1];
+				this.attachedNodePositionData[node.getId()].segment.docker2 = 
+													this.dockers[i];
+			}
+		}
+		
+		/* Calculate position on edge segment for the node */
+		if(smallestDistance || smallestDistance == 0) {
+			this.attachedNodePositionData[node.getId()].relativDistanceFromDocker1 =
+			this.getLineParameterForPosition(
+					this.attachedNodePositionData[node.getId()].segment.docker1,
+					this.attachedNodePositionData[node.getId()].segment.docker2,
+					node);
+		}
+	},
+	
+	/**
+	 * Returns the value of the scalar to determine the position of the node on 
+	 * line defined by docker1 and docker2.
+	 * 
+	 * @param {point} docker1
+	 * 		The docker that defines the start of the line segment
+	 * @param {point} docker2
+	 * 		The docker that defines the end of the line segment
+	 * @param {ORYX.Core.Node} node
+	 * 		The concerning node
+	 * 
+	 * @return {float} positionParameter
+	 * 		The scalar value to determine the position on the line
+	 */
+	getLineParameterForPosition: function(docker1, docker2, node) {
+		var dockerPoint1 = docker1.bounds.center();
+		var dockerPoint2 = docker2.bounds.center();
+		this.relativizePoint(dockerPoint1);
+		this.relativizePoint(dockerPoint2);
+		
+		var intersectionPoint = ORYX.Core.Math.getPointOfIntersectionPointLine(
+									dockerPoint1,
+									dockerPoint2,
+									node.bounds.center(), true);
+		if(!intersectionPoint) {
+			return 0;
+		}
+		
+		var relativeDistance = 
+			ORYX.Core.Math.getDistancePointToPoint(intersectionPoint, dockerPoint1) /
+			ORYX.Core.Math.getDistancePointToPoint(dockerPoint1, dockerPoint2);
+		
+		return relativeDistance;
+	},
+	/**
+	 * Makes point relative to the upper left of the edge's bound.
+	 * 
+	 * @param {point} point
+	 * 		The point to relativize
+	 */
+	relativizePoint: function(point) {
+		point.x -= this.bounds.upperLeft().x;
+		point.y -= this.bounds.upperLeft().y;		
+	},
+    
+    refresh: function(){
+        //call base class refresh method
+        arguments.callee.$.refresh.apply(this, arguments);
+        
+        //TODO consider points for marker mids
+        var lastPoint;
+        this._paths.each((function(path, index){
+            var dockers = this._dockersByPath[path.id];
+            var c = undefined;
+			var d = undefined;
+            if (lastPoint) {
+                d = "M" + lastPoint.x + " " + lastPoint.y;
+            }
+            else {
+                c = dockers[0].bounds.center();
+                lastPoint = c;
+                
+                d = "M" + c.x + " " + c.y;
+            }
+            
+            for (var i = 1; i < dockers.length; i++) {
+                // for each docker, draw a line to the center
+                c = dockers[i].bounds.center();
+                d = d + "L" + c.x + " " + c.y + " ";
+                lastPoint = c;
+            }
+            
+            path.setAttributeNS(null, "d", d);
+            this._interactionPaths[index].setAttributeNS(null, "d", d);
+            
+        }).bind(this));
+		
+		
+		/* move child shapes of an edge */
+		if(this.getChildNodes().length > 0) {
+	        var x = this.bounds.upperLeft().x;
+	        var y = this.bounds.upperLeft().y;
+	        
+			this.node.firstChild.childNodes[1].setAttributeNS(null, "transform", "translate(" + x + ", " + y + ")");
+		}
+		
+    },
+    
+    /**
+     * Calculate the Border Intersection Point between two points
+     * @param {PointA}
+     * @param {PointB}
+     */
+    getIntersectionPoint: function(){
+    
+        var length = Math.floor(this.dockers.length / 2)
+        
+        return ORYX.Core.Math.midPoint(this.dockers[length - 1].bounds.center(), this.dockers[length].bounds.center())
+    },
+    
+    
+    /**
+     * Calculate if the point is inside the Shape
+     * @param {PointX}
+     * @param {PointY} 
+     */
+    isPointIncluded: function(pointX, pointY){
+    
+        var isbetweenAB = this.absoluteBounds().isIncluded(pointX, pointY, 
+												ORYX.CONFIG.OFFSET_EDGE_BOUNDS);
+        
+		var isPointIncluded = undefined;
+		
+        if (isbetweenAB && this.dockers.length > 0) {
+		
+			var i = 0;
+			var point1, point2;
+			
+			
+			do {
+			
+				point1 = this.dockers[i].bounds.center();
+				point2 = this.dockers[++i].bounds.center();
+				
+				isPointIncluded = ORYX.Core.Math.isPointInLine(pointX, pointY, 
+											point1.x, point1.y, 
+											point2.x, point2.y, 
+											ORYX.CONFIG.OFFSET_EDGE_BOUNDS);
+				
+			} while (!isPointIncluded && i < this.dockers.length - 1)
+			
+		}
+		
+		return isPointIncluded;
+
+    },
+  
+    
+    /**
+     * Calculate if the point is over an special offset area
+     * @param {Point}
+     */
+    isPointOverOffset: function(){
+		return  false
+	},
+	
+	/**
+	* Returns the angle of the line between two dockers
+	* (0 - 359.99999999)
+	*/
+	_getAngle: function(docker1, docker2) {
+		var p1 = docker1.absoluteCenterXY();
+		var p2 = docker2.absoluteCenterXY();
+		
+		if(p1.x == p2.x && p1.y == p2.y)
+			return 0;
+
+		var angle = Math.asin(Math.sqrt(Math.pow(p1.y-p2.y, 2))
+					/(Math.sqrt(Math.pow(p2.x-p1.x, 2)+Math.pow(p1.y-p2.y, 2))))
+					*180/Math.PI;
+		
+		if(p2.x >= p1.x && p2.y <= p1.y)
+			return angle;
+		else if(p2.x < p1.x && p2.y <= p1.y)
+			return 180 - angle;
+		else if(p2.x < p1.x && p2.y > p1.y)
+			return 180 + angle;
+		else
+			return 360 - angle;
+	},
+	    
+    alignDockers: function(){
+        this._update(true);
+        
+        var firstPoint = this.dockers.first().bounds.center();
+        var lastPoint = this.dockers.last().bounds.center();
+        
+        var deltaX = lastPoint.x - firstPoint.x;
+        var deltaY = lastPoint.y - firstPoint.y;
+        
+        var numOfDockers = this.dockers.length - 1;
+        
+        this.dockers.each((function(docker, index){
+            var part = index / numOfDockers;
+            docker.bounds.unregisterCallback(this._dockerChangedCallback);
+            docker.bounds.moveTo(firstPoint.x + part * deltaX, firstPoint.y + part * deltaY);
+            docker.bounds.registerCallback(this._dockerChangedCallback);
+        }).bind(this));
+        
+        this._dockerChanged();
+    },
+    
+	add: function(shape){
+        arguments.callee.$.add.apply(this, arguments);
+		
+		// If the new shape is a Docker which is not contained
+		if (shape instanceof ORYX.Core.Controls.Docker && this.dockers.include(shape)){
+			// Add it to the dockers list ordered by paths		
+			var pathArray = this._dockersByPath.values()[0];
+			if (pathArray) {
+				pathArray.splice(this.dockers.indexOf(shape), 0, shape);
+			}
+			
+			/* Perform nessary adjustments on the edge's child shapes */
+			this.handleChildShapesAfterAddDocker(shape);
+		}
+	},
+	
+	/**
+	 * Performs nessary adjustments on the edge's child shapes.
+	 * 
+	 * @param {ORYX.Core.Controls.Docker} docker
+	 * 		The added docker
+	 */
+	handleChildShapesAfterAddDocker: function(docker) {
+		/* Ensure type of Docker */
+		if(!docker instanceof ORYX.Core.Controls.Docker) {return undefined;}
+		
+		var index = this.dockers.indexOf(docker);
+		if(!(0 < index && index < this.dockers.length - 1)) {
+		/* Exception: Expect added docker between first and last node of the edge */
+			return undefined;
+		} 
+			
+		/* Get child nodes concerning the segment of the new docker */
+		var startDocker = this.dockers[index-1];
+		var endDocker = this.dockers[index+1];
+		
+		/* Adjust the position of edge's child nodes */
+		var segmentElements = 
+			this.getAttachedNodePositionDataForSegment(startDocker, endDocker);
+		
+		var lengthSegmentPart1 = ORYX.Core.Math.getDistancePointToPoint(
+										startDocker.bounds.center(),
+										docker.bounds.center());
+		var lengthSegmentPart2 = ORYX.Core.Math.getDistancePointToPoint(
+										endDocker.bounds.center(),
+										docker.bounds.center());
+										
+		if(!(lengthSegmentPart1 + lengthSegmentPart2)) {return;}
+		
+		var relativDockerPosition = lengthSegmentPart1 / (lengthSegmentPart1 + lengthSegmentPart2);
+			
+		segmentElements.each(function(nodePositionData) {
+			/* Assign child node to the new segment */
+			if(nodePositionData.value.relativDistanceFromDocker1 < relativDockerPosition) {
+				/* Case: before added Docker */
+				nodePositionData.value.segment.docker2 = docker;
+				nodePositionData.value.relativDistanceFromDocker1 = 
+					nodePositionData.value.relativDistanceFromDocker1 / relativDockerPosition;
+			} else {
+				/* Case: after added Docker */
+				nodePositionData.value.segment.docker1 = docker;
+				var newFullDistance = 1 - relativDockerPosition;
+				var relativPartOfSegment = 
+							nodePositionData.value.relativDistanceFromDocker1
+							- relativDockerPosition;
+				
+				nodePositionData.value.relativDistanceFromDocker1 = 
+										relativPartOfSegment / newFullDistance;
+				
+			}
+		})
+		
+		/* Update attached nodes visual representation */
+		this.refreshAttachedNodes();
+	},
+	
+	/**
+	 *	Returns elements from {@link attachedNodePositiondata} that match the
+	 *  segement defined by startDocker and endDocker.
+	 *  
+	 *  @param {ORYX.Core.Controls.Docker} startDocker
+	 *  	The docker defining the begin of the segment.
+	 *  @param {ORYX.Core.Controls.Docker} endDocker
+	 *  	The docker defining the begin of the segment.
+	 *  
+	 *  @return {Hash} attachedNodePositionData
+	 *  	Child elements matching the segment
+	 */
+	getAttachedNodePositionDataForSegment: function(startDocker, endDocker) {
+		/* Ensure that the segment is defined correctly */
+		if(!((startDocker instanceof ORYX.Core.Controls.Docker) 
+			&& (endDocker instanceof ORYX.Core.Controls.Docker))) {
+				return [];
+			}
+			
+		/* Get elements of the segment */
+		var elementsOfSegment = 
+			this.attachedNodePositionData.findAll(function(nodePositionData) {
+				return nodePositionData.value.segment.docker1 === startDocker &&
+						nodePositionData.value.segment.docker2 === endDocker;
+			});
+		
+		/* Return a Hash in each case */
+		if(!elementsOfSegment) {return [];}
+		
+		return elementsOfSegment;
+	},
+	
+	/**
+	 * Removes an edge's child shape
+	 */
+	remove: function(shape) {
+		arguments.callee.$.remove.apply(this, arguments);
+		
+		if(this.attachedNodePositionData[shape.getId()]) {
+			delete this.attachedNodePositionData[shape.getId()];
+		}
+		
+		/* Adjust child shapes if neccessary */
+		if(shape instanceof ORYX.Core.Controls.Docker) {
+			this.handleChildShapesAfterRemoveDocker(shape);
+		}
+	},
+	
+	/**
+	 * 	Adjusts the child shapes of an edges after a docker was removed.
+	 * 	
+	 *  @param{ORYX.Core.Controls.Docker} docker
+	 *  	The removed docker.
+	 */
+	handleChildShapesAfterRemoveDocker: function(docker) {
+		/* Ensure docker type */
+		if(!(docker instanceof ORYX.Core.Controls.Docker)) {return;}
+		
+		this.attachedNodePositionData.each(function(nodePositionData) {
+			if(nodePositionData.value.segment.docker1 === docker) {
+				/* The new start of the segment is the predecessor of docker2. */
+				var index = this.dockers.indexOf(nodePositionData.value.segment.docker2);
+				if(index == -1) {return;}
+				nodePositionData.value.segment.docker1 = this.dockers[index - 1];
+			} 
+			else if(nodePositionData.value.segment.docker2 === docker) {
+				/* The new end of the segment is the successor of docker1. */
+				var index = this.dockers.indexOf(nodePositionData.value.segment.docker1);
+				if(index == -1) {return;}
+				nodePositionData.value.segment.docker2 = this.dockers[index + 1];
+			}
+		}.bind(this));
+		
+		/* Update attached nodes visual representation */
+		this.refreshAttachedNodes();
+	},
+	
+	/**
+     *@deprecated Use the .createDocker() Method and set the point via the bounds
+     */
+    addDocker: function(position, exDocker){
+        var lastDocker;
+		var result;
+        this._dockersByPath.any((function(pair){
+            return pair.value.any((function(docker, index){
+                if (!lastDocker) {
+                    lastDocker = docker;
+                    return false;
+                }
+                else {
+                    var point1 = lastDocker.bounds.center();
+                    var point2 = docker.bounds.center();
+                    
+                    if (ORYX.Core.Math.isPointInLine(position.x, position.y, point1.x, point1.y, point2.x, point2.y, 10)) {
+                        var path = this._paths.find(function(path){
+                            return path.id === pair.key;
+                        });
+                        if (path) {
+                            var allowAttr = path.getAttributeNS(NAMESPACE_ORYX, 'allowDockers');
+                            if (allowAttr && allowAttr.toLowerCase() === "no") {
+                                return true;
+                            }
+                        }
+                        var newDocker = (exDocker) ? exDocker : this.createDocker(this.dockers.indexOf(lastDocker) + 1, position);
+						newDocker.bounds.centerMoveTo(position);
+                        if(exDocker)
+							this.add(newDocker, this.dockers.indexOf(lastDocker) + 1);
+                        // Remove new Docker from 'to add' dockers
+						//pair.value = pair.value.without(newDocker);
+						//pair.value.splice(this.dockers.indexOf(lastDocker) + 1, 0, newDocker);
+						// Remove the Docker from the Docker list and add the Docker to the new position
+                        //this.dockers = this.dockers.without(newDocker);
+                        //this.dockers.splice(this.dockers.indexOf(lastDocker) + 1, 0, newDocker);
+                        //this._update(true);
+						result = newDocker;
+                        return true;
+                    }
+                    else {
+                        lastDocker = docker;
+                        return false;
+                    }
+                }
+            }).bind(this));
+        }).bind(this));
+		return result;
+    },
+    
+    removeDocker: function(docker){
+        if (this.dockers.length > 2 && !(this.dockers.first() === docker)) {
+            this._dockersByPath.any((function(pair){
+                if (pair.value.member(docker)) {
+                    if (docker === pair.value.last()) {
+                        return true;
+                    }
+                    else {
+                        this.remove(docker);
+                        this._dockersByPath[pair.key] = pair.value.without(docker);
+                        this.isChanged = true;
+                        this._dockerChanged();
+                        return true;
+                    }
+                }
+                return false;
+            }).bind(this));
+        }
+    },
+	
+	/**
+	 * Removes all dockers from the edge which are on 
+	 * the line between two dockers
+	 * @return {Object} Removed dockers in an indicied array 
+	 * (key is the removed position of the docker, value is docker themselve)
+	 */
+	removeUnusedDockers:function(){
+		var marked = $H({});
+		
+		this.dockers.each(function(docker, i){
+			if (i==0||i==this.dockers.length-1){ return }
+			var previous = this.dockers[i-1];
+			
+			/* Do not consider already removed dockers */
+			if(marked.values().indexOf(previous) != -1 && this.dockers[i-2]) {
+				previous = this.dockers[i-2];
+			}
+			var next = this.dockers[i+1];
+			
+			var cp = previous.getDockedShape() && previous.referencePoint ? previous.getAbsoluteReferencePoint() : previous.bounds.center();
+			var cn = next.getDockedShape() && next.referencePoint ? next.getAbsoluteReferencePoint() : next.bounds.center();
+			var cd = docker.bounds.center();
+			
+			if (ORYX.Core.Math.isPointInLine(cd.x, cd.y, cp.x, cp.y, cn.x, cn.y, 1)){
+				marked[i] = docker;
+			}
+		}.bind(this))
+		
+		marked.each(function(docker){
+			this.removeDocker(docker.value);
+		}.bind(this))
+		
+		if (marked.values().length > 0){
+			this._update(true);
+		}
+		
+		return marked;
+	},
+    
+    /**
+     * Initializes the Edge after loading the SVG representation of the edge.
+     * @param {SVGDocument} svgDocument
+     */
+    _init: function(svgDocument){
+        arguments.callee.$._init.apply(this, arguments);
+        
+        var minPointX, minPointY, maxPointX, maxPointY;
+        
+        //init markers
+        var defs = svgDocument.getElementsByTagNameNS(NAMESPACE_SVG, "defs");
+        if (defs.length > 0) {
+            defs = defs[0];
+            var markerElements = $A(defs.getElementsByTagNameNS(NAMESPACE_SVG, "marker"));
+            var marker;
+            var me = this;
+            markerElements.each(function(markerElement){
+                try {
+                    marker = new ORYX.Core.SVG.SVGMarker(markerElement.cloneNode(true));
+                    me._markers[marker.id] = marker;
+                    var textElements = $A(marker.element.getElementsByTagNameNS(NAMESPACE_SVG, "text"));
+                    var label;
+                    textElements.each(function(textElement){
+                        label = new ORYX.Core.SVG.Label({
+                            textElement: textElement,
+							shapeId: this.id
+                        });
+                        me._labels[label.id] = label;
+                    });
+                } 
+                catch (e) {
+                }
+            });
+        }
+        
+        
+        var gs = svgDocument.getElementsByTagNameNS(NAMESPACE_SVG, "g");
+        if (gs.length <= 0) {
+            throw "Edge: No g element found.";
+        }
+        var g = gs[0];
+        
+        
+        g.setAttributeNS(null, "id", null);
+        
+        var isFirst = true;
+        
+        $A(g.childNodes).each((function(path, index){
+            if (ORYX.Editor.checkClassType(path, SVGPathElement)) {
+                path = path.cloneNode(false);
+                
+                var pathId = this.id + "_" + index;
+                path.setAttributeNS(null, "id", pathId);
+                this._paths.push(path);
+                
+                //check, if markers are set and update the id
+                var markersByThisPath = [];
+                var markerUrl = path.getAttributeNS(null, "marker-start");
+                
+                if (markerUrl && markerUrl !== "") {
+                    markerUrl = markerUrl.strip();
+                    markerUrl = markerUrl.replace(/^url\(#/, '');
+                    var markerStartId = this.id.concat(markerUrl.replace(/\)$/, ''));
+                    path.setAttributeNS(null, "marker-start", "url(#" + markerStartId + ")");
+                    
+                    markersByThisPath.push(this._markers[markerStartId]);
+                }
+                
+                markerUrl = path.getAttributeNS(null, "marker-mid");
+                
+                if (markerUrl && markerUrl !== "") {
+                    markerUrl = markerUrl.strip();
+                    markerUrl = markerUrl.replace(/^url\(#/, '');
+                    var markerMidId = this.id.concat(markerUrl.replace(/\)$/, ''));
+                    path.setAttributeNS(null, "marker-mid", "url(#" + markerMidId + ")");
+                    
+                    markersByThisPath.push(this._markers[markerMidId]);
+                }
+                
+                markerUrl = path.getAttributeNS(null, "marker-end");
+                
+                if (markerUrl && markerUrl !== "") {
+                    markerUrl = markerUrl.strip();
+                    markerUrl = markerUrl.replace(/^url\(#/, '');
+                    var markerEndId = this.id.concat(markerUrl.replace(/\)$/, ''));
+                    path.setAttributeNS(null, "marker-end", "url(#" + markerEndId + ")");
+                    
+                    markersByThisPath.push(this._markers[markerEndId]);
+                }
+                
+                this._markersByPath[pathId] = markersByThisPath;
+                
+                //init dockers
+                var parser = new PathParser();
+                var handler = new ORYX.Core.SVG.PointsPathHandler();
+                parser.setHandler(handler);
+                parser.parsePath(path);
+                
+                if (handler.points.length < 4) {
+                    throw "Edge: Path has to have two or more points specified.";
+                }
+                
+                this._dockersByPath[pathId] = [];
+                
+				for (var i = 0; i < handler.points.length; i += 2) {
+					//handler.points.each((function(point, pIndex){
+					var x = handler.points[i];
+					var y = handler.points[i+1];
+					if (isFirst || i > 0) {
+						var docker = new ORYX.Core.Controls.Docker({
+							eventHandlerCallback: this.eventHandlerCallback
+						});
+						docker.bounds.centerMoveTo(x,y);
+						docker.bounds.registerCallback(this._dockerChangedCallback);
+						this.add(docker, this.dockers.length);
+						
+						//this._dockersByPath[pathId].push(docker);
+						
+						//calculate minPoint and maxPoint
+						if (minPointX) {
+							minPointX = Math.min(x, minPointX);
+							minPointY = Math.min(y, minPointY);
+						}
+						else {
+							minPointX = x;
+							minPointY = y;
+						}
+						
+						if (maxPointX) {
+							maxPointX = Math.max(x, maxPointX);
+							maxPointY = Math.max(y, maxPointY);
+						}
+						else {
+							maxPointX = x;
+							maxPointY = y;
+						}
+					}
+					//}).bind(this));
+				}
+                isFirst = false;
+            }
+        }).bind(this));
+        
+        this.bounds.set(minPointX, minPointY, maxPointX, maxPointY);
+        
+        if (this.bounds.width() === 0 || this.bounds.height() === 0) {
+            this.bounds.extend({
+                x: this.bounds.width() === 0 ? 2 : 0,
+                y: this.bounds.height() === 0 ? 2 : 0
+            });
+            
+            this.bounds.moveBy({
+                x: this.bounds.width() === 0 ? -1 : 0,
+                y: this.bounds.height() === 0 ? -1 : 0
+            });
+            
+        }
+        
+        this._oldBounds = this.bounds.clone();
+        
+        //add paths to this.node
+        this._paths.reverse();
+        var paths = [];
+        this._paths.each((function(path){
+            paths.push(this.node.childNodes[0].childNodes[0].childNodes[0].appendChild(path));
+        }).bind(this));
+        
+        this._paths = paths;
+        
+        //init interaction path
+        this._paths.each((function(path){
+            var iPath = path.cloneNode(false);
+			iPath.setAttributeNS(null, "id", undefined);
+            iPath.setAttributeNS(null, "stroke-width", 10);
+            iPath.setAttributeNS(null, "visibility", "hidden");
+            iPath.setAttributeNS(null, "stroke-dasharray", null);
+            iPath.setAttributeNS(null, "stroke", "black");
+            iPath.setAttributeNS(null, "fill", "none");
+            this._interactionPaths.push(this.node.childNodes[0].childNodes[0].childNodes[0].appendChild(iPath));
+        }).bind(this));
+        
+        this._paths.reverse();
+        this._interactionPaths.reverse();
+		
+		/**initialize labels*/
+        var textElems = svgDocument.getElementsByTagNameNS(ORYX.CONFIG.NAMESPACE_SVG, 'text');
+        
+		$A(textElems).each((function(textElem){
+            var label = new ORYX.Core.SVG.Label({
+                textElement: textElem,
+				shapeId: this.id
+            });
+            this.node.childNodes[0].childNodes[0].appendChild(label.node);
+            this._labels[label.id] = label;
+        }).bind(this)); 
+		
+        //set title
+        this.node.childNodes[0].childNodes[0].setAttributeNS(null, "title", this.getStencil().title());
+        
+        this.propertiesChanged.each(function(pair){
+            pair.value = true;
+        });
+		
+        //this._update(true);
+    },
+    
+    /**
+     * Adds all necessary markers of this Edge to the SVG document.
+     * Has to be called, while this.node is part of DOM.
+     */
+    addMarkers: function(defs){
+        this._markers.each(function(marker){
+            if (!defs.ownerDocument.getElementById(marker.value.id)) {
+                marker.value.element = defs.appendChild(marker.value.element);
+            }
+        });
+    },
+    
+    /**
+     * Removes all necessary markers of this Edge from the SVG document.
+     * Has to be called, while this.node is part of DOM.
+     */
+    removeMarkers: function(){
+        var svgElement = this.node.ownerSVGElement;
+        if (svgElement) {
+            var defs = svgElement.getElementsByTagNameNS(NAMESPACE_SVG, "defs");
+            if (defs.length > 0) {
+                defs = defs[0];
+                this._markers.each(function(marker){
+                    var foundMarker = defs.ownerDocument.getElementById(marker.value.id);
+                    if (foundMarker) {
+                        marker.value.element = defs.removeChild(marker.value.element);
+                    }
+                });
+            }
+        }
+    },
+    
+    /**
+     * Calls when a docker has changed
+     */
+    _dockerChanged: function(){
+    
+        //this._update(true);
+		this._dockerUpdated = true;
+        
+    },
+    
+    serialize: function(){
+        var result = arguments.callee.$.serialize.apply(this);
+        
+        //add dockers triple
+        var value = "";
+        this._dockersByPath.each((function(pair){
+            pair.value.each(function(docker){
+                var position = docker.getDockedShape() && docker.referencePoint ? docker.referencePoint : docker.bounds.center();
+                value = value.concat(position.x + " " + position.y + " ");
+            });
+            
+            value += " # ";
+        }).bind(this));
+        result.push({
+            name: 'dockers',
+            prefix: 'oryx',
+            value: value,
+            type: 'literal'
+        });
+        
+        //add parent triple dependant on the dockedShapes
+        //TODO change this when canvas becomes a resource
+/*        var source = this.dockers.first().getDockedShape();
+        var target = this.dockers.last().getDockedShape();
+        var sharedParent;
+        if (source && target) {
+            //get shared parent
+            while (source.parent) {
+                source = source.parent;
+                if (source instanceof ORYX.Core.Canvas) {
+                    sharedParent = source;
+                    break;
+                }
+                else {
+                    var targetParent = target.parent;
+                    var found;
+                    while (targetParent) {
+                        if (source === targetParent) {
+                            sharedParent = source;
+                            found = true;
+                            break;
+                        }
+                        else {
+                            targetParent = targetParent.parent;
+                        }
+                    }
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+        }
+        else 
+            if (source) {
+                sharedParent = source.parent;
+            }
+            else 
+                if (target) {
+                    sharedParent = target.parent;
+                }
+*/        
+        //if (sharedParent) {
+/*            result.push({
+                name: 'parent',
+                prefix: 'raziel',
+                //value: '#' + ERDF.__stripHashes(sharedParent.resourceId),
+                value: '#' + ERDF.__stripHashes(this.getCanvas().resourceId),
+                type: 'resource'
+            });*/
+        //}
+		
+		//serialize target and source
+		var lastDocker = this.dockers.last();
+		
+		var target = lastDocker.getDockedShape();
+		
+		if(target) {
+			result.push({
+				name: 'target',
+				prefix: 'raziel',
+				value: '#' + ERDF.__stripHashes(target.resourceId),
+				type: 'resource'
+			});
+		}
+        
+        try {
+            //result = this.getStencil().serialize(this, result);
+			var serializeEvent = this.getStencil().serialize();
+			
+			/*
+			 * call serialize callback by reference, result should be found
+			 * in serializeEvent.result
+			 */
+			if(serializeEvent.type) {
+				serializeEvent.shape = this;
+				serializeEvent.data = result;
+				serializeEvent.result = undefined;
+				serializeEvent.forceExecution = true;
+				
+				this._delegateEvent(serializeEvent);
+				
+				if(serializeEvent.result) {
+					result = serializeEvent.result;
+				}
+			}
+        } 
+        catch (e) {
+        }
+        return result;
+    },
+    
+    deserialize: function(data){
+        try {
+            //data = this.getStencil().deserialize(this, data);
+			
+			var deserializeEvent = this.getStencil().deserialize();
+			
+			/*
+			 * call serialize callback by reference, result should be found
+			 * in serializeEventInfo.result
+			 */
+			if(deserializeEvent.type) {
+				deserializeEvent.shape = this;
+				deserializeEvent.data = data;
+				deserializeEvent.result = undefined;
+				deserializeEvent.forceExecution = true;
+				
+				this._delegateEvent(deserializeEvent);
+				if(deserializeEvent.result) {
+					data = deserializeEvent.result;
+				}
+			}
+        } 
+        catch (e) {
+        }
+        
+		// Set the outgoing shapes
+		var target = data.find(function(ser) {return (ser.prefix+"-"+ser.name) == 'raziel-target'});
+		var targetShape;
+		if(target) {
+			targetShape = this.getCanvas().getChildShapeByResourceId(target.value);
+		}
+		
+		var outgoing = data.findAll(function(ser){ return (ser.prefix+"-"+ser.name) == 'raziel-outgoing'});
+		outgoing.each((function(obj){
+			// TODO: Look at Canvas
+			if(!this.parent) {return};
+								
+			// Set outgoing Shape
+			var next = this.getCanvas().getChildShapeByResourceId(obj.value);
+															
+			if(next){
+				if(next == targetShape) {
+					// If this is an edge, set the last docker to the next shape
+					this.dockers.last().setDockedShape(next);
+					this.dockers.last().setReferencePoint({x: next.bounds.width() / 2.0, y: next.bounds.height() / 2.0});
+				} else if(next instanceof ORYX.Core.Edge) {
+					//Set the first docker of the next shape
+					next.dockers.first().setDockedShape(this);
+					//next.dockers.first().setReferencePoint({x: this.bounds.width() / 2.0, y: this.bounds.height() / 2.0});
+				} /*else if(next.dockers.length > 0) { //next is a node and next has a docker
+					next.dockers.first().setDockedShape(this);
+					next.dockers.first().setReferencePoint({x: this.bounds.width() / 2.0, y: this.bounds.height() / 2.0});
+				}*/
+			}	
+			
+		}).bind(this));
+		
+        arguments.callee.$.deserialize.apply(this, [data]);
+        
+        var oryxDockers = data.find(function(obj){
+            return (obj.prefix === "oryx" &&
+            obj.name === "dockers");
+        });
+		
+        if (oryxDockers) {
+            var dataByPath = oryxDockers.value.split("#").without("").without(" ");
+            
+            dataByPath.each((function(data, index){
+                var values = data.replace(/,/g, " ").split(" ").without("");
+                
+                //for each docker two values must be defined
+                if (values.length % 2 === 0) {
+                    var path = this._paths[index];
+                    
+                    if (path) {
+                        if (index === 0) {
+                            while (this._dockersByPath[path.id].length > 2) {
+                                this.removeDocker(this._dockersByPath[path.id][1]);
+                            }
+                        }
+                        else {
+                            while (this._dockersByPath[path.id].length > 1) {
+                                this.removeDocker(this._dockersByPath[path.id][0]);
+                            }
+                        }
+                        
+                        var dockersByPath = this._dockersByPath[path.id];
+                        
+                        if (index === 0) {
+                            //set position of first docker
+                            var x = parseFloat(values.shift());
+                            var y = parseFloat(values.shift());
+                            
+                            if (dockersByPath.first().getDockedShape()) {
+                                dockersByPath.first().setReferencePoint({
+                                    x: x,
+                                    y: y
+                                });
+                            }
+                            else {
+                                dockersByPath.first().bounds.centerMoveTo(x, y);
+                            }
+                        }
+                        
+                        //set position of last docker
+                        y = parseFloat(values.pop());
+                        x = parseFloat(values.pop());
+                        
+                        if (dockersByPath.last().getDockedShape()) {
+                            dockersByPath.last().setReferencePoint({
+                                x: x,
+                                y: y
+                            });
+                        }
+                        else {
+                            dockersByPath.last().bounds.centerMoveTo(x, y);
+                        }
+                        
+                        //add additional dockers
+                        for (var i = 0; i < values.length; i++) {
+                            x = parseFloat(values[i]);
+                            y = parseFloat(values[++i]);
+                            
+                            var newDocker = this.createDocker();
+                            newDocker.bounds.centerMoveTo(x, y);
+                            
+                            //this.dockers = this.dockers.without(newDocker);
+                            //this.dockers.splice(this.dockers.indexOf(dockersByPath.last()), 0, newDocker);
+                            //dockersByPath.splice(this.dockers.indexOf(dockersByPath.last()), 0, newDocker);
+						}
+                    }
+                }
+            }).bind(this));
+        }
+        else {
+            this.alignDockers();
+        }
+		this._changed();
+    },
+    
+    toString: function(){
+        return this.getStencil().title() + " " + this.id;
+    },
+    
+    /**
+     * @return {ORYX.Core.Shape} Returns last docked shape or null.
+     */
+    getTarget: function(){
+        return this.dockers.last() ? this.dockers.last().getDockedShape() : null;
+    },
+	
+	/**
+	 * @return {ORYX.Core.Shape} Returns the first docked shape or null
+	 */
+	getSource: function() {
+		return this.dockers.first() ? this.dockers.first().getDockedShape() : null;
+	},
+	
+	/**
+	 * Checks whether the edge is at least docked to one shape.
+	 * 
+	 * @return {boolean} True if edge is docked
+	 */
+	isDocked: function() {
+		var isDocked = false;
+		this.dockers.each(function(docker) {
+			if(docker.isDocked()) {
+				isDocked = true;
+				throw $break;
+			}
+		});
+		return isDocked;
+	},
+    
+    /**
+     * Calls {@link ORYX.Core.AbstractShape#toJSON} and add a some stencil set information.
+     */
+    toJSON: function() {
+        var json = arguments.callee.$.toJSON.apply(this, arguments);
+        
+        if(this.getTarget()) {
+            json.target = {
+                resourceId: this.getTarget().resourceId
+            };
+        }
+        
+        return json;
+    }
+};
+ORYX.Core.Edge = ORYX.Core.Shape.extend(ORYX.Core.Edge);
+/**
  * Copyright (c) 2008
  * Willi Tscheschner
  * 

@@ -231,7 +231,7 @@ public class ETLEditorHandler extends HttpServlet {
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/css/empty.css\");\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/fileuploader/img/extjs.ico\");\n"
                 //-- Portal
-                + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/ux/portal/css/portal.css\");\n"
+                + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/portal/css/portal.css\");\n"
                 // Rowactions extension
                 + "@import url(\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/css/Ext.ux.grid.RowActions.css\");\n"
                 // VrTabPanel extension

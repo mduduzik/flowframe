@@ -165,7 +165,7 @@ ORYX.Editor = {
         //meta data about the model for the signavio warehouse
         //directory, new, name, description, revision, model (the model data)
 
-        this.modelMetaData = config;
+        this.transModelMetaData = config;
 
         var model = config;
         if(config.model) {
@@ -207,7 +207,7 @@ ORYX.Editor = {
         }
 
         // CREATES the canvas
-        this._createCanvas(model.stencil ? model.stencil.id : null, model.properties);
+        this._createTransformationCanvas(model.stencil ? model.stencil.id : null, model.properties);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -831,7 +831,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createCanvas: function(stencilType, canvasConfig) {
+    _createTransformationCanvas: function(stencilType, canvasConfig) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -856,7 +856,7 @@ ORYX.Editor = {
         div.addClassName("ORYX_Editor");
 
         // create the canvas
-        this._canvas = new ORYX.Core.Canvas({
+        this._transformationCanvas = new ORYX.Core.Canvas({
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
@@ -876,7 +876,7 @@ ORYX.Editor = {
                 });
             }
 
-            this._canvas.deserialize(properties);
+            this._transformationCanvas.deserialize(properties);
         }
 
     },
@@ -1486,7 +1486,7 @@ ORYX.Editor = {
     },
 
     getCanvas: function() {
-        return this._canvas;
+        return this._transformationCanvas;
     },
 
 
@@ -1669,7 +1669,7 @@ ORYX.Editor = {
      * @return {Object} Meta data about the model
      */
     getModelMetaData: function() {
-        return this.modelMetaData;
+        return this.transModelMetaData;
     },
 
     /* Event-Handler Methods */

@@ -85,46 +85,27 @@ function init() {
     ORYX.Editor.setMissingClasses();
 
 
+    new ORYX.Editor({
 
-    // If someone wants to create the editor instance himself
+        id: 'oryx-canvas123',
 
-    if (window.onOryxResourcesLoaded) {
+        fullscreen: true,
 
-        window.onOryxResourcesLoaded();
+        stencilset: {
 
-    }
-
-    // Else if this is a newly created model
-
-    else if(window.location.pathname.include(ORYX.CONFIG.ORYX_NEW_URL)){
-
-        new ORYX.Editor({
-
-            id: 'oryx-canvas123',
-
-            fullscreen: true,
-
-            stencilset: {
-
-                url: ORYX.PATH + ORYX.Utils.getParamFromUrl("stencilset")
-            }
-        });
-    }
-    // Else fetch the model from server and display editor
-    else {
-        //HACK for distinguishing between different backends
-        // Backend of 2008 uses /self URL ending
-        var modelUrl = window.location.href.replace(/#.*/g, "");
-        if(modelUrl.endsWith("/self")) {
-            modelUrl = modelUrl.replace("/self","/json");
-        } else {
-            modelUrl += "&data";
+            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("transst")
         }
+    },{
 
-        ORYX.Editor.createByUrl(modelUrl, {
-            id: modelUrl
-        });
-    }
+        id: 'etlJobCanvas',
+
+        fullscreen: true,
+
+        stencilset: {
+
+            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("jobst")
+        }
+    });
 }
 
 /**
@@ -155,7 +136,7 @@ ORYX.Editor = {
     // Defines the current zoom level
     zoomLevel:1.0,
 
-    construct: function(config) {
+    construct: function(transConfig,jobConfig) {
         // initialization.
         this._eventsQueue 	= [];
         this.loadedPlugins 	= [];
@@ -165,33 +146,33 @@ ORYX.Editor = {
         //meta data about the model for the signavio warehouse
         //directory, new, name, description, revision, model (the model data)
 
-        this.modelMetaData = config;
+        this.transModelMetaData = transConfig;
 
-        var model = config;
-        if(config.model) {
-            model = config.model;
+        var transModel = transConfig;
+        if(transConfig.model) {
+            transModel = transConfig.model;
         }
 
-        this.id = model.resourceId;
+        this.id = transModel.resourceId;
         if(!this.id) {
-            this.id = model.id;
+            this.id = transModel.id;
             if(!this.id) {
                 this.id = ORYX.Editor.provideId();
             }
         }
 
         // Defines if the editor should be fullscreen or not
-        this.fullscreen = model.fullscreen || true;
+        this.fullscreen = transModel.fullscreen || true;
 
         // Initialize the eventlistener
         this._initEventListener();
 
         // Load particular stencilset
         if(ORYX.CONFIG.BACKEND_SWITCH) {
-            var ssUrl = (model.stencilset.namespace||model.stencilset.url).replace("#", "%23");
+            var ssUrl = (transModel.stencilset.namespace||transModel.stencilset.url).replace("#", "%23");
             ORYX.Core.StencilSet.loadStencilSet(ORYX.CONFIG.STENCILSET_HANDLER + ssUrl, this.id);
         } else {
-            var ssUrl = model.stencilset.url;
+            var ssUrl = transModel.stencilset.url;
             ORYX.Core.StencilSet.loadStencilSet(ssUrl, this.id);
         }
 
@@ -206,8 +187,9 @@ ORYX.Editor = {
             }.bind(this));
         }
 
-        // CREATES the canvas
-        this._createCanvas(model.stencil ? model.stencil.id : null, model.properties);
+        // CREATES the canvases
+        this._createTransformationCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties);
+        this._createJobCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -232,7 +214,7 @@ ORYX.Editor = {
 
         // LOAD the content of the current editor instance
         window.setTimeout(function(){
-            this.loadSerialized(model);
+            this.loadSerialized(transModel);
             this.getCanvas().update();
             loadContentFinished = true;
             initFinished();
@@ -323,7 +305,7 @@ ORYX.Editor = {
 
         //Center (tabbed Panel)
 
-        // Welcome/workspace
+        //A. Welcome/workspace tab
         var tools = [{
             handler: function(){
                 Ext.Msg.alert('Message', 'The Settings tool was clicked.');
@@ -333,7 +315,7 @@ ORYX.Editor = {
                 panel.ownerCt.remove(panel, true);
             }
         }];
-        var workspace = new Ext.Panel({
+        var workspaceTab_ = new Ext.Panel({
             title: 'Welcome',
             iconCls: 'process-icon',
             closable:true,
@@ -390,20 +372,41 @@ ORYX.Editor = {
             autoScroll: true
         });
 
+        //B. Transformation Canvas tab
+        var transCanvasParent	= this.getTransformationCanvas().rootNode.parentNode;
+
+        //Canvas
+        var transCenterNorth_ = new Ext.Panel({
+            autoHeight: true,
+            cls		: 'x-panel-editor-center',
+            el		: transCanvasParent,
+            autoScroll: true,
+            split: true
+        });
+
+        //Canvas Property Editors
+        var transCenterSouth0_ = new Ext.Panel({
+            width: ORYX.CONFIG.CANVAS_WIDTH,
+            autoHeight: true,
+            layout	: 'fit',
+            cls		: 'x-panel-editor-east',
+            border	:false,
+            split	: true
+        });
 
         //1. Canvas editor (top) panel/section
-        var canvasEditor_ = new Ext.Panel({
+        var transCanvasEditor_ = new Ext.Panel({
             region: 'center',
             autoHeight: true,
             minHeight: 400,
             cls		: 'x-panel-editor-center',
-            el		: canvasParent,
+            el		: transCanvasParent,
             autoScroll: true,
             split: true
         });
 
         //2. Canvas/shape editor (bottom) panel/section
-        var canvasEditorSectionPanelBasicTab_ = new Ext.TabPanel({
+        var transCanvasEditorSectionPanelBasicTab_ = new Ext.TabPanel({
             id: 'canvasEditorSectionPanelTab',
             region: 'center',
             minTabWidth: 115,
@@ -415,20 +418,20 @@ ORYX.Editor = {
             /*items: [selectedComponentForm,problemsGrid]*/
         });
 
-        var canvasEditorSectionPanel_ = new Ext.Panel({
+        var transCanvasEditorSectionPanel_ = new Ext.Panel({
             region: 'south',
             layout	: 'fit',
             border	:false,
             split	: true,
             bodyStyle:'padding:0px',
             height: 200,
-            items   :[canvasEditorSectionPanelBasicTab_
+            items   :[transCanvasEditorSectionPanelBasicTab_
             ]
         });
 
 
 
-        var canvasEditorTab_ = new Ext.Panel({
+        var transCanvasEditorTab_ = new Ext.Panel({
             title: 'New Job',
             iconCls: 'process-icon',
             closable:true,
@@ -436,12 +439,17 @@ ORYX.Editor = {
             bodyStyle:'padding:0px',
             layout: 'border',
             items: [
-                canvasEditor_,
-                canvasEditorSectionPanel_
+                transCanvasEditor_,
+                transCanvasEditorSectionPanel_
             ],
             autoScroll: true
         });
 
+        //C. Job Canvas
+        var jobCanvasParent	= this.getJobCanvas().rootNode.parentNode;
+
+
+        //D. Main UI
         var center_ = new Ext.TabPanel({
             region: 'center',
             minTabWidth: 115,
@@ -449,7 +457,7 @@ ORYX.Editor = {
             enableTabScroll:true,
             activeTab: 0,
             //plugins: new Ext.ux.TabCloseMenu(),
-            items: [canvasEditorTab_,workspace
+            items: [transCanvasEditorTab_,workspaceTab_
 
             ]
         });
@@ -541,8 +549,8 @@ ORYX.Editor = {
                 title	: "Explorer"
             }),
             // DEFINES CENTER-AREA (FOR THE EDITOR)
-            centernorth : centerNorth_,
-            centersouth : canvasEditorSectionPanelBasicTab_,
+            centernorth : transCenterNorth_,
+            centersouth : transCanvasEditorSectionPanelBasicTab_,
             center	: center_
         }
         //Test333
@@ -585,17 +593,17 @@ ORYX.Editor = {
 
 
         // Set the editor to the center, and refresh the size
-        if (canvasParent.parentNode)
-            canvasParent.parentNode.setAttributeNS(null, 'align', 'center');
-        canvasParent.setAttributeNS(null, 'align', 'left');
+        if (transCanvasParent.parentNode)
+            transCanvasParent.parentNode.setAttributeNS(null, 'align', 'center');
+        transCanvasParent.setAttributeNS(null, 'align', 'left');
         this.getCanvas().setSize({
             width	: ORYX.CONFIG.CANVAS_WIDTH,
             height	: ORYX.CONFIG.CANVAS_HEIGHT
         });
 
         //Initially hide editor tabs
-        center_.hideTabStripItem(canvasEditorTab_);
-        center_.setActiveTab(workspace);
+        center_.hideTabStripItem(transCanvasEditorTab_);
+        center_.setActiveTab(workspaceTab_);
     },
 
     _generateHeader: function(){
@@ -904,7 +912,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createCanvas: function(stencilType, canvasConfig) {
+    _createTransformationCanvas: function(stencilType, canvasConfig) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -929,7 +937,7 @@ ORYX.Editor = {
         div.addClassName("ORYX_Editor");
 
         // create the canvas
-        this._canvas = new ORYX.Core.Canvas({
+        this._transformationCanvas = new ORYX.Core.Canvas({
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
@@ -949,11 +957,64 @@ ORYX.Editor = {
                 });
             }
 
-            this._canvas.deserialize(properties);
+            this._transformationCanvas.deserialize(properties);
         }
 
     },
+    /**
+     * Creates the Job Canvas
+     * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
+     * @param {Object} [canvasConfig] Any canvas properties (like language).
+     */
+    _createJobCanvas: function(stencilType, canvasConfig) {
+        if (stencilType) {
+            // Add namespace to stencilType
+            if (stencilType.search(/^http/) === -1) {
+                stencilType = this.getStencilSets().values()[0].namespace() + stencilType;
+            }
+        }
+        else {
+            // Get any root stencil type
+            stencilType = this.getStencilSets().values()[0].findRootStencilName();
+        }
 
+        // get the stencil associated with the type
+        var canvasStencil = ORYX.Core.StencilSet.stencil(stencilType);
+
+        if (!canvasStencil)
+            ORYX.Log.fatal("Initialisation failed, because the stencil with the type %0 is not part of one of the loaded stencil sets.", stencilType);
+
+        // create all dom
+        // TODO fix border, so the visible canvas has a double border and some spacing to the scrollbars
+        var div = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", null, ['div']);
+        // set class for custom styling
+        div.addClassName("ORYX_Editor");
+
+        // create the canvas
+        this._jobCanvas = new ORYX.Core.Canvas({
+            width					: ORYX.CONFIG.CANVAS_WIDTH,
+            height					: ORYX.CONFIG.CANVAS_HEIGHT,
+            'eventHandlerCallback'	: this.handleEvents.bind(this),
+            id						: this.id,
+            parentNode				: div
+        }, canvasStencil);
+
+        if (canvasConfig) {
+            // Migrate canvasConfig to an RDF-like structure
+            //FIXME this isn't nice at all because we don't want rdf any longer
+            var properties = [];
+            for(field in canvasConfig){
+                properties.push({
+                    prefix: 'oryx',
+                    name: field,
+                    value: canvasConfig[field]
+                });
+            }
+
+            this._jobCanvas.deserialize(properties);
+        }
+
+    },
     /**
      * Returns a per-editor singleton plugin facade.
      * To be used in plugin initialization.
@@ -1559,9 +1620,14 @@ ORYX.Editor = {
     },
 
     getCanvas: function() {
-        return this._canvas;
+        return this.getTransformationCanvas();
     },
-
+    getTransformationCanvas: function() {
+        return this._transformationCanvas;
+    },
+    getJobCanvas: function() {
+        return this._jobCanvas;
+    },
 
     /**
      *	option = {
@@ -1742,7 +1808,7 @@ ORYX.Editor = {
      * @return {Object} Meta data about the model
      */
     getModelMetaData: function() {
-        return this.modelMetaData;
+        return this.transModelMetaData;
     },
 
     /* Event-Handler Methods */
