@@ -69,7 +69,7 @@
       <file leaf-file-name="etlmain.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="269" column="24" selection-start="7844" selection-end="7844" vertical-scroll-proportion="0.91699606" vertical-offset="4109" max-vertical-offset="44795">
+            <state line="462" column="4" selection-start="13166" selection-end="13166" vertical-scroll-proportion="14.213439" vertical-offset="662" max-vertical-offset="43095">
               <folding />
             </state>
           </provider>
@@ -96,7 +96,7 @@
       <file leaf-file-name="shaperepository.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="36" selection-start="2414" selection-end="2450" vertical-scroll-proportion="0.0" vertical-offset="962" max-vertical-offset="8636">
+            <state line="58" column="8" selection-start="1867" selection-end="1952" vertical-scroll-proportion="-6.92" vertical-offset="813" max-vertical-offset="8636">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -846,12 +846,12 @@
       <created>1381612226948</created>
       <updated>1381612226948</updated>
       <workItem from="1381612226485" duration="4662000" />
-      <workItem from="1381663591329" duration="6873000" />
+      <workItem from="1381663591329" duration="7604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11535000" />
+    <option name="totallyTimeSpent" value="12266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -913,15 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="36" selection-start="2414" selection-end="2450" vertical-scroll-proportion="0.0" vertical-offset="962" max-vertical-offset="8636">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/stencilsets/etl/etljob1.0/etljob1.0.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="17" selection-start="47" selection-end="93" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="10353">
@@ -936,9 +927,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="8" selection-start="1867" selection-end="1952" vertical-scroll-proportion="-6.92" vertical-offset="813" max-vertical-offset="8636">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="24" selection-start="7844" selection-end="7844" vertical-scroll-proportion="0.91699606" vertical-offset="4109" max-vertical-offset="44795">
+        <state line="462" column="4" selection-start="13166" selection-end="13166" vertical-scroll-proportion="14.213439" vertical-offset="662" max-vertical-offset="43095">
           <folding />
         </state>
       </provider>

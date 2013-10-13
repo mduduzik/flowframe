@@ -87,13 +87,14 @@ function init() {
 
     new ORYX.Editor({
 
-        id: 'oryx-canvas123',
+        id: 'etlTransCanvas',
 
         fullscreen: true,
 
         stencilset: {
 
-            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("transst")
+            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("transst"),
+            ns: 'http://etl.flowframe.org/stencilset/etl/trans#'
         }
     },{
 
@@ -103,7 +104,8 @@ function init() {
 
         stencilset: {
 
-            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("jobsst")
+            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("jobsst"),
+            ns: 'http://etl.flowframe.org/stencilset/etl/job#'
         }
     });
 }
@@ -154,13 +156,13 @@ ORYX.Editor = {
         Ext.apply(transConfig,{
            createEditorHandler : this._createETLTransSSUITab.bind(this)
         });
-        this.SSConfigs['http://etl.flowframe.org/stencilset/etl/trans#'] = transConfig;
+        this.SSConfigs[transConfig.stencilset.ns] = transConfig;
 
         //ETL Job Config
         Ext.apply(jobConfig,{
             createEditorHandler : this._createETLJobSSUITab.bind(this)
         });
-        this.SSConfigs['http://etl.flowframe.org/stencilset/etl/job#'] = jobConfig;
+        this.SSConfigs[jobConfig.stencilset.ns] = jobConfig;
 
         //meta data about the model for the signavio warehouse
         //directory, new, name, description, revision, model (the model data)
@@ -182,42 +184,14 @@ ORYX.Editor = {
         }*/
 
         // Defines if the editor should be fullscreen or not
-        this.fullscreen = transModel.fullscreen || true;
+        this.fullscreen = true;//transModel.fullscreen || true;
 
         // Initialize the eventlistener
         this._initEventListener();
 
-        // Load particular stencilsets
-        //-- Load transformation SST
-        var ssUrl = transConfig.stencilset.url;
-        ORYX.Core.StencilSet.loadStencilSet(ssUrl, transConfig.id);
-        var ssUrl = jobConfig.stencilset.url;
-        ORYX.Core.StencilSet.loadStencilSet(ssUrl, jobConfig.id);
-/*        if(ORYX.CONFIG.BACKEND_SWITCH) {
-            var ssUrl = (transModel.stencilset.namespace||transModel.stencilset.url).replace("#", "%23");
-            ORYX.Core.StencilSet.loadStencilSet(ORYX.CONFIG.STENCILSET_HANDLER + ssUrl, this.id);
-        } else {
-            var ssUrl = transModel.stencilset.url;
-            ORYX.Core.StencilSet.loadStencilSet(ssUrl, this.id);
-        }*/
-
 
         //TODO load ealier and asynchronous??
         this._loadStencilSetExtensionConfig();
-
-        //Load predefined StencilSetExtensions
-        if(!!ORYX.CONFIG.SSEXTS){
-            ORYX.CONFIG.SSEXTS.each(function(ssext){
-                this.loadSSExtension(ssext.namespace,transConfig.id);
-            }.bind(this));
-            ORYX.CONFIG.SSEXTS.each(function(ssext){
-                this.loadSSExtension(ssext.namespace,jobConfig.id);
-            }.bind(this));
-        }
-
-        // CREATES the canvases
-        this._createTransformationCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties, transConfig.id);
-        this._createCanvas(jobConfig.stencil ? jobConfig.stencil.id : null, jobConfig.properties,jobConfig.id);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -267,7 +241,10 @@ ORYX.Editor = {
         var canvas = this._createCanvas(null, null, canvasId);
 
         //Create Editor Tab
-        var editorTab = config.createEditorHandler(canvas);
+        var editorTab = ssConfig.createEditorHandler(canvas);
+
+        //Add
+        var region = this.addToRegion("center", panel, editorTab.name);
 
     },
     onEdit: function(ssUrl,modelUrl) {
@@ -585,85 +562,8 @@ ORYX.Editor = {
             autoScroll: true
         });
 
-        //B. Transformation Canvas tab
-        var transCanvasParent	= this.getTransformationCanvas().rootNode.parentNode;
 
-        //Canvas
-        var transCenterNorth_ = new Ext.Panel({
-            autoHeight: true,
-            cls		: 'x-panel-editor-center',
-            el		: transCanvasParent,
-            autoScroll: true,
-            split: true
-        });
-
-        //Canvas Property Editors
-        var transCenterSouth0_ = new Ext.Panel({
-            width: ORYX.CONFIG.CANVAS_WIDTH,
-            autoHeight: true,
-            layout	: 'fit',
-            cls		: 'x-panel-editor-east',
-            border	:false,
-            split	: true
-        });
-
-        //1. Canvas editor (top) panel/section
-        var transCanvasEditor_ = new Ext.Panel({
-            region: 'center',
-            autoHeight: true,
-            minHeight: 400,
-            cls		: 'x-panel-editor-center',
-            el		: transCanvasParent,
-            autoScroll: true,
-            split: true
-        });
-
-        //2. Canvas/shape editor (bottom) panel/section
-        var transCanvasEditorSectionPanelBasicTab_ = new Ext.TabPanel({
-            id: 'canvasEditorSectionPanelTab',
-            region: 'center',
-            minTabWidth: 115,
-            tabWidth:135,
-            enableTabScroll:false,
-            activeTab: 0
-            //defaults: {autoScroll:true}
-            //plugins: new Ext.ux.TabCloseMenu(),
-            /*items: [selectedComponentForm,problemsGrid]*/
-        });
-
-        var transCanvasEditorSectionPanel_ = new Ext.Panel({
-            region: 'south',
-            layout	: 'fit',
-            border	:false,
-            split	: true,
-            bodyStyle:'padding:0px',
-            height: 200,
-            items   :[transCanvasEditorSectionPanelBasicTab_
-            ]
-        });
-
-
-
-        var transCanvasEditorTab_ = new Ext.ux.CanvasPanel({
-            title: 'New Job',
-            canvas: this._transformationCanvas,
-            iconCls: 'process-icon',
-            closable:true,
-            labelAlign: 'top',
-            bodyStyle:'padding:0px',
-            layout: 'border',
-            items: [
-                transCanvasEditor_,
-                transCanvasEditorSectionPanel_
-            ],
-            autoScroll: true
-        });
-
-        //C. Job Canvas
-        var jobCanvasParent	= this.getJobCanvas().rootNode.parentNode;
-
-
-        //D. Main UI
+        // Main UI
         var center_ = new Ext.TabPanel({
             region: 'center',
             minTabWidth: 115,
