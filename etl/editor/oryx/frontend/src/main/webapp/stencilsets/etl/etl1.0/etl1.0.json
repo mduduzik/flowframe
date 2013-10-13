@@ -1,7 +1,7 @@
 {
-    "title": "ETL 1.0",
-    "namespace": "http://etl.flowframe.org/stencilset/etlbasic#",
-    "description": "ETL 1.0",
+    "title": "ETL Transformation 1.0",
+    "namespace": "http://etl.flowframe.org/stencilset/etl/trans#",
+    "description": "ETL Transformation 1.0",
     "propertyPackages": [
         {
             "name":"baseAttributes",

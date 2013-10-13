@@ -203,6 +203,9 @@ ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX   = "etl.metadata.edit.";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETED       = "etl.metadata.deleted";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX = "etl.metadata.delete.";
 ORYX.CONFIG.EVENT_ETL_METADATA_DDROP = "etl.metadata.ddrop.";
+
+ORYX.CONFIG.EVENT_ETL_TRANSFORMATION_NEW = "etl.transformation.new";
+ORYX.CONFIG.EVENT_ETL_JOB_NEW = "etl.job.new";
 	
 	/* Selection Shapes Highlights */
 ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE =				5;

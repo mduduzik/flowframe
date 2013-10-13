@@ -12,7 +12,7 @@ ORYX.Plugins.New = ORYX.Plugins.AbstractPlugin.extend({
 		if (!(ORYX.CONFIG.IS_TEMPLATE)) {
 			this.facade.offer({
 				'name': 'NewTransformation',
-				'functionality': this.save.bind(this,false),
+				'functionality': this.newTransformation.bind(this,false),
 				'group': 'New',
 				'icon': "/etl/images/conxbi/etl/transformation.png",
 				'description': 'New Transformation',
@@ -254,25 +254,11 @@ ORYX.Plugins.New = ORYX.Plugins.AbstractPlugin.extend({
 	},
     
     /**
-     * Saves the current process to the server.
+     * New transformation
      */
-    save: function(forceNew, event){
-    
-        // raise loading enable event
+    newTransformation: function(forceNew, event){
         this.facade.raiseEvent({
-            type: ORYX.CONFIG.EVENT_LOADING_ENABLE,
-			text: ORYX.I18N.Save.saving
+            type: ORYX.CONFIG.EVENT_ETL_TRANSFORMATION_NEW
         });
-        
-        // asynchronously ...
-        window.setTimeout((function(){
-        
-            // ... save synchronously
-            this.saveSynchronously(forceNew);
-            
-        }).bind(this), 10);
-
-        
-        return true;
     }	
 });

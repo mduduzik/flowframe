@@ -103,7 +103,7 @@ function init() {
 
         stencilset: {
 
-            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("jobst")
+            url: ORYX.PATH + ORYX.Utils.getParamFromUrl("jobsst")
         }
     });
 }
@@ -130,6 +130,7 @@ ORYX.Editor = {
     // Defines the global dom event listener
     DOMEventListeners: new Hash(),
 
+
     // Defines the selection
     selection: [],
 
@@ -153,13 +154,14 @@ ORYX.Editor = {
             transModel = transConfig.model;
         }
 
-        this.id = transModel.resourceId;
+        this.id = 'etl-editor';//transModel.resourceId;
+/*        this.id = transModel.resourceId;
         if(!this.id) {
             this.id = transModel.id;
             if(!this.id) {
                 this.id = ORYX.Editor.provideId();
             }
-        }
+        }*/
 
         // Defines if the editor should be fullscreen or not
         this.fullscreen = transModel.fullscreen || true;
@@ -167,14 +169,19 @@ ORYX.Editor = {
         // Initialize the eventlistener
         this._initEventListener();
 
-        // Load particular stencilset
-        if(ORYX.CONFIG.BACKEND_SWITCH) {
+        // Load particular stencilsets
+        //-- Load transformation SST
+        var ssUrl = transConfig.stencilset.url;
+        ORYX.Core.StencilSet.loadStencilSet(ssUrl, transConfig.id);
+        var ssUrl = jobConfig.stencilset.url;
+        ORYX.Core.StencilSet.loadStencilSet(ssUrl, jobConfig.id);
+/*        if(ORYX.CONFIG.BACKEND_SWITCH) {
             var ssUrl = (transModel.stencilset.namespace||transModel.stencilset.url).replace("#", "%23");
             ORYX.Core.StencilSet.loadStencilSet(ORYX.CONFIG.STENCILSET_HANDLER + ssUrl, this.id);
         } else {
             var ssUrl = transModel.stencilset.url;
             ORYX.Core.StencilSet.loadStencilSet(ssUrl, this.id);
-        }
+        }*/
 
 
         //TODO load ealier and asynchronous??
@@ -183,13 +190,16 @@ ORYX.Editor = {
         //Load predefined StencilSetExtensions
         if(!!ORYX.CONFIG.SSEXTS){
             ORYX.CONFIG.SSEXTS.each(function(ssext){
-                this.loadSSExtension(ssext.namespace);
+                this.loadSSExtension(ssext.namespace,transConfig.id);
+            }.bind(this));
+            ORYX.CONFIG.SSEXTS.each(function(ssext){
+                this.loadSSExtension(ssext.namespace,jobConfig.id);
             }.bind(this));
         }
 
         // CREATES the canvases
-        this._createTransformationCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties);
-        this._createJobCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties);
+        this._createTransformationCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties, transConfig.id);
+        this._createJobCanvas(jobConfig.stencil ? jobConfig.stencil.id : null, jobConfig.properties,jobConfig.id);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -263,8 +273,17 @@ ORYX.Editor = {
         this.DOMEventListeners[ORYX.CONFIG.EVENT_SELECTION_CHANGED] = [];
         this.DOMEventListeners[ORYX.CONFIG.EVENT_MOUSEMOVE] = [];
 
+
+        this.registerOnEvent(ORYX.CONFIG.EVENT_ETL_TRANSFORMATION_NEW, this.onNewTransformation.bind(this));
+        this.registerOnEvent(ORYX.CONFIG.EVENT_ETL_JOB_NEW, this.onNewJob.bind(this));
     },
 
+    onNewTransformation: function() {
+
+    },
+    onNewJob: function() {
+
+    },
     /**
      * Generate the whole viewport of the
      * Editor and initialized the Ext-Framework
@@ -431,8 +450,9 @@ ORYX.Editor = {
 
 
 
-        var transCanvasEditorTab_ = new Ext.Panel({
+        var transCanvasEditorTab_ = new Ext.ux.CanvasPanel({
             title: 'New Job',
+            canvas: this._transformationCanvas,
             iconCls: 'process-icon',
             closable:true,
             labelAlign: 'top',
@@ -912,7 +932,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createTransformationCanvas: function(stencilType, canvasConfig) {
+    _createTransformationCanvas: function(stencilType, canvasConfig,canvasId) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -921,7 +941,7 @@ ORYX.Editor = {
         }
         else {
             // Get any root stencil type
-            stencilType = this.getStencilSets().values()[0].findRootStencilName();
+            stencilType = this.getStencilSets(canvasId).values()[0].findRootStencilName();
         }
 
         // get the stencil associated with the type
@@ -941,7 +961,7 @@ ORYX.Editor = {
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
-            id						: this.id,
+            id						: canvasId,
             parentNode				: div
         }, canvasStencil);
 
@@ -966,7 +986,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createJobCanvas: function(stencilType, canvasConfig) {
+    _createJobCanvas: function(stencilType, canvasConfig, canvasId) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -975,7 +995,7 @@ ORYX.Editor = {
         }
         else {
             // Get any root stencil type
-            stencilType = this.getStencilSets().values()[0].findRootStencilName();
+            stencilType = this.getStencilSets(canvasId).values()[0].findRootStencilName();
         }
 
         // get the stencil associated with the type
@@ -995,7 +1015,7 @@ ORYX.Editor = {
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
-            id						: this.id,
+            id						: canvasId,
             parentNode				: div
         }, canvasStencil);
 
@@ -1423,11 +1443,11 @@ ORYX.Editor = {
      * Calls ORYX.Editor.prototype.ss_extension_namespace for each element
      * @param {Array} ss_extension_namespaces An array of stencil set extension namespaces.
      */
-    loadSSExtensions: function(ss_extension_namespaces){
+    loadSSExtensions: function(ss_extension_namespaces,canvasId){
         if(!ss_extension_namespaces) return;
 
         ss_extension_namespaces.each(function(ss_extension_namespace){
-            this.loadSSExtension(ss_extension_namespace);
+            this.loadSSExtension(ss_extension_namespace,canvasId);
         }.bind(this));
     },
 
@@ -1436,7 +1456,7 @@ ORYX.Editor = {
      * The stencil set extensions definiton file must already
      * be loaded when the editor is initialized.
      */
-    loadSSExtension: function(ss_extension_namespace) {
+    loadSSExtension: function(ss_extension_namespace,canvasId) {
 
         if (this.ss_extensions_def) {
             var extension = this.ss_extensions_def.extensions.find(function(ex){
@@ -1447,7 +1467,7 @@ ORYX.Editor = {
                 return;
             }
 
-            var stencilset = this.getStencilSets()[extension["extends"]];
+            var stencilset = this.getStencilSets(canvasId)[extension["extends"]];
 
             if (!stencilset) {
                 return;
@@ -1455,7 +1475,7 @@ ORYX.Editor = {
 
             stencilset.addExtension(ORYX.CONFIG.SS_EXTENSIONS_FOLDER + extension["definition"])
             //stencilset.addExtension("/oryx/build/stencilsets/extensions/" + extension["definition"])
-            this.getRules().initializeRules(stencilset);
+            this.getRules(canvasId).initializeRules(stencilset);
 
             this._getPluginFacade().raiseEvent({
                 type: ORYX.CONFIG.EVENT_STENCIL_SET_LOADED
@@ -1516,12 +1536,12 @@ ORYX.Editor = {
         return this.selection;
     },
 
-    getStencilSets: function() {
-        return ORYX.Core.StencilSet.stencilSets(this.id);
+    getStencilSets: function(canvasId) {
+        return ORYX.Core.StencilSet.stencilSets(canvasId);
     },
 
-    getRules: function() {
-        return ORYX.Core.StencilSet.rules(this.id);
+    getRules: function(canvasId) {
+        return ORYX.Core.StencilSet.rules(canvasId);
     },
 
     loadStencilSet: function(source) {
@@ -2396,3 +2416,20 @@ ORYX.Editor.makeExtModalWindowKeysave = function(facade) {
         }
     });
 }
+
+/*
+ * Ext JS Library 2.2.1
+ * Copyright(c) 2006-2009, Ext JS, LLC.
+ * licensing@extjs.com
+ *
+ * http://extjs.com/license
+ */
+
+Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
+    canvas: undefined,
+    stencil: undefined,
+    initComponent : function(){
+        Ext.ux.Portal.superclass.initComponent.call(this);
+    }
+});
+Ext.reg('canvaspanel', Ext.ux.CanvasPanel);
