@@ -130,6 +130,10 @@ ORYX.Editor = {
     // Defines the global dom event listener
     DOMEventListeners: new Hash(),
 
+    SSEditorResources: new Hash(),
+
+    SSConfigs: new Hash(),
+
 
     // Defines the selection
     selection: [],
@@ -143,6 +147,20 @@ ORYX.Editor = {
         this.loadedPlugins 	= [];
         this.pluginsData 	= [];
 
+        //{{
+        //  Create built-in configs
+        //}}
+        //ETL Trans Config
+        Ext.apply(transConfig,{
+           createEditorHandler : this._createETLTransSSUITab.bind(this)
+        });
+        this.SSConfigs['http://etl.flowframe.org/stencilset/etl/trans#'] = transConfig;
+
+        //ETL Job Config
+        Ext.apply(jobConfig,{
+            createEditorHandler : this._createETLJobSSUITab.bind(this)
+        });
+        this.SSConfigs['http://etl.flowframe.org/stencilset/etl/job#'] = jobConfig;
 
         //meta data about the model for the signavio warehouse
         //directory, new, name, description, revision, model (the model data)
@@ -199,7 +217,7 @@ ORYX.Editor = {
 
         // CREATES the canvases
         this._createTransformationCanvas(transModel.stencil ? transModel.stencil.id : null, transModel.properties, transConfig.id);
-        this._createJobCanvas(jobConfig.stencil ? jobConfig.stencil.id : null, jobConfig.properties,jobConfig.id);
+        this._createCanvas(jobConfig.stencil ? jobConfig.stencil.id : null, jobConfig.properties,jobConfig.id);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -230,7 +248,183 @@ ORYX.Editor = {
             initFinished();
         }.bind(this), 200);
     },
+    onNew: function(ssNameSpace) {
+        var canvasId = 'canvas-'+ORYX.Editor.provideId();
 
+        var ssConfig = this.SSConfigs[ssNameSpace];
+
+        //Load SS
+        ORYX.Core.StencilSet.loadStencilSet(ssConfig.stencilset.url, canvasId);
+
+        //Add SS ext
+        if(!!ORYX.CONFIG.SSEXTS){
+            ORYX.CONFIG.SSEXTS.each(function(ssext){
+                this.loadSSExtension(ssext.namespace,canvasId);
+            }.bind(this));
+        }
+
+        //Create SS canvas
+        var canvas = this._createCanvas(null, null, canvasId);
+
+        //Create Editor Tab
+        var editorTab = config.createEditorHandler(canvas);
+
+    },
+    onEdit: function(ssUrl,modelUrl) {
+
+    },
+    _createETLTransSSUITab: function(canvas) {
+        //B. Transformation Canvas tab
+        var canvasParent	= canvas.rootNode.parentNode;
+
+        //Canvas
+        var transCenterNorth_ = new Ext.Panel({
+            autoHeight: true,
+            cls		: 'x-panel-editor-center',
+            el		: canvasParent,
+            autoScroll: true,
+            split: true
+        });
+
+        //Canvas Property Editors
+        var centerSouth0_ = new Ext.Panel({
+            width: ORYX.CONFIG.CANVAS_WIDTH,
+            autoHeight: true,
+            layout	: 'fit',
+            cls		: 'x-panel-editor-east',
+            border	:false,
+            split	: true
+        });
+
+        //1. Canvas editor (top) panel/section
+        var canvasEditor_ = new Ext.Panel({
+            region: 'center',
+            autoHeight: true,
+            minHeight: 400,
+            cls		: 'x-panel-editor-center',
+            el		: canvasParent,
+            autoScroll: true,
+            split: true
+        });
+
+        //2. Canvas/shape editor (bottom) panel/section
+        var canvasEditorSectionPanelBasicTab_ = new Ext.TabPanel({
+            id: 'canvasEditorSectionPanelTab',
+            region: 'center',
+            minTabWidth: 115,
+            tabWidth:135,
+            enableTabScroll:false,
+            activeTab: 0
+            //defaults: {autoScroll:true}
+            //plugins: new Ext.ux.TabCloseMenu(),
+            /*items: [selectedComponentForm,problemsGrid]*/
+        });
+
+        var canvasEditorSectionPanel_ = new Ext.Panel({
+            region: 'south',
+            layout	: 'fit',
+            border	:false,
+            split	: true,
+            bodyStyle:'padding:0px',
+            height: 200,
+            items   :[canvasEditorSectionPanelBasicTab_
+            ]
+        });
+
+
+
+        var canvasEditorTab_ = new Ext.Panel({
+            title: 'New Job',
+            iconCls: 'process-icon',
+            closable:true,
+            labelAlign: 'top',
+            bodyStyle:'padding:0px',
+            layout: 'border',
+            items: [
+                canvasEditor_,
+                canvasEditorSectionPanel_
+            ],
+            autoScroll: true
+        });
+
+        return canvasEditorTab_;
+    },
+    _createETLJobSSUITab: function(canvas) {
+        //B. Transformation Canvas tab
+        var canvasParent	= canvas.rootNode.parentNode;
+
+        //Canvas
+        var transCenterNorth_ = new Ext.Panel({
+            autoHeight: true,
+            cls		: 'x-panel-editor-center',
+            el		: canvasParent,
+            autoScroll: true,
+            split: true
+        });
+
+        //Canvas Property Editors
+        var centerSouth0_ = new Ext.Panel({
+            width: ORYX.CONFIG.CANVAS_WIDTH,
+            autoHeight: true,
+            layout	: 'fit',
+            cls		: 'x-panel-editor-east',
+            border	:false,
+            split	: true
+        });
+
+        //1. Canvas editor (top) panel/section
+        var canvasEditor_ = new Ext.Panel({
+            region: 'center',
+            autoHeight: true,
+            minHeight: 400,
+            cls		: 'x-panel-editor-center',
+            el		: canvasParent,
+            autoScroll: true,
+            split: true
+        });
+
+        //2. Canvas/shape editor (bottom) panel/section
+        var canvasEditorSectionPanelBasicTab_ = new Ext.TabPanel({
+            id: 'canvasEditorSectionPanelTab',
+            region: 'center',
+            minTabWidth: 115,
+            tabWidth:135,
+            enableTabScroll:false,
+            activeTab: 0
+            //defaults: {autoScroll:true}
+            //plugins: new Ext.ux.TabCloseMenu(),
+            /*items: [selectedComponentForm,problemsGrid]*/
+        });
+
+        var canvasEditorSectionPanel_ = new Ext.Panel({
+            region: 'south',
+            layout	: 'fit',
+            border	:false,
+            split	: true,
+            bodyStyle:'padding:0px',
+            height: 200,
+            items   :[canvasEditorSectionPanelBasicTab_
+            ]
+        });
+
+
+
+        var canvasEditorTab_ = new Ext.Panel({
+            title: 'New Transformation',
+            iconCls: 'process-icon',
+            closable:true,
+            labelAlign: 'top',
+            bodyStyle:'padding:0px',
+            layout: 'border',
+            items: [
+                canvasEditor_,
+                canvasEditorSectionPanel_
+            ],
+            autoScroll: true
+        });
+
+        return canvasEditorTab_;
+    },
     _finishedLoading: function() {
         if(Ext.getCmp('oryx-loading-panel')){
             Ext.getCmp('oryx-loading-panel').hide()
@@ -477,8 +671,8 @@ ORYX.Editor = {
             enableTabScroll:true,
             activeTab: 0,
             //plugins: new Ext.ux.TabCloseMenu(),
-            items: [transCanvasEditorTab_,workspaceTab_
-
+            items: [//transCanvasEditorTab_,
+                workspaceTab_
             ]
         });
 
@@ -986,7 +1180,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createJobCanvas: function(stencilType, canvasConfig, canvasId) {
+    _createCanvas: function(stencilType, canvasConfig, canvasId) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -1011,7 +1205,7 @@ ORYX.Editor = {
         div.addClassName("ORYX_Editor");
 
         // create the canvas
-        this._jobCanvas = new ORYX.Core.Canvas({
+        var canvas = new ORYX.Core.Canvas({
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
@@ -1031,9 +1225,10 @@ ORYX.Editor = {
                 });
             }
 
-            this._jobCanvas.deserialize(properties);
+            canvas.deserialize(properties);
         }
 
+        return canvas;
     },
     /**
      * Returns a per-editor singleton plugin facade.
