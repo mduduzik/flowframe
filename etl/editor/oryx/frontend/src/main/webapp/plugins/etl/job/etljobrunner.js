@@ -21,11 +21,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
 
-        try {
-            this.init();
-        } catch (e) {
-            ORYX.Log.error("Plugin ORYX.Plugins.ETL.Job.RunETLJob init() failed",e);
-        }
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.handleSSLoaded.bind(this));
     },
 
     createStepMetricGrid: function () {
@@ -169,132 +165,136 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
             })
         });
     },
-    init: function () {
+    handleSSLoaded: function (event,config) {
         // the properties array
         this.stepMetricData = [];
 
-        /* The currently selected shapes whos properties will shown */
-        this.shapeSelection = new Hash();
-        this.shapeSelection.shapes = new Array();
-        this.shapeSelection.commonProperties = new Array();
-        this.shapeSelection.commonPropertiesValues = new Hash();
+        try{
+            /* The currently selected shapes whos properties will shown */
+            this.shapeSelection = new Hash();
+            this.shapeSelection.shapes = new Array();
+            this.shapeSelection.commonProperties = new Array();
+            this.shapeSelection.commonPropertiesValues = new Hash();
 
-        this.updaterFlag = false;
+            this.updaterFlag = false;
 
-        //Create Run/Debug toolbar
-        this.toolbar = new Ext.ux.SlicedToolbar({
-            region: 'north',
-            height: 24
-        });
-        var button = new Ext.Toolbar.Button({
-            align: 'left',
-            iconCls:        'process_run_icon',         // icons can also be specified inline
-            cls:            'x-btn-icon',       // Class who shows only the icon
-            itemId:         '1222222',
-            tooltip:        'Run Transformation',  // Set the tooltip
-            tooltipType:    'title',            // Tooltip will be shown as in the html-title attribute
-            handler:        this.runTransGraph.bind(this),  // Handler for mouse click
-            enableToggle:   undefined, // Option for enabling toggling
-            toggleHandler:  undefined // Handler for toggle (Parameters: button, active)
-        });
+            //Create Run/Debug toolbar
+            this.toolbar = new Ext.ux.SlicedToolbar({
+                region: 'north',
+                height: 24
+            });
+            var button = new Ext.Toolbar.Button({
+                align: 'left',
+                iconCls:        'process_run_icon',         // icons can also be specified inline
+                cls:            'x-btn-icon',       // Class who shows only the icon
+                itemId:         '1222222',
+                tooltip:        'Run Transformation',  // Set the tooltip
+                tooltipType:    'title',            // Tooltip will be shown as in the html-title attribute
+                handler:        this.runTransGraph.bind(this),  // Handler for mouse click
+                enableToggle:   undefined, // Option for enabling toggling
+                toggleHandler:  undefined // Handler for toggle (Parameters: button, active)
+            });
 
-        //create step metrics grid
-        this.createStepMetricGrid();
+            //create step metrics grid
+            this.createStepMetricGrid();
 
-        //create logging grid
-        this.createLoggingGrid();
+            //create logging grid
+            this.createLoggingGrid();
 
-        // creating the column model of the grid.
-/*        this.loggingPanelTemplate = new Ext.XTemplate(
-            '<span style="border: 0pt; background: #ffffff;font-size: 8pt; important;">{logging_string}</span>'
-        );
-        this.loggingPanel = new Ext.Panel({
-            id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.loggingPanel',
-            title: 'Logging',
-            autoScroll: true,
-            defaults: {anchor: '-20'},
-            html: '<p>Run transformation</p>'
-        });*/
+            // creating the column model of the grid.
+    /*        this.loggingPanelTemplate = new Ext.XTemplate(
+                '<span style="border: 0pt; background: #ffffff;font-size: 8pt; important;">{logging_string}</span>'
+            );
+            this.loggingPanel = new Ext.Panel({
+                id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.loggingPanel',
+                title: 'Logging',
+                autoScroll: true,
+                defaults: {anchor: '-20'},
+                html: '<p>Run transformation</p>'
+            });*/
 
-        this.loggingField = new Ext.form.TextArea({
-           style: 'border: 0pt; background: #ffffff;font-size: 8pt; important;'
-        });
-        this.loggingPanel = {
-            xtype: 'form',
-            layout:'fit',
-            items: [
-                this.loggingField
-            ]
+            this.loggingField = new Ext.form.TextArea({
+               style: 'border: 0pt; background: #ffffff;font-size: 8pt; important;'
+            });
+            this.loggingPanel = {
+                xtype: 'form',
+                layout:'fit',
+                items: [
+                    this.loggingField
+                ]
+            }
+
+
+
+            var panel = {
+                width:'auto',
+                iconCls: 'run_exc_icon',
+                title: 'Run',
+                bodyStyle:'padding:0px',
+                layout: 'border',
+                items: [
+                    this.toolbar,
+                    {
+                        id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel',
+                        region: 'center',
+                        xtype: 'tabpanel',
+                        width:'auto',
+                        activeItem: 0,
+                        border: false,
+                        //tabPosition:'left',  //choose 'left' or 'right' for vertical tabs; 'top' or 'bottom' for horizontal tabs
+                        //textAlign:'right'
+                        // this line is necessary for anchoring to work at
+                        // lower level containers and for full height of tabs
+                        //, anchor: '100% 100%'
+
+                        // only fields from an active tab are submitted
+                        // if the following line is not persent
+                        //, deferredRender: false
+
+                        // tabs
+                        defaults: {
+                            autoScroll: true,
+                            layout:'fit'
+                        },
+                        items: [
+                            this.loggingGrid,
+                            this.stepMetricGrid,
+                            {
+                                title: 'Execution History'
+                            }
+                            ,
+                            {
+                                title: 'Performance Graph'
+                            }
+                        ]
+
+                    }
+                ]
+            }
+
+
+            this.region = this.facade.addToRegion("centerSouth", panel, "Run");
+            this.region.render();
+            this.toolbar.add(button);
+            this.toolbar.add('-');
+            this.toolbar.add('->');
+
+            // Register on Events
+            /*		this.grid.on('beforeedit', this.beforeEdit, this, true);
+             this.grid.on('afteredit', this.afterEdit, this, true);
+             this.grid.view.on('refresh', this.hideMoreAttrs, this, true);*/
+
+            //this.grid.on(ORYX.CONFIG.EVENT_KEYDOWN, this.keyDown, this, true);
+
+            // Renderer the Grid
+            //this.grid.enableColumnMove = false;
+            //this.grid.render();
+
+            // Sort as Default the first column
+            //this.dataSource.sort('name');
+        } catch (e) {
+            ORYX.Log.error("Plugin ORYX.Plugins.ETL.Job.RunETLJob init() failed",e);
         }
-
-
-
-        var panel = {
-            width:'auto',
-            iconCls: 'run_exc_icon',
-            title: 'Run',
-            bodyStyle:'padding:0px',
-            layout: 'border',
-            items: [
-                this.toolbar,
-                {
-                    id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel',
-                    region: 'center',
-                    xtype: 'tabpanel',
-                    width:'auto',
-                    activeItem: 0,
-                    border: false,
-                    //tabPosition:'left',  //choose 'left' or 'right' for vertical tabs; 'top' or 'bottom' for horizontal tabs
-                    //textAlign:'right'
-                    // this line is necessary for anchoring to work at
-                    // lower level containers and for full height of tabs
-                    //, anchor: '100% 100%'
-
-                    // only fields from an active tab are submitted
-                    // if the following line is not persent
-                    //, deferredRender: false
-
-                    // tabs
-                    defaults: {
-                        autoScroll: true,
-                        layout:'fit'
-                    },
-                    items: [
-                        this.loggingGrid,
-                        this.stepMetricGrid,
-                        {
-                            title: 'Execution History'
-                        }
-                        ,
-                        {
-                            title: 'Performance Graph'
-                        }
-                    ]
-
-                }
-            ]
-        }
-
-
-        this.region = this.facade.addToRegion("centerSouth", panel, "Run");
-        this.region.render();
-        this.toolbar.add(button);
-        this.toolbar.add('-');
-        this.toolbar.add('->');
-
-        // Register on Events
-        /*		this.grid.on('beforeedit', this.beforeEdit, this, true);
-         this.grid.on('afteredit', this.afterEdit, this, true);
-         this.grid.view.on('refresh', this.hideMoreAttrs, this, true);*/
-
-        //this.grid.on(ORYX.CONFIG.EVENT_KEYDOWN, this.keyDown, this, true);
-
-        // Renderer the Grid
-        //this.grid.enableColumnMove = false;
-        //this.grid.render();
-
-        // Sort as Default the first column
-        //this.dataSource.sort('name');
 
     },
     runSynchronously: function(){

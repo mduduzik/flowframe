@@ -70,7 +70,7 @@ ORYX.Plugins.ShapeRepository = {
 		}.bind(this);
 
 		// Load all Stencilssets
-		this.setStencilSets();
+		//this.setStencilSets();
 
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.setStencilSets.bind(this));
 

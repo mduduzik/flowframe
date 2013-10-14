@@ -76,6 +76,8 @@ ORYX.CONFIG.VISIOIMPORT =               ORYX.CONFIG.ROOT_PATH + "visioimport";
 	/* Namespaces */
 ORYX.CONFIG.NAMESPACE_ORYX =			"http://www.b3mn.org/oryx";
 ORYX.CONFIG.NAMESPACE_SVG =				"http://www.w3.org/2000/svg";
+ORYX.CONFIG.NAMESPACE_ETL_JOB =         "http://etl.flowframe.org/stencilset/etl/job#";
+ORYX.CONFIG.NAMESPACE_ETL_TRANS =       "http://etl.flowframe.org/stencilset/etl/trans#";
 
 	/* UI */
 ORYX.CONFIG.CANVAS_WIDTH =				1029;
@@ -204,8 +206,7 @@ ORYX.CONFIG.EVENT_ETL_METADATA_DELETED       = "etl.metadata.deleted";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX = "etl.metadata.delete.";
 ORYX.CONFIG.EVENT_ETL_METADATA_DDROP = "etl.metadata.ddrop.";
 
-ORYX.CONFIG.EVENT_ETL_TRANSFORMATION_NEW = "etl.transformation.new";
-ORYX.CONFIG.EVENT_ETL_JOB_NEW = "etl.job.new";
+ORYX.CONFIG.EVENT_ETL_MODEL_EDIT = "etl.model.edit";
 	
 	/* Selection Shapes Highlights */
 ORYX.CONFIG.SELECTION_HIGHLIGHT_SIZE =				5;
