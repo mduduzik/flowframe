@@ -220,7 +220,8 @@ ORYX.Editor = {
     launchEditor: function(event,config) {
         var canvasId = 'canvas-'+ORYX.Editor.provideId();
 
-        var ssConfig = this.SSConfigs[config.ssns];
+        var ssNameSpace = config.ssns;
+        var ssConfig = this.SSConfigs[ssNameSpace];
 
         //Load SS
         ORYX.Core.StencilSet.loadStencilSet(ssConfig.stencilset.url, canvasId);
@@ -241,15 +242,24 @@ ORYX.Editor = {
         //Add
         this.CurrentEditor = editorTab;
         this.SSEditors[ssNameSpace] = editorTab;
-        var region = this.addToRegion("center", panel, editorTab.name);
+        var region = this.addToRegion("center", editorTab, editorTab.name);
+
+        //Enable DD
+        new Ext.dd.DropTarget(this.CurrentEditor.canvas.rootNode.parentNode);
 
         this.handleEvents(
             {
-                type:ORYX.CONFIG.EVENT_STENCIL_SET_LOADED
+                type:ORYX.CONFIG.EVENT_STENCIL_SET_LOADED,
+                forceExecution: true
             },
             {
-                canvas:canvas
+                canvas:canvas,
+                loadedPlugins: this.loadedPlugins
             });
+
+        // Raise Loaded Event
+        this.handleEvents( {type:ORYX.CONFIG.EVENT_LOADED} );
+
     },
     _createETLTransSSUITab: function(canvas) {
         //B. Transformation Canvas tab
@@ -413,7 +423,7 @@ ORYX.Editor = {
         // Do Layout for viewport
         this.layout.doLayout();
         // Generate a drop target
-        new Ext.dd.DropTarget(this.getCanvas().rootNode.parentNode);
+        //new Ext.dd.DropTarget(this.getCanvas().rootNode.parentNode);
 
         // Fixed the problem that the viewport can not
         // start with collapsed panels correctly
@@ -423,10 +433,6 @@ ORYX.Editor = {
         if (ORYX.CONFIG.PANEL_LEFT_COLLAPSED === true){
             this.layout_regions.west.collapse();
         }
-
-        // Raise Loaded Event
-        this.handleEvents( {type:ORYX.CONFIG.EVENT_LOADED} )
-
     },
 
     _initEventListener: function(){

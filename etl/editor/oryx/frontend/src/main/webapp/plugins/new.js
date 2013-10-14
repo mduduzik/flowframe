@@ -9,18 +9,17 @@ ORYX.Plugins.New = ORYX.Plugins.AbstractPlugin.extend({
 	
     construct: function(facade){
 		this.facade = facade;
-		if (!(ORYX.CONFIG.IS_TEMPLATE)) {
-			this.facade.offer({
-				'name': 'NewTransformation',
-				'functionality': this.newTransformation.bind(this,false),
-				'group': 'New ETL Transformation',
-				'icon': "/etl/images/conxbi/etl/transformation.png",
-				'description': 'New Transformation',
-				'index': 1,
-				'minShape': 0,
-				'maxShape': 0
-			});
-		}
+
+        this.facade.offer({
+            'name': 'NewTransformation',
+            'functionality': this.newTransformation.bind(this,false),
+            'group': 'New ETL Transformation',
+            'icon': "/etl/images/conxbi/etl/transformation.png",
+            'description': 'New Transformation',
+            'index': 1,
+            'minShape': 0,
+            'maxShape': 0
+        });
 		
 		this.facade.offer({
 			'name': 'NewJob',
