@@ -241,7 +241,7 @@ ORYX.Editor = {
         var canvas = this._createCanvas(null, null, canvasId);
 
         //Create Editor Tab
-        var editorTab = ssConfig.createEditorHandler(canvas);
+        var editorTab = ssConfig.createEditorHandler(canvas,namespace);
 
         //Add
         this.CurrentEditor = editorTab;
@@ -284,7 +284,7 @@ ORYX.Editor = {
         }.bind(this), 200);
 
     },
-    _createETLTransSSUITab: function(canvas) {
+    _createETLTransSSUITab: function(canvas,ssnamespace) {
         //B. Transformation Canvas tab
         var canvasParent	= canvas.rootNode.parentNode;
 
@@ -358,12 +358,13 @@ ORYX.Editor = {
             canvas: canvas,
             canvasContainer: canvasEditor_,
             canvasEditorsContainer: canvasEditorSectionPanelBasicTab_,
+            ns: ssnamespace,
             autoScroll: true
         });
 
         return canvasEditorTab_;
     },
-    _createETLJobSSUITab: function(canvas) {
+    _createETLJobSSUITab: function(canvas,ssnamespace) {
         //B. Transformation Canvas tab
         var canvasParent	= canvas.rootNode.parentNode;
 
@@ -435,6 +436,7 @@ ORYX.Editor = {
                 canvasEditorSectionPanel_
             ],
             canvas: canvas,
+            ns: ssnamespace,
             autoScroll: true
         });
 
@@ -2587,6 +2589,7 @@ Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
     canvas: undefined,
     canvasContainer: undefined,
     canvasEditorsContainer: undefined,
+    ns: undefined,
     initComponent : function(){
         Ext.ux.Portal.superclass.initComponent.call(this);
     },

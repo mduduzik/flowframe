@@ -17,6 +17,7 @@ if (!ORYX.Plugins.ETL.Trans.Step) {
 ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
     canvas: undefined,
     facade: undefined,
+    ns: ORYX.NAMESPACE_ETL_TRANS,
 
     construct: function (facade) {
         // Reference to the Editor-Interface
@@ -27,12 +28,17 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
     },
-
+    isCompatibleStencilSet: function(ssnamespace) {
+      return (this.ns === ssnamespace);
+    },
     stencilSetLoaded: function (event,args) {
-        if (args.canvas)
-            this.canvas = args.canvas;
-        else
-            this.canvas = this.facade.CurrentEditor.canvas;
+        if (!this.facade.CurrentEditor)//Is there a current editor
+            return;
+
+        if (!this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns))//Current editor supports this Plugin?
+            return;
+
+        this.canvas = this.facade.CurrentEditor.canvas;
 
         // The parent div-node of the grid
         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
