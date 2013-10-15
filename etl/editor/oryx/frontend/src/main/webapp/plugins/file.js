@@ -38,7 +38,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 				'group': ORYX.I18N.Save.group,
 				'icon': ORYX.PATH + "images/disk.png",
 				'description': ORYX.I18N.Save.saveDesc,
-				'index': 1,
+				'index': 3,
 				'minShape': 0,
 				'maxShape': 0
 			});
@@ -50,7 +50,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 			'group': ORYX.I18N.Save.group,
 			'icon': ORYX.PATH + "images/disk_multi.png",
 			'description': ORYX.I18N.Save.saveAsDesc,
-			'index': 2,
+			'index': 4,
 			'minShape': 0,
 			'maxShape': 0
 		});	

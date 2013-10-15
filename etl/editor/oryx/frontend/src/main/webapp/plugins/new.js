@@ -13,7 +13,7 @@ ORYX.Plugins.New = ORYX.Plugins.AbstractPlugin.extend({
         this.facade.offer({
             'name': 'NewTransformation',
             'functionality': this.newTransformation.bind(this,false),
-            'group': 'New ETL Transformation',
+            'group': ORYX.I18N.Save.group,
             'icon': "/etl/images/conxbi/etl/transformation.png",
             'description': 'New Transformation',
             'index': 1,
@@ -24,7 +24,7 @@ ORYX.Plugins.New = ORYX.Plugins.AbstractPlugin.extend({
 		this.facade.offer({
 			'name': 'NewJob',
 			'functionality': this.newJob.bind(this,true),
-			'group': 'New',
+			'group': ORYX.I18N.Save.group,
 			'icon': "/etl/images/conxbi/etl/process_icon.gif",
 			'description': 'New ETL Job',
 			'index': 2,

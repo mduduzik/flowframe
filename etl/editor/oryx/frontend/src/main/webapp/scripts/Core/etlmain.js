@@ -345,8 +345,8 @@ ORYX.Editor = {
 
 
         var canvasEditorTab_ = new Ext.ux.CanvasPanel({
-            title: 'New Job',
-            iconCls: 'process-icon',
+            title: 'New Transformation',
+            iconCls: 'transformation-icon',
             closable:true,
             labelAlign: 'top',
             bodyStyle:'padding:0px',
@@ -424,7 +424,7 @@ ORYX.Editor = {
 
 
         var canvasEditorTab_ = new Ext.ux.CanvasPanel({
-            title: 'New Transformation',
+            title: 'New Job',
             iconCls: 'process-icon',
             closable:true,
             labelAlign: 'top',
@@ -539,6 +539,7 @@ ORYX.Editor = {
             labelAlign: 'top',
             bodyStyle:'padding:0px',
             layout: 'fit',
+            dropAllowed: false,
             items: [
                 {
                     xtype:'portal',

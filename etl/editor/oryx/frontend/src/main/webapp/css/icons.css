@@ -1,6 +1,9 @@
 .process-icon {
     background-image:url(/etl/images/conxbi/etl/process_icon.gif) !important;
 }
+.transformation-icon {
+    background-image:url(/etl/images/conxbi/etl/transformation.png) !important;
+}
 .property-icon {
     background-image:url(/etl/images/conxbi/etl/property.png) !important;
 }

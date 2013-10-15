@@ -675,6 +675,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * @param event
      */
     onMetadataDrop: function (event, source) {
+        if (!this.facade.getCurrentEditor())
+            return;
         var currentCanvas = this.facade.getCurrentEditor().canvas;
 
         var dragZone = source.dragZone;
