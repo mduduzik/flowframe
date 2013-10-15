@@ -225,6 +225,7 @@ ORYX.Editor = {
 
         //Load SS
         ORYX.Core.StencilSet.loadStencilSet(ssConfig.stencilset.url, canvasId);
+        var ss = this.getStencilSets(canvasId);
 
         //Add SS ext
         if(!!ORYX.CONFIG.SSEXTS){
@@ -254,6 +255,7 @@ ORYX.Editor = {
             },
             {
                 canvas:canvas,
+                ss: ss,
                 loadedPlugins: this.loadedPlugins
             });
 
@@ -333,6 +335,8 @@ ORYX.Editor = {
                 canvasEditorSectionPanel_
             ],
             canvas: canvas,
+            canvasContainer: canvasEditor_,
+            canvasEditorsContainer: canvasEditorSectionPanelBasicTab_,
             autoScroll: true
         });
 
@@ -805,6 +809,35 @@ ORYX.Editor = {
 
 
         }
+        else {
+            if (region.toLowerCase() === 'centersouth') {//Canvas sub/bottom/canvas south editors
+                current_region = this.CurrentEditor.getCanvasEditorsPanel();
+
+                //TODO: This code should be in CanvasPanel
+                //Resize
+                current_region.add(component).show();
+
+                ORYX.Log.debug("original dimensions of region %0: %1 x %2", current_region.region, current_region.width, current_region.height)
+
+                // update dimensions of region if required.
+                if  (!current_region.width && component.initialConfig && component.initialConfig.width) {
+                    ORYX.Log.debug("resizing width of region %0: %1", current_region.region, component.initialConfig.width)
+                    current_region.setWidth(component.initialConfig.width)
+                }
+                if  (component.initialConfig && component.initialConfig.height) {
+                    ORYX.Log.debug("resizing height of region %0: %1", current_region.region, component.initialConfig.height)
+                    var current_height = current_region.height || 0;
+                    current_region.height = component.initialConfig.height + current_height;
+                    current_region.setHeight(component.initialConfig.height + current_height)
+                }
+
+                //Height and title
+                current_region.setTitle(title);
+                current_region.setHeight(320);
+
+                return  current_region;
+            }
+        }
 
         return null;
     },
@@ -931,7 +964,9 @@ ORYX.Editor = {
         var newPlugins = [];
 
 
-        var loadedStencilSetsNamespaces = this.getStencilSets().keys();
+        var loadedStencilSetsNamespaces = "";
+        if (this.CurrentEditor)
+            loadedStencilSetsNamespaces = this.getStencilSets(this.CurrentEditor.canvas.id).keys();
 
         // Available Plugins will be initalize
         var facade = this._getPluginFacade();
@@ -1637,10 +1672,7 @@ ORYX.Editor = {
     },
 
     getStencilSets: function(canvasId) {
-        if (this.CurrentEditor && !canvasId)
-            return this.CurrentEditor.canvas.stencilset;
-        else
-            return ORYX.Core.StencilSet.stencilSets(canvasId);
+        return ORYX.Core.StencilSet.stencilSets(canvasId);
     },
 
     getRules: function(canvasId) {
@@ -2527,11 +2559,19 @@ ORYX.Editor.makeExtModalWindowKeysave = function(facade) {
 
 Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
     canvas: undefined,
+    canvasContainer: undefined,
+    canvasEditorsContainer: undefined,
     initComponent : function(){
         Ext.ux.Portal.superclass.initComponent.call(this);
     },
     getCanvas : function(){
         return this.canvas;
+    },
+    getCanvasPanel : function(){
+        return this.canvasContainer;
+    },
+    getCanvasEditorsPanel : function(){
+        return this.canvasEditorsContainer;
     }
 });
 Ext.reg('canvaspanel', Ext.ux.CanvasPanel);

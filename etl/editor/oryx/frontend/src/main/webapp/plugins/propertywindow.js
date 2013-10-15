@@ -28,19 +28,22 @@ if(!ORYX.Plugins) {
 }
 
 ORYX.Plugins.PropertyWindow = {
-
+    canvas: undefined,
 	facade: undefined,
 
 	construct: function(facade) {
 		// Reference to the Editor-Interface
 		this.facade = facade;
 
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
+		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.stencilSetLoaded.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
-		this.init();
+
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
 	},
-	
-	init: function(){
+
+    stencilSetLoaded: function(event,args){
+        if (args.canvas)
+            this.canvas = args.canvas;
 
 		// The parent div-node of the grid
 		this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
@@ -466,7 +469,7 @@ ORYX.Plugins.PropertyWindow = {
 		
 		/* Case: nothing selected */
 		if(event.elements.length == 0) {
-			this.shapeSelection.shapes = [this.facade.getCanvas()];
+			this.shapeSelection.shapes = [this.facade.getCanvas(this.canvas.id)];
 		}
 		
 		/* subselection available */

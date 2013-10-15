@@ -15,7 +15,7 @@ if (!ORYX.Plugins.ETL.Trans.Step) {
 }
 
 ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
-
+    canvas: undefined,
     facade: undefined,
 
     construct: function (facade) {
@@ -25,14 +25,11 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
 
-        try {
-            this.init();
-        } catch (e) {
-            ORYX.Log.warn("Plugin ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow init() failed");
-        }
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
     },
 
-    init: function () {
+    stencilSetLoaded: function (event,args) {
+        this.canvas = args.canvas;
 
         // The parent div-node of the grid
         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
@@ -491,7 +488,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
         /* Case: nothing selected */
         if (event.elements.length == 0) {
-            this.shapeSelection.shapes = [this.facade.getCanvas()];
+            this.shapeSelection.shapes = [this.facade.getCanvas(this.canvas.id)];
         }
 
         /* subselection available */
