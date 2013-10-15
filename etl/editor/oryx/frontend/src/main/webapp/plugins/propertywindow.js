@@ -469,7 +469,7 @@ ORYX.Plugins.PropertyWindow = {
 		
 		/* Case: nothing selected */
 		if(event.elements.length == 0) {
-			this.shapeSelection.shapes = [this.facade.getCanvas(this.canvas.id)];
+			this.shapeSelection.shapes = [this.facade.getCanvas(this.canvas.resourceId)];
 		}
 		
 		/* subselection available */

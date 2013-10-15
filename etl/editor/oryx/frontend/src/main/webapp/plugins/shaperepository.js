@@ -115,7 +115,9 @@ ORYX.Plugins.ShapeRepository = {
 				stencilSetNode.render();
 				stencilSetNode.expand();
 				// Get Stencils from Stencilset
-				var stencils = sset.stencils(this.facade.getCanvas(this.canvas.id).getStencil(), this.facade.getRules(this.canvas.id));
+                var stencil_ = this.facade.getCanvas(this.canvas.resourceId).getStencil();
+                var rules_ = this.facade.getRules(this.canvas.resourceId);
+				var stencils = sset.stencils(stencil_,rules_);
 				var treeGroups = new Hash();
 	
 				// Sort the stencils according to their position and add them to the
@@ -411,7 +413,7 @@ ORYX.Plugins.ShapeRepository = {
 			// check containment rules
 			var option = Ext.dd.Registry.getHandle(target.DDM.currentTarget);
 
-			var stencilSet = this.facade.getStencilSets(this.canvas.id)[option.namespace];
+			var stencilSet = this.facade.getStencilSets(this.canvas.resourceId)[option.namespace];
 
 			var stencil = stencilSet.stencil(option.type);
 
@@ -433,7 +435,7 @@ ORYX.Plugins.ShapeRepository = {
 
 					if (!(parentCandidate instanceof ORYX.Core.Canvas) && parentCandidate.isPointOverOffset(coord.x, coord.y) && this._canAttach == undefined) {
 
-						this._canAttach = this.facade.getRules(this.canvas.id).canConnect({
+						this._canAttach = this.facade.getRules(this.canvas.resourceId).canConnect({
 							sourceShape : parentCandidate,
 							edgeStencil : stencil,
 							targetStencil : stencil
@@ -465,7 +467,7 @@ ORYX.Plugins.ShapeRepository = {
 
 					if (this._canContain == undefined && !this._canAttach) {
 
-						this._canContain = this.facade.getRules(this.canvas.id).canContain({
+						this._canContain = this.facade.getRules(this.canvas.resourceId).canContain({
 							containingShape : parentCandidate,
 							containedStencil : stencil
 						});

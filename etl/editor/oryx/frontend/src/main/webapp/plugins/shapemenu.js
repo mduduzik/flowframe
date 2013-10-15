@@ -127,13 +127,13 @@ ORYX.Plugins.ShapeMenuPlugin = {
 			this.pluginsData = [];
 		}
 
-		this.baseMorphStencils = this.facade.getRules(this.canvas.id).baseMorphs();
+		this.baseMorphStencils = this.facade.getRules(this.canvas.resourceId).baseMorphs();
 		
 		// Checks if the stencil set has morphing attributes
-		var isMorphing = this.facade.getRules(this.canvas.id).containsMorphingRules();
+		var isMorphing = this.facade.getRules(this.canvas.resourceId).containsMorphingRules();
 		
 		// Create Buttons for all Stencils of all loaded stencilsets
-		var stencilsets = this.facade.getStencilSets(this.canvas.id);
+		var stencilsets = this.facade.getStencilSets(this.canvas.resourceId);
 		stencilsets.values().each((function(stencilSet){
 			
 			var nodes = stencilSet.nodes();

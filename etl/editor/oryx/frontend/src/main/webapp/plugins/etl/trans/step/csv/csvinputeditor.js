@@ -22,14 +22,17 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
         // Reference to the Editor-Interface
         this.facade = facade;
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.stencilSetLoaded.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
 
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
     },
 
     stencilSetLoaded: function (event,args) {
-        this.canvas = args.canvas;
+        if (args.canvas)
+            this.canvas = args.canvas;
+        else
+            this.canvas = this.facade.CurrentEditor.canvas;
 
         // The parent div-node of the grid
         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
@@ -227,7 +230,9 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
     // Select the Canvas when the editor is ready
     selectDiagram: function () {
-        this.shapeSelection.shapes = [this.facade.getCanvas()];
+        this.canvas = this.facade.CurrentEditor.canvas;
+
+        this.shapeSelection.shapes = [this.canvas];
 
         this.setPropertyWindowTitle();
         this.identifyCommonProperties();
@@ -336,7 +341,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
                     }
                 }.bind(this));
                 this.facade.setSelection(this.selectedElements);
-                this.facade.getCanvas().update();
+                this.canvas.update();
                 this.facade.updateSelection();
             },
             rollback: function () {
@@ -344,7 +349,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
                     shape.setProperty(this.key, this.oldValues[shape.getId()]);
                 }.bind(this));
                 this.facade.setSelection(this.selectedElements);
-                this.facade.getCanvas().update();
+                this.canvas.update();
                 this.facade.updateSelection();
             }
         })
@@ -386,7 +391,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
             value: value
         });
 
-        this.facade.getCanvas().update();
+        this.canvas.update();
 
     },
 
@@ -399,7 +404,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
             }
         }.bind(this));
 
-        this.facade.getCanvas().update();
+        this.canvas.update();
     },
 
     // extended by Kerstin (start)
@@ -488,7 +493,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
         /* Case: nothing selected */
         if (event.elements.length == 0) {
-            this.shapeSelection.shapes = [this.facade.getCanvas(this.canvas.id)];
+            this.shapeSelection.shapes = [this.canvas];
         }
 
         /* subselection available */
