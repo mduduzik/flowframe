@@ -170,10 +170,10 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 							this.docker 		= docker;
 							this.newPosition	= position;
 							this.newDockedShape = newDockedShape;
-							this.newParent 		= newDockedShape.parent || facade.getCanvas();
+							this.newParent 		= newDockedShape.parent || this.canvas;
 							this.oldPosition	= docker.parent.bounds.center();
 							this.oldDockedShape	= docker.getDockedShape();
-							this.oldParent 		= docker.parent.parent || facade.getCanvas();
+							this.oldParent 		= docker.parent.parent || this.canvas;
 							this.facade			= facade;
 							
 							if( this.oldDockedShape ){
@@ -585,7 +585,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 					this.plugin.layoutEdges(this.shape, allEdges, offset);
 
 					this.plugin.facade.setSelection([this.shape]);
-					this.plugin.facade.getCanvas().update();
+					this.plugin.this.canvas.update();
 					this.plugin.facade.updateSelection();
 				}
 			});
@@ -1366,7 +1366,7 @@ ORYX.Core.Command.Move = ORYX.Core.Command.extend({
 		this.addShapeToParent( this.newParents ); 
 		// Set the selection to the current selection
 		this.selectCurrentShapes();
-		this.plugin.facade.getCanvas().update();
+		this.canvas.update();
 		this.plugin.facade.updateSelection();
 	},
 	rollback: function(){
@@ -1379,7 +1379,7 @@ ORYX.Core.Command.Move = ORYX.Core.Command.extend({
 		
 		// Set the selection to the current selection
 		this.selectCurrentShapes();
-		this.plugin.facade.getCanvas().update();
+		this.canvas.update();
 		this.plugin.facade.updateSelection();
 		
 	},

@@ -154,7 +154,7 @@ ORYX.Plugins.ETLRepoNavigation = Clazz.extend({
             // Handles
             isHandle: false,
             type: type, // Set Type of stencil
-            namespace: 'http://etl.flowframe.org/stencilset/etlbasic#'
+            namespace: 'http://etl.flowframe.org/stencilset/etl/trans#'
             // Set Namespace of stencil
         });
     },
@@ -675,6 +675,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * @param event
      */
     onMetadataDrop: function (event, source) {
+        var currentCanvas = this.facade.getCurrentEditor().canvas;
+
         var dragZone = source.dragZone;
         var target = source.target;
         var event = source.event;
@@ -697,10 +699,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             /**
              * Get stencils supprting this metadata
              */
-            var stencilSet = this.facade.getStencilSets()[option.namespace];
+            var stencilSet = this.facade.getStencilSets(currentCanvas.resourceId)[option.namespace];
 
             // Get Stencils from Stencilset
-            var stencils = stencilSet.stencils(this.facade.getCanvas().getStencil(), this.facade.getRules());
+            var stencils = stencilSet.stencils(currentCanvas.getStencil(), this.facade.getRules(currentCanvas.resourceId));
             var treeGroups = new Hash();
 
             // Get stencils that support metadata 'option.type'
@@ -803,7 +805,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     // this.shape.update();
 
                                     this.facade.setSelection([ this.shape ]);
-                                    this.facade.getCanvas().update();
+                                    currentCanvas.update();
                                     this.facade.updateSelection();
 
                                 },
@@ -813,7 +815,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     // this.currentParent.update();
 
                                     this.facade.setSelection(this.selection.without(this.shape));
-                                    this.facade.getCanvas().update();
+                                    currentCanvas.update();
                                     this.facade.updateSelection();
                                 }
                             });
@@ -840,14 +842,14 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     newShape.setProperty('oryx-metadataobjid', this.metadataObjId);
 
                                     this.facade.setSelection([newShape]);
-                                    this.facade.getCanvas().update();
+                                    currentCanvas.update();
                                     this.facade.updateSelection();
                                 },
                                 rollback: function () {
                                     newShape.setProperty('oryx-metadatatype', 'R' + this.metadatatype);
                                     newShape.setProperty('oryx-metadataObjId', 'R' + this.metadataObjId);
                                     this.facade.setSelection([newShape]);
-                                    this.facade.getCanvas().update();
+                                    currentCanvas.update();
                                     this.facade.updateSelection();
                                 }
                             })

@@ -210,7 +210,7 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
         // Sort as Default the first column
         //this.dataSource.sort('name');
 
-        region = this.facade.addToRegion("centerSouth", panel, "Component");
+        //region = this.facade.addToRegion("centerSouth", panel, "Component");
 
         // Register on Events
         /*		this.grid.on('beforeedit', this.beforeEdit, this, true);
@@ -230,6 +230,9 @@ ORYX.Plugins.ETL.Trans.Step.CsvInputEditorWindow = {
 
     // Select the Canvas when the editor is ready
     selectDiagram: function () {
+        if (!this.facade.CurrentEditor)
+            return;
+
         this.canvas = this.facade.CurrentEditor.canvas;
 
         this.shapeSelection.shapes = [this.canvas];

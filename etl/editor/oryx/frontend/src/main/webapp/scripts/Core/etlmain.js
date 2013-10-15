@@ -218,6 +218,9 @@ ORYX.Editor = {
         }.bind(this), 200);*/
     },
     launchEditor: function(event,config) {
+        if(Ext.getCmp('oryx-loading-panel')){
+            Ext.getCmp('oryx-loading-panel').show();
+        }
         var canvasId = 'canvas-'+ORYX.Editor.provideId();
 
         var ssNameSpace = config.ssns;
@@ -244,9 +247,9 @@ ORYX.Editor = {
         this.CurrentEditor = editorTab;
         this.SSEditors[ssNameSpace] = editorTab;
         var region = this.addToRegion("center", editorTab, editorTab.name);
+        region.render();
 
-        //Enable DD
-        new Ext.dd.DropTarget(this.CurrentEditor.canvas.rootNode.parentNode);
+
 
         this.handleEvents(
             {
@@ -261,6 +264,24 @@ ORYX.Editor = {
 
         // Raise Loaded Event
         this.handleEvents( {type:ORYX.CONFIG.EVENT_LOADED} );
+
+        var loadContentFinished = false;
+        var initFinished = function(){
+            if( !loadContentFinished ){ return }
+            this._finishedLoading();
+        }.bind(this)
+
+        // disable key events when Ext modal window is active
+        ORYX.Editor.makeExtModalWindowKeysave(this._getPluginFacade());
+
+
+        // LOAD the content of the current editor instance
+        window.setTimeout(function(){
+            //this.loadSerialized(model);
+            canvas.update();
+            loadContentFinished = true;
+            initFinished();
+        }.bind(this), 200);
 
     },
     _createETLTransSSUITab: function(canvas) {
@@ -427,7 +448,8 @@ ORYX.Editor = {
         // Do Layout for viewport
         this.layout.doLayout();
         // Generate a drop target
-        //new Ext.dd.DropTarget(this.getCanvas().rootNode.parentNode);
+        if (this.CurrentEditor)
+            new Ext.dd.DropTarget(this.CurrentEditor.canvas.rootNode.parentNode);
 
         // Fixed the problem that the viewport can not
         // start with collapsed panels correctly
@@ -1192,6 +1214,7 @@ ORYX.Editor = {
                 getSelection:			this.getSelection.bind(this),
                 setSelection:			this.setSelection.bind(this),
                 updateSelection:		this.updateSelection.bind(this),
+                getCurrentEditor:		this.getCurrentEditor.bind(this),
                 getCanvas:				this.getCanvas.bind(this),
 
                 importJSON:				this.importJSON.bind(this),
@@ -1550,12 +1573,12 @@ ORYX.Editor = {
      * @methodOf ORYX.Editor.prototype
      */
     loadSerialized: function( model ){
-        var canvas  = this.getCanvas();
+        var canvas  = this.CurrentEditor.canvas;
 
         // Bugfix (cf. http://code.google.com/p/oryx-editor/issues/detail?id=240)
         // Deserialize the canvas' stencil set extensions properties first!
         this.loadSSExtensions(model.ssextensions);
-        var shapes = this.getCanvas().addShapeObjects(model.childShapes, this.handleEvents.bind(this));
+        var shapes = canvas.addShapeObjects(model.childShapes, this.handleEvents.bind(this));
 
         if(model.properties) {
             for(key in model.properties) {
@@ -1563,12 +1586,12 @@ ORYX.Editor = {
                 if (!(typeof prop === "string")) {
                     prop = Ext.encode(prop);
                 }
-                this.getCanvas().setProperty("oryx-" + key, prop);
+                canvas.setProperty("oryx-" + key, prop);
             }
         }
 
 
-        this.getCanvas().updateSize();
+        canvas.updateSize();
         return shapes;
     },
 
@@ -1776,7 +1799,9 @@ ORYX.Editor = {
          this.setSelection();
          this.setSelection(s);*/
     },
-
+    getCurrentEditor: function() {
+        return this.CurrentEditor;
+    },
     getCanvas: function() {
         if (this.CurrentEditor)
             return this.CurrentEditor.canvas;
@@ -2133,7 +2158,7 @@ ORYX.Editor = {
     _handleMouseDown: function(event, uiObj) {
 
         // get canvas.
-        var canvas = this.getCanvas();
+        var canvas = this.CurrentEditor.canvas;
         // Try to get the focus
         canvas.focus()
 
@@ -2244,7 +2269,7 @@ ORYX.Editor = {
 
     _handleMouseUp: function(event, uiObj) {
         // get canvas.
-        var canvas = this.getCanvas();
+        var canvas = this.CurrentEditor.canvas;
 
         // find the shape that is responsible for this elemement's id.
         var elementController = uiObj;
@@ -2270,7 +2295,7 @@ ORYX.Editor = {
      */
     eventCoordinates: function(event) {
 
-        var canvas = this.getCanvas();
+        var canvas = this.CurrentEditor.canvas;
 
         var svgPoint = canvas.node.ownerSVGElement.createSVGPoint();
         svgPoint.x = event.clientX;
