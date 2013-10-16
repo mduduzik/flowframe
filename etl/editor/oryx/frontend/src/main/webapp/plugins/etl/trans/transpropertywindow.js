@@ -24,6 +24,15 @@ ORYX.Plugins.ETL.Trans.TransPropertyWindow = ORYX.Plugins.ETL.BasePropertyWindow
     processOnSelectionChanged: function() {
         return event.elements && event.elements.length == 0
     },
+    onSelectionChanged: function(event,args) {
+        if (!this.processOnSelectionChanged()) {
+           arguments.callee.$.onSelectDiagram.apply(this);
+           return;
+        }
+        else {
+            arguments.callee.$.onSelectionChanged.apply(this);
+        }
+    },
     onStencilSetLoaded: function() {
         // Call super method
         arguments.callee.$.onStencilSetLoaded.apply(this, arguments);

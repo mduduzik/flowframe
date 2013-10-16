@@ -10,8 +10,8 @@ if (!ORYX.Plugins.ETL.Job) {
     ORYX.Plugins.ETL.Job = new Object();
 }
 
-ORYX.Plugins.ETL.Job.ETLJobRunner = {
-
+ORYX.Plugins.ETL.Job.ETLTransRunner = {
+    ns: 'http://etl.flowframe.org/stencilset/etl/trans#',
     facade: undefined,
 
     construct: function (facade) {
@@ -23,7 +23,12 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
 
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.handleSSLoaded.bind(this));
     },
-
+    disRegardEvent: function() {
+        return !this.facade.getCurrentEditor() || !this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns);
+    },
+    isCompatibleStencilSet: function(ssnamespace) {
+        return (this.ns === ssnamespace);
+    },
     createStepMetricGrid: function () {
         this.stepMetricColumnModel = new Ext.grid.ColumnModel({
             defaultWidth: 60,
@@ -166,6 +171,9 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         });
     },
     handleSSLoaded: function (event,config) {
+        if (this.disRegardEvent())
+            return;
+
         // the properties array
         this.stepMetricData = [];
 
@@ -206,7 +214,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                 '<span style="border: 0pt; background: #ffffff;font-size: 8pt; important;">{logging_string}</span>'
             );
             this.loggingPanel = new Ext.Panel({
-                id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.loggingPanel',
+                id: 'ORYX.Plugins.ETL.Job.ETLTransRunner.loggingPanel',
                 title: 'Logging',
                 autoScroll: true,
                 defaults: {anchor: '-20'},
@@ -235,7 +243,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                 items: [
                     this.toolbar,
                     {
-                        id: 'ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel',
+                        id: 'ORYX.Plugins.ETL.Job.ETLTransRunner.tabpanel',
                         region: 'center',
                         xtype: 'tabpanel',
                         width:'auto',
@@ -427,7 +435,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
                 }
                 this.loggingGrid.store.loadData(this.logData);
 
-                var tabPanel = Ext.getCmp('ORYX.Plugins.ETL.Job.ETLJobRunner.tabpanel');
+                var tabPanel = Ext.getCmp('ORYX.Plugins.ETL.Job.ETLTransRunner.tabpanel');
                 var tabs = tabPanel.find( 'title', 'Logging' );
                 tabPanel.setActiveTab(tabs[0]);
                 //this.loggingField.setRawValue(trace);
@@ -548,4 +556,4 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         this.dataSource.loadData(props);
     }
 }
-ORYX.Plugins.ETL.Job.ETLJobRunner = Clazz.extend(ORYX.Plugins.ETL.Job.ETLJobRunner);
+ORYX.Plugins.ETL.Job.ETLTransRunner = Clazz.extend(ORYX.Plugins.ETL.Job.ETLTransRunner);

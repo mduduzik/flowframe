@@ -73,7 +73,7 @@ ORYX.Plugins.ShapeRepository = {
 		//this.setStencilSets();
 
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.setStencilSets.bind(this));
-
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHAPE_REPOSITORY_CHANGE, this.setStencilSets.bind(this));
 	},
 
 	/**

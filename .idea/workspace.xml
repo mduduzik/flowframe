@@ -2,26 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69bc9311-f399-47b6-9e9d-ea482f4152d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/etl/js/ETLUIExtensions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js.TURNEDOFF" />
-      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans\step\csv\csvinputeditor.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transsteppropertywindow.js" />
-      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\propertywindow.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\job\etljobrunner.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/trans/etltransrunner.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/metadata/dbconnection/dbconnectionwizard.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/metadata/dbconnection/dbconnectionwizard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/etlcore.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/etlcore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataeditorrepository.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataeditorrepository.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.all.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.all.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.uncompressed.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.debug.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.debug.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -86,6 +72,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="etlmain.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="221" column="51" selection-start="6020" selection-end="6020" vertical-scroll-proportion="0.2560241" vertical-offset="3672" max-vertical-offset="44761">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="transsteppropertywindow.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transsteppropertywindow.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -94,24 +89,6 @@
                 <marker date="1381940208229" expanded="true" signature="7037:7053" placeholder="..." />
                 <marker date="1381940208229" expanded="true" signature="10318:10335" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugins.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/plugins.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="7377" max-vertical-offset="7871">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="731">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -127,10 +104,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="etltransrunner.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/trans/etltransrunner.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="174" column="19" selection-start="5501" selection-end="5501" vertical-scroll-proportion="-10.0" vertical-offset="2458" max-vertical-offset="9605">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="metadataplugins.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+            <state line="7" column="47" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
               <folding />
             </state>
           </provider>
@@ -145,10 +131,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ETLEditorHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java">
+      <file leaf-file-name="shaperepository.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="364" column="131" selection-start="23139" selection-end="23139" vertical-scroll-proportion="0.0" vertical-offset="5265" max-vertical-offset="5712">
+            <state line="75" column="36" selection-start="2523" selection-end="2564" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8721">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="159" column="41" selection-start="6828" selection-end="6857" vertical-scroll-proportion="0.0" vertical-offset="2442" max-vertical-offset="4488">
               <folding />
             </state>
           </provider>
@@ -157,7 +154,7 @@
       <file leaf-file-name="baseetlpropertywindow.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="19" selection-start="5040" selection-end="5055" vertical-scroll-proportion="-6.08" vertical-offset="2789" max-vertical-offset="13056">
+            <state line="24" column="0" selection-start="731" selection-end="986" vertical-scroll-proportion="-5.96" vertical-offset="259" max-vertical-offset="13056">
               <folding>
                 <marker date="1381945634775" expanded="true" signature="3968:3984" placeholder="..." />
                 <marker date="1381945634775" expanded="true" signature="6248:6265" placeholder="..." />
@@ -166,10 +163,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transpropertywindow.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="transpropertywindow.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="42" selection-start="854" selection-end="854" vertical-scroll-proportion="1.3433243" vertical-offset="0" max-vertical-offset="629">
+            <state line="14" column="4" selection-start="294" selection-end="347" vertical-scroll-proportion="-9.52" vertical-offset="0" max-vertical-offset="782">
               <folding />
             </state>
           </provider>
@@ -193,22 +190,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/dragdropresize.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/etlreponavigation.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/new.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/file.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/etl/js/ETLExtensions.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/common/baseetlpropertywindow.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/trans/etljobrunner.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/trans/etltransrunner.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" />
       </list>
     </option>
   </component>
@@ -630,7 +627,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -673,10 +674,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1050,6 +1047,7 @@
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\job\trans" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans\step" />
     </key>
@@ -1385,16 +1383,16 @@
       <workItem from="1381612226485" duration="4662000" />
       <workItem from="1381663591329" duration="18516000" />
       <workItem from="1381760283733" duration="20061000" />
-      <workItem from="1381802249433" duration="45549000" />
+      <workItem from="1381802249433" duration="51229000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88788000" />
+    <option name="totallyTimeSpent" value="94468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-2" width="1616" height="876" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1408,7 +1406,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3075" sideWeight="0.59244263" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3075" sideWeight="0.562753" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1416,7 +1414,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26990554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40755737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43724698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1454,36 +1452,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/clazz.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="50" selection-start="2484" selection-end="2484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/BeforeAbsencePattern.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="60" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.0" vertical-offset="31" max-vertical-offset="2448">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/abstractPlugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="4" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0" vertical-offset="444" max-vertical-offset="8194">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/bpel4chor2bpelSupport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1321" selection-end="1421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2856">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/toolbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="245" column="8" selection-start="9285" selection-end="9354" vertical-scroll-proportion="0.0" vertical-offset="3630" max-vertical-offset="5576">
@@ -1515,13 +1483,6 @@
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="364" column="131" selection-start="23139" selection-end="23139" vertical-scroll-proportion="0.0" vertical-offset="5265" max-vertical-offset="5712">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
           <folding />
         </state>
       </provider>
@@ -1559,9 +1520,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="47" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="4" selection-start="294" selection-end="347" vertical-scroll-proportion="-9.52" vertical-offset="0" max-vertical-offset="782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="19" selection-start="5040" selection-end="5055" vertical-scroll-proportion="-6.08" vertical-offset="2789" max-vertical-offset="13056">
+        <state line="24" column="0" selection-start="731" selection-end="986" vertical-scroll-proportion="-5.96" vertical-offset="259" max-vertical-offset="13056">
           <folding>
             <marker date="1381945634775" expanded="true" signature="3968:3984" placeholder="..." />
             <marker date="1381945634775" expanded="true" signature="6248:6265" placeholder="..." />
@@ -1569,9 +1544,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/trans/etltransrunner.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="42" selection-start="854" selection-end="854" vertical-scroll-proportion="1.3433243" vertical-offset="0" max-vertical-offset="629">
+        <state line="174" column="19" selection-start="5501" selection-end="5501" vertical-scroll-proportion="-10.0" vertical-offset="2458" max-vertical-offset="9605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="41" selection-start="6828" selection-end="6857" vertical-scroll-proportion="0.0" vertical-offset="2442" max-vertical-offset="4488">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="36" selection-start="2523" selection-end="2564" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8721">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="221" column="51" selection-start="6020" selection-end="6020" vertical-scroll-proportion="0.2560241" vertical-offset="3672" max-vertical-offset="44761">
           <folding />
         </state>
       </provider>

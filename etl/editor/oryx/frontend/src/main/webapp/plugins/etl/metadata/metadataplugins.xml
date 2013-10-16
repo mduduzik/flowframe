@@ -5,6 +5,6 @@
         <plugin source="etl/metadata/csv/csvmetawizard.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaWizard"/>
         <plugin source="etl/trans/transsteppropertywindow.js" name="ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow"/>
         <plugin source="etl/trans/transpropertywindow.js" name="ORYX.Plugins.ETL.Trans.TransPropertyWindow"/>
-        <plugin source="etl/job/etljobrunner.js" name="ORYX.Plugins.ETL.Job.ETLJobRunner"/>
+        <plugin source="etl/job/trans/etltransrunner.js" name="ORYX.Plugins.ETL.Job.ETLTransRunner"/>
 	</plugins>
 </config>

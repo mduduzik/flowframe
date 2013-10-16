@@ -217,6 +217,23 @@ ORYX.Editor = {
             initFinished();
         }.bind(this), 200);*/
     },
+    onBeforeTabChange: function(component,state) {
+        if (!state.ns)//Not SS editor
+            return;
+
+        if (state.id === this.CurrentEditor.id)//No need to change SS repo
+            return;
+
+        this.CurrentEditor = state;
+        this.handleEvents({
+                type:ORYX.CONFIG.EVENT_SHAPE_REPOSITORY_CHANGE
+            },
+            {
+                canvas: this.CurrentEditor.canvas,
+                ss: this.CurrentEditor.ss
+            }
+        );
+    },
     launchEditor: function(event,config) {
         if(Ext.getCmp('oryx-loading-panel')){
             Ext.getCmp('oryx-loading-panel').show();
@@ -241,7 +258,7 @@ ORYX.Editor = {
         var canvas = this._createCanvas(null, null, canvasId);
 
         //Create Editor Tab
-        var editorTab = ssConfig.createEditorHandler(canvas,ssNameSpace);
+        var editorTab = ssConfig.createEditorHandler(canvas,ssNameSpace,ss);
 
         //Add
         this.CurrentEditor = editorTab;
@@ -284,7 +301,7 @@ ORYX.Editor = {
         }.bind(this), 200);
 
     },
-    _createETLTransSSUITab: function(canvas,ssnamespace) {
+    _createETLTransSSUITab: function(canvas,ssnamespace,ss) {
         //B. Transformation Canvas tab
         var canvasParent	= canvas.rootNode.parentNode;
 
@@ -331,6 +348,7 @@ ORYX.Editor = {
             /*items: [selectedComponentForm,problemsGrid]*/
         });
 
+
         var canvasEditorSectionPanel_ = new Ext.Panel({
             region: 'south',
             layout	: 'fit',
@@ -359,12 +377,13 @@ ORYX.Editor = {
             canvasContainer: canvasEditor_,
             canvasEditorsContainer: canvasEditorSectionPanelBasicTab_,
             ns: ssnamespace,
+            ss: ss,
             autoScroll: true
         });
 
         return canvasEditorTab_;
     },
-    _createETLJobSSUITab: function(canvas,ssnamespace) {
+    _createETLJobSSUITab: function(canvas,ssnamespace,ss) {
         //B. Transformation Canvas tab
         var canvasParent	= canvas.rootNode.parentNode;
 
@@ -437,6 +456,7 @@ ORYX.Editor = {
             ],
             canvas: canvas,
             ns: ssnamespace,
+            ss: ss,
             autoScroll: true
         });
 
@@ -605,6 +625,7 @@ ORYX.Editor = {
                 workspaceTab_
             ]
         });
+        center_.on('beforetabchange',this.onBeforeTabChange.bind(this));
 
 
 
@@ -2590,6 +2611,7 @@ Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
     canvasContainer: undefined,
     canvasEditorsContainer: undefined,
     ns: undefined,
+    ss: undefined,
     initComponent : function(){
         Ext.ux.Portal.superclass.initComponent.call(this);
     },
