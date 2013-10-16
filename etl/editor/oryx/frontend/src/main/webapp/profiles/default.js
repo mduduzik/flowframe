@@ -1,5 +1,4 @@
 $LAB.script("plugins/shaperepository.js").wait();
-$LAB.script("plugins/propertywindow.js").wait();
 $LAB.script("plugins/canvasResize.js").wait();
 $LAB.script("plugins/view.js").wait();
 $LAB.script("plugins/dragdropresize.js").wait();

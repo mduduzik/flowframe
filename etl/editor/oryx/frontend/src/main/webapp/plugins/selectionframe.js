@@ -34,9 +34,10 @@ if(!ORYX.Plugins)
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleMouseDown.bind(this));
 		document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this.handleMouseUp.bind(this), true);
 
-
+        //Reg editor events
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.onStencilSetLoaded.bind(this));
 	},
-     stencilSetLoaded:  function(event,args){
+     onStencilSetLoaded:  function(event,args){
          this.canvas = args.canvas;
 
          // Some initiale variables

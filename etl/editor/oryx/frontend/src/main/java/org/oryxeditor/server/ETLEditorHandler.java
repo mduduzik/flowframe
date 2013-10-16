@@ -360,6 +360,8 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/node.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/edge.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n";
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/etl/js/ETLUIExtensions.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n";
     }
 }

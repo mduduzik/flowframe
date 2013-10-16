@@ -1973,7 +1973,7 @@ ORYX.CONFIG.EVENT_KEYUP =				"keyup";
 ORYX.CONFIG.EVENT_LOADED =				"editorloaded";
 	
 ORYX.CONFIG.EVENT_EXECUTE_COMMANDS =		"executeCommands";
-ORYX.CONFIG.EVENT_STENCIL_SET_LOADED =		"stencilSetLoaded";
+ORYX.CONFIG.EVENT_STENCIL_SET_LOADED =		"onStencilSetLoaded";
 ORYX.CONFIG.EVENT_SELECTION_CHANGED =		"selectionchanged";
 ORYX.CONFIG.EVENT_SHAPEADDED =				"shapeadded";
 ORYX.CONFIG.EVENT_PROPERTY_CHANGED =		"propertyChanged";
@@ -55825,7 +55825,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
         this.facade = facade;
 
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
-        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
+        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.onSelectDiagram.bind(this));
         this.init();
     },
 

@@ -2,8 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69bc9311-f399-47b6-9e9d-ea482f4152d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/etl/js/ETLUIExtensions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js.TURNEDOFF" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans\step\csv\csvinputeditor.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transsteppropertywindow.js" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\propertywindow.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/metadata/dbconnection/dbconnectionwizard.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/metadata/dbconnection/dbconnectionwizard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/etlcore.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/etl/etlcore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataeditorrepository.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataeditorrepository.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.all.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.uncompressed.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/oryx.core.uncompressed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.debug.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.debug.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/oryx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,105 +86,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="etlmain.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
+      <file leaf-file-name="transsteppropertywindow.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transsteppropertywindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="366" column="53" selection-start="10426" selection-end="10426" vertical-scroll-proportion="-5.4" vertical-offset="6087" max-vertical-offset="44387">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stencilsets.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/StencilSet/stencilsets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="59" selection-start="2970" selection-end="2993" vertical-scroll-proportion="-6.92" vertical-offset="915" max-vertical-offset="2924">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="csvinputeditor.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="6" selection-start="851" selection-end="851" vertical-scroll-proportion="0.53346455" vertical-offset="222" max-vertical-offset="22491">
+            <state line="16" column="0" selection-start="286" selection-end="337" vertical-scroll-proportion="1.36" vertical-offset="306" max-vertical-offset="13770">
               <folding>
-                <marker date="1381868682353" expanded="false" signature="6818:6834" placeholder="..." />
-                <marker date="1381868682353" expanded="false" signature="10089:10106" placeholder="..." />
+                <marker date="1381940208229" expanded="true" signature="7037:7053" placeholder="..." />
+                <marker date="1381940208229" expanded="true" signature="10318:10335" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="csvmetawizard.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/csv/csvmetawizard.js">
+      <file leaf-file-name="plugins.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/plugins.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="17136">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="7377" max-vertical-offset="7871">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="icons.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css">
+      <file leaf-file-name="default.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="1" selection-start="97" selection-end="116" vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="986">
+            <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="731">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js">
+      <file leaf-file-name="stepmetadatapropertyeditor.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/stepmetadatapropertyeditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="31" selection-start="4091" selection-end="4110" vertical-scroll-proportion="-6.64" vertical-offset="1177" max-vertical-offset="4505">
+            <state line="12" column="0" selection-start="205" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="21182">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <marker date="1379601546922" expanded="false" signature="5411:5428" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="etlreponavigation.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/etlreponavigation.js">
+      <file leaf-file-name="metadataplugins.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="678" column="19" selection-start="26624" selection-end="26624" vertical-scroll-proportion="-126.76" vertical-offset="8357" max-vertical-offset="17442">
-              <folding>
-                <marker date="1381865718106" expanded="false" signature="37265:37298" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/new.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="20" selection-start="422" selection-end="465" vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="1105">
+            <state line="2" column="13" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="toolbar.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/toolbar.js">
+      <file leaf-file-name="propertywindow.js.TURNEDOFF" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js.TURNEDOFF">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="41" selection-start="3725" selection-end="3730" vertical-scroll-proportion="-6.76" vertical-offset="1633" max-vertical-offset="5933">
+            <state line="1183" column="28" selection-start="35457" selection-end="35489" vertical-scroll-proportion="0.0" vertical-offset="19786" max-vertical-offset="21556">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ETLEditorHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="364" column="131" selection-start="23139" selection-end="23139" vertical-scroll-proportion="0.0" vertical-offset="5265" max-vertical-offset="5712">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="baseetlpropertywindow.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="173" column="19" selection-start="5040" selection-end="5055" vertical-scroll-proportion="-6.08" vertical-offset="2789" max-vertical-offset="13056">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <marker date="1381945634775" expanded="true" signature="3968:3984" placeholder="..." />
+                <marker date="1381945634775" expanded="true" signature="6248:6265" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/file.js">
+      <file leaf-file-name="transpropertywindow.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="22" selection-start="1983" selection-end="1983" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="9401">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <marker date="1381866617641" expanded="false" signature="8181:8216" placeholder="..." />
-                <marker date="1381866617641" expanded="false" signature="11795:11810" placeholder="..." />
-              </folding>
+            <state line="29" column="42" selection-start="854" selection-end="854" vertical-scroll-proportion="1.3433243" vertical-offset="0" max-vertical-offset="629">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -188,22 +193,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/canvasResize.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/view.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/etljobrunner.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/loading.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapeHighlighting.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapemenu.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shaperepository.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/dragdropresize.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/etlreponavigation.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/new.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/file.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/etl/js/ETLExtensions.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/common/baseetlpropertywindow.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js" />
       </list>
     </option>
   </component>
@@ -674,16 +679,54 @@
               <option name="myItemId" value="etl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="trans" />
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="step" />
+              <option name="myItemId" value="etl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="csv" />
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ext-2.0.2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ux" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -725,169 +768,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metadata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metadata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dbconnection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oryx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metadata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="csv" />
+              <option name="myItemId" value="ext-2.0.2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -967,6 +852,182 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryxeditor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryxeditor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -981,6 +1042,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\scripts\ETL" />
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\common" />
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans" />
+      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans\step" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring dmServer.VirgoDEV">
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails" singleton="true">
@@ -1313,16 +1385,16 @@
       <workItem from="1381612226485" duration="4662000" />
       <workItem from="1381663591329" duration="18516000" />
       <workItem from="1381760283733" duration="20061000" />
-      <workItem from="1381802249433" duration="24207000" />
+      <workItem from="1381802249433" duration="45549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67446000" />
+    <option name="totallyTimeSpent" value="88788000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-2" width="1616" height="876" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1336,15 +1408,15 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3075" sideWeight="0.7719298" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3075" sideWeight="0.59244263" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3211876" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22807017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26990554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40755737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1374,7 +1446,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1382,138 +1454,125 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/clazz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="25" selection-start="1256" selection-end="1257" vertical-scroll-proportion="270.12" vertical-offset="7246" max-vertical-offset="21556">
+        <state line="66" column="50" selection-start="2484" selection-end="2484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/BeforeAbsencePattern.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="60" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.0" vertical-offset="31" max-vertical-offset="2448">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/abstractPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="4" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0" vertical-offset="444" max-vertical-offset="8194">
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1381852672400" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1381852672400" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend/src/main/webapp/scripts/Core/main.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/bpel4chor2bpelSupport.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="0" selection-start="5637" selection-end="6489" vertical-scroll-proportion="7.12" vertical-offset="3799" max-vertical-offset="38369">
+        <state line="32" column="0" selection-start="1321" selection-end="1421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2856">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/oryx.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="0" selection-start="5447" selection-end="5770" vertical-scroll-proportion="0.0" vertical-offset="2708" max-vertical-offset="7259">
-          <folding>
-            <marker date="1375979843899" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/stencilsets/etl/etl1.0/etl1.0.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="58" selection-end="106" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="10353">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectionframe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="39" selection-start="4753" selection-end="4753" vertical-scroll-proportion="-7.32" vertical-offset="2316" max-vertical-offset="3281">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/i18n/translation_en_us.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="308" column="0" selection-start="15968" selection-end="15988" vertical-scroll-proportion="-6.48" vertical-offset="5074" max-vertical-offset="15810">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/toolbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="41" selection-start="3725" selection-end="3730" vertical-scroll-proportion="-6.76" vertical-offset="1633" max-vertical-offset="5933">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/file.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="22" selection-start="1983" selection-end="1983" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="9401">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1381866617641" expanded="false" signature="8181:8216" placeholder="..." />
-            <marker date="1381866617641" expanded="false" signature="11795:11810" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/new.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="20" selection-start="422" selection-end="465" vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="1105">
+        <state line="245" column="8" selection-start="9285" selection-end="9354" vertical-scroll-proportion="0.0" vertical-offset="3630" max-vertical-offset="5576">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/css/icons.css">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/etl/js/ETLUIExtensions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="1" selection-start="97" selection-end="116" vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="986">
+        <state line="11" column="22" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8891">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/repository/explorer/etlreponavigation.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/plugins.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="678" column="19" selection-start="26624" selection-end="26624" vertical-scroll-proportion="-126.76" vertical-offset="8357" max-vertical-offset="17442">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7871">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="49" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="364" column="131" selection-start="23139" selection-end="23139" vertical-scroll-proportion="0.0" vertical-offset="5265" max-vertical-offset="5712">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="393" column="19" selection-start="6646" selection-end="6646" vertical-scroll-proportion="0.33163264" vertical-offset="6551" max-vertical-offset="15623">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/stepmetadatapropertyeditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="205" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21182">
           <folding>
-            <marker date="1381865718106" expanded="false" signature="37265:37298" placeholder="..." />
+            <marker date="1379601546922" expanded="false" signature="5411:5428" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/csv/csvmetawizard.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transsteppropertywindow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17136">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="31" selection-start="4091" selection-end="4110" vertical-scroll-proportion="-6.64" vertical-offset="1177" max-vertical-offset="4505">
+        <state line="16" column="0" selection-start="286" selection-end="337" vertical-scroll-proportion="1.36" vertical-offset="306" max-vertical-offset="13770">
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <marker date="1381940208229" expanded="true" signature="7037:7053" placeholder="..." />
+            <marker date="1381940208229" expanded="true" signature="10318:10335" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/StencilSet/stencilsets.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/propertywindow.js.TURNEDOFF">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="59" selection-start="2970" selection-end="2993" vertical-scroll-proportion="-6.92" vertical-offset="915" max-vertical-offset="2924">
+        <state line="1183" column="28" selection-start="35457" selection-end="35489" vertical-scroll-proportion="0.0" vertical-offset="19786" max-vertical-offset="21556">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="366" column="53" selection-start="10426" selection-end="10426" vertical-scroll-proportion="-5.4" vertical-offset="6087" max-vertical-offset="44387">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/step/csv/csvinputeditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="6" selection-start="851" selection-end="851" vertical-scroll-proportion="0.53346455" vertical-offset="222" max-vertical-offset="22491">
+        <state line="173" column="19" selection-start="5040" selection-end="5055" vertical-scroll-proportion="-6.08" vertical-offset="2789" max-vertical-offset="13056">
           <folding>
-            <marker date="1381868682353" expanded="false" signature="6818:6834" placeholder="..." />
-            <marker date="1381868682353" expanded="false" signature="10089:10106" placeholder="..." />
+            <marker date="1381945634775" expanded="true" signature="3968:3984" placeholder="..." />
+            <marker date="1381945634775" expanded="true" signature="6248:6265" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/trans/transpropertywindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="42" selection-start="854" selection-end="854" vertical-scroll-proportion="1.3433243" vertical-offset="0" max-vertical-offset="629">
+          <folding />
         </state>
       </provider>
     </entry>

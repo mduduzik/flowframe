@@ -20,7 +20,7 @@ ORYX.Plugins.ETL.Metadata.EditorRepository = {
         this.facade = facade;
 
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
-        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
+        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.onSelectDiagram.bind(this));
         this.loadEditors();
     },
 

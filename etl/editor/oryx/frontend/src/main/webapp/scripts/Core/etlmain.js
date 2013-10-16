@@ -241,7 +241,7 @@ ORYX.Editor = {
         var canvas = this._createCanvas(null, null, canvasId);
 
         //Create Editor Tab
-        var editorTab = ssConfig.createEditorHandler(canvas,namespace);
+        var editorTab = ssConfig.createEditorHandler(canvas,ssNameSpace);
 
         //Add
         this.CurrentEditor = editorTab;

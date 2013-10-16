@@ -127,8 +127,8 @@ ORYX.Plugins.PropertyWindow = {
 			stripeRows: true,
 			autoExpandColumn: "propertywindow_column_value",
 			width:'auto',
-            iconCls: 'process-icon',
-            title: 'Job',
+            iconCls: 'transformation-icon',
+            title: 'Transformation',
 			// the column model
 			colModel: this.columnModel,
 			enableHdMenu: false,

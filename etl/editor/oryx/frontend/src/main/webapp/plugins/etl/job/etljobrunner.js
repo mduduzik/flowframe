@@ -19,7 +19,7 @@ ORYX.Plugins.ETL.Job.ETLJobRunner = {
         this.facade = facade;
 
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
-        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.selectDiagram.bind(this));
+        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.onSelectDiagram.bind(this));
 
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.handleSSLoaded.bind(this));
     },
