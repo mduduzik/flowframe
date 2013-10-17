@@ -33,11 +33,9 @@ ORYX.Plugins.ShapeMenuPlugin = {
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
 	},
     stencilSetLoaded:  function(event,args){
-        this.canvas = args.canvas;
-
         this.alignGroups = new Hash();
 
-        var containerNode = this.canvas.getHTMLContainer();
+        var containerNode = this.facade.getCurrentEditor().canvas.getHTMLContainer();
 
         this.shapeMenu = new ORYX.Plugins.ShapeMenu(containerNode);
         this.currentShapes = [];
@@ -107,7 +105,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 	},
 
 	registryChanged: function(pluginsData) {
-        if (!this.canvas)
+        if (!this.facade.getCurrentEditor() || !this.facade.getCurrentEditor().canvas)
             return;
 		
 		if(pluginsData) {
@@ -127,13 +125,13 @@ ORYX.Plugins.ShapeMenuPlugin = {
 			this.pluginsData = [];
 		}
 
-		this.baseMorphStencils = this.facade.getRules(this.canvas.resourceId).baseMorphs();
+		this.baseMorphStencils = this.facade.getRules(this.facade.getCurrentEditor().canvas.resourceId).baseMorphs();
 		
 		// Checks if the stencil set has morphing attributes
-		var isMorphing = this.facade.getRules(this.canvas.resourceId).containsMorphingRules();
+		var isMorphing = this.facade.getRules(this.facade.getCurrentEditor().canvas.resourceId).containsMorphingRules();
 		
 		// Create Buttons for all Stencils of all loaded stencilsets
-		var stencilsets = this.facade.getStencilSets(this.canvas.resourceId);
+		var stencilsets = this.facade.getStencilSets(this.facade.getCurrentEditor().canvas.resourceId);
 		stencilsets.values().each((function(stencilSet){
 			
 			var nodes = stencilSet.nodes();
@@ -310,7 +308,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 		var sset = this.facade.getStencilSets()[elements[0].getStencil().namespace()];
 
 		// Get all available edges
-		var edges = this.facade.getRules().outgoingEdgeStencils({canvas:this.canvas, sourceShape:elements[0]});
+		var edges = this.facade.getRules().outgoingEdgeStencils({canvas:this.facade.getCurrentEditor().canvas, sourceShape:elements[0]});
 		
 		// And find all targets for each Edge
 		var targets = new Array();
@@ -345,7 +343,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 			
 			// get all targets for this edge
 			targets = targets.concat(this.facade.getRules().targetStencils(
-					{canvas:this.canvas, sourceShape:elements[0], edgeStencil:edge}));
+					{canvas:this.facade.getCurrentEditor().canvas, sourceShape:elements[0], edgeStencil:edge}));
 
 		}).bind(this));
 		
@@ -398,7 +396,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 		}
 
 		var coord = this.facade.eventCoordinates(event.browserEvent);
-		var aShapes = this.canvas.getAbstractShapesAtPosition(coord);
+		var aShapes = this.facade.getCurrentEditor().canvas.getAbstractShapesAtPosition(coord);
 
 		if(aShapes.length <= 0) {return false;}	
 		
@@ -541,7 +539,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 		var xy = event.getXY();
 		var pos = {x: xy[0], y: xy[1]};
 
-		var a = this.canvas.node.getScreenCTM();
+		var a = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
 		// Correcting the UpperLeft-Offset
 		pos.x -= a.e; pos.y -= a.f;
 		// Correcting the Zoom-Faktor
@@ -662,7 +660,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 				// Get shape if already created, otherwise create a new shape
 				if (this.newShape){
 					newShape = this.newShape;
-					this.canvas.add(newShape);
+					this.facade.getCurrentEditor().canvas.add(newShape);
 				} else {
 					newShape = this.facade.createShape({
 									type: stencil.id(),
@@ -782,7 +780,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 				
 				// Set selection
 				this.facade.setSelection([newShape]);
-				this.canvas.update();
+				this.facade.getCurrentEditor().canvas.update();
 				this.facade.updateSelection();
 				this.newShape = newShape;
 				
@@ -806,7 +804,7 @@ ORYX.Plugins.ShapeMenuPlugin = {
 				// Set selection
 				this.facade.setSelection([this.shape]);
 				// Update
-				this.canvas.update();
+				this.facade.getCurrentEditor().canvas.update();
 				this.facade.updateSelection();
 			},
 			

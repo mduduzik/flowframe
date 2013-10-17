@@ -38,8 +38,6 @@ if(!ORYX.Plugins)
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.onStencilSetLoaded.bind(this));
 	},
      onStencilSetLoaded:  function(event,args){
-         this.canvas = args.canvas;
-
          // Some initiale variables
          this.position 		= {x:0, y:0};
          this.size 			= {width:0, height:0};
@@ -49,7 +47,7 @@ if(!ORYX.Plugins)
          this.moveCallback 	= undefined;
          this.offsetScroll	= {x:0,y:0}
          // HTML-Node of Selection-Frame
-         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", this.canvas.getHTMLContainer(),
+         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", this.facade.getCurrentEditor().canvas.getHTMLContainer(),
              ['div', {'class':'Oryx_SelectionFrame'}]);
 
          this.hide();
@@ -60,7 +58,7 @@ if(!ORYX.Plugins)
 			// Calculate the Offset
 			var scrollNode = uiObj.rootNode.parentNode.parentNode;
 						
-			var a = this.canvas.node.getScreenCTM();
+			var a = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
 			this.offsetPosition = {
 				x: a.e,
 				y: a.f
@@ -98,7 +96,7 @@ if(!ORYX.Plugins)
 		
 			this.moveCallback = undefined;
 
-			var corrSVG = this.canvas.node.getScreenCTM();
+			var corrSVG = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
 
 			// Calculate the positions of the Frame
 			var a = {
@@ -117,7 +115,7 @@ if(!ORYX.Plugins)
 
 
 			// Calculate the elements from the childs of the canvas
-			var elements = this.canvas.getChildShapes(true).findAll(function(value) {
+			var elements = this.facade.getCurrentEditor().canvas.getChildShapes(true).findAll(function(value) {
 				var absBounds = value.absoluteBounds();
 				var bA = absBounds.upperLeft();
 				var bB = absBounds.lowerRight();
@@ -138,7 +136,7 @@ if(!ORYX.Plugins)
 			height	: Event.pointerY(event) - this.position.y - this.offsetPosition.y
 		}
 
-		var scrollNode 	= this.canvas.rootNode.parentNode.parentNode;
+		var scrollNode 	= this.facade.getCurrentEditor().canvas.rootNode.parentNode.parentNode;
 		size.width 		-= this.offsetScroll.x - scrollNode.scrollLeft; 
 		size.height 	-= this.offsetScroll.y - scrollNode.scrollTop;
 						

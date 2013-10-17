@@ -40,8 +40,6 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
         if (this.disRegardEvent())
             return;
 
-        this.canvas = this.facade.getCurrentEditor().canvas;
-
         // The parent div-node of the grid
         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
             null,
@@ -241,9 +239,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
         if (!this.facade.getCurrentEditor())
             return;
 
-        this.canvas = this.facade.getCurrentEditor().canvas;
-
-        this.shapeSelection.shapes = [this.canvas];
+        this.shapeSelection.shapes = [this.facade.getCurrentEditor().canvas];
 
         this.setPropertyWindowTitle();
         this.identifyCommonProperties();
@@ -402,7 +398,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
             value: value
         });
 
-        this.canvas.update();
+        this.facade.getCurrentEditor().canvas.update();
 
     },
 
@@ -415,7 +411,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
             }
         }.bind(this));
 
-        this.canvas.update();
+        this.facade.getCurrentEditor().canvas.update();
     },
 
     // extended by Kerstin (start)
@@ -507,7 +503,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
             this.properties = [];
             this.dataSource.loadData(this.properties);
             return;
-            //this.shapeSelection.shapes = [this.canvas];
+            //this.shapeSelection.shapes = [this.facade.getCurrentEditor().canvas];
         }
 
         /* subselection available */

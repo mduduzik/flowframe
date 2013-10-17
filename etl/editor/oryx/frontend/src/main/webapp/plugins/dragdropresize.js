@@ -39,8 +39,6 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 
 	},
     stencilSetLoaded:  function(event,args){
-        this.canvas = args.canvas;
-
         // Initialize variables
         this.currentShapes 		= [];			// Current selected Shapes
         //this.pluginsData 		= [];			// Available Plugins
@@ -60,7 +58,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
         this.callbackMouseUp	= this.handleMouseUp.bind(this);
 
         // Get the SVG-Containernode
-        var containerNode = this.canvas.getSvgContainer();
+        var containerNode = this.facade.getCurrentEditor().canvas.getSvgContainer();
 
         // Create the Selected Rectangle in the SVG
         this.selectedRect = new ORYX.Plugins.SelectedRect(containerNode);
@@ -72,18 +70,18 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
         }
 
         // Get a HTML-ContainerNode
-        containerNode = this.canvas.getHTMLContainer();
+        containerNode = this.facade.getCurrentEditor().canvas.getHTMLContainer();
 
-        this.scrollNode = this.canvas.rootNode.parentNode.parentNode;
+        this.scrollNode = this.facade.getCurrentEditor().canvas.rootNode.parentNode.parentNode;
 
         // Create the southeastern button for resizing
-        this.resizerSE = new ORYX.Plugins.Resizer(containerNode, "southeast", this.facade, this.canvas);
+        this.resizerSE = new ORYX.Plugins.Resizer(containerNode, "southeast", this.facade, this.facade.getCurrentEditor().canvas);
         this.resizerSE.registerOnResize(this.onResize.bind(this)); // register the resize callback
         this.resizerSE.registerOnResizeEnd(this.onResizeEnd.bind(this)); // register the resize end callback
         this.resizerSE.registerOnResizeStart(this.onResizeStart.bind(this)); // register the resize start callback
 
         // Create the northwestern button for resizing
-        this.resizerNW = new ORYX.Plugins.Resizer(containerNode, "northwest", this.facade, this.canvas);
+        this.resizerNW = new ORYX.Plugins.Resizer(containerNode, "northwest", this.facade, this.facade.getCurrentEditor().canvas);
         this.resizerNW.registerOnResize(this.onResize.bind(this)); // register the resize callback
         this.resizerNW.registerOnResizeEnd(this.onResizeEnd.bind(this)); // register the resize end callback
         this.resizerNW.registerOnResizeStart(this.onResizeStart.bind(this)); // register the resize start callback
@@ -107,7 +105,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		this.edgesMovable = true;
 
 		// Calculate the current zoom factor
-		var a = this.canvas.node.getScreenCTM();
+		var a = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
 		this.faktorXY.x = a.a;
 		this.faktorXY.y = a.d;
 
@@ -170,10 +168,10 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 							this.docker 		= docker;
 							this.newPosition	= position;
 							this.newDockedShape = newDockedShape;
-							this.newParent 		= newDockedShape.parent || this.canvas;
+							this.newParent 		= newDockedShape.parent || this.facade.getCurrentEditor().canvas;
 							this.oldPosition	= docker.parent.bounds.center();
 							this.oldDockedShape	= docker.getDockedShape();
-							this.oldParent 		= docker.parent.parent || this.canvas;
+							this.oldParent 		= docker.parent.parent || this.facade.getCurrentEditor().canvas;
 							this.facade			= facade;
 							
 							if( this.oldDockedShape ){
@@ -202,7 +200,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 							//this.docker.update();
 							
 							this.facade.setSelection( [this.docker.parent] );	
-							this.canvas.update();
+							this.facade.getCurrentEditor().canvas.update();
 							this.facade.updateSelection();
 																												
 											
@@ -318,7 +316,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		position.y = Math.max( 0 , position.y)
 
 		// Set that the position is not bigger than the canvas
-		var c = this.canvas;
+		var c = this.facade.getCurrentEditor().canvas;
 		position.x = Math.min( c.bounds.width() - this.dragBounds.width(), 		position.x)
 		position.y = Math.min( c.bounds.height() - this.dragBounds.height(), 	position.y)	
 						
@@ -333,7 +331,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		this.isAttachingAllowed = false;
 
 		//check, if a node can be added to the underlying node
-		var underlyingNodes = $A(this.canvas.getAbstractShapesAtPosition(this.facade.eventCoordinates(event)));
+		var underlyingNodes = $A(this.facade.getCurrentEditor().canvas.getAbstractShapesAtPosition(this.facade.eventCoordinates(event)));
 		
 		var checkIfAttachable = this.toMoveShapes.length == 1 && this.toMoveShapes[0] instanceof ORYX.Core.Node && this.toMoveShapes[0].dockers.length > 0
 		checkIfAttachable	= checkIfAttachable && underlyingNodes.length != 1
@@ -348,7 +346,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		} else if(this._onlyEdges) {
 			
 			this.isAddingAllowed = true;
-			this.containmentParentNode = this.canvas;
+			this.containmentParentNode = this.facade.getCurrentEditor().canvas;
 			
 		} else {
 		
@@ -585,7 +583,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 					this.plugin.layoutEdges(this.shape, allEdges, offset);
 
 					this.plugin.facade.setSelection([this.shape]);
-					this.plugin.this.canvas.update();
+					this.plugin.this.facade.getCurrentEditor().canvas.update();
 					this.plugin.facade.updateSelection();
 				}
 			});
@@ -742,7 +740,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 			this.currentShapes = elements;
 
 			// Get all shapes with the highest parent in object hierarchy (canvas is the top most parent)
-			var topLevelElements = this.canvas.getShapesWithSharedParent(elements);
+			var topLevelElements = this.facade.getCurrentEditor().canvas.getShapesWithSharedParent(elements);
 			this.toMoveShapes = topLevelElements;
 			
 			this.toMoveShapes = this.toMoveShapes.findAll( function(shape) { return shape instanceof ORYX.Core.Node && 
@@ -835,7 +833,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 				this.distPointTimeout = window.setTimeout(function(){
 					// Get all the shapes, there will consider at snapping
 					// Consider only those elements who shares the same parent element
-					var distShapes = this.canvas.getChildShapes(true).findAll(function(value){
+					var distShapes = this.facade.getCurrentEditor().canvas.getChildShapes(true).findAll(function(value){
 						var parentShape = value.parent;
 						while(parentShape){
 							if(elements.member(parentShape)) return false;
@@ -1168,8 +1166,8 @@ ORYX.Plugins.Resizer = Clazz.extend({
 		position.x 	-= this.offsetScroll.x - this.scrollNode.scrollLeft; 
 		position.y 	-= this.offsetScroll.y - this.scrollNode.scrollTop;
 		
-		position.x  = Math.min( position.x, this.canvas.bounds.width())
-		position.y  = Math.min( position.y, this.canvas.bounds.height())
+		position.x  = Math.min( position.x, canvas.bounds.width())
+		position.y  = Math.min( position.y, canvas.bounds.height())
 		
 		var offset = {
 			x: position.x - this.position.x,
@@ -1321,7 +1319,7 @@ ORYX.Plugins.Resizer = Clazz.extend({
 		if(this.bounds.width() > this.maxSize.width)	{ this.bounds.set(upL.x, upL.y, upL.x + this.maxSize.width, upL.y + this.bounds.height())};
 		if(this.bounds.height() > this.maxSize.height)	{ this.bounds.set(upL.x, upL.y, upL.x + this.bounds.width(), upL.y + this.maxSize.height)};
 
-		var a = this.canvasNode.getScreenCTM();
+		var a = canvasNode.getScreenCTM();
 		
 		upL.x *= a.a;
 		upL.y *= a.d;
@@ -1366,7 +1364,7 @@ ORYX.Core.Command.Move = ORYX.Core.Command.extend({
 		this.addShapeToParent( this.newParents ); 
 		// Set the selection to the current selection
 		this.selectCurrentShapes();
-		this.canvas.update();
+		this.plugin.facade.getCurrentEditor().canvas.update();
 		this.plugin.facade.updateSelection();
 	},
 	rollback: function(){
@@ -1379,7 +1377,7 @@ ORYX.Core.Command.Move = ORYX.Core.Command.extend({
 		
 		// Set the selection to the current selection
 		this.selectCurrentShapes();
-		this.canvas.update();
+		this.plugin.facade.getCurrentEditor().canvas.update();
 		this.plugin.facade.updateSelection();
 		
 	},

@@ -80,8 +80,6 @@ ORYX.Plugins.ShapeRepository = {
 	 * Load all stencilsets in the shaperepository
 	 */
 	setStencilSets : function(event,args) {
-        this.canvas = args.canvas;
-
 		var tempShapeList = this.shapeList;
 		// Remove all childs
 		var child = this.shapeList.firstChild;
@@ -115,8 +113,8 @@ ORYX.Plugins.ShapeRepository = {
 				stencilSetNode.render();
 				stencilSetNode.expand();
 				// Get Stencils from Stencilset
-                var stencil_ = this.facade.getCanvas(this.canvas.resourceId).getStencil();
-                var rules_ = this.facade.getRules(this.canvas.resourceId);
+                var stencil_ = this.facade.getCanvas(this.facade.getCurrentEditor().canvas.resourceId).getStencil();
+                var rules_ = this.facade.getRules(this.facade.getCurrentEditor().canvas.resourceId);
 				var stencils = sset.stencils(stencil_,rules_);
 				var treeGroups = new Hash();
 	
@@ -127,7 +125,7 @@ ORYX.Plugins.ShapeRepository = {
 				});
 				stencils.each((function(value) {
 	
-					// Show stencils in no group if there is less than 10 shapes
+					// Show stencils in no group if there is less than 5 shapes
 					if (stencils.length <= ORYX.CONFIG.MAX_NUM_SHAPES_NO_GROUP) {
 						this.createStencilTreeNode(stencilSetNode, value);
 						return;
@@ -413,7 +411,7 @@ ORYX.Plugins.ShapeRepository = {
 			// check containment rules
 			var option = Ext.dd.Registry.getHandle(target.DDM.currentTarget);
 
-			var stencilSet = this.facade.getStencilSets(this.canvas.resourceId)[option.namespace];
+			var stencilSet = this.facade.getStencilSets(this.facade.getCurrentEditor().canvas.resourceId)[option.namespace];
 
 			var stencil = stencilSet.stencil(option.type);
 
@@ -435,7 +433,7 @@ ORYX.Plugins.ShapeRepository = {
 
 					if (!(parentCandidate instanceof ORYX.Core.Canvas) && parentCandidate.isPointOverOffset(coord.x, coord.y) && this._canAttach == undefined) {
 
-						this._canAttach = this.facade.getRules(this.canvas.resourceId).canConnect({
+						this._canAttach = this.facade.getRules(this.facade.getCurrentEditor().canvas.resourceId).canConnect({
 							sourceShape : parentCandidate,
 							edgeStencil : stencil,
 							targetStencil : stencil
@@ -467,7 +465,7 @@ ORYX.Plugins.ShapeRepository = {
 
 					if (this._canContain == undefined && !this._canAttach) {
 
-						this._canContain = this.facade.getRules(this.canvas.resourceId).canContain({
+						this._canContain = this.facade.getRules(this.facade.getCurrentEditor().canvas.resourceId).canContain({
 							containingShape : parentCandidate,
 							containedStencil : stencil
 						});

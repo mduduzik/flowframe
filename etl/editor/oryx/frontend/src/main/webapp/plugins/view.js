@@ -63,8 +63,6 @@ ORYX.Plugins.View = {
 
 	},
     stencilSetLoaded: function(event,args) {
-        this.canvas = args.canvas;
-
         /* Register zoom in */
         this.facade.offer({
             'name':ORYX.I18N.View.zoomIn,
@@ -139,7 +137,7 @@ ORYX.Plugins.View = {
 		// TODO: Zoomen auf allen Objekten im SVG-DOM
 		
 		this.zoomLevel *= factor;
-        var canvas 		= this.canvas;
+        var canvas 		= this.facade.getCurrentEditor().canvas;
 		var scrollNode 	= canvas.getHTMLContainer().parentNode.parentNode;
 		var newWidth 	= canvas.bounds.width()  * this.zoomLevel;
 		var newHeight 	= canvas.bounds.height() * this.zoomLevel;
@@ -178,7 +176,7 @@ ORYX.Plugins.View = {
 	 * 
 	 */
 	zoomFitToModel: function() {
-        var canvas 		= this.canvas;
+        var canvas 		= this.facade.getCurrentEditor().canvas;
 
 		/* Get the size of the visible area of the canvas */
 		var scrollNode 	= canvas.getHTMLContainer().parentNode.parentNode;
@@ -223,7 +221,7 @@ ORYX.Plugins.View = {
 	 * @private
 	 */
 	_checkSize:function(){
-        var canvas 		= this.canvas;
+        var canvas 		= this.facade.getCurrentEditor().canvas;
 
 		var canvasParent=canvas.getHTMLContainer().parentNode;
 		var minForCanvas= Math.min((canvasParent.parentNode.getWidth()/canvasParent.getWidth()),(canvasParent.parentNode.getHeight()/canvasParent.getHeight()));
