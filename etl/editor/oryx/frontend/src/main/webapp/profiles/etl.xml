@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><config>
+	<plugins>
+		<plugin core="true" engaged="true" name="ORYX.Plugins.Toolbar" source="toolbar.js"/>
+		<!-- <plugin source="toolbar2.js" name="ORYX.Plugins.Toolbar2" />-->
+		<plugin core="true" engaged="true" name="ORYX.Plugins.ShapeMenuPlugin" source="shapemenu.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.SelectStencilSetPerspective" source="selectssperspective.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.ShapeRepository" source="shaperepository.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.PropertyWindow" source="propertywindow.js"/>
+		<plugin core="true" engaged="true" name="ORYX.Plugins.Loading" source="loading.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.CanvasResize" source="canvasResize.js">
+			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
+		</plugin>
+		<plugin engaged="true" name="ORYX.Plugins.RenameShapes" source="renameShapes.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.ERDFSupport" source="erdfSupport.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.JSONSupport" source="jsonSupport.js">
+			<property name="color" value="red"/>
+		</plugin>
+		<plugin engaged="true" name="ORYX.Plugins.RDFExport" source="rdfExport.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.Undo" source="undo.js"/>
+
+		<!-- User Interface Aggregation -->
+		<!-- following plugins don't require Ext -->
+		<plugin engaged="true" name="ORYX.Plugins.Arrangement" source="arrangement.js">
+			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
+		</plugin>
+		<plugin engaged="true" name="ORYX.Plugins.File" source="file.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.Save" source="file.js"/>
+        <plugin engaged="true" name="ORYX.Plugins.New" source="new.js"/>
+		
+		<plugin engaged="true" name="ORYX.Plugins.View" source="view.js">
+			<property maxFitToScreenLevel="1.24" zoomLevel="2"/>
+		</plugin>
+		<plugin engaged="true" name="ORYX.Plugins.DragDropResize" source="dragdropresize.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.Grouping" source="grouping.js">
+			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
+		</plugin>	
+		<plugin engaged="true" name="ORYX.Plugins.HighlightingSelectedShapes" source="shapeHighlighting.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.DragDocker" source="dragDocker.js">
+			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
+		</plugin>		
+		<plugin engaged="true" name="ORYX.Plugins.AddDocker" source="addDocker.js">
+			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
+		</plugin>
+		<plugin engaged="true" name="ORYX.Plugins.SelectionFrame" source="selectionframe.js">
+			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
+		</plugin>
+		<plugin engaged="true" name="ORYX.Plugins.ShapeHighlighting" source="shapeHighlighting.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.Overlay" source="overlay.js"/>		
+		<plugin engaged="true" name="ORYX.Plugins.Edit" source="edit.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.KeysMove" source="keysMove.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.ContainerLayouter" source="Layouter/containerLayouter.js"/>
+
+
+		<plugin engaged="false" name="ORYX.Plugins.OverlayExample" source="overlayexample.js"/>
+
+		<!-- Disable pluginLoader to avoid user-driven plugin loading -->
+		<plugin engaged="false" name="ORYX.Plugins.PluginLoader" source="pluginLoader.js"/>
+		<plugin engaged="false" name="ORYX.Plugins.BPMN" source="bpmn.js"/>
+
+		<plugin engaged="true" name="ORYX.Plugins.Feedback" source="feedback.js">
+			<property name="cssfile" value="/oryx/css/feedback.css"/>
+			<!-- configure subjects and info in localization: /editor/data/I18N#ORYX.I18N.Feedback.subjects  -->
+		</plugin>
+
+		<!-- <plugin source="stencilsetmanipulator.js" name="ORYX.Plugins.StencilSetManipulator" /> -->
+
+		<plugin engaged="false" name="ORYX.Plugins.FileRepositorySave" source="fileRepository.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.DockerCreation" source="dockerCreation.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.LabelLayout" source="labelLayout.js"/>
+
+
+		<plugin engaged="true" name="ORYX.Plugins.WaveThis" source="waveThis.js">
+			<requires namespace="http://b3mn.org/stencilset/bpmn2.0#"/>
+			<requires namespace="http://b3mn.org/stencilset/UML2.2Class#"/>
+			<requires namespace="http://www.fmc-modeling.org/stencilsets/fmcblockdiagram#"/>
+			<requires namespace="http://b3mn.org/stencilset/epc#"/>
+			<requires namespace="http://b3mn.org/stencilset/petrinet#"/>
+		</plugin>
+
+		<plugin engaged="true" name="ORYX.Plugins.Timeline" source="timeline.js">
+			<requires namespace="http://matthias-kunze.info/oryx/stencilsets/timeline#"/>
+		</plugin>
+
+
+        <!-- ETL -->
+        <plugin source="etl/repository/explorer/etlreponavigation.js" name="ORYX.Plugins.ETLRepoNavigation"/>
+        <plugin source="etl/repository/explorer/docreponavigation.js" name="ORYX.Plugins.DOCRepoNavigation"/>
+        <plugin source="etl/metadata/metadataeditorrepository.js" name="ORYX.Plugins.ETL.Metadata.EditorRepository"/>
+        <plugin source="etl/metadata/stepmetadatapropertyeditor.js" name="ORYX.Plugins.ETL.Metadata.StepMetadataPropertyEditor"/>
+	</plugins>
+
+	
+	<properties>
+        <property group="New" index="1"/>
+		<property group="File" index="2"/>
+		<property group="Edit" index="3"/>
+		<property group="Undo" index="4"/>
+        <!-- ZZZZ assures that it is always at the end Feedback Plugin, ... -->
+        <property group="Help" index="ZZZZZZ"/> 	
+	</properties>
+</config>

@@ -1,0 +1,115 @@
+{
+    "title": "ETL 1.0",
+    "namespace": "http://etl.flowframe.org/stencilset/etl#",
+    "description": "ETL 1.0",
+    "propertyPackages": [
+        {
+            "name":"baseAttributes",
+            "properties": [
+                {
+                    "id":"name",
+                    "category":"Basic Settings",
+                    "type":"String",
+                    "title":"Name",
+                    "value":"",
+                    "description":"The descriptive name of the BPMN element.",
+                    "description_de":"Bezeichnung des BPMN-Elementes.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
+                    "wrapLines" : true,
+                    "refToView":"text_name"
+                },
+                {
+                    "id":"documentation",
+                    "category":"Basic Settings",
+                    "type":"Text",
+                    "title":"Documentation",
+                    "title_de":"Dokumentation",
+                    "value":"",
+                    "description":"This attribute is used to annotate the BPMN element, such as descriptions and other documentation.",
+                    "description_de":"Der Modellierer kann weiteren Text zur Dokumentation des BPMN-Elementes einfügen.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"",
+                    "wrapLines":true,
+                    "popular" : false
+                },
+                {
+                    "id":"version",
+                    "category":"Basic Settings",
+                    "type":"String",
+                    "title":"Version",
+                    "value":"",
+                    "description":"This defines the Version number of the Diagram.",
+                    "description_de":"Setzt die Versionsnummer des Diagramms.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                },
+                {
+                    "id":"author",
+                    "type":"String",
+                    "title":"Author",
+                    "title_de":"Autor",
+                    "value":"",
+                    "description":"This holds the name of the author of the Diagram.",
+                    "description_de": "Name des Autors des Diagramms.",
+                    "readonly":false,
+                    "optional":true,
+                    "length":"50"
+                }
+            ]
+        },
+        {
+            "name":"metadataAttributes",
+            "properties": [
+                {
+                    "id":"metadatatype",
+                    "category":"Metadata",
+                    "type":"String",
+                    "title":"Metadata Type",
+                    "value":"",
+                    "description":"Metadata type (e.g. TextFileInput.)",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines" : false,
+                    "popular" : true
+                },
+                {
+                    "id":"metadataName",
+                    "category":"Metadata",
+                    "type":"Select",
+                    "title":"Metadata Name",
+                    "value":"",
+                    "description":"Metadata Name",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                },
+                {
+                    "id":"metadataObjId",
+                    "category":"Metadata",
+                    "type":"Text",
+                    "title":"Metadata ID",
+                    "value":"",
+                    "description":"Metadata ID",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+            ]
+        }
+    ],
+    "stencils": [
+    ],
+    "rules": {
+        "containmentRules": [],
+        "connectionRules": []
+    }
+}

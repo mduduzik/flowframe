@@ -46,7 +46,7 @@ public class ETLEditorHandler extends HttpServlet {
     /**
      *
      */
-    private static final String defaultSS="stencilsets/bpmn1.1/bpmn1.1.json";
+    private static final String defaultSS="stencilsets/etl/etl1.0.json";
     private static final long serialVersionUID = 1L;
     private Collection<String> availableProfiles;
 
@@ -55,7 +55,7 @@ public class ETLEditorHandler extends HttpServlet {
 //        availableProfiles=getAvailableProfileNames();
 //		if(availableProfiles.size()==0)
 //			 defaultHandlerBehaviour();
-        List<String> profiles= Arrays.asList("default");
+        List<String> profiles= Arrays.asList("etl");
 /*        String[] urlSplitted=request.getRequestURI().split(";");
         ArrayList<String> profiles= new ArrayList<String>();
         if (urlSplitted.length>1){
@@ -72,7 +72,7 @@ public class ETLEditorHandler extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }*/
-        String defaultProfilePrefix = "default";
+        String defaultProfilePrefix = "etl";
         String sset=null;
         JSONObject conf= new JSONObject();
         try {
@@ -330,7 +330,14 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/datamanager.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/clazz.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/config.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/oryx.js\" type=\"text/javascript\" />\n"
+                //{{FF/ETL
+                + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/etl/js/ETLUIExtensions.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ffdi.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/repository/docreponavigation.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/repository/etlreponavigation.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/editor.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n"
+                //}}
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/editpathhandler.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/minmaxpathhandler.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/pointspathhandler.js\" type=\"text/javascript\" />\n"
@@ -351,7 +358,6 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractshape.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/canvas.js\" type=\"text/javascript\" />\n"
                 /*+ "<script src=\"" + getRootPath(request) + "scripts/Core/apiHandler.js\" type=\"text/javascript\" />\n"*/
-                + "<script src=\"" + getRootPath(request) + "scripts/Core/etlmain.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/svgDrag.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/shape.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/Controls/control.js\" type=\"text/javascript\" />\n"
@@ -360,8 +366,6 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/node.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/edge.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/etl/js/ETLUIExtensions.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n";
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n";
     }
 }
