@@ -17,10 +17,13 @@ ORYX.Plugins.ETL.BasePropertyWindow = ORYX.Plugins.AbstractPlugin.extend({
 		// Reference to the Editor-Interface
 		this.facade = facade;
 
+        if (this.disRegardEvent())
+            return;
+
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.onStencilSetLoaded.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.onSelectionChanged.bind(this));
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.onStencilSetLoaded.bind(this));
+        this.initPropGrid();
 	},
     disRegardEvent: function() {
         return !this.facade.getCurrentEditor() || !this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns);
@@ -31,18 +34,7 @@ ORYX.Plugins.ETL.BasePropertyWindow = ORYX.Plugins.AbstractPlugin.extend({
     processOnStencilSetLoaded: function() {
         return true;
     },
-    onStencilSetLoaded: function(event,args){
-        if (!this.processOnStencilSetLoaded())
-             return;
-
-        if (this.disRegardEvent())
-            return;
-
-        if (args.canvas)
-            this.canvas = args.canvas;
-        else
-            this.facade.getCurrentEditor().canvas;
-
+    initPropGrid: function(){
 		// The parent div-node of the grid
 		this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
 			null,
@@ -479,7 +471,7 @@ ORYX.Plugins.ETL.BasePropertyWindow = ORYX.Plugins.AbstractPlugin.extend({
 		
 		/* Case: nothing selected */
 		if(event.elements.length == 0) {
-			this.shapeSelection.shapes = [this.facade.getCanvas(this.canvas.resourceId)];
+			this.shapeSelection.shapes = [this.facade.getCanvas()];
 		}
 		
 		/* subselection available */

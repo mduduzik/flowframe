@@ -23,12 +23,15 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
         // Reference to the Editor-Interface
         this.facade = facade;
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.onStencilSetLoaded.bind(this));
+        if (this.disRegardEvent())
+            return;
+
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.initPropGrid.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.onSelectDiagram.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SELECTION_CHANGED, this.onSelectionChanged.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_HIGHLIGHT_HIDE, this.onHideHighlight.bind(this));
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.onStencilSetLoaded.bind(this));
+        this.initPropGrid();
     },
     disRegardEvent: function() {
         return !this.facade.getCurrentEditor() || !this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns);
@@ -36,10 +39,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
     isCompatibleStencilSet: function(ssnamespace) {
       return (this.ns === ssnamespace);
     },
-    onStencilSetLoaded: function (event,args) {
-        if (this.disRegardEvent())
-            return;
-
+    initPropGrid: function (event,args) {
         // The parent div-node of the grid
         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml",
             null,

@@ -38,7 +38,7 @@ ORYX.Plugins.ETL.Trans.TransPropertyWindow = ORYX.Plugins.ETL.BasePropertyWindow
     },
     onStencilSetLoaded: function() {
         // Call super method
-        arguments.callee.$.onStencilSetLoaded.apply(this, arguments);
+        arguments.callee.$.onStepPropertyWindow.apply(this, arguments);
         arguments.callee.$.onSelectDiagram.apply(this);
     }
 });

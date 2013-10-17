@@ -25,7 +25,6 @@ if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
 
 ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
-    canvas: undefined,
 
 	/**
 	 *	Constructor
@@ -34,62 +33,58 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 	construct: function(facade) {
 		this.facade = facade;
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
-
-
+		// Initialize variables
+		this.currentShapes 		= [];			// Current selected Shapes
+		//this.pluginsData 		= [];			// Available Plugins
+		this.toMoveShapes 		= [];			// Shapes there will be moved
+		this.distPoints 		= [];			// Distance Points for Snap on Grid
+		this.isResizing 		= false;		// Flag: If there was currently resized
+		this.dragEnable 		= false;		// Flag: If Dragging is enabled
+		this.dragIntialized 	= false;		// Flag: If the Dragging is initialized
+		this.edgesMovable		= true;			// Flag: If an edge is docked it is not movable
+		this.offSetPosition 	= {x: 0, y: 0};	// Offset of the Dragging
+		this.faktorXY 			= {x: 1, y: 1};	// The Current Zoom-Faktor
+		this.containmentParentNode;				// the current future parent node for the dragged shapes
+		this.isAddingAllowed 	= false;		// flag, if adding current selected shapes to containmentParentNode is allowed
+		this.isAttachingAllowed = false;		// flag, if attaching to the current shape is allowed
+		
+		this.callbackMouseMove	= this.handleMouseMove.bind(this);
+		this.callbackMouseUp	= this.handleMouseUp.bind(this);
+		
+		// Get the SVG-Containernode 
+		var containerNode = this.facade.getCanvas().getSvgContainer();
+		
+		// Create the Selected Rectangle in the SVG
+		this.selectedRect = new ORYX.Plugins.SelectedRect(containerNode);
+		
+		// Show grid line if enabled
+		if (ORYX.CONFIG.SHOW_GRIDLINE) {
+			this.vLine = new ORYX.Plugins.GridLine(containerNode, ORYX.Plugins.GridLine.DIR_VERTICAL);
+			this.hLine = new ORYX.Plugins.GridLine(containerNode, ORYX.Plugins.GridLine.DIR_HORIZONTAL);
+		}
+		
+		// Get a HTML-ContainerNode
+		containerNode = this.facade.getCanvas().getHTMLContainer();
+		
+		this.scrollNode = this.facade.getCanvas().rootNode.parentNode.parentNode;
+		
+		// Create the southeastern button for resizing
+		this.resizerSE = new ORYX.Plugins.Resizer(containerNode, "southeast", this.facade);
+		this.resizerSE.registerOnResize(this.onResize.bind(this)); // register the resize callback
+		this.resizerSE.registerOnResizeEnd(this.onResizeEnd.bind(this)); // register the resize end callback
+		this.resizerSE.registerOnResizeStart(this.onResizeStart.bind(this)); // register the resize start callback
+		
+		// Create the northwestern button for resizing
+		this.resizerNW = new ORYX.Plugins.Resizer(containerNode, "northwest", this.facade);
+		this.resizerNW.registerOnResize(this.onResize.bind(this)); // register the resize callback
+		this.resizerNW.registerOnResizeEnd(this.onResizeEnd.bind(this)); // register the resize end callback
+		this.resizerNW.registerOnResizeStart(this.onResizeStart.bind(this)); // register the resize start callback
+		
+		// For the Drag and Drop
+		// Register on MouseDown-Event on a Shape
+		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleMouseDown.bind(this));
 	},
-    stencilSetLoaded:  function(event,args){
-        // Initialize variables
-        this.currentShapes 		= [];			// Current selected Shapes
-        //this.pluginsData 		= [];			// Available Plugins
-        this.toMoveShapes 		= [];			// Shapes there will be moved
-        this.distPoints 		= [];			// Distance Points for Snap on Grid
-        this.isResizing 		= false;		// Flag: If there was currently resized
-        this.dragEnable 		= false;		// Flag: If Dragging is enabled
-        this.dragIntialized 	= false;		// Flag: If the Dragging is initialized
-        this.edgesMovable		= true;			// Flag: If an edge is docked it is not movable
-        this.offSetPosition 	= {x: 0, y: 0};	// Offset of the Dragging
-        this.faktorXY 			= {x: 1, y: 1};	// The Current Zoom-Faktor
-        this.containmentParentNode;				// the current future parent node for the dragged shapes
-        this.isAddingAllowed 	= false;		// flag, if adding current selected shapes to containmentParentNode is allowed
-        this.isAttachingAllowed = false;		// flag, if attaching to the current shape is allowed
 
-        this.callbackMouseMove	= this.handleMouseMove.bind(this);
-        this.callbackMouseUp	= this.handleMouseUp.bind(this);
-
-        // Get the SVG-Containernode
-        var containerNode = this.facade.getCurrentEditor().canvas.getSvgContainer();
-
-        // Create the Selected Rectangle in the SVG
-        this.selectedRect = new ORYX.Plugins.SelectedRect(containerNode);
-
-        // Show grid line if enabled
-        if (ORYX.CONFIG.SHOW_GRIDLINE) {
-            this.vLine = new ORYX.Plugins.GridLine(containerNode, ORYX.Plugins.GridLine.DIR_VERTICAL);
-            this.hLine = new ORYX.Plugins.GridLine(containerNode, ORYX.Plugins.GridLine.DIR_HORIZONTAL);
-        }
-
-        // Get a HTML-ContainerNode
-        containerNode = this.facade.getCurrentEditor().canvas.getHTMLContainer();
-
-        this.scrollNode = this.facade.getCurrentEditor().canvas.rootNode.parentNode.parentNode;
-
-        // Create the southeastern button for resizing
-        this.resizerSE = new ORYX.Plugins.Resizer(containerNode, "southeast", this.facade, this.facade.getCurrentEditor().canvas);
-        this.resizerSE.registerOnResize(this.onResize.bind(this)); // register the resize callback
-        this.resizerSE.registerOnResizeEnd(this.onResizeEnd.bind(this)); // register the resize end callback
-        this.resizerSE.registerOnResizeStart(this.onResizeStart.bind(this)); // register the resize start callback
-
-        // Create the northwestern button for resizing
-        this.resizerNW = new ORYX.Plugins.Resizer(containerNode, "northwest", this.facade, this.facade.getCurrentEditor().canvas);
-        this.resizerNW.registerOnResize(this.onResize.bind(this)); // register the resize callback
-        this.resizerNW.registerOnResizeEnd(this.onResizeEnd.bind(this)); // register the resize end callback
-        this.resizerNW.registerOnResizeStart(this.onResizeStart.bind(this)); // register the resize start callback
-
-        // For the Drag and Drop
-        // Register on MouseDown-Event on a Shape
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleMouseDown.bind(this));
-    },
 	/**
 	 * On Mouse Down
 	 *
@@ -105,7 +100,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		this.edgesMovable = true;
 
 		// Calculate the current zoom factor
-		var a = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
+		var a = this.facade.getCanvas().node.getScreenCTM();
 		this.faktorXY.x = a.a;
 		this.faktorXY.y = a.d;
 
@@ -168,10 +163,10 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 							this.docker 		= docker;
 							this.newPosition	= position;
 							this.newDockedShape = newDockedShape;
-							this.newParent 		= newDockedShape.parent || this.facade.getCurrentEditor().canvas;
+							this.newParent 		= newDockedShape.parent || facade.getCanvas();
 							this.oldPosition	= docker.parent.bounds.center();
 							this.oldDockedShape	= docker.getDockedShape();
-							this.oldParent 		= docker.parent.parent || this.facade.getCurrentEditor().canvas;
+							this.oldParent 		= docker.parent.parent || facade.getCanvas();
 							this.facade			= facade;
 							
 							if( this.oldDockedShape ){
@@ -200,7 +195,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 							//this.docker.update();
 							
 							this.facade.setSelection( [this.docker.parent] );	
-							this.facade.getCurrentEditor().canvas.update();
+							this.facade.getCanvas().update();
 							this.facade.updateSelection();
 																												
 											
@@ -316,7 +311,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		position.y = Math.max( 0 , position.y)
 
 		// Set that the position is not bigger than the canvas
-		var c = this.facade.getCurrentEditor().canvas;
+		var c = this.facade.getCanvas();
 		position.x = Math.min( c.bounds.width() - this.dragBounds.width(), 		position.x)
 		position.y = Math.min( c.bounds.height() - this.dragBounds.height(), 	position.y)	
 						
@@ -331,7 +326,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		this.isAttachingAllowed = false;
 
 		//check, if a node can be added to the underlying node
-		var underlyingNodes = $A(this.facade.getCurrentEditor().canvas.getAbstractShapesAtPosition(this.facade.eventCoordinates(event)));
+		var underlyingNodes = $A(this.facade.getCanvas().getAbstractShapesAtPosition(this.facade.eventCoordinates(event)));
 		
 		var checkIfAttachable = this.toMoveShapes.length == 1 && this.toMoveShapes[0] instanceof ORYX.Core.Node && this.toMoveShapes[0].dockers.length > 0
 		checkIfAttachable	= checkIfAttachable && underlyingNodes.length != 1
@@ -346,7 +341,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 		} else if(this._onlyEdges) {
 			
 			this.isAddingAllowed = true;
-			this.containmentParentNode = this.facade.getCurrentEditor().canvas;
+			this.containmentParentNode = this.facade.getCanvas();
 			
 		} else {
 		
@@ -583,7 +578,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 					this.plugin.layoutEdges(this.shape, allEdges, offset);
 
 					this.plugin.facade.setSelection([this.shape]);
-					this.plugin.this.facade.getCurrentEditor().canvas.update();
+					this.plugin.facade.getCanvas().update();
 					this.plugin.facade.updateSelection();
 				}
 			});
@@ -740,7 +735,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 			this.currentShapes = elements;
 
 			// Get all shapes with the highest parent in object hierarchy (canvas is the top most parent)
-			var topLevelElements = this.facade.getCurrentEditor().canvas.getShapesWithSharedParent(elements);
+			var topLevelElements = this.facade.getCanvas().getShapesWithSharedParent(elements);
 			this.toMoveShapes = topLevelElements;
 			
 			this.toMoveShapes = this.toMoveShapes.findAll( function(shape) { return shape instanceof ORYX.Core.Node && 
@@ -833,7 +828,7 @@ ORYX.Plugins.DragDropResize = ORYX.Plugins.AbstractPlugin.extend({
 				this.distPointTimeout = window.setTimeout(function(){
 					// Get all the shapes, there will consider at snapping
 					// Consider only those elements who shares the same parent element
-					var distShapes = this.facade.getCurrentEditor().canvas.getChildShapes(true).findAll(function(value){
+					var distShapes = this.facade.getCanvas().getChildShapes(true).findAll(function(value){
 						var parentShape = value.parent;
 						while(parentShape){
 							if(elements.member(parentShape)) return false;
@@ -1091,7 +1086,7 @@ ORYX.Plugins.GridLine.DIR_VERTICAL = "ver";
 
 ORYX.Plugins.Resizer = Clazz.extend({
 
-	construct: function(parentId, orientation, facade, canvas) {
+	construct: function(parentId, orientation, facade) {
 
 		this.parentId 		= parentId;
 		this.orientation	= orientation;
@@ -1107,7 +1102,7 @@ ORYX.Plugins.Resizer = Clazz.extend({
 		this.offSetPosition = {x: 0, y: 0};
 		this.bounds = undefined;
 
-		this.canvasNode = canvas.node;
+		this.canvasNode = this.facade.getCanvas().node;
 
 		this.minSize = undefined;
 		this.maxSize = undefined;
@@ -1166,8 +1161,8 @@ ORYX.Plugins.Resizer = Clazz.extend({
 		position.x 	-= this.offsetScroll.x - this.scrollNode.scrollLeft; 
 		position.y 	-= this.offsetScroll.y - this.scrollNode.scrollTop;
 		
-		position.x  = Math.min( position.x, canvas.bounds.width())
-		position.y  = Math.min( position.y, canvas.bounds.height())
+		position.x  = Math.min( position.x, this.facade.getCanvas().bounds.width())
+		position.y  = Math.min( position.y, this.facade.getCanvas().bounds.height())
 		
 		var offset = {
 			x: position.x - this.position.x,
@@ -1319,7 +1314,7 @@ ORYX.Plugins.Resizer = Clazz.extend({
 		if(this.bounds.width() > this.maxSize.width)	{ this.bounds.set(upL.x, upL.y, upL.x + this.maxSize.width, upL.y + this.bounds.height())};
 		if(this.bounds.height() > this.maxSize.height)	{ this.bounds.set(upL.x, upL.y, upL.x + this.bounds.width(), upL.y + this.maxSize.height)};
 
-		var a = canvasNode.getScreenCTM();
+		var a = this.canvasNode.getScreenCTM();
 		
 		upL.x *= a.a;
 		upL.y *= a.d;
@@ -1364,7 +1359,7 @@ ORYX.Core.Command.Move = ORYX.Core.Command.extend({
 		this.addShapeToParent( this.newParents ); 
 		// Set the selection to the current selection
 		this.selectCurrentShapes();
-		this.plugin.facade.getCurrentEditor().canvas.update();
+		this.plugin.facade.getCanvas().update();
 		this.plugin.facade.updateSelection();
 	},
 	rollback: function(){
@@ -1377,7 +1372,7 @@ ORYX.Core.Command.Move = ORYX.Core.Command.extend({
 		
 		// Set the selection to the current selection
 		this.selectCurrentShapes();
-		this.plugin.facade.getCurrentEditor().canvas.update();
+		this.plugin.facade.getCanvas().update();
 		this.plugin.facade.updateSelection();
 		
 	},

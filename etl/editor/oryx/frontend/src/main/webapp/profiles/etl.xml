@@ -83,6 +83,7 @@
 
 
         <!-- ETL -->
+        <plugin source="etl/metadata/metadataeditorrepository.js" name="ORYX.Plugins.ETL.Metadata.EditorRepository"/>
 <!--        <plugin source="etl/repository/explorer/etlreponavigation.js" name="ORYX.Plugins.ETLRepoNavigation"/>
         <plugin source="etl/repository/explorer/docreponavigation.js" name="ORYX.Plugins.DOCRepoNavigation"/>
         <plugin source="etl/metadata/metadataeditorrepository.js" name="ORYX.Plugins.ETL.Metadata.EditorRepository"/>

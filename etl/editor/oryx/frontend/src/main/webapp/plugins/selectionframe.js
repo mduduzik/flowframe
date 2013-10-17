@@ -25,7 +25,6 @@ if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
 
  ORYX.Plugins.SelectionFrame = Clazz.extend({
-     canvas: undefined,
 
 	construct: function(facade) {
 		this.facade = facade;
@@ -34,31 +33,28 @@ if(!ORYX.Plugins)
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleMouseDown.bind(this));
 		document.documentElement.addEventListener(ORYX.CONFIG.EVENT_MOUSEUP, this.handleMouseUp.bind(this), true);
 
-        //Reg editor events
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.onStencilSetLoaded.bind(this));
+		// Some initiale variables
+		this.position 		= {x:0, y:0};
+		this.size 			= {width:0, height:0};
+		this.offsetPosition = {x: 0, y: 0}
+
+		// (Un)Register Mouse-Move Event
+		this.moveCallback 	= undefined;
+		this.offsetScroll	= {x:0,y:0}
+		// HTML-Node of Selection-Frame
+		this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", this.facade.getCanvas().getHTMLContainer(),
+			['div', {'class':'Oryx_SelectionFrame'}]);
+
+		this.hide();
 	},
-     onStencilSetLoaded:  function(event,args){
-         // Some initiale variables
-         this.position 		= {x:0, y:0};
-         this.size 			= {width:0, height:0};
-         this.offsetPosition = {x: 0, y: 0}
 
-         // (Un)Register Mouse-Move Event
-         this.moveCallback 	= undefined;
-         this.offsetScroll	= {x:0,y:0}
-         // HTML-Node of Selection-Frame
-         this.node = ORYX.Editor.graft("http://www.w3.org/1999/xhtml", this.facade.getCurrentEditor().canvas.getHTMLContainer(),
-             ['div', {'class':'Oryx_SelectionFrame'}]);
-
-         this.hide();
-     },
 	handleMouseDown: function(event, uiObj) {
 		// If there is the Canvas
 		if( uiObj instanceof ORYX.Core.Canvas ) {
 			// Calculate the Offset
 			var scrollNode = uiObj.rootNode.parentNode.parentNode;
 						
-			var a = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
+			var a = this.facade.getCanvas().node.getScreenCTM();
 			this.offsetPosition = {
 				x: a.e,
 				y: a.f
@@ -96,7 +92,7 @@ if(!ORYX.Plugins)
 		
 			this.moveCallback = undefined;
 
-			var corrSVG = this.facade.getCurrentEditor().canvas.node.getScreenCTM();
+			var corrSVG = this.facade.getCanvas().node.getScreenCTM();
 
 			// Calculate the positions of the Frame
 			var a = {
@@ -115,7 +111,7 @@ if(!ORYX.Plugins)
 
 
 			// Calculate the elements from the childs of the canvas
-			var elements = this.facade.getCurrentEditor().canvas.getChildShapes(true).findAll(function(value) {
+			var elements = this.facade.getCanvas().getChildShapes(true).findAll(function(value) {
 				var absBounds = value.absoluteBounds();
 				var bA = absBounds.upperLeft();
 				var bB = absBounds.lowerRight();
@@ -133,10 +129,10 @@ if(!ORYX.Plugins)
 		// Calculate the size
 		var size = {
 			width	: Event.pointerX(event) - this.position.x - this.offsetPosition.x,
-			height	: Event.pointerY(event) - this.position.y - this.offsetPosition.y
+			height	: Event.pointerY(event) - this.position.y - this.offsetPosition.y,
 		}
 
-		var scrollNode 	= this.facade.getCurrentEditor().canvas.rootNode.parentNode.parentNode;
+		var scrollNode 	= this.facade.getCanvas().rootNode.parentNode.parentNode;
 		size.width 		-= this.offsetScroll.x - scrollNode.scrollLeft; 
 		size.height 	-= this.offsetScroll.y - scrollNode.scrollTop;
 						
