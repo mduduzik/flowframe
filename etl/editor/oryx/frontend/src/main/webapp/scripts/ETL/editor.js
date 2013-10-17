@@ -113,7 +113,7 @@ ORYX.Editor = {
         }
 
         // CREATES the canvas
-        this._createTransformationCanvas(model.stencil ? model.stencil.id : null, model.properties);
+        this._createCanvas(model.stencil ? model.stencil.id : null, model.properties);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -248,7 +248,7 @@ ORYX.Editor = {
             minTabWidth: 115,
             tabWidth:135,
             enableTabScroll:false,
-            activeTab: 0,
+            activeTab: 0
             //defaults: {autoScroll:true}
             //plugins: new Ext.ux.TabCloseMenu(),
             /*items: [selectedComponentForm,problemsGrid]*/
@@ -267,12 +267,11 @@ ORYX.Editor = {
 
 
 
-        var canvasEditorTab_ = new Ext.Panel({
-            title: 'New Job',
-            iconCls: 'process-icon',
-            closable:true,
-            labelAlign: 'top',
-            bodyStyle:'padding:0px',
+        var center_ = new Ext.Panel({
+            region: 'center',
+            minTabWidth: 115,
+            tabWidth:135,
+            enableTabScroll:true,
             layout: 'border',
             items: [
                 canvasEditor_,
@@ -281,6 +280,7 @@ ORYX.Editor = {
             autoScroll: true
         });
 
+/*
         var center_ = new Ext.TabPanel({
             region: 'center',
             minTabWidth: 115,
@@ -290,6 +290,7 @@ ORYX.Editor = {
             //plugins: new Ext.ux.TabCloseMenu(),
             items: [canvasEditorTab_]
         });
+*/
 
 
 
@@ -371,19 +372,10 @@ ORYX.Editor = {
             ]
         }
 
-        // IF Fullscreen, use a viewport
-        if (this.fullscreen) {
-            this.layout = new Ext.Viewport( layout_config )
-
-            // IF NOT, use a panel and render it to the given id
-        } else {
-            layout_config.renderTo 	= this.id;
-            layout_config.height 	= layoutHeight;
-            this.layout = new Ext.Panel( layout_config )
-        }
-
 
         this.layout = new Ext.ux.CanvasPanel({
+            //renderTo: this.id,
+            height: layoutHeight,
             title: this.title,
             iconCls: this.iconCls,
             closable:true,
@@ -396,7 +388,6 @@ ORYX.Editor = {
                 this.layout_regions.south,
                 this.layout_regions.center
             ],
-            canvas: canvas,
             canvasContainer: canvasEditor_,
             canvasEditorsContainer: canvasEditorSectionPanelBasicTab_,
             ns: this.namespace,
@@ -408,7 +399,8 @@ ORYX.Editor = {
 
 
         // Set the editor to the center, and refresh the size
-        canvasParent.parentNode.setAttributeNS(null, 'align', 'center');
+        if (canvasParent.parentNode)
+            canvasParent.parentNode.setAttributeNS(null, 'align', 'center');
         canvasParent.setAttributeNS(null, 'align', 'left');
         this.getCanvas().setSize({
             width	: ORYX.CONFIG.CANVAS_WIDTH,
@@ -716,7 +708,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createTransformationCanvas: function(stencilType, canvasConfig) {
+    _createCanvas: function(stencilType, canvasConfig) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -741,7 +733,7 @@ ORYX.Editor = {
         div.addClassName("ORYX_Editor");
 
         // create the canvas
-        this._transformationCanvas = new ORYX.Core.Canvas({
+        this._canvas = new ORYX.Core.Canvas({
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
@@ -761,7 +753,7 @@ ORYX.Editor = {
                 });
             }
 
-            this._transformationCanvas.deserialize(properties);
+            this._canvas.deserialize(properties);
         }
 
     },
@@ -777,7 +769,7 @@ ORYX.Editor = {
 
         // create it.
             this._pluginFacade = {
-
+                getCurrentEditor: function() {return this.layout}.bind(this),
                 activatePluginByName:		this.activatePluginByName.bind(this),
                 //deactivatePluginByName:		this.deactivatePluginByName.bind(this),
                 getAvailablePlugins:	this.getAvailablePlugins.bind(this),
@@ -1371,7 +1363,7 @@ ORYX.Editor = {
     },
 
     getCanvas: function() {
-        return this._transformationCanvas;
+        return this._canvas;
     },
 
 

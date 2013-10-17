@@ -55,6 +55,13 @@ var DEFAULT_EDITORS = new Hash();
 if(!ORYX) var ORYX = {};
 
 ORYX = Object.extend(ORYX, {
+    //Toolbar Button Plugins
+   pluginsData: [],
+   plugs:	[],
+   buttons: [],
+
+    //Event routing
+    DOMEventListeners: new Hash(),
 
 	//set the path in the config.js file!!!!
 	PATH: ORYX.CONFIG.ROOT_PATH,
@@ -210,9 +217,19 @@ ORYX = Object.extend(ORYX, {
 	 * the server. Once everything is loaded, the third layer is being invoked.
 	 */
 	_load: function() {
-		ORYX.loadPlugins();
-        init();
-        ORYX.generateMainUI();
+        this.loadAppFinished = false;
+        var initFinished = function(){
+            if( !this.loadAppFinished ){ return }
+            this._finishedLoading();
+        }.bind(this);
+
+        window.setTimeout(function(){
+            ORYX.loadPlugins();
+            init();
+            ORYX.generateMainUI();
+            this.loadAppFinished = true;
+            initFinished();
+        }.bind(this), 100);
 	},
 
 	/**
@@ -231,7 +248,7 @@ ORYX = Object.extend(ORYX, {
 
 		// init the editor instances.
 		//init();
-        this.generateMainUI();
+        //this.generateMainUI();
 	},
 	
 	_loadPlugins: function() {
@@ -414,21 +431,45 @@ ORYX = Object.extend(ORYX, {
                iconCls: 'transformation-icon',
                stencilset: {
 
-                   url: ORYX.PATH + ORYX.Utils.getParamFromUrl("transst"),
+                   url: ORYX.PATH + '/stencilsets/etl/etl1.0/etl1.0.json',
                    ns: ORYX.CONFIG.NAMESPACE_ETL_TRANS
                }
            };
 
-       DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_TRANS] = {
+       DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_JOB] = {
                id: 'etlJobCanvas',
                title: 'New Job ',
                iconCls: 'process-icon',
                stencilset: {
 
-                   url: ORYX.PATH + ORYX.Utils.getParamFromUrl("jobsst"),
+                   url: ORYX.PATH + '/stencilsets/etl/etljob1.0/etljob1.0.json',
                    ns: ORYX.CONFIG.NAMESPACE_ETL_JOB
                }
            };
+    },
+    //{{
+    //
+    // Event queue's and managers
+    //
+    //}
+    /**
+     *  Methods for the PluginFacade
+     */
+    registerOnEvent: function(eventType, callback) {
+        if(!(this.DOMEventListeners.keys().member(eventType))) {
+            this.DOMEventListeners[eventType] = [];
+        }
+
+        this.DOMEventListeners[eventType].push(callback);
+    },
+
+    unregisterOnEvent: function(eventType, callback) {
+        if(this.DOMEventListeners.keys().member(eventType)) {
+            this.DOMEventListeners[eventType] = this.DOMEventListeners[eventType].without(callback);
+        } else {
+            // Event is not supported
+            // TODO: Error Handling
+        }
     },
     //{{
     //
@@ -469,12 +510,227 @@ ORYX = Object.extend(ORYX, {
         this._generateDefaultUIPanels();
         this._generateLayout();
         this._generateRepositoryUI();
+        this._generateToolbarUI();
+    },
+    // Toolbar
+    _generateToolbarUI: function() {
+        var groups = new Hash();
+        groups['New'] = '1';
+        groups['Edit'] = '2';
+        groups['Undo'] = '3';
+        groups['Help'] = 'ZZZZZZZ';
+
+        //Default Button UI configs
+        this.newTransButtonConfig = {
+            'name': 'NewTransformation',
+            'functionality': this.newTransformation.bind(this,false),
+            'group': ORYX.I18N.Save.group,
+            'icon': "/etl/images/conxbi/etl/transformation.png",
+            'description': 'New Transformation',
+            'index': 1,
+            'minShape': 0,
+            'maxShape': 0
+        };
+        this.pluginsData.push(this.newTransButtonConfig);
+
+        this.newJobButtonConfig = {
+            'name': 'NewJob',
+            'functionality': this.newJob.bind(this,true),
+            'group': ORYX.I18N.Save.group,
+            'icon': "/etl/images/conxbi/etl/process_icon.gif",
+            'description': 'New ETL Job',
+            'index': 2,
+            'minShape': 0,
+            'maxShape': 0
+        };
+        this.pluginsData.push(this.newJobButtonConfig);
+
+        //Group buttons
+        this.groupIndex = new Hash();
+        groups.each((function(value){
+            if(value.group && value.index != undefined) {
+                this.groupIndex[value.group] = value.index
+            }
+        }).bind(this));
+
+        //Toolbar UI
+		ORYX.Log.trace("Creating a toolbar.")
+        if(!this.toolbar){
+            this.toolbar = new Ext.ux.SlicedToolbar({
+                height: 24
+            });
+            var region = this.addToRegion("north", this.toolbar, "Toolbar");
+        }
+
+        //Populate toolbar
+        var newPlugs =  this.pluginsData.sortBy((function(value) {
+            return ((groups[value.group] != undefined ? groups[value.group] : "" ) + value.group + "" + value.index).toLowerCase();
+        }).bind(this));
+        var plugs = $A(newPlugs).findAll(function(value){
+            return !this.plugs.include( value )
+        }.bind(this));
+        if(plugs.length<1)
+            return;
+
+        this.buttons = [];
+        var currentGroupsName = this.plugs.last()?this.plugs.last().group:plugs[0].group;
+
+        // Map used to store all drop down buttons of current group
+        var currentGroupsDropDownButton = {};
+
+
+        plugs.each((function(value) {
+            if(!value.name) {return}
+            this.plugs.push(value);
+            // Add seperator if new group begins
+            if(currentGroupsName != value.group) {
+                this.toolbar.add('-');
+                currentGroupsName = value.group;
+                currentGroupsDropDownButton = {};
+            }
+            //add eventtracking
+            var tmp = value.functionality;
+            value.functionality = function(){
+                if ("undefined" != typeof(pageTracker) && "function" == typeof(pageTracker._trackEvent) )
+                {
+                    pageTracker._trackEvent("ToolbarButton",value.name)
+                }
+                return tmp.apply(this, arguments);
+
+            }
+            // If an drop down group icon is provided, a split button should be used
+            if(value.dropDownGroupIcon){
+                var splitButton = currentGroupsDropDownButton[value.dropDownGroupIcon];
+
+                // Create a new split button if this is the first plugin using it
+                if(splitButton === undefined){
+                    splitButton = currentGroupsDropDownButton[value.dropDownGroupIcon] = new Ext.Toolbar.SplitButton({
+                        cls: "x-btn-icon", //show icon only
+                        icon: value.dropDownGroupIcon,
+                        menu: new Ext.menu.Menu({
+                            items: [] // items are added later on
+                        }),
+                        listeners: {
+                            click: function(button, event){
+                                // The "normal" button should behave like the arrow button
+                                if(!button.menu.isVisible() && !button.ignoreNextClick){
+                                    button.showMenu();
+                                } else {
+                                    button.hideMenu();
+                                }
+                            }
+                        }
+                    });
+
+                    this.toolbar.add(splitButton);
+                }
+
+                // General config button which will be used either to create a normal button
+                // or a check button (if toggling is enabled)
+                var buttonCfg = {
+                    icon: value.icon,
+                    text: value.name,
+                    itemId: value.id,
+                    handler: value.toggle ? undefined : value.functionality,
+                    checkHandler: value.toggle ? value.functionality : undefined,
+                    listeners: {
+                        render: function(item){
+                            // After rendering, a tool tip should be added to component
+                            if (value.description) {
+                                new Ext.ToolTip({
+                                    target: item.getEl(),
+                                    title: value.description
+                                })
+                            }
+                        }
+                    }
+                }
+
+                // Create buttons depending on toggle
+                if(value.toggle) {
+                    var button = new Ext.menu.CheckItem(buttonCfg);
+                } else {
+                    var button = new Ext.menu.Item(buttonCfg);
+                }
+
+                splitButton.menu.add(button);
+
+            } else { // create normal, simple button
+                var button = new Ext.Toolbar.Button({
+                    icon:           value.icon,         // icons can also be specified inline
+                    cls:            'x-btn-icon',       // Class who shows only the icon
+                    itemId:         value.id,
+                    tooltip:        value.description,  // Set the tooltip
+                    tooltipType:    'title',            // Tooltip will be shown as in the html-title attribute
+                    handler:        value.toggle ? null : value.functionality,  // Handler for mouse click
+                    enableToggle:   value.toggle, // Option for enabling toggling
+                    toggleHandler:  value.toggle ? value.functionality : null // Handler for toggle (Parameters: button, active)
+                });
+
+                this.toolbar.add(button);
+
+                button.getEl().onclick = function() {this.blur()}
+            }
+
+            value['buttonInstance'] = button;
+            this.buttons.push(value);
+
+        }).bind(this));
+
+        this.enableButtons([]);
+        this.toolbar.calcSlices();
+        window.addEventListener("resize", function(event){this.toolbar.calcSlices()}.bind(this), false);
+        window.addEventListener("onresize", function(event){this.toolbar.calcSlices()}.bind(this), false);
+    },
+    /**
+     * New transformation
+     */
+    newTransformation: function(){
+        var config = {
+            ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS
+        };
+        this.launchEditor(null,config);
+/*        this.facade.raiseEvent({
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
+            forceExecution: true
+        },config);*/
+    },
+    /**
+     * New job
+     */
+    newJob: function(){
+        var config = {
+            ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB
+        };
+        this.launchEditor(null,config);
+/*        this.facade.raiseEvent({
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
+            forceExecution: true
+        },config);*/
+    },
+    enableButtons: function(elements) {
+        // Show the Buttons
+        this.buttons.each((function(value){
+            value.buttonInstance.enable();
+
+            // If there is less elements than minShapes
+            if(value.minShape && value.minShape > elements.length)
+                value.buttonInstance.disable();
+            // If there is more elements than minShapes
+            if(value.maxShape && value.maxShape < elements.length)
+                value.buttonInstance.disable();
+            // If the plugin is not enabled
+            if(value.isEnabled && !value.isEnabled())
+                value.buttonInstance.disable();
+
+        }).bind(this));
     },
     // Explorer Navigation
     _generateRepositoryUI: function() {
         this.etlRepoPanel = new ORYX.ETL.ETLRepoNavigation(this);
         this.etlRepoPanel = new ORYX.ETL.DOCRepoNavigation(this);
     },
+    // Default UI Panels
     _generateDefaultUIPanels: function() {
         // Workspace/Welcome
         var tools = [{
@@ -557,7 +813,7 @@ ORYX = Object.extend(ORYX, {
                 this.workspaceTab
             ]
         });
-        center_.on('beforetabchange',this.onBeforeTabChange.bind(this));
+        this.mainEditorsPanel.on('beforetabchange',this.onBeforeTabChange.bind(this));
     },
     _generateLayout: function() {
         /**
@@ -630,6 +886,8 @@ ORYX = Object.extend(ORYX, {
      */
     addToRegion: function(region, component, title) {
         var region_name =  region.toLowerCase();
+        if (region_name === 'center')//Another main editor
+            this.CurrentEditor = component;
         var current_region = this.layout_regions[region.toLowerCase()];
 
         current_region.add(component).show();
@@ -673,6 +931,15 @@ ORYX = Object.extend(ORYX, {
             ORYX.Editor.resizeFix();
 
         return current_region;
+    },
+    _finishedLoading: function() {
+        if(Ext.getCmp('oryx-loading-panel')){
+            Ext.getCmp('oryx-loading-panel').hide()
+        }
+
+        // Raise Loaded Event
+        this.registerOnEvent( {type:ORYX.CONFIG.EVENT_LOADED} );
+
     }
 });
 ORYX.Log.debug('Registering Oryx with Kickstart');

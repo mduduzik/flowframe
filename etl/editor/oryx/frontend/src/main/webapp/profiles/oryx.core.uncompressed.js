@@ -10453,7 +10453,7 @@ ORYX.Editor = {
         }
 
         // CREATES the canvas
-        this._createTransformationCanvas(model.stencil ? model.stencil.id : null, model.properties);
+        this._createCanvas(model.stencil ? model.stencil.id : null, model.properties);
 
         // GENERATES the whole EXT.VIEWPORT
         this._generateGUI();
@@ -10972,7 +10972,7 @@ ORYX.Editor = {
      * @param {String} [stencilType] The stencil type used for creating the canvas. If not given, a stencil with myBeRoot = true from current stencil set is taken.
      * @param {Object} [canvasConfig] Any canvas properties (like language).
      */
-    _createTransformationCanvas: function(stencilType, canvasConfig) {
+    _createCanvas: function(stencilType, canvasConfig) {
         if (stencilType) {
             // Add namespace to stencilType
             if (stencilType.search(/^http/) === -1) {
@@ -10997,7 +10997,7 @@ ORYX.Editor = {
         div.addClassName("ORYX_Editor");
 
         // create the canvas
-        this._transformationCanvas = new ORYX.Core.Canvas({
+        this._canvas = new ORYX.Core.Canvas({
             width					: ORYX.CONFIG.CANVAS_WIDTH,
             height					: ORYX.CONFIG.CANVAS_HEIGHT,
             'eventHandlerCallback'	: this.handleEvents.bind(this),
@@ -11017,7 +11017,7 @@ ORYX.Editor = {
                 });
             }
 
-            this._transformationCanvas.deserialize(properties);
+            this._canvas.deserialize(properties);
         }
 
     },
@@ -11627,7 +11627,7 @@ ORYX.Editor = {
     },
 
     getCanvas: function() {
-        return this._transformationCanvas;
+        return this._canvas;
     },
 
 
