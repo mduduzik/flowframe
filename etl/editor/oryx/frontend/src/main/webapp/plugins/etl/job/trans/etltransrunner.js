@@ -21,7 +21,8 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHOW_PROPERTYWINDOW, this.init.bind(this));
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.onSelectDiagram.bind(this));
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.handleSSLoaded.bind(this));
+        //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.initJobRunnerUI.bind(this));
+        this.initJobRunnerUI();
     },
     disRegardEvent: function() {
         return !this.facade.getCurrentEditor() || !this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns);
@@ -170,7 +171,7 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
             })
         });
     },
-    handleSSLoaded: function (event,config) {
+    initJobRunnerUI: function () {
         if (this.disRegardEvent())
             return;
 

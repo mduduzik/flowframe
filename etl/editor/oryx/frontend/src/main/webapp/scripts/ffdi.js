@@ -486,18 +486,31 @@ ORYX = Object.extend(ORYX, {
         if (!state.ns)//Not SS editor
             return;
 
+        if (!this.CurrentEditor) {//First current editor
+            this.CurrentEditor = state;
+            //-- Copy listeners over
+            this.DOMEventListeners.keys().each((function(eventType) {
+                this.CurrentEditor.getFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
+            }).bind(this));
+
+            return;
+        }
+
         if (state.id === this.CurrentEditor.id)//No need to change SS repo
             return;
 
+        //-- Unregister current app listeners
+        this.DOMEventListeners.keys().each((function(eventType) {
+            this.CurrentEditor.getFacade().unregisterOnEvent(eventType, this.DOMEventListeners[eventType]);
+        }).bind(this));
+
+        //- Assign new editor
         this.CurrentEditor = state;
-        this.handleEvents({
-                type:ORYX.CONFIG.EVENT_SHAPE_REPOSITORY_CHANGE
-            },
-            {
-                canvas: this.CurrentEditor.canvas,
-                ss: this.CurrentEditor.ss
-            }
-        );
+
+        //-- Register current app listeners
+        this.DOMEventListeners.keys().each((function(eventType) {
+            this.CurrentEditor.getFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
+        }).bind(this));
     },
     //{{
     //
@@ -813,7 +826,7 @@ ORYX = Object.extend(ORYX, {
                 this.workspaceTab
             ]
         });
-        this.mainEditorsPanel.on('beforetabchange',this.onBeforeTabChange.bind(this));
+        //this.mainEditorsPanel.on('beforetabchange',this.onBeforeTabChange.bind(this));
     },
     _generateLayout: function() {
         /**
@@ -886,8 +899,6 @@ ORYX = Object.extend(ORYX, {
      */
     addToRegion: function(region, component, title) {
         var region_name =  region.toLowerCase();
-        if (region_name === 'center')//Another main editor
-            this.CurrentEditor = component;
         var current_region = this.layout_regions[region.toLowerCase()];
 
         current_region.add(component).show();

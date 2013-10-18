@@ -249,9 +249,6 @@ ORYX.Editor = {
             tabWidth:135,
             enableTabScroll:false,
             activeTab: 0
-            //defaults: {autoScroll:true}
-            //plugins: new Ext.ux.TabCloseMenu(),
-            /*items: [selectedComponentForm,problemsGrid]*/
         });
 
         var canvasEditorSectionPanel_ = new Ext.Panel({
@@ -391,6 +388,7 @@ ORYX.Editor = {
             canvasContainer: canvasEditor_,
             canvasEditorsContainer: canvasEditorSectionPanelBasicTab_,
             ns: this.namespace,
+            facade: this,
             autoScroll: true
         });
 
@@ -495,9 +493,9 @@ ORYX.Editor = {
             if(this.loadedPlugins.find(function(loadedPlugin){
                 return loadedPlugin.type==this.name;
             }.bind(plugin))){
-                plugin.engaged=true;
+                plugin.engaged="true";
             }else{
-                plugin.engaged=false;
+                plugin.engaged="false";
             }
         }.bind(this));
         return curAvailablePlugins;
@@ -545,9 +543,14 @@ ORYX.Editor = {
             var me=this;
             ORYX.Log.debug("Initializing plugin '%0'", match.name);
 
-            if (!match.requires 	|| !match.requires.namespaces 	|| match.requires.namespaces.any(function(req){ return loadedStencilSetsNamespaces.indexOf(req) >= 0 }) ){
-                if(!match.notUsesIn 	|| !match.notUsesIn.namespaces 	|| !match.notUsesIn.namespaces.any(function(req){ return loadedStencilSetsNamespaces.indexOf(req) >= 0 })){
-
+            var cond1 = !match.requires || !match.requires.namespaces || match.requires.namespaces.any(function (req) {
+                return loadedStencilSetsNamespaces.indexOf(req) >= 0
+            });
+            if (cond1 ){
+                var cond2 = !match.notUsesIn || !match.notUsesIn.namespaces || !match.notUsesIn.namespaces.any(function (req) {
+                    return loadedStencilSetsNamespaces.indexOf(req) >= 0
+                });
+                if(cond2){
                     try {
 
                         var className 	= eval(match.name);
@@ -649,7 +652,7 @@ ORYX.Editor = {
                         var plugin		= new className(facade, value);
                         plugin.type		= value.name;
                         newPlugins.push( plugin );
-                        plugin.engaged=true;
+                        plugin.engaged="true";
                     }
                 } catch(e) {
                     ORYX.Log.error(e);
@@ -2150,6 +2153,7 @@ Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
     canvasEditorsContainer: undefined,
     ns: undefined,
     ss: undefined,
+    facade: undefined,
     initComponent : function(){
         Ext.ux.CanvasPanel.superclass.initComponent.call(this);
     },
@@ -2161,6 +2165,9 @@ Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
     },
     getCanvasEditorsPanel : function(){
         return this.canvasEditorsContainer;
+    },
+    getFacade : function(){
+        return this.facade;
     }
 });
 Ext.reg('canvaspanel', Ext.ux.CanvasPanel);

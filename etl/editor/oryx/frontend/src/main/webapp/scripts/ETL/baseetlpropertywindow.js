@@ -144,7 +144,7 @@ ORYX.Plugins.ETL.BasePropertyWindow = ORYX.Plugins.AbstractPlugin.extend({
          this.grid
          ]
          }*/
-        region = this.facade.addToRegion("centerSouth", this.grid, ORYX.I18N.PropertyWindow.title);
+        this.region = this.facade.addToRegion("centerSouth", this.grid, ORYX.I18N.PropertyWindow.title);
 
 		// Register on Events
 		this.grid.on('beforeedit', this.beforeEdit, this, true);
