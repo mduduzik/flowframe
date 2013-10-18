@@ -413,13 +413,17 @@ ORYX = Object.extend(ORYX, {
 
         var ssNameSpace = config.ssns;
         var ssConfig = DEFAULT_EDITORS[ssNameSpace];
-        ssConfig.title = ssConfig.title+uiId();
+
+        var ssConfig_ = {};
+        Ext.apply(ssConfig_,ssConfig);
+
+        ssConfig_.title = ssConfig.title+uiId();
 
         //- Create editor
-        var editorTabPanel = new ORYX.Editor(ssConfig);
+        var editorTabPanel = new ORYX.Editor(ssConfig_);
 
         //- Add to layout
-        this.addToRegion('center', editorTabPanel.layout, ssConfig.title);
+        this.addToRegion('center', editorTabPanel.layout, ssConfig_.title);
     },
     /**
      * Create configs

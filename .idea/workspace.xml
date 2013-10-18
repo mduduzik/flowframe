@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69bc9311-f399-47b6-9e9d-ea482f4152d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/canvasResize.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/canvasResize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/editor.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/editor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ffdi.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ffdi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/loading.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/loading.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapeHighlighting.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapeHighlighting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapemenu.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapemenu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/view.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -77,9 +70,30 @@
       <file leaf-file-name="ffdi.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ffdi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="516" column="42" selection-start="16021" selection-end="16021" vertical-scroll-proportion="1.1368159" vertical-offset="8315" max-vertical-offset="17085">
+            <state line="425" column="67" selection-start="13217" selection-end="13217" vertical-scroll-proportion="0.8497537" vertical-offset="6880" max-vertical-offset="17153">
               <folding>
-                <marker date="1382114825432" expanded="true" signature="6042:6057" placeholder="..." />
+                <marker date="1382129532870" expanded="true" signature="6042:6057" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="188" column="48" selection-start="6584" selection-end="6584" vertical-scroll-proportion="0.0" vertical-offset="2689" max-vertical-offset="3910">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="baseetlpropertywindow.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="4" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="12920">
+              <folding>
+                <marker date="1382065069204" expanded="false" signature="3672:3688" placeholder="..." />
+                <marker date="1382065069204" expanded="false" signature="5957:5974" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -88,7 +102,7 @@
       <file leaf-file-name="editor.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="394" column="49" selection-start="12024" selection-end="12024" vertical-scroll-proportion="-12.88" vertical-offset="6376" max-vertical-offset="37366">
+            <state line="681" column="26" selection-start="23775" selection-end="23793" vertical-scroll-proportion="-14.6" vertical-offset="11212" max-vertical-offset="37366">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -108,7 +122,18 @@
       <file leaf-file-name="shapemenu.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapemenu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="38" selection-start="2521" selection-end="2521" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="24684">
+            <state line="305" column="65" selection-start="9713" selection-end="9713" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="24684">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectssperspective.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectssperspective.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="4097">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -139,41 +164,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="canvasResize.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/canvasResize.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="4" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="3502">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loading.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/loading.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="4" selection-start="1398" selection-end="1398" vertical-scroll-proportion="0.0" vertical-offset="403" max-vertical-offset="1734">
-              <folding>
-                <marker date="1382103621557" expanded="true" signature="1560:3450" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="shapeHighlighting.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapeHighlighting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="28" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="4250">
-              <folding>
-                <marker date="1382103621573" expanded="true" signature="1270:6377" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="620" column="23" selection-start="19255" selection-end="19255" vertical-scroll-proportion="0.0" vertical-offset="10372" max-vertical-offset="38488">
+            <state line="8" column="28" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="617" max-vertical-offset="4250">
               <folding />
             </state>
           </provider>
@@ -592,6 +586,48 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oryx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1132,16 +1168,16 @@
       <workItem from="1381612226485" duration="4662000" />
       <workItem from="1381663591329" duration="18516000" />
       <workItem from="1381760283733" duration="20061000" />
-      <workItem from="1381802249433" duration="110636000" />
+      <workItem from="1381802249433" duration="114426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153875000" />
+    <option name="totallyTimeSpent" value="157665000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1598" height="876" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1155,15 +1191,15 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25910932" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1915297" sideWeight="0.6626181" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3141593" sideWeight="0.6626181" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51417005" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33738193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3117409" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33738193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1194,7 +1230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ffdi.js</url>
-          <line>476</line>
+          <line>479</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -1206,27 +1242,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/etl.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="444">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/profiles/etl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="38" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.0" vertical-offset="236" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/metadataplugins.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="288" selection-end="527" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/etlmain.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2022" column="60" selection-start="71779" selection-end="71879" vertical-scroll-proportion="-5.4" vertical-offset="34239" max-vertical-offset="44761">
@@ -1259,25 +1274,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="4" selection-start="1398" selection-end="1398" vertical-scroll-proportion="0.0" vertical-offset="403" max-vertical-offset="1734">
           <folding>
-            <marker date="1382103621557" expanded="true" signature="1560:3450" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapeHighlighting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="28" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="4250">
-          <folding>
-            <marker date="1382103621573" expanded="true" signature="1270:6377" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapemenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="38" selection-start="2521" selection-end="2521" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="24684">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <marker date="1382103621557" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1307,15 +1304,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="394" column="49" selection-start="12024" selection-end="12024" vertical-scroll-proportion="-12.88" vertical-offset="6376" max-vertical-offset="37366">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1470" column="69" selection-start="60743" selection-end="60791" vertical-scroll-proportion="-5.48" vertical-offset="24716" max-vertical-offset="30923">
@@ -1326,11 +1314,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="4" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="12920">
+          <folding>
+            <marker date="1382065069204" expanded="false" signature="3672:3688" placeholder="..." />
+            <marker date="1382065069204" expanded="false" signature="5957:5974" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapemenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="305" column="65" selection-start="9713" selection-end="9713" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="24684">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/selectssperspective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4097">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/shapeHighlighting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="28" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="617" max-vertical-offset="4250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="681" column="26" selection-start="23775" selection-end="23793" vertical-scroll-proportion="-14.6" vertical-offset="11212" max-vertical-offset="37366">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/scripts/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="48" selection-start="6584" selection-end="6584" vertical-scroll-proportion="0.0" vertical-offset="2689" max-vertical-offset="3910">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ffdi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="516" column="42" selection-start="16021" selection-end="16021" vertical-scroll-proportion="1.1368159" vertical-offset="8315" max-vertical-offset="17085">
+        <state line="425" column="67" selection-start="13217" selection-end="13217" vertical-scroll-proportion="0.8497537" vertical-offset="6880" max-vertical-offset="17153">
           <folding>
-            <marker date="1382114825432" expanded="true" signature="6042:6057" placeholder="..." />
+            <marker date="1382129532870" expanded="true" signature="6042:6057" placeholder="..." />
           </folding>
         </state>
       </provider>
