@@ -389,6 +389,10 @@ ORYX.Editor = {
             canvasEditorsContainer: canvasEditorSectionPanelBasicTab_,
             ns: this.namespace,
             facade: this,
+            handleEventsFn: this.handleEvents.bind(this),
+            canvasFn: this.getCanvas.bind(this),
+            eventCoordinatesFn: this.eventCoordinates.bind(this),
+            canvasFacade: this._getPluginFacade(),
             autoScroll: true
         });
 
@@ -1561,7 +1565,11 @@ ORYX.Editor = {
     _executeEventImmediately: function(eventObj) {
         if(this.DOMEventListeners.keys().member(eventObj.event.type)) {
             this.DOMEventListeners[eventObj.event.type].each((function(value) {
-                value(eventObj.event, eventObj.arg);
+                var isrray_ = value instanceof Array;
+                if (isrray_)
+                    value[0](eventObj.event, eventObj.arg);
+                else
+                    value(eventObj.event, eventObj.arg);
             }).bind(this));
         }
     },
@@ -2148,17 +2156,17 @@ ORYX.Editor.makeExtModalWindowKeysave = function(facade) {
  */
 
 Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
-    canvas: undefined,
+    canvasFacade: undefined,
+    eventCoordinatesFn:undefined,
+    canvasFn: undefined,
     canvasContainer: undefined,
     canvasEditorsContainer: undefined,
     ns: undefined,
     ss: undefined,
     facade: undefined,
+    handleEventsFn: undefined,
     initComponent : function(){
         Ext.ux.CanvasPanel.superclass.initComponent.call(this);
-    },
-    getCanvas : function(){
-        return this.canvas;
     },
     getCanvasPanel : function(){
         return this.canvasContainer;
@@ -2168,6 +2176,18 @@ Ext.ux.CanvasPanel = Ext.extend(Ext.Panel, {
     },
     getFacade : function(){
         return this.facade;
+    },
+    getHandleEventsFn: function() {
+        return this.handleEventsFn;
+    },
+    getCanvasFn : function(){
+        return this.canvasFn;
+    },
+    eventCoordinatesFn : function(){
+        return this.eventCoordinatesFn;
+    },
+    getCanvasFacade : function(){
+        return this.canvasFacade;
     }
 });
 Ext.reg('canvaspanel', Ext.ux.CanvasPanel);

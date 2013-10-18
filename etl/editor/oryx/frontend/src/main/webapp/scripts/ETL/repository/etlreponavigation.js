@@ -165,7 +165,7 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
         //-- Raise DD event
         var eventData = {
             type: ORYX.CONFIG.EVENT_ETL_METADATA_DDROP,
-            forceExecution: false //async call
+            forceExecution: true //async call
         };
         var sourceData = {
             dragZone: dragZone,
@@ -174,7 +174,7 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
         };
 
         this.modalDialogShown = true;
-        this.application.raiseEvent(eventData, sourceData);
+        this.application.handleEvents(eventData, sourceData);
     },
     /**
      * On Drag Over
@@ -308,7 +308,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -394,7 +394,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -411,7 +411,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id
                             }
@@ -429,7 +429,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
@@ -476,7 +476,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -561,7 +561,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -578,7 +578,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id
                             }
@@ -596,7 +596,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
@@ -675,16 +675,16 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * @param event
      */
     onMetadataDrop: function (event, source) {
-        if (!this.application.getCurrentEditor())
+        if (!this.application.CurrentEditor)
             return;
-        var currentCanvas = this.application.getCurrentEditor().canvas;
+        var currentCanvas = this.application.CurrentEditor.getCanvasFn();
 
         var dragZone = source.dragZone;
         var target = source.target;
         var event = source.event;
 
         var coord = this.application.eventCoordinates(event.browserEvent);
-        var aShapes = this.application.getCanvas().getAbstractShapesAtPosition(coord);
+        var aShapes = this.application.CurrentEditor.getCanvasFn().getAbstractShapesAtPosition(coord);
 
         if (aShapes.length <= 0) {
             return false;
@@ -1099,7 +1099,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -1185,7 +1185,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -1202,7 +1202,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id
                             }
@@ -1220,7 +1220,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'DBConnection',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
@@ -1267,7 +1267,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -1352,7 +1352,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
                                 sourceNavNodeId: this.ctxNode.id}
                         );
@@ -1369,7 +1369,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id
                             }
@@ -1387,7 +1387,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CSVMeta',
                             forceExecution: true
                         };
-                        this.application.raiseEvent(eventData, {
+                        this.application.handleEvents(eventData, {
                                 title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
                                 sourceNavNodeId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
@@ -1466,16 +1466,17 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * @param event
      */
     onMetadataDrop: function (event, source) {
-        if (!this.application.getCurrentEditor())
+        if (!this.application.CurrentEditor)
             return;
-        var currentCanvas = this.application.getCurrentEditor().canvas;
+        var facade = this.application.CurrentEditor.getCanvasFacade();
+        var currentCanvas = facade.getCanvas();
 
         var dragZone = source.dragZone;
         var target = source.target;
         var event = source.event;
 
-        var coord = this.application.eventCoordinates(event.browserEvent);
-        var aShapes = this.application.getCanvas().getAbstractShapesAtPosition(coord);
+        var coord = facade.eventCoordinates(event.browserEvent);
+        var aShapes = currentCanvas.getAbstractShapesAtPosition(coord);
 
         if (aShapes.length <= 0) {
             return false;
@@ -1492,10 +1493,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             /**
              * Get stencils supprting this metadata
              */
-            var stencilSet = this.application.getStencilSets(currentCanvas.resourceId)[option.namespace];
+            var stencilSet = facade.getStencilSets()[option.namespace];
 
             // Get Stencils from Stencilset
-            var stencils = stencilSet.stencils(currentCanvas.getStencil(), this.application.getRules(currentCanvas.resourceId));
+            var stencils = stencilSet.stencils(currentCanvas.getStencil(), facade.getRules());
             var treeGroups = new Hash();
 
             // Get stencils that support metadata 'option.type'
@@ -1563,19 +1564,19 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
 
                             //--Add shape
                             var commandClass = ORYX.Core.Command.extend({
-                                construct: function (option, currentParent, canAttach, position, application) {
+                                construct: function (option, currentParent, canAttach, position, facade) {
                                     this.option = option;
                                     this.currentParent = currentParent;
                                     this.canAttach = canAttach;
                                     this.position = position;
-                                    this.application = application;
-                                    this.selection = this.application.getSelection();
+                                    this.facade = facade;
+                                    this.selection = this.facade.getSelection();
                                     this.shape;
                                     this.parent;
                                 },
                                 execute: function () {
                                     if (!this.shape) {
-                                        this.shape = this.application.createShape(this.option);
+                                        this.shape = this.facade.createShape(this.option);
                                         this.parent = this.shape.parent;
                                     } else {
                                         this.parent.add(this.shape);
@@ -1597,30 +1598,30 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     // this.currentParent.update();
                                     // this.shape.update();
 
-                                    this.application.setSelection([ this.shape ]);
+                                    this.facade.setSelection([ this.shape ]);
                                     currentCanvas.update();
-                                    this.application.updateSelection();
+                                    this.facade.updateSelection();
 
                                 },
                                 rollback: function () {
-                                    this.application.deleteShape(this.shape);
+                                    this.facade.deleteShape(this.shape);
 
                                     // this.currentParent.update();
 
-                                    this.application.setSelection(this.selection.without(this.shape));
+                                    this.facade.setSelection(this.selection.without(this.shape));
                                     currentCanvas.update();
-                                    this.application.updateSelection();
+                                    this.facade.updateSelection();
                                 }
                             });
-                            var command = new commandClass(option_, this._currentParent, this._canAttach, coord, this.application);
-                            this.application.executeCommands([command]);
+                            var command = new commandClass(option_, this._currentParent, this._canAttach, coord, facade);
+                            facade.executeCommands([command]);
 
                             //--Update metadata on shape
-                            var newShape = this.application.getSelection()[0];
+                            var newShape = facade.getSelection()[0];
                             var commandClass = ORYX.Core.Command.extend({
-                                construct: function (application, metadatatype, metadataName, metadataObjId) {
+                                construct: function (facade, metadatatype, metadataName, metadataObjId) {
                                     ;
-                                    this.application = application,
+                                    this.facade = facade,
                                         this.metadatatype = metadatatype,
                                         this.metadataName = metadataName;
                                     this.metadataObjId = metadataObjId
@@ -1634,24 +1635,24 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     newShape.setProperty('oryx-metadataname', this.metadataName);
                                     newShape.setProperty('oryx-metadataobjid', this.metadataObjId);
 
-                                    this.application.setSelection([newShape]);
+                                    this.facade.setSelection([newShape]);
                                     currentCanvas.update();
-                                    this.application.updateSelection();
+                                    this.facade.updateSelection();
                                 },
                                 rollback: function () {
                                     newShape.setProperty('oryx-metadatatype', 'R' + this.metadatatype);
                                     newShape.setProperty('oryx-metadataObjId', 'R' + this.metadataObjId);
-                                    this.application.setSelection([newShape]);
+                                    this.facade.setSelection([newShape]);
                                     currentCanvas.update();
-                                    this.application.updateSelection();
+                                    this.facade.updateSelection();
                                 }
                             })
                             // Instanciated the class
                             var metadataType = dragZone.dragData.mainNode.attributes['itemtype'];
                             var metadataName = dragZone.dragData.mainNode.text;
                             var metadataObjId = dragZone.dragData.mainNode.id;
-                            command = new commandClass(this.application, metadataType, metadataName, metadataObjId);
-                            this.application.executeCommands([ command ]);
+                            command = new commandClass(facade, metadataType, metadataName, metadataObjId);
+                            facade.executeCommands([ command ]);
 
 
                             newURLWin.close();

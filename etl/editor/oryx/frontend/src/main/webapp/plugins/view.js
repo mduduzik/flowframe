@@ -39,7 +39,6 @@ if(!ORYX.Plugins)
 ORYX.Plugins.View = {
 	/** @lends ORYX.Plugins.View.prototype */
 	facade: undefined,
-    canvas: undefined,
 
 	construct: function(facade, ownPluginData) {
 		this.facade = facade;
@@ -49,8 +48,6 @@ ORYX.Plugins.View = {
 		this.minZoomLevel = 0.1;
 		this.maxZoomLevel = 2.5;
 		this.diff=5; //difference between canvas and view port, s.th. like toolbar??
-
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.stencilSetLoaded.bind(this));
 		
 		//Read properties
 		ownPluginData.properties.each( function(property) {			
@@ -60,59 +57,57 @@ ORYX.Plugins.View = {
 			if (property.maxZoomLevel) {this.maxZoomLevel = Number(property.maxZoomLevel);}
 		}.bind(this));
 
-
+		
+		/* Register zoom in */
+		this.facade.offer({
+			'name':ORYX.I18N.View.zoomIn,
+			'functionality': this.zoom.bind(this, [1.0 + ORYX.CONFIG.ZOOM_OFFSET]),
+			'group': ORYX.I18N.View.group,
+			'icon': ORYX.PATH + "images/magnifier_zoom_in.png",
+			'description': ORYX.I18N.View.zoomInDesc,
+			'index': 1,
+			'minShape': 0,
+			'maxShape': 0,
+			'isEnabled': function(){return this.zoomLevel < this.maxZoomLevel }.bind(this)});
+		
+		/* Register zoom out */
+		this.facade.offer({
+			'name':ORYX.I18N.View.zoomOut,
+			'functionality': this.zoom.bind(this, [1.0 - ORYX.CONFIG.ZOOM_OFFSET]),
+			'group': ORYX.I18N.View.group,
+			'icon': ORYX.PATH + "images/magnifier_zoom_out.png",
+			'description': ORYX.I18N.View.zoomOutDesc,
+			'index': 2,
+			'minShape': 0,
+			'maxShape': 0,
+			'isEnabled': function(){ return this._checkSize() }.bind(this)});
+		
+		/* Register zoom standard */
+		this.facade.offer({
+			'name':ORYX.I18N.View.zoomStandard,
+			'functionality': this.setAFixZoomLevel.bind(this, 1),
+			'group': ORYX.I18N.View.group,
+			'icon': ORYX.PATH + "images/zoom_standard.png",
+			'cls' : 'icon-large',
+			'description': ORYX.I18N.View.zoomStandardDesc,
+			'index': 3,
+			'minShape': 0,
+			'maxShape': 0,
+			'isEnabled': function(){return this.zoomLevel != 1}.bind(this)
+		});
+		
+		/* Register zoom fit to model */
+		this.facade.offer({
+			'name':ORYX.I18N.View.zoomFitToModel,
+			'functionality': this.zoomFitToModel.bind(this),
+			'group': ORYX.I18N.View.group,
+			'icon': ORYX.PATH + "images/image.png",
+			'description': ORYX.I18N.View.zoomFitToModelDesc,
+			'index': 4,
+			'minShape': 0,
+			'maxShape': 0
+		});
 	},
-    stencilSetLoaded: function(event,args) {
-        /* Register zoom in */
-        this.facade.offer({
-            'name':ORYX.I18N.View.zoomIn,
-            'functionality': this.zoom.bind(this, [1.0 + ORYX.CONFIG.ZOOM_OFFSET]),
-            'group': ORYX.I18N.View.group,
-            'icon': ORYX.PATH + "images/magnifier_zoom_in.png",
-            'description': ORYX.I18N.View.zoomInDesc,
-            'index': 1,
-            'minShape': 0,
-            'maxShape': 0,
-            'isEnabled': function(){return this.zoomLevel < this.maxZoomLevel }.bind(this)});
-
-        /* Register zoom out */
-        this.facade.offer({
-            'name':ORYX.I18N.View.zoomOut,
-            'functionality': this.zoom.bind(this, [1.0 - ORYX.CONFIG.ZOOM_OFFSET]),
-            'group': ORYX.I18N.View.group,
-            'icon': ORYX.PATH + "images/magnifier_zoom_out.png",
-            'description': ORYX.I18N.View.zoomOutDesc,
-            'index': 2,
-            'minShape': 0,
-            'maxShape': 0,
-            'isEnabled': function(){ return this._checkSize() }.bind(this)});
-
-        /* Register zoom standard */
-        this.facade.offer({
-            'name':ORYX.I18N.View.zoomStandard,
-            'functionality': this.setAFixZoomLevel.bind(this, 1),
-            'group': ORYX.I18N.View.group,
-            'icon': ORYX.PATH + "images/zoom_standard.png",
-            'cls' : 'icon-large',
-            'description': ORYX.I18N.View.zoomStandardDesc,
-            'index': 3,
-            'minShape': 0,
-            'maxShape': 0,
-            'isEnabled': function(){return this.zoomLevel != 1}.bind(this)
-        });
-
-        /* Register zoom fit to model */
-        this.facade.offer({
-            'name':ORYX.I18N.View.zoomFitToModel,
-            'functionality': this.zoomFitToModel.bind(this),
-            'group': ORYX.I18N.View.group,
-            'icon': ORYX.PATH + "images/image.png",
-            'description': ORYX.I18N.View.zoomFitToModelDesc,
-            'index': 4,
-            'minShape': 0,
-            'maxShape': 0
-        });
-    },
 	
 	/**
 	 * It sets the zoom level to a fix value and call the zooming function.
@@ -137,8 +132,8 @@ ORYX.Plugins.View = {
 		// TODO: Zoomen auf allen Objekten im SVG-DOM
 		
 		this.zoomLevel *= factor;
-        var canvas 		= this.facade.getCurrentEditor().canvas;
-		var scrollNode 	= canvas.getHTMLContainer().parentNode.parentNode;
+		var scrollNode 	= this.facade.getCanvas().getHTMLContainer().parentNode.parentNode;
+		var canvas 		= this.facade.getCanvas();
 		var newWidth 	= canvas.bounds.width()  * this.zoomLevel;
 		var newHeight 	= canvas.bounds.height() * this.zoomLevel;
 		
@@ -176,14 +171,13 @@ ORYX.Plugins.View = {
 	 * 
 	 */
 	zoomFitToModel: function() {
-        var canvas 		= this.facade.getCurrentEditor().canvas;
-
+		
 		/* Get the size of the visible area of the canvas */
-		var scrollNode 	= canvas.getHTMLContainer().parentNode.parentNode;
+		var scrollNode 	= this.facade.getCanvas().getHTMLContainer().parentNode.parentNode;
 		var visibleHeight = scrollNode.getHeight() - 30;
 		var visibleWidth = scrollNode.getWidth() - 30;
 		
-		var nodes = canvas.getChildShapes();
+		var nodes = this.facade.getCanvas().getChildShapes();
 		
 		if(!nodes || nodes.length < 1) {
 			return false;			
@@ -221,9 +215,7 @@ ORYX.Plugins.View = {
 	 * @private
 	 */
 	_checkSize:function(){
-        var canvas 		= this.facade.getCurrentEditor().canvas;
-
-		var canvasParent=canvas.getHTMLContainer().parentNode;
+		var canvasParent=this.facade.getCanvas().getHTMLContainer().parentNode;
 		var minForCanvas= Math.min((canvasParent.parentNode.getWidth()/canvasParent.getWidth()),(canvasParent.parentNode.getHeight()/canvasParent.getHeight()));
 		return 1.05 > minForCanvas;
 		

@@ -63,6 +63,8 @@ ORYX = Object.extend(ORYX, {
     //Event routing
     DOMEventListeners: new Hash(),
 
+    CurrentEditor: undefined,
+
 	//set the path in the config.js file!!!!
 	PATH: ORYX.CONFIG.ROOT_PATH,
 	//CONFIGURATION: "config.js",
@@ -471,6 +473,9 @@ ORYX = Object.extend(ORYX, {
             // TODO: Error Handling
         }
     },
+    handleEvents: function(event, uiObj) {
+        this.CurrentEditor.getCanvasFacade().raiseEvent(event, uiObj);
+    },
     //{{
     //
     //
@@ -490,7 +495,7 @@ ORYX = Object.extend(ORYX, {
             this.CurrentEditor = state;
             //-- Copy listeners over
             this.DOMEventListeners.keys().each((function(eventType) {
-                this.CurrentEditor.getFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
+                this.CurrentEditor.getCanvasFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
             }).bind(this));
 
             return;
@@ -501,7 +506,7 @@ ORYX = Object.extend(ORYX, {
 
         //-- Unregister current app listeners
         this.DOMEventListeners.keys().each((function(eventType) {
-            this.CurrentEditor.getFacade().unregisterOnEvent(eventType, this.DOMEventListeners[eventType]);
+            this.CurrentEditor.getCanvasFacade().unregisterOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
 
         //- Assign new editor
@@ -509,7 +514,7 @@ ORYX = Object.extend(ORYX, {
 
         //-- Register current app listeners
         this.DOMEventListeners.keys().each((function(eventType) {
-            this.CurrentEditor.getFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
+            this.CurrentEditor.getCanvasFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
     },
     //{{
@@ -826,7 +831,7 @@ ORYX = Object.extend(ORYX, {
                 this.workspaceTab
             ]
         });
-        //this.mainEditorsPanel.on('beforetabchange',this.onBeforeTabChange.bind(this));
+        this.mainEditorsPanel.on('beforetabchange',this.onBeforeTabChange.bind(this));
     },
     _generateLayout: function() {
         /**
