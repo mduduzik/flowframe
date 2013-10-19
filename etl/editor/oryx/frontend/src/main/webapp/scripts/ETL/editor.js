@@ -498,9 +498,10 @@ ORYX.Editor = {
                 return loadedPlugin.type==this.name;
             }.bind(plugin))){
                 plugin.engaged="true";
-            }else{
-                plugin.engaged="false";
             }
+/*            else{
+                plugin.engaged="false";
+            }*/
         }.bind(this));
         return curAvailablePlugins;
     },

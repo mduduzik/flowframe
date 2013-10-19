@@ -40,6 +40,11 @@ function uiId() {
     return id;
 }
 
+function removeArrayItem(arr, val) {
+    for (var i = 0; i < arr.length; i++) if (arr[i] === val) arr.splice(i, 1);
+    return arr;
+}
+
 // oryx constants.
 var ORYX_LOGLEVEL_TRACE = 5;
 var ORYX_LOGLEVEL_DEBUG = 4;
@@ -63,6 +68,7 @@ ORYX = Object.extend(ORYX, {
     //Event routing
     DOMEventListeners: new Hash(),
 
+    Editors: new Hash(),
     CurrentEditor: undefined,
 
 	//set the path in the config.js file!!!!
@@ -420,10 +426,11 @@ ORYX = Object.extend(ORYX, {
         ssConfig_.title = ssConfig.title+uiId();
 
         //- Create editor
-        var editorTabPanel = new ORYX.Editor(ssConfig_);
+        var editor = new ORYX.Editor(ssConfig_);
+        this.Editors[editor.layout] = editor;
 
         //- Add to layout
-        this.addToRegion('center', editorTabPanel.layout, ssConfig_.title);
+        this.addToRegion('center', editor.layout, ssConfig_.title);
     },
     /**
      * Create configs
@@ -520,6 +527,18 @@ ORYX = Object.extend(ORYX, {
         this.DOMEventListeners.keys().each((function(eventType) {
             this.CurrentEditor.getCanvasFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
+    },
+    onBeforeTabClose: function(editorPanel) {
+
+        var editor = this.Editors[editorPanel];
+        if (editor) {
+            this.Editors.remove(editorPanel);
+            //Ext.destroy(editorPanel);
+            Ext.destroy(editor);
+        }
+        else {
+            Ext.destroy(editorPanel);
+        }
     },
     //{{
     //
@@ -836,6 +855,7 @@ ORYX = Object.extend(ORYX, {
             ]
         });
         this.mainEditorsPanel.on('beforetabchange',this.onBeforeTabChange.bind(this));
+        this.mainEditorsPanel.on('beforeremove',this.onBeforeTabClose.bind(this));
     },
     _generateLayout: function() {
         /**

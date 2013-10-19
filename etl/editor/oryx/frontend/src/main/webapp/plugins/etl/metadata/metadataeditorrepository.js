@@ -93,6 +93,11 @@ ORYX.Plugins.ETL.Metadata.EditorRepository = {
                         return;
                     }
 
+                    if( (ORYX.availablePlugins.find(function(val){ return val.name == pluginData['name'] }))){
+                        ORYX.Log.debug("Skipping already loaded Metadata Editor Plugin '%0' ", pluginData['name']);
+                        return;
+                    }
+
                     // ensure there's a source attribute.
                     if(!pluginData['source']) {
                         ORYX.Log.error("Plugin with name '%0' doesn't provide a source attribute.", pluginData['name']);
