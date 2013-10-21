@@ -799,6 +799,7 @@ ORYX.Editor = {
         // create it.
             this._pluginFacade = {
                 getCurrentEditor: function() {return this.layout}.bind(this),
+                getNamespace: function() {return this.namespace;}.bind(this),
                 activatePluginByName:		this.activatePluginByName.bind(this),
                 //deactivatePluginByName:		this.deactivatePluginByName.bind(this),
                 getAvailablePlugins:	this.getAvailablePlugins.bind(this),

@@ -565,6 +565,7 @@ ORYX = Object.extend(ORYX, {
                 //Ext.destroy(editorPanel);
                 Ext.destroy(editor);
             }
+            this.CurrentEditor = null;
         }
         else {
             Ext.destroy(editorPanel);

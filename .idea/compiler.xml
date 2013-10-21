@@ -79,6 +79,7 @@
         <module name="org.flowframe.erp.remote.services.impl.config.fragment" />
         <module name="org.flowframe.etl.editor.oryx.frontend" />
         <module name="org.flowframe.etl.editor.oryx.snaps.frontend (1)" />
+        <module name="org.flowframe.etl.pentaho.plugin.job.entries" />
         <module name="org.flowframe.etl.pentaho.server.carte.standalone.impl" />
         <module name="org.flowframe.etl.pentaho.server.plugins.core" />
         <module name="org.flowframe.etl.pentaho.server.plugins.manager" />
@@ -297,6 +298,9 @@
       <module name="org.flowframe.etl.editor.oryx.frontend" target="1.6" />
       <module name="org.flowframe.etl.editor.oryx.snaps" target="1.6" />
       <module name="org.flowframe.etl.editor.oryx.snaps.frontend" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.plugin" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.plugin.job" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.plugin.job.entries" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server" target="1.6" />
       <module name="org.flowframe.etl.pentaho.server.carte.standalone.impl" target="1.6" />

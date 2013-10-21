@@ -11,6 +11,7 @@
     <file type="web" url="file://$PROJECT_DIR$/editors/oryx/backend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/frontend" />
     <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
+    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" />
     <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core" />
@@ -67,6 +68,8 @@
         <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jetty-servlet-tester/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
