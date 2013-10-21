@@ -294,7 +294,8 @@ Ext.ux.SlicedToolbar = Ext.extend(Ext.Toolbar, {
             this.insertSlicingButton("prev", slice, this.items.getCount()+1);
             var spacer = new Ext.Toolbar.Spacer();
             this.insertSlicedHelperButton(spacer, slice, this.items.getCount()+1);
-            Ext.get(spacer.id).setWidth(this.iconStandardWidth);
+            if (Ext.get(spacer.id))
+                Ext.get(spacer.id).setWidth(this.iconStandardWidth);
         }
         
         this.maxSlice = slice;

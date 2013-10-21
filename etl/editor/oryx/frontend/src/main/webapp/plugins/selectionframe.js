@@ -133,11 +133,13 @@ if(!ORYX.Plugins)
 		}
 
 		var scrollNode 	= this.facade.getCanvas().rootNode.parentNode.parentNode;
-		size.width 		-= this.offsetScroll.x - scrollNode.scrollLeft; 
-		size.height 	-= this.offsetScroll.y - scrollNode.scrollTop;
-						
-		// Set the size
-		this.resize(size);
+        if (scrollNode){
+            size.width 		-= this.offsetScroll.x - scrollNode.scrollLeft;
+            size.height 	-= this.offsetScroll.y - scrollNode.scrollTop;
+
+            // Set the size
+            this.resize(size);
+        }
 
 		Event.stop(event);
 	},

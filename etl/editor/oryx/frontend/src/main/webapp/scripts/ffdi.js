@@ -517,6 +517,7 @@ ORYX = Object.extend(ORYX, {
 
         //-- Unregister current app listeners
         this.DOMEventListeners.keys().each((function(eventType) {
+            this.CurrentEditor.getCanvasFacade().deactivateEventListeners();
             this.CurrentEditor.getCanvasFacade().unregisterOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
 
@@ -525,13 +526,16 @@ ORYX = Object.extend(ORYX, {
 
         //-- Register current app listeners
         this.DOMEventListeners.keys().each((function(eventType) {
+            this.CurrentEditor.getCanvasFacade().reactivateEventListeners();
             this.CurrentEditor.getCanvasFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
     },
     onBeforeTabClose: function(editorPanel) {
 
         var editor = this.Editors[editorPanel];
+        var facade = editor._pluginFacade;
         if (editor) {
+            facade.deactivateEventListeners();
             this.Editors.remove(editorPanel);
             //Ext.destroy(editorPanel);
             Ext.destroy(editor);

@@ -179,6 +179,7 @@ ORYX.Editor = {
         // Enable Key up and down Event
         this._keydownEnabled = 	true;
         this._keyupEnabled =  	true;
+        this._enableSectionEvents = true;
 
         this.DOMEventListeners[ORYX.CONFIG.EVENT_MOUSEDOWN] = [];
         this.DOMEventListeners[ORYX.CONFIG.EVENT_MOUSEUP] 	= [];
@@ -188,7 +189,26 @@ ORYX.Editor = {
         this.DOMEventListeners[ORYX.CONFIG.EVENT_MOUSEMOVE] = [];
 
     },
+    deactivateEventListeners: function(){
+        //this.getCanvas().deactivateEventHandling();
 
+        //Turn off selection event handling
+        this._enableSectionEvents = false;
+
+        // Disable Key up and down Event
+        this._keydownEnabled = 	false;
+        this._keyupEnabled =  	false;
+    },
+    reactivateEventListeners: function(){
+        //this.getCanvas().reactivateEventHandling();
+
+        //Turn on selection event handling
+        this._enableSectionEvents = true;
+
+        // Enable Key up and down Event
+        this._keydownEnabled = 	true;
+        this._keyupEnabled =  	true;
+    },
     /**
      * Generate the whole viewport of the
      * Editor and initialized the Ext-Framework
@@ -791,6 +811,7 @@ ORYX.Editor = {
                 setSelection:			this.setSelection.bind(this),
                 updateSelection:		this.updateSelection.bind(this),
                 getCanvas:				this.getCanvas.bind(this),
+                canvas: this._canvas,
 
                 importJSON:				this.importJSON.bind(this),
                 importERDF:				this.importERDF.bind(this),
@@ -809,7 +830,10 @@ ORYX.Editor = {
                 eventCoordinates:		this.eventCoordinates.bind(this),
                 addToRegion:			this.addToRegion.bind(this),
 
-                getModelMetaData:		this.getModelMetaData.bind(this)
+                getModelMetaData:		this.getModelMetaData.bind(this),
+
+                deactivateEventListeners: this.deactivateEventListeners.bind(this),
+                reactivateEventListeners: this.reactivateEventListeners.bind(this)
             };
 
         // return it.
@@ -1344,6 +1368,8 @@ ORYX.Editor = {
     },
 
     setSelection: function(elements, subSelectionElement, force) {
+        if (!this._enableSectionEvents)
+            return;
 
         if (!elements) { elements = [] }
 
