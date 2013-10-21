@@ -1,4 +1,10 @@
 Manifest-Version: 1.0
+Export-Package: org.flowframe.etl.pentaho.plugin.job.entries.docrepo;v
+ ersion="0.0.1";uses:="org.flowframe.kernel.common.mdm.domain.document
+ library",org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget
+ ;version="0.0.1";uses:="org.pentaho.di.core,org.pentaho.di.core.excep
+ tion,org.pentaho.di.job,org.pentaho.di.job.entry,org.pentaho.di.repos
+ itory,org.w3c.dom"
 Import-Bundle: org.glassfish.jersey.media.jersey-media-json-jackson;ve
  rsion="2.2.0"
 DynamicImport-Package: *
@@ -18,19 +24,23 @@ Import-Package: org.apache.commons.vfs;version="4.4.0",org.apache.comm
  rame.kernel.common.mdm.domain.metamodel;version="[0.0.1,1.0.0)",org.f
  lowframe.kernel.common.mdm.domain.organization;version="[0.0.1,1.0.0)
  ",org.pentaho.di.core;version="4.4.0",org.pentaho.di.core.database;ve
- rsion="4.4.0",org.pentaho.di.core.exception;version="4.4.0",org.penta
- ho.di.core.logging;version="4.4.0",org.pentaho.di.core.plugins;versio
- n="4.4.0",org.pentaho.di.core.row;version="4.4.0",org.pentaho.di.core
- .util;version="4.4.0",org.pentaho.di.core.variables;version="4.4.0",o
- rg.pentaho.di.core.vfs;version="4.4.0",org.pentaho.di.i18n;version="4
- .4.0",org.pentaho.di.repository;version="4.4.0",org.pentaho.di.reposi
- tory.filerep;version="4.4.0",org.pentaho.di.repository.kdr;version="4
- .4.0",org.pentaho.di.repository.kdr.delegates;version="4.4.0",org.pen
- taho.di.trans;version="4.4.0",org.pentaho.di.trans.debug;version="4.4
- .0",org.pentaho.di.trans.step;version="4.4.0",org.pentaho.di.trans.st
- ep.errorhandling;version="4.4.0",org.pentaho.di.trans.steps.csvinput;
- version="4.4.0",org.pentaho.di.trans.steps.dummytrans;version="4.4.0"
- ,org.pentaho.di.trans.steps.excelinput;version="4.4.0",org.pentaho.di
- .trans.steps.injector;version="4.4.0",org.pentaho.di.trans.steps.text
- fileinput;version="4.4.0",org.slf4j;version="[1.7,1.8)"
+ rsion="4.4.0",org.pentaho.di.core.encryption;version="4.4.0",org.pent
+ aho.di.core.exception;version="4.4.0",org.pentaho.di.core.logging;ver
+ sion="4.4.0",org.pentaho.di.core.plugins;version="4.4.0",org.pentaho.
+ di.core.row;version="4.4.0",org.pentaho.di.core.util;version="4.4.0",
+ org.pentaho.di.core.variables;version="4.4.0",org.pentaho.di.core.vfs
+ ;version="4.4.0",org.pentaho.di.core.xml;version="4.4.0",org.pentaho.
+ di.i18n;version="4.4.0",org.pentaho.di.job;version="4.4.0",org.pentah
+ o.di.job.entry;version="4.4.0",org.pentaho.di.job.entry.validator;ver
+ sion="4.4.0",org.pentaho.di.repository;version="4.4.0",org.pentaho.di
+ .repository.filerep;version="4.4.0",org.pentaho.di.repository.kdr;ver
+ sion="4.4.0",org.pentaho.di.repository.kdr.delegates;version="4.4.0",
+ org.pentaho.di.trans;version="4.4.0",org.pentaho.di.trans.debug;versi
+ on="4.4.0",org.pentaho.di.trans.step;version="4.4.0",org.pentaho.di.t
+ rans.step.errorhandling;version="4.4.0",org.pentaho.di.trans.steps.cs
+ vinput;version="4.4.0",org.pentaho.di.trans.steps.dummytrans;version=
+ "4.4.0",org.pentaho.di.trans.steps.excelinput;version="4.4.0",org.pen
+ taho.di.trans.steps.injector;version="4.4.0",org.pentaho.di.trans.ste
+ ps.textfileinput;version="4.4.0",org.slf4j;version="[1.7,1.8)",org.w3
+ c.dom;version="0"
 

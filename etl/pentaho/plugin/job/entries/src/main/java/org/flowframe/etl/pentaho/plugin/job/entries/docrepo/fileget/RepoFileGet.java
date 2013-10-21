@@ -4,6 +4,7 @@ package org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget;
 import org.apache.commons.vfs.FileObject;
 import org.flowframe.etl.pentaho.plugin.job.entries.docrepo.RepoConnection;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.pentaho.di.cluster.SlaveServer;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -13,7 +14,9 @@ import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.exception.KettleFileException;
 import org.pentaho.di.core.exception.KettleXMLException;
+import org.pentaho.di.core.util.UUIDUtil;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
@@ -57,6 +60,28 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
     static String FILE_SEPARATOR="/";
     private int NrErrors = 0;
+
+
+    public RepoFileGet(String repositoryId,
+                       String companyId,
+                       String folderId,
+                       String loginEmail,
+                       String loginPassword,
+                       String hostname,
+                       String port,
+                       String loginGroupId,
+                       String fileEntryId) {
+        this.repositoryId = repositoryId;
+        this.companyId = companyId;
+        this.folderId = folderId;
+        this.loginEmail = loginEmail;
+        this.loginPassword = loginPassword;
+        this.hostname = hostname;
+        this.port = port;
+        this.loginGroupId = loginGroupId;
+        this.fileEntryId = fileEntryId;
+        this.isaddresult = true;
+    }
 
     public RepoFileGet(String n) {
         super(n, "");
@@ -125,7 +150,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
                 isaddresult = "Y".equalsIgnoreCase(isaddresult_);
 
         } catch (Exception xe) {
-            throw new KettleXMLException("Unable to load job entry of type 'FTPS' from XML node", xe);
+            throw new KettleXMLException("Unable to load job entry of type 'RepoFileGet' from XML node", xe);
         }
     }
 
@@ -187,7 +212,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
         RepoConnection connection = null;
 
         try {
-            // Create FTPS client to host:port ...
+            // Create RepoFileGet client to host:port ...
             String realRepositoryId = environmentSubstitute(repositoryId);
             String realCompanyId= environmentSubstitute(companyId);
             String realFolderId= environmentSubstitute(folderId);
@@ -199,7 +224,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
             connection = new RepoConnection(realRepositoryId,realCompanyId,realFolderId,realLoginEmail,reaLoginPassword,realHostname,realPort,realLoginGroupId);
 
-            // login to FTPS host ...
+            // login to RepoFileGet host ...
             connection.connect();
             if (isDetailed()) {
                 logDetailed(BaseMessages.getString(PKG, "RepoFileGet.LoggedIn", realLoginEmail));
@@ -242,21 +267,30 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
         try {
             FileEntry fe = connection.getFileEntry(fileEntryId);
+            folderId = Long.toString(fe.getFolderId());
+            Folder fldr = connection.getFolder(folderId);
+
             InputStream fs = connection.getFileAsStream(fileEntryId);
             String localFilenamePath = targetDirectory+FILE_SEPARATOR+fe.getTitle();
-            File localFile = writeStreamToTempFile(fs, fe.getTitle());
-            addFilenameToResultFilenames(result,localFile.getAbsolutePath());
+            String localFilename = writeStreamToTempFile(fs,fldr.getName(),fe.getTitle(),fe.getExtension());
+            addFilenameToResultFilenames(result,localFilename);
         } catch (Exception e) {
             // Update errors number
             updateErrors();
-            logError(BaseMessages.getString(PKG, "JobFTPS.UnexpectedError", e.toString()));
+            logError(BaseMessages.getString(PKG, "JobRepoFileGet.UnexpectedError", e.toString()));
         }
     }
 
-    protected File writeStreamToTempFile(InputStream in, String fileName) throws IOException {
+    protected String writeStreamToTempFile(InputStream in, String folderName, String fileName, String ext) throws IOException, KettleFileException {
         byte[] buffer = new byte[1024];
         int bytesRead;
-        File fileOut = new File(System.getProperty("java.io.tmpdir"), fileName+"."+System.currentTimeMillis());
+
+        //FileObject tempFile = KettleVFS.createTempFile(fileName, ext, folderName);
+        String filename = new StringBuffer(50).append(folderName).append('/').append(fileName).append('_').append(UUIDUtil.getUUIDAsString()).append("."+ext).toString();
+        File fileOut = new File(System.getProperty("java.io.tmpdir"), filename);
+        if (!fileOut.getParentFile().exists())
+            fileOut.getParentFile().mkdir();
+
         FileOutputStream out = new FileOutputStream(fileOut);
         //read from is to buffer
         while ((bytesRead = in.read(buffer)) != -1) {
@@ -267,7 +301,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
         out.flush();
         out.close();
 
-        return fileOut;
+        return fileOut.getAbsolutePath();
     }
 
     /**
@@ -295,7 +329,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
                 // Add to the result files...
                 ResultFile resultFile = new ResultFile(ResultFile.FILE_TYPE_GENERAL, targetFile, parentJob.getJobname(), toString());
-                resultFile.setComment(BaseMessages.getString(PKG, "RepoFileGet.Downloaded", this.hostname)); //$NON-NLS-1$
+                resultFile.setComment(BaseMessages.getString(PKG, "RepoFileGet.Downloaded", filename)); //$NON-NLS-1$
                 result.getResultFiles().put(resultFile.getFile().toString(), resultFile);
 
                 if (isDetailed())

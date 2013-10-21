@@ -70,6 +70,7 @@
         <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -3,6 +3,7 @@ package org.flowframe.etl.pentaho.plugin.job.entries.docrepo;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
+import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 
 import java.io.InputStream;
 
@@ -33,9 +34,10 @@ public class RepoConnection {
     }
 
 
-    public void connect() {
+    public void connect() throws Exception {
         if (this.repository == null){
             repository = new LiferayPortalDocumentRepositoryImpl(repositoryId,companyId,folderId,loginEmail,loginPassword,hostname,port,loginGroupId);
+            repository.init();
         }
     }
 
@@ -55,5 +57,14 @@ public class RepoConnection {
         FileEntry fe = this.repository.getFileEntryById(fileEntryId);
         InputStream in = this.repository.getFileAsStream(fileEntryId, null);
         return in;
+    }
+
+    /**
+     *
+     * Folder OPS
+     *
+     */
+    public Folder getFolder(String folderId) throws Exception {
+        return this.repository.getFolderById(folderId);
     }
 }
