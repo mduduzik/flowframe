@@ -35,8 +35,10 @@ function printf() {
 }
 
 function uiId() {
-    var id = Ext.id();
-    id = parseInt(id.replace("ext-gen", ""));
+    //var id = Ext.id();
+    //id = parseInt(id.replace("ext-gen", ""));
+    var id = idCounter;
+    idCounter++;
     return id;
 }
 
@@ -417,13 +419,36 @@ ORYX = Object.extend(ORYX, {
             Ext.getCmp('oryx-loading-panel').show();
         }
 
+        //Hack: not allowing multiple editors
+        if (this.CurrentEditor) { //Close it
+            Ext.MessageBox.show({
+                title:'Proceed?',
+                msg: 'There might be unsaved changes in '+this.CurrentEditor.title+'. <br />Click Yes to Proceed or No to Save first.?',
+                buttons: Ext.MessageBox.YESNO,
+                fn: function(btn){
+                    if (btn === 'no'){
+                        //this.newWizDialog.close();
+                    }
+                    else {
+                        this.mainEditorsPanel.remove(this.CurrentEditor);
+                        this._createEditor(config);
+                    }
+                }.bind(this),
+                icon: Ext.MessageBox.QUESTION
+            });
+        }
+        else {
+            this._createEditor(config);
+        }
+    },
+    _createEditor: function(config) {
         var ssNameSpace = config.ssns;
         var ssConfig = DEFAULT_EDITORS[ssNameSpace];
 
         var ssConfig_ = {};
         Ext.apply(ssConfig_,ssConfig);
 
-        ssConfig_.title = ssConfig.title+uiId();
+        ssConfig_.title = ssConfig.title+' #'+uiId();
 
         //- Create editor
         var editor = new ORYX.Editor(ssConfig_);
@@ -517,7 +542,7 @@ ORYX = Object.extend(ORYX, {
 
         //-- Unregister current app listeners
         this.DOMEventListeners.keys().each((function(eventType) {
-            this.CurrentEditor.getCanvasFacade().deactivateEventListeners();
+            //this.CurrentEditor.getCanvasFacade().deactivateEventListeners();
             this.CurrentEditor.getCanvasFacade().unregisterOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
 
@@ -526,19 +551,20 @@ ORYX = Object.extend(ORYX, {
 
         //-- Register current app listeners
         this.DOMEventListeners.keys().each((function(eventType) {
-            this.CurrentEditor.getCanvasFacade().reactivateEventListeners();
+            //this.CurrentEditor.getCanvasFacade().reactivateEventListeners();
             this.CurrentEditor.getCanvasFacade().registerOnEvent(eventType, this.DOMEventListeners[eventType]);
         }).bind(this));
     },
     onBeforeTabClose: function(editorPanel) {
-
         var editor = this.Editors[editorPanel];
-        var facade = editor._pluginFacade;
         if (editor) {
-            facade.deactivateEventListeners();
-            this.Editors.remove(editorPanel);
-            //Ext.destroy(editorPanel);
-            Ext.destroy(editor);
+            var facade = editor._pluginFacade;
+            if (editor) {
+                facade.deactivateEventListeners();
+                this.Editors.remove(editorPanel);
+                //Ext.destroy(editorPanel);
+                Ext.destroy(editor);
+            }
         }
         else {
             Ext.destroy(editorPanel);

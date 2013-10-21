@@ -191,6 +191,7 @@ ORYX.Editor = {
     },
     deactivateEventListeners: function(){
         //this.getCanvas().deactivateEventHandling();
+        this._eventsQueue.clear();
 
         //Turn off selection event handling
         this._enableSectionEvents = false;
