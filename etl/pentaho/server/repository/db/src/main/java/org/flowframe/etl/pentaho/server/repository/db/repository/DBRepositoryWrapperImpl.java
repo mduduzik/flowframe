@@ -26,7 +26,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     private static final String FOLDER_METADATA_EXCEL = "Excel";
     private static final String FOLDER_METADATA_DELIMITED = "Delimited";
 
-	private static final String FOLDER_TRANS = "Trans";
+	private static final String FOLDER_TRANS = "Transformations";
 	private static final String FOLDER_TRANS_STEPS = "Steps";
 	private static final String FOLDER_TRANS_INPUTS = "Inputs";
 	private static final String FOLDER_TRANS_OUTPUTS = "Outputs";
@@ -36,6 +36,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	
 	
 	private static final String FOLDER_JOBS = "Jobs";
+    private static final String FOLDER_JOBS_JOBS_DRAFTS = "Drafts";
 	private static final String FOLDER_JOBS_GENERAL = "General";
 	private static final String FOLDER_JOBS_FILE_TRANSFER = "File Transfer";
 	private static final String FOLDER_JOBS_FILE_MANAGEMENT = "File Management";
