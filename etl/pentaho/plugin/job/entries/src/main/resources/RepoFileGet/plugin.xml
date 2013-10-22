@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin
+   id="RepoFileGet"
+   iconfile="DPL.png"
+   description="Doc Repo File Get"
+   tooltip="Doc Repo File Get"
+   category="File transfer"
+   classname="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.RepoFileGet">
+   <libraries>
+       <library name="org.flowframe.etl.pentaho.plugin.job.entries-0.0.1.jar"/>
+       <library name="org.flowframe.documentlibrary.remote.services.min.impl-0.0.1.jar"/>
+       <library name="org.flowframe.etl.pentaho.server.repository.shared-0.0.1.jar"/>
+       <library name="org.flowframe.kernel.common.mdm.dao.services-0.0.1.jar"/>
+       <library name="org.flowframe.kernel.common.mdm.domain-0.0.1.jar"/>
+   </libraries>
+    
+   <localized_category>
+     <category locale="en_US">General</category>
+     <category locale="nl_NL">Algemeen</category>
+     <category locale="fr_FR">Général</category>
+   </localized_category>
+   <localized_description>
+     <description locale="en_US">Doc Repo File Get plugin</description>
+   </localized_description>
+   <localized_tooltip>
+     <tooltip locale="en_US">This is Doc Repo File Get plugin</tooltip>
+   </localized_tooltip>
+   
+</plugin>

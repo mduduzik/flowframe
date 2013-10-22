@@ -37,6 +37,76 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>copy-distribution</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>dist</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean plugins</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <tasks>
+                                <delete>
+                                    <fileset dir="dist" includes="**/*.*"/>
+                                </delete>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>copy to jon entries</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <copy todir="dist/flowframe-jobentries-plugin">
+                                <filelist dir="src/main/resources">
+                                    <file name="*.*" />
+                                </filelist>
+                                <filelist dir="target">
+                                    <file name="org.flowframe.etl.pentaho.plugin.job.entries-0.0.1.jar" />
+                                </filelist>
+                            </copy>
+                                <copy todir="dist/flowframe-jobentries-plugin/lib">
+                                    <filelist dir="dist">
+                                        <file name="org.flowframe.documentlibrary.remote.services.min.impl-0.0.1.jar"/>
+                                        <file name="org.flowframe.etl.pentaho.server.repository.shared-0.0.1.jar"/>
+                                        <file name="org.flowframe.kernel.common.mdm.dao.services-0.0.1.jar"/>
+                                        <file name="org.flowframe.kernel.common.mdm.domain-0.0.1.jar"/>
+                                    </filelist>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -115,6 +185,11 @@
             <groupId>com.pentaho</groupId>
             <artifactId>kettle-ui-swt</artifactId>
             <version>4.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.swt</groupId>
+            <artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
+            <version>4.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.pentaho</groupId>

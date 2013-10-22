@@ -87,7 +87,6 @@
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/org.flowframe.etl.pentaho.plugin.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/org.flowframe.etl.pentaho.plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/job/org.flowframe.etl.pentaho.plugin.job.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/job/org.flowframe.etl.pentaho.plugin.job.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/org.flowframe.etl.pentaho.plugin.job.entries.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/org.flowframe.etl.pentaho.plugin.job.entries.iml" />
-      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/repository.db/org.flowframe.etl.pentaho.repository.db.iml" filepath="$PROJECT_DIR$/etl/pentaho/repository.db/org.flowframe.etl.pentaho.repository.db.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/org.flowframe.etl.pentaho.server.carte.standalone.impl.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/org.flowframe.etl.pentaho.server.carte.standalone.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" />

@@ -36,30 +36,40 @@ import java.util.List;
 import static org.pentaho.di.job.entry.validator.AndValidator.putValidators;
 import static org.pentaho.di.job.entry.validator.JobEntryValidatorUtils.*;
 
+
+@org.pentaho.di.core.annotations.JobEntry(
+        id="DocRepoFileGet",
+        categoryDescription="File transfer",
+        i18nPackageName="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.RepoFileGet",
+        image="copy.gif",
+        name="DocRepoFileGet",
+        description="Doc Repo File Get"
+)
 public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInterface {
     private static Class<?> PKG = RepoFileGet.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
 
-    private String repositoryId;
-    private String companyId;
-    private String folderId;
-    private String loginEmail;
-    private String loginPassword;
-    private String hostname;
-    private String port;
-    private String loginGroupId;
+    private String repositoryId = "10180";
+    private String companyId = "10180";
+    private String folderId = "17603";
+    private String loginEmail = "test@liferay.com";
+    private String loginPassword = "test";
+    private String hostname = "localhost";
+    private String port = "7080";
+    private String loginGroupId = "10180";
 
     private int timeout;
 
 
-    private String fileEntryId;
+    private String fileEntryId = "12345";
     private boolean adddate;
     private boolean addtime;
     private boolean isaddresult;
 
-    private String targetDirectory;
+    private String targetDirectory = "c:\\temp";
 
     static String FILE_SEPARATOR="/";
     private int NrErrors = 0;
+    private String variableName;
 
 
     public RepoFileGet(String repositoryId,
@@ -381,4 +391,69 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
         andValidator().validate(this, "serverPort", remarks, putValidators(integerValidator())); //$NON-NLS-1$
     }
 
+    public String getRepositoryId() {
+        return repositoryId;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public String getFolderId() {
+        return folderId;
+    }
+
+    public String getLoginEmail() {
+        return loginEmail;
+    }
+
+    public String getLoginPassword() {
+        return loginPassword;
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public String getLoginGroupId() {
+        return loginGroupId;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public String getFileEntryId() {
+        return fileEntryId;
+    }
+
+    public boolean isIsaddresult() {
+        return isaddresult;
+    }
+
+    public String getTargetDirectory() {
+        return targetDirectory;
+    }
+
+    public String getVariableName() {
+        return variableName;
+    }
+
+
+    public void setVariableName(String variableName) {
+        this.variableName = variableName;
+    }
 }

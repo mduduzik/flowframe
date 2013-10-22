@@ -15,10 +15,13 @@
             <name>Mule Dependencies</name>
             <url>http://dist.codehaus.org/mule/dependencies/maven2</url>
         </repository>
+        <repository>
+            <id>swt repo</id>
+            <url>http://swt-maven.googlecode.com/git-history/master/</url>
+        </repository>
     </repositories>
     <modules>
-        <!-- <module>transformation.kettle.impl</module> -->
-        <module>repository.db</module>
-        <module>server.springdm</module>
+        <module>plugin</module>
+        <module>server</module>
     </modules>
 </project>
