@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
-Export-Package: org.flowframe.etl.pentaho.plugin.job.entries.docrepo;v
- ersion="0.0.1";uses:="org.flowframe.kernel.common.mdm.domain.document
- library",org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget
- ;version="0.0.1";uses:="org.pentaho.di.core,org.pentaho.di.core.annot
- ations,org.pentaho.di.core.exception,org.pentaho.di.job,org.pentaho.d
- i.job.entry,org.pentaho.di.repository,org.w3c.dom",org.flowframe.etl.
- pentaho.plugin.job.entries.docrepo.fileget.ui;version="0.0.1";uses:="
- org.eclipse.swt.events,org.eclipse.swt.widgets,org.flowframe.etl.pent
- aho.plugin.job.entries.docrepo.fileget,org.pentaho.di.job,org.pentaho
- .di.job.entry,org.pentaho.di.repository,org.pentaho.di.ui.job.entry"
+Export-Package: org.flowframe.etl.pentaho.plugin.di.docrepo;version="0
+ .0.1";uses:="org.flowframe.kernel.common.mdm.domain.documentlibrary",
+ org.flowframe.etl.pentaho.plugin.di.docrepo.fileget;version="0.0.1";u
+ ses:="org.pentaho.di.core,org.pentaho.di.core.annotations,org.pentaho
+ .di.core.exception,org.pentaho.di.job,org.pentaho.di.job.entry,org.pe
+ ntaho.di.repository,org.w3c.dom",org.flowframe.etl.pentaho.plugin.di.
+ ui.docrepo.fileget;version="0.0.1";uses:="org.eclipse.swt.events,org.
+ eclipse.swt.widgets,org.flowframe.etl.pentaho.plugin.di.docrepo.fileg
+ et,org.pentaho.di.job,org.pentaho.di.job.entry,org.pentaho.di.reposit
+ ory,org.pentaho.di.ui.job.entry"
 Import-Bundle: org.glassfish.jersey.media.jersey-media-json-jackson;ve
  rsion="2.2.0"
 DynamicImport-Package: *

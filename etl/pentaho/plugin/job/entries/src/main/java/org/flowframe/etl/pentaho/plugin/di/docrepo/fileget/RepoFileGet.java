@@ -1,8 +1,8 @@
-package org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget;
+package org.flowframe.etl.pentaho.plugin.di.docrepo.fileget;
 
 
 import org.apache.commons.vfs.FileObject;
-import org.flowframe.etl.pentaho.plugin.job.entries.docrepo.RepoConnection;
+import org.flowframe.etl.pentaho.plugin.di.docrepo.RepoConnection;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.pentaho.di.cluster.SlaveServer;
@@ -38,12 +38,12 @@ import static org.pentaho.di.job.entry.validator.JobEntryValidatorUtils.*;
 
 
 @org.pentaho.di.core.annotations.JobEntry(
-        id="DocRepoFileGet",
-        categoryDescription="File transfer",
-        i18nPackageName="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.RepoFileGet",
-        image="copy.gif",
-        name="DocRepoFileGet",
-        description="Doc Repo File Get"
+        id = "RepoFileGet",
+        categoryDescription = "i18n:org.pentaho.di.job:JobCategory.Category.FileTransfer",
+        i18nPackageName = "org.flowframe.etl.pentaho.plugin.di.docrepo.fileget",
+        image = "copy.gif",
+        name = "RepoFileGet.Name",
+        description = "RepoFileGet.TooltipDesc"
 )
 public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInterface {
     private static Class<?> PKG = RepoFileGet.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
@@ -63,11 +63,11 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
     private String fileEntryId = "12345";
     private boolean adddate;
     private boolean addtime;
-    private boolean isaddresult;
+    private boolean isaddresult = true;
 
     private String targetDirectory = "c:\\temp";
 
-    static String FILE_SEPARATOR="/";
+    static String FILE_SEPARATOR = "/";
     private int NrErrors = 0;
     private String variableName;
 
@@ -224,15 +224,15 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
         try {
             // Create RepoFileGet client to host:port ...
             String realRepositoryId = environmentSubstitute(repositoryId);
-            String realCompanyId= environmentSubstitute(companyId);
-            String realFolderId= environmentSubstitute(folderId);
+            String realCompanyId = environmentSubstitute(companyId);
+            String realFolderId = environmentSubstitute(folderId);
             String realHostname = environmentSubstitute(hostname);
             String realLoginEmail = environmentSubstitute(loginEmail);
             String realLoginGroupId = environmentSubstitute(loginGroupId);
             String reaLoginPassword = Encr.decryptPasswordOptionallyEncrypted(environmentSubstitute(loginPassword));
             String realPort = environmentSubstitute(this.port);
 
-            connection = new RepoConnection(realRepositoryId,realCompanyId,realFolderId,realLoginEmail,reaLoginPassword,realHostname,realPort,realLoginGroupId);
+            connection = new RepoConnection(realRepositoryId, realCompanyId, realFolderId, realLoginEmail, reaLoginPassword, realHostname, realPort, realLoginGroupId);
 
             // login to RepoFileGet host ...
             connection.connect();
@@ -269,7 +269,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
     private void downloadFile(RepoConnection connection, String folderId, String fileEntryId, Result result) throws KettleException {
         if (isDetailed())
-            logDetailed("RepoFileGet.FileEntryId "+fileEntryId); //$NON-NLS-1$
+            logDetailed("RepoFileGet.FileEntryId " + fileEntryId); //$NON-NLS-1$
 
         if (parentJob.isStopped()) {
             throw new KettleException(BaseMessages.getString(PKG, "RepoFileGet.JobStopped"));
@@ -277,13 +277,18 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
         try {
             FileEntry fe = connection.getFileEntry(fileEntryId);
+            if (isDetailed())
+                logDetailed("RepoFileGet.FileEntryId.Filename " + fe.getTitle()); //$NON-NLS-1$
+
             folderId = Long.toString(fe.getFolderId());
             Folder fldr = connection.getFolder(folderId);
 
             InputStream fs = connection.getFileAsStream(fileEntryId);
-            String localFilenamePath = targetDirectory+FILE_SEPARATOR+fe.getTitle();
-            String localFilename = writeStreamToTempFile(fs,fldr.getName(),fe.getTitle(),fe.getExtension());
-            addFilenameToResultFilenames(result,localFilename);
+            String localFilenamePath = targetDirectory + FILE_SEPARATOR + fe.getTitle();
+            String localFilename = writeStreamToTempFile(fs, fldr.getName(), fe.getTitle(), fe.getExtension());
+            if (isDetailed())
+                logDetailed("RepoFileGet.TargetFile " + localFilename); //$NON-NLS-1$
+            addFilenameToResultFilenames(result, localFilename);
         } catch (Exception e) {
             // Update errors number
             updateErrors();
@@ -296,7 +301,7 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
         int bytesRead;
 
         //FileObject tempFile = KettleVFS.createTempFile(fileName, ext, folderName);
-        String filename = new StringBuffer(50).append(folderName).append('/').append(fileName).append('_').append(UUIDUtil.getUUIDAsString()).append("."+ext).toString();
+        String filename = new StringBuffer(50).append(folderName).append('/').append(fileName).append('_').append(UUIDUtil.getUUIDAsString()).append("." + ext).toString();
         File fileOut = new File(System.getProperty("java.io.tmpdir"), filename);
         if (!fileOut.getParentFile().exists())
             fileOut.getParentFile().mkdir();
@@ -332,28 +337,34 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
     }
 
     private void addFilenameToResultFilenames(Result result, String filename) throws KettleException {
-        if (isaddresult) {
-            FileObject targetFile = null;
+        //if (isaddresult) {
+        if (isDetailed())
+            logDetailed("RepoFileGet.AddingFilenameToResult..."); //$NON-NLS-1$
+        FileObject targetFile = null;
+        try {
+            targetFile = KettleVFS.getFileObject(filename);
+
+            // Add to the result files...
+            ResultFile resultFile = new ResultFile(ResultFile.FILE_TYPE_GENERAL, targetFile, parentJob.getJobname(), toString());
+            resultFile.setComment(BaseMessages.getString(PKG, "RepoFileGet.Downloaded", filename)); //$NON-NLS-1$
+            result.getResultFiles().put(resultFile.getFile().toString(), resultFile);
+
+            if (isDetailed())
+                logDetailed(BaseMessages.getString(PKG, "RepoFileGet.FileAddedToResult", filename)); //$NON-NLS-1$
+        } catch (Exception e) {
+            throw new KettleException(e);
+        } finally {
             try {
-                targetFile = KettleVFS.getFileObject(filename);
-
-                // Add to the result files...
-                ResultFile resultFile = new ResultFile(ResultFile.FILE_TYPE_GENERAL, targetFile, parentJob.getJobname(), toString());
-                resultFile.setComment(BaseMessages.getString(PKG, "RepoFileGet.Downloaded", filename)); //$NON-NLS-1$
-                result.getResultFiles().put(resultFile.getFile().toString(), resultFile);
-
-                if (isDetailed())
-                    logDetailed(BaseMessages.getString(PKG, "RepoFileGet.FileAddedToResult", filename)); //$NON-NLS-1$
+                targetFile.close();
+                targetFile = null;
             } catch (Exception e) {
-                throw new KettleException(e);
-            } finally {
-                try {
-                    targetFile.close();
-                    targetFile = null;
-                } catch (Exception e) {
-                }
             }
         }
+/*        }
+        else {
+            if (isDetailed())
+                logDetailed("RepoFileGet.AddingFilenameToResult...filename "+filename+" not added to results"); //$NON-NLS-1$
+        }*/
     }
 
     private void displayResults() {
@@ -374,18 +385,15 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
     }
 
 
-
     public boolean evaluates() {
         return true;
     }
 
 
-
     @Override
     public void check(List<CheckResultInterface> remarks, JobMeta jobMeta) {
         andValidator().validate(this, "serverName", remarks, putValidators(notBlankValidator())); //$NON-NLS-1$
-        andValidator()
-                .validate(this, "localDirectory", remarks, putValidators(notBlankValidator(), fileExistsValidator())); //$NON-NLS-1$
+        andValidator().validate(this, "localDirectory", remarks, putValidators(notBlankValidator(), fileExistsValidator())); //$NON-NLS-1$
         andValidator().validate(this, "userName", remarks, putValidators(notBlankValidator())); //$NON-NLS-1$
         andValidator().validate(this, "password", remarks, putValidators(notNullValidator())); //$NON-NLS-1$
         andValidator().validate(this, "serverPort", remarks, putValidators(integerValidator())); //$NON-NLS-1$
@@ -455,5 +463,45 @@ public class RepoFileGet extends JobEntryBase implements Cloneable, JobEntryInte
 
     public void setVariableName(String variableName) {
         this.variableName = variableName;
+    }
+
+    public void setRepositoryId(String repositoryId) {
+        this.repositoryId = repositoryId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public void setFolderId(String folderId) {
+        this.folderId = folderId;
+    }
+
+    public void setLoginEmail(String loginEmail) {
+        this.loginEmail = loginEmail;
+    }
+
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
+    }
+
+    public void setLoginGroupId(String loginGroupId) {
+        this.loginGroupId = loginGroupId;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public void setFileEntryId(String fileEntryId) {
+        this.fileEntryId = fileEntryId;
+    }
+
+    public void setIsaddresult(boolean isaddresult) {
+        this.isaddresult = isaddresult;
+    }
+
+    public void setTargetDirectory(String targetDirectory) {
+        this.targetDirectory = targetDirectory;
     }
 }

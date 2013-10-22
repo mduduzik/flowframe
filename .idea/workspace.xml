@@ -2,32 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69bc9311-f399-47b6-9e9d-ea482f4152d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/DFJ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/DFN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/DFS.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/copy.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/end.event.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/jobStart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/jobStop.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/ui/RepoFileGetDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_en_US.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_es_AR.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_fr_FR.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_it_IT.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_ko_KR.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/RepoFileGet/plugin.xml" />
       <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\messages\messages_en_US.properties" afterPath="" />
       <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\messages\messages_es_AR.properties" afterPath="" />
       <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\messages\messages_fr_FR.properties" afterPath="" />
       <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\messages\messages_it_IT.properties" afterPath="" />
       <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\messages\messages_ko_KR.properties" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\resources\RepoFileGet\plugin.xml" afterPath="" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\RepoConnection.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/RepoConnection.java" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\RepoFileGet.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/RepoFileGet.java" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\ui\RepoFileGetDialog.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/ui/docrepo/fileget/RepoFileGetDialog.java" />
+      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\test\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\tests\RepoFileGetTests.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/di/docrepo/tests/RepoFileGetTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/org.flowframe.etl.pentaho.plugin.job.entries.iml" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/org.flowframe.etl.pentaho.plugin.job.entries.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/pom.xml" afterPath="$PROJECT_DIR$/etl/pentaho/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/template.mf" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/template.mf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -84,7 +70,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/tests/RepoFileGetTests.java" line="71" class="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests.RepoFileGetTests" package="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/di/docrepo/tests/RepoFileGetTests.java" line="71" class="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests.RepoFileGetTests" package="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -99,7 +85,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java" line="334" class="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.RepoFileGet" package="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/RepoFileGet.java" line="339" class="org.flowframe.etl.pentaho.plugin.di.docrepo.fileget.RepoFileGet" package="org.flowframe.etl.pentaho.plugin.di.docrepo.fileget">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -124,21 +110,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RepoFileGet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java">
+      <file leaf-file-name="RepoFileGet.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/RepoFileGet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="424" column="52" selection-start="17771" selection-end="17771" vertical-scroll-proportion="0.46" vertical-offset="7231" max-vertical-offset="7888">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RepoFileGetTests.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/tests/RepoFileGetTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="14" selection-start="2063" selection-end="2063" vertical-scroll-proportion="0.0" vertical-offset="497" max-vertical-offset="1054">
+            <state line="347" column="91" selection-start="15642" selection-end="15652" vertical-scroll-proportion="0.5770925" vertical-offset="5637" max-vertical-offset="8704">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,78 +122,77 @@
         </entry>
       </file>
       <file leaf-file-name="messages_en_US.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_en_US.properties">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/messages/messages_en_US.properties">
           <provider editor-type-id="ResourceBundle">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="29" selection-start="622" selection-end="633" vertical-scroll-proportion="-2.9466667" vertical-offset="0" max-vertical-offset="442">
+            <state line="9" column="56" selection-start="465" selection-end="465" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="459">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="messages_fr_FR.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_fr_FR.properties">
-          <provider editor-type-id="ResourceBundle">
-            <state />
-          </provider>
+      <file leaf-file-name="JobEntryBase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/job/entry/JobEntryBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="messages_it_IT.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_it_IT.properties">
-          <provider editor-type-id="ResourceBundle">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="messages_ko_KR.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_ko_KR.properties">
-          <provider editor-type-id="ResourceBundle">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RepoFileGetDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/ui/RepoFileGetDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="332" column="12" selection-start="13694" selection-end="13694" vertical-scroll-proportion="-65.64" vertical-offset="2362" max-vertical-offset="5814">
+            <state line="814" column="0" selection-start="24027" selection-end="24238" vertical-scroll-proportion="-6.32" vertical-offset="12711" max-vertical-offset="18700">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2886#3023#0" expanded="true" />
-                <element signature="e#3012#3013#0" expanded="true" />
-                <element signature="e#11689#11802#0" expanded="true" />
-                <element signature="e#11791#11792#0" expanded="true" />
-                <element signature="e#11844#11953#0" expanded="true" />
-                <element signature="e#11942#11943#0" expanded="true" />
-                <element signature="e#11973#12109#0" expanded="true" />
-                <element signature="e#12098#12099#0" expanded="true" />
-                <element signature="e#12393#12515#0" expanded="true" />
-                <element signature="e#12504#12505#0" expanded="true" />
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template.mf" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JobEntryInterface.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/job/entry/JobEntryInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="439" column="4" selection-start="17585" selection-end="17619" vertical-scroll-proportion="0.0" vertical-offset="6551" max-vertical-offset="8075">
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RepoFileGetTests.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/di/docrepo/tests/RepoFileGetTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="14" selection-start="2045" selection-end="2045" vertical-scroll-proportion="0.0" vertical-offset="497" max-vertical-offset="1054">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RepoFileGetDialog.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/ui/docrepo/fileget/RepoFileGetDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="371" column="33" selection-start="15923" selection-end="15923" vertical-scroll-proportion="-6.28" vertical-offset="5993" max-vertical-offset="6460">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2911#3048#0" expanded="true" />
+                <element signature="e#3037#3038#0" expanded="true" />
+                <element signature="e#12408#12521#0" expanded="true" />
+                <element signature="e#12510#12511#0" expanded="true" />
+                <element signature="e#12563#12672#0" expanded="true" />
+                <element signature="e#12661#12662#0" expanded="true" />
+                <element signature="e#12692#12828#0" expanded="true" />
+                <element signature="e#12817#12818#0" expanded="true" />
+                <element signature="e#13512#13634#0" expanded="true" />
+                <element signature="e#13623#13624#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/template.mf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="46" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.7556561" vertical-offset="516" max-vertical-offset="1071">
+            <state line="30" column="74" selection-start="1642" selection-end="1642" vertical-scroll-proportion="-1.42" vertical-offset="439" max-vertical-offset="1071">
               <folding />
             </state>
           </provider>
@@ -227,16 +201,18 @@
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="21" selection-start="8238" selection-end="8238" vertical-scroll-proportion="-4.0" vertical-offset="3079" max-vertical-offset="7735">
-              <folding />
+            <state line="103" column="78" selection-start="5416" selection-end="5416" vertical-scroll-proportion="-8.96" vertical-offset="1527" max-vertical-offset="8041">
+              <folding>
+                <marker date="1382447309106" expanded="true" signature="89:18598" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/pom.xml">
+        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="922" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="83" max-vertical-offset="544">
+            <state line="126" column="0" selection-start="5274" selection-end="5653" vertical-scroll-proportion="-8.48" vertical-offset="1930" max-vertical-offset="4896">
               <folding />
             </state>
           </provider>
@@ -260,22 +236,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/RepoConnection.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/tests/RepoFileGetTest.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/tests/RepoFileGetTests.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/RepoFileGet/plugin.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/.gitignore" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/messages/messages_en_US.properties" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/messages/messages_es_AR.properties" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/messages/messages_fr_FR.properties" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/messages/messages_it_IT.properties" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/messages/messages_ko_KR.properties" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_en_US.properties" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/ui/RepoFileGetDialog.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/template.mf" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/fileget/RepoFileGet.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/messages/messages_en_US.properties" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/ui/docrepo/fileget/RepoFileGetDialog.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/RepoFileGet.java" />
       </list>
     </option>
   </component>
@@ -536,291 +512,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RepoFileGet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="messages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resource Bundle 'messages'" />
-              <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docrepo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="etl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="job" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docrepo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fileget" />
+              <option name="myItemId" value="dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1234,56 +926,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="distribution" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="distribution" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drools-jbpm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="distribution" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -1318,18 +960,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\ui" />
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\resources" />
+      <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\ui" />
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\resources\RepoFileGet" />
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\test\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\tests" />
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\java\org\flowframe\etl\pentaho\plugin\job\entries\docrepo\fileget\messages" />
+      <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\main\resources\fileget\messages" />
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\plugin\job\entries\src\test" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\profiles" />
       <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\job\trans" />
-      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans" />
-      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\plugins\etl\trans\step" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.RepoFileGetTests">
@@ -1362,15 +1004,15 @@
     <configuration default="false" name="RepoFileGetTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests.*" />
+          <option name="PATTERN" value="org.flowframe.etl.pentaho.plugin.di.docrepo.tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="org.flowframe.etl.pentaho.plugin.job.entries" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests" />
-      <option name="MAIN_CLASS_NAME" value="org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests.RepoFileGetTests" />
+      <option name="PACKAGE_NAME" value="org.flowframe.etl.pentaho.plugin.di.docrepo.tests" />
+      <option name="MAIN_CLASS_NAME" value="org.flowframe.etl.pentaho.plugin.di.docrepo.tests.RepoFileGetTests" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -1753,16 +1395,16 @@
       <workItem from="1381612226485" duration="4662000" />
       <workItem from="1381663591329" duration="18516000" />
       <workItem from="1381760283733" duration="20061000" />
-      <workItem from="1381802249433" duration="180143000" />
+      <workItem from="1381802249433" duration="191093000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="223382000" />
+    <option name="totallyTimeSpent" value="234332000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="0" width="1598" height="876" extended-state="0" />
-    <editor active="false" />
+    <frame x="-2" y="0" width="1598" height="876" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1776,8 +1418,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25910932" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2920354" sideWeight="0.7557355" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24426451" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3261694" sideWeight="0.7557355" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24426451" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1788,8 +1430,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21112517" sideWeight="0.7557355" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24968395" sideWeight="0.7557355" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12768647" sideWeight="0.7557355" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1837,23 +1479,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/distribution/documentlibrary/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/distribution/drools-jbpm/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="0" selection-start="1833" selection-end="4193" vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="4539">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/RepoFileGet/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="202" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
           <folding />
         </state>
       </provider>
@@ -1865,52 +1493,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/RepoConnection.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/RepoConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="8" selection-start="8" selection-end="60" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_es_AR.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_fr_FR.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_it_IT.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_ko_KR.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1921,64 +1509,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/di/docrepo/tests/RepoFileGetTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="21" selection-start="8238" selection-end="8238" vertical-scroll-proportion="-4.0" vertical-offset="3079" max-vertical-offset="7735">
+        <state line="59" column="14" selection-start="2045" selection-end="2045" vertical-scroll-proportion="0.0" vertical-offset="497" max-vertical-offset="1054">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/job/entry/JobEntryInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="439" column="4" selection-start="17585" selection-end="17619" vertical-scroll-proportion="0.0" vertical-offset="6551" max-vertical-offset="8075">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="33" selection-start="1545" selection-end="1545" vertical-scroll-proportion="0.33333334" vertical-offset="543" max-vertical-offset="9129">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget/messages/messages_en_US.properties">
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/job/entry/JobEntryBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="814" column="0" selection-start="24027" selection-end="24238" vertical-scroll-proportion="-6.32" vertical-offset="12711" max-vertical-offset="18700">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/resources/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/messages/messages_en_US.properties">
       <provider editor-type-id="ResourceBundle">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="29" selection-start="622" selection-end="633" vertical-scroll-proportion="-2.9466667" vertical-offset="0" max-vertical-offset="442">
+        <state line="9" column="56" selection-start="465" selection-end="465" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="459">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/test/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/tests/RepoFileGetTests.java">
+    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="14" selection-start="2063" selection-end="2063" vertical-scroll-proportion="0.0" vertical-offset="497" max-vertical-offset="1054">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/RepoFileGet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="424" column="52" selection-start="17771" selection-end="17771" vertical-scroll-proportion="0.46" vertical-offset="7231" max-vertical-offset="7888">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/job/entries/docrepo/fileget/ui/RepoFileGetDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="332" column="12" selection-start="13694" selection-end="13694" vertical-scroll-proportion="-65.64" vertical-offset="2362" max-vertical-offset="5814">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2886#3023#0" expanded="true" />
-            <element signature="e#3012#3013#0" expanded="true" />
-            <element signature="e#11689#11802#0" expanded="true" />
-            <element signature="e#11791#11792#0" expanded="true" />
-            <element signature="e#11844#11953#0" expanded="true" />
-            <element signature="e#11942#11943#0" expanded="true" />
-            <element signature="e#11973#12109#0" expanded="true" />
-            <element signature="e#12098#12099#0" expanded="true" />
-            <element signature="e#12393#12515#0" expanded="true" />
-            <element signature="e#12504#12505#0" expanded="true" />
-          </folding>
+        <state line="126" column="0" selection-start="5274" selection-end="5653" vertical-scroll-proportion="-8.48" vertical-offset="1930" max-vertical-offset="4896">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/template.mf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="46" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.7556561" vertical-offset="516" max-vertical-offset="1071">
+        <state line="30" column="74" selection-start="1642" selection-end="1642" vertical-scroll-proportion="-1.42" vertical-offset="439" max-vertical-offset="1071">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="78" selection-start="5416" selection-end="5416" vertical-scroll-proportion="-8.96" vertical-offset="1527" max-vertical-offset="8041">
+          <folding>
+            <marker date="1382447309106" expanded="true" signature="89:18598" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/ui/docrepo/fileget/RepoFileGetDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="371" column="33" selection-start="15923" selection-end="15923" vertical-scroll-proportion="-6.28" vertical-offset="5993" max-vertical-offset="6460">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2911#3048#0" expanded="true" />
+            <element signature="e#3037#3038#0" expanded="true" />
+            <element signature="e#12408#12521#0" expanded="true" />
+            <element signature="e#12510#12511#0" expanded="true" />
+            <element signature="e#12563#12672#0" expanded="true" />
+            <element signature="e#12661#12662#0" expanded="true" />
+            <element signature="e#12692#12828#0" expanded="true" />
+            <element signature="e#12817#12818#0" expanded="true" />
+            <element signature="e#13512#13634#0" expanded="true" />
+            <element signature="e#13623#13624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="483" column="16" selection-start="12625" selection-end="12625" vertical-scroll-proportion="0.332" vertical-offset="7501" max-vertical-offset="14127">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/fileget/RepoFileGet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="347" column="91" selection-start="15642" selection-end="15652" vertical-scroll-proportion="0.5770925" vertical-offset="5637" max-vertical-offset="8704">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,4 +1,4 @@
-package org.flowframe.etl.pentaho.plugin.job.entries.docrepo;
+package org.flowframe.etl.pentaho.plugin.di.docrepo;
 
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl;

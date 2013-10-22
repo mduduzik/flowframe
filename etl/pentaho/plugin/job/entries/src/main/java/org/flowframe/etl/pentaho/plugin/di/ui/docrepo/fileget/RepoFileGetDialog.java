@@ -1,6 +1,6 @@
-package org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.ui;
+package org.flowframe.etl.pentaho.plugin.di.ui.docrepo.fileget;
 
-import org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.RepoFileGet;
+import org.flowframe.etl.pentaho.plugin.di.docrepo.fileget.RepoFileGet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -43,6 +43,7 @@ public class RepoFileGetDialog extends JobEntryDialog implements JobEntryDialogI
     private LabelTextVar wCompanyId;
     private LabelTextVar wFolderId;
     private LabelTextVar wFileEntryId;
+    private LabelTextVar wTargetDirectory;
     private LabelTextVar wLoginEmail;
     private LabelTextVar wLoginPassword;
     private LabelTextVar wLoginGroupId;
@@ -185,6 +186,18 @@ public class RepoFileGetDialog extends JobEntryDialog implements JobEntryDialogI
         wFileEntryId.setLayoutData(fdFileEntryId);
         lastControl = wFileEntryId;
 
+        // the targetDirectory
+        //
+        wTargetDirectory = new LabelTextVar(jobMeta, shell, BaseMessages.getString(PKG, "RepoFileGetDialog.targetDirectory.Label"), BaseMessages.getString(PKG, "RepoFileGetDialog.targetDirectory.Label"));
+        props.setLook(wTargetDirectory);
+        wTargetDirectory.addModifyListener(lsMod);
+        FormData fdTargetDirectory = new FormData();
+        fdTargetDirectory.left = new FormAttachment(0, 0);
+        fdTargetDirectory.top = new FormAttachment(lastControl, margin);
+        fdTargetDirectory.right = new FormAttachment(100, 0);
+        wTargetDirectory.setLayoutData(fdTargetDirectory);
+        lastControl = wTargetDirectory;        
+
         // the loginEmail
         //
         wLoginEmail = new LabelTextVar(jobMeta, shell, BaseMessages.getString(PKG, "RepoFileGetDialog.loginEmail.Label"), BaseMessages.getString(PKG, "RepoFileGetDialog.loginEmail.Label"));
@@ -276,6 +289,14 @@ public class RepoFileGetDialog extends JobEntryDialog implements JobEntryDialogI
         wName.addSelectionListener(lsDef);
         wHostname.addSelectionListener(lsDef);
         wPort.addSelectionListener(lsDef);
+        wTimeout.addSelectionListener(lsDef);
+        wRepositoryId.addSelectionListener(lsDef);
+        wCompanyId.addSelectionListener(lsDef);
+        wFileEntryId.addSelectionListener(lsDef);
+        wTargetDirectory.addSelectionListener(lsDef);
+        wLoginEmail.addSelectionListener(lsDef);
+        wLoginPassword.addSelectionListener(lsDef);
+        wIsaddresult.addSelectionListener(lsDef);
         wVariable.addSelectionListener(lsDef);
 
         // Detect X or ALT-F4 or something that kills this window...
@@ -312,6 +333,15 @@ public class RepoFileGetDialog extends JobEntryDialog implements JobEntryDialogI
         wName.getTextWidget().selectAll();
         wHostname.setText(Const.NVL(jobEntry.getHostname(), ""));
         wPort.setText(Const.NVL(jobEntry.getPort(), ""));
+        wTimeout.setText(Const.NVL("5", ""));
+        wRepositoryId.setText(Const.NVL(jobEntry.getRepositoryId(), ""));
+        wCompanyId.setText(Const.NVL(jobEntry.getCompanyId(), ""));
+        wFileEntryId.setText(Const.NVL(jobEntry.getFileEntryId(), ""));
+        wTargetDirectory.setText(Const.NVL(jobEntry.getTargetDirectory(), ""));
+        wLoginEmail.setText(Const.NVL(jobEntry.getLoginEmail(), ""));
+        wLoginPassword.setText(Const.NVL(jobEntry.getLoginPassword(), ""));
+        wLoginGroupId.setText(Const.NVL(jobEntry.getLoginGroupId(), ""));
+        wIsaddresult.setText("Y");
         wVariable.setText(Const.NVL(jobEntry.getVariableName(), ""));
     }
 
@@ -332,6 +362,14 @@ public class RepoFileGetDialog extends JobEntryDialog implements JobEntryDialogI
     private void getInfo(RepoFileGet entry) {
         entry.setHostname(wHostname.getText());
         entry.setPort(wPort.getText());
+        entry.setRepositoryId(wRepositoryId.getText());
+        entry.setCompanyId(wCompanyId.getText());
+        entry.setFileEntryId(wFileEntryId.getText());
+        entry.setTargetDirectory(Const.NVL(jobEntry.getTargetDirectory(), ""));
+        entry.setLoginEmail(wLoginEmail.getText());
+        entry.setLoginPassword(wLoginPassword.getText());
+        entry.setLoginGroupId(wLoginGroupId.getText());
+        entry.setIsaddresult(true);
         entry.setVariableName(wVariable.getText());
     }
 }

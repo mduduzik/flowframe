@@ -20,10 +20,10 @@
  *
  ******************************************************************************/
 
-package org.flowframe.etl.pentaho.plugin.job.entries.docrepo.tests;
+package org.flowframe.etl.pentaho.plugin.di.docrepo.tests;
 
 import junit.framework.TestCase;
-import org.flowframe.etl.pentaho.plugin.job.entries.docrepo.fileget.RepoFileGet;
+import org.flowframe.etl.pentaho.plugin.di.docrepo.fileget.RepoFileGet;
 import org.pentaho.di.TestUtilities;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.job.Job;

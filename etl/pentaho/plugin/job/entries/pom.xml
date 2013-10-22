@@ -93,10 +93,15 @@
                             </copy>
                                 <copy todir="dist/flowframe-jobentries-plugin/lib">
                                     <filelist dir="dist">
+                                        <file name="org.flowframe.documentlibrary.remote.services-0.0.1.jar"/>
                                         <file name="org.flowframe.documentlibrary.remote.services.min.impl-0.0.1.jar"/>
                                         <file name="org.flowframe.etl.pentaho.server.repository.shared-0.0.1.jar"/>
                                         <file name="org.flowframe.kernel.common.mdm.dao.services-0.0.1.jar"/>
                                         <file name="org.flowframe.kernel.common.mdm.domain-0.0.1.jar"/>
+
+                                        <file name="httpclient-osgi-4.2.1.jar"/>
+                                        <file name="httpcore-osgi-4.2.1.jar"/>
+                                        <file name="httpcore-osgi-4.2.1.jar"/>
                                     </filelist>
                                 </copy>
                             </tasks>
@@ -340,6 +345,19 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- HTTPClient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-osgi</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore-osgi</artifactId>
+            <version>4.2.1</version>
         </dependency>
 
         <!-- JSON -->
