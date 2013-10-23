@@ -12,6 +12,28 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createSourcesJar>true</createSourcesJar>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.flowframe:org.flowframe.etl.pentaho.plugin.core</include>
+                                    <include>org.flowframe:org.flowframe.etl.pentaho.plugin.core-ui</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.springsource.bundlor</groupId>
                 <artifactId>com.springsource.bundlor.maven</artifactId>
                 <inherited>true</inherited>
@@ -71,13 +93,12 @@
                         <phase>package</phase>
                         <configuration>
                             <tasks>
-                                <copy todir="dist/flowframe-jobentries-plugin">
-                                    <filelist dir="dist">
-                                        <file name="org.flowframe.etl.pentaho.plugin.core-0.0.1.jar" />
-                                        <file name="org.flowframe.etl.pentaho.plugin.core-ui-0.0.1.jar" />
+                                <copy todir="dist/flowframe-plugin">
+                                    <filelist dir="target">
+                                        <file name="org.flowframe.etl.pentaho.plugin.distribution-0.0.1.jar" />
                                     </filelist>
                                 </copy>
-                                <copy todir="dist/flowframe-jobentries-plugin/lib">
+                                <copy todir="dist/flowframe-plugin/lib">
                                     <filelist dir="dist">
                                         <file name="org.flowframe.documentlibrary.remote.services-0.0.1.jar"/>
                                         <file name="org.flowframe.documentlibrary.remote.services.min.impl-0.0.1.jar"/>

@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
-Export-Package: org.flowframe.etl.pentaho.plugin.di.docrepo;version="0
- .0.1";uses:="org.flowframe.kernel.common.mdm.domain.documentlibrary",
- org.flowframe.etl.pentaho.plugin.di.job.entries.docrepo.fileget;versi
- on="0.0.1";uses:="org.pentaho.di.core,org.pentaho.di.core.annotations
- ,org.pentaho.di.core.exception,org.pentaho.di.job,org.pentaho.di.job.
- entry,org.pentaho.di.repository,org.w3c.dom"
+Export-Package: org.flowframe.etl.pentaho.plugin.di;version="0.0.1",or
+ g.flowframe.etl.pentaho.plugin.di.docrepo;version="0.0.1";uses:="org.
+ flowframe.kernel.common.mdm.domain.documentlibrary",org.flowframe.etl
+ .pentaho.plugin.di.job.entries.docrepo.fileget;version="0.0.1";uses:=
+ "org.pentaho.di.core,org.pentaho.di.core.annotations,org.pentaho.di.c
+ ore.exception,org.pentaho.di.job,org.pentaho.di.job.entry,org.pentaho
+ .di.repository,org.w3c.dom"
 Import-Bundle: org.glassfish.jersey.media.jersey-media-json-jackson;ve
  rsion="2.2.0"
 DynamicImport-Package: *

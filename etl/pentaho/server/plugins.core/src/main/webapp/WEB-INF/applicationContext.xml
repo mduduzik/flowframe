@@ -42,7 +42,7 @@
         <property name="arguments">
             <!-- The new Properties -->
             <util:properties>
-                <prop key="KETTLE_PLUGIN_CLASSES">org.flowframe.etl.pentaho.plugin.di.docrepo.fileget.RepoFileGet</prop>
+                <prop key="KETTLE_PLUGIN_CLASSES">org.flowframe.etl.pentaho.plugin.di.job.entries.docrepo.fileget.RepoFileGet</prop>
             </util:properties>
         </property>
     </bean>
