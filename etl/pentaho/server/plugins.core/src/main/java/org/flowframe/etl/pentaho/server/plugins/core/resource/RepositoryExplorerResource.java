@@ -15,6 +15,8 @@ import org.pentaho.di.core.exception.KettleDatabaseException;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.job.entry.JobEntryCopy;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
@@ -137,6 +139,11 @@ public class RepositoryExplorerResource {
             json = generateTransformationsJsonTreeData(true, true, repository, tenant);
             res = json.toString();
         }
+        //Job node
+        if (nodeId != null && "jobs".equals(nodeId)) {
+            json = generateJobsJsonTreeData(true, true, repository, tenant);
+            res = json.toString();
+        }
         //Root
         else if (itemtype == null || "undefined".equals(itemtype)) {
             res = exportTreeToJSONByTenant(null, repository, tenant).toString();
@@ -191,10 +198,13 @@ public class RepositoryExplorerResource {
         treeByTenant.put(transNode);
 
         //-- Jobs
+        JSONObject jobNode = generateJobsJsonTreeData(true, true, repo, tenant);
+        treeByTenant.put(jobNode);
 
         return treeByTenant;
     }
 
+    //{{Transformations
     private static JSONObject generateTransformationsJsonTreeData(Boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository repo, Organization tenant) throws KettleException, JSONException {
         RepositoryDirectoryInterface transDir = repo.provideTransDirectoryForTenant(tenant);
 
@@ -383,6 +393,130 @@ public class RepositoryExplorerResource {
         }
         return false;
     }
+    //}}Transformations
+
+    //{{Jobs
+    private static JSONObject generateJobsJsonTreeData(Boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository repo, Organization tenant) throws KettleException, JSONException {
+        RepositoryDirectoryInterface transDir = repo.provideJobsDirectoryForTenant(tenant);
+
+
+        JSONObject transformations = new JSONObject();
+        transformations.put("id", "jobs");
+        transformations.put("allowDrag", false);
+        transformations.put("allowDrop", false);
+        transformations.put("text", transDir.getName());
+        transformations.put("title", transDir.getName());
+        transformations.put("icon", "/etl/images/conxbi/etl/process_icon.gif");
+        transformations.put("leaf", false);
+        transformations.put("hasChildren", true);
+        transformations.put("singleClickExpand", true);
+        transformations.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
+
+        JSONArray transChildren = new JSONArray();
+        transformations.put("children", transChildren);
+        //Do sub dirs
+        List<RepositoryDirectoryInterface> transSubDirs = transDir.getChildren();
+
+        for (RepositoryDirectoryInterface subDir_ : transSubDirs) {
+            JSONObject subDirDir = generateJobsRecursiveSubTreeData(ondemand, excludeChildrenForThisNode, repo, subDir_);
+            transChildren.put(subDirDir);
+        }
+
+        return transformations;
+    }
+
+    private static JSONObject generateJobsRecursiveSubTreeData(Boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository ICustomRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
+        JSONObject subDir = new JSONObject();
+
+        // Populate
+        subDir.put("id", "dir/" + dir.getObjectId().toString());
+        subDir.put("allowDrag", false);
+        subDir.put("allowDrop", false);
+        subDir.put("text", dir.getName());
+        subDir.put("title", dir.getName());
+        subDir.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+        subDir.put("leaf", false);
+        subDir.put("hasChildren", false);
+        subDir.put("singleClickExpand", false);
+        subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+
+        List<RepositoryDirectoryInterface> subDirs = dir.getChildren();
+
+
+        JSONArray childrenArray = new JSONArray();
+        subDir.put("children", childrenArray);
+
+        //Do sub dirs
+        for (RepositoryDirectoryInterface subDir_ : subDirs) {
+            JSONObject subDirDir = generateJobsRecursiveSubTreeData(ondemand, excludeChildrenForThisNode, ICustomRepository, subDir_);
+            childrenArray.put(subDirDir);
+        }
+
+
+        //Process trans transformations
+        generateJsonTreeFromJobArtifacts(false/*always include leaves for subdir*/, ICustomRepository, dir, subDir, subDirs, childrenArray);
+
+        return subDir;
+    }
+
+    private static boolean generateJsonTreeFromJobArtifacts(boolean excludeChildrenForThisNode, ICustomRepository ICustomRepository, RepositoryDirectoryInterface dir, JSONObject subDir, List<RepositoryDirectoryInterface> subDirs, JSONArray childrenArray) throws KettleException, JSONException {
+        String[] jobNames = ICustomRepository.getJobNames(dir.getObjectId(), true);
+        boolean hasChildren = !subDirs.isEmpty() || (jobNames.length > 0);
+        if (excludeChildrenForThisNode) {
+            subDir.put("hasChildren", hasChildren);
+            subDir.put("singleClickExpand", hasChildren);
+            return true;
+        }
+
+        if (jobNames.length > 0) {
+            for (String jobName : jobNames) {
+                JobMeta job = ICustomRepository.loadJob(jobName, dir, null, null);
+
+                //-- Job
+                JSONObject transObj = new JSONObject();
+                transObj.put("text", job.getName());
+                transObj.put("title", job.getName());
+                transObj.put("icon", "/etl/images/conxbi/etl/process_icon.png");
+                transObj.put("id", job.getObjectId().toString());
+                transObj.put("allowDrag", false);
+                transObj.put("allowDrop", false);
+                transObj.put("leaf", false);
+                transObj.put("hasChildren", true);
+                transObj.put("singleClickExpand", true);
+                transObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                transObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                childrenArray.put(transObj);
+
+                //-- Steps
+                List<JobEntryCopy> jobEntries = job.getJobCopies();
+                for (JobEntryCopy entry : jobEntries) {
+                    JSONArray fields = null;
+                    if (!transObj.has("children")) {
+                        fields = new JSONArray();
+                        transObj.put("children", fields);
+                    }
+                    else
+                        fields = (JSONArray)transObj.get("children");
+
+                    JSONObject stepObj = new JSONObject();
+                    stepObj.put("text", entry.getName());
+                    stepObj.put("title", entry.getName());
+                    stepObj.put("icon", "/etl/images/conxbi/etl/process_icon.png");
+                    stepObj.put("id", RepositoryUtil.generatePathID(entry, jobEntries.indexOf(entry)));
+                    stepObj.put("allowDrag", false);
+                    stepObj.put("allowDrop", false);
+                    stepObj.put("leaf", true);
+                    stepObj.put("hasChildren", false);
+                    stepObj.put("singleClickExpand", false);
+                    stepObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                    stepObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                    fields.put(stepObj);
+                }
+            }
+        }
+        return false;
+    }
+    //}}Jobs
 
     private static void generateMetadataSubTreeData(ICustomRepository repo, Organization tenant, JSONArray treeByTenant) throws KettleException, JSONException {
         RepositoryDirectoryInterface mdDir = repo.provideMetadataDirectoryForTenant(tenant);

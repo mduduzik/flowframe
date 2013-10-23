@@ -5,6 +5,7 @@ import org.flowframe.etl.pentaho.server.repository.util.TransformationMetaUtil;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.job.entry.JobEntryCopy;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
@@ -70,6 +71,10 @@ public class RepositoryUtil {
      */
     static public String generatePathID(StepMeta stepMeta, int index) {
         return generatePathID(stepMeta.getParentTransMeta().getRepositoryDirectory())+"/trans/"+stepMeta.getParentTransMeta().getObjectId()+"/step/"+stepMeta.getTypeId()+"#"+index;
+    }
+
+    static public String generatePathID(JobEntryCopy entry, int index) {
+        return generatePathID(entry.getParentJobMeta().getRepositoryDirectory())+"/trans/"+entry.getParentJobMeta().getObjectId()+"/entry#"+index;
     }
 
     static public String generatePathID(TransMeta transMeta, DatabaseMeta dbConn) {

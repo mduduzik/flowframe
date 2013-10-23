@@ -71,6 +71,7 @@
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/pom.xml" />
+        <option value="$PROJECT_DIR$/etl/pentaho/plugin/core-ui/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>org.flowframe.etl.pentaho.plugin</artifactId>
+        <groupId>org.flowframe</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>org.flowframe.etl.pentaho.plugin.distribution</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.springsource.bundlor</groupId>
+                <artifactId>com.springsource.bundlor.maven</artifactId>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <phase>none</phase>
+                        <id>build-manifest</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>copy-distribution</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>dist</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean plugins</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <tasks>
+                                <delete>
+                                    <fileset dir="dist" includes="**/*.*"/>
+                                </delete>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>copy to jon entries</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <copy todir="dist/flowframe-jobentries-plugin">
+                                    <filelist dir="dist">
+                                        <file name="org.flowframe.etl.pentaho.plugin.core-0.0.1.jar" />
+                                        <file name="org.flowframe.etl.pentaho.plugin.core-ui-0.0.1.jar" />
+                                    </filelist>
+                                </copy>
+                                <copy todir="dist/flowframe-jobentries-plugin/lib">
+                                    <filelist dir="dist">
+                                        <file name="org.flowframe.documentlibrary.remote.services-0.0.1.jar"/>
+                                        <file name="org.flowframe.documentlibrary.remote.services.min.impl-0.0.1.jar"/>
+                                        <file name="org.flowframe.etl.pentaho.server.repository.shared-0.0.1.jar"/>
+                                        <file name="org.flowframe.kernel.common.mdm.dao.services-0.0.1.jar"/>
+                                        <file name="org.flowframe.kernel.common.mdm.domain-0.0.1.jar"/>
+
+                                        <file name="httpclient-osgi-4.2.1.jar"/>
+                                        <file name="httpcore-osgi-4.2.1.jar"/>
+                                        <file name="httpcore-osgi-4.2.1.jar"/>
+                                    </filelist>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <!-- Flowframe : ETL -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.etl.pentaho.plugin.core</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.etl.pentaho.plugin.core-ui</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <!-- Flowframe : Core -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.kernel.common.mdm.dao.services</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <!-- Flowframe : DocLIb-->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.documentlibrary.remote.services</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.documentlibrary.remote.services.min.impl</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <!-- Flowframe : ETl Repository Shared -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.etl.pentaho.server.repository.shared</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>org.springframework.spring-library</artifactId>
+            <version>3.1.3.RELEASE</version>
+            <type>libd</type>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- HTTPClient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-osgi</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore-osgi</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+
+        <!-- JSON -->
+        <dependency>
+            <groupId>net.sf.flexjson</groupId>
+            <artifactId>flexjson</artifactId>
+            <version>3.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

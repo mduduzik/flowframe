@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/carte/carte.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/carte/carte.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/core/core.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/distribution/distribution.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/editor/editor.iml" filepath="$PROJECT_DIR$/etl/editor/editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" filepath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/kettle-all.iml" />
@@ -85,6 +86,7 @@
       <module fileurl="file://$PROJECT_DIR$/etl/editor/oryx/frontend/org.flowframe.etl.editor.oryx.frontend.iml" filepath="$PROJECT_DIR$/etl/editor/oryx/frontend/org.flowframe.etl.editor.oryx.frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/org.flowframe.etl.pentaho.iml" filepath="$PROJECT_DIR$/etl/pentaho/org.flowframe.etl.pentaho.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/org.flowframe.etl.pentaho.plugin.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/org.flowframe.etl.pentaho.plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/core-ui/org.flowframe.etl.pentaho.plugin.core-ui.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/core-ui/org.flowframe.etl.pentaho.plugin.core-ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/job/org.flowframe.etl.pentaho.plugin.job.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/job/org.flowframe.etl.pentaho.plugin.job.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries/org.flowframe.etl.pentaho.plugin.job.entries.iml" filepath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/org.flowframe.etl.pentaho.plugin.job.entries.iml" />
       <module fileurl="file://$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" filepath="$PROJECT_DIR$/etl/pentaho/server/org.flowframe.etl.pentaho.server.iml" />

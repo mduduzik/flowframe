@@ -3,18 +3,22 @@
 	Application context definition for GreenPages JPA.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:p="http://www.springframework.org/schema/p"
-		xmlns:context="http://www.springframework.org/schema/context"
-		xmlns:tx="http://www.springframework.org/schema/tx"
-		xsi:schemaLocation="
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
     <!-- Flowframe props -->
     <context:property-placeholder properties-ref="configAdminProperties"/>
 
     <!-- Flowframe Liferay ECM API-->
-    <bean id="lplDocLibService" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl" init-method="init">
+    <bean id="lplDocLibService"
+          class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl"
+          init-method="init">
         <property name="repositoryId" value="${ff.docrepo.repository.id}"/>
         <property name="companyId" value="${ff.docrepo.repository.companyid}"/>
         <property name="fflogiFolderId" value="${ff.docrepo.repository.main.folderid}"/>
@@ -26,7 +30,27 @@
     </bean>
 
     <!-- Repo Impl -->
-    <bean id="repository" class="org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton">
+    <bean id="systemProperties" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject">
+            <!-- System.getProperties() -->
+            <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                <property name="targetClass" value="java.lang.System"/>
+                <property name="targetMethod" value="getProperties"/>
+            </bean>
+        </property>
+        <property name="targetMethod" value="putAll"/>
+        <property name="arguments">
+            <!-- The new Properties -->
+            <util:properties>
+                <prop key="KETTLE_PLUGIN_CLASSES">org.flowframe.etl.pentaho.plugin.di.docrepo.fileget.RepoFileGet</prop>
+            </util:properties>
+        </property>
+    </bean>
+
+    <bean id="repository" class="org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl"
+          init-method="init"
+          scope="singleton"
+          depends-on="systemProperties">
         <property name="reponame" value="${ff.etl.repo.name}"/>
         <property name="repodescription" value="${ff.etl.repo.description}"/>
         <property name="username" value="${ff.etl.repo.user.name}"/>
@@ -44,12 +68,20 @@
     <!--
         REST Resources
     -->
-    <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseMetaResource" scope="request"/>
-    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseTypeResource" scope="request"/>
-    <bean id="repositoryExplorer" class="org.flowframe.etl.pentaho.server.plugins.core.resource.RepositoryExplorerResource" scope="request"/>
-    <bean id="docLibExplorer" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource" scope="request"/>
-    <bean id="charSet" class="org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource" scope="request"/>
-    <bean id="transformationJobServiceResource" class="org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource" scope="request"/>
+    <bean id="databaseMetaDAO" class="org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseMetaResource"
+          scope="request"/>
+    <bean id="databaseTypeDAO" class="org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseTypeResource"
+          scope="request"/>
+    <bean id="repositoryExplorer"
+          class="org.flowframe.etl.pentaho.server.plugins.core.resource.RepositoryExplorerResource" scope="request"/>
+    <bean id="docLibExplorer"
+          class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource"
+          scope="request"/>
+    <bean id="charSet" class="org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource"
+          scope="request"/>
+    <bean id="transformationJobServiceResource"
+          class="org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource"
+          scope="request"/>
     <!--
        CSVInput
     -->
