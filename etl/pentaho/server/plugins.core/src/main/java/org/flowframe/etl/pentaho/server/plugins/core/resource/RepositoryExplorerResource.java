@@ -215,7 +215,7 @@ public class RepositoryExplorerResource {
         transformations.put("allowDrop", false);
         transformations.put("text", transDir.getName());
         transformations.put("title", transDir.getName());
-        transformations.put("icon", "/etl/images/conxbi/etl/transformation.png");
+        transformations.put("icon", "/etl/images/conxbi/etl/folder_open_transformations.gif");
         transformations.put("leaf", false);
         transformations.put("hasChildren", true);
         transformations.put("singleClickExpand", true);
@@ -243,7 +243,7 @@ public class RepositoryExplorerResource {
         subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
-        subDir.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+        subDir.put("icon", "/etl/images/conxbi/etl/folder_open_transformations.gif");
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
@@ -297,20 +297,37 @@ public class RepositoryExplorerResource {
                 childrenArray.put(transObj);
 
                 //-- Steps
+                JSONArray transChildren = new JSONArray();
+                transObj.put("children", transChildren);
+
+                JSONObject stepsFolderObj = new JSONObject();
+                stepsFolderObj.put("text", "Steps");
+                stepsFolderObj.put("title", "Steps");
+                stepsFolderObj.put("icon", "/etl/images/conxbi/etl/folder_open_transformations.gif");
+                stepsFolderObj.put("id", trans.getObjectId().toString());
+                stepsFolderObj.put("allowDrag", false);
+                stepsFolderObj.put("allowDrop", false);
+                stepsFolderObj.put("leaf", false);
+                stepsFolderObj.put("hasChildren", true);
+                stepsFolderObj.put("singleClickExpand", true);
+                stepsFolderObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                stepsFolderObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "false");
+                transChildren.put(stepsFolderObj);
+
                 List<StepMeta> steps = trans.getSteps();
                 for (StepMeta step : steps) {
-                    JSONArray fields = null;
-                    if (!transObj.has("children")) {
-                        fields = new JSONArray();
-                        transObj.put("children", fields);
+                    JSONArray stepsFolderChildren = null;
+                    if (!stepsFolderObj.has("children")) {
+                        stepsFolderChildren = new JSONArray();
+                        stepsFolderObj.put("children", stepsFolderChildren);
                     }
                     else
-                        fields = (JSONArray)transObj.get("children");
+                        stepsFolderChildren = (JSONArray)stepsFolderObj.get("children");
 
                     JSONObject stepObj = new JSONObject();
                     stepObj.put("text", step.getName());
                     stepObj.put("title", step.getName());
-                    stepObj.put("icon", "/etl/images/conxbi/etl/transformation_step.png");
+                    stepObj.put("icon", "/etl/images/conxbi/etl/transformation_plugin.png");
                     stepObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
                     stepObj.put("allowDrag", false);
                     stepObj.put("allowDrop", false);
@@ -319,7 +336,7 @@ public class RepositoryExplorerResource {
                     stepObj.put("singleClickExpand", true);
                     stepObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
                     stepObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
-                    fields.put(stepObj);
+                    stepsFolderChildren.put(stepObj);
 
                     //Create fields
                     JSONArray stepObjItems = new JSONArray();
@@ -330,23 +347,23 @@ public class RepositoryExplorerResource {
                     fieldsObj.put("id", step.getName() + ".fields");
                     fieldsObj.put("allowDrag", false);
                     fieldsObj.put("allowDrop", false);
-                    fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+                    fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_open_transformations.gif");
                     fieldsObj.put("leaf", false);
                     fieldsObj.put("hasChildren", false);
                     fieldsObj.put("singleClickExpand", false);
                     fieldsObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                    stepObjItems.put(fieldsObj);
 
 
+                    JSONArray fields_ = null;
                     if (step.getStepMetaInterface() instanceof ExcelInputMeta) {
-                        JSONArray fields_ = null;
                         if (!fieldsObj.has("children")) {
-                            fields = new JSONArray();
-                            fieldsObj.put("children", fields);
+                            fields_ = new JSONArray();
+                            fieldsObj.put("children", fields_);
                         }
                         else
-                            fields = (JSONArray)fieldsObj.get("children");
+                            fields_ = (JSONArray)fieldsObj.get("children");
 
-                        stepObjItems.put(fieldsObj);
                         ExcelInputMeta csvStep = (ExcelInputMeta) step.getStepMetaInterface();
                         ExcelInputField[] inputFields = csvStep.getField();
                         for (ExcelInputField field : inputFields) {
@@ -360,18 +377,16 @@ public class RepositoryExplorerResource {
                             fieldObj.put("leaf", true);
                             fieldObj.put("hasChildren", false);
                             fieldObj.put("singleClickExpand", false);
-                            fields.put(fieldObj);
+                            fields_.put(fieldObj);
                         }
                     } else if (step.getStepMetaInterface() instanceof CsvInputMeta) {
-                        JSONArray fields_ = null;
                         if (!fieldsObj.has("children")) {
-                            fields = new JSONArray();
-                            fieldsObj.put("children", fields);
+                            fields_ = new JSONArray();
+                            fieldsObj.put("children", fields_);
                         }
                         else
-                            fields = (JSONArray)fieldsObj.get("children");
+                            fields_ = (JSONArray)fieldsObj.get("children");
 
-                        stepObjItems.put(fieldsObj);
                         CsvInputMeta csvStep = (CsvInputMeta) step.getStepMetaInterface();
                         TextFileInputField[] inputFields = csvStep.getInputFields();
                         for (TextFileInputField field : inputFields) {
@@ -385,7 +400,7 @@ public class RepositoryExplorerResource {
                             fieldObj.put("leaf", true);
                             fieldObj.put("hasChildren", false);
                             fieldObj.put("singleClickExpand", false);
-                            fields.put(fieldObj);
+                            fields_.put(fieldObj);
                         }
                     }
                 }
@@ -406,7 +421,7 @@ public class RepositoryExplorerResource {
         transformations.put("allowDrop", false);
         transformations.put("text", transDir.getName());
         transformations.put("title", transDir.getName());
-        transformations.put("icon", "/etl/images/conxbi/etl/process_icon.gif");
+        transformations.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
         transformations.put("leaf", false);
         transformations.put("hasChildren", true);
         transformations.put("singleClickExpand", true);
@@ -434,7 +449,7 @@ public class RepositoryExplorerResource {
         subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());
         subDir.put("title", dir.getName());
-        subDir.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+        subDir.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
@@ -476,7 +491,7 @@ public class RepositoryExplorerResource {
                 JSONObject transObj = new JSONObject();
                 transObj.put("text", job.getName());
                 transObj.put("title", job.getName());
-                transObj.put("icon", "/etl/images/conxbi/etl/process_icon.png");
+                transObj.put("icon", "/etl/images/conxbi/etl/process_icon.gif");
                 transObj.put("id", job.getObjectId().toString());
                 transObj.put("allowDrag", false);
                 transObj.put("allowDrop", false);
@@ -487,21 +502,38 @@ public class RepositoryExplorerResource {
                 transObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
                 childrenArray.put(transObj);
 
-                //-- Steps
+                //-- Entries
+                JSONArray transChildren = new JSONArray();
+                transObj.put("children", transChildren);
+
+                JSONObject jobEntriesFolderObj = new JSONObject();
+                jobEntriesFolderObj.put("text", "Entries");
+                jobEntriesFolderObj.put("title", "Entries");
+                jobEntriesFolderObj.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
+                jobEntriesFolderObj.put("id", job.getObjectId().toString());
+                jobEntriesFolderObj.put("allowDrag", false);
+                jobEntriesFolderObj.put("allowDrop", false);
+                jobEntriesFolderObj.put("leaf", false);
+                jobEntriesFolderObj.put("hasChildren", true);
+                jobEntriesFolderObj.put("singleClickExpand", true);
+                jobEntriesFolderObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                jobEntriesFolderObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "false");
+                transChildren.put(jobEntriesFolderObj);
+
                 List<JobEntryCopy> jobEntries = job.getJobCopies();
                 for (JobEntryCopy entry : jobEntries) {
                     JSONArray fields = null;
-                    if (!transObj.has("children")) {
+                    if (!jobEntriesFolderObj.has("children")) {
                         fields = new JSONArray();
-                        transObj.put("children", fields);
+                        jobEntriesFolderObj.put("children", fields);
                     }
                     else
-                        fields = (JSONArray)transObj.get("children");
+                        fields = (JSONArray)jobEntriesFolderObj.get("children");
 
                     JSONObject stepObj = new JSONObject();
                     stepObj.put("text", entry.getName());
                     stepObj.put("title", entry.getName());
-                    stepObj.put("icon", "/etl/images/conxbi/etl/process_icon.png");
+                    stepObj.put("icon", "/etl/images/conxbi/etl/process_plugin.gif");
                     stepObj.put("id", RepositoryUtil.generatePathID(entry, jobEntries.indexOf(entry)));
                     stepObj.put("allowDrag", false);
                     stepObj.put("allowDrop", false);
