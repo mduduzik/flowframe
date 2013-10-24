@@ -39,6 +39,8 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
     public static String REPOSITORY_ITEMCONTAINER_TYPE = "itemcontainertype";
     public static String REPOSITORY_ITEMCONTAINER_TYPE_REPOFOLDER = "repofolder";
+    public static String REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFOLDER = "docrepofolder";
+    public static String REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFILEITEM = "docrepofileentry";
     public static String REPOSITORY_ITEMCONTAINER_TYPE_DYNAMIC = "dynamic";
     public static String REPOSITORY_REPOFOLDER_OBJID = "folderObjectId";
 
@@ -101,7 +103,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
             Folder fldr = ecmService.addFolder(parentPathId,name,name);
             res.put("id",fldr.getFolderId());
-            res.put("allowDrag", true);
+            res.put("allowDrag", false);
             res.put("allowDrop", false);
             res.put("text", fldr.getName());
             res.put("title", fldr.getName());
@@ -111,6 +113,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             res.put("singleClickExpand", true);
             res.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
             res.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+            res.put(REPOSITORY_ITEM_TYPE,REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFOLDER);
         } catch (Exception e) {
             e.printStackTrace();
             res.put("success", false);
@@ -272,7 +275,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             for (Folder subFldr : fldrs) {
                 JSONObject subFldrObj = new JSONObject();
                 subFldrObj.put("id", subFldr.getFolderId());
-                subFldrObj.put("allowDrag", true);
+                subFldrObj.put("allowDrag", false);
                 subFldrObj.put("allowDrop", false);
                 subFldrObj.put("text", subFldr.getName());
                 subFldrObj.put("title", subFldr.getName());
@@ -282,6 +285,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 subFldrObj.put("singleClickExpand", true);
                 subFldrObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
                 subFldrObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                subFldrObj.put(REPOSITORY_ITEM_TYPE,REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFOLDER);
 
                 children.put(subFldrObj);
             }
@@ -291,7 +295,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             for (FileEntry fe : fes) {
                 JSONObject feObj = new JSONObject();
                 feObj.put("id", fe.getFileEntryId());
-                feObj.put("allowDrag", true);
+                feObj.put("allowDrag", false);
                 feObj.put("allowDrop", false);
                 feObj.put("text", fe.getTitle());
                 feObj.put("title", fe.getTitle());
@@ -307,6 +311,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 feObj.put("singleClickExpand", false);
                 feObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
                 feObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                feObj.put(REPOSITORY_ITEM_TYPE,REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFILEITEM);
 
                 children.put(feObj);
             }
