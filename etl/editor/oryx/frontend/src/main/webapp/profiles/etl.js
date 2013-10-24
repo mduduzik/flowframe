@@ -22,7 +22,7 @@ $LAB.script("plugins/edit.js").wait();
 $LAB.script("plugins/keysMove.js").wait();
 $LAB.script("plugins/rowlayouting.js").wait();
 $LAB.script("plugins/pluginLoader.js").wait();
-$LAB.script("plugins/file.js").wait();
+$LAB.script("plugins/etl/common/etlfile.js").wait();
 $LAB.script("plugins/Layouter/containerLayouter.js").wait();
 $LAB.script("plugins/Layouter/edgeLayouter.js").wait();
 $LAB.script("plugins/waveThis.js").wait();

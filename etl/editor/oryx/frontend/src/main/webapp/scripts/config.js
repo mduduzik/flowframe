@@ -200,12 +200,23 @@ ORYX.CONFIG.EVENT_MODEL_SAVED =				"model.saved";
 ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE = "register.label.template";
 
 //-- ETL
+ORYX.CONFIG.EVENT_ETL_MODEL_NAMESPACE_NAME     = "etl.model.namespace";
+ORYX.CONFIG.EVENT_ETL_MODEL_CREATED       = "etl.model.created";
+ORYX.CONFIG.EVENT_ETL_MODEL_CREATE       = "etl.model.create";
+ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX = "etl.model.create.";
+ORYX.CONFIG.EVENT_ETL_MODEL_EDIT_PREFIX   = "etl.model.edit.";
+ORYX.CONFIG.EVENT_ETL_MODEL_EDIT   = "etl.model.edit";
+ORYX.CONFIG.EVENT_ETL_MODEL_DELETED       = "etl.model.deleted";
+ORYX.CONFIG.EVENT_ETL_MODEL_DELETE       = "etl.model.delete";
+ORYX.CONFIG.EVENT_ETL_MODEL_DELETE_PREFIX = "etl.model.delete.";
+
 //---- Model Repository
 ORYX.CONFIG.EVENT_ETL_METADATA_CREATED       = "etl.metadata.created";
 ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX = "etl.metadata.create.";
 ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX   = "etl.metadata.edit.";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETED       = "etl.metadata.deleted";
 ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX = "etl.metadata.delete.";
+ORYX.CONFIG.EVENT_ETL_METADATA_DDROP = "etl.metadata.ddrop.";
 
 
 //---- Doc Repository

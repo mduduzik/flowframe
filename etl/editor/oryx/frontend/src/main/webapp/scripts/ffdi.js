@@ -419,6 +419,8 @@ ORYX = Object.extend(ORYX, {
             Ext.getCmp('oryx-loading-panel').show();
         }
 
+        var eventType = config.type;
+
         //Hack: not allowing multiple editors
         if (this.CurrentEditor) { //Close it
             Ext.MessageBox.show({
@@ -451,7 +453,7 @@ ORYX = Object.extend(ORYX, {
         ssConfig_.title = ssConfig.title+' #'+uiId();
 
         //- Create editor
-        var editor = new ORYX.Editor(ssConfig_);
+        var editor = new ORYX.Editor(ssConfig_,config.type);
         this.Editors[editor.layout] = editor;
 
         //- Add to layout
@@ -465,6 +467,9 @@ ORYX = Object.extend(ORYX, {
 
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_TRANS] = {
                id: 'etlTransCanvas',
+               saveNewModelUrl: '/etl/core/transformation/add',
+               editModelUrl: '/etl/core/transformation/edit',
+               removeModelUrl: '/etl/core/transformation/remove',
                title: 'New Transformation',
                iconCls: 'transformation-icon',
                stencilset: {
@@ -476,6 +481,9 @@ ORYX = Object.extend(ORYX, {
 
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_JOB] = {
                id: 'etlJobCanvas',
+               saveNewUrl: '/etl/core/job/add',
+               editModelUrl: '/etl/core/job/edit',
+               removeModelUrl: '/etl/core/job/remove',
                title: 'New Job ',
                iconCls: 'process-icon',
                stencilset: {
@@ -759,7 +767,8 @@ ORYX = Object.extend(ORYX, {
      */
     newTransformation: function(){
         var config = {
-            ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS
+            ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
         };
         this.launchEditor(null,config);
 /*        this.facade.raiseEvent({
@@ -772,7 +781,8 @@ ORYX = Object.extend(ORYX, {
      */
     newJob: function(){
         var config = {
-            ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB
+            ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB,
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
         };
         this.launchEditor(null,config);
 /*        this.facade.raiseEvent({

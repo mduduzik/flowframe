@@ -73,6 +73,9 @@ ORYX.Editor = {
 
     construct: function(config) {
         // initialization.
+        this.config = config;
+        this.mode = config.type;
+
         this._eventsQueue 	= [];
         this.loadedPlugins 	= [];
         this.pluginsData 	= [];
@@ -799,6 +802,8 @@ ORYX.Editor = {
         // create it.
             this._pluginFacade = {
                 getCurrentEditor: function() {return this.layout}.bind(this),
+                getEditorConfiguration: function() {return this.config;}.bind(this),
+                getEditorMode: function() {return this.mode;}.bind(this),
                 getNamespace: function() {return this.namespace;}.bind(this),
                 activatePluginByName:		this.activatePluginByName.bind(this),
                 //deactivatePluginByName:		this.deactivatePluginByName.bind(this),

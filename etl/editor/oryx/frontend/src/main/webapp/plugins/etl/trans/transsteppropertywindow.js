@@ -494,6 +494,8 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
     onSelectionChanged: function (event) {
         /* Event to call afterEdit method */
         //this.grid.stopEditing();
+        if (this.disRegardEvent())
+            return;
 
         /* Selected shapes */
         this.shapeSelection.shapes = event.elements;

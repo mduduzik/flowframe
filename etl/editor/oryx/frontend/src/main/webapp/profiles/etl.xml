@@ -23,8 +23,8 @@
 		<plugin engaged="true" name="ORYX.Plugins.Arrangement" source="arrangement.js">
 			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
 		</plugin>
-		<plugin engaged="true" name="ORYX.Plugins.File" source="file.js"/>
-		<plugin engaged="true" name="ORYX.Plugins.Save" source="file.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.File" source="etl/common/file.js"/>
+		<plugin engaged="true" name="ORYX.Plugins.Save" source="etl/common/file.js"/>
         <plugin engaged="true" name="ORYX.Plugins.New" source="new.js"/>
 		
 		<plugin engaged="true" name="ORYX.Plugins.View" source="view.js">

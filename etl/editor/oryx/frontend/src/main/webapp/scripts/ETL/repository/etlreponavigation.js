@@ -1468,14 +1468,15 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     onMetadataDrop: function (event, source) {
         if (!this.application.CurrentEditor)
             return;
-        var facade = this.application.CurrentEditor.getCanvasFacade();
-        var currentCanvas = facade.getCanvas();
+
+        var currentCanvasFacade =  this.application.CurrentEditor.canvasFacade;
+        var currentCanvas = currentCanvasFacade.getCanvas();
 
         var dragZone = source.dragZone;
         var target = source.target;
         var event = source.event;
 
-        var coord = facade.eventCoordinates(event.browserEvent);
+        var coord = currentCanvasFacade.eventCoordinates(event.browserEvent);
         var aShapes = currentCanvas.getAbstractShapesAtPosition(coord);
 
         if (aShapes.length <= 0) {
@@ -1493,10 +1494,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             /**
              * Get stencils supprting this metadata
              */
-            var stencilSet = facade.getStencilSets()[option.namespace];
+            var stencilSet = currentCanvasFacade.getStencilSets()[currentCanvasFacade.getNamespace()];
 
             // Get Stencils from Stencilset
-            var stencils = stencilSet.stencils(currentCanvas.getStencil(), facade.getRules());
+            var stencils = stencilSet.stencils(currentCanvas.getStencil(), currentCanvasFacade.getRules());
             var treeGroups = new Hash();
 
             // Get stencils that support metadata 'option.type'
@@ -1599,25 +1600,25 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     // this.shape.update();
 
                                     this.facade.setSelection([ this.shape ]);
-                                    currentCanvas.update();
+                                    this.facade.getCanvas().update();
                                     this.facade.updateSelection();
 
                                 },
                                 rollback: function () {
-                                    this.facade.deleteShape(this.shape);
+                                    currentCanvasFacade.deleteShape(this.shape);
 
                                     // this.currentParent.update();
 
                                     this.facade.setSelection(this.selection.without(this.shape));
-                                    currentCanvas.update();
+                                    this.facade.getCanvas().update();
                                     this.facade.updateSelection();
                                 }
                             });
-                            var command = new commandClass(option_, this._currentParent, this._canAttach, coord, facade);
-                            facade.executeCommands([command]);
+                            var command = new commandClass(option_, this._currentParent, this._canAttach, coord, currentCanvasFacade);
+                            currentCanvasFacade.executeCommands([command]);
 
                             //--Update metadata on shape
-                            var newShape = facade.getSelection()[0];
+                            var newShape = currentCanvasFacade.getSelection()[0];
                             var commandClass = ORYX.Core.Command.extend({
                                 construct: function (facade, metadatatype, metadataName, metadataObjId) {
                                     ;
@@ -1651,8 +1652,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             var metadataType = dragZone.dragData.mainNode.attributes['itemtype'];
                             var metadataName = dragZone.dragData.mainNode.text;
                             var metadataObjId = dragZone.dragData.mainNode.id;
-                            command = new commandClass(facade, metadataType, metadataName, metadataObjId);
-                            facade.executeCommands([ command ]);
+                            command = new commandClass(currentCanvasFacade, metadataType, metadataName, metadataObjId);
+                            currentCanvasFacade.executeCommands([ command ]);
 
 
                             newURLWin.close();
