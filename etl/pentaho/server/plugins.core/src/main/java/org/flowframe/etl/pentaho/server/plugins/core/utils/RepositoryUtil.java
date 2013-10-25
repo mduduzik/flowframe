@@ -159,7 +159,7 @@ public class RepositoryUtil {
 
             if (svgModel != null) {
                 NotePadMeta svgNote = new NotePadMeta();
-                svgNote.setNote(jsonModel);
+                svgNote.setNote(svgModel);
                 transMeta.addNote(1,svgNote);
             }
 

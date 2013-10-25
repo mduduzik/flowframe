@@ -249,6 +249,11 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
                     title: title,
                     dirPathId: dirPathId
 				});
+                this.facade.raiseEvent({
+                    type:ORYX.CONFIG.EVENT_ETL_MODEL_CREATED,
+                    title: title,
+                    dirPathId: dirPathId
+                });
 				//show saved status
 				this.facade.raiseEvent({
 						type:ORYX.CONFIG.EVENT_LOADING_STATUS,
