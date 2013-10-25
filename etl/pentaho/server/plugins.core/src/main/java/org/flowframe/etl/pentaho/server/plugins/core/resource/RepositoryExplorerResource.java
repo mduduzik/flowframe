@@ -50,6 +50,8 @@ public class RepositoryExplorerResource {
     public static String REPOSITORY_ITEM_TYPE_DATABASE = "database";
     public static String REPOSITORY_ITEM_TYPE_CSVMETA = "csvmeta";
     public static String REPOSITORY_ITEM_TYPE_EXCELMETA = "excelmeta";
+    public static String REPOSITORY_ITEM_TYPE_TRANSFORMATION = "transformation";
+    public static String REPOSITORY_ITEM_TYPE_JOB = "job";
     public static String REPOSITORY_ITEM_PARENTFOLDER_OBJID = "folderObjectId";
 
     public static String REPOSITORY_ITEMCONTAINER_TYPE = "itemcontainertype";
@@ -137,12 +139,12 @@ public class RepositoryExplorerResource {
         //Transformations node
         if (nodeId != null && "transformations".equals(nodeId)) {
             json = generateTransformationsJsonTreeData(true, true, repository, tenant);
-            res = json.toString();
+            res = json.getJSONArray("children").toString();
         }
         //Job node
-        if (nodeId != null && "jobs".equals(nodeId)) {
+        else if (nodeId != null && "jobs".equals(nodeId)) {
             json = generateJobsJsonTreeData(true, true, repository, tenant);
-            res = json.toString();
+            res = json.getJSONArray("children").toString();
         }
         //Root
         else if (itemtype == null || "undefined".equals(itemtype)) {
@@ -220,6 +222,7 @@ public class RepositoryExplorerResource {
         transformations.put("hasChildren", true);
         transformations.put("singleClickExpand", true);
         transformations.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
+        transformations.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_TRANSFORMATION + ".folder");
 
         JSONArray transChildren = new JSONArray();
         transformations.put("children", transChildren);
@@ -230,6 +233,10 @@ public class RepositoryExplorerResource {
             JSONObject subDirDir = generateTransformationsRecursiveSubTreeData(ondemand, excludeChildrenForThisNode, repo, subDir_);
             transChildren.put(subDirDir);
         }
+
+        //Process trans transformations
+        generateJsonTreeFromTransformationArtifacts(false/*always include leaves for subdir*/, repo, transDir, transformations, transSubDirs, transChildren);
+
 
         return transformations;
     }
@@ -248,6 +255,7 @@ public class RepositoryExplorerResource {
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+        subDir.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_TRANSFORMATION + ".folder");
 
         List<RepositoryDirectoryInterface> subDirs = dir.getChildren();
 
@@ -293,6 +301,7 @@ public class RepositoryExplorerResource {
                 transObj.put("hasChildren", true);
                 transObj.put("singleClickExpand", true);
                 transObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                transObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
                 transObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
                 childrenArray.put(transObj);
 
@@ -426,6 +435,7 @@ public class RepositoryExplorerResource {
         transformations.put("hasChildren", true);
         transformations.put("singleClickExpand", true);
         transformations.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
+        transformations.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB+".folder");
 
         JSONArray transChildren = new JSONArray();
         transformations.put("children", transChildren);
@@ -454,6 +464,7 @@ public class RepositoryExplorerResource {
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+        subDir.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB+".folder");
 
         List<RepositoryDirectoryInterface> subDirs = dir.getChildren();
 
@@ -499,6 +510,7 @@ public class RepositoryExplorerResource {
                 transObj.put("hasChildren", true);
                 transObj.put("singleClickExpand", true);
                 transObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                transObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB);
                 transObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
                 childrenArray.put(transObj);
 

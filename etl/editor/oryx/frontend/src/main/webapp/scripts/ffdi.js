@@ -760,6 +760,9 @@ ORYX = Object.extend(ORYX, {
         window.addEventListener("resize", function(event){this.toolbar.calcSlices()}.bind(this), false);
         window.addEventListener("onresize", function(event){this.toolbar.calcSlices()}.bind(this), false);
     },
+    //{{
+    //  Transformations
+    //}}
     /**
      * New transformation
      */
@@ -769,10 +772,11 @@ ORYX = Object.extend(ORYX, {
             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
         };
         this.launchEditor(config);
-/*        this.facade.raiseEvent({
-            type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
-            forceExecution: true
-        },config);*/
+    },
+    /**
+     * Delete transformation
+     */
+    deleteTransformation: function(config){
     },
     /**
      * New job

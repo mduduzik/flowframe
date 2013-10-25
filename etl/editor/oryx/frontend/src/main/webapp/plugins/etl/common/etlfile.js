@@ -251,6 +251,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 				});
                 this.facade.raiseEvent({
                     type:ORYX.CONFIG.EVENT_ETL_MODEL_CREATED,
+                    forceExecution: true,
                     title: title,
                     dirPathId: dirPathId
                 });

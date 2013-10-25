@@ -259,6 +259,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         this.loader.on("beforeload", function (treeLoader, node) {
             //this.baseParams.category = node.attributes.category;
             //this.baseParams.userid = 'test';
+            this.loader.baseParams.itemtype = undefined;
+            this.loader.baseParams.folderObjectId = undefined;
+
+
             if (node.attributes.itemtype)
                 this.loader.baseParams.itemtype = node.attributes.itemtype;
             if (node.attributes.folderObjectId)
@@ -550,7 +554,185 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         })
         this.repofolder_csvmeta_contextmenu.on('hide', this.onContextHide, this);
 
-        this.repoitem_csvmeta_contextmenu = new Ext.menu.Menu({
+        //{{
+        //  Transformations and Folders
+        //}}
+        this.repoitem_transformation_contextmenu = new Ext.menu.Menu({
+            id: 'transformation',
+            items: [
+                {
+                    id: 'addTransformation',
+                    icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                    text: 'Add Transformation',
+                    scope: this,
+                    handler: function () {
+                        this.application.newTransformation();
+/*                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Transformation',
+                            forceExecution: true
+                        };
+                        this.application.handleEvents(eventData, {
+                                folderId: this.ctxNode.attributes['folderObjectId'],
+                                sourceNavNodeId: this.ctxNode.id}
+                        );*/
+                    }.bind(this)
+                },
+                {
+                    id: 'editTransformation',
+                    text: 'Edit Transformation',
+                    icon: '/etl/images/conxbi/etl/modify.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT_PREFIX + 'Transformation',
+                            forceExecution: true
+                        };
+                        this.application.handleEvents(eventData, {
+                                title: 'Transformation ' + this.ctxNode.attributes['title'],
+                                sourceNavNodeId: this.ctxNode.id
+                            }
+                        );
+                    }.bind(this)
+                },
+                {
+                    id: 'deleteTransformation',
+                    text: 'Delete Transformation',
+                    icon: '/etl/images/conxbi/etl/connection-delete.png',
+                    scope: this,
+                    handler: function () {
+                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                            // here you can put whatever you need as header. For instance:
+                            //this.defaultPostHeader = "application/json; charset=utf-8;";
+                            this.defaultHeaders = {
+                                userid: 'test'
+                            };
+                        });
+                        var parentNode_ = this.ctxNode.parentNode;
+                        Ext.Ajax.request({
+                            url: '/etl/core/transmeta/delete',
+                            method: 'POST',
+                            params: {
+                                objectId: this.ctxNode.id
+                            },
+                            success: function (response, opts) {
+                                //Refresh this.ctxNode
+                                if (parentNode_.attributes)
+                                    parentNode_.attributes.children = false;
+                                parentNode_.reload();
+                            },
+                            failure: function (response, opts) {
+                            }
+                        });
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        //this.mainEditorPanel.removeAll();
+                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                        this.mainEditorPanel.setTitle("New Folder");
+                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                        this.mainTabPanel.add(this.mainEditorPanel);
+                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                        //this.newDBWiz.show();
+                    }.bind(this)
+                }
+            ]
+        });
+        this.repoitem_transformation_contextmenu.on('hide', this.onContextHide, this);
+
+        this.repofolder_transformation_contextmenu = new Ext.menu.Menu({
+            id: 'transformation.folder',
+            items: [
+                {
+                    id: 'addCsvMeta',
+                    icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                    text: 'Add Transformation',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        var eventData = {
+                            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Transformation',
+                            forceExecution: true
+                        };
+                        this.application.handleEvents(eventData, {
+                                folderId: this.ctxNode.attributes['folderObjectId'],
+                                sourceNavNodeId: this.ctxNode.id}
+                        );
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    id: 'createFolder',
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.select();
+                        //this.mainEditorPanel.removeAll();
+                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                        this.mainEditorPanel.setTitle("New Folder");
+                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                        this.mainTabPanel.add(this.mainEditorPanel);
+                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                        //this.newDBWiz.show();
+                    }.bind(this)
+                },
+                {
+                    id: 'deleteFolder',
+                    text: 'Delete Folder',
+                    icon: '/etl/images/conxbi/etl/folder_delete.png',
+                    scope: this,
+                    handler: function () {
+                        var requestWiz = this;
+                        var requestCtxNode = requestWiz.ctxNode;
+
+                        var idArray = requestCtxNode.id.split('/');
+                        var dirId = idArray[1];
+                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                            // here you can put whatever you need as header. For instance:
+                            //this.defaultPostHeader = "application/json; charset=utf-8;";
+                            this.defaultHeaders = {
+                                userid: 'test',
+                                itemtype: 'transformation',
+                                folderObjectId: dirId
+                            };
+                        });
+                        Ext.Ajax.request({
+                            url: '/etl/core/explorer/deletedir',
+                            method: 'DELETE',
+                            success: function (response, opts) {
+                                //Refresh this.ctxNode
+                                if (requestCtxNode.attributes)
+                                    requestCtxNode.attributes.children = false;
+                                requestCtxNode.reload();
+                            },
+                            failure: function (response, opts) {
+                            }
+                        });
+                    }.bind(this)
+                },
+                {
+                    id: 'refreshFolder',
+                    text: 'Refresh Folder',
+                    icon: '/etl/images/conxbi/etl/refresh.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.attributes.children = false;
+                        this.ctxNode.reload();
+                    }.bind(this)
+                }
+            ]
+        })
+        this.repofolder_transformation_contextmenu.on('hide', this.onContextHide, this);
+
+/*        this.repoitem_csvmeta_contextmenu = new Ext.menu.Menu({
             id: 'csvmeta',
             items: [
                 {
@@ -626,7 +808,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 }
             ]
         });
-        this.repoitem_csvmeta_contextmenu.on('hide', this.onContextHide, this);
+        this.repoitem_csvmeta_contextmenu.on('hide', this.onContextHide, this);*/
 
 
         //Wizards
@@ -671,6 +853,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
 
         var ctxNode_ = this.getNodeById(ctxNodeId);
         ctxNode_.select();
+
+        ctxNode_.attributes.children = false;
 
         Ext.MessageBox.show({
             title: 'Saved',
@@ -984,6 +1168,12 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             this.menu = this.repofolder_csvmeta_contextmenu;
             if (node.id === 'metadata.excelmeta')
                 this.getItemById(this.menu,'deleteFolder').setDisabled(true);
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'transformation') {
+            this.menu = this.repoitem_transformation_contextmenu;
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'transformation.folder') {
+            this.menu = this.repofolder_transformation_contextmenu;
         }
         else
             return;
