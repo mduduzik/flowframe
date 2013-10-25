@@ -414,12 +414,10 @@ ORYX = Object.extend(ORYX, {
     //  Default Editors Config & Launcher
     //
     //}}
-    launchEditor: function(event,config) {
+    launchEditor: function(config) {
         if(Ext.getCmp('oryx-loading-panel')){
             Ext.getCmp('oryx-loading-panel').show();
         }
-
-        var eventType = config.type;
 
         //Hack: not allowing multiple editors
         if (this.CurrentEditor) { //Close it
@@ -447,13 +445,13 @@ ORYX = Object.extend(ORYX, {
         var ssNameSpace = config.ssns;
         var ssConfig = DEFAULT_EDITORS[ssNameSpace];
 
-        var ssConfig_ = {};
+        var ssConfig_ = {type:config.type};
         Ext.apply(ssConfig_,ssConfig);
 
         ssConfig_.title = ssConfig.title+' #'+uiId();
 
         //- Create editor
-        var editor = new ORYX.Editor(ssConfig_,config.type);
+        var editor = new ORYX.Editor(ssConfig_);
         this.Editors[editor.layout] = editor;
 
         //- Add to layout
@@ -467,9 +465,9 @@ ORYX = Object.extend(ORYX, {
 
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_TRANS] = {
                id: 'etlTransCanvas',
-               saveNewModelUrl: '/etl/core/transformation/add',
-               editModelUrl: '/etl/core/transformation/edit',
-               removeModelUrl: '/etl/core/transformation/remove',
+               saveNewModelUrl: '/etl/core/transmeta/add',
+               editModelUrl: '/etl/core/transmeta/edit',
+               removeModelUrl: '/etl/core/transmeta/remove',
                title: 'New Transformation',
                iconCls: 'transformation-icon',
                stencilset: {
@@ -481,9 +479,9 @@ ORYX = Object.extend(ORYX, {
 
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_JOB] = {
                id: 'etlJobCanvas',
-               saveNewUrl: '/etl/core/job/add',
-               editModelUrl: '/etl/core/job/edit',
-               removeModelUrl: '/etl/core/job/remove',
+               saveNewUrl: '/etl/core/jobmeta/add',
+               editModelUrl: '/etl/core/jobmeta/edit',
+               removeModelUrl: '/etl/core/jobmeta/remove',
                title: 'New Job ',
                iconCls: 'process-icon',
                stencilset: {
@@ -770,7 +768,7 @@ ORYX = Object.extend(ORYX, {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
         };
-        this.launchEditor(null,config);
+        this.launchEditor(config);
 /*        this.facade.raiseEvent({
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
             forceExecution: true
@@ -784,7 +782,7 @@ ORYX = Object.extend(ORYX, {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
         };
-        this.launchEditor(null,config);
+        this.launchEditor(config);
 /*        this.facade.raiseEvent({
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
             forceExecution: true

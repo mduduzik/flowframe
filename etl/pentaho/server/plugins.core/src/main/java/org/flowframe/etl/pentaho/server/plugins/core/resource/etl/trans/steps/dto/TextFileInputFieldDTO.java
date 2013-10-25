@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto;
 
 import flexjson.JSONSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.BaseDTO;
 import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
 

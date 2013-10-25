@@ -145,7 +145,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 
             // Create a new window
             win = new Ext.Window({
-                id:		'Propertie_Window',
+                id:		'Properties_Window',
                 width:	'auto',
                 height:	'auto',
                 title:	forceNew ? ORYX.I18N.Save.saveAsTitle : ORYX.I18N.Save.save,
@@ -217,7 +217,11 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
                 asynchronous: false,
                 parameters: params,
 			onSuccess: (function(transport) {
-				var loc = transport.getResponseHeader("location");
+                var data = Ext.decode(transport.responseText);
+                var title = data.name;
+                var dirPathId = data.subDirPathId;
+
+/*				var loc = transport.getResponseHeader("location");
 				if (loc) {
 					this.processURI = loc;
 				}
@@ -226,7 +230,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 				}
 				
 				var modelUri="/model"+this.processURI.split("model")[1].replace(/self\/?$/i,"");
-				location.hash="#"+modelUri;
+				location.hash="#"+modelUri;*/
 				
 				if( forceNew ){
 					var newURLWin = new Ext.Window({
@@ -234,14 +238,16 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 						bodyStyle:	"background:white;padding:10px", 
 						width:		'auto', 
 						height:		'auto',
-						html:"<div style='font-weight:bold;margin-bottom:10px'>"+ORYX.I18N.Save.saveAsHint+"</div><span><a href='" + loc +"' target='_blank'>" + loc + "</a></span>",
+						html:"<div style='font-weight:bold;margin-bottom:10px'>"+ORYX.I18N.Save.saveAsHint+"</div><span>"+title+"</span>",
 						buttons:[{text:'Ok',handler:function(){newURLWin.destroy()}}]
 					});
 					newURLWin.show();
 				}
 				//raise saved event
 				this.facade.raiseEvent({
-					type:ORYX.CONFIG.EVENT_MODEL_SAVED
+					type:ORYX.CONFIG.EVENT_MODEL_SAVED,
+                    title: title,
+                    dirPathId: dirPathId
 				});
 				//show saved status
 				this.facade.raiseEvent({

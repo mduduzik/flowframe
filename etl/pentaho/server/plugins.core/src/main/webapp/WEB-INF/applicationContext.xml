@@ -82,6 +82,10 @@
     <bean id="transformationJobServiceResource"
           class="org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource"
           scope="request"/>
+    <bean id="transformationMetaResource"
+          class="org.flowframe.etl.pentaho.server.plugins.core.resource.TransformationMetaResource"
+          scope="request"/>
+
     <!--
        CSVInput
     -->

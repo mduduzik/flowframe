@@ -3,6 +3,7 @@ package org.flowframe.etl.pentaho.server.plugins.core.utils;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.etl.pentaho.server.repository.util.TransformationMetaUtil;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.pentaho.di.core.NotePadMeta;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.job.entry.JobEntryCopy;
@@ -126,6 +127,43 @@ public class RepositoryUtil {
             }
             transMeta.setRepositoryDirectory(draftsDir);
             repo.getRepositoryTransDelegate().saveTransformation(transMeta,"drafts trans",null,true);
+
+            return transMeta.getPathAndName();
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    static public synchronized String addOrReplaceTransMeta(String dirPathId,
+                                                            ICustomRepository repo,
+                                                            TransMeta transMeta,
+                                                            String jsonModel,
+                                                            String svgModel) {
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface dir = getDirectory(repo,dirPathId);
+
+            //-- do transmeta
+            ObjectId transId = repo.getRepositoryTransDelegate().getTransformationID(transMeta.getName(), dir.getObjectId());
+            if (transId != null) {
+                repo.deleteTransformation(transId);
+            }
+            transMeta.setRepositoryDirectory(dir);
+
+            //-- do json and svg
+            if (jsonModel != null) {
+                NotePadMeta jsonNote = new NotePadMeta();
+                jsonNote.setNote(jsonModel);
+                transMeta.addNote(0,jsonNote);
+            }
+
+            if (svgModel != null) {
+                NotePadMeta svgNote = new NotePadMeta();
+                svgNote.setNote(jsonModel);
+                transMeta.addNote(1,svgNote);
+            }
+
+            repo.getRepositoryTransDelegate().saveTransformation(transMeta,transMeta.getDescription(),null,true);
 
             return transMeta.getPathAndName();
         } catch (KettleException e) {

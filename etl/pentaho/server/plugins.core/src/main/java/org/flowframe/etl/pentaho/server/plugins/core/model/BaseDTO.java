@@ -1,4 +1,4 @@
-package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto;
+package org.flowframe.etl.pentaho.server.plugins.core.model;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
@@ -17,6 +17,7 @@ import java.io.Serializable;
 abstract public class BaseDTO implements Serializable {
 
     private String subDirObjId;
+    private String subDirPathId;
     private String pathId;
 
     public String toJSON() {
@@ -46,5 +47,13 @@ abstract public class BaseDTO implements Serializable {
 
     public void setPathId(String pathId) {
         this.pathId = pathId;
+    }
+
+    public String getSubDirPathId() {
+        return subDirPathId;
+    }
+
+    public void setSubDirPathId(String subDirPathId) {
+        this.subDirPathId = subDirPathId;
     }
 }

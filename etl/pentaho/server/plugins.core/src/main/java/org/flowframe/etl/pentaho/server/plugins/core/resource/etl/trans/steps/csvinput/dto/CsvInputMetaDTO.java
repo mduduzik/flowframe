@@ -4,7 +4,7 @@ import flexjson.JSONDeserializer;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto.BaseDTO;
+import org.flowframe.etl.pentaho.server.plugins.core.model.BaseDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;

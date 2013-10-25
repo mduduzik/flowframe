@@ -3,6 +3,7 @@ package org.flowframe.etl.pentaho.server.plugins.core;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseMetaResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.DatabaseTypeResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.RepositoryExplorerResource;
+import org.flowframe.etl.pentaho.server.plugins.core.resource.TransformationMetaResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource;
@@ -37,6 +38,7 @@ public class MainApplication extends ResourceConfig {
         register(DocLibExplorerResource.class);
         register(CharsetEncodingResource.class);
         register(CSVInputDialogDelegateResource.class);
+        register(TransformationMetaResource.class);
         register(TransformationJobServiceResource.class);
     }
 }
