@@ -73,6 +73,45 @@ public class TransformationMetaResource {
         return dto.toJSON();
     }
 
+    @Path("/update")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public String update(@FormParam("data") String jsonModel,
+                      @FormParam("svg") String svgModel,
+                      @FormParam("title") String title,
+                      @FormParam("summary") String summary,
+                      @FormParam("type") String namespace,
+                      @FormParam("pathId") String pathId,
+                      @FormParam("dirPathId") String dirPathId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
+        //TODO: Hack
+        Organization tenant = new Organization();
+        tenant.setId(1L);
+
+        RepositoryDirectoryInterface transRootDir = null;
+        transRootDir = repository.provideTransDirectoryForTenant(tenant);
+        String transRootDirPathId = RepositoryUtil.generatePathID(transRootDir);
+
+        if (dirPathId == null) {
+            dirPathId = RepositoryUtil.generatePathID(transRootDir);
+        }
+
+
+        //-- Translate model json into Meta
+        TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, jsonModel);
+        transMeta.setName(title);
+        transMeta.setDescription(summary);
+
+        //-- Add/Update
+        String transNameWithDirPath = RepositoryUtil.addOrReplaceTransMeta(dirPathId, repository, transMeta,jsonModel,svgModel);
+        TransMetaDTO dto = new TransMetaDTO(transMeta,dirPathId,jsonModel,svgModel);
+
+        //TODO: hack
+        if (transRootDirPathId.equals(dirPathId))
+            dto.setSubDirPathId("transformations");
+
+        return dto.toJSON();
+    }
+
     @Path("/delete")
     @POST
     public Response delete(@FormParam("objectId") String objectId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {

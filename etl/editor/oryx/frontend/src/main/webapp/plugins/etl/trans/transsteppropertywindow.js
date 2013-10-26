@@ -34,7 +34,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
         this.initPropGrid();
     },
     disRegardEvent: function() {
-        return !this.facade.getCurrentEditor() || !this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns);
+        return !this.isCompatibleStencilSet(this.facade.getNamespace());
     },
     isCompatibleStencilSet: function(ssnamespace) {
       return (this.ns === ssnamespace);
@@ -239,7 +239,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
         if (!this.facade.getCurrentEditor())
             return;
 
-        this.shapeSelection.shapes = [this.facade.getCurrentEditor().canvas];
+        this.shapeSelection.shapes = [this.facade.getCanvas()];
 
         this.setPropertyWindowTitle();
         this.identifyCommonProperties();
@@ -348,7 +348,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
                     }
                 }.bind(this));
                 this.facade.setSelection(this.selectedElements);
-                this.facade.getCurrentEditor().canvas.update();
+                this.facade.getCanvas().update();
                 this.facade.updateSelection();
             },
             rollback: function () {
@@ -356,7 +356,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
                     shape.setProperty(this.key, this.oldValues[shape.getId()]);
                 }.bind(this));
                 this.facade.setSelection(this.selectedElements);
-                this.facade.getCurrentEditor().canvas.update();
+                this.facade.getCanvas().update();
                 this.facade.updateSelection();
             }
         })
@@ -398,7 +398,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
             value: value
         });
 
-        this.facade.getCurrentEditor().canvas.update();
+        this.facade.getCanvas().update();
 
     },
 
@@ -411,7 +411,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
             }
         }.bind(this));
 
-        this.facade.getCurrentEditor().canvas.update();
+        this.facade.getCanvas().update();
     },
 
     // extended by Kerstin (start)
@@ -505,7 +505,7 @@ ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow = {
             this.properties = [];
             this.dataSource.loadData(this.properties);
             return;
-            //this.shapeSelection.shapes = [this.facade.getCurrentEditor().canvas];
+            //this.shapeSelection.shapes = [this.facade.getCanvas()];
         }
 
         /* subselection available */

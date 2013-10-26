@@ -96,11 +96,11 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
         var svgDOM 		= DataManager.serialize(svgClone);
         this.serializedDOM = Ext.encode(this.facade.getJSON());
 
+        // Get the stencilset
+        var ss = this.facade.getStencilSets().values()[0];
+
         if (editMode === ORYX.CONFIG.EVENT_ETL_MODEL_CREATE) {//Saving new model
             reqURI = editorConfig.saveNewModelUrl;
-
-            // Get the stencilset
-            var ss = this.facade.getStencilSets().values()[0]
 
             // Define Default values
             var defaultData = {title:ORYX.I18N.Save.newProcess, summary:'', type:ss.title(), url: reqURI, namespace: ss.namespace() }
@@ -170,6 +170,12 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 
             win.show();
         }
+        else if (editMode === ORYX.CONFIG.EVENT_ETL_MODEL_EDIT) {
+            var editorConfig = this.facade.getEditorConfiguration();
+            // Send the request out
+            reqURI = editorConfig.updateModelUrl;
+            this.sendSaveRequest( reqURI, { data: this.serializedDOM, svg: svgDOM, title: editorConfig.title, summary: '', type: ss.namespace(), dirPathId: editorConfig.repoParentDirPathId, pathId: editorConfig.repoPathId}, false);
+        }
 
 		
 /*		if (this.processURI) {
@@ -210,7 +216,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
     },
 	
 	sendSaveRequest: function(url, params, forceNew){
-
+        var editMode = this.facade.getEditorMode();
 		// Send the request to the server.
 		new Ajax.Request(url, {
                 method: 'POST',
@@ -249,12 +255,14 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
                     title: title,
                     dirPathId: dirPathId
 				});
-                this.facade.raiseEvent({
-                    type:ORYX.CONFIG.EVENT_ETL_MODEL_CREATED,
-                    forceExecution: true,
-                    title: title,
-                    dirPathId: dirPathId
-                });
+                if (editMode === ORYX.CONFIG.EVENT_ETL_MODEL_CREATE) {
+                    this.facade.raiseEvent({
+                        type:ORYX.CONFIG.EVENT_ETL_MODEL_CREATED,
+                        forceExecution: true,
+                        title: title,
+                        dirPathId: dirPathId
+                    });
+                }
 				//show saved status
 				this.facade.raiseEvent({
 						type:ORYX.CONFIG.EVENT_LOADING_STATUS,
@@ -291,6 +299,12 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
      * Saves the current process to the server.
      */
     save: function(forceNew, event){
+        var undoStack = this.facade.getUndoRedoManager().redoStack;
+        if (this.facade.getEditorConfiguration().type === ORYX.CONFIG.EVENT_ETL_MODEL_EDIT && undoStack.length === 0) {
+            var title = this.facade.getEditorConfiguration().title;
+            Ext.ux.Toast.msg('Save not necessary', '<b>{0}</b> has no changes pending', title);
+           return;
+        }
     
         // raise loading enable event
         this.facade.raiseEvent({

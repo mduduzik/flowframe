@@ -600,8 +600,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                 objectId: this.ctxNode.id
                             },
                             success: function (response, opts) {
-                               var data = Ext.decode(response.responseText);
-                                application_.editTransformation(data.name,data.jsonModel);
+                               var data = Ext.decode(response.responseText);;
+                                application_.editTransformation(data.name,data.pathId,data.subDirPathId,data.jsonModel);
                             },
                             failure: function (response, opts) {
                             }

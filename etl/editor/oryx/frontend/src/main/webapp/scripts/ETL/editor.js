@@ -71,6 +71,9 @@ ORYX.Editor = {
     // Defines the current zoom level
     zoomLevel:1.0,
 
+    // Redo/Undo
+    redoundo: undefined,
+
     construct: function(config) {
         // initialization.
         this.config = config;
@@ -801,6 +804,8 @@ ORYX.Editor = {
 
         // create it.
             this._pluginFacade = {
+                getUndoRedoManager: function() {return this.redoundo;}.bind(this),
+                setUndoRedoManager: function(redoundo) {this.redoundo = redoundo;}.bind(this),
                 getCurrentEditor: function() {return this.layout}.bind(this),
                 getEditorConfiguration: function() {return this.config;}.bind(this),
                 getEditorMode: function() {return this.mode;}.bind(this),

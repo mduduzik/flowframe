@@ -475,7 +475,7 @@ ORYX = Object.extend(ORYX, {
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_TRANS] = {
                id: 'etlTransCanvas',
                saveNewModelUrl: '/etl/core/transmeta/add',
-               editModelUrl: '/etl/core/transmeta/edit',
+               updateModelUrl: '/etl/core/transmeta/update',
                removeModelUrl: '/etl/core/transmeta/remove',
                title: 'New Transformation',
                iconCls: 'transformation-icon',
@@ -489,7 +489,7 @@ ORYX = Object.extend(ORYX, {
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_JOB] = {
                id: 'etlJobCanvas',
                saveNewUrl: '/etl/core/jobmeta/add',
-               editModelUrl: '/etl/core/jobmeta/edit',
+               updateModelUrl: '/etl/core/jobmeta/update',
                removeModelUrl: '/etl/core/jobmeta/remove',
                title: 'New Job ',
                iconCls: 'process-icon',
@@ -785,11 +785,13 @@ ORYX = Object.extend(ORYX, {
     /**
      * Edit transformation
      */
-    editTransformation: function(title,jsonModel){
+    editTransformation: function(title,repoPathId,repoParentDirPathId,jsonModel){
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
             title: title,
+            repoPathId: repoPathId,
+            repoParentDirPathId: repoParentDirPathId,
             jsonModel: jsonModel
         };
         this.launchEditor(config);
