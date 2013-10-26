@@ -83,4 +83,20 @@ public class TransformationMetaResource {
 
         return Response.ok("Transformation " + transMeta.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
+
+    @Path("/get")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String get(@QueryParam("objectId") String objectId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
+        LongObjectId longObjectId = new LongObjectId(Long.valueOf(objectId));
+        TransMeta transMeta = repository.loadTransformation(longObjectId, null);
+
+        String dirPathId = RepositoryUtil.generatePathID(transMeta.getRepositoryDirectory());
+
+        String jsonModel = transMeta.getNote(0).toString();
+        String svgModel = transMeta.getNote(1).toString();
+        TransMetaDTO dto = new TransMetaDTO(transMeta,dirPathId,jsonModel,svgModel);
+
+        return dto.toJSON();
+    }
 }

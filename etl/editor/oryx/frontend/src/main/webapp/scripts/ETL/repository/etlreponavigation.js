@@ -584,16 +584,28 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     icon: '/etl/images/conxbi/etl/modify.gif',
                     scope: this,
                     handler: function () {
-                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT_PREFIX + 'Transformation',
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                title: 'Transformation ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id
+                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                            // here you can put whatever you need as header. For instance:
+                            //this.defaultPostHeader = "application/json; charset=utf-8;";
+                            this.defaultHeaders = {
+                                userid: 'test'
+                            };
+                        });
+                        var node_ = this.ctxNode;
+                        var application_ = this.application;
+                        Ext.Ajax.request({
+                            url: '/etl/core/transmeta/get',
+                            method: 'GET',
+                            params: {
+                                objectId: this.ctxNode.id
+                            },
+                            success: function (response, opts) {
+                               var data = Ext.decode(response.responseText);
+                                application_.editTransformation(data.name,data.jsonModel);
+                            },
+                            failure: function (response, opts) {
                             }
-                        );
+                        });
                     }.bind(this)
                 },
                 {

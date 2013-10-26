@@ -448,7 +448,10 @@ ORYX = Object.extend(ORYX, {
         var ssConfig_ = {type:config.type};
         Ext.apply(ssConfig_,ssConfig);
 
-        ssConfig_.title = ssConfig.title+' #'+uiId();
+        if (config.title)
+            ssConfig_.title = config.title;
+        else
+            ssConfig_.title = ssConfig.title+' #'+uiId();
 
         //- Create editor
         var editor = new ORYX.Editor(ssConfig_);
@@ -456,6 +459,12 @@ ORYX = Object.extend(ORYX, {
 
         //- Add to layout
         this.addToRegion('center', editor.layout, ssConfig_.title);
+
+        //- Load model  if editing
+        if (config.type === ORYX.CONFIG.EVENT_ETL_MODEL_EDIT) {
+            var jsonObject = Ext.decode(config.jsonModel);
+            editor._pluginFacade.importJSON(jsonObject,true);
+        }
     },
     /**
      * Create configs
@@ -774,9 +783,16 @@ ORYX = Object.extend(ORYX, {
         this.launchEditor(config);
     },
     /**
-     * Delete transformation
+     * Edit transformation
      */
-    deleteTransformation: function(config){
+    editTransformation: function(title,jsonModel){
+        var config = {
+            ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
+            title: title,
+            jsonModel: jsonModel
+        };
+        this.launchEditor(config);
     },
     /**
      * New job
