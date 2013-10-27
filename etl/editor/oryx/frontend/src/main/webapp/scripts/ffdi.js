@@ -447,6 +447,8 @@ ORYX = Object.extend(ORYX, {
 
         var ssConfig_ = {type:config.type};
         Ext.apply(ssConfig_,ssConfig);
+        Ext.apply(ssConfig_,config);
+
 
         if (config.title)
             ssConfig_.title = config.title;
@@ -775,10 +777,11 @@ ORYX = Object.extend(ORYX, {
     /**
      * New transformation
      */
-    newTransformation: function(){
+    newTransformation: function(repoParentDirPathId){
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
-            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE,
+            repoParentDirPathId: repoParentDirPathId
         };
         this.launchEditor(config);
     },

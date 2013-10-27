@@ -299,7 +299,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
      * Saves the current process to the server.
      */
     save: function(forceNew, event){
-        var undoStack = this.facade.getUndoRedoManager().redoStack;
+        var undoStack = this.facade.getUndoRedoManager().undoStack;
         if (this.facade.getEditorConfiguration().type === ORYX.CONFIG.EVENT_ETL_MODEL_EDIT && undoStack.length === 0) {
             var title = this.facade.getEditorConfiguration().title;
             Ext.ux.Toast.msg('Save not necessary', '<b>{0}</b> has no changes pending', title);

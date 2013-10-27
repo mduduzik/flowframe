@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><config>
 	<plugins>
 		<plugin core="true" engaged="true" name="ORYX.Plugins.Toolbar" source="toolbar.js"/>
+        <plugin core="true" engaged="true" name="ORYX.Plugins.Undo" source="undo.js"/>
 		<!-- <plugin source="toolbar2.js" name="ORYX.Plugins.Toolbar2" />-->
 		<plugin core="true" engaged="true" name="ORYX.Plugins.ShapeMenuPlugin" source="shapemenu.js"/>
 		<plugin engaged="true" name="ORYX.Plugins.SelectStencilSetPerspective" source="selectssperspective.js"/>
@@ -16,7 +17,6 @@
 			<property name="color" value="red"/>
 		</plugin>
 		<plugin engaged="true" name="ORYX.Plugins.RDFExport" source="rdfExport.js"/>
-		<plugin engaged="true" name="ORYX.Plugins.Undo" source="undo.js"/>
 
 		<!-- User Interface Aggregation -->
 		<!-- following plugins don't require Ext -->

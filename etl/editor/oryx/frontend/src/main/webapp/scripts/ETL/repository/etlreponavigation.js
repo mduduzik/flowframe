@@ -663,20 +663,12 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             id: 'transformation.folder',
             items: [
                 {
-                    id: 'addCsvMeta',
+                    id: 'addTransformationToFolder',
                     icon: '/etl/images/conxbi/etl/icon_delimited.gif',
                     text: 'Add Transformation',
                     scope: this,
                     handler: function () {
-                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Transformation',
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
-                        );
+                        this.application.newTransformation(this.ctxNode.id);
                     }.bind(this)
                 },
                 new Ext.menu.Separator({cmd:'sep-open'}),
