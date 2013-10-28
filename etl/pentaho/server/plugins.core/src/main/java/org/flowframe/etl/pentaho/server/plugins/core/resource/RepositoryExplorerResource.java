@@ -81,10 +81,46 @@ public class RepositoryExplorerResource {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(record.getItemtype())) {
+        if (record.getDirObjectId() < 0) {//Root
+            LongObjectId objId = null;
+            if (REPOSITORY_ITEM_TYPE_TRANSFORMATION.equals(record.getItemtype())) {
+                objId = (LongObjectId)repository.provideTransDirectoryForTenant(tenant).getObjectId();
+                record.setIcon("/etl/images/conxbi/etl/folder_open_transformations.gif");
+            }
+            else  if (REPOSITORY_ITEM_TYPE_JOB.equals(record.getItemtype())) {
+                objId = (LongObjectId)repository.provideTransDirectoryForTenant(tenant).getObjectId();
+                record.setIcon("/etl/images/conxbi/etl/folder_open_jobs.gif");
+            }
+            else if (REPOSITORY_ITEM_TYPE_DATABASE.equals(record.getItemtype())) {
+                objId = (LongObjectId)repository.provideDBConnectionsMetadataDirectoryForTenant(tenant).getObjectId();
+            }
+            record.setDirObjectId(objId.longValue());
+        }
+
+/*        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(record.getItemtype())) {
             RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
             record = DatabaseMetaUtil.addDatabaseDirectory(repository, dir, tenant, record);
         }
+        else if (REPOSITORY_ITEM_TYPE_TRANSFORMATION.equals(record.getItemtype())) {
+            if (record.getDirObjectId() < 0) {//Root
+                LongObjectId objId = (LongObjectId)repository.provideTransDirectoryForTenant(tenant).getObjectId();
+                record.setDirObjectId(objId.longValue());
+            }
+        }*/
+
+
+        //Create sub-dir
+        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
+        RepositoryDirectoryInterface newSubDir = repository.createRepositoryDirectory(dir, record.getName());
+        //dir.addSubdirectory(newSubDir);
+        //repository.getRepositoryDirectoryDelegate().saveRepositoryDirectory(dir);
+        repository.getRepositoryConnectionDelegate().commit();
+        record.setDirObjectId(((LongObjectId)newSubDir.getObjectId()).longValue());
+
+
+        //Serialize
+        DirectoryDTO record_ = DatabaseMetaUtil.addDatabaseDirectory(repository, newSubDir, tenant, record);
+        record.setDirObjectId(record_.getDirObjectId());
 
         return record;
     }

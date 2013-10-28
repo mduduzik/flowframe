@@ -14,6 +14,14 @@ public class DirectoryDTO implements Serializable {
     private long dirObjectId;
     private String itemtype;
 
+    private String icon = "/etl/images/conxbi/etl/folder_open.gif";
+    private Boolean allowDrag = false;
+    private Boolean allowDrop = false;
+    private Boolean leaf = false;
+    private Boolean hasChildren = false;
+    private Boolean singleClickExpand = true;
+    private String ddenabled = "true";
+
     private DirectoryDTO parent;
 
     public DirectoryDTO(String name, long dirObjectId) {
@@ -53,5 +61,61 @@ public class DirectoryDTO implements Serializable {
 
     public void setParent(DirectoryDTO parent) {
         this.parent = parent;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Boolean getAllowDrag() {
+        return allowDrag;
+    }
+
+    public void setAllowDrag(Boolean allowDrag) {
+        this.allowDrag = allowDrag;
+    }
+
+    public Boolean getAllowDrop() {
+        return allowDrop;
+    }
+
+    public void setAllowDrop(Boolean allowDrop) {
+        this.allowDrop = allowDrop;
+    }
+
+    public Boolean getLeaf() {
+        return leaf;
+    }
+
+    public void setLeaf(Boolean leaf) {
+        this.leaf = leaf;
+    }
+
+    public Boolean getHasChildren() {
+        return hasChildren;
+    }
+
+    public void setHasChildren(Boolean hasChildren) {
+        this.hasChildren = hasChildren;
+    }
+
+    public Boolean getSingleClickExpand() {
+        return singleClickExpand;
+    }
+
+    public void setSingleClickExpand(Boolean singleClickExpand) {
+        this.singleClickExpand = singleClickExpand;
+    }
+
+    public String getDdenabled() {
+        return ddenabled;
+    }
+
+    public void setDdenabled(String ddenabled) {
+        this.ddenabled = ddenabled;
     }
 }

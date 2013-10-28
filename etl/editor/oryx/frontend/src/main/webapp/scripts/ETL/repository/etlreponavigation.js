@@ -14,6 +14,7 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
     ctxNode: undefined,
 
     modalDialogShown: undefined,
+    selectOnEdit:true,
 
     // Constructor
     construct: function (application) {
@@ -238,7 +239,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     repofolder_database_contextmenu: undefined,
     repoitem_database_contextmenu: undefined,
     new_repoitem_database_wizard: undefined,
-
+    newdirText: 'New Folder',
     /*    onRender: function(){
      Ext.ux.ETLRepoNavigationTreePanel.superclass.onRender.apply(this, arguments);
      },
@@ -268,6 +269,94 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             if (node.attributes.folderObjectId)
                 this.loader.baseParams.folderObjectId = node.attributes.folderObjectId;
         }, this);
+
+        // {{{
+        // install treeEditor event handlers
+        this.treeEditor = new Ext.tree.TreeEditor(this, {
+            allowBlank:false
+            ,cancelOnEsc:true
+            ,completeOnEnter:true
+            ,ignoreNoChange:true
+            ,selectOnFocus:this.selectOnEdit
+        })
+        //}}
+
+        // {{{
+        // install treeEditor event handlers
+        if(this.treeEditor) {
+            // do not enter edit mode on selected node click
+            this.treeEditor.beforeNodeClick = function(node,e){return true;};
+
+            // treeEditor event handlers
+            this.treeEditor.on({
+                complete:{scope:this, fn:this.onEditComplete}
+                ,beforecomplete:{scope:this, fn:this.onBeforeEditComplete}
+            });
+        }
+        // }}}
+        // {{{
+        // install event handlers
+        this.on({dblclick:{scope:this, fn:this.onDblClick}
+            ,beforenodedrop:{scope:this, fn:this.onBeforeNodeDrop}
+            ,nodedrop:{scope:this, fn:this.onNodeDrop}
+            ,nodedragover:{scope:this, fn:this.onNodeDragOver}
+        });
+
+        // }}}
+        // {{{
+        // add events
+        this.addEvents(
+            /**
+             * @event beforerename
+             * Fires after the user completes file name editing
+             * but before the file is renamed. Return false to cancel the event
+             * @param {Ext.ux.FileTreePanel} this
+             * @param {Ext.tree.AsyncTreeNode} node being renamed
+             * @param {String} newPath including file name
+             * @param {String} oldPath including file name
+             */
+            'beforerename'
+            /**
+             * @event rename
+             * Fires after the file has been successfully renamed
+             * @param {Ext.ux.FileTreePanel} this
+             * @param {Ext.tree.AsyncTreeNode} node that has been renamed
+             * @param {String} newPath including file name
+             * @param {String} oldPath including file name
+             */
+            ,'rename'
+            /**
+             * @event renamefailure
+             * Fires after a failure when renaming file
+             * @param {Ext.ux.FileTreePanel} this
+             * @param {Ext.tree.AsyncTreeNode} node rename of which failed
+             * @param {String} newPath including file name
+             * @param {String} oldPath including file name
+             */
+            ,'renamefailure'
+            /**
+             * @event beforenewdir
+             * Fires before new directory is created. Return false to cancel the event
+             * @param {Ext.ux.FileTreePanel} this
+             * @param {Ext.tree.AsyncTreeNode} node under which the new directory is being created
+             */
+            ,'beforenewdir'
+            /**
+             * @event newdir
+             * Fires after the new directory has been successfully created
+             * @param {Ext.ux.FileTreePanel} this
+             * @param {Ext.tree.AsyncTreeNode} new node/directory that has been created
+             */
+            ,'newdir'
+            /**
+             * @event newdirfailure
+             * Fires if creation of new directory failed
+             * @param {Ext.ux.FileTreePanel} this
+             * @param {String} path creation of which failed
+             */
+            ,'newdirfailure'
+        ); // eo addEvents
+        // }}}
 
 
         /**
@@ -678,14 +767,11 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     icon: '/etl/images/conxbi/etl/folder_close.png',
                     scope: this,
                     handler: function () {
-                        this.ctxNode.select();
-                        //this.mainEditorPanel.removeAll();
-                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
-                        this.mainEditorPanel.setTitle("New Folder");
-                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
-                        this.mainTabPanel.add(this.mainEditorPanel);
-                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                        //this.newDBWiz.show();
+                        //this.ctxNode.select();
+                        this.createNewDir(this.ctxNode,{
+                            url:'/etl/core/explorer/adddir',
+                            itemtype: 'transformation'
+                        });
                     }.bind(this)
                 },
                 {
@@ -825,12 +911,198 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         catch (e) {
             ORYX.Log.error(e);
         }
-    },
+    }
+    // {{{
+    /**
+     * called before editing is completed - allows edit cancellation
+     * @private
+     * @param {TreeEditor} editor
+     * @param {String} newName
+     * @param {String} oldName
+     */
+    ,onBeforeEditComplete:function(editor, newName, oldName) {
+        if(editor.cancellingEdit) {
+            editor.cancellingEdit = false;
+            return;
+        }
+
+        var oldPath = this.getPath(editor.editNode);
+        var newPath = oldPath.replace(/\/[^\\]+$/, '/' + newName);
+
+        if(false === this.fireEvent('beforerename', this, editor.editNode, newPath, oldPath)) {
+            editor.cancellingEdit = true;
+            editor.cancelEdit();
+            return false;
+        }
+    }
+    // }}}
+// {{{
+    /**
+     * runs when editing of a node (rename) is completed
+     * @private
+     * @param {Ext.Editor} editor
+     * @param {String} newName
+     * @param {String} oldName
+     */
+    ,onEditComplete:function(editor, newName, oldName) {
+
+        var node = editor.editNode;
+
+        if(newName === oldName || editor.creatingNewDir) {
+            editor.creatingNewDir = false;
+            return;
+        }
+        var path = this.getPath(node.parentNode);
+        var options = {
+            url:this.renameUrl || this.url
+            ,method:this.method
+            ,scope:this
+            ,callback:this.cmdCallback
+            ,node:node
+            ,oldName:oldName
+            ,params:{
+                cmd:'rename'
+                ,oldname:path + '/' + oldName
+                ,newname:path + '/' + newName
+            }
+        };
+        Ext.Ajax.request(options);
+    }
+    // }}}
+    // {{{
+    /**
+     * creates new directory (node)
+     * @private
+     * @param {Ext.tree.AsyncTreeNode} node
+     */
+    ,createNewDir:function(node,params) {
+
+        // fire beforenewdir event
+        if(true !== this.eventsSuspended && false === this.fireEvent('beforenewdir', this, node)) {
+            return;
+        }
+
+        var treeEditor = this.treeEditor;
+        var newNode;
+
+        // get node to append the new directory to
+        var appendNode = node.isLeaf() ? node.parentNode : node;
+
+        // create new folder after the appendNode is expanded
+        appendNode.expand(false, false, function(n) {
+            // create new node
+            newNode = n.appendChild(new Ext.tree.AsyncTreeNode({text:this.newdirText, iconCls:'folder'}));
+            newNode.attributes['params'] = params;
+
+            // setup one-shot event handler for editing completed
+            treeEditor.on({
+                    complete:{
+                        scope:this
+                        ,single:true
+                        ,fn:this.onNewDir
+                    }}
+            );
+
+            // creating new directory flag
+            treeEditor.creatingNewDir = true;
+
+            // start editing after short delay
+            (function(){treeEditor.triggerEdit(newNode);}.defer(10));
+            // expand callback needs to run in this context
+        }.createDelegate(this));
+
+    } // eo function creatingNewDir
+    // }}}
+    // {{{
+    /**
+     * create new directory handler
+     * @private
+     * runs after editing of new directory name is completed
+     * @param {Ext.Editor} editor
+     */
+    ,onNewDir:function(editor) {
+        var path = this.getPath(editor.editNode);
+        var parentPathId =  editor.editNode.parentNode.id;
+        parentPathId = !isNaN(parseFloat(parentPathId)) && isFinite(parentPathId) ? parentPathId : -1;
+
+        var url = editor.editNode.attributes.params.url;
+        var itemtype =  editor.editNode.attributes.params.itemtype;
+
+        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+            // here you can put whatever you need as header. For instance:
+            this.defaultPostHeader = "application/json; charset=utf-8;";
+            this.defaultHeaders = {
+                userid: 'test'
+            };
+        });
+        Ext.Ajax.request({
+            url: url,
+            method: 'POST',
+            params: Ext.encode({
+                name: editor.editNode.text,
+                dirObjectId: parentPathId,
+                itemtype: itemtype
+            }),
+            success: function (response, opts) {
+                //Refresh this.ctxNode
+                var record = Ext.decode(response.responseText);
+                if (editor.editNode.attributes)
+                    editor.editNode.attributes.children = false;
+
+                editor.editNode.id = record.dirObjectId;
+                editor.editNode.icon = record.icon;
+                editor.editNode.text = record.name;
+                editor.editNode.hasChildren = false;
+                editor.editNode.allowDrag = false;
+                editor.editNode.allowDrop = false;
+                editor.editNode.attributes.ddenabled = true;
+
+                editor.editNode.children = [];
+
+                editor.editNode.setText(record.name);
+            },
+            failure: function (response, opts) {
+            }
+        });
+    }
+    // }}}
+    // {{{
+    /**
+     * returns path of node (file/directory)
+     * @private
+     */
+    ,getPath:function(node) {
+        var path, p, a;
+
+        // get path for non-root node
+        if(node !== this.root) {
+            p = node.parentNode;
+            a = [node.text];
+            while(p && p !== this.root) {
+                a.unshift(p.text);
+                p = p.parentNode;
+            }
+            a.unshift(this.root.attributes.path || '');
+            path = a.join(this.pathSeparator);
+        }
+
+        // path for root node is it's path attribute
+        else {
+            path = node.attributes.path || '';
+        }
+
+        // a little bit of security: strip leading / or .
+        // full path security checking has to be implemented on server
+        path = path.replace(/^[\/\.]*/, '');
+        return path;
+    } // eo function getPath
+    // }}}
+    //{{{
     /**
      * On Created
      * @param event
      */
-    onCreated: function (event) {
+    ,onCreated: function (event) {
         var ctxNodeId = event.treeNodeParentId;
         var name = event.name;
 

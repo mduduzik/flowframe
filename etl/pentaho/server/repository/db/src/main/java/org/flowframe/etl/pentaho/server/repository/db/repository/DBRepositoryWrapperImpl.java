@@ -140,8 +140,11 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		
 		//Ensure root and tenant root dir's
 		rootDir = findDirectory("/conxbi");
-		tenantDir = findDirectory("/conxbi/tenant");
 	}
+
+    private RepositoryDirectoryInterface findTenantDirectory() throws KettleException {
+        return  findDirectory("/conxbi/tenant");
+    }
 
 
 	public Boolean isAvailable() throws Exception {
@@ -167,7 +170,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
      */
     public RepositoryDirectoryInterface provideMetadataDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_METADATA);
+        RepositoryDirectoryInterface dir = findTenantDirectory().findDirectory(FOLDER_METADATA);
         if (dir == null)
             dir = createRepositoryDirectory(tenantDir, FOLDER_METADATA);
         return dir;
@@ -233,7 +236,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     @Override
 	public RepositoryDirectoryInterface provideDirectoryForTenant(Organization tenant) throws KettleException {
 		String dirName = "Organization-"+tenant.getId();
-		RepositoryDirectoryInterface dir = tenantDir.findDirectory(dirName);
+		RepositoryDirectoryInterface dir = findTenantDirectory().findDirectory(dirName);
 		if (dir == null)
 			dir = createRepositoryDirectory(tenantDir, dirName);
 		return dir;
@@ -309,7 +312,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	@Override
 	public RepositoryDirectoryInterface provideJobsDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_JOBS);
+		RepositoryDirectoryInterface dir = findTenantDirectory().findDirectory(FOLDER_JOBS);
 		if (dir == null)
 			dir = createRepositoryDirectory(tenantDir, FOLDER_JOBS);
 		return dir;	
