@@ -80,6 +80,10 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
                                 thisEditor.registerDD(this, this.attributes['itemtype']);
                             }
                         });
+                    },
+                    beforeload: function(treeLoader, node) {
+                        this.baseParams.itemtype = node.attributes.itemtype;
+                        this.baseParams.folderObjectId = node.attributes.folderObjectId;
                     }
                 }
             });
@@ -300,6 +304,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             ,beforenodedrop:{scope:this, fn:this.onBeforeNodeDrop}
             ,nodedrop:{scope:this, fn:this.onNodeDrop}
             ,nodedragover:{scope:this, fn:this.onNodeDragOver}
+            //,beforenewdir:{scope:this, fn:this.onBeforeNewDir}
         });
 
         // }}}
@@ -780,31 +785,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     icon: '/etl/images/conxbi/etl/folder_delete.png',
                     scope: this,
                     handler: function () {
-                        var requestWiz = this;
-                        var requestCtxNode = requestWiz.ctxNode;
-
-                        var idArray = requestCtxNode.id.split('/');
-                        var dirId = idArray[1];
-                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                            // here you can put whatever you need as header. For instance:
-                            //this.defaultPostHeader = "application/json; charset=utf-8;";
-                            this.defaultHeaders = {
-                                userid: 'test',
-                                itemtype: 'transformation',
-                                folderObjectId: dirId
-                            };
-                        });
-                        Ext.Ajax.request({
-                            url: '/etl/core/explorer/deletedir',
-                            method: 'DELETE',
-                            success: function (response, opts) {
-                                //Refresh this.ctxNode
-                                if (requestCtxNode.attributes)
-                                    requestCtxNode.attributes.children = false;
-                                requestCtxNode.reload();
-                            },
-                            failure: function (response, opts) {
-                            }
+                        //this.ctxNode.select();
+                        this.deleteDir(this.ctxNode,{
+                            url:'/etl/core/explorer/deldir',
+                            itemtype: 'transformation'
                         });
                     }.bind(this)
                 },
@@ -971,6 +955,63 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     // }}}
     // {{{
     /**
+     * deletes the passed node
+     * @private
+     * @param {Ext.tree.AsyncTreeNode} node
+     */
+    ,deleteDir:function(node,params) {
+        // fire beforedelete event
+        if(true !== this.eventsSuspended && false === this.fireEvent('beforedelete', this, node)) {
+            return;
+        }
+
+        Ext.Msg.show({
+            title:'Confirm'
+            ,msg:'Do you really want to delete <b>' + node.text + '</b>?'
+            ,icon:Ext.Msg.WARNING
+            ,buttons:Ext.Msg.YESNO
+            ,scope:this
+            ,fn:function(response) {
+                // do nothing if answer is not yes
+                if('yes' !== response) {
+                    this.getEl().dom.focus();
+                    return;
+                }
+                var url =  params.url;
+                var itemtype =   params.itemtype;
+
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {
+                        userid: 'test'
+                    };
+                });
+                var idArray = node.id.split('/');   //'/dir/##
+                var dirId = idArray[2];
+                Ext.Ajax.request({
+                    url: url,
+                    method: 'POST',
+                    params: Ext.encode({
+                        name: node.text,
+                        dirObjectId: dirId,
+                        itemtype: itemtype
+                    }),
+                    success: function (response, opts) {
+                        if (node.parentNode.attributes)
+                            node.parentNode.attributes.children = false;
+                        node.parentNode.reload();
+
+                        Ext.ux.Toast.msg('Deletion success.', 'Folder '+node.text+' deleted.');
+                    },
+                    failure: function (response, opts) {
+                    }.bind(this)
+                });
+            }
+        });
+    } // eo function deleteNode
+    // {{{
+    /**
      * creates new directory (node)
      * @private
      * @param {Ext.tree.AsyncTreeNode} node
@@ -1023,8 +1064,13 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     ,onNewDir:function(editor) {
         var path = this.getPath(editor.editNode);
         var parentPathId =  editor.editNode.parentNode.id;
-        parentPathId = !isNaN(parseFloat(parentPathId)) && isFinite(parentPathId) ? parentPathId : -1;
-
+        if (parentPathId.indexOf('/') >= 0) {
+            var idArray = parentPathId.split('/');   //'/dir/##
+            parentPathId = idArray[2];
+        }
+        else {
+            parentPathId = !isNaN(parseFloat(parentPathId)) && isFinite(parentPathId) ? parentPathId : -1;
+        }
         var url = editor.editNode.attributes.params.url;
         var itemtype =  editor.editNode.attributes.params.itemtype;
 
@@ -1046,9 +1092,14 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             success: function (response, opts) {
                 //Refresh this.ctxNode
                 var record = Ext.decode(response.responseText);
-                if (editor.editNode.attributes)
-                    editor.editNode.attributes.children = false;
+                if (editor.editNode.parentNode.attributes)
+                    editor.editNode.parentNode.attributes.children = false;
 
+                if (record.requestMsg)
+                    Ext.ux.Toast.msg('Folder creation failed.', 'Folder '+editor.editNode.text+' already exists');
+
+                editor.editNode.parentNode.reload();
+/*
                 editor.editNode.id = record.dirObjectId;
                 editor.editNode.icon = record.icon;
                 editor.editNode.text = record.name;
@@ -1059,10 +1110,14 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
 
                 editor.editNode.children = [];
 
-                editor.editNode.setText(record.name);
+                editor.editNode.setText(record.name);*/
             },
             failure: function (response, opts) {
-            }
+                //var msg = response.responseText;
+                var record = Ext.decode(response.responseText);
+                if (record.requestMsg)
+                    Ext.ux.Toast.msg('Folder creation failed.', 'Folder '+editor.editNode.text+' already exists');
+            }.bind(this)
         });
     }
     // }}}

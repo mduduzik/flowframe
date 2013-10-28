@@ -1,5 +1,6 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource;
 
+import com.sun.enterprise.module.Repository;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -107,40 +108,40 @@ public class RepositoryExplorerResource {
                 record.setDirObjectId(objId.longValue());
             }
         }*/
+        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
+        RepositoryDirectoryInterface newSubDir = dir.findDirectory(record.getName());
+        if (newSubDir != null) {
+            record.setRequestMsg("Directory "+record.getName()+" already exists. Use a different name");
+        }
 
 
         //Create sub-dir
-        RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(record.getDirObjectId()));
-        RepositoryDirectoryInterface newSubDir = repository.createRepositoryDirectory(dir, record.getName());
-        //dir.addSubdirectory(newSubDir);
-        //repository.getRepositoryDirectoryDelegate().saveRepositoryDirectory(dir);
+         newSubDir = repository.createRepositoryDirectory(dir, record.getName());
         repository.getRepositoryConnectionDelegate().commit();
         record.setDirObjectId(((LongObjectId)newSubDir.getObjectId()).longValue());
 
 
-        //Serialize
-        DirectoryDTO record_ = DatabaseMetaUtil.addDatabaseDirectory(repository, newSubDir, tenant, record);
-        record.setDirObjectId(record_.getDirObjectId());
-
         return record;
     }
 
-    @DELETE
-    @Path("/deletedir")
+    @POST
+    @Path("/deldir")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response deletedir(@HeaderParam("userid") String userid,
-                              @HeaderParam("itemtype") String itemtype,
-                              @HeaderParam("folderObjectId") String folderObjectId) throws KettleException {
+    public Response deletedir(@HeaderParam("userid") String userid, DirectoryDTO record) throws KettleException {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
+        LongObjectId dirObjId = new LongObjectId(Long.valueOf(record.getDirObjectId()));
         RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, dirObjId);
 
-        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(itemtype)) {
+        if (REPOSITORY_ITEM_TYPE_DATABASE.equals(record.getItemtype())) {
             DatabaseMetaUtil.deleteDatabaseDirectory(repository, dir, tenant.getId().toString());
         }
-        return Response.ok("Folder " + folderObjectId + " deleted successfully", MediaType.TEXT_PLAIN).build();
+        else {
+            repository.deleteRepositoryDirectory(dir);
+        }
+        return Response.ok("Folder " + dir.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
 
     @GET
@@ -177,9 +178,19 @@ public class RepositoryExplorerResource {
             json = generateTransformationsJsonTreeData(true, true, repository, tenant);
             res = json.getJSONArray("children").toString();
         }
+        else if (nodeId != null && "transformation".equals(itemtype)) {
+            RepositoryDirectoryInterface nodeDir = RepositoryUtil.getDirectory(repository, nodeId);
+            json = generateTransformationsRecursiveSubTreeData(true, true, repository, nodeDir);
+            res = json.getJSONArray("children").toString();
+        }
         //Job node
         else if (nodeId != null && "jobs".equals(nodeId)) {
             json = generateJobsJsonTreeData(true, true, repository, tenant);
+            res = json.getJSONArray("children").toString();
+        }
+        else if (nodeId != null && "job".equals(itemtype)) {
+            RepositoryDirectoryInterface nodeDir = RepositoryUtil.getDirectory(repository, nodeId);
+            json = generateJobsRecursiveSubTreeData(true, true, repository, nodeDir);
             res = json.getJSONArray("children").toString();
         }
         //Root
@@ -257,6 +268,7 @@ public class RepositoryExplorerResource {
         transformations.put("leaf", false);
         transformations.put("hasChildren", true);
         transformations.put("singleClickExpand", true);
+        transformations.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
         transformations.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
         transformations.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_TRANSFORMATION + ".folder");
 
@@ -290,6 +302,7 @@ public class RepositoryExplorerResource {
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
+        subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
         subDir.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_TRANSFORMATION + ".folder");
 
@@ -460,21 +473,22 @@ public class RepositoryExplorerResource {
         RepositoryDirectoryInterface transDir = repo.provideJobsDirectoryForTenant(tenant);
 
 
-        JSONObject transformations = new JSONObject();
-        transformations.put("id", "jobs");
-        transformations.put("allowDrag", false);
-        transformations.put("allowDrop", false);
-        transformations.put("text", transDir.getName());
-        transformations.put("title", transDir.getName());
-        transformations.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
-        transformations.put("leaf", false);
-        transformations.put("hasChildren", true);
-        transformations.put("singleClickExpand", true);
-        transformations.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
-        transformations.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB+".folder");
+        JSONObject jobs = new JSONObject();
+        jobs.put("id", "jobs");
+        jobs.put("allowDrag", false);
+        jobs.put("allowDrop", false);
+        jobs.put("text", transDir.getName());
+        jobs.put("title", transDir.getName());
+        jobs.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
+        jobs.put("leaf", false);
+        jobs.put("hasChildren", true);
+        jobs.put("singleClickExpand", true);
+        jobs.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
+        jobs.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
+        jobs.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB + ".folder");
 
         JSONArray transChildren = new JSONArray();
-        transformations.put("children", transChildren);
+        jobs.put("children", transChildren);
         //Do sub dirs
         List<RepositoryDirectoryInterface> transSubDirs = transDir.getChildren();
 
@@ -483,7 +497,7 @@ public class RepositoryExplorerResource {
             transChildren.put(subDirDir);
         }
 
-        return transformations;
+        return jobs;
     }
 
     private static JSONObject generateJobsRecursiveSubTreeData(Boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository ICustomRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
@@ -499,6 +513,7 @@ public class RepositoryExplorerResource {
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
+        subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
         subDir.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB+".folder");
 

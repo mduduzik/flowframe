@@ -24,6 +24,8 @@ public class DirectoryDTO implements Serializable {
 
     private DirectoryDTO parent;
 
+    private String requestMsg = null;
+
     public DirectoryDTO(String name, long dirObjectId) {
         this.name = name;
         this.dirObjectId = dirObjectId;
@@ -117,5 +119,13 @@ public class DirectoryDTO implements Serializable {
 
     public void setDdenabled(String ddenabled) {
         this.ddenabled = ddenabled;
+    }
+
+    public String getRequestMsg() {
+        return requestMsg;
+    }
+
+    public void setRequestMsg(String requestMsg) {
+        this.requestMsg = requestMsg;
     }
 }
