@@ -501,7 +501,12 @@ ORYX = Object.extend(ORYX, {
                    ns: ORYX.CONFIG.NAMESPACE_ETL_JOB
                }
            };
-    },
+    }
+    //{{
+    //
+    //  Event handlers
+    //
+    //}}
     //{{
     //
     // Event queue's and managers
@@ -510,7 +515,7 @@ ORYX = Object.extend(ORYX, {
     /**
      *  Methods for the PluginFacade
      */
-    registerOnEvent: function(eventType, callback) {
+    ,registerOnEvent: function(eventType, callback) {
         if(!(this.DOMEventListeners.keys().member(eventType))) {
             this.DOMEventListeners[eventType] = [];
         }
@@ -781,7 +786,8 @@ ORYX = Object.extend(ORYX, {
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE,
-            repoParentDirPathId: repoParentDirPathId
+            repoParentDirPathId: repoParentDirPathId,
+            itemtype: 'transformation'
         };
         this.launchEditor(config);
     },
@@ -792,6 +798,7 @@ ORYX = Object.extend(ORYX, {
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
+            itemtype: 'transformation',
             title: title,
             repoPathId: repoPathId,
             repoParentDirPathId: repoParentDirPathId,
@@ -805,7 +812,8 @@ ORYX = Object.extend(ORYX, {
     newJob: function(){
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB,
-            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE
+            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE,
+            itemtype: 'job'
         };
         this.launchEditor(config);
 /*        this.facade.raiseEvent({
@@ -1043,6 +1051,9 @@ ORYX = Object.extend(ORYX, {
 
         // Raise Loaded Event
         this.registerOnEvent( {type:ORYX.CONFIG.EVENT_LOADED} );
+
+        // Listen for model events (e.g. )
+        //this.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED,this.onModelCreated.bind(this));
 
     }
 });

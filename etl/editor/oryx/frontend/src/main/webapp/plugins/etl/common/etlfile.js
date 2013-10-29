@@ -103,7 +103,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
             reqURI = editorConfig.saveNewModelUrl;
 
             // Define Default values
-            var defaultData = {title:ORYX.I18N.Save.newProcess, summary:'', type:ss.title(), url: reqURI, namespace: ss.namespace() }
+            var defaultData = {title:editorConfig.title, summary:'', type:ss.title(), url: reqURI, namespace: ss.namespace() }
 
             // Create a Template
             var dialog = new Ext.XTemplate(
@@ -139,7 +139,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
                 win.destroy();
 
                 // Send the request out
-                this.sendSaveRequest( reqURI, { data: this.serializedDOM, svg: svgDOM, title: title, summary: summary, type: namespace }, forceNew);
+                this.sendSaveRequest( reqURI, { dirPathId: editorConfig.repoParentDirPathId,data: this.serializedDOM, svg: svgDOM, title: title, summary: summary, type: namespace }, forceNew);
 
             }.bind(this);
 
@@ -148,7 +148,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
                 id:		'Properties_Window',
                 width:	'auto',
                 height:	'auto',
-                title:	forceNew ? ORYX.I18N.Save.saveAsTitle : ORYX.I18N.Save.save,
+                title:	'New '+editorConfig.itemtype,
                 modal:	true,
                 bodyStyle: 'background:#FFFFFF',
                 html: 	dialog.apply( defaultData ),
@@ -174,7 +174,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
             var editorConfig = this.facade.getEditorConfiguration();
             // Send the request out
             reqURI = editorConfig.updateModelUrl;
-            this.sendSaveRequest( reqURI, { data: this.serializedDOM, svg: svgDOM, title: editorConfig.title, summary: '', type: ss.namespace(), dirPathId: editorConfig.repoParentDirPathId, pathId: editorConfig.repoPathId}, false);
+            this.sendSaveRequest( reqURI, { dirPathId: editorConfig.repoParentDirPathId,data: this.serializedDOM, svg: svgDOM, title: editorConfig.title, summary: '', type: ss.namespace(), dirPathId: editorConfig.repoParentDirPathId, pathId: editorConfig.repoPathId}, false);
         }
 
 		
@@ -225,8 +225,19 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
 			onSuccess: (function(transport) {
                 var data = Ext.decode(transport.responseText);
                 var title = data.name;
+                var pathId = data.pathId;
                 var dirPathId = data.subDirPathId;
 
+                var editorConfigUpdate = {
+                    title: title,
+                    pathId: pathId,
+                    repoParentDirPathId: dirPathId
+                }
+
+                this.facade.raiseEvent({
+                    type:ORYX.CONFIG.EVENT_ETL_MODEL_SAVED,
+                    forceExecution: true
+                },editorConfigUpdate);
 /*				var loc = transport.getResponseHeader("location");
 				if (loc) {
 					this.processURI = loc;

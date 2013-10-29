@@ -660,7 +660,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     text: 'Add Transformation',
                     scope: this,
                     handler: function () {
-                        this.application.newTransformation();
+                        var dirPathId = this.ctxNode.id;
+                        if (this.ctxNode.isLeaf())
+                            dirPathId = this.ctxNode.parentNode.id;
+                        this.application.newTransformation(dirPathId);
 /*                        this.ctxNode.select();
                         var eventData = {
                             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Transformation',

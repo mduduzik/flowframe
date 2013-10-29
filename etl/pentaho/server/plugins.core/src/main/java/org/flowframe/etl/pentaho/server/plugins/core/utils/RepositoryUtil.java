@@ -142,28 +142,38 @@ public class RepositoryUtil {
         String pathId = null;
         try {
             RepositoryDirectoryInterface dir = getDirectory(repo,dirPathId);
-
-            //-- do transmeta
-            ObjectId transId = repo.getRepositoryTransDelegate().getTransformationID(transMeta.getName(), dir.getObjectId());
-            if (transId != null) {
-                repo.deleteTransformation(transId);
-            }
             transMeta.setRepositoryDirectory(dir);
 
-            //-- do json and svg
-            if (jsonModel != null) {
-                NotePadMeta jsonNote = new NotePadMeta();
-                jsonNote.setNote(jsonModel);
-                transMeta.addNote(0,jsonNote);
-            }
 
-            if (svgModel != null) {
-                NotePadMeta svgNote = new NotePadMeta();
-                svgNote.setNote(svgModel);
-                transMeta.addNote(1,svgNote);
-            }
+            //-- do transmeta
+            if (repo.getRepositoryTransDelegate().existsTransMeta(transMeta.getName(),dir, RepositoryObjectType.TRANSFORMATION)) {
+                transMeta  = repo.loadTransformation(transMeta.getName(),dir,null,false,null);
 
+                //-- do json and svg
+                if (jsonModel != null) {
+                    transMeta.getNote(0).setNote(jsonModel);
+                }
+
+                if (svgModel != null) {
+                    transMeta.getNote(1).setNote(svgModel);
+                }
+            }
+            else {
+                //-- do json and svg
+                if (jsonModel != null) {
+                    NotePadMeta jsonNote = new NotePadMeta();
+                    jsonNote.setNote(jsonModel);
+                    transMeta.addNote(0,jsonNote);
+                }
+
+                if (svgModel != null) {
+                    NotePadMeta svgNote = new NotePadMeta();
+                    svgNote.setNote(svgModel);
+                    transMeta.addNote(1,svgNote);
+                }
+            }
             repo.getRepositoryTransDelegate().saveTransformation(transMeta,transMeta.getDescription(),null,true);
+            repo.getRepositoryConnectionDelegate().commit();
 
             return transMeta.getPathAndName();
         } catch (KettleException e) {

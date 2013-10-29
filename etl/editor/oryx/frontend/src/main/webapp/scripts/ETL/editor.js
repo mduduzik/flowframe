@@ -194,8 +194,21 @@ ORYX.Editor = {
         this.DOMEventListeners[ORYX.CONFIG.EVENT_SELECTION_CHANGED] = [];
         this.DOMEventListeners[ORYX.CONFIG.EVENT_MOUSEMOVE] = [];
 
-    },
-    deactivateEventListeners: function(){
+
+        this.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED,this.onModelSaved.bind(this));
+
+    }
+    //{{
+    /**
+     *
+     * @param evt
+     * @param args
+     */
+    //}}
+    ,onModelSaved: function(evt,args) {
+        this.onUpdateConfiguration(args);
+    }
+    ,deactivateEventListeners: function(){
         //this.getCanvas().deactivateEventHandling();
         this._eventsQueue.clear();
 
@@ -807,6 +820,7 @@ ORYX.Editor = {
                 getUndoRedoManager: function() {return this.redoundo;}.bind(this),
                 setUndoRedoManager: function(redoundo) {this.redoundo = redoundo;}.bind(this),
                 getCurrentEditor: function() {return this.layout}.bind(this),
+                updateEditorConfiguration: this.onUpdateConfiguration.bind(this),
                 getEditorConfiguration: function() {return this.config;}.bind(this),
                 getEditorMode: function() {return this.mode;}.bind(this),
                 getNamespace: function() {return this.namespace;}.bind(this),
@@ -851,7 +865,20 @@ ORYX.Editor = {
         // return it.
         return this._pluginFacade;
     },
+    //{{
+    /**
+     *
+     * @param configParams
+     */
+    //}
+    onUpdateConfiguration: function(configParams) {
+        //-- Title
+        if (!(this.config.title === configParams.title))
+            this.layout.setTitle(configParams.title);
 
+        //-- Sync rest
+        Ext.apply(this.config,configParams);
+    },
     /**
      * Implementes the command pattern
      * (The real usage of the command pattern
