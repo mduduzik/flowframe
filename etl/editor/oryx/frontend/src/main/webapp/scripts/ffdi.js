@@ -505,7 +505,7 @@ ORYX = Object.extend(ORYX, {
 
        DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_JOB] = {
                id: 'etlJobCanvas',
-               saveNewUrl: '/etl/core/jobmeta/add',
+               saveNewModelUrl: '/etl/core/jobmeta/add',
                updateModelUrl: '/etl/core/jobmeta/update',
                removeModelUrl: '/etl/core/jobmeta/remove',
                title: 'New Job ',

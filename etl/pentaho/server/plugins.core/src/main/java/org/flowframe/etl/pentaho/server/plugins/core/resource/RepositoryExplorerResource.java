@@ -503,7 +503,7 @@ public class RepositoryExplorerResource {
         JSONObject subDir = new JSONObject();
 
         // Populate
-        subDir.put("id", "dir/" + dir.getObjectId().toString());
+        subDir.put("id", RepositoryUtil.generatePathID(dir));
         subDir.put("allowDrag", false);
         subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());
@@ -512,7 +512,7 @@ public class RepositoryExplorerResource {
         subDir.put("leaf", false);
         subDir.put("hasChildren", false);
         subDir.put("singleClickExpand", false);
-        subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
+        subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_JOB);
         subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
         subDir.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB+".folder");
 
@@ -912,7 +912,7 @@ public class RepositoryExplorerResource {
         JSONObject subDir = new JSONObject();
 
         // Populate
-        subDir.put("id", "dir/" + dir.getObjectId().toString());
+        subDir.put("id", RepositoryUtil.generatePathID(dir));
         subDir.put("allowDrag", false);
         subDir.put("allowDrop", false);
         subDir.put("text", dir.getName());

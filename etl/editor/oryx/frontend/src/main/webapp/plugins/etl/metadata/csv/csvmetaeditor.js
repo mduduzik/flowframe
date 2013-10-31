@@ -237,21 +237,25 @@ ORYX.Plugins.ETL.Metadata.CSVMetaEditor = {
                             xtype: 'checkbox',
                             fieldLabel: 'Header Present',
                             name: 'headerPresent',
+                            value: true,
                             width: 15
                         },
                         {
                             fieldLabel: 'Delimiter',
-                            name: 'delimiter'
+                            name: 'delimiter',
+                            value: ','
                         },
                         {
                             fieldLabel: 'Enclosure',
-                            name: 'enclosure'
+                            name: 'enclosure',
+                            value: '"'
                         },
                         {
                             xtype: 'numberfield',
                             fieldLabel: 'Buffer Size',
                             name: 'bufferSize',
-                            style: 'text-align: left'
+                            style: 'text-align: left',
+                            value: 5000
                         },
                         {
                             xtype: 'checkbox',
@@ -269,7 +273,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaEditor = {
                                 remoteSort: true,
                                 autoLoad: {params: {start: 1, limit: 2}},
                                 proxy: new Ext.data.ScriptTagProxy({
-                                    url: '/etlrepo/encoding/getall'
+                                    url: '/etl/core/encoding/getall'
                                 }),
                                 reader: new Ext.data.JsonReader({
                                     root: 'data',
@@ -554,6 +558,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaEditor = {
         //-- Create New Wizard
         this.newCsvMetaWiz = new Ext.ux.Wiz({
             region: 'center',
+            wizMode: this.wizMode,
             buttonsAt: 'bbar',
             headerConfig: {
                 title: 'CSVInput Metadata'
