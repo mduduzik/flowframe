@@ -711,27 +711,43 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     icon: '/etl/images/conxbi/etl/connection-delete.png',
                     scope: this,
                     handler: function () {
-                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                            // here you can put whatever you need as header. For instance:
-                            //this.defaultPostHeader = "application/json; charset=utf-8;";
-                            this.defaultHeaders = {
-                                userid: 'test'
-                            };
-                        });
+                        var node_ = this.ctxNode;
                         var parentNode_ = this.ctxNode.parentNode;
-                        Ext.Ajax.request({
-                            url: '/etl/core/transmeta/delete',
-                            method: 'POST',
-                            params: {
-                                objectId: this.ctxNode.id
-                            },
-                            success: function (response, opts) {
-                                //Refresh this.ctxNode
-                                if (parentNode_.attributes)
-                                    parentNode_.attributes.children = false;
-                                parentNode_.reload();
-                            },
-                            failure: function (response, opts) {
+                        var application_ = this.application;
+                        Ext.Msg.show({
+                            title:'Confirm'
+                            ,msg:'Do you really want to delete <b>' + node_.text + '</b>?'
+                            ,icon:Ext.Msg.WARNING
+                            ,buttons:Ext.Msg.YESNO
+                            ,scope:this
+                            ,fn:function(response) {
+                                // do nothing if answer is not yes
+                                if('yes' !== response) {
+                                    this.getEl().dom.focus();
+                                    return;
+                                }
+                                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                                    // here you can put whatever you need as header. For instance:
+                                    //this.defaultPostHeader = "application/json; charset=utf-8;";
+                                    this.defaultHeaders = {
+                                        userid: 'test'
+                                    };
+                                });
+                                Ext.Ajax.request({
+                                    url: '/etl/core/transmeta/delete',
+                                    method: 'POST',
+                                    params: {
+                                        objectId: node_.id
+                                    },
+                                    success: function (response, opts) {
+                                        //Refresh this.ctxNode
+                                        if (parentNode_.attributes)
+                                            parentNode_.attributes.children = false;
+                                        parentNode_.reload();
+                                    },
+                                    failure: function (response, opts) {
+                                    }
+                                });
                             }
                         });
                     }.bind(this)
@@ -809,62 +825,108 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         })
         this.repofolder_transformation_contextmenu.on('hide', this.onContextHide, this);
 
-/*        this.repoitem_csvmeta_contextmenu = new Ext.menu.Menu({
-            id: 'csvmeta',
+        //{{
+        //  Jobs and Folders
+        //}}
+        this.repoitem_job_contextmenu = new Ext.menu.Menu({
+            id: 'job',
             items: [
                 {
-                    id: 'addCsvMetadata',
+                    id: 'addJob',
                     icon: '/etl/images/conxbi/etl/icon_delimited.gif',
-                    text: 'Add CSV Metadata',
+                    text: 'Add Job',
                     scope: this,
                     handler: function () {
-                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
-                        );
+                        var dirPathId = this.ctxNode.id;
+                        if (this.ctxNode.isLeaf())
+                            dirPathId = this.ctxNode.parentNode.id;
+                        this.application.newJob(dirPathId);
+                        /*                        this.ctxNode.select();
+                         var eventData = {
+                         type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Job',
+                         forceExecution: true
+                         };
+                         this.application.handleEvents(eventData, {
+                         folderId: this.ctxNode.attributes['folderObjectId'],
+                         sourceNavNodeId: this.ctxNode.id}
+                         );*/
                     }.bind(this)
                 },
                 {
-                    id: 'editCsvMetadata',
-                    text: 'Edit CSV Metadata',
+                    id: 'editJob',
+                    text: 'Edit Job',
                     icon: '/etl/images/conxbi/etl/modify.gif',
                     scope: this,
                     handler: function () {
-                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CSVMeta',
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id
+                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                            // here you can put whatever you need as header. For instance:
+                            //this.defaultPostHeader = "application/json; charset=utf-8;";
+                            this.defaultHeaders = {
+                                userid: 'test'
+                            };
+                        });
+                        var node_ = this.ctxNode;
+                        var application_ = this.application;
+                        Ext.Ajax.request({
+                            url: '/etl/core/jobmeta/get',
+                            method: 'GET',
+                            params: {
+                                objectId: this.ctxNode.id
+                            },
+                            success: function (response, opts) {
+                                var data = Ext.decode(response.responseText);;
+                                application_.editJob(data.name,data.pathId,data.subDirPathId,data.jsonModel);
+                            },
+                            failure: function (response, opts) {
                             }
-                        );
+                        });
                     }.bind(this)
                 },
                 {
-                    id: 'deleteCsvMetadata',
-                    text: 'Delete CSV Metadata',
+                    id: 'deleteJob',
+                    text: 'Delete Job',
                     icon: '/etl/images/conxbi/etl/connection-delete.png',
                     scope: this,
                     handler: function () {
-                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CSVMeta',
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id,
-                                parentSourceNavNodeId: this.ctxNode.parentNode.id
+                        var node_ = this.ctxNode;
+                        var parentNode_ = this.ctxNode.parentNode;
+                        var application_ = this.application;
+                        Ext.Msg.show({
+                            title:'Confirm'
+                            ,msg:'Do you really want to delete <b>' + node_.text + '</b>?'
+                            ,icon:Ext.Msg.WARNING
+                            ,buttons:Ext.Msg.YESNO
+                            ,scope:this
+                            ,fn:function(response) {
+                                // do nothing if answer is not yes
+                                if('yes' !== response) {
+                                    this.getEl().dom.focus();
+                                    return;
+                                }
+                                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                                    // here you can put whatever you need as header. For instance:
+                                    //this.defaultPostHeader = "application/json; charset=utf-8;";
+                                    this.defaultHeaders = {
+                                        userid: 'test'
+                                    };
+                                });
+                                Ext.Ajax.request({
+                                    url: '/etl/core/jobmeta/delete',
+                                    method: 'POST',
+                                    params: {
+                                        objectId: node_.id
+                                    },
+                                    success: function (response, opts) {
+                                        //Refresh this.ctxNode
+                                        if (parentNode_.attributes)
+                                            parentNode_.attributes.children = false;
+                                        parentNode_.reload();
+                                    },
+                                    failure: function (response, opts) {
+                                    }
+                                });
                             }
-                        );
-                        this.ctxNode = null;
+                        });
                     }.bind(this)
                 },
                 new Ext.menu.Separator({cmd:'sep-open'}),
@@ -885,9 +947,61 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                 }
             ]
         });
-        this.repoitem_csvmeta_contextmenu.on('hide', this.onContextHide, this);*/
+        this.repoitem_job_contextmenu.on('hide', this.onContextHide, this);
 
-
+        this.repofolder_job_contextmenu = new Ext.menu.Menu({
+            id: 'job.folder',
+            items: [
+                {
+                    id: 'addJobToFolder',
+                    icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                    text: 'Add Job',
+                    scope: this,
+                    handler: function () {
+                        this.application.newJob(this.ctxNode.id);
+                    }.bind(this)
+                },
+                new Ext.menu.Separator({cmd:'sep-open'}),
+                {
+                    id: 'createFolder',
+                    text: 'Create Folder',
+                    icon: '/etl/images/conxbi/etl/folder_close.png',
+                    scope: this,
+                    handler: function () {
+                        //this.ctxNode.select();
+                        this.createNewDir(this.ctxNode,{
+                            url:'/etl/core/explorer/adddir',
+                            itemtype: 'job'
+                        });
+                    }.bind(this)
+                },
+                {
+                    id: 'deleteFolder',
+                    text: 'Delete Folder',
+                    icon: '/etl/images/conxbi/etl/folder_delete.png',
+                    scope: this,
+                    handler: function () {
+                        //this.ctxNode.select();
+                        this.deleteDir(this.ctxNode,{
+                            url:'/etl/core/explorer/deldir',
+                            itemtype: 'job'
+                        });
+                    }.bind(this)
+                },
+                {
+                    id: 'refreshFolder',
+                    text: 'Refresh Folder',
+                    icon: '/etl/images/conxbi/etl/refresh.gif',
+                    scope: this,
+                    handler: function () {
+                        this.ctxNode.attributes.children = false;
+                        this.ctxNode.reload();
+                    }.bind(this)
+                }
+            ]
+        })
+        this.repofolder_job_contextmenu.on('hide', this.onContextHide, this);
+        
         //Wizards
         try {
             //-- Register events
@@ -1508,6 +1622,12 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         }
         else if (node.attributes.menugroup && node.attributes.menugroup === 'transformation.folder') {
             this.menu = this.repofolder_transformation_contextmenu;
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'job') {
+            this.menu = this.repoitem_job_contextmenu;
+        }
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'job.folder') {
+            this.menu = this.repofolder_job_contextmenu;
         }
         else
             return;

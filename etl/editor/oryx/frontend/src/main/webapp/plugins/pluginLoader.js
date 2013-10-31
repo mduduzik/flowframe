@@ -26,11 +26,11 @@ ORYX.Plugins.PluginLoader = Clazz.extend({
         this.mask = new Ext.LoadMask(Ext.getBody(), {msg: ORYX.I18N.Oryx.pleaseWait});
         this.mask.show();
         var data = [];
-        //(var plugins=this.facade.getAvailablePlugins();
+        //(var plugins=this.facade.getAvailablePluginConfigurations();
         var plugins = [];
         var loadedStencilSetsNamespaces = this.facade.getStencilSets().keys();
         //get all plugins which could be acivated
-        this.facade.getAvailablePlugins().each(function (match) {
+        this.facade.getAvailablePluginConfigurations().each(function (match) {
             if ((!match.requires || !match.requires.namespaces
                 || match.requires.namespaces.any(function (req) {
                 return loadedStencilSetsNamespaces.indexOf(req) >= 0

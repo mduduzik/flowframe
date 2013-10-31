@@ -39,14 +39,11 @@ public interface ICustomRepository extends Repository {
 	 * Transformations Tenant Directory Methods
 	 */
 	public RepositoryDirectoryInterface provideTransDirectoryForTenant(Organization tenant) throws KettleException;
-
 	public RepositoryDirectoryInterface provideTransStepDirectoryForTenant(Organization tenant) throws KettleException;
-	
 	public RepositoryDirectoryInterface provideInputTransStepDirectoryForTenant(Organization tenant) throws KettleException;
 	public RepositoryDirectoryInterface provideOutputTransStepDirectoryForTenant(Organization tenant) throws KettleException;
 	public RepositoryDirectoryInterface provideTransformTransStepDirectoryForTenant(Organization tenant) throws KettleException;
     public RepositoryDirectoryInterface provideTransformDraftsDirectoryForTenant(Organization tenant) throws KettleException;
-
     public RepositoryDirectoryInterface provideTransformMappingsTransStepDirectoryForTenant(Organization tenant) throws KettleException;
 	
 	/**
@@ -57,6 +54,7 @@ public interface ICustomRepository extends Repository {
 	public RepositoryDirectoryInterface provideJobGeneralDirectoryForTenant(Organization tenant) throws KettleException;	
 	public RepositoryDirectoryInterface provideJobFileTransferDirectoryForTenant(Organization tenant) throws KettleException;
 	public RepositoryDirectoryInterface provideJobFileManagementDirectoryForTenant(Organization tenant) throws KettleException;
+    public RepositoryDirectoryInterface provideJobDraftsDirectoryForTenant(Organization tenant) throws KettleException;
 
 
     public Database getSupportingDatabase();

@@ -201,6 +201,9 @@ ORYX.CONFIG.EVENT_MODEL_SAVED =				"model.saved";
 ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE = "register.label.template";
 
 //-- ETL
+ORYX.CONFIG.ETL_PLUGINS_ENABLED =			true;
+ORYX.CONFIG.ETL_PLUGINS_CONFIG =			ORYX.CONFIG.ROOT_PATH + "plugins/etl/metadata/etlplugins.xml";
+
 ORYX.CONFIG.EVENT_ETL_MODEL_NAMESPACE_NAME     = "etl.model.namespace";
 ORYX.CONFIG.EVENT_ETL_MODEL_SAVED       = "etl.model.saved";
 ORYX.CONFIG.EVENT_ETL_MODEL_SAVE       = "etl.model.save";

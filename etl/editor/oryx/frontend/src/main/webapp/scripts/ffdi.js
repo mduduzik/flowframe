@@ -5,6 +5,7 @@
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
+ * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
@@ -62,13 +63,18 @@ var DEFAULT_EDITORS = new Hash();
 if(!ORYX) var ORYX = {};
 
 ORYX = Object.extend(ORYX, {
-    //Toolbar Button Plugins
+   // ETL event and plugin managers
+   eventManager: undefined,
+   etlPluginManager: undefined,
+
+   //Toolbar Button Plugins
    pluginsData: [],
    plugs:	[],
    buttons: [],
 
     //Event routing
-    DOMEventListeners: new Hash(),
+    DOMEventListeners: new Hash(),//Temporary
+    EventListeners: new Hash(),
 
     Editors: new Hash(),
     CurrentEditor: undefined,
@@ -233,26 +239,35 @@ ORYX = Object.extend(ORYX, {
             this._finishedLoading();
         }.bind(this);
 
+
+        //-- Load stencilset-based editor plugin configurations
         window.setTimeout(function(){
-            ORYX.loadPlugins();
+            this.loadETLManagers();
+            ORYX.loadEditorPluginConfigurations();
             init();
             ORYX.generateMainUI();
             this.loadAppFinished = true;
             initFinished();
         }.bind(this), 100);
-	},
-
+	}
+    ,loadETLManagers: function() {
+        //-- Load ETL based plugins and configurations
+        this.eventManager = new ORYX.EventManager({});
+        this.etlPluginManager = new ORYX.Plugins.ETL.Metadata.PluginManager({
+            eventManager: this.eventManager
+        });
+    }
 	/**
 	 * Third bootstrapping layer. This is where first the plugin coniguration
 	 * file is loaded into oryx, analyzed, and where all plugins are being
 	 * requested by the server. Afterwards, all editor instances will be
 	 * initialized.
 	 */
-	loadPlugins: function() {
+	,loadEditorPluginConfigurations: function() {
 		
 		// load plugins if enabled.
 		if(ORYX.CONFIG.PLUGINS_ENABLED)
-			ORYX._loadPlugins()
+			ORYX._loadEditorPluginConfigurations()
 		else
 			ORYX.Log.warn("Ignoring plugins, loading Core only.");
 
@@ -261,7 +276,7 @@ ORYX = Object.extend(ORYX, {
         //this.generateMainUI();
 	},
 	
-	_loadPlugins: function() {
+	_loadEditorPluginConfigurations: function() {
 
 		// load plugin configuration file.
 		var source = ORYX.CONFIG.PLUGINS_CONFIG;
@@ -400,12 +415,12 @@ ORYX = Object.extend(ORYX, {
 				});
 		
 			},
-			onFailure:this._loadPluginsOnFails
+			onFailure:this._loadEditorPluginConfigurationsOnFails
 		});
 
 	},
 
-	_loadPluginsOnFails: function(result) {
+	_loadEditorPluginConfigurationsOnFails: function(result) {
 
 		ORYX.Log.error("Plugin configuration file not available.");
 	},
@@ -516,6 +531,10 @@ ORYX = Object.extend(ORYX, {
      *  Methods for the PluginFacade
      */
     ,registerOnEvent: function(eventType, callback) {
+        var facade = this.eventManager.getEventManagerFacade();
+        facade.registerOnEvent(eventType, callback);
+
+        //Temporary
         if(!(this.DOMEventListeners.keys().member(eventType))) {
             this.DOMEventListeners[eventType] = [];
         }
@@ -524,6 +543,10 @@ ORYX = Object.extend(ORYX, {
     },
 
     unregisterOnEvent: function(eventType, callback) {
+        var facade = this.eventManager.getEventManagerFacade();
+        facade.unregisterOnEvent(eventType, callback);
+
+        //Temporary
         if(this.DOMEventListeners.keys().member(eventType)) {
             this.DOMEventListeners[eventType] = this.DOMEventListeners[eventType].without(callback);
         } else {
@@ -532,7 +555,7 @@ ORYX = Object.extend(ORYX, {
         }
     },
     handleEvents: function(event, uiObj) {
-        this.CurrentEditor.getCanvasFacade().raiseEvent(event, uiObj);
+        this.eventManager.getEventManagerFacade().raiseEvent(event, uiObj);
     },
     //{{
     //
@@ -617,7 +640,7 @@ ORYX = Object.extend(ORYX, {
         //Default Button UI configs
         this.newTransButtonConfig = {
             'name': 'NewTransformation',
-            'functionality': this.newTransformation.bind(this,false),
+            'functionality': this.newTransformation.bind(this,undefined/*subDirId*/),
             'group': ORYX.I18N.Save.group,
             'icon': "/etl/images/conxbi/etl/transformation.png",
             'description': 'New Transformation',
@@ -629,7 +652,7 @@ ORYX = Object.extend(ORYX, {
 
         this.newJobButtonConfig = {
             'name': 'NewJob',
-            'functionality': this.newJob.bind(this,true),
+            'functionality': this.newJob.bind(this,undefined/*subDirId*/),
             'group': ORYX.I18N.Save.group,
             'icon': "/etl/images/conxbi/etl/process_icon.gif",
             'description': 'New ETL Job',
@@ -809,17 +832,29 @@ ORYX = Object.extend(ORYX, {
     /**
      * New job
      */
-    newJob: function(){
+    newJob: function(repoParentDirPathId){
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE,
+            repoParentDirPathId: repoParentDirPathId,
             itemtype: 'job'
         };
         this.launchEditor(config);
-/*        this.facade.raiseEvent({
+    },
+    /**
+     * Edit job
+     */
+    editJob: function(title,repoPathId,repoParentDirPathId,jsonModel){
+        var config = {
+            ssns: ORYX.CONFIG.NAMESPACE_ETLJOB,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
-            forceExecution: true
-        },config);*/
+            itemtype: 'job',
+            title: title,
+            repoPathId: repoPathId,
+            repoParentDirPathId: repoParentDirPathId,
+            jsonModel: jsonModel
+        };
+        this.launchEditor(config);
     },
     enableButtons: function(elements) {
         // Show the Buttons

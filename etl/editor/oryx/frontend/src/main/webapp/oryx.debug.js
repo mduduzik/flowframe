@@ -2311,7 +2311,7 @@ ORYX = Object.extend(ORYX, {
 			Kickstart.require(ORYX.PATH + url) });
 	*/
 		// configurate logging and load plugins.
-		ORYX.loadPlugins();
+		ORYX.loadPluginConfigurations();
 	},
 
 	/**
@@ -2320,11 +2320,11 @@ ORYX = Object.extend(ORYX, {
 	 * requested by the server. Afterwards, all editor instances will be
 	 * initialized.
 	 */
-	loadPlugins: function() {
+	loadPluginConfigurations: function() {
 		
 		// load plugins if enabled.
 		if(ORYX.CONFIG.PLUGINS_ENABLED)
-			ORYX._loadPlugins()
+			ORYX._loadPluginConfigurations()
 		else
 			ORYX.Log.warn("Ignoring plugins, loading Core only.");
 
@@ -2332,7 +2332,7 @@ ORYX = Object.extend(ORYX, {
 		init();
 	},
 	
-	_loadPlugins: function() {
+	_loadPluginConfigurations: function() {
 
 		// load plugin configuration file.
 		var source = ORYX.CONFIG.PLUGINS_CONFIG;
@@ -2471,12 +2471,12 @@ ORYX = Object.extend(ORYX, {
 				});
 		
 			},
-			onFailure:this._loadPluginsOnFails
+			onFailure:this._loadPluginConfigurationsOnFails
 		});
 
 	},
 
-	_loadPluginsOnFails: function(result) {
+	_loadPluginConfigurationsOnFails: function(result) {
 
 		ORYX.Log.error("Plugin configuration file not available.");
 	}
@@ -10420,7 +10420,7 @@ ORYX.Editor = {
 
         // LOAD the plugins
         window.setTimeout(function(){
-            this.loadPlugins();
+            this.loadPluginConfigurations();
             loadPluginFinished = true;
             initFinished();
         }.bind(this), 100);
@@ -10710,7 +10710,7 @@ ORYX.Editor = {
     },
 
 
-    getAvailablePlugins: function(){
+    getAvailablePluginConfigurations: function(){
         var curAvailablePlugins=ORYX.availablePlugins.clone();
         curAvailablePlugins.each(function(plugin){
             if(this.loadedPlugins.find(function(loadedPlugin){
@@ -10724,7 +10724,7 @@ ORYX.Editor = {
         return curAvailablePlugins;
     },
 
-    loadScript: function (url, callback){
+    loadPluginConfigurationScript: function (url, callback){
         var script = document.createElement("script")
         script.type = "text/javascript";
         if (script.readyState){  //IE
@@ -10752,7 +10752,7 @@ ORYX.Editor = {
      */
     activatePluginByName: function(name, callback, loadTry){
 
-        var match=this.getAvailablePlugins().find(function(value){return value.name==name});
+        var match=this.getAvailablePluginConfigurations().find(function(value){return value.name==name});
         if(match && (!match.engaged || (match.engaged==='false'))){
             var loadedStencilSetsNamespaces = this.getStencilSets().keys();
             var facade = this._getPluginFacade();
@@ -10789,7 +10789,7 @@ ORYX.Editor = {
                             callback(false,"INITFAILED");
                             return;
                         }
-                        this.loadScript("plugins/scripts/"+match.source, this.activatePluginByName.bind(this,match.name,callback,true));
+                        this.loadPluginConfigurationScript("plugins/scripts/"+match.source, this.activatePluginByName.bind(this,match.name,callback,true));
                     }
                 }else{
                     callback(false,"NOTUSEINSTENCILSET");
@@ -10811,12 +10811,12 @@ ORYX.Editor = {
     /**
      *  Laden der Plugins
      */
-    loadPlugins: function() {
+    loadPluginConfigurations: function() {
 
         // if there should be plugins but still are none, try again.
         // TODO this should wait for every plugin respectively.
         /*if (!ORYX.Plugins && ORYX.availablePlugins.length > 0) {
-         window.setTimeout(this.loadPlugins.bind(this), 100);
+         window.setTimeout(this.loadPluginConfigurations.bind(this), 100);
          return;
          }*/
 
@@ -10985,7 +10985,7 @@ ORYX.Editor = {
 
                 activatePluginByName:		this.activatePluginByName.bind(this),
                 //deactivatePluginByName:		this.deactivatePluginByName.bind(this),
-                getAvailablePlugins:	this.getAvailablePlugins.bind(this),
+                getAvailablePluginConfigurations:	this.getAvailablePluginConfigurations.bind(this),
                 offer:					this.offer.bind(this),
                 getStencilSets:			this.getStencilSets.bind(this),
                 getRules:				this.getRules.bind(this),
@@ -51285,11 +51285,11 @@ ORYX.Plugins.PluginLoader = Clazz.extend({
 			this.mask = new Ext.LoadMask(Ext.getBody(), {msg:ORYX.I18N.Oryx.pleaseWait});
 			this.mask.show();
 	var data=[];
-	//(var plugins=this.facade.getAvailablePlugins();
+	//(var plugins=this.facade.getAvailablePluginConfigurations();
 	var plugins=[];
 	var loadedStencilSetsNamespaces = this.facade.getStencilSets().keys();
 	//get all plugins which could be acivated
-	this.facade.getAvailablePlugins().each(function(match) {
+	this.facade.getAvailablePluginConfigurations().each(function(match) {
 	if ((!match.requires 	|| !match.requires.namespaces 	
 			|| match.requires.namespaces.any(function(req){ return loadedStencilSetsNamespaces.indexOf(req) >= 0 }) )
 		&&(!match.notUsesIn 	|| !match.notUsesIn.namespaces 	
@@ -55812,7 +55812,7 @@ if(!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
 }
 
-ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
+ORYX.Plugins.ETL.Metadata.DBConnectionEditor = {
 
     facade: undefined,
 
@@ -55909,4 +55909,4 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
     }
 }
-ORYX.Plugins.ETL.Metadata.DBConnectionWizard = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionWizard);
+ORYX.Plugins.ETL.Metadata.DBConnectionEditor = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionEditor);

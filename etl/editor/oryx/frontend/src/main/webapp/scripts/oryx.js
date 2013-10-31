@@ -245,7 +245,7 @@ ORYX = Object.extend(ORYX, {
 			Kickstart.require(ORYX.PATH + url) });
 	*/
 		// configurate logging and load plugins.
-		ORYX.loadPlugins();
+		ORYX.loadPluginConfigurations();
 	},
 
 	/**
@@ -254,11 +254,11 @@ ORYX = Object.extend(ORYX, {
 	 * requested by the server. Afterwards, all editor instances will be
 	 * initialized.
 	 */
-	loadPlugins: function() {
+	loadPluginConfigurations: function() {
 		
 		// load plugins if enabled.
 		if(ORYX.CONFIG.PLUGINS_ENABLED)
-			ORYX._loadPlugins()
+			ORYX._loadPluginConfigurations()
 		else
 			ORYX.Log.warn("Ignoring plugins, loading Core only.");
 
@@ -266,7 +266,7 @@ ORYX = Object.extend(ORYX, {
 		init();
 	},
 	
-	_loadPlugins: function() {
+	_loadPluginConfigurations: function() {
 
 		// load plugin configuration file.
 		var source = ORYX.CONFIG.PLUGINS_CONFIG;
@@ -405,12 +405,12 @@ ORYX = Object.extend(ORYX, {
 				});
 		
 			},
-			onFailure:this._loadPluginsOnFails
+			onFailure:this._loadPluginConfigurationsOnFails
 		});
 
 	},
 
-	_loadPluginsOnFails: function(result) {
+	_loadPluginConfigurationsOnFails: function(result) {
 
 		ORYX.Log.error("Plugin configuration file not available.");
 	}

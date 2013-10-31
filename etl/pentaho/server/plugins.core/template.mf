@@ -101,6 +101,7 @@ Import-Package: org.flowframe.etl.pentaho.plugin.di;version="[0.0.1,1.0.0)",
   org.codehaus.jackson.jaxrs;version="[1.9,2.0.0)",
   org.codehaus.jackson.xc;version="[1.9,2.0.0)",
   javax.persistence;version="0",
-  javax.persistence.metamodel;version="0"
+  javax.persistence.metamodel;version="0",
+  javax.ws.rs.ext;version="0"
 Excludes-Imports: org.junit,org.apache.log4j
 

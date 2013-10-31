@@ -204,7 +204,7 @@ ORYX.Editor = {
 
         // LOAD the plugins
         window.setTimeout(function(){
-            this.loadPlugins();
+            this.loadPluginConfigurations();
             loadPluginFinished = true;
             initFinished();
         }.bind(this), 100);
@@ -889,7 +889,7 @@ ORYX.Editor = {
     },
 
 
-    getAvailablePlugins: function(){
+    getAvailablePluginConfigurations: function(){
         var curAvailablePlugins=ORYX.availablePlugins.clone();
         curAvailablePlugins.each(function(plugin){
             if(this.loadedPlugins.find(function(loadedPlugin){
@@ -903,7 +903,7 @@ ORYX.Editor = {
         return curAvailablePlugins;
     },
 
-    loadScript: function (url, callback){
+    loadPluginConfigurationScript: function (url, callback){
         if (url) {
             var script = document.createElement("script")
             script.type = "text/javascript";
@@ -923,7 +923,7 @@ ORYX.Editor = {
             document.getElementsByTagName("head")[0].appendChild(script);
         }
         else  {
-            ORYX.Log.warn("Editor.loadScript: URL is NULL..load aborted..");
+            ORYX.Log.warn("Editor.loadPluginConfigurationScript: URL is NULL..load aborted..");
         }
 
     },
@@ -937,7 +937,7 @@ ORYX.Editor = {
      */
     activatePluginByName: function(name, callback, loadTry){
 
-        var match=this.getAvailablePlugins().find(function(value){return value.name==name});
+        var match=this.getAvailablePluginConfigurations().find(function(value){return value.name==name});
         if(match && (!match.engaged || (match.engaged==='false'))){
             var loadedStencilSetsNamespaces = this.getStencilSets().keys();
             var facade = this._getPluginFacade();
@@ -974,9 +974,9 @@ ORYX.Editor = {
                             callback(false,"INITFAILED");
                             return;
                         }
-                        //this.loadScript("plugins/scripts/"+match.source, this.activatePluginByName.bind(this,match.name,callback,true));
+                        //this.loadPluginConfigurationScript("plugins/scripts/"+match.source, this.activatePluginByName.bind(this,match.name,callback,true));
                         var url = ORYX.PATH + ORYX.CONFIG.PLUGINS_FOLDER + match.source;
-                    }   this.loadScript(url, this.activatePluginByName.bind(this,match.name,callback,true));
+                    }   this.loadPluginConfigurationScript(url, this.activatePluginByName.bind(this,match.name,callback,true));
                 }else{
                     callback(false,"NOTUSEINSTENCILSET");
                     ORYX.Log.info("Plugin need a stencilset which is not loaded'", match.name);
@@ -997,12 +997,12 @@ ORYX.Editor = {
     /**
      *  Laden der Plugins
      */
-    loadPlugins: function() {
+    loadPluginConfigurations: function() {
 
         // if there should be plugins but still are none, try again.
         // TODO this should wait for every plugin respectively.
         /*if (!ORYX.Plugins && ORYX.availablePlugins.length > 0) {
-         window.setTimeout(this.loadPlugins.bind(this), 100);
+         window.setTimeout(this.loadPluginConfigurations.bind(this), 100);
          return;
          }*/
 
@@ -1228,7 +1228,7 @@ ORYX.Editor = {
 
                 activatePluginByName:		this.activatePluginByName.bind(this),
                 //deactivatePluginByName:		this.deactivatePluginByName.bind(this),
-                getAvailablePlugins:	this.getAvailablePlugins.bind(this),
+                getAvailablePluginConfigurations:	this.getAvailablePluginConfigurations.bind(this),
                 offer:					this.offer.bind(this),
                 getStencilSets:			this.getStencilSets.bind(this),
                 getRules:				this.getRules.bind(this),

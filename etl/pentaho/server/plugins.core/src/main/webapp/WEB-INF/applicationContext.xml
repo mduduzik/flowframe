@@ -85,7 +85,9 @@
     <bean id="transformationMetaResource"
           class="org.flowframe.etl.pentaho.server.plugins.core.resource.TransformationMetaResource"
           scope="request"/>
-
+    <bean id="jobMetaResource"
+          class="org.flowframe.etl.pentaho.server.plugins.core.resource.JobMetaResource"
+          scope="request"/>
     <!--
        CSVInput
     -->

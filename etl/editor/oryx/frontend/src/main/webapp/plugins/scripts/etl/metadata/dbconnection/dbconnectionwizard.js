@@ -10,7 +10,7 @@ if(!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
 }
 
-ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
+ORYX.Plugins.ETL.Metadata.DBConnectionEditor = {
 
     facade: undefined,
 
@@ -107,4 +107,4 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
 
     }
 }
-ORYX.Plugins.ETL.Metadata.DBConnectionWizard = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionWizard);
+ORYX.Plugins.ETL.Metadata.DBConnectionEditor = Clazz.extend(ORYX.Plugins.ETL.Metadata.DBConnectionEditor);

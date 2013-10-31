@@ -1,6 +1,5 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource;
 
-import com.sun.enterprise.module.Repository;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -82,14 +81,14 @@ public class RepositoryExplorerResource {
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        if (record.getDirObjectId() < 0) {//Root
+        if (record.getDirObjectId() <= 0) {//Root
             LongObjectId objId = null;
             if (REPOSITORY_ITEM_TYPE_TRANSFORMATION.equals(record.getItemtype())) {
                 objId = (LongObjectId)repository.provideTransDirectoryForTenant(tenant).getObjectId();
                 record.setIcon("/etl/images/conxbi/etl/folder_open_transformations.gif");
             }
             else  if (REPOSITORY_ITEM_TYPE_JOB.equals(record.getItemtype())) {
-                objId = (LongObjectId)repository.provideTransDirectoryForTenant(tenant).getObjectId();
+                objId = (LongObjectId)repository.provideJobsDirectoryForTenant(tenant).getObjectId();
                 record.setIcon("/etl/images/conxbi/etl/folder_open_jobs.gif");
             }
             else if (REPOSITORY_ITEM_TYPE_DATABASE.equals(record.getItemtype())) {
@@ -362,7 +361,7 @@ public class RepositoryExplorerResource {
                 stepsFolderObj.put("text", "Steps");
                 stepsFolderObj.put("title", "Steps");
                 stepsFolderObj.put("icon", "/etl/images/conxbi/etl/folder_open_transformations.gif");
-                stepsFolderObj.put("id", trans.getObjectId().toString());
+                stepsFolderObj.put("id", trans.getObjectId()+"-Steps");
                 stepsFolderObj.put("allowDrag", false);
                 stepsFolderObj.put("allowDrop", false);
                 stepsFolderObj.put("leaf", false);
@@ -483,7 +482,7 @@ public class RepositoryExplorerResource {
         jobs.put("leaf", false);
         jobs.put("hasChildren", true);
         jobs.put("singleClickExpand", true);
-        jobs.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
+        jobs.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_JOB);
         jobs.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
         jobs.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB + ".folder");
 

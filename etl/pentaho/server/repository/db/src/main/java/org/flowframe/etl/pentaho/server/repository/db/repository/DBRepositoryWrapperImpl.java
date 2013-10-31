@@ -139,13 +139,8 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
         /* supportingDatabase.connect();;*/
 		
 		//Ensure root and tenant root dir's
-		rootDir = findDirectory("/conxbi");
+		rootDir = provideApplicationDirectory();
 	}
-
-    private RepositoryDirectoryInterface findTenantDirectory() throws KettleException {
-        return  findDirectory("/conxbi/tenant");
-    }
-
 
 	public Boolean isAvailable() throws Exception {
 		return true;// getLoginUserId() != null;
@@ -170,7 +165,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
      */
     public RepositoryDirectoryInterface provideMetadataDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = findTenantDirectory().findDirectory(FOLDER_METADATA);
+        RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_METADATA);
         if (dir == null)
             dir = createRepositoryDirectory(tenantDir, FOLDER_METADATA);
         return dir;
@@ -236,13 +231,27 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
     @Override
 	public RepositoryDirectoryInterface provideDirectoryForTenant(Organization tenant) throws KettleException {
 		String dirName = "Organization-"+tenant.getId();
-		RepositoryDirectoryInterface dir = findTenantDirectory().findDirectory(dirName);
+		RepositoryDirectoryInterface dir = provideTenantDirectory().findDirectory(dirName);
 		if (dir == null)
-			dir = createRepositoryDirectory(tenantDir, dirName);
+			dir = createRepositoryDirectory( provideTenantDirectory(), dirName);
 		return dir;
 	}
 
-	@Override
+    public RepositoryDirectoryInterface provideTenantDirectory() throws KettleException {
+        RepositoryDirectoryInterface dir = provideApplicationDirectory().findDirectory("tenants");
+        if (dir == null)
+            dir = createRepositoryDirectory(provideApplicationDirectory(), "tenants");
+        return dir;
+    }
+
+    public RepositoryDirectoryInterface provideApplicationDirectory() throws KettleException {
+        RepositoryDirectoryInterface dir = findDirectory("conxbi");
+        if (dir == null)
+            dir = createRepositoryDirectory(loadRepositoryDirectoryTree(), "conxbi");
+        return dir;
+    }
+
+    @Override
 	public RepositoryDirectoryInterface provideTransDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
 		RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_TRANS);
@@ -312,7 +321,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	@Override
 	public RepositoryDirectoryInterface provideJobsDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = findTenantDirectory().findDirectory(FOLDER_JOBS);
+		RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_JOBS);
 		if (dir == null)
 			dir = createRepositoryDirectory(tenantDir, FOLDER_JOBS);
 		return dir;	
@@ -326,6 +335,15 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 			dir = createRepositoryDirectory(jobsDir, FOLDER_JOBS_GENERAL);
 		return dir;	
 	}
+
+    @Override
+    public RepositoryDirectoryInterface provideJobDraftsDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface transStepDirectory = provideTransformTransStepDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_JOBS_JOBS_DRAFTS);
+        if (dir == null)
+            dir = createRepositoryDirectory(transStepDirectory, FOLDER_JOBS_JOBS_DRAFTS);
+        return dir;
+    }
 
 	@Override
 	public RepositoryDirectoryInterface provideJobFileTransferDirectoryForTenant(Organization tenant) throws KettleException {

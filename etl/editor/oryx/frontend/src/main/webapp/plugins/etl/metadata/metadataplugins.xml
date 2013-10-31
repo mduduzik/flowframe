@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<plugins>
-		<plugin source="etl/metadata/dbconnection/dbconnectionwizard.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
-        <plugin source="etl/metadata/csv/csvmetawizard.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaWizard"/>
+<!--		<plugin source="etl/metadata/dbconnection/dbconnectionwizard.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionWizard"/>
+        <plugin source="etl/metadata/csv/csvmetawizard.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaWizard"/>-->
         <plugin source="etl/trans/transsteppropertywindow.js" name="ORYX.Plugins.ETL.Trans.Step.TransStepPropertyWindow"/>
         <plugin source="etl/trans/transpropertywindow.js" name="ORYX.Plugins.ETL.Trans.TransPropertyWindow"/>
         <plugin source="etl/job/trans/etltransrunner.js" name="ORYX.Plugins.ETL.Job.ETLTransRunner"/>

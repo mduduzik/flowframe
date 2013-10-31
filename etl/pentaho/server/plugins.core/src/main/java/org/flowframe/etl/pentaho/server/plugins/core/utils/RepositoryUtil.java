@@ -6,6 +6,7 @@ import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.NotePadMeta;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entry.JobEntryCopy;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
@@ -198,7 +199,7 @@ public class RepositoryUtil {
      *
      */
     static public StepMeta getStep(ICustomRepository repo, String pathID) {
-       // /trans/1/step/2
+        // /trans/1/step/2
         String[] pathTokens = pathID.split("/");
         int len = pathTokens.length;
 
@@ -209,7 +210,7 @@ public class RepositoryUtil {
 
         TransMeta trans = null;
         try {
-            trans = repo.loadTransformation(new LongObjectId(transId),"null");
+            trans = repo.loadTransformation(new LongObjectId(transId), "null");
         } catch (KettleException e) {
             throw new IllegalArgumentException("Error fetching trans with id["+transId+"]");
         }
@@ -278,6 +279,179 @@ public class RepositoryUtil {
     public static TransMeta provideTransformation(ICustomRepository repo, RepositoryDirectoryInterface dir, String stepInputPid) throws KettleException {
         if ("CsvInput".equals(stepInputPid))
             return provideCSVFileTransformation(repo,dir);
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
+
+
+    /**
+     *
+     * Jobs
+     *
+     */
+    static public synchronized String addOrReplaceJobsMetaDraft(Organization tenant, ICustomRepository repo, JobMeta jobMeta) {
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface draftsDir = repo.provideJobDraftsDirectoryForTenant(tenant);
+            ObjectId transId = repo.getRepositoryJobDelegate().getJobID(jobMeta.getName(), draftsDir.getObjectId());
+            if (transId != null) {
+                repo.deleteJob(transId);
+            }
+            jobMeta.setRepositoryDirectory(draftsDir);
+            repo.getRepositoryJobDelegate().saveJob(jobMeta, "drafts jobs", null, true);
+
+            return jobMeta.getName();
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    static public synchronized String addOrReplaceJobMeta(String dirPathId,
+                                                            ICustomRepository repo,
+                                                            JobMeta jobMeta,
+                                                            String jsonModel,
+                                                            String svgModel) {
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface dir = getDirectory(repo,dirPathId);
+            jobMeta.setRepositoryDirectory(dir);
+
+
+            //-- do transmeta
+            if (repo.getRepositoryJobDelegate().existsJobMeta(jobMeta.getName(), dir, RepositoryObjectType.TRANSFORMATION)) {
+                jobMeta  = repo.loadJob(jobMeta.getName(), dir, null, null);
+
+                //-- do json and svg
+                if (jsonModel != null) {
+                    jobMeta.getNote(0).setNote(jsonModel);
+                }
+
+                if (svgModel != null) {
+                    jobMeta.getNote(1).setNote(svgModel);
+                }
+            }
+            else {
+                //-- do json and svg
+                if (jsonModel != null) {
+                    NotePadMeta jsonNote = new NotePadMeta();
+                    jsonNote.setNote(jsonModel);
+                    jobMeta.addNote(0,jsonNote);
+                }
+
+                if (svgModel != null) {
+                    NotePadMeta svgNote = new NotePadMeta();
+                    svgNote.setNote(svgModel);
+                    jobMeta.addNote(1,svgNote);
+                }
+            }
+            repo.getRepositoryJobDelegate().saveJob(jobMeta, jobMeta.getDescription(), null, true);
+            repo.getRepositoryConnectionDelegate().commit();
+
+            return jobMeta.getName();
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    static public synchronized void purgeJobMetaDrafts(Organization tenant, ICustomRepository repo, TransMeta transMeta) {
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface draftsDir = repo.provideTransformDraftsDirectoryForTenant(tenant);
+            draftsDir.clear();
+            ObjectId transId = repo.getRepositoryJobDelegate().getJobID(transMeta.getName(), draftsDir.getObjectId());
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    /**
+     *
+     * Job Entries
+     *
+     */
+    static public JobEntryCopy getJobEntry(ICustomRepository repo, String pathID) {
+        // /trans/1/step/2
+        String[] pathTokens = pathID.split("/");
+        int len = pathTokens.length;
+
+        String[] idStr = pathTokens[len - 1].split("#");
+        int stepIndex = Integer.valueOf(idStr[1]);
+        Long transId = Long.valueOf(pathTokens[len-3]);
+
+
+        JobMeta job = null;
+        try {
+            job = repo.loadJob(new LongObjectId(transId), "null");
+        } catch (KettleException e) {
+            throw new IllegalArgumentException("Error fetching job with id["+transId+"]");
+        }
+
+        JobEntryCopy jobEntry = job.getJobEntry(stepIndex);
+
+        return jobEntry;
+    }
+
+
+    static public synchronized String saveJobMeta(ICustomRepository repo, String pathID, JobEntryCopy stepMeta) {
+        try {
+            JobEntryCopy storedJobEntry = getJobEntry(repo, pathID);
+            JobMeta job = storedJobEntry.getParentJobMeta();
+            int[] indeces = job.getEntryIndexes(Arrays.asList(new JobEntryCopy[]{storedJobEntry}));
+            job.setJobEntry(indeces[0], stepMeta);
+
+            repo.getRepositoryJobDelegate().saveJob(job, "updated entry", null, true);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathID;
+    }
+
+    static public synchronized String deleteJobEntry(ICustomRepository repo, String pathID) {
+        try {
+            JobEntryCopy storedJobEntry = getJobEntry(repo, pathID);
+            JobMeta job = storedJobEntry.getParentJobMeta();
+            int[] indeces = job.getEntryIndexes(Arrays.asList(new JobEntryCopy[]{storedJobEntry}));
+            job.removeJobEntry(indeces[0]);
+
+            repo.getRepositoryJobDelegate().saveJob(job, "deleted entry", null, true);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathID;
+    }
+
+    static public synchronized String addJobEntry(ICustomRepository repo, String dirObjId, JobEntryCopy jobEntryMeta) {
+        // /trans/1/step/2
+        JobMeta job = null;
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface dir = getDirectory(repo, new LongObjectId(Long.valueOf(dirObjId)));
+            job = provideJob(repo, dir, jobEntryMeta.getEntry().getPluginId());
+            int insertIndex = job.getSelectedEntries().size();
+
+            //Check for name colusion
+            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo, dir, jobEntryMeta.getEntry().getPluginId(), jobEntryMeta.getName());
+            if (nameExists)
+                jobEntryMeta.setName(jobEntryMeta.getName()+"-"+insertIndex);
+
+            job.addJobEntry(insertIndex,jobEntryMeta);
+
+            repo.getRepositoryJobDelegate().saveJob(job,"added entry",null,true);
+
+            pathId = generatePathID(jobEntryMeta,insertIndex);
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathId;
+    }
+
+
+
+    public static JobMeta provideJob(ICustomRepository repo, RepositoryDirectoryInterface dir, String jobEntryPid) throws KettleException {
+        if ("CsvInput".equals(jobEntryPid))
+            return null;//provideCSVFileTransformation(repo,dir);
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
 

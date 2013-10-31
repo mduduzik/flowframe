@@ -273,6 +273,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED, this.onCreated.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETED, this.onDeleted.bind(this));
 
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED, this.onModelSaved.bind(this));
+
         //-- Drag and Drop
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DDROP, this.onMetadataDrop.bind(this));
 
@@ -664,6 +666,19 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     onDeleted: function (event) {
         var ctxNodeId = event.treeNodeParentId;
         var name = event.name;
+
+        var ctxNode_ = this.getNodeById(ctxNodeId);
+        ctxNode_.select();
+
+        ctxNode_.reload();
+    },
+    /**
+     * On Model Saved
+     * @param event
+     */
+    onModelSaved: function (event) {
+        var ctxNodeId = event.repoParentDirPathId;
+        var name = event.title;
 
         var ctxNode_ = this.getNodeById(ctxNodeId);
         ctxNode_.select();
