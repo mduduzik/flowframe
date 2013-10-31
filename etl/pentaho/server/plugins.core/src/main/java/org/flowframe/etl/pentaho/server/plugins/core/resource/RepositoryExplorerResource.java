@@ -179,7 +179,7 @@ public class RepositoryExplorerResource {
         }
         else if (nodeId != null && "transformation".equals(itemtype)) {
             RepositoryDirectoryInterface nodeDir = RepositoryUtil.getDirectory(repository, nodeId);
-            json = generateTransformationsRecursiveSubTreeData(true, true, repository, nodeDir);
+            json = generateTransformationsRecursiveSubTreeData(false, false, repository, nodeDir);
             res = json.getJSONArray("children").toString();
         }
         //Job node
@@ -307,13 +307,20 @@ public class RepositoryExplorerResource {
 
         List<RepositoryDirectoryInterface> subDirs = dir.getChildren();
 
+        boolean hasChildren = !subDirs.isEmpty();
+        if (excludeChildrenForThisNode) {
+            subDir.put("hasChildren", hasChildren);
+            subDir.put("singleClickExpand", hasChildren);
+            return subDir;
+        }
+
 
         JSONArray childrenArray = new JSONArray();
         subDir.put("children", childrenArray);
 
         //Do sub dirs
         for (RepositoryDirectoryInterface subDir_ : subDirs) {
-            JSONObject subDirDir = generateTransformationsRecursiveSubTreeData(ondemand, excludeChildrenForThisNode, ICustomRepository, subDir_);
+            JSONObject subDirDir = generateTransformationsRecursiveSubTreeData(true, true, ICustomRepository, subDir_);
             childrenArray.put(subDirDir);
         }
 
@@ -349,6 +356,7 @@ public class RepositoryExplorerResource {
                 transObj.put("hasChildren", true);
                 transObj.put("singleClickExpand", true);
                 transObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                transObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
                 transObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_TRANSFORMATION);
                 transObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
                 childrenArray.put(transObj);
