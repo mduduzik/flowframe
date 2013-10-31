@@ -179,12 +179,116 @@
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
-                    "id":"parentFolderId",
+                    "id":"fileEntryId",
                     "category":"Basic",
                     "type":"Text",
-                    "title":"Parent Folder",
+                    "title":"File Entry ID",
                     "value":"",
-                    "description":"Parent Folder",
+                    "description":"File Entry ID",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"repositoryId",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Repo ID",
+                    "value":"",
+                    "description":"Repo ID",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"companyId",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Comp ID",
+                    "value":"",
+                    "description":"Comp ID",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"folderId",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Root Folder ID",
+                    "value":"",
+                    "description":"Root Folder ID",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"loginEmail",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Login Email",
+                    "value":"",
+                    "description":"Login Email",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"loginPassword",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Login Pwd",
+                    "value":"",
+                    "description":"Login Pwd",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"hostname",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Hostname",
+                    "value":"",
+                    "description":"Hostname",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"port",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Port",
+                    "value":"",
+                    "description":"Port",
+                    "readonly":true,
+                    "optional":false,
+                    "length":"",
+                    "wrapLines":false,
+                    "popular" : true
+                }
+                ,{
+                    "id":"loginGroupId",
+                    "category":"Basic",
+                    "type":"Text",
+                    "title":"Login Group Id",
+                    "value":"",
+                    "description":"Login Group Id",
                     "readonly":true,
                     "optional":false,
                     "length":"",

@@ -58,6 +58,15 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public static String REPOSITORY_FOLDER_OUTBOX = "OUTBOX";
     public static String REPOSITORY_FOLDER_SAMPLES = "SAMPLES";
 
+    private String docRepositoryId;
+    private String docRepositoryCompanyId;
+    private String docRepositoryRootFolderId;
+    private String docRepositoryLoginEmail;
+    private String docRepositoryLoginPassword;
+    private String docRepositoryHostname;
+    private String docRepositoryPort;
+    private String docRepositoryLoginGroupId;
+
     @GET
     @Path("/getfile")
     //@Produces("application/octet-stream")
@@ -313,6 +322,18 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 feObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
                 feObj.put(REPOSITORY_ITEM_TYPE,REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFILEITEM);
 
+
+                //DocRepo metadata attrs
+                feObj.put("docrepofileentry.fileEntryId",fe.getFileEntryId());
+                feObj.put("docrepofileentry.repositoryId",getDocRepositoryId());
+                feObj.put("docrepofileentry.companyId",getDocRepositoryCompanyId());
+                feObj.put("docrepofileentry.folderId",getDocRepositoryRootFolderId());
+                feObj.put("docrepofileentry.loginEmail",getDocRepositoryLoginEmail());
+                feObj.put("docrepofileentry.loginPassword",getDocRepositoryLoginPassword());
+                feObj.put("docrepofileentry.hostname",getDocRepositoryHostname());
+                feObj.put("docrepofileentry.port",getDocRepositoryPort());
+                feObj.put("docrepofileentry.loginGroupId",getDocRepositoryLoginGroupId());
+
                 children.put(feObj);
             }
 
@@ -366,5 +387,70 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         FormDataBodyPart fileBP = fileBPList.get(0);
 
         return fileBP;
+    }
+
+
+    public void setDocRepositoryId(String docRepositoryId) {
+        this.docRepositoryId = docRepositoryId;
+    }
+
+    public String getDocRepositoryId() {
+        return docRepositoryId;
+    }
+
+    public void setDocRepositoryCompanyId(String docRepositoryCompanyId) {
+        this.docRepositoryCompanyId = docRepositoryCompanyId;
+    }
+
+    public String getDocRepositoryCompanyId() {
+        return docRepositoryCompanyId;
+    }
+
+    public void setDocRepositoryRootFolderId(String docRepositoryRootFolderId) {
+        this.docRepositoryRootFolderId = docRepositoryRootFolderId;
+    }
+
+    public String getDocRepositoryRootFolderId() {
+        return docRepositoryRootFolderId;
+    }
+
+    public void setDocRepositoryLoginEmail(String docRepositoryLoginEmail) {
+        this.docRepositoryLoginEmail = docRepositoryLoginEmail;
+    }
+
+    public String getDocRepositoryLoginEmail() {
+        return docRepositoryLoginEmail;
+    }
+
+    public void setDocRepositoryLoginPassword(String docRepositoryLoginPassword) {
+        this.docRepositoryLoginPassword = docRepositoryLoginPassword;
+    }
+
+    public String getDocRepositoryLoginPassword() {
+        return docRepositoryLoginPassword;
+    }
+
+    public void setDocRepositoryHostname(String docRepositoryHostname) {
+        this.docRepositoryHostname = docRepositoryHostname;
+    }
+
+    public String getDocRepositoryHostname() {
+        return docRepositoryHostname;
+    }
+
+    public void setDocRepositoryPort(String docRepositoryPort) {
+        this.docRepositoryPort = docRepositoryPort;
+    }
+
+    public String getDocRepositoryPort() {
+        return docRepositoryPort;
+    }
+
+    public void setDocRepositoryLoginGroupId(String docRepositoryLoginGroupId) {
+        this.docRepositoryLoginGroupId = docRepositoryLoginGroupId;
+    }
+
+    public String getDocRepositoryLoginGroupId() {
+        return docRepositoryLoginGroupId;
     }
 }

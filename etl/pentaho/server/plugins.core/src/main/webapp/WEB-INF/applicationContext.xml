@@ -76,7 +76,16 @@
           class="org.flowframe.etl.pentaho.server.plugins.core.resource.RepositoryExplorerResource" scope="request"/>
     <bean id="docLibExplorer"
           class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource"
-          scope="request"/>
+          scope="request" depends-on="systemProperties">
+        <property name="docRepositoryId" value="${ff.docrepo.repository.id}"/>
+        <property name="docRepositoryCompanyId" value="${ff.docrepo.repository.companyid}"/>
+        <property name="docRepositoryRootFolderId" value="${ff.docrepo.repository.main.folderid}"/>
+        <property name="docRepositoryLoginEmail" value="${ff.docrepo.user.email}"/>
+        <property name="docRepositoryLoginPassword" value="${ff.docrepo.user.password}"/>
+        <property name="docRepositoryHostname" value="${ff.docrepo.server.hostname}"/>
+        <property name="docRepositoryPort" value="${ff.docrepo.server.port}"/>
+        <property name="docRepositoryLoginGroupId" value="${ff.docrepo.user.group.id}"/>
+    </bean>
     <bean id="charSet" class="org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource"
           scope="request"/>
     <bean id="transformationJobServiceResource"
