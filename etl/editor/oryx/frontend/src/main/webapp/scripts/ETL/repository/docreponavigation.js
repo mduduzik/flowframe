@@ -452,13 +452,52 @@ Ext.ux.DOCRepoNavigationTreePanel = Ext.extend(Ext.ux.FileTreePanel, {
                                     this.facade.updateSelection();
                                 }
                             })
-                            // Instanciated the class
                             var metadataType = dragZone.dragData.mainNode.attributes['itemtype'];
                             var metadataName = dragZone.dragData.mainNode.text;
                             var metadataObjId = dragZone.dragData.mainNode.id;
                             command = new commandClass(currentCanvasFacade, metadataType, metadataName, metadataObjId);
                             currentCanvasFacade.executeCommands([ command ]);
 
+
+                            //--Generate extra metadata properties - if there are any
+                            var itemtype = dragZone.dragData.mainNode.attributes['itemtype'];
+                            var itemtypeProps = new Hash();
+                            for (attrname in dragZone.dragData.mainNode.attributes) {
+                                if (attrname.indexOf(itemtype+'.') >= 0)
+                                    itemtypeProps[attrname] = dragZone.dragData.mainNode.attributes[attrname];
+                            };
+                            if (itemtypeProps.keys().length > 0) {
+                                var extraProps =  new Hash();
+                                itemtypeProps.keys().each(function (key) {
+                                    var tokens = key.split(itemtype+'.')
+                                    extraProps[tokens[1]] = itemtypeProps[key];
+                                }.bind(this));
+
+                                var commandClass = ORYX.Core.Command.extend({
+                                    construct: function (facade, props) {
+                                        this.facade = facade,
+                                        this.props = props;
+                                    },
+                                    execute: function () {
+                                        this.props.keys().each(function (key) {
+                                            newShape.setProperty('oryx-'+key,this.props[key])
+                                        }.bind(this));
+                                        this.facade.setSelection([newShape]);
+                                        currentCanvas.update();
+                                        this.facade.updateSelection();
+                                    },
+                                    rollback: function () {
+                                        this.props.keys().each(function (key) {
+                                            newShape.setProperty('oryx-'+key,'R'+this.props[key])
+                                        }.bind(this));
+                                        this.facade.setSelection([newShape]);
+                                        currentCanvas.update();
+                                        this.facade.updateSelection();
+                                    }
+                                })
+                                command = new commandClass(currentCanvasFacade, extraProps);
+                                currentCanvasFacade.executeCommands([ command ]);
+                            }
 
                             newURLWin.close();
                         }.bind(this)

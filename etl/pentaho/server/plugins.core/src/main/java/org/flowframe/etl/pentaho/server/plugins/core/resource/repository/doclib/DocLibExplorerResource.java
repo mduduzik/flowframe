@@ -324,15 +324,15 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
 
                 //DocRepo metadata attrs
-                feObj.put("docrepofileentry.fileEntryId",fe.getFileEntryId());
-                feObj.put("docrepofileentry.repositoryId",getDocRepositoryId());
-                feObj.put("docrepofileentry.companyId",getDocRepositoryCompanyId());
-                feObj.put("docrepofileentry.folderId",getDocRepositoryRootFolderId());
-                feObj.put("docrepofileentry.loginEmail",getDocRepositoryLoginEmail());
-                feObj.put("docrepofileentry.loginPassword",getDocRepositoryLoginPassword());
+                feObj.put("docrepofileentry.fileentryid",fe.getFileEntryId());
+                feObj.put("docrepofileentry.repositoryid",getDocRepositoryId());
+                feObj.put("docrepofileentry.companyid",getDocRepositoryCompanyId());
+                feObj.put("docrepofileentry.folderid",getDocRepositoryRootFolderId());
+                feObj.put("docrepofileentry.loginemail",getDocRepositoryLoginEmail());
+                feObj.put("docrepofileentry.loginpassword",getDocRepositoryLoginPassword());
                 feObj.put("docrepofileentry.hostname",getDocRepositoryHostname());
                 feObj.put("docrepofileentry.port",getDocRepositoryPort());
-                feObj.put("docrepofileentry.loginGroupId",getDocRepositoryLoginGroupId());
+                feObj.put("docrepofileentry.logingroupid",getDocRepositoryLoginGroupId());
 
                 children.put(feObj);
             }
