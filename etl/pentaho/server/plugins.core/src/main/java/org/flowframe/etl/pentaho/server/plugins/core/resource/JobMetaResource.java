@@ -49,7 +49,7 @@ public class JobMetaResource {
         tenant.setId(1L);
 
         RepositoryDirectoryInterface jobRootDir = null;
-        jobRootDir = repository.provideTransDirectoryForTenant(tenant);
+        jobRootDir = repository.provideJobsDirectoryForTenant(tenant);
         String jobRootDirPathId = RepositoryUtil.generatePathID(jobRootDir);
 
         if (dirPathId == null) {

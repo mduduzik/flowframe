@@ -349,7 +349,7 @@ public class RepositoryExplorerResource {
                 transObj.put("text", trans.getName());
                 transObj.put("title", trans.getName());
                 transObj.put("icon", "/etl/images/conxbi/etl/transformation.png");
-                transObj.put("id", trans.getObjectId().toString());
+                transObj.put("id",  RepositoryUtil.getPathId(trans));
                 transObj.put("allowDrag", false);
                 transObj.put("allowDrop", false);
                 transObj.put("leaf", false);
@@ -477,15 +477,15 @@ public class RepositoryExplorerResource {
 
     //{{Jobs
     private static JSONObject generateJobsJsonTreeData(Boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository repo, Organization tenant) throws KettleException, JSONException {
-        RepositoryDirectoryInterface transDir = repo.provideJobsDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface jobDir = repo.provideJobsDirectoryForTenant(tenant);
 
 
         JSONObject jobs = new JSONObject();
         jobs.put("id", "jobs");
         jobs.put("allowDrag", false);
         jobs.put("allowDrop", false);
-        jobs.put("text", transDir.getName());
-        jobs.put("title", transDir.getName());
+        jobs.put("text", jobDir.getName());
+        jobs.put("title", jobDir.getName());
         jobs.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
         jobs.put("leaf", false);
         jobs.put("hasChildren", true);
@@ -494,15 +494,20 @@ public class RepositoryExplorerResource {
         jobs.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONTIME);
         jobs.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB + ".folder");
 
-        JSONArray transChildren = new JSONArray();
-        jobs.put("children", transChildren);
+        JSONArray jobChildren = new JSONArray();
+        jobs.put("children", jobChildren);
         //Do sub dirs
-        List<RepositoryDirectoryInterface> transSubDirs = transDir.getChildren();
+        List<RepositoryDirectoryInterface> jobSubDirs = jobDir.getChildren();
 
-        for (RepositoryDirectoryInterface subDir_ : transSubDirs) {
+        for (RepositoryDirectoryInterface subDir_ : jobSubDirs) {
             JSONObject subDirDir = generateJobsRecursiveSubTreeData(ondemand, excludeChildrenForThisNode, repo, subDir_);
-            transChildren.put(subDirDir);
+            jobChildren.put(subDirDir);
         }
+
+        //Process trans transformations
+        generateJsonTreeFromJobArtifacts(false/*always include leaves for subdir*/, repo, jobDir, jobs, jobSubDirs, jobChildren);
+
+
 
         return jobs;
     }
@@ -532,7 +537,7 @@ public class RepositoryExplorerResource {
 
         //Do sub dirs
         for (RepositoryDirectoryInterface subDir_ : subDirs) {
-            JSONObject subDirDir = generateJobsRecursiveSubTreeData(ondemand, excludeChildrenForThisNode, ICustomRepository, subDir_);
+            JSONObject subDirDir = generateJobsRecursiveSubTreeData(true, true, ICustomRepository, subDir_);
             childrenArray.put(subDirDir);
         }
 
@@ -557,35 +562,36 @@ public class RepositoryExplorerResource {
                 JobMeta job = ICustomRepository.loadJob(jobName, dir, null, null);
 
                 //-- Job
-                JSONObject transObj = new JSONObject();
-                transObj.put("text", job.getName());
-                transObj.put("title", job.getName());
-                transObj.put("icon", "/etl/images/conxbi/etl/process_icon.gif");
-                transObj.put("id", job.getObjectId().toString());
-                transObj.put("allowDrag", false);
-                transObj.put("allowDrop", false);
-                transObj.put("leaf", false);
-                transObj.put("hasChildren", true);
-                transObj.put("singleClickExpand", true);
-                transObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
-                transObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB);
-                transObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
-                childrenArray.put(transObj);
+                JSONObject jobObj = new JSONObject();
+                jobObj.put("text", job.getName());
+                jobObj.put("title", job.getName());
+                jobObj.put("icon", "/etl/images/conxbi/etl/process_icon.gif");
+                jobObj.put("id", RepositoryUtil.getPathId(job));
+                jobObj.put("allowDrag", false);
+                jobObj.put("allowDrop", false);
+                jobObj.put("leaf", false);
+                jobObj.put("hasChildren", true);
+                jobObj.put("singleClickExpand", true);
+                jobObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                jobObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_JOB);
+                jobObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                childrenArray.put(jobObj);
 
                 //-- Entries
                 JSONArray transChildren = new JSONArray();
-                transObj.put("children", transChildren);
+                jobObj.put("children", transChildren);
 
                 JSONObject jobEntriesFolderObj = new JSONObject();
                 jobEntriesFolderObj.put("text", "Entries");
                 jobEntriesFolderObj.put("title", "Entries");
                 jobEntriesFolderObj.put("icon", "/etl/images/conxbi/etl/folder_open_jobs.gif");
-                jobEntriesFolderObj.put("id", job.getObjectId().toString());
+                jobEntriesFolderObj.put("id", job.getObjectId().toString()+"-Entries");
                 jobEntriesFolderObj.put("allowDrag", false);
                 jobEntriesFolderObj.put("allowDrop", false);
                 jobEntriesFolderObj.put("leaf", false);
-                jobEntriesFolderObj.put("hasChildren", true);
+                jobEntriesFolderObj.put("hasChildren", false);
                 jobEntriesFolderObj.put("singleClickExpand", true);
+                jobEntriesFolderObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_JOB);
                 jobEntriesFolderObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
                 jobEntriesFolderObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "false");
                 transChildren.put(jobEntriesFolderObj);
@@ -596,6 +602,7 @@ public class RepositoryExplorerResource {
                     if (!jobEntriesFolderObj.has("children")) {
                         fields = new JSONArray();
                         jobEntriesFolderObj.put("children", fields);
+                        jobEntriesFolderObj.put("hasChildren", true);
                     }
                     else
                         fields = (JSONArray)jobEntriesFolderObj.get("children");

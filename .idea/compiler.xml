@@ -23,9 +23,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="core" />
-        <module name="distribution" />
-        <module name="kettle-all" />
-        <module name="kettle-engine" />
         <module name="org.flowframe..thirdparty.pentaho-reporting-engine-library" />
         <module name="org.flowframe..thirdparty.pentaho.reporting.libfonts" />
         <module name="org.flowframe..thirdparty.pentaho.reporting.libformat" />
@@ -36,18 +33,6 @@
         <module name="org.flowframe..thirdparty.pentaho.reporting.libserializer" />
         <module name="org.flowframe..thirdparty.pentaho.reporting.libswing" />
         <module name="org.flowframe..thirdparty.pentaho.reporting.libxml" />
-        <module name="org.flowframe.bpm.jbpm.bpmserver" />
-        <module name="org.flowframe.bpm.jbpm.bpmserver.persistence" />
-        <module name="org.flowframe.bpm.jbpm.persistence.datasource" />
-        <module name="org.flowframe.bpm.jbpm.services" />
-        <module name="org.flowframe.bpm.jbpm.shared" />
-        <module name="org.flowframe.bpm.jbpm.taskserver" />
-        <module name="org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment" />
-        <module name="org.flowframe.bpm.jbpm.taskserver.jta.tm.fragment" />
-        <module name="org.flowframe.bpm.jbpm.taskserver.persistence" />
-        <module name="org.flowframe.bpm.jbpm.ui.pageflow.services" />
-        <module name="org.flowframe.bpm.jbpm.ui.pageflow.services.impl" />
-        <module name="org.flowframe.bpm.jbpm.ui.pageflow.vaadin" />
         <module name="org.flowframe.documentlibrary.remote.services" />
         <module name="org.flowframe.documentlibrary.remote.services.impl" />
         <module name="org.flowframe.documentlibrary.remote.services.impl.config.fragment" />
@@ -81,6 +66,7 @@
         <module name="org.flowframe.etl.editor.oryx.frontend" />
         <module name="org.flowframe.etl.editor.oryx.snaps.frontend (1)" />
         <module name="org.flowframe.etl.pentaho.plugin.core-ui" />
+        <module name="org.flowframe.etl.pentaho.plugin.distribution" />
         <module name="org.flowframe.etl.pentaho.plugin.job.entries" />
         <module name="org.flowframe.etl.pentaho.repository.db" />
         <module name="org.flowframe.etl.pentaho.server.carte.standalone.impl" />
@@ -118,104 +104,8 @@
         <module name="org.flowframe.scheduling.remote.services" />
         <module name="org.flowframe.scheduling.remote.services.impl" />
         <module name="org.flowframe.tests.common" />
-        <module name="org.flowframe.thirdparty.asm" />
-        <module name="org.flowframe.thirdparty.bitronix" />
-        <module name="org.flowframe.thirdparty.bpmnq" />
-        <module name="org.flowframe.thirdparty.com.google.protobuf" />
-        <module name="org.flowframe.thirdparty.com.mysql.jdbc" />
-        <module name="org.flowframe.thirdparty.commons-compress" />
-        <module name="org.flowframe.thirdparty.commons-exec" />
-        <module name="org.flowframe.thirdparty.commons-math" />
-        <module name="org.flowframe.thirdparty.drools-core" />
-        <module name="org.flowframe.thirdparty.drools-persistence" />
-        <module name="org.flowframe.thirdparty.flexjson" />
-        <module name="org.flowframe.thirdparty.grizzly-framework" />
-        <module name="org.flowframe.thirdparty.grizzly-http" />
-        <module name="org.flowframe.thirdparty.grizzly-http-server" />
-        <module name="org.flowframe.thirdparty.gwt-console-rpc" />
-        <module name="org.flowframe.thirdparty.gwt-console-server-integration" />
-        <module name="org.flowframe.thirdparty.hibernate.annotations.commons" />
-        <module name="org.flowframe.thirdparty.hibernate.core" />
-        <module name="org.flowframe.thirdparty.hibernate.entitymanager" />
-        <module name="org.flowframe.thirdparty.hornetq" />
-        <module name="org.flowframe.thirdparty.itext" />
-        <module name="org.flowframe.thirdparty.jackrabbit.version160.core" />
-        <module name="org.flowframe.thirdparty.jackrabbit.version160.webdav" />
-        <module name="org.flowframe.thirdparty.javassist" />
-        <module name="org.flowframe.thirdparty.javax.security.jacc" />
-        <module name="org.flowframe.thirdparty.jboss-arrai-all" />
-        <module name="org.flowframe.thirdparty.jbpm-bam" />
-        <module name="org.flowframe.thirdparty.jbpm-human-task-core" />
-        <module name="org.flowframe.thirdparty.jbpm-human-task-mina" />
-        <module name="org.flowframe.thirdparty.jbpm-persistence-jpa" />
-        <module name="org.flowframe.thirdparty.jbpm-workitems" />
-        <module name="org.flowframe.thirdparty.jbpt" />
-        <module name="org.flowframe.thirdparty.jersey-container-grizzly2-http" />
-        <module name="org.flowframe.thirdparty.jersey-container-grizzly2-servlet" />
-        <module name="org.flowframe.thirdparty.jersey-server" />
-        <module name="org.flowframe.thirdparty.jersey.hk2-utils" />
-        <module name="org.flowframe.thirdparty.jersey.javax.inject" />
-        <module name="org.flowframe.thirdparty.jersey.jersey-spring3" />
-        <module name="org.flowframe.thirdparty.jetty-servlet-tester" />
-        <module name="org.flowframe.thirdparty.jflex" />
-        <module name="org.flowframe.thirdparty.json20090211" />
-        <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
-        <module name="org.flowframe.thirdparty.knowledge-api" />
-        <module name="org.flowframe.thirdparty.knowledge-internal-api" />
-        <module name="org.flowframe.thirdparty.netty" />
-        <module name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3" />
-        <module name="org.flowframe.thirdparty.org.springframework.orm" />
-        <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized" />
-        <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests" />
-        <module name="org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi" />
-        <module name="org.flowframe.thirdparty.pentaho-library-libbase" />
-        <module name="org.flowframe.thirdparty.pentaho-library-libformula" />
-        <module name="org.flowframe.thirdparty.pentaho-metadata" />
-        <module name="org.flowframe.thirdparty.pentaho.libdocbundle" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.engine-library" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libfonts" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libformat" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libformula-ui" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libloader" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libpixie" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.librepository" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libserializer" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libswing" />
-        <module name="org.flowframe.thirdparty.pentaho.reporting.libxml" />
-        <module name="org.flowframe.thirdparty.poi" />
-        <module name="org.flowframe.thirdparty.spring-vaadin-integration" />
-        <module name="org.flowframe.thirdparty.stripe-java" />
-        <module name="org.flowframe.thirdparty.supercsv" />
-        <module name="org.flowframe.thirdparty.vaadin" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-contextmenu" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-easyuploads" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized-common" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-mvplite-customized-osgi" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-popup-button" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-portallayout" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-refresher" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-tableexport" />
-        <module name="org.flowframe.thirdparty.vaadin-addon-toolbar" />
-        <module name="org.flowframe.thirdparty.vaadin.addons.mvp.phakama" />
-        <module name="org.flowframe.tm.jta" />
-        <module name="org.flowframe.ui.pageflow.services" />
-        <module name="org.flowframe.ui.pageflow.vaadin" />
-        <module name="org.flowframe.uilegacy.component.dao.services" />
-        <module name="org.flowframe.uilegacy.component.dao.services.impl" />
-        <module name="org.flowframe.uilegacy.component.domain" />
-        <module name="org.flowframe.uilegacy.manager" />
-        <module name="org.flowframe.uilegacy.services" />
-        <module name="org.flowframe.uilegacy.vaadin.addons.common" />
-        <module name="org.flowframe.uilegacy.vaadin.common" />
-        <module name="org.flowframe.uilegacy.vaadin.common.editors" />
-        <module name="org.flowframe.uilegacy.vaadin.editors" />
-        <module name="org.flowframe.uilegacy.vaadin.expressions" />
-        <module name="org.flowframe.uilegacy.vaadin.factory" />
-        <module name="org.flowframe.uilegacy.vaadin.forms" />
         <module name="remote.services.min.impl" />
         <module name="services" />
-        <module name="spring-bridge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -305,6 +195,7 @@
       <module name="org.flowframe.etl.pentaho" target="1.6" />
       <module name="org.flowframe.etl.pentaho.plugin" target="1.6" />
       <module name="org.flowframe.etl.pentaho.plugin.core-ui" target="1.6" />
+      <module name="org.flowframe.etl.pentaho.plugin.distribution" target="1.6" />
       <module name="org.flowframe.etl.pentaho.plugin.job" target="1.6" />
       <module name="org.flowframe.etl.pentaho.plugin.job.entries" target="1.6" />
       <module name="org.flowframe.etl.pentaho.repository.db" target="1.6" />

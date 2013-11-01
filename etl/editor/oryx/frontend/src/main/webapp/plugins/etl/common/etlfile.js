@@ -266,6 +266,7 @@ ORYX.Plugins.Save = ORYX.Plugins.AbstractPlugin.extend({
                     title: title,
                     dirPathId: dirPathId
 				});
+                Ext.ux.Toast.msg('Saved', '<b>{0}</b> saved successfully.', title);
                 if (editMode === ORYX.CONFIG.EVENT_ETL_MODEL_CREATE) {
                     this.facade.raiseEvent({
                         type:ORYX.CONFIG.EVENT_ETL_MODEL_CREATED,

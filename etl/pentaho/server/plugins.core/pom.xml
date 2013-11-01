@@ -91,6 +91,13 @@
             <version>0.0.1</version>
         </dependency>
 
+        <!--FF: Pentaho PDI plugins -->
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.etl.pentaho.plugin.core</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>

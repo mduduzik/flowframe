@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.gwt-console-rpc" />
+    <orderEntry type="library" name="Maven: org.jboss.bpm:gwt-console-rpc:2.3.2-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.drools:knowledge-api:5.4.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.drools:knowledge-internal-api:5.4.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.drools:drools-core:5.4.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.mvel:mvel2:2.1.0.drools10" level="project" />
+    <orderEntry type="library" name="Maven: org.jbpm:jbpm-bam:5.3.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jbpm:jbpm-flow-builder:5.3.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jbpm:jbpm-flow:5.3.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:2.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.drools:drools-compiler:5.4.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr:3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:stringtemplate:3.2.1" level="project" />
+    <orderEntry type="library" name="Maven: antlr:antlr:2.7.7" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jdt.core.compiler:ecj:3.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.4" level="project" />
+    <orderEntry type="library" name="Maven: org.jbpm:jbpm-human-task-core:5.3.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jbpm:jbpm-workitems:5.3.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-exec:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: jivesoftware:smack:3.0.4" level="project" />
+    <orderEntry type="library" name="Maven: rome:rome:0.9" level="project" />
+    <orderEntry type="library" name="Maven: jdom:jdom:1.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-net:commons-net:2.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.transaction:jta:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.drools:drools-persistence-jpa:5.4.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: dom4j:dom4j:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.3.04" level="project" />
+    <orderEntry type="library" name="Maven: org.javassist:javassist:3.14.0-GA" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.core:0.9.24" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.instrument:3.1.3.RELEASE" level="project" />
   </component>
 </module>
 

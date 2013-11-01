@@ -3,19 +3,18 @@ package org.flowframe.etl.pentaho.server.plugins.core.utils.job;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.DatabaseMetaUtil;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
+import org.flowframe.etl.pentaho.plugin.di.job.entries.docrepo.fileget.RepoFileGet;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
-import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.plugins.PluginRegistry;
-import org.pentaho.di.core.plugins.StepPluginType;
 import org.pentaho.di.job.JobHopMeta;
 import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.job.entries.special.JobEntrySpecial;
+import org.pentaho.di.job.entries.trans.JobEntryTrans;
 import org.pentaho.di.job.entry.JobEntryCopy;
+import org.pentaho.di.job.entry.JobEntryInterface;
+import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
-import org.pentaho.di.trans.steps.tableoutput.TableOutputMeta;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,6 @@ public class JSONStencilSet2JobConverter {
         JSONArray childShapes = (JSONArray)jsonObject.get("childShapes");
         JSONObject childShape = null;
         String type = null;
-        JobEntryCopy stepMeta = null;
 
         //-- Create steps
         for (int index = 0; index < childShapes.length(); index++ ){
@@ -44,38 +42,41 @@ public class JSONStencilSet2JobConverter {
 
             type = ((JSONObject)childShape.get("stencil")).getString("id");
 
-            //================== Inputs
-            if ("CsvInput".equals(type)) {
-                //Lookup meta
-                stepMeta = RepositoryUtil.getJobEntry(repository, getStringProperty(childShape, "metadataobjid"));
-                stepMeta.setName(getStringProperty(childShape,"name"));
-                ((CsvInputMeta)stepMeta.getEntry()).setFilename(getStringProperty(childShape, "filename"));
-                jobMeta.addJobEntry(stepMeta);
-                name2StepMeta.put(getStringProperty(childShape,"name"),stepMeta);
+            JobEntryInterface entryInterface;
+            JobEntryCopy entry;
+            //================== General
+            if ("START".equals(type)) {
+                entryInterface = new JobEntrySpecial(getStringProperty(childShape,"name"),true,false);
+                entry = new JobEntryCopy(entryInterface);
+                jobMeta.addJobEntry(entry);
+                name2StepMeta.put(getStringProperty(childShape,"name"),entry);
             }
 
-            //================== Outtputs
-            if ("TableOutput".equals(type)) {
-                //Lookup db
-                String pathId = getStringProperty(childShape, "metadataobjid");
-                String targettable = getStringProperty(childShape, "targettable");
-                if (targettable == null || targettable.isEmpty()) {//Get from default metadata
-                    targettable = RepositoryUtil.getDBTablenameFromPathID(pathId);
-                }
-                DatabaseMeta db = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, pathId);
-                jobMeta.addDatabase(db);
+            if ("Doc Repo File Get".equals(type)) {
+                entryInterface = (JobEntryInterface)new RepoFileGet(getStringProperty(childShape,"repositoryId"),
+                        getStringProperty(childShape,"companyId"),
+                        getStringProperty(childShape,"folderId"),
+                        getStringProperty(childShape,"loginEmail"),
+                        getStringProperty(childShape,"loginPassword"),
+                        getStringProperty(childShape,"hostname"),
+                        getStringProperty(childShape,"port"),
+                        getStringProperty(childShape,"loginGroupId") ,
+                        getStringProperty(childShape,"fileEntryId"));
+                entryInterface.setName(getStringProperty(childShape,"name"));
 
-                //Create meta
-                TableOutputMeta tom = new TableOutputMeta();
-                tom.setDatabaseMeta(db);
-                tom.setTableName(targettable);
-
-                String fromid = registry.getPluginId(StepPluginType.class, tom);
-                //stepMeta = new JobEntryCopy(fromid, getStringProperty(childShape,"name"), (JobEntry)tom);
-
-                jobMeta.addJobEntry(stepMeta);
-                name2StepMeta.put(getStringProperty(childShape,"name"),stepMeta);
+                entry = new JobEntryCopy(entryInterface);
+                jobMeta.addJobEntry(entry);
+                name2StepMeta.put(getStringProperty(childShape,"name"),entry);
             }
+
+            if ("Transformation".equals(type)) {
+                entryInterface = new JobEntryTrans(getStringProperty(childShape,"name"));
+                ((JobEntryTrans)entryInterface).setTransObjectId(new LongObjectId(Long.valueOf(getStringProperty(childShape,"trans_object_id"))));
+                entry = new JobEntryCopy(entryInterface);
+                jobMeta.addJobEntry(entry);
+                name2StepMeta.put(getStringProperty(childShape,"name"),entry);
+            }
+
         }
 
 

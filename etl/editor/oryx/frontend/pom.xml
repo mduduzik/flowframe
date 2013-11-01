@@ -231,6 +231,11 @@
             <version>1.7.0</version>
         </dependency>
         <dependency>
+            <groupId>org.xmappr</groupId>
+            <artifactId>xmappr</artifactId>
+            <version>0.9.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.flowframe</groupId>
             <artifactId>org.flowframe.thirdparty.batik.batik-transcoder</artifactId>
             <version>1.7</version>

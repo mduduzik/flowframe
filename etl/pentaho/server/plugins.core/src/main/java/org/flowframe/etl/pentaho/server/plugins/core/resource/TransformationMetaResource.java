@@ -6,7 +6,6 @@ import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
@@ -52,7 +51,7 @@ public class TransformationMetaResource {
         transRootDir = repository.provideTransDirectoryForTenant(tenant);
         String transRootDirPathId = RepositoryUtil.generatePathID(transRootDir);
 
-        if (dirPathId == null) {
+        if (dirPathId == null || "transformations".equals(dirPathId)) {
             dirPathId = RepositoryUtil.generatePathID(transRootDir);
         }
 
@@ -103,6 +102,7 @@ public class TransformationMetaResource {
 
         //-- Add/Update
         String transNameWithDirPath = RepositoryUtil.addOrReplaceTransMeta(dirPathId, repository, transMeta,jsonModel,svgModel);
+        transMeta = repository.loadTransformation(transMeta.getName(),RepositoryUtil.getDirectory(repository,dirPathId),null,false,null);
         TransMetaDTO dto = new TransMetaDTO(transMeta,dirPathId,jsonModel,svgModel);
 
         //TODO: hack

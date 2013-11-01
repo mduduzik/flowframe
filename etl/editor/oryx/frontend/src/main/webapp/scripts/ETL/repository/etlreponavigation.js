@@ -244,6 +244,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     repoitem_database_contextmenu: undefined,
     new_repoitem_database_wizard: undefined,
     newdirText: 'New Folder',
+    getObjectId: function (id) {
+        var tokens = id.split('/');
+        return tokens[4];
+    },
     /*    onRender: function(){
      Ext.ux.ETLRepoNavigationTreePanel.superclass.onRender.apply(this, arguments);
      },
@@ -689,12 +693,13 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             };
                         });
                         var node_ = this.ctxNode;
+                        var transId = this.getObjectId(this.ctxNode.id);
                         var application_ = this.application;
                         Ext.Ajax.request({
                             url: '/etl/core/transmeta/get',
                             method: 'GET',
                             params: {
-                                objectId: this.ctxNode.id
+                                objectId: transId
                             },
                             success: function (response, opts) {
                                var data = Ext.decode(response.responseText);;
@@ -866,12 +871,13 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             };
                         });
                         var node_ = this.ctxNode;
+                        var jobId = this.getObjectId(this.ctxNode.id);
                         var application_ = this.application;
                         Ext.Ajax.request({
                             url: '/etl/core/jobmeta/get',
                             method: 'GET',
                             params: {
-                                objectId: this.ctxNode.id
+                                objectId: jobId
                             },
                             success: function (response, opts) {
                                 var data = Ext.decode(response.responseText);;

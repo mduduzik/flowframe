@@ -76,7 +76,7 @@ public class RepositoryUtil {
     }
 
     static public String generatePathID(JobEntryCopy entry, int index) {
-        return generatePathID(entry.getParentJobMeta().getRepositoryDirectory())+"/trans/"+entry.getParentJobMeta().getObjectId()+"/entry#"+index;
+        return generatePathID(entry.getParentJobMeta().getRepositoryDirectory())+"/job/"+entry.getParentJobMeta().getObjectId()+"/entry#"+index;
     }
 
     static public String generatePathID(TransMeta transMeta, DatabaseMeta dbConn) {
@@ -111,6 +111,15 @@ public class RepositoryUtil {
 
     static public String generatePathID(RepositoryDirectoryInterface dir, String typeId) {
         return "/dir/"+typeId+"#"+dir.getObjectId();
+    }
+
+
+    static public  String getPathId(JobMeta job) {
+        return "/dir/"+job.getRepositoryDirectory().getObjectId()+"/job/"+job.getObjectId();
+    }
+
+    static public  String getPathId(TransMeta trans) {
+        return "/dir/"+trans.getRepositoryDirectory().getObjectId()+"/trans/"+trans.getObjectId();
     }
 
     /**
@@ -506,4 +515,5 @@ public class RepositoryUtil {
 
         return dir;
     }
+
 }

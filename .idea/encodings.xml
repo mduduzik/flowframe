@@ -84,6 +84,7 @@
     <file url="file://$PROJECT_DIR$/etl/pentaho/plugin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/core-ui" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/distribution" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/job" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/etl/pentaho/repository.db" charset="UTF-8" />
