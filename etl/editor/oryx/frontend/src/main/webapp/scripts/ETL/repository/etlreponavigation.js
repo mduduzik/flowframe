@@ -375,6 +375,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED, this.onCreated.bind(this));
         this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETED, this.onDeleted.bind(this));
 
+        this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVEDAS, this.onModelSavedAs.bind(this));
         this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_CREATED, this.onModelCreated.bind(this));
 
 
@@ -684,31 +685,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     text: 'Edit Transformation',
                     icon: '/etl/images/conxbi/etl/modify.gif',
                     scope: this,
-                    handler: function () {
-                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                            // here you can put whatever you need as header. For instance:
-                            //this.defaultPostHeader = "application/json; charset=utf-8;";
-                            this.defaultHeaders = {
-                                userid: 'test'
-                            };
-                        });
-                        var node_ = this.ctxNode;
-                        var transId = this.getObjectId(this.ctxNode.id);
-                        var application_ = this.application;
-                        Ext.Ajax.request({
-                            url: '/etl/core/transmeta/get',
-                            method: 'GET',
-                            params: {
-                                objectId: transId
-                            },
-                            success: function (response, opts) {
-                               var data = Ext.decode(response.responseText);;
-                                application_.editTransformation(data.name,data.pathId,data.subDirPathId,data.jsonModel);
-                            },
-                            failure: function (response, opts) {
-                            }
-                        });
-                    }.bind(this)
+                    handler: this.onTransformationEdit.bind(this)
                 },
                 {
                     id: 'deleteTransformation',
@@ -862,31 +839,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     text: 'Edit Job',
                     icon: '/etl/images/conxbi/etl/modify.gif',
                     scope: this,
-                    handler: function () {
-                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                            // here you can put whatever you need as header. For instance:
-                            //this.defaultPostHeader = "application/json; charset=utf-8;";
-                            this.defaultHeaders = {
-                                userid: 'test'
-                            };
-                        });
-                        var node_ = this.ctxNode;
-                        var jobId = this.getObjectId(this.ctxNode.id);
-                        var application_ = this.application;
-                        Ext.Ajax.request({
-                            url: '/etl/core/jobmeta/get',
-                            method: 'GET',
-                            params: {
-                                objectId: jobId
-                            },
-                            success: function (response, opts) {
-                                var data = Ext.decode(response.responseText);;
-                                application_.editJob(data.name,data.pathId,data.subDirPathId,data.jsonModel);
-                            },
-                            failure: function (response, opts) {
-                            }
-                        });
-                    }.bind(this)
+                    handler: this.onJobEdit.bind(this)
                 },
                 {
                     id: 'deleteJob',
@@ -1296,6 +1249,16 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
 
         ctxNode_.reload();
     },
+    onTransformationEdit:  function () {
+        var transId = this.getObjectId(this.ctxNode.id);
+        var editorConfig = this.application.getEditorConfigBySSNameSpace(ORYX.CONFIG.NAMESPACE_ETL_TRANS);
+        editorConfig.editModel(transId);
+    },
+    onJobEdit:  function () {
+        var jobId = this.getObjectId(this.ctxNode.id);
+        var editorConfig = this.application.getEditorConfigBySSNameSpace(ORYX.CONFIG.NAMESPACE_ETL_JOB);
+        editorConfig.editModel(jobId);
+    },
     /**
      * On Model Created
      * @param event
@@ -1318,6 +1281,24 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         });
 
         ctxNode_.reload();
+    },
+    onModelSavedAs: function (event) {
+        var name = event.title;
+        var ctxNodeId = event.dirPathId;
+        var newPathId = event.objectId;
+        var ns = event.ns;
+
+        var ctxNode_ = this.getNodeById(ctxNodeId);
+        ctxNode_.select();
+
+        ctxNode_.attributes.children = false;
+
+        ctxNode_.reload();
+
+        //Load new model
+        var editorConfig = this.application.getEditorConfigBySSNameSpace(ns);
+        var objectModelId = this.getObjectId(newPathId);
+        editorConfig.editModel(objectModelId);
     },
     /**
      * On Deleted

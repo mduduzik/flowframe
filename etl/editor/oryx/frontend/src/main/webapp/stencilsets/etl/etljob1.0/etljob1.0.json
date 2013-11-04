@@ -118,7 +118,7 @@
             "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/jobStart.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "jobStart.png",
             "mayBeRoot":		true,
-            "roles":			["all","start"],
+            "roles":			["start"],
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
@@ -146,7 +146,7 @@
             "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/TransformationJobEntry.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "copy.gif",
             "mayBeRoot":		true,
-            "roles":			["all","jobentry"],
+            "roles":			["jobentry"],
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
@@ -175,7 +175,7 @@
             "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/copy.gif\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "copy.gif",
             "mayBeRoot":		true,
-            "roles":			["all","jobentry"],
+            "roles":			["jobentry"],
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
@@ -307,7 +307,7 @@
             "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/DFJ.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "DFJ.png",
             "mayBeRoot":		true,
-            "roles":			["all","jobentry"],
+            "roles":			["jobentry"],
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
@@ -335,7 +335,7 @@
             "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/DFN.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "DFN.png",
             "mayBeRoot":		true,
-            "roles":			["all","jobentry"],
+            "roles":			["jobentry"],
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
@@ -363,7 +363,7 @@
             "view":"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <svg    xmlns=\"http://www.w3.org/2000/svg\"    xmlns:svg=\"http://www.w3.org/2000/svg\"    xmlns:oryx=\"http://www.b3mn.org/oryx\"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"    width=\"102\"    height=\"82\"    version=\"1.0\">   <defs></defs>   <oryx:magnets>  <oryx:magnet oryx:cx=\"0\" oryx:cy=\"48.5\" oryx:anchors=\"left\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"97\" oryx:anchors=\"bottom\"/>  <oryx:magnet oryx:cx=\"88\" oryx:cy=\"48.5\" oryx:anchors=\"right\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"0\" oryx:anchors=\"top\"/>  <oryx:magnet oryx:cx=\"44\" oryx:cy=\"48.5\" oryx:default=\"yes\"/>   </oryx:magnets>  <g pointer-events=\"fill\">      <defs></defs>  <image x=\"32\" y=\"32\" width=\"32px\" height=\"32px\" xlink:href=\"../icons/DFS.png\"/>            <text font-size=\"11\" id=\"text_name\" x=\"44\" y=\"50\" oryx:align=\"bottom center\" stroke=\"black\" oryx:anchors=\"bottom\" />  <g id=\"collection1\" transform=\"translate(0,-2)\">   </g>  </g> </svg> ",
             "icon": "DFS.png",
             "mayBeRoot":		true,
-            "roles":			["all","jobentry"],
+            "roles":			["jobentry"],
             "propertyPackages" : ["baseAttributes","metadataAttributes"],
             "properties" : [
                 {
@@ -396,9 +396,17 @@
     "rules": {
         "containmentRules": [
             {
-                "role": "all",
+                "role": "jobentry",
                 "contains": [
-                    "all"
+                    "jobentry",
+                    "start"
+                ]
+            },
+            {
+                "role": "start",
+                "contains": [
+                    "jobentry",
+                    "start"
                 ]
             }
         ],
@@ -408,6 +416,10 @@
                 "connects": [
                     {
                         "from": "start",
+                        "to": "jobentry"
+                    },
+                    {
+                        "from": "jobentry",
                         "to": "jobentry"
                     }
                 ]

@@ -29,6 +29,7 @@ public class RepositoryUtil {
     public static final String ATTRIBUTE_TRANSFORMATION_SVG_NOTE_ID            = "TRANSFORMATION_SVG_NOTE_ID";
 
     public static String DATABASES_TRANSFORMTION_NAME = "databases";
+    public static String STEPS_TRANSFORMTION_NAME_SUFFIX = "_steps_metadata";
     public static String CSVFILE_STEPS_TRANSFORMTION_NAME = "csvfile_steps_metadata";
     public static String DELIMITEDFILE_STEPS_TRANSFORMTION_NAME = "delimited_steps_metadata";
     public static String EXCELFILE_STEPS_TRANSFORMTION_NAME = "excel_steps_metadata";
@@ -36,7 +37,12 @@ public class RepositoryUtil {
     /**
      *   Provide transformation metadata
      */
-    //CSVFile Steps
+    //{{
+    /**
+     * Database Metadata methods
+     */
+    //}}
+
     public static TransMeta provideDatabaseTransformation(ICustomRepository repo, RepositoryDirectoryInterface dir) throws KettleException {
         TransMeta res = null;
         if (!repo.getRepositoryTransDelegate().existsTransMeta(DATABASES_TRANSFORMTION_NAME,dir, RepositoryObjectType.TRANSFORMATION)) {
@@ -52,43 +58,9 @@ public class RepositoryUtil {
         return res;
     }
 
-    //CSVFile Steps
-    public static TransMeta provideCSVFileTransformation(ICustomRepository repo, RepositoryDirectoryInterface dir) throws KettleException {
-        TransMeta res = null;
-        if (!repo.getRepositoryTransDelegate().existsTransMeta(CSVFILE_STEPS_TRANSFORMTION_NAME,dir, RepositoryObjectType.TRANSFORMATION)) {
-            res = new TransMeta();
-            res.setRepositoryDirectory(dir);
-            res.setName(CSVFILE_STEPS_TRANSFORMTION_NAME);
-            repo.getRepositoryTransDelegate().saveTransformation(res,"initial",null,true);
-        }
-        else  {
-            res = repo.loadTransformation(CSVFILE_STEPS_TRANSFORMTION_NAME,dir,null,false,null);
-        }
-
-        return res;
-    }
-
-    /**
-     *
-     */
-    static public String generatePathID(StepMeta stepMeta, int index) {
-        return generatePathID(stepMeta.getParentTransMeta().getRepositoryDirectory())+"/trans/"+stepMeta.getParentTransMeta().getObjectId()+"/step/"+stepMeta.getTypeId()+"#"+index;
-    }
-
-    static public String generatePathID(JobEntryCopy entry, int index) {
-        return generatePathID(entry.getParentJobMeta().getRepositoryDirectory())+"/job/"+entry.getParentJobMeta().getObjectId()+"/entry#"+index;
-    }
 
     static public String generatePathID(TransMeta transMeta, DatabaseMeta dbConn) {
         return generatePathID(transMeta.getRepositoryDirectory())+"/trans/"+transMeta.getObjectId()+"/database/"+dbConn.getObjectId();
-    }
-
-    static public String generatePathID(RepositoryDirectoryInterface dir) {
-        return "/dir/"+dir.getObjectId();
-    }
-
-    static public String generatePathID(RepositoryDirectoryInterface dir, StepMeta stepMeta) {
-        return "/dir/"+stepMeta.getTypeId()+"#"+dir.getObjectId();
     }
 
     static public String generatePathID(RepositoryDirectoryInterface dir, DatabaseMeta dbMeta) {
@@ -109,17 +81,150 @@ public class RepositoryUtil {
         return new LongObjectId(Long.valueOf(pathTokens[4]));
     }
 
+
+    //{{
+    /**
+     * Step Metadata methods
+     */
+    //}}
+    public static TransMeta provideStepTypeTransformation(ICustomRepository repo, RepositoryDirectoryInterface dir, String stepPluginName) throws KettleException {
+        TransMeta res = null;
+        if (!repo.getRepositoryTransDelegate().existsTransMeta(getTransformationName(stepPluginName),dir, RepositoryObjectType.TRANSFORMATION)) {
+            res = new TransMeta();
+            res.setRepositoryDirectory(dir);
+            res.setName(getTransformationName(stepPluginName));
+            repo.getRepositoryTransDelegate().saveTransformation(res,"initial",null,true);
+        }
+        else  {
+            res = repo.loadTransformation(getTransformationName(stepPluginName),dir,null,false,null);
+        }
+
+        return res;
+    }
+
+    private static String getTransformationName(String stepPluginName) {
+        return stepPluginName+STEPS_TRANSFORMTION_NAME_SUFFIX;
+    }
+
+
+    static public String generatePathID(StepMeta stepMeta, int index) {
+        return generatePathID(stepMeta.getParentTransMeta().getRepositoryDirectory())+"/trans/"+stepMeta.getParentTransMeta().getObjectId()+"/step/"+stepMeta.getTypeId()+"#"+index;
+    }
+
+
+    static public String generatePathID(RepositoryDirectoryInterface dir) {
+        return "/dir/"+dir.getObjectId();
+    }
+
+    static public String generatePathID(RepositoryDirectoryInterface dir, StepMeta stepMeta) {
+        return "/dir/"+stepMeta.getTypeId()+"#"+dir.getObjectId();
+    }
+
+
     static public String generatePathID(RepositoryDirectoryInterface dir, String typeId) {
         return "/dir/"+typeId+"#"+dir.getObjectId();
     }
 
 
-    static public  String getPathId(JobMeta job) {
-        return "/dir/"+job.getRepositoryDirectory().getObjectId()+"/job/"+job.getObjectId();
-    }
-
     static public  String getPathId(TransMeta trans) {
         return "/dir/"+trans.getRepositoryDirectory().getObjectId()+"/trans/"+trans.getObjectId();
+    }
+
+    static public StepMeta getStep(ICustomRepository repo, String pathID) {
+        // /trans/1/step/2
+        String[] pathTokens = pathID.split("/");
+        int len = pathTokens.length;
+
+        String[] idStr = pathTokens[len - 1].split("#");
+        int stepIndex = Integer.valueOf(idStr[1]);
+        Long transId = Long.valueOf(pathTokens[len-3]);
+
+
+        TransMeta trans = null;
+        try {
+            trans = repo.loadTransformation(new LongObjectId(transId), "null");
+        } catch (KettleException e) {
+            throw new IllegalArgumentException("Error fetching trans with id["+transId+"]");
+        }
+
+        StepMeta stepMeta = trans.getStep(stepIndex);
+
+        return stepMeta;
+    }
+
+    static public synchronized String saveStep(ICustomRepository repo, String pathID, StepMeta stepMeta) {
+        try {
+            StepMeta storedStep = getStep(repo,pathID);
+            TransMeta trans = storedStep.getParentTransMeta();
+            int[] indeces = trans.getStepIndexes(Arrays.asList(new StepMeta[]{storedStep}));
+            trans.setStep(indeces[0],stepMeta);
+
+            repo.getRepositoryTransDelegate().saveTransformation(trans,"updated step",null,true);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathID;
+    }
+
+    static public synchronized String deleteStep(ICustomRepository repo, String pathID) {
+        try {
+            StepMeta storedStep = getStep(repo,pathID);
+            TransMeta trans = storedStep.getParentTransMeta();
+            int[] indeces = trans.getStepIndexes(Arrays.asList(new StepMeta[]{storedStep}));
+            trans.removeStep(indeces[0]);
+
+            repo.getRepositoryTransDelegate().saveTransformation(trans,"deleted step",null,true);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathID;
+    }
+
+    static public synchronized String addStep(ICustomRepository repo, String dirObjId, StepMeta stepMeta) {
+        // /trans/1/step/2
+        TransMeta trans = null;
+        String pathId = null;
+        try {
+            RepositoryDirectoryInterface dir = getDirectory(repo, new LongObjectId(Long.valueOf(dirObjId)));
+            trans = provideTransformation(repo, dir, stepMeta.getStepID());
+            int insertIndex = trans.getSteps().size();
+
+            //Check for name colusion
+            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo, dir, stepMeta.getStepID(), stepMeta.getName());
+            if (nameExists)
+                stepMeta.setName(stepMeta.getName()+"-"+insertIndex);
+
+            trans.addStep(insertIndex,stepMeta);
+
+            repo.getRepositoryTransDelegate().saveTransformation(trans,"added step",null,true);
+
+            pathId = generatePathID(stepMeta,insertIndex);
+        } catch (KettleException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        return pathId;
+    }
+
+    public static TransMeta provideTransformation(ICustomRepository repo, RepositoryDirectoryInterface dir, String stepInputPid) throws KettleException {
+        return provideStepTypeTransformation(repo, dir,stepInputPid);
+    }
+
+    //{{
+    /**
+     * Job Entry Metadata methods
+     */
+    //}}
+    static public String generatePathID(JobEntryCopy entry, int index) {
+        return generatePathID(entry.getParentJobMeta().getRepositoryDirectory())+"/job/"+entry.getParentJobMeta().getObjectId()+"/entry#"+index;
+    }
+
+
+
+    static public  String getPathId(JobMeta job) {
+        return "/dir/"+job.getRepositoryDirectory().getObjectId()+"/job/"+job.getObjectId();
     }
 
     /**
@@ -207,89 +312,7 @@ public class RepositoryUtil {
      * Steps
      *
      */
-    static public StepMeta getStep(ICustomRepository repo, String pathID) {
-        // /trans/1/step/2
-        String[] pathTokens = pathID.split("/");
-        int len = pathTokens.length;
 
-        String[] idStr = pathTokens[len - 1].split("#");
-        int stepIndex = Integer.valueOf(idStr[1]);
-        Long transId = Long.valueOf(pathTokens[len-3]);
-
-
-        TransMeta trans = null;
-        try {
-            trans = repo.loadTransformation(new LongObjectId(transId), "null");
-        } catch (KettleException e) {
-            throw new IllegalArgumentException("Error fetching trans with id["+transId+"]");
-        }
-
-        StepMeta stepMeta = trans.getStep(stepIndex);
-
-        return stepMeta;
-    }
-
-    static public synchronized String saveStep(ICustomRepository repo, String pathID, StepMeta stepMeta) {
-        try {
-            StepMeta storedStep = getStep(repo,pathID);
-            TransMeta trans = storedStep.getParentTransMeta();
-            int[] indeces = trans.getStepIndexes(Arrays.asList(new StepMeta[]{storedStep}));
-            trans.setStep(indeces[0],stepMeta);
-
-            repo.getRepositoryTransDelegate().saveTransformation(trans,"updated step",null,true);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        return pathID;
-    }
-
-    static public synchronized String deleteStep(ICustomRepository repo, String pathID) {
-        try {
-            StepMeta storedStep = getStep(repo,pathID);
-            TransMeta trans = storedStep.getParentTransMeta();
-            int[] indeces = trans.getStepIndexes(Arrays.asList(new StepMeta[]{storedStep}));
-            trans.removeStep(indeces[0]);
-
-            repo.getRepositoryTransDelegate().saveTransformation(trans,"deleted step",null,true);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        return pathID;
-    }
-
-    static public synchronized String addStep(ICustomRepository repo, String dirObjId, StepMeta stepMeta) {
-        // /trans/1/step/2
-        TransMeta trans = null;
-        String pathId = null;
-        try {
-            RepositoryDirectoryInterface dir = getDirectory(repo, new LongObjectId(Long.valueOf(dirObjId)));
-            trans = provideTransformation(repo, dir, stepMeta.getStepID());
-            int insertIndex = trans.getSteps().size();
-
-            //Check for name colusion
-            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo, dir, stepMeta.getStepID(), stepMeta.getName());
-            if (nameExists)
-                stepMeta.setName(stepMeta.getName()+"-"+insertIndex);
-
-            trans.addStep(insertIndex,stepMeta);
-
-            repo.getRepositoryTransDelegate().saveTransformation(trans,"added step",null,true);
-
-            pathId = generatePathID(stepMeta,insertIndex);
-        } catch (KettleException e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        return pathId;
-    }
-
-    public static TransMeta provideTransformation(ICustomRepository repo, RepositoryDirectoryInterface dir, String stepInputPid) throws KettleException {
-        if ("CsvInput".equals(stepInputPid))
-            return provideCSVFileTransformation(repo,dir);
-        return null;  //To change body of created methods use File | Settings | File Templates.
-    }
 
 
     /**
@@ -460,7 +483,7 @@ public class RepositoryUtil {
 
     public static JobMeta provideJob(ICustomRepository repo, RepositoryDirectoryInterface dir, String jobEntryPid) throws KettleException {
         if ("CsvInput".equals(jobEntryPid))
-            return null;//provideCSVFileTransformation(repo,dir);
+            return null;//provideStepTypeTransformation(repo,dir);
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
 

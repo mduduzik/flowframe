@@ -461,8 +461,8 @@ ORYX = Object.extend(ORYX, {
         var ssConfig = DEFAULT_EDITORS[ssNameSpace];
 
         var ssConfig_ = {type:config.type};
-        Ext.apply(ssConfig_,ssConfig);
         Ext.apply(ssConfig_,config);
+        Ext.applyIf(ssConfig_,ssConfig);
 
 
         if (config.title)
@@ -494,6 +494,7 @@ ORYX = Object.extend(ORYX, {
                saveNewModelUrl: '/etl/core/transmeta/add',
                updateModelUrl: '/etl/core/transmeta/update',
                removeModelUrl: '/etl/core/transmeta/remove',
+               editModel: this.loadAndEditTransformation.bind(this),
                title: 'New Transformation',
                iconCls: 'transformation-icon',
                stencilset: {
@@ -508,6 +509,7 @@ ORYX = Object.extend(ORYX, {
                saveNewModelUrl: '/etl/core/jobmeta/add',
                updateModelUrl: '/etl/core/jobmeta/update',
                removeModelUrl: '/etl/core/jobmeta/remove',
+               editModel: this.loadAndEditJob.bind(this),
                title: 'New Job ',
                iconCls: 'process-icon',
                stencilset: {
@@ -516,6 +518,9 @@ ORYX = Object.extend(ORYX, {
                    ns: ORYX.CONFIG.NAMESPACE_ETL_JOB
                }
            };
+    },
+    getEditorConfigBySSNameSpace: function(ns) {
+        return DEFAULT_EDITORS[ns];
     }
     //{{
     //
@@ -829,6 +834,29 @@ ORYX = Object.extend(ORYX, {
         };
         this.launchEditor(config);
     },
+    loadAndEditTransformation: function(transObjectId){
+        var application_ = this.application;
+        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+            // here you can put whatever you need as header. For instance:
+            //this.defaultPostHeader = "application/json; charset=utf-8;";
+            this.defaultHeaders = {
+                userid: 'test'
+            };
+        });
+        Ext.Ajax.request({
+            url: '/etl/core/transmeta/get',
+            method: 'GET',
+            params: {
+                objectId: transObjectId
+            },
+            success: function (response, opts) {
+                var data = Ext.decode(response.responseText);;
+                this.editTransformation(data.name,data.pathId,data.subDirPathId,data.jsonModel);
+            }.bind(this),
+            failure: function (response, opts) {
+            }.bind(this)
+        });
+    },
     /**
      * New job
      */
@@ -846,7 +874,7 @@ ORYX = Object.extend(ORYX, {
      */
     editJob: function(title,repoPathId,repoParentDirPathId,jsonModel){
         var config = {
-            ssns: ORYX.CONFIG.NAMESPACE_ETLJOB,
+            ssns: ORYX.CONFIG.NAMESPACE_ETL_JOB,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
             itemtype: 'job',
             title: title,
@@ -855,6 +883,28 @@ ORYX = Object.extend(ORYX, {
             jsonModel: jsonModel
         };
         this.launchEditor(config);
+    },
+    loadAndEditJob: function(jobObjectId){
+        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+            // here you can put whatever you need as header. For instance:
+            //this.defaultPostHeader = "application/json; charset=utf-8;";
+            this.defaultHeaders = {
+                userid: 'test'
+            };
+        });
+        Ext.Ajax.request({
+            url: '/etl/core/jobmeta/get',
+            method: 'GET',
+            params: {
+                objectId: jobObjectId
+            },
+            success: function (response, opts) {
+                var data = Ext.decode(response.responseText);;
+                this.editJob(data.name,data.pathId,data.subDirPathId,data.jsonModel);
+            }.bind(this),
+            failure: function (response, opts) {
+            }.bind(this)
+        });
     },
     enableButtons: function(elements) {
         // Show the Buttons

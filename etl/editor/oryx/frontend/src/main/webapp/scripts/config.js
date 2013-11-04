@@ -206,6 +206,7 @@ ORYX.CONFIG.ETL_PLUGINS_CONFIG =			ORYX.CONFIG.ROOT_PATH + "plugins/etl/metadata
 
 ORYX.CONFIG.EVENT_ETL_MODEL_NAMESPACE_NAME     = "etl.model.namespace";
 ORYX.CONFIG.EVENT_ETL_MODEL_SAVED       = "etl.model.saved";
+ORYX.CONFIG.EVENT_ETL_MODEL_SAVEDAS       = "etl.model.savedas";
 ORYX.CONFIG.EVENT_ETL_MODEL_SAVE       = "etl.model.save";
 ORYX.CONFIG.EVENT_ETL_MODEL_CREATED       = "etl.model.created";
 ORYX.CONFIG.EVENT_ETL_MODEL_CREATE       = "etl.model.create";
