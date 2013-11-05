@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ec2fd18-0865-4643-b95a-b389deec36e0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/TextFileInputMetaTests-module-context.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/tests/TextFileInputMetaTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/csvinput/CSVInputDialogDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/csvinput/CSVInputDialogDelegateResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/dto/TextFileInputMetaDTO.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/dto/TextFileInputMetaDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/org.flowframe.etl.pentaho.server.plugins.core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org.flowframe.toplevel.iml" afterPath="$PROJECT_DIR$/org.flowframe.toplevel.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/core/template.mf" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/core/template.mf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/template.mf" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/template.mf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -146,22 +134,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" line="795" class="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource.TextFileInputAnalyzer" package="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" line="409" class="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource" package="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput">
+      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" line="922" class="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource.TextFileInputAnalyzer" package="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -334,15 +307,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseDTO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/BaseDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0" vertical-offset="181" max-vertical-offset="816">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="VfsLog.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/VfsLog.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -395,17 +359,17 @@
       <file leaf-file-name="TextFileInputDialogDelegateResource.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="58" selection-start="4388" selection-end="4388" vertical-scroll-proportion="-0.11835749" vertical-offset="1834" max-vertical-offset="20128">
+            <state line="111" column="0" selection-start="4702" selection-end="4702" vertical-scroll-proportion="0.33161953" vertical-offset="1758" max-vertical-offset="20128">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#30242#30259#0" expanded="true" />
-                <element signature="e#47125#47126#0" expanded="true" />
-                <element signature="e#47167#47168#0" expanded="true" />
-                <element signature="e#47307#47308#0" expanded="true" />
-                <element signature="e#47343#47344#0" expanded="true" />
-                <element signature="e#47458#47459#0" expanded="true" />
-                <element signature="e#47503#47504#0" expanded="true" />
-                <element signature="e#50646#50662#0" expanded="true" />
+                <element signature="e#47013#47014#0" expanded="true" />
+                <element signature="e#47055#47056#0" expanded="true" />
+                <element signature="e#47195#47196#0" expanded="true" />
+                <element signature="e#47231#47232#0" expanded="true" />
+                <element signature="e#47346#47347#0" expanded="true" />
+                <element signature="e#47391#47392#0" expanded="true" />
+                <element signature="e#50534#50550#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1921,12 +1885,12 @@
       <workItem from="1383341867813" duration="14527000" />
       <workItem from="1383478168504" duration="22340000" />
       <workItem from="1383594424596" duration="5012000" />
-      <workItem from="1383609446485" duration="25235000" />
+      <workItem from="1383609446485" duration="25894000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119370000" />
+    <option name="totallyTimeSpent" value="120029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1598" height="860" extended-state="0" />
@@ -1989,13 +1953,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/TextFileInputMetaTests-module-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="110" selection-start="852" selection-end="852" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="13" selection-start="497" selection-end="502" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1717">
@@ -2024,8 +1981,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="98" column="0" selection-start="3390" selection-end="3390" vertical-scroll-proportion="-4.88" vertical-offset="694" max-vertical-offset="5916">
           <folding>
-            <element signature="e#3262#3263#0" expanded="true" />
-            <element signature="e#3291#3292#0" expanded="true" />
+            <element signature="e#3262#3263#0" expanded="false" />
+            <element signature="e#3291#3292#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2243,19 +2200,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/i18n/BaseMessages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="25" selection-start="2687" selection-end="2687" vertical-scroll-proportion="0.3318584" vertical-offset="955" max-vertical-offset="1598">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="58" selection-start="4388" selection-end="4388" vertical-scroll-proportion="-0.11835749" vertical-offset="1834" max-vertical-offset="20128">
+        <state line="111" column="0" selection-start="4702" selection-end="4702" vertical-scroll-proportion="0.33161953" vertical-offset="1758" max-vertical-offset="20128">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#30242#30259#0" expanded="true" />
-            <element signature="e#47125#47126#0" expanded="true" />
-            <element signature="e#47167#47168#0" expanded="true" />
-            <element signature="e#47307#47308#0" expanded="true" />
-            <element signature="e#47343#47344#0" expanded="true" />
-            <element signature="e#47458#47459#0" expanded="true" />
-            <element signature="e#47503#47504#0" expanded="true" />
-            <element signature="e#50646#50662#0" expanded="true" />
+            <element signature="e#47013#47014#0" expanded="true" />
+            <element signature="e#47055#47056#0" expanded="true" />
+            <element signature="e#47195#47196#0" expanded="true" />
+            <element signature="e#47231#47232#0" expanded="true" />
+            <element signature="e#47346#47347#0" expanded="true" />
+            <element signature="e#47391#47392#0" expanded="true" />
+            <element signature="e#50534#50550#0" expanded="true" />
           </folding>
         </state>
       </provider>
