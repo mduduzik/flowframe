@@ -103,4 +103,5 @@
     <!--
         <bean class="org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource" scope="request"/>
     -->
+    <bean id="textFileInputDialogDelegateResource" class="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource" scope="request"/>
 </beans>

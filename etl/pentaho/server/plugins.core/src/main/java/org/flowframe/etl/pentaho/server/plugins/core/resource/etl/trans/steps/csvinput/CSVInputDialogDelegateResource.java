@@ -477,7 +477,7 @@ public class CSVInputDialogDelegateResource extends BaseDialogDelegateResource {
                 reader = new InputStreamReader(inputStream, inputMetadata.getEncoding());
             }
 
-            TextFileCSVPreviewer previewer = new TextFileCSVPreviewer(inputMetadata, reader);
+            TextFileInputPreviewer previewer = new TextFileInputPreviewer(inputMetadata, reader);
             previewer.preview();
 
 

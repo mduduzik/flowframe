@@ -2,12 +2,10 @@ package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.t
 
 import flexjson.JSONSerializer;
 import org.apache.commons.vfs.FileObject;
-import org.apache.commons.vfs.provider.local.LocalFile;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
-import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.csvinput.dto.CsvInputMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.dto.TextFileInputMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
@@ -37,16 +35,16 @@ import org.pentaho.di.trans.debug.StepDebugMeta;
 import org.pentaho.di.trans.debug.TransDebugMeta;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.steps.csvinput.CsvInput;
-import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.dummytrans.DummyTransMeta;
 import org.pentaho.di.trans.steps.injector.InjectorMeta;
 import org.pentaho.di.trans.steps.textfileinput.*;
+import org.pentaho.hadoop.HadoopCompression;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
@@ -54,6 +52,8 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipInputStream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -64,7 +64,7 @@ import java.util.*;
  */
 @Path("/texttileinputmeta")
 public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResource {
-    private static Class<?> PKG = CsvInput.class;
+    private static Class<?> PKG = TextFileInput.class;
     private static PluginRegistry registry = PluginRegistry.getInstance();
     private TextFileInputField[] cachedInputFields;
 
@@ -74,7 +74,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Produces(MediaType.APPLICATION_JSON)
     public String onNew(@HeaderParam("userid") String userid) throws JSONException {
         //-- Return copy of actual metadata on startup
-        CsvInputMetaDTO dto = new CsvInputMetaDTO();
+        TextFileInputMetaDTO dto = new TextFileInputMetaDTO();
         String json = dto.toJSON();
         JSONObject data = new JSONObject(json);
         JSONObject record = new JSONObject();
@@ -93,7 +93,6 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         //-- Return copy of actual metadata on startup
         TextFileInputMetaDTO dto = new TextFileInputMetaDTO(res);
         FileEntry fe = ecmService.getFileEntryById(dto.getFileEntryId());
-        dto.setFileName(fe.getName());
         dto.setName(res.getParentStepMeta().getName());
         dto.setFileEntryId(fe.getFileEntryId()+"");
 
@@ -105,11 +104,10 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onGetMetadata(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
+    public String onGetMetadata(@HeaderParam("userid") String userid, TextFileInputMetaDTO metaDTO_) throws Exception {
         //Generate metadata
-        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
-        meta_.setFilename(metaDTO_.getFileEntryId());
-        CsvInputMeta updatedMetadata = updateMetadata(meta_);
+        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
+        TextFileInputMeta updatedMetadata = updateMetadata(meta_);
 
         TextFileInputFieldDTO[] fields = TextFileInputFieldDTO.toDTOArray(updatedMetadata.getInputFields());
         JSONSerializer serializer = new JSONSerializer();
@@ -127,10 +125,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onPreviewData(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws Exception {
+    public String onPreviewData(@HeaderParam("userid") String userid, TextFileInputMetaDTO metaDTO_) throws Exception {
         //Generate metadata
-        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
-        meta_.setFilename(metaDTO_.getFileEntryId());
+        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
         String json = previewData(meta_);
 
         return json;
@@ -152,18 +149,18 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onAdd(@HeaderParam("userid") String userid,
-                        CsvInputMetaDTO metaDTO_) throws Exception {
-        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
-        meta_.setFilename(metaDTO_.getFileEntryId());
-        String csvInputPid = registry.getPluginId(StepPluginType.class, meta_);
-        StepMeta csvInputStep = new StepMeta(csvInputPid, metaDTO_.getName(), meta_);
-        String pathID = RepositoryUtil.addStep(repository, metaDTO_.getSubDirObjId(), csvInputStep);
+                        TextFileInputMetaDTO metaDTO_) throws Exception {
+        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
+        String stepPid = registry.getPluginId(StepPluginType.class, meta_);
+        StepMeta step = new StepMeta(stepPid, metaDTO_.getName(), meta_);
 
-        meta_ = (CsvInputMeta)csvInputStep.getStepMetaInterface();
-        meta_.setFilename(metaDTO_.getFileEntryId());
+        String pathID = RepositoryUtil.addStep(repository, metaDTO_.getSubDirObjId(), step);
 
-        CsvInputMetaDTO dto = new CsvInputMetaDTO(meta_);
-        dto.setName(csvInputStep.getName());
+        meta_ = (TextFileInputMeta)step.getStepMetaInterface();
+        //meta_.setFilename(metaDTO_.getFileEntryId());
+
+        TextFileInputMetaDTO dto = new TextFileInputMetaDTO(meta_);
+        dto.setName(step.getName());
         dto.setPathId(pathID);
 
         return dto.toJSON();
@@ -174,18 +171,16 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onSave(@HeaderParam("userid") String userid,
-                        CsvInputMetaDTO metaDTO_) throws Exception {
-        CsvInputMeta meta_ = (CsvInputMeta) metaDTO_.fromDTO(CsvInputMeta.class);
-        meta_.setFilename(metaDTO_.getFileEntryId());
-        String csvInputPid = registry.getPluginId(StepPluginType.class, meta_);
-        StepMeta csvInputStep = new StepMeta(csvInputPid, metaDTO_.getName(), meta_);
-        String pathID = RepositoryUtil.saveStep(repository, metaDTO_.getPathId(), csvInputStep);
+                         TextFileInputMetaDTO metaDTO_) throws Exception {
+        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
+        String stepPid = registry.getPluginId(StepPluginType.class, meta_);
+        StepMeta stepMeta = new StepMeta(stepPid, metaDTO_.getName(), meta_);
+        String pathID = RepositoryUtil.saveStep(repository, metaDTO_.getPathId(), stepMeta);
 
-        meta_ = (CsvInputMeta)csvInputStep.getStepMetaInterface();
-        meta_.setFilename(metaDTO_.getFileEntryId());
+        meta_ = (TextFileInputMeta)stepMeta.getStepMetaInterface();
 
-        CsvInputMetaDTO dto = new CsvInputMetaDTO(meta_);
-        dto.setName(csvInputStep.getName());
+        TextFileInputMetaDTO dto = new TextFileInputMetaDTO(meta_);
+        dto.setName(stepMeta.getName());
         dto.setPathId(pathID);
 
         return dto.toJSON();
@@ -194,10 +189,10 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response onDelete(@HeaderParam("userid") String userid, CsvInputMetaDTO metaDTO_) throws KettleException, JSONException {
+    public Response onDelete(@HeaderParam("userid") String userid, TextFileInputMetaDTO metaDTO_) throws KettleException, JSONException {
         String pathID = RepositoryUtil.deleteStep(repository, metaDTO_.getPathId());
 
-        return Response.ok("CSVMeta " + metaDTO_.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
+        return Response.ok("StepMeta " + metaDTO_.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
 
     @Path("/uploadsample")
@@ -289,82 +284,120 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     }
 
     //File Analysis
-    public CsvInputMeta updateMetadata(CsvInputMeta inputMetadata) throws Exception {
+    public TextFileInputMeta updateMetadata(TextFileInputMeta inputMetadata) throws Exception {
         FileObject fileObject = null;
         InputStreamReader reader = null;
-        CsvInputMeta outputMetadata = null;
-        //CsvInputMeta cachedMetadata;
+        TextFileInputMeta outputMetadata = null;
+        //TextFileInputMeta cachedMetadata;
         try {
             LogChannelInterface log = null;
-            outputMetadata = (CsvInputMeta) new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
 
-
-            //Get file object
-            String samplefileEntryId = inputMetadata.getFilename();
-            FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
-            InputStream in = ecmService.getFileAsStream(samplefileEntryId, null);
-            fileObject = writeFileToVFSTemp(in, fe.getName() + ".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
-            if (!(fileObject instanceof LocalFile)) {
-                // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
-                //
-                throw new KettleException(BaseMessages.getString(PKG, "CsvInput.Log.OnlyLocalFilesAreSupported"));
-            }
-
+            outputMetadata = (TextFileInputMeta) new TextFileInputMetaDTO(inputMetadata).fromDTO(TextFileInputMeta.class);
 
             TransMeta transMeta = new TransMeta();
-            transMeta.setName("CsvInputTrans");
-            log = new LogChannel("CSVInputStepComponentImpl[]");
+            transMeta.setName("TextFileInputMeta");
+            log = new LogChannel("TextFileInputMeta[]");
 
-            String delimiter = inputMetadata.getDelimiter();
+            //Get file object
+            String filename = transMeta.environmentSubstitute(inputMetadata.getFileName()[0]);
+            fileObject = KettleVFS.getFileObject(filename);
+
+            String delimiter = transMeta.environmentSubstitute(inputMetadata.getSeparator());
+            String enclosure = transMeta.environmentSubstitute(inputMetadata.getEnclosure());
+
+            InputStream      fileInputStream = null;
+            ZipInputStream zipInputStream = null ;
+            GZIPInputStream  gzipInputStream = null ;
+            InputStream      inputStream  = null;
+            StringBuilder     lineStringBuilder = new StringBuilder(256);
+            int              fileFormatType = inputMetadata.getFileFormatTypeNr();
 
 
-            //wFields.table.removeAll();
-
-            InputStream inputStream = KettleVFS.getInputStream(fileObject);
+            fileInputStream = KettleVFS.getInputStream(fileObject);
 
 
-            if (Const.isEmpty(inputMetadata.getEncoding())) {
-                reader = new InputStreamReader(inputStream);
-            } else {
+            if (inputMetadata.getFileCompression() != null) {
+                if (inputMetadata.getFileCompression().equals("Zip"))
+                {
+                    zipInputStream = new ZipInputStream(fileInputStream);
+                    zipInputStream.getNextEntry();
+                    inputStream=zipInputStream;
+                }
+                else if (inputMetadata.getFileCompression().equals("GZip"))
+                {
+                    gzipInputStream = new GZIPInputStream(fileInputStream);
+                    inputStream=gzipInputStream;
+                }
+                else if (inputMetadata.getFileCompression().equals("Hadoop-snappy") &&
+                        HadoopCompression.isHadoopSnappyAvailable())
+                {
+                    try {
+                        inputStream = HadoopCompression.getSnappyInputStream(fileInputStream);
+                    } catch (Exception ex) {
+                        throw new IOException(ex.fillInStackTrace());
+                    }
+                }
+                else
+                {
+                    inputStream=fileInputStream;
+                }
+            }
+            else {
+                inputStream=fileInputStream;
+            }
+
+            if (inputMetadata.getEncoding()!=null && inputMetadata.getEncoding().length()>0)
+            {
                 reader = new InputStreamReader(inputStream, inputMetadata.getEncoding());
+            }
+            else
+            {
+                reader = new InputStreamReader(inputStream);
             }
 
             EncodingType encodingType = EncodingType.guessEncodingType(reader.getEncoding());
-
             // Read a line of data to determine the number of rows...
-            //
-            String line = TextFileInput.getLine(log, reader, encodingType, TextFileInputMeta.FILE_FORMAT_MIXED, new StringBuilder(1000));
 
-            // Split the string, header or data into parts...
-            //
-            String enclosure = inputMetadata.getEnclosure();
-            String escapeCharacter = inputMetadata.getEscapeCharacter();
-            String[] fieldNames = CsvInput.guessStringsFromLine(log, line, delimiter, enclosure, escapeCharacter);
 
-            Boolean headerPresent = inputMetadata.isHeaderPresent();
-            if (!headerPresent) {
-                // Don't use field names from the header...
-                // Generate field names F1 ... F10
-                //
-                DecimalFormat df = new DecimalFormat("000"); // $NON-NLS-1$
-                for (int i = 0; i < fieldNames.length; i++) {
-                    fieldNames[i] = "Field_" + df.format(i); // $NON-NLS-1$
+            // Scan the header-line, determine fields...
+            String line = TextFileInput.getLine(log, reader, encodingType, fileFormatType, lineStringBuilder);
+            String[] fields = TextFileInput.guessStringsFromLine(log, line, inputMetadata, delimiter);
+
+            if (inputMetadata.hasHeader())
+            {
+                for (int i = 0; i < fields.length; i++)
+                {
+                    String field = fields[i];
+                    if (field == null || field.length() == 0)
+                    {
+                        field = "Field" + (i + 1);
+                    }
+                    else
+                    {
+                        // Trim the field
+                        field = Const.trim(field);
+                        // Replace all spaces & - with underscore _
+                        field = Const.replace(field, " ", "_");
+                        field = Const.replace(field, "-", "_");
+                    }
                 }
-            } else {
+            }
+            else {
                 if (!Const.isEmpty(enclosure)) {
-                    for (int i = 0; i < fieldNames.length; i++) {
-                        if (fieldNames[i].startsWith(enclosure) && fieldNames[i].endsWith(enclosure) && fieldNames[i].length() > 1)
-                            fieldNames[i] = fieldNames[i].substring(1, fieldNames[i].length() - 1);
+                    for (int i = 0; i < fields.length; i++) {
+                        if (fields[i].startsWith(enclosure) && fields[i].endsWith(enclosure) && fields[i].length() > 1)
+                            fields[i] = fields[i].substring(1, fields[i].length() - 1);
                     }
                 }
             }
 
+            // Copy it...
             // Clean-up UI metadata: Trim the names to make sure...
-            inputMetadata.setInputFields(new TextFileInputField[fieldNames.length]);
-            for (int i = 0; i < fieldNames.length; i++) {
-                fieldNames[i] = Const.trim(fieldNames[i]);
+            inputMetadata.setInputFields(new TextFileInputField[fields.length]);
+            for (int i = 0; i < fields.length; i++) {
+                fields[i] = Const.trim(fields[i]);
                 TextFileInputField ifm = new TextFileInputField();
-                ifm.setName(fieldNames[i]);
+                ifm.setName(fields[i]);
                 ifm.setType(ValueMetaInterface.TYPE_STRING);
                 inputMetadata.getInputFields()[i] = ifm;
             }
@@ -374,53 +407,54 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                 //Update cached metadata; fields etc. (before a detailed file analysis) from UI metadata
                 updateMetadata(outputMetadata, inputMetadata);
 
-                TextFileCSVAnalyzer analyzer = new TextFileCSVAnalyzer(outputMetadata, transMeta, reader, samples, true);
+                TextFileInputAnalyzer analyzer = new TextFileInputAnalyzer(outputMetadata, transMeta, reader, samples, true);
                 String message = analyzer.analyze();
                 if (message != null) {
                     //wFields.removeAll();
 
                     // OK, what's the result of our search?
-    /*                    getData(meta, false);
-                        wFields.removeEmptyRows();
-                        wFields.setRowNums();
-                        wFields.optWidth(true);
-    
-                        EnterTextDialog etd = new EnterTextDialog(shell, BaseMessages.getString(PKG, "CsvInputDialog.ScanResults.DialogTitle"), BaseMessages.getString(PKG, "CsvInputDialog.ScanResults.DialogMessage"), message, true);
-                        etd.setReadOnly();
-                        etd.open();*/
+/*                    getData(meta, false);
+                    wFields.removeEmptyRows();
+                    wFields.setRowNums();
+                    wFields.optWidth(true);
+
+                    EnterTextDialog etd = new EnterTextDialog(shell, BaseMessages.getString(PKG, "TextFileInputDialog.ScanResults.DialogTitle"), BaseMessages.getString(PKG, "TextFileInputDialog.ScanResults.DialogMessage"), message, true);
+                    etd.setReadOnly();
+                    etd.open();*/
                 }
             }
-        } finally {
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            throw e;
+        } catch (Error e) {
+            // TODO Auto-generated catch block
+            throw e;
+        }
+        finally {
             if (reader != null)
                 reader.close();
-            if (fileObject != null)
-                fileObject.delete();
         }
 
         return outputMetadata;
     }
 
-    private void updateMetadata(CsvInputMeta meta, CsvInputMeta inputMetadata) {
+    private void updateMetadata(TextFileInputMeta meta, TextFileInputMeta inputMetadata) {
         //if (isReceivingInput) {
         meta.setFilenameField(inputMetadata.getFilenameField());
-        meta.setIncludingFilename(inputMetadata.isIncludingFilename());
-        //} else {
-        //    meta.setFilename(inputMetadata.getFilename());
-        //}
-
-        meta.setDelimiter(inputMetadata.getDelimiter());
+        meta.setIncludeFilename(inputMetadata.includeFilename());
+        meta.setSeparator(inputMetadata.getSeparator());
         meta.setEnclosure(inputMetadata.getEnclosure());
-        meta.setBufferSize(inputMetadata.getBufferSize());
-        meta.setLazyConversionActive(inputMetadata.isLazyConversionActive());
-        meta.setHeaderPresent(inputMetadata.isHeaderPresent());
-        meta.setRowNumField(inputMetadata.getRowNumField());
+        meta.setHeader(inputMetadata.hasHeader());
+        meta.setRowNumberField(inputMetadata.getRowNumberField());
         meta.setAddResultFile(inputMetadata.isAddResultFile());
-        meta.setRunningInParallel(inputMetadata.isRunningInParallel());
-        meta.setNewlinePossibleInFields(inputMetadata.isNewlinePossibleInFields());
         meta.setEncoding(inputMetadata.getEncoding());
 
+
         int nrNonEmptyFields = inputMetadata.getInputFields().length;
-        meta.allocate(nrNonEmptyFields);
+        int nrFilters = (inputMetadata.getFilter() == null)?0:inputMetadata.getFilter().length;
+        meta.allocate(1,nrNonEmptyFields,nrFilters);
+
+        meta.setFileName(inputMetadata.getFileName());
 
         for (int i = 0; i < nrNonEmptyFields; i++) {
             meta.getInputFields()[i] = new TextFileInputField();
@@ -444,48 +478,17 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     }
 
 
-    public String previewData(CsvInputMeta inputMetadata) throws Exception {
+    public String previewData(TextFileInputMeta inputMetadata) throws Exception {
         FileObject fileObject = null;
         InputStreamReader reader = null;
-        CsvInputMeta outputMetadata = null;
+        TextFileInputMeta outputMetadata = null;
         JSONObject res = null;
         File file = null;
-        //CsvInputMeta cachedMetadata;
+        //TextFileInputMeta cachedMetadata;
         try {
             LogChannelInterface log = null;
-            outputMetadata = (CsvInputMeta) new CsvInputMetaDTO(inputMetadata).fromDTO(CsvInputMeta.class);
+            outputMetadata = (TextFileInputMeta) new TextFileInputMetaDTO(inputMetadata).fromDTO(TextFileInputMeta.class);
 
-
-            //Get file object
-            String samplefileEntryId = inputMetadata.getFilename();
-            FileEntry fe = ecmService.getFileEntryById(samplefileEntryId);
-            InputStream in = ecmService.getFileAsStream(samplefileEntryId, null);
-            file = writeStreamToTempFile(in, fe.getName() + ".wip");
-/*
-            fileObject = writeFileToVFSTemp(in,fe.getName()+".wip");//KettleVFS.getFileObject(sampleFile.getAbsolutePath());
-            if (!(fileObject instanceof LocalFile)) {
-                // We can only use NIO on local files at the moment, so that's what we limit ourselves to.
-                //
-                throw new KettleException(BaseMessages.getString(PKG, "CsvInput.Log.OnlyLocalFilesAreSupported"));
-            }
-
-            InputStream inputStream = KettleVFS.getInputStream(fileObject);
-
-
-            if (Const.isEmpty(inputMetadata.getEncoding())) {
-                reader = new InputStreamReader(inputStream);
-            } else {
-                reader = new InputStreamReader(inputStream, inputMetadata.getEncoding());
-            }
-
-            TextFileCSVPreviewer previewer = new TextFileCSVPreviewer(inputMetadata, reader);
-            previewer.preview();
-
-
-
-            List<Object[]> prevrows = previewer.getPreviewRows("CsvInputPreview");
-            RowMetaInterface prevmeta = previewer.getPreviewRowsMeta("CsvInputPreview");
-*/
 
             /**
              *
@@ -498,7 +501,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             Object[] row;
             RowMetaInterface rowMI;
             String obj;
-            List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "CsvInputPreview", file.getAbsolutePath());
+            List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview");
 
             //-- metadata
             RowMetaAndData rowMeta = dataAndMetaRows.get(0);
@@ -559,7 +562,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     /**
      * CSV Analyzer
      */
-    public class TextFileCSVAnalyzer {
+    public class TextFileInputAnalyzer {
         private Class<?> PKG = TextFileInputMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
 
         private InputFileMetaInterface meta;
@@ -586,7 +589,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
          * Creates a new dialog that will handle the wait while we're finding out what tables, views etc we can reach in the
          * database.
          */
-        public TextFileCSVAnalyzer(InputFileMetaInterface meta, TransMeta transMeta, InputStreamReader reader, int samples, boolean replaceMeta) {
+        public TextFileInputAnalyzer(InputFileMetaInterface meta, TransMeta transMeta, InputStreamReader reader, int samples, boolean replaceMeta) {
             this.meta = meta;
             this.reader = reader;
             this.samples = samples;
@@ -604,7 +607,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         }
 
 
-        private String analyze() throws KettleException {
+        private String analyze() throws Exception {
             // Show information on items using a dialog box
             //
             StringBuilder message = null;
@@ -616,6 +619,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
                 int nrfields = meta.getInputFields().length;
 
+
                 RowMetaInterface outputRowMeta = new RowMeta();
                 meta.getFields(outputRowMeta, null, null, null, transMeta);
 
@@ -626,8 +630,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                 }
 
                 RowMetaInterface convertRowMeta = outputRowMeta.clone();
-                for (int i = 0; i < convertRowMeta.size(); i++)
-                    convertRowMeta.getValueMeta(i).setType(ValueMetaInterface.TYPE_STRING);
+                for (int i=0;i<convertRowMeta.size();i++) convertRowMeta.getValueMeta(i).setType(ValueMetaInterface.TYPE_STRING);
 
                 // How many null values?
                 int nrnull[] = new int[nrfields]; // How many times null value?
@@ -654,7 +657,8 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                 int numberPrecision[][] = new int[nrfields][Const.getNumberFormats().length]; // remember the precision?
                 int numberLength[][] = new int[nrfields][Const.getNumberFormats().length]; // remember the length?
 
-                for (int i = 0; i < nrfields; i++) {
+                for (int i = 0; i < nrfields; i++)
+                {
                     TextFileInputField field = meta.getInputFields()[i];
 
                     if (log.isDebug()) debug = "init field #" + i;
@@ -680,7 +684,8 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
                     // Init data guess
                     isDate[i] = true;
-                    for (int j = 0; j < Const.getDateFormats().length; j++) {
+                    for (int j = 0; j < Const.getDateFormats().length; j++)
+                    {
                         dateFormat[i][j] = true;
                         minDate[i][j] = Const.MAX_DATE;
                         maxDate[i][j] = Const.MIN_DATE;
@@ -689,7 +694,8 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
                     // Init number guess
                     isNumber[i] = true;
-                    for (int j = 0; j < Const.getNumberFormats().length; j++) {
+                    for (int j = 0; j < Const.getNumberFormats().length; j++)
+                    {
                         numberFormat[i][j] = true;
                         minValue[i][j] = Double.MAX_VALUE;
                         maxValue[i][j] = -Double.MAX_VALUE;
@@ -715,11 +721,13 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
                 line = TextFileInput.getLine(log, reader, encodingType, fileFormatType, lineBuffer);
                 fileLineNumber++;
-                int skipped = 1;
+                int skipped=1;
 
-                if (meta.hasHeader()) {
+                if (meta.hasHeader())
+                {
 
-                    while (line != null && skipped < meta.getNrHeaderLines()) {
+                    while (line!=null && skipped<meta.getNrHeaderLines())
+                    {
                         line = TextFileInput.getLine(log, reader, encodingType, fileFormatType, lineBuffer);
                         skipped++;
                         fileLineNumber++;
@@ -735,7 +743,8 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                 SimpleDateFormat daf2 = new SimpleDateFormat();
 
                 boolean errorFound = false;
-                while (!errorFound && line != null && (linenr <= samples || samples == 0)) {
+                while (!errorFound && line != null && (linenr <= samples || samples == 0))
+                {
                     if (log.isDebug()) debug = "convert line #" + linenr + " to row";
                     RowMetaInterface rowMeta = new RowMeta();
                     meta.getFields(rowMeta, "stepname", null, null, transMeta);
@@ -750,30 +759,32 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                             false, false, false, false, false, false, false, false,
                             null, null, false, null, null, null, null, 0);
 
-                    if (r == null) {
+                    if(r == null )
+                    {
                         errorFound = true;
                         continue;
                     }
                     rownumber++;
-                    for (int i = 0; i < nrfields && i < r.length; i++) {
+                    for (int i = 0; i < nrfields && i < r.length; i++)
+                    {
                         StringEvaluator evaluator;
-                        if (i >= evaluators.size()) {
-                            evaluator = new StringEvaluator(true);
+                        if (i>=evaluators.size()) {
+                            evaluator=new StringEvaluator(true);
                             evaluators.add(evaluator);
                         } else {
-                            evaluator = evaluators.get(i);
+                            evaluator=evaluators.get(i);
                         }
 
                         String string = rowMeta.getString(r, i);
 
-                        if (i == 0) {
+                        if (i==0) {
                             System.out.println();
                         }
                         evaluator.evaluateString(string);
                     }
 
                     fileLineNumber++;
-                    if (r != null) {
+                    if (r!=null) {
                         linenr++;
                     }
 
@@ -783,10 +794,10 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                 }
 
                 message = new StringBuilder();
-                message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.ResultAfterScanning", "" + (linenr - 1)));
-                message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.HorizontalLine"));
-
-                for (int i = 0; i < nrfields; i++) {
+                message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.ResultAfterScanning", "" + (linenr - 1)));
+                message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.HorizontalLine"));
+                for (int i = 0; i < nrfields; i++)
+                {
                     TextFileInputField field = meta.getInputFields()[i];
                     StringEvaluator evaluator = evaluators.get(i);
                     List<StringEvaluationResult> evaluationResults = evaluator.getStringEvaluationResults();
@@ -798,7 +809,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                         field.setType(ValueMetaInterface.TYPE_STRING);
                         field.setLength(evaluator.getMaxLength());
                     }
-                    if (result != null) {
+                    if(result != null) {
                         // Take the first option we find, list the others below...
                         //
                         ValueMetaInterface conversionMeta = result.getConversionMeta();
@@ -815,94 +826,100 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                     }
 
 
-                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.FieldNumber", "" + (i + 1)));
+                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.FieldNumber", ""+(i + 1)));
 
-                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.FieldName", field.getName()));
-                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.FieldType", field.getTypeDesc()));
+                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.FieldName", field.getName()));
+                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.FieldType", field.getTypeDesc()));
 
-                    switch (field.getType()) {
+                    switch (field.getType())
+                    {
                         case ValueMetaInterface.TYPE_NUMBER:
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.EstimatedLength", (field.getLength() < 0 ? "-" : "" + field.getLength())));
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.EstimatedPrecision", field.getPrecision() < 0 ? "-" : "" + field.getPrecision()));
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberFormat", field.getFormat()));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.EstimatedLength", (field.getLength() < 0 ? "-" : "" + field.getLength())));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.EstimatedPrecision", field.getPrecision() < 0 ? "-" : "" + field.getPrecision()));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.NumberFormat", field.getFormat()));
 
-                            if (!evaluationResults.isEmpty()) {
-                                if (evaluationResults.size() > 1) {
-                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.WarnNumberFormat"));
+                            if(!evaluationResults.isEmpty()) {
+                                if(evaluationResults.size() > 1) {
+                                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.WarnNumberFormat"));
                                 }
 
-                                for (StringEvaluationResult seResult : evaluationResults) {
+                                for(StringEvaluationResult seResult : evaluationResults) {
                                     String mask = seResult.getConversionMeta().getConversionMask();
 
-                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberFormat2", mask));
-                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.TrimType", seResult.getConversionMeta().getTrimType()));
-                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberMinValue", seResult.getMin()));
-                                    message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberMaxValue", seResult.getMax()));
+                                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.NumberFormat2", mask));
+                                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.TrimType", seResult.getConversionMeta().getTrimType()));
+                                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.NumberMinValue", seResult.getMin()));
+                                    message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.NumberMaxValue", seResult.getMax()));
 
-                                    try {
+                                    try
+                                    {
                                         df2.applyPattern(mask);
                                         df2.setDecimalFormatSymbols(dfs2);
                                         double mn = df2.parse(seResult.getMin().toString()).doubleValue();
-                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberExample", mask, seResult.getMin(), Double.toString(mn)));
-                                    } catch (Exception e) {
-                                        if (log.isDetailed())
-                                            log.logDetailed("This is unexpected: parsing [" + seResult.getMin() + "] with format [" + mask + "] did not work.");
+                                        message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.NumberExample", mask, seResult.getMin(), Double.toString(mn)));
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        if (log.isDetailed()) log.logDetailed("This is unexpected: parsing [" + seResult.getMin() + "] with format [" + mask + "] did not work.");
                                     }
                                 }
                             }
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.NumberNrNullValues", "" + nrnull[i]));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.NumberNrNullValues", ""+nrnull[i]));
                             break;
                         case ValueMetaInterface.TYPE_STRING:
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringMaxLength", "" + field.getLength()));
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringMinValue", minstr[i]));
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringMaxValue", maxstr[i]));
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.StringNrNullValues", "" + nrnull[i]));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.StringMaxLength", ""+field.getLength()));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.StringMinValue", minstr[i]));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.StringMaxValue", maxstr[i]));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.StringNrNullValues", ""+nrnull[i]));
                             break;
                         case ValueMetaInterface.TYPE_DATE:
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateMaxLength", field.getLength() < 0 ? "-" : "" + field.getLength()));
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateFormat", field.getFormat()));
-                            if (dateFormatCount[i] > 1) {
-                                message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.WarnDateFormat"));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateMaxLength", field.getLength() < 0 ? "-" : "" + field.getLength()));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateFormat", field.getFormat()));
+                            if (dateFormatCount[i] > 1)
+                            {
+                                message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.WarnDateFormat"));
                             }
-                            if (!Const.isEmpty(minstr[i])) {
-                                for (int x = 0; x < Const.getDateFormats().length; x++) {
-                                    if (dateFormat[i][x]) {
-                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateFormat2", Const.getDateFormats()[x]));
+                            if (!Const.isEmpty(minstr[i]))
+                            {
+                                for (int x = 0; x < Const.getDateFormats().length; x++)
+                                {
+                                    if (dateFormat[i][x])
+                                    {
+                                        message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateFormat2", Const.getDateFormats()[x]));
                                         Date mindate = minDate[i][x];
                                         Date maxdate = maxDate[i][x];
-                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateMinValue", mindate.toString()));
-                                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateMaxValue", maxdate.toString()));
+                                        message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateMinValue", mindate.toString()));
+                                        message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateMaxValue", maxdate.toString()));
 
                                         daf2.applyPattern(Const.getDateFormats()[x]);
-                                        try {
+                                        try
+                                        {
                                             Date md = daf2.parse(minstr[i]);
-                                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateExample", Const.getDateFormats()[x], minstr[i], md.toString()));
-                                        } catch (Exception e) {
-                                            if (log.isDetailed())
-                                                log.logDetailed("This is unexpected: parsing [" + minstr[i] + "] with format [" + Const.getDateFormats()[x] + "] did not work.");
+                                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateExample", Const.getDateFormats()[x], minstr[i], md.toString()));
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            if (log.isDetailed()) log.logDetailed("This is unexpected: parsing [" + minstr[i] + "] with format [" + Const.getDateFormats()[x] + "] did not work.");
                                         }
                                     }
                                 }
                             }
-                            message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.DateNrNullValues", "" + nrnull[i]));
+                            message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.DateNrNullValues", ""+nrnull[i]));
                             break;
                         default:
                             break;
                     }
-                    if (nrnull[i] == linenr - 1) {
-                        message.append(BaseMessages.getString(PKG, "CSVInputDialogDelegateResource.Info.AllNullValues"));
+                    if (nrnull[i] == linenr - 1)
+                    {
+                        message.append(BaseMessages.getString(PKG, "TextFileInputDialogDelegateResource.Info.AllNullValues"));
                     }
                     message.append(Const.CR);
-
                 }
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                throw e;
             } catch (Error e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                throw e;
             }
-
             return message.toString();
         }
     }
@@ -910,7 +927,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     /**
      * CSV Data Previewer
      */
-    public class TextFileCSVPreviewer {
+    public class TextFileInputPreviewer {
         private Class<?> PKG = TextFileInputMeta.class; // for i18n purposes, needed by Translator2!!   $NON-NLS-1$
 
         private InputFileMetaInterface meta;
@@ -927,7 +944,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
         private EncodingType encodingType;
 
-        private String csvInputPreview = "CsvInputPreview";
+        private String csvInputPreview = "TextFileInputPreview";
         private TransDebugMeta transDebugMeta;
         private String loggingText;
         private Trans trans;
@@ -936,11 +953,11 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
          * Creates a new dialog that will handle the wait while we're finding out what tables, views etc we can reach in the
          * database.
          */
-        public TextFileCSVPreviewer(CsvInputMeta inputMeta, InputStreamReader sampleFileReader) {
+        public TextFileInputPreviewer(TextFileInputMeta inputMeta, InputStreamReader sampleFileReader) {
             this.meta = inputMeta;
             this.reader = sampleFileReader;
             this.transMeta = new TransMeta();
-            this.previewStepNames = new String[]{"CsvInputPreview", "dummy"};
+            this.previewStepNames = new String[]{"TextFileInputPreview", "dummy"};
             this.previewSize = new int[]{100, 100};
         }
 
@@ -1056,12 +1073,11 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     }
 
 
-    public static final List<RowMetaAndData> generatePreviewDataFromFile(CsvInputMeta cim, String oneStepname, String inputFilename) throws KettleException {
+    public static final List<RowMetaAndData> generatePreviewDataFromFile(TextFileInputMeta cim, String oneStepname) throws KettleException {
         KettleEnvironment.init();
 
-        cim.setFilename(inputFilename);
         cim.setFilenameField("filename");
-        cim.setIncludingFilename(true);
+        cim.setIncludeFilename(true);
 
         //
         // Create a new transformation...
@@ -1116,7 +1132,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         trans.startThreads();
 
         // add rows
-        List<RowMetaAndData> inputList = createData(inputFilename);
+        List<RowMetaAndData> inputList = createData(cim.getFileName()[0]);
         Iterator<RowMetaAndData> it = inputList.iterator();
         while (it.hasNext()) {
             RowMetaAndData rm = it.next();

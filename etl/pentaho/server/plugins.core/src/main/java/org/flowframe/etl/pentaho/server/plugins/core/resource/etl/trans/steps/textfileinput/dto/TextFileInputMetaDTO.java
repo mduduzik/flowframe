@@ -6,12 +6,12 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.model.BaseDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
-import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,10 +25,13 @@ public class TextFileInputMetaDTO extends BaseDTO {
     private String name;
 
     /** */
-    private String fileName;//All protocols in VFS, e.g. http://test%40liferay.com:test@localhost:7080/api/secure/webdav/guest/document_library/Organization-1/sales_data.csv
+    private String fileName[];//All protocols in VFS, e.g. http://test%40liferay.com:test@localhost:7080/api/secure/webdav/guest/document_library/Organization-1/sales_data.csv
 
     /** **/
     private String fileEntryId;
+
+    /** Type of file: CSV or fixed */
+    private String fileType;
 
     /** The number of header lines, defaults to 1 */
     private int nrHeaderLines = 1;
@@ -109,17 +112,46 @@ public class TextFileInputMetaDTO extends BaseDTO {
     /** The maximum number or lines to read */
     private long rowLimit;
 
+    /** Add result to sub-seq step*/
+    private boolean isaddresult;
+
     private List<TextFileInputFieldDTO> inputFields;
 
     public TextFileInputMetaDTO() {
-    }
+        breakInEnclosureAllowed = false;
+        header = true;
+        nrHeaderLines = 1;
+        footer = false;
+        nrFooterLines = 1;
+        lineWrapped = false;
+        nrWraps = 1;
+        layoutPaged = false;
+        nrLinesPerPage = 80;
+        nrLinesDocHeader = 0;
+        fileCompression = "None";
+        noEmptyLines = true;
+        fileFormat = "DOS";
+        fileType = "CSV";
+        includeFilename = false;
+        filenameField = "";
+        includeRowNumber = false;
+        rowNumberField = "";
+        rowNumberByFile = false;
 
-    public TextFileInputMetaDTO(TextFileInputMeta meta, String sampleFileEntryId) {
-        this(meta);
-        this.fileEntryId = sampleFileEntryId;
+        int nrfiles = 0;
+        int nrfields = 0;
+        int nrfilters = 0;
+
+        allocate(nrfiles, nrfields, nrfilters);
+
+        rowLimit = 0L;
     }
 
     public TextFileInputMetaDTO(TextFileInputMeta meta) {
+        this();
+        setName(meta.getName());
+        setFileName(meta.getFileName());
+
         TextFileInputField[] fields_ = meta.getInputFields();
         inputFields = new ArrayList<TextFileInputFieldDTO>();
         if (fields_ != null) {
@@ -127,6 +159,13 @@ public class TextFileInputMetaDTO extends BaseDTO {
                 inputFields.add(new TextFileInputFieldDTO(field_));
             }
         }
+    }
+
+    public void allocate(int nrfiles, int nrfields, int nrfilters)
+    {
+        fileName = new String[nrfiles];
+
+        inputFields = new ArrayList<TextFileInputFieldDTO>();
     }
 
     public String getName() {
@@ -137,11 +176,11 @@ public class TextFileInputMetaDTO extends BaseDTO {
         this.name = name;
     }
 
-    public String getFileName() {
+    public String[] getFileName() {
         return fileName;
     }
 
-    public void setFileName(String fileName) {
+    public void setFileName(String[] fileName) {
         this.fileName = fileName;
     }
 
@@ -361,6 +400,22 @@ public class TextFileInputMetaDTO extends BaseDTO {
         this.rowLimit = rowLimit;
     }
 
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public boolean isIsaddresult() {
+        return isaddresult;
+    }
+
+    public void setIsaddresult(boolean isaddresult) {
+        this.isaddresult = isaddresult;
+    }
+
     public List<TextFileInputFieldDTO> getInputFields() {
         return inputFields;
     }
@@ -387,7 +442,8 @@ public class TextFileInputMetaDTO extends BaseDTO {
             }
         }
         obj.remove("inputFields");
-        final CsvInputMeta meta = (CsvInputMeta)metaDeserializer.deserialize(obj.toString(),type);
+        final TextFileInputMeta meta = (TextFileInputMeta)metaDeserializer.deserialize(obj.toString(),type);
+        meta.setDateFormatLocale(Locale.getDefault());
         if (fieldList != null) {
             meta.setInputFields(fieldList.toArray(new TextFileInputField[]{}));
         }

@@ -90,6 +90,17 @@
             <artifactId>org.flowframe.etl.pentaho.server.carte.standalone.impl</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.etl.pentaho.server.repository.db</artifactId>
+            <version>0.0.1</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.kettle-vfs-20100924-osgi</artifactId>
+            <version>4.4.0</version>
+        </dependency>
 
         <!--FF: Pentaho PDI plugins -->
         <dependency>
@@ -153,11 +164,11 @@
             <artifactId>kettle-test</artifactId>
             <version>4.4.0</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.pentaho</groupId>
             <artifactId>kettle-vfs-20100924</artifactId>
             <version>4.3.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>com.springsource.org.apache.commons.validator</artifactId>

@@ -84,6 +84,8 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 	//@Autowired
 	//private IFolderDAOService folderDAOService;
+    public LiferayPortalDocumentRepositoryImpl() {
+    }
 
     public  LiferayPortalDocumentRepositoryImpl(String repositoryId, String companyId, String folderId, String loginEmail, String loginPassword, String hostname, String port, String loginGroupId) {
         this.repositoryId = repositoryId;
