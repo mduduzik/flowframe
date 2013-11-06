@@ -116,19 +116,24 @@
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.riffpie.common.testing</groupId>
-            <artifactId>jersey-test-support</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.glassfish.jersey.test-framework.providers</groupId>
             <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
             <version>2.2</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework</groupId>
+            <artifactId>jersey-test-framework-core</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
-            <artifactId>jersey-test-framework-provider-external</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-servlet</artifactId>
             <version>2.2</version>
         </dependency>
 
@@ -204,12 +209,12 @@
 
 
         <!-- J2EE -->
-        <dependency>
+<!--        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet</artifactId>
             <version>3.0.0.v201103241009</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
 
         <!-- Jersey 2.2 -->
         <dependency>
@@ -232,6 +237,11 @@
         <dependency>
             <groupId>org.glassfish.jersey.ext</groupId>
             <artifactId>jersey-spring3</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
             <version>2.2</version>
         </dependency>
         <dependency>
@@ -258,6 +268,7 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
             <version>2.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>

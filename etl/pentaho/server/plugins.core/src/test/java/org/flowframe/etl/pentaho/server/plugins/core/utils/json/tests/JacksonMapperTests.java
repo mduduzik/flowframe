@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.module.SimpleModule;
 import org.codehaus.jackson.map.ser.FilterProvider;
 import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.TextFileInputMetaPropertyFilterMixIn;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -40,6 +41,7 @@ public class JacksonMapperTests extends TestCase {
         assertNotNull(res);
     }
 
+    @Ignore
     @Test
     public final void testFilter() throws IOException {
         ObjectMapper mapper = new ObjectMapper().setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
@@ -55,6 +57,17 @@ public class JacksonMapperTests extends TestCase {
         final TextFileInputMeta value = new TextFileInputMeta();
         value.setDefault();
         ObjectWriter writer = mapper.writer(filters);
+        String res = writer.writeValueAsString(value);
+        assertNotNull(res);
+    }
+
+    @Test
+    public final void testCustomObjectMapper() throws IOException {
+        CustomObjectMapper mapper = new  CustomObjectMapper();
+
+        final TextFileInputMeta value = new TextFileInputMeta();
+        value.setDefault();
+        ObjectWriter writer = mapper.getFilteredWriter();
         String res = writer.writeValueAsString(value);
         assertNotNull(res);
     }

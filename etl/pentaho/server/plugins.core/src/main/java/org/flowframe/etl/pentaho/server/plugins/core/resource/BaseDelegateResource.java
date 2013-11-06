@@ -43,6 +43,7 @@ public abstract class BaseDelegateResource {
 
     protected boolean initialized = false;
 
+/*
     @Context
     public void setContext(ServletContext context) throws ServletException {
         this.context = context;
@@ -52,6 +53,7 @@ public abstract class BaseDelegateResource {
             throw new ServletException("Servlet container does not provide temporary directory");
         }
     }
+*/
 
 
     protected File writeStreamToFile(InputStream in, String fileName) throws IOException {

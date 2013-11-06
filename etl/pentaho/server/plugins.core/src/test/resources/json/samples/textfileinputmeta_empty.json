@@ -1,0 +1,126 @@
+{
+    "changed": false,
+    "databases": null,
+    "repository": null,
+    "parentStepMeta": null,
+    "ioMeta": null,
+    "attributes": null,
+    "fileName": [
+
+],
+    "fileMask": [
+
+],
+    "excludeFileMask": [
+
+],
+    "fileRequired": [
+
+],
+    "fileType": "CSV",
+    "separator": ";",
+    "enclosure": "\"",
+    "escapeCharacter": null,
+    "breakInEnclosureAllowed": false,
+    "header": true,
+    "nrHeaderLines": 1,
+    "footer": false,
+    "nrFooterLines": 1,
+    "lineWrapped": false,
+    "nrWraps": 1,
+    "layoutPaged": false,
+    "nrLinesDocHeader": 0,
+    "nrLinesPerPage": 80,
+    "fileCompression": "None",
+    "noEmptyLines": true,
+    "includeFilename": false,
+    "filenameField": "",
+    "includeRowNumber": false,
+    "rowNumberByFile": false,
+    "rowNumberField": "",
+    "fileFormat": "DOS",
+    "rowLimit": 0,
+    "inputFields": [
+
+],
+    "includeSubFolders": [
+
+],
+    "filter": [
+
+],
+    "encoding": null,
+    "errorIgnored": false,
+    "errorCountField": null,
+    "errorFieldsField": null,
+    "errorTextField": null,
+    "warningFilesDestinationDirectory": null,
+    "warningFilesExtension": "warning",
+    "errorFilesDestinationDirectory": null,
+    "errorFilesExtension": "error",
+    "lineNumberFilesDestinationDirectory": null,
+    "lineNumberFilesExtension": "line",
+    "dateFormatLenient": true,
+    "dateFormatLocale": "en_US",
+    "errorLineSkipped": false,
+    "acceptingFilenames": false,
+    "passingThruFields": false,
+    "acceptingField": null,
+    "acceptingStepName": null,
+    "acceptingStep": null,
+    "isaddresult": true,
+    "shortFileFieldName": null,
+    "pathFieldName": null,
+    "hiddenFieldName": null,
+    "lastModificationTimeFieldName": null,
+    "uriNameFieldName": null,
+    "rootUriNameFieldName": null,
+    "extensionFieldName": null,
+    "sizeFieldName": null,
+    "skipBadFiles": false,
+    "fileErrorField": null,
+    "fileErrorMessageField": null,
+    "shortFileNameField": null,
+    "pathField": null,
+    "lastModificationDateField": null,
+    "uriField": null,
+    "rootUriField": null,
+    "extensionField": null,
+    "sizeField": null,
+    "exludeFileMask": [
+
+],
+    "lookupStepname": null,
+    "infoSteps": null,
+    "errorLineFilesExtension": "error",
+    "addResultFile": true,
+    "tableFields": null,
+    "dialogClassName": "org.pentaho.di.ui.trans.steps.textfileinput.TextFileInputDialog",
+    "usedArguments": null,
+    "usedDatabaseConnections": [
+
+],
+    "usedLibraries": [
+
+],
+    "optionalStreams": [
+
+],
+    "stepMetaInjectionInterface": null,
+    "supportedTransformationTypes": [
+    "Normal",
+    "SingleThreaded"
+],
+    "name": null,
+    "parent": null,
+    "basic": true,
+    "detailed": false,
+    "debug": false,
+    "rowLevel": false,
+    "logChannelId": null,
+    "objectCopy": null,
+    "objectId": null,
+    "objectRevision": null,
+    "objectType": null,
+    "repositoryDirectory": null
+}

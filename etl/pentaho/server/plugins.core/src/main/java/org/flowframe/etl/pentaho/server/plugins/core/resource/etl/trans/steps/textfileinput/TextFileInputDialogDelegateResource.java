@@ -5,6 +5,7 @@ import org.apache.commons.vfs.FileObject;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.dto.TextFileInputMetaDTO;
@@ -62,7 +63,7 @@ import java.util.zip.ZipInputStream;
  * Time: 9:37 AM
  * To change this template use File | Settings | File Templates.
  */
-@Path("/texttileinputmeta")
+@Path("/textfileinputmeta")
 public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResource {
     private static Class<?> PKG = TextFileInput.class;
     private static PluginRegistry registry = PluginRegistry.getInstance();
@@ -72,15 +73,11 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Path("/onnew")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String onNew(@HeaderParam("userid") String userid) throws JSONException {
-        //-- Return copy of actual metadata on startup
-        TextFileInputMetaDTO dto = new TextFileInputMetaDTO();
-        String json = dto.toJSON();
-        JSONObject data = new JSONObject(json);
-        JSONObject record = new JSONObject();
-        record.put("success", true);
-        record.put("data", data);
-        return record.toString();
+    public String onNew(@HeaderParam("userid") String userid) throws IOException {
+        final CustomObjectMapper mapper = new  CustomObjectMapper();
+        TextFileInputMeta meta = new TextFileInputMeta();
+        meta.setDefault();
+        return mapper.getFilteredWriter().writeValueAsString(meta);
     }
 
     @Path("/onedit")

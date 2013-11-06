@@ -5,6 +5,7 @@ import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapp
 import org.flowframe.etl.pentaho.server.plugins.core.resource.*;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource;
+import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource;
 import org.glassfish.jersey.filter.LoggingFilter;
@@ -26,14 +27,13 @@ public class MainApplication extends ResourceConfig {
      */
     public MainApplication() {
         //packages("org.flowframe.etl.pentaho.repository.db.resource;org.flowframe.etl.pentaho.repository.db.resource.etl.trans.steps.csvinput");
-        register(DatabaseTypeResource.class);
         register(RequestContextFilter.class);
         register(MultiPartFeature.class);
         register(JacksonFeature.class);
         register(LoggingFilter.class);
         register(CustomObjectMapperResolver.class);
 
-        //
+
         register(DatabaseMetaResource.class);
         register(DatabaseTypeResource.class);
         register(RepositoryExplorerResource.class);
@@ -43,6 +43,8 @@ public class MainApplication extends ResourceConfig {
         register(TransformationMetaResource.class);
         register(TransformationJobServiceResource.class);
         register(JobMetaResource.class);
+        register(TextFileInputDialogDelegateResource.class);
+
         // Exceptions
         register(KettleDependencyExceptionMapper.class);
     }
