@@ -27,6 +27,13 @@ public class TextFileInputMetaDTO extends BaseDTO {
     /** */
     private String fileName[];//All protocols in VFS, e.g. http://test%40liferay.com:test@localhost:7080/api/secure/webdav/guest/document_library/Organization-1/sales_data.csv
 
+    /** Wildcard or filemask (regular expression) */
+    private String fileMask[];
+
+
+    /** Wildcard or filemask to exclude (regular expression) */
+    private String  excludeFileMask[];
+
     /** **/
     private String fileEntryId;
 

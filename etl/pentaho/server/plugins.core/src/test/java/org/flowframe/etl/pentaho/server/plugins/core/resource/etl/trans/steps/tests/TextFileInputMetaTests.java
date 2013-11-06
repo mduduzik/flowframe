@@ -1,6 +1,8 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.tests;
 
 import flexjson.JSONDeserializer;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.dto.TextFileInputMetaDTO;
@@ -65,5 +67,13 @@ public class TextFileInputMetaTests extends AbstractJUnit4SpringContextTests {
 
 
         String res = resource.onGetMetadata("test", dto);
+        JSONObject resObj = new JSONObject(res);
+        JSONObject param = new JSONObject();
+        param.put("inputFields",resObj.get("rows"));
+        param.put("fileName",new JSONArray("[\"http://test%40liferay.com:test@localhost:7080/api/secure/webdav/guest/document_library/Organization-1/sales_data.csv\"]"));
+        param.put("includeSubFolders",new JSONArray("[null]"));
+
+        dto = (TextFileInputMetaDTO)metaDeserializer.deserialize(param.toString(), TextFileInputMetaDTO.class);
+        res = resource.onPreviewData("test",dto);
 	}
 }
