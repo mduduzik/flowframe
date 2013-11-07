@@ -16,14 +16,8 @@ import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 import org.codehaus.jackson.map.type.TypeFactory;
 import org.codehaus.jackson.map.util.ClassUtil;
 import org.codehaus.jackson.type.JavaType;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.BaseStepMetaPropertyFilterMixIn;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.JobEntryCopyPropertyFilterMixIn;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.SharedObjectsPropertyFilterMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.TextFileInputMetaPropertyFilterMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.introspector.CustomBasicClassIntrospector;
-import org.pentaho.di.job.entry.JobEntryCopy;
-import org.pentaho.di.shared.SharedObjects;
-import org.pentaho.di.trans.step.BaseStepMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.util.ArrayList;
@@ -117,27 +111,6 @@ public class CustomObjectMapper extends ObjectMapper {
             }
         },null,new DeserializationConfig(new CustomBasicClassIntrospector(), DEFAULT_ANNOTATION_INTROSPECTOR, STD_VISIBILITY_CHECKER,
                 null, null, TypeFactory.defaultInstance(), null));
-/*        BeanDeserializerModifier modifier1 = new BeanDeserializerModifierForIgnorables(TextFileInputMeta.class, "databases",
-                "repository",
-                "parentStepMeta",
-                "ioMeta",
-                "tableFields",
-                "requiredFields",
-                "objectsMap",
-                "resourceDependencies",
-                "sQLStatements",
-                "paused","usedArguments","xml","fileFormatTypeNr","fileTypeNr","log","stepData","stepIOMeta","requiredFields","stopped","running","acceptingStep");
-
-        BeanDeserializerModifier modifier2 = new BeanDeserializerModifierForIgnorables(org.pentaho.di.shared.SharedObjects.class, "objectsMap");
-        DeserializerFactory dFactory = BeanDeserializerFactory
-                .instance.withDeserializerModifier(modifier1).withDeserializerModifier(modifier2);
-        dFactory.
-        setDeserializerProvider(new StdDeserializerProvider(dFactory));*/
-/*
-        DeserializationConfig dc = new DeserializationConfig(new CustomBasicClassIntrospector(), DEFAULT_ANNOTATION_INTROSPECTOR, STD_VISIBILITY_CHECKER,
-                null, null, _typeFactory, null);
-        setDeserializationConfig(dc);
-*/
 
         setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
         setVisibility(JsonMethod.GETTER, JsonAutoDetect.Visibility.NONE);
@@ -162,20 +135,9 @@ public class CustomObjectMapper extends ObjectMapper {
     }
 
     private void initFilters(){
-        this.filters = new SimpleFilterProvider().addFilter("TextFileInputMeta", SimpleBeanPropertyFilter.serializeAllExcept(TextFileInputMetaPropertyFilterMixIn.ignorableFieldNames))
-                .addFilter("BaseStepMeta", SimpleBeanPropertyFilter.serializeAllExcept(BaseStepMetaPropertyFilterMixIn.ignorableFieldNames))
-                .addFilter("JobEntryCopy", SimpleBeanPropertyFilter.filterOutAllExcept())
-                .addFilter("SharedObjects", SimpleBeanPropertyFilter.filterOutAllExcept());
+        this.filters = new SimpleFilterProvider().addFilter("TextFileInputMeta", SimpleBeanPropertyFilter.serializeAllExcept(TextFileInputMetaPropertyFilterMixIn.ignorableFieldNames));
         getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaPropertyFilterMixIn.class);
         getDeserializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaPropertyFilterMixIn.class);
-/*        getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, SlaveStepCopyPropertyFilterMixIn.class);
-        getDeserializationConfig().addMixInAnnotations(TextFileInputMeta.class, SlaveStepCopyPropertyFilterMixIn.class);*/
-        getSerializationConfig().addMixInAnnotations(BaseStepMeta.class, BaseStepMetaPropertyFilterMixIn.class);
-        getDeserializationConfig().addMixInAnnotations(BaseStepMeta.class, BaseStepMetaPropertyFilterMixIn.class);
-        getSerializationConfig().addMixInAnnotations(JobEntryCopy.class, JobEntryCopyPropertyFilterMixIn.class);
-        getDeserializationConfig().addMixInAnnotations(JobEntryCopy.class, JobEntryCopyPropertyFilterMixIn.class);
-        getSerializationConfig().addMixInAnnotations(SharedObjects.class, SharedObjectsPropertyFilterMixIn.class);
-        getDeserializationConfig().addMixInAnnotations(SharedObjects.class, SharedObjectsPropertyFilterMixIn.class);
     }
 
     public ObjectWriter getFilteredWriter() {

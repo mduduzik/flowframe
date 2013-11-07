@@ -14,6 +14,11 @@ public class SlaveStepCopyDeserializer extends JsonDeserializer<SlaveStepCopyPar
 {
     @Override
     public SlaveStepCopyPartitionDistribution.SlaveStepCopy deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+/*        ObjectCodec oc = jsonParser.getCodec();
+        JsonNode node = oc.readTree(jsonParser);
+        return new User(null,
+                node.get("username").getTextValue(),
+                node.get("password").getTextValue());*/
         return null;
     }
 }

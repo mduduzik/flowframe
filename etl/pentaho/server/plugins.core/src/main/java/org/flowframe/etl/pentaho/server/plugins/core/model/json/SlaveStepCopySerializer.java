@@ -15,6 +15,8 @@ public class SlaveStepCopySerializer extends JsonSerializer<SlaveStepCopyPartiti
 
     @Override
     public void serialize(SlaveStepCopyPartitionDistribution.SlaveStepCopy value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
-
+/*        jsonGenerator.writeStartObject();
+        jsonGenerator.writeStringField("username", user.getUsername());
+        jsonGenerator.writeEndObject();*/
     }
 }
