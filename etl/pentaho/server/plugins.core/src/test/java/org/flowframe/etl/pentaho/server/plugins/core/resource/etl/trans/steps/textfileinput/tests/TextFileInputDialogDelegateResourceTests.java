@@ -1,25 +1,17 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.tests;
 
+import junit.framework.Assert;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.etl.pentaho.server.plugins.core.MainApplication;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.grizzly2.servlet.GrizzlyWebContainerFactory;
-import org.glassfish.jersey.server.ApplicationHandler;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.glassfish.jersey.test.spi.TestContainer;
-import org.glassfish.jersey.test.spi.TestContainerException;
-import org.glassfish.jersey.test.spi.TestContainerFactory;
 import org.junit.After;
 import org.junit.Test;
+import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.ProcessingException;
 import javax.ws.rs.core.Application;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Collections;
 
 //@Ignore
 public class TextFileInputDialogDelegateResourceTests extends JerseyTest {
@@ -95,6 +87,9 @@ public class TextFileInputDialogDelegateResourceTests extends JerseyTest {
 
 	@Test
 	public final void testOnNew() throws Exception {
-        System.out.println(target("/textfileinputmeta/onnew").request().header("userid", "test").get(String.class));
+        String res = target("/textfileinputmeta/onnew").request().header("userid", "test").get(String.class);
+        CustomObjectMapper mapper = new CustomObjectMapper();
+        TextFileInputMeta meta = mapper.readValue(res, TextFileInputMeta.class);
+        Assert.assertNotNull(meta);
 	}
 }
