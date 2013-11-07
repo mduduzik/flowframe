@@ -1,12 +1,6 @@
-package org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps;
+package org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.map.annotate.JsonFilter;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-
-@JsonFilter("BaseStepMeta")
-public abstract class BaseStepMetaPropertyFilterMixIn {
+public abstract class TextFileInputMetaPropertyFilterMixIn  {
     public static String[] ignorableFieldNames = {
             "stepMetaInterface",
             "stepPartitioningMeta",
@@ -26,7 +20,4 @@ public abstract class BaseStepMetaPropertyFilterMixIn {
             "resourceDependencies",
             "sQLStatements",
             "paused","usedArguments","xml","fileFormatTypeNr","fileTypeNr","log","stepData","stepIOMeta","requiredFields","stopped","running","acceptingStep"};
-
-    @JsonIgnore
-    public abstract void setPaused(AtomicBoolean paused);
 }

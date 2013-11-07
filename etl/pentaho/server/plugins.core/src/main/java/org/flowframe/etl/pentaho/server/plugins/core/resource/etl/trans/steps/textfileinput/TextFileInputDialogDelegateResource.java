@@ -1,13 +1,11 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput;
 
-import flexjson.JSONSerializer;
 import org.apache.commons.vfs.FileObject;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
-import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.dto.TextFileInputFieldDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.dto.TextFileInputMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
@@ -44,10 +42,7 @@ import org.pentaho.hadoop.HadoopCompression;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -65,6 +60,8 @@ import java.util.zip.ZipInputStream;
  */
 @Path("/textfileinputmeta")
 public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResource {
+    private final CustomObjectMapper mapper = new  CustomObjectMapper();
+
     private static Class<?> PKG = TextFileInput.class;
     private static PluginRegistry registry = PluginRegistry.getInstance();
     private TextFileInputField[] cachedInputFields;
@@ -74,9 +71,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String onNew(@HeaderParam("userid") String userid) throws IOException {
-        final CustomObjectMapper mapper = new  CustomObjectMapper();
         TextFileInputMeta meta = new TextFileInputMeta();
         meta.setDefault();
+        meta.allocate(1,0,0);
         return mapper.getFilteredWriter().writeValueAsString(meta);
     }
 
@@ -101,44 +98,38 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onGetMetadata(@HeaderParam("userid") String userid, TextFileInputMetaDTO metaDTO_) throws Exception {
-        //Generate metadata
-        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
-        TextFileInputMeta updatedMetadata = updateMetadata(meta_);
+    public String onGetMetadata(@HeaderParam("userid") String userid, TextFileInputMeta meta) throws Exception {
+        String res = null;
+        try {
+            //Generate metadata
+            TextFileInputMeta updatedMetadata = updateMetadata(meta);
 
-        TextFileInputFieldDTO[] fields = TextFileInputFieldDTO.toDTOArray(updatedMetadata.getInputFields());
-        JSONSerializer serializer = new JSONSerializer();
-        JSONArray rows = new JSONArray(serializer.exclude("class").serialize(fields));
+            Map<String, Object> resultMap = new HashMap<String,Object>();
+            resultMap.put("results",updatedMetadata.getInputFields().length);
+            resultMap.put("rows",updatedMetadata.getInputFields());
 
-        JSONObject res = new JSONObject();
-        res.put("results", fields.length);
-        res.put("rows", rows);
+            res = mapper.writeValueAsString(resultMap);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
 
-
-        return res.toString();
+        return res;
     }
 
     @Path("/previewdata")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onPreviewData(@HeaderParam("userid") String userid, TextFileInputMetaDTO metaDTO_) throws Exception {
-        //Generate metadata
-        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
-        String json = previewData(meta_);
-
-        return json;
-
-/*        TextFileInputFieldDTO[] fields = TextFileInputFieldDTO.toDTOArray(updatedMetadata.getInputFields());
-        JSONSerializer serializer = new JSONSerializer();
-        JSONArray rows =  new JSONArray(serializer.serialize(fields));
-
-        JSONObject res = new JSONObject();
-        res.put("results",fields.length);
-        res.put("rows",rows);
-
-
-        return res.toString();*/
+    public String onPreviewData(@HeaderParam("userid") String userid, TextFileInputMeta meta) throws Exception {
+        String res = null;
+        try {
+        res = previewData(meta);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Path("/add")
@@ -289,7 +280,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         try {
             LogChannelInterface log = null;
 
-            outputMetadata = (TextFileInputMeta) new TextFileInputMetaDTO(inputMetadata).fromDTO(TextFileInputMeta.class);
+            outputMetadata = (TextFileInputMeta)inputMetadata.clone();
 
             TransMeta transMeta = new TransMeta();
             transMeta.setName("TextFileInputMeta");
@@ -479,12 +470,11 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         FileObject fileObject = null;
         InputStreamReader reader = null;
         TextFileInputMeta outputMetadata = null;
-        JSONObject res = null;
-        File file = null;
+        String res = null;
         //TextFileInputMeta cachedMetadata;
         try {
             LogChannelInterface log = null;
-            outputMetadata = (TextFileInputMeta) new TextFileInputMetaDTO(inputMetadata).fromDTO(TextFileInputMeta.class);
+            outputMetadata = (TextFileInputMeta)inputMetadata.clone();
 
 
             /**
@@ -492,7 +482,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
              * generate rows and metadata
              *
              */
-            JSONObject jsonRow;
+            HashMap jsonRow;
             Object elm;
             ValueMetaInterface vm;
             Object[] row;
@@ -510,11 +500,11 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             }
 
             //-- data
-            JSONArray rows = new JSONArray();
+            List<Map> rows = new ArrayList<Map>();
             int stepCount = 1;
             int limit = 100;
             for (RowMetaAndData prevrow : dataAndMetaRows) {
-                jsonRow = new JSONObject();
+                jsonRow = new HashMap();
                 row = prevrow.getData();
                 rowMI = prevrow.getRowMeta();
                 for (int i = 0; i < rowMI.getFieldNames().length; i++) {
@@ -524,28 +514,30 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                     if (!vm.getName().equals("filename"))
                         jsonRow.put(vm.getName(), obj);
                 }
-                rows.put(jsonRow);
+                rows.add(jsonRow);
                 stepCount++;
                 if (stepCount > limit)
                     break;
             }
 
+            Map<String, Object> metadataMap = new HashMap<String,Object>();
+            metadataMap.put("fields",rowMeta.getRowMeta().getFieldNames());
+            metadataMap.put("totalProperty","results");
+            metadataMap.put("root","rows");
 
-            res = new JSONObject();
-            JSONObject metaDataWrapper = new JSONObject();
-            metaDataWrapper.put("fields",metadata);
-            metaDataWrapper.put("totalProperty","results");
-            metaDataWrapper.put("root","rows");
-            res.put("results", rows.length());
-            res.put("rows", rows);
-            res.put("metaData", metaDataWrapper);
+            Map<String, Object> resMap = new HashMap<String,Object>();
+            resMap.put("results",dataAndMetaRows.size());
+            resMap.put("totalProperty","results");
+            resMap.put("root","rows");
+            resMap.put("metaData", metadataMap);
+            resMap.put("rows", rows);
 
-        } finally {
-            if (file != null)
-                file.delete();
+            res = mapper.writeValueAsString(resMap);
+        } catch (Exception e) {
+            throw e;
         }
 
-        return res.toString();
+        return res;
     }
 
 

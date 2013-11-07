@@ -13,12 +13,14 @@ import org.codehaus.jackson.map.ser.FilterProvider;
 import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.TextFileInputMetaPropertyFilterMixIn;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaPropertyFilterMixIn;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Mduduzi on 11/5/13.
@@ -61,6 +63,7 @@ public class JacksonMapperTests extends TestCase {
         assertNotNull(res);
     }
 
+    @Ignore
     @Test
     public final void testCustomObjectMapper() throws IOException {
         CustomObjectMapper mapper = new  CustomObjectMapper();
@@ -71,4 +74,23 @@ public class JacksonMapperTests extends TestCase {
         String res = writer.writeValueAsString(value);
         assertNotNull(res);
     }
+
+
+    @Ignore
+    @Test
+    public final void testCustomJSONObject() throws IOException {
+        CustomObjectMapper mapper = new  CustomObjectMapper();
+
+        final TextFileInputMeta value = new TextFileInputMeta();
+        value.setDefault();
+
+        Map<String, Object> resultMap = new HashMap<String,Object>();
+        resultMap.put("results",value.getInputFields().length);
+        resultMap.put("rows",value.getInputFields());
+
+        String res = mapper.writeValueAsString(resultMap);
+
+        assertNotNull(res);
+    }
+
 }

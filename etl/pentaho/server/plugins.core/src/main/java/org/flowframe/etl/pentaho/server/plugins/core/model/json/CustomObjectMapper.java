@@ -1,6 +1,5 @@
 package org.flowframe.etl.pentaho.server.plugins.core.model.json;
 
-import org.codehaus.jackson.Version;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.*;
@@ -10,14 +9,14 @@ import org.codehaus.jackson.map.deser.BeanDeserializerModifier;
 import org.codehaus.jackson.map.deser.StdDeserializerProvider;
 import org.codehaus.jackson.map.introspect.AnnotatedClass;
 import org.codehaus.jackson.map.introspect.BasicBeanDescription;
-import org.codehaus.jackson.map.module.SimpleModule;
 import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 import org.codehaus.jackson.map.type.TypeFactory;
 import org.codehaus.jackson.map.util.ClassUtil;
 import org.codehaus.jackson.type.JavaType;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps.TextFileInputMetaPropertyFilterMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.introspector.CustomBasicClassIntrospector;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaMixIn;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaPropertyFilterMixIn;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import java.util.List;
  * Created by Mduduzi on 11/5/13.
  */
 public class CustomObjectMapper extends ObjectMapper {
-    private final SimpleModule module;
+    //private final SimpleModule module;
     private SimpleFilterProvider filters;
 
     public CustomObjectMapper() {
@@ -112,14 +111,20 @@ public class CustomObjectMapper extends ObjectMapper {
         },null,new DeserializationConfig(new CustomBasicClassIntrospector(), DEFAULT_ANNOTATION_INTROSPECTOR, STD_VISIBILITY_CHECKER,
                 null, null, TypeFactory.defaultInstance(), null));
 
-        setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
+/*        setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
         setVisibility(JsonMethod.GETTER, JsonAutoDetect.Visibility.NONE);
         setVisibility(JsonMethod.IS_GETTER, JsonAutoDetect.Visibility.NONE);
         setVisibility(JsonMethod.SETTER, JsonAutoDetect.Visibility.NONE);
         this.module = new SimpleModule(getClass().getName(),new Version(1, 0, 0, null));
-        //this.module.addDeserializer(TextFileInputMeta.class,new GenericBeanDeserializer());
-        //this.module.addKeyDeserializer(JobEntryCopy.class,new JobEntryCopyKeyDeserializer());
-        registerModule(module);
+        this.module.addDeserializer(TextFileInputMeta.class,new GenericBeanDeserializer());
+        this.module.addKeyDeserializer(JobEntryCopy.class,new JobEntryCopyKeyDeserializer());
+        registerModule(module);*/
+
+        //Visibility
+        setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
+        setVisibility(JsonMethod.GETTER, JsonAutoDetect.Visibility.NONE);
+        setVisibility(JsonMethod.IS_GETTER, JsonAutoDetect.Visibility.NONE);
+        setVisibility(JsonMethod.SETTER, JsonAutoDetect.Visibility.NONE);
 
 
         //Deserialization features
@@ -131,7 +136,9 @@ public class CustomObjectMapper extends ObjectMapper {
         getSerializationConfig().with(SerializationConfig.Feature.INDENT_OUTPUT);
         getSerializationConfig().with(SerializationConfig.Feature.REQUIRE_SETTERS_FOR_GETTERS);
 
-        initFilters();
+
+        getDeserializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaMixIn.class);
+        getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaMixIn.class);
     }
 
     private void initFilters(){

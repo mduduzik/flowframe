@@ -14,10 +14,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -129,5 +128,17 @@ public abstract class BaseDelegateResource {
         return sampleFileEntry;
     }
 
+    protected Map<String, Object> createExceptionMap(Exception e) {
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        String stacktrace = sw.toString();
+
+
+        Map<String, Object> resultMap = new HashMap<String,Object>();
+        resultMap.put("message",e.getMessage());
+        resultMap.put("stacktrace",stacktrace);
+
+        return resultMap;
+    }
 
 }
