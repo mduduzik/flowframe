@@ -1,7 +1,6 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput;
 
 import org.apache.commons.vfs.FileObject;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
@@ -42,7 +41,9 @@ import org.pentaho.hadoop.HadoopCompression;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -222,37 +223,6 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         return res.toString();
 
     }
-
-    @Path("/uploadprogress")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public String uploadProgress() throws JSONException {
-        JSONObject progressJSon = new JSONObject();
-        if (context.getAttribute("fileName") != null) {
-            Object bytes_ = context.getAttribute("bytesProcessed");
-            Object fileName_ = context.getAttribute("fileName");
-            Object fileSize_ = context.getAttribute("fileSize");
-            if (fileName_ != null) {
-                progressJSon.put("bytesTotal", fileSize_);
-                progressJSon.put("bytesUploaded", bytes_);
-            }
-        }
-
-/*        progressJSon.put("bytesTotal","");
-        progressJSon.put("bytesUploaded","");
-        progressJSon.put("estSec","");
-        progressJSon.put("filesUploaded","");
-        progressJSon.put("speedAverage","");
-        progressJSon.put("speedLast","");
-        progressJSon.put("timeLast","");
-        progressJSon.put("timeStart","");*/
-
-
-        progressJSon.put("success", true);
-
-        return progressJSon.toString();
-    }
-
 
     private FormDataBodyPart getFileBodyPart(String startsWidth_, FormDataMultiPart multiPart) {
         List<FormDataBodyPart> fileBPList = null;
@@ -480,59 +450,36 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             /**
              *
              * generate rows and metadata
-             *
+             * Example/model:
+             *{
+             "metaData": [
+                 {
+                     "name": "KEY",
+                     "typeDesc": "String",
+                     "type": 2
+                 }
+                 ],
+             "results": 4,
+             "totalProperty": "results",
+             "root": "rows",
+             "rows": [
+                 {
+                    "KEY": "abc"
+                 },
+                 {
+                    "KEY": "ABC"
+                 },
+                 {
+                    "KEY": "abc"
+                 },
+                 {
+                    "KEY": "ABC"
+                 }
+                 ]
+             }
              */
-            HashMap jsonRow;
-            Object elm;
-            ValueMetaInterface vm;
-            Object[] row;
-            RowMetaInterface rowMI;
-            String obj;
             List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview");
-
-            //-- metadata
-            RowMetaAndData rowMeta = dataAndMetaRows.get(0);
-            rowMeta.getRowMeta().removeValueMeta("filename");
-            JSONArray metadata = new JSONArray();
-            for (int i = 0; i < rowMeta.getRowMeta().getFieldNames().length; i++) {
-                vm = rowMeta.getValueMeta(i);
-                metadata.put(vm.getName());
-            }
-
-            //-- data
-            List<Map> rows = new ArrayList<Map>();
-            int stepCount = 1;
-            int limit = 100;
-            for (RowMetaAndData prevrow : dataAndMetaRows) {
-                jsonRow = new HashMap();
-                row = prevrow.getData();
-                rowMI = prevrow.getRowMeta();
-                for (int i = 0; i < rowMI.getFieldNames().length; i++) {
-                    elm = row[i];
-                    vm = rowMI.getValueMeta(i);
-                    obj = rowMI.getString(row, i);
-                    if (!vm.getName().equals("filename"))
-                        jsonRow.put(vm.getName(), obj);
-                }
-                rows.add(jsonRow);
-                stepCount++;
-                if (stepCount > limit)
-                    break;
-            }
-
-            Map<String, Object> metadataMap = new HashMap<String,Object>();
-            metadataMap.put("fields",rowMeta.getRowMeta().getFieldNames());
-            metadataMap.put("totalProperty","results");
-            metadataMap.put("root","rows");
-
-            Map<String, Object> resMap = new HashMap<String,Object>();
-            resMap.put("results",dataAndMetaRows.size());
-            resMap.put("totalProperty","results");
-            resMap.put("root","rows");
-            resMap.put("metaData", metadataMap);
-            resMap.put("rows", rows);
-
-            res = mapper.writeValueAsString(resMap);
+            res = mapper.writeValueAsString(dataAndMetaRows);
         } catch (Exception e) {
             throw e;
         }

@@ -1,5 +1,6 @@
 package org.flowframe.etl.pentaho.server.plugins.core.model.json;
 
+import org.codehaus.jackson.Version;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.*;
@@ -9,14 +10,16 @@ import org.codehaus.jackson.map.deser.BeanDeserializerModifier;
 import org.codehaus.jackson.map.deser.StdDeserializerProvider;
 import org.codehaus.jackson.map.introspect.AnnotatedClass;
 import org.codehaus.jackson.map.introspect.BasicBeanDescription;
-import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
+import org.codehaus.jackson.map.module.SimpleModule;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 import org.codehaus.jackson.map.type.TypeFactory;
 import org.codehaus.jackson.map.util.ClassUtil;
 import org.codehaus.jackson.type.JavaType;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.introspector.CustomBasicClassIntrospector;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataListSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataSerializer;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaMixIn;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaPropertyFilterMixIn;
+import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import java.util.List;
  * Created by Mduduzi on 11/5/13.
  */
 public class CustomObjectMapper extends ObjectMapper {
+    private final SimpleModule module;
     //private final SimpleModule module;
     private SimpleFilterProvider filters;
 
@@ -119,6 +123,7 @@ public class CustomObjectMapper extends ObjectMapper {
         this.module.addDeserializer(TextFileInputMeta.class,new GenericBeanDeserializer());
         this.module.addKeyDeserializer(JobEntryCopy.class,new JobEntryCopyKeyDeserializer());
         registerModule(module);*/
+        this.module = new SimpleModule(getClass().getName(),new Version(1, 0, 0, null));
 
         //Visibility
         setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
@@ -137,15 +142,19 @@ public class CustomObjectMapper extends ObjectMapper {
         getSerializationConfig().with(SerializationConfig.Feature.REQUIRE_SETTERS_FOR_GETTERS);
 
 
+        //TextFileInputMeta
         getDeserializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaMixIn.class);
         getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaMixIn.class);
+
+        //RowMetaAndData
+        final List<RowMetaAndData> type = new ArrayList<RowMetaAndData>();
+        final Class<List<RowMetaAndData>> cls = ( Class<List<RowMetaAndData>>)type.getClass() ;
+        this.module.addSerializer(RowMetaAndData.class,new RowMetaAndDataSerializer());
+        this.module.addSerializer(cls,new RowMetaAndDataListSerializer());
+
+        registerModule(module);
     }
 
-    private void initFilters(){
-        this.filters = new SimpleFilterProvider().addFilter("TextFileInputMeta", SimpleBeanPropertyFilter.serializeAllExcept(TextFileInputMetaPropertyFilterMixIn.ignorableFieldNames));
-        getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaPropertyFilterMixIn.class);
-        getDeserializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaPropertyFilterMixIn.class);
-    }
 
     public ObjectWriter getFilteredWriter() {
        return this.writer(this.filters);

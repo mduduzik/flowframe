@@ -2,22 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ec2fd18-0865-4643-b95a-b389deec36e0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/BaseMixIn.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/BaseStepMetaMixIn.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/SlaveStepCopyPartitionDistributionMixIn.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/TextFileInputMetaMixIn.java" />
-      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\filter\trans\steps\BaseStepMetaPropertyFilterMixIn.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\filter\trans\steps\JobEntryCopyPropertyFilterMixIn.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\filter\trans\steps\SharedObjectsPropertyFilterMixIn.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\filter\trans\steps\SlaveStepCopyPropertyFilterMixIn.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\filter\trans\steps\TextFileInputMetaPropertyFilterMixIn.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/TextFileInputMetaPropertyFilterMixIn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataListSerializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataSerializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaSerializer.java" />
+      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\jackson\mixin\steps\SlaveStepCopyPartitionDistributionMixIn.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\jackson\mixin\steps\TextFileInputMetaPropertyFilterMixIn.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/CustomObjectMapper.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/CustomObjectMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/json/tests/JacksonMapperTests.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/json/tests/JacksonMapperTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/tests/TextFileInputDialogDelegateResourceTests.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/tests/TextFileInputDialogDelegateResourceTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/tests/TextFileInputMetaTests.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/tests/TextFileInputMetaTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -179,21 +172,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java" line="42" class="org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.tests.MixInTests" package="org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.tests">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/tests/TextFileInputDialogDelegateResourceTests.java" line="131" class="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.tests.TextFileInputDialogDelegateResourceTests" package="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.tests">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -222,61 +200,7 @@
       <file leaf-file-name="TextFileInputDialogDelegateResourceTests.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/tests/TextFileInputDialogDelegateResourceTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="0" selection-start="5199" selection-end="5199" vertical-scroll-proportion="0.6313253" vertical-offset="1676" max-vertical-offset="2091">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextFileInputMetaTests.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/tests/TextFileInputMetaTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="10" selection-start="3157" selection-end="3157" vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="1173">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextFileInput.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/trans/steps/textfileinput/TextFileInput.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1621" column="0" selection-start="55893" selection-end="55893" vertical-scroll-proportion="0.0" vertical-offset="26331" max-vertical-offset="28696">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SlaveStepCopyDeserializer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/SlaveStepCopyDeserializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="13" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReflectiveCallable.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="40" selection-start="388" selection-end="388" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="289">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextFileInputMeta.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/trans/steps/textfileinput/TextFileInputMeta.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="30" selection-start="5993" selection-end="6011" vertical-scroll-proportion="-6.52" vertical-offset="1724" max-vertical-offset="29359">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddCsvInputMetadataTests.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/repository.db/src/test/java/org/flowframe/etl/pentaho/repository/db/resource/etl/trans/steps/csvinput/tests/AddCsvInputMetadataTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="15" selection-start="3475" selection-end="3477" vertical-scroll-proportion="-16.12" vertical-offset="855" max-vertical-offset="1649">
+            <state line="131" column="0" selection-start="5199" selection-end="5199" vertical-scroll-proportion="0.5738162" vertical-offset="1732" max-vertical-offset="2091">
               <folding />
             </state>
           </provider>
@@ -285,31 +209,109 @@
       <file leaf-file-name="TextFileInputDialogDelegateResource.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1137" column="0" selection-start="49459" selection-end="49459" vertical-scroll-proportion="-12.68" vertical-offset="18077" max-vertical-offset="19006">
+            <state line="452" column="29" selection-start="18852" selection-end="18852" vertical-scroll-proportion="12.24" vertical-offset="7140" max-vertical-offset="18088">
               <folding>
-                <element signature="e#4457#4472#0" expanded="true" />
-                <element signature="e#21438#21453#0" expanded="true" />
-                <element signature="e#21686#21701#0" expanded="true" />
+                <element signature="e#4484#4499#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseDialogDelegateResource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/BaseDialogDelegateResource.java">
+      <file leaf-file-name="RowMetaAndData.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/RowMetaAndData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="62" selection-start="917" selection-end="917" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="1343">
+            <state line="101" column="27" selection-start="2643" selection-end="2659" vertical-scroll-proportion="0.0" vertical-offset="979" max-vertical-offset="4556">
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2430#2431#0" expanded="false" />
+                <element signature="e#2457#2458#0" expanded="false" />
+                <element signature="e#2554#2555#0" expanded="false" />
+                <element signature="e#2586#2587#0" expanded="false" />
+                <element signature="e#2824#2825#0" expanded="false" />
+                <element signature="e#2862#2863#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MixInTests.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="38" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0" vertical-offset="804" max-vertical-offset="1819">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1779#1795#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RowMetaAndDataSerializer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataSerializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="0" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="748">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseDelegateResource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java">
+      <file leaf-file-name="RowMetaAndDataListSerializer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataListSerializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="13" selection-start="4371" selection-end="4371" vertical-scroll-proportion="0.0" vertical-offset="1698" max-vertical-offset="2278">
+            <state line="92" column="0" selection-start="3583" selection-end="3583" vertical-scroll-proportion="0.0" vertical-offset="1443" max-vertical-offset="1802">
               <folding>
-                <element signature="e#4616#4631#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StdSerializerProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-mapper-asl/1.9.11/jackson-mapper-asl-1.9.11-sources.jar!/org/codehaus/jackson/map/ser/StdSerializerProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="618" column="53" selection-start="23850" selection-end="23850" vertical-scroll-proportion="0.0" vertical-offset="9700" max-vertical-offset="14195">
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#19051#19052#0" expanded="false" />
+                <element signature="e#19092#19093#0" expanded="false" />
+                <element signature="e#19168#19169#0" expanded="false" />
+                <element signature="e#19211#19212#0" expanded="false" />
+                <element signature="e#30038#30068#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ValueMetaInterface.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/row/ValueMetaInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="40" selection-start="4811" selection-end="4823" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="15011">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RowMetaSerializer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaSerializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="0" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RowMeta.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/row/RowMeta.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="36" selection-start="2838" selection-end="2856" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="15606">
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2861#2862#0" expanded="false" />
+                <element signature="e#2897#2898#0" expanded="false" />
+                <element signature="e#3050#3051#0" expanded="false" />
+                <element signature="e#3100#3101#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -333,22 +335,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/filter/trans/steps/BaseStepMetaPropertyFilterMixIn.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/SlaveStepCopyDeserializer.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/SlaveStepCopySerializer.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/TextFileInputMetaPropertyFilterMixIn.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/BaseMixIn.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/BaseStepMetaMixIn.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/SlaveStepCopyPartitionDistributionMixIn.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/CustomObjectMapper.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/TextFileInputMetaMixIn.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/json/tests/JacksonMapperTests.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java" />
         <option value="C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/trans/steps/textfileinput/TextFileInputMeta.java" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/tests/TextFileInputDialogDelegateResourceTests.java" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/tests/TextFileInputMetaTests.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/json/tests/JacksonMapperTests.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/CustomObjectMapper.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataSerializer.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaSerializer.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataListSerializer.java" />
       </list>
     </option>
   </component>
@@ -1647,7 +1649,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="steps" />
+              <option name="myItemId" value="jackson" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1705,7 +1707,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="introspector" />
+              <option name="myItemId" value="jackson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="metadata" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2057,11 +2063,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata" />
       <recent name="org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.tests" />
       <recent name="org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps" />
       <recent name="org.flowframe.etl.pentaho.server.plugins.core.model.json.deserializer" />
       <recent name="org.flowframe.etl.pentaho.server.plugins.core.model.json.filter.trans.steps" />
-      <recent name="org.flowframe.etl.pentaho.server.plugins.core.model.json" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\dev\gitrepos\flowframe\etl\pentaho\server\plugins.core\src\main\java\org\flowframe\etl\pentaho\server\plugins\core\model\json\filter\trans\steps" />
@@ -2201,7 +2207,9 @@
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
@@ -2552,8 +2560,8 @@
     <recent_temporary>
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="JUnit.TextFileInputDialogDelegateResourceTests" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.JacksonMapperTests" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.MixInTests" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.MixInTests" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.JacksonMapperTests" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.TextFileInputMetaTests" />
       </list>
     </recent_temporary>
@@ -2579,12 +2587,12 @@
       <workItem from="1383594424596" duration="5012000" />
       <workItem from="1383609446485" duration="34665000" />
       <workItem from="1383698174260" duration="52311000" />
-      <workItem from="1383822838660" duration="17359000" />
+      <workItem from="1383822838660" duration="28479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198470000" />
+    <option name="totallyTimeSpent" value="209590000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1598" height="860" extended-state="0" />
@@ -2602,19 +2610,19 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14285715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36093554" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22344828" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3448276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39310345" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44689655" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14728191" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14981037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2647,137 +2655,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.2.1/httpcore-4.2.1-sources.jar!/org/apache/http/util/EntityUtils.java">
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/trans/steps/textfileinput/TextFileInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="25" selection-start="9605" selection-end="9605" vertical-scroll-proportion="0.0" vertical-offset="3680" max-vertical-offset="4029">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.2/jersey-server-2.2-sources.jar!/org/glassfish/jersey/server/model/internal/AbstractJavaResourceMethodDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="0" selection-start="6652" selection-end="6652" vertical-scroll-proportion="0.0" vertical-offset="424" max-vertical-offset="2176">
-          <folding>
-            <element signature="e#0#7998#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#5852#6874#0" expanded="false" />
-            <element signature="e#6859#6860#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="632" column="0" selection-start="26349" selection-end="26527" vertical-scroll-proportion="0.0" vertical-offset="9750" max-vertical-offset="12750">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bpm/jbpm/bpmserver/src/main/java/org/flowframe/bpm/jbpm/bpmserver/BPMServerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="245" column="0" selection-start="8412" selection-end="8562" vertical-scroll-proportion="0.0" vertical-offset="1877" max-vertical-offset="16473">
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5170#5171#0" expanded="false" />
-            <element signature="e#5204#5205#0" expanded="false" />
-            <element signature="e#5282#5283#0" expanded="false" />
-            <element signature="e#5337#5338#0" expanded="false" />
-            <element signature="e#5394#5395#0" expanded="false" />
-            <element signature="e#5423#5424#0" expanded="false" />
-            <element signature="e#5489#5490#0" expanded="false" />
-            <element signature="e#5526#5527#0" expanded="false" />
-            <element signature="e#5576#5577#0" expanded="false" />
-            <element signature="e#5606#5607#0" expanded="false" />
-            <element signature="e#5658#5659#0" expanded="false" />
-            <element signature="e#5684#5685#0" expanded="false" />
-            <element signature="e#5751#5752#0" expanded="false" />
-            <element signature="e#5790#5791#0" expanded="false" />
-            <element signature="e#5883#5884#0" expanded="false" />
-            <element signature="e#5946#5947#0" expanded="false" />
-            <element signature="e#6026#6027#0" expanded="false" />
-            <element signature="e#6083#6084#0" expanded="false" />
-            <element signature="e#6178#6179#0" expanded="false" />
-            <element signature="e#6235#6236#0" expanded="false" />
-            <element signature="e#6294#6295#0" expanded="false" />
-            <element signature="e#6333#6334#0" expanded="false" />
-            <element signature="e#6373#6374#0" expanded="false" />
-            <element signature="e#6393#6394#0" expanded="false" />
-            <element signature="e#6424#6425#0" expanded="false" />
-            <element signature="e#6448#6449#0" expanded="false" />
-            <element signature="e#6498#6499#0" expanded="false" />
-            <element signature="e#6520#6521#0" expanded="false" />
-            <element signature="e#6576#6577#0" expanded="false" />
-            <element signature="e#6597#6598#0" expanded="false" />
-            <element signature="e#6872#6873#0" expanded="false" />
-            <element signature="e#6903#6904#0" expanded="false" />
-            <element signature="e#6952#6953#0" expanded="false" />
-            <element signature="e#6980#6981#0" expanded="false" />
-            <element signature="e#25299#25300#0" expanded="false" />
-            <element signature="e#25336#25337#0" expanded="false" />
-            <element signature="e#29215#29216#0" expanded="false" />
-            <element signature="e#29243#29244#0" expanded="false" />
-            <element signature="e#29305#29306#0" expanded="false" />
-            <element signature="e#29348#29349#0" expanded="false" />
-            <element signature="e#31689#31690#0" expanded="false" />
-            <element signature="e#31719#31720#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/BaseDelegateResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="13" selection-start="4371" selection-end="4371" vertical-scroll-proportion="0.0" vertical-offset="1698" max-vertical-offset="2278">
-          <folding>
-            <element signature="e#4616#4631#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/repository.db/src/test/java/org/flowframe/etl/pentaho/repository/db/resource/etl/trans/steps/csvinput/tests/AddCsvInputMetadataTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="15" selection-start="3475" selection-end="3477" vertical-scroll-proportion="-16.12" vertical-offset="855" max-vertical-offset="1649">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/BaseDialogDelegateResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="62" selection-start="917" selection-end="917" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="1343">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/trans/steps/textfileinput/TextFileInputMeta.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="30" selection-start="5993" selection-end="6011" vertical-scroll-proportion="-6.52" vertical-offset="1724" max-vertical-offset="29359">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="388" selection-end="388" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/SlaveStepCopyDeserializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/row/RowMetaInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="17" selection-start="3127" selection-end="3127" vertical-scroll-proportion="-0.118072286" vertical-offset="627" max-vertical-offset="8381">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/RowMetaAndData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="25" selection-start="1439" selection-end="1439" vertical-scroll-proportion="0.03504673" vertical-offset="121" max-vertical-offset="4505">
+        <state line="1621" column="0" selection-start="55893" selection-end="55893" vertical-scroll-proportion="0.0" vertical-offset="26331" max-vertical-offset="28696">
           <folding />
         </state>
       </provider>
@@ -2789,27 +2669,135 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src/org/pentaho/di/trans/steps/textfileinput/TextFileInput.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/SlaveStepCopySerializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1621" column="0" selection-start="55893" selection-end="55893" vertical-scroll-proportion="0.0" vertical-offset="26331" max-vertical-offset="28696">
+        <state line="12" column="0" selection-start="359" selection-end="828" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-core-asl/1.9.11/jackson-core-asl-1.9.11.jar!/org/codehaus/jackson/JsonProcessingException.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="37" selection-start="818" selection-end="841" vertical-scroll-proportion="-9.6" vertical-offset="49" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/utils/json/tests/JacksonMapperTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="2" selection-start="1578" selection-end="2532" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1632">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/CustomObjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="31" selection-start="8058" selection-end="8058" vertical-scroll-proportion="0.0" vertical-offset="2395" max-vertical-offset="3417">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7747#7763#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/row/RowMeta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="36" selection-start="2838" selection-end="2856" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="15606">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2861#2862#0" expanded="false" />
+            <element signature="e#2897#2898#0" expanded="false" />
+            <element signature="e#3050#3051#0" expanded="false" />
+            <element signature="e#3100#3101#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/RowMetaAndData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="27" selection-start="2643" selection-end="2659" vertical-scroll-proportion="0.0" vertical-offset="979" max-vertical-offset="4556">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2430#2431#0" expanded="false" />
+            <element signature="e#2457#2458#0" expanded="false" />
+            <element signature="e#2554#2555#0" expanded="false" />
+            <element signature="e#2586#2587#0" expanded="false" />
+            <element signature="e#2824#2825#0" expanded="false" />
+            <element signature="e#2862#2863#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/codehaus/jackson/jackson-mapper-asl/1.9.11/jackson-mapper-asl-1.9.11-sources.jar!/org/codehaus/jackson/map/ser/StdSerializerProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="618" column="53" selection-start="23850" selection-end="23850" vertical-scroll-proportion="0.0" vertical-offset="9700" max-vertical-offset="14195">
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#19051#19052#0" expanded="false" />
+            <element signature="e#19092#19093#0" expanded="false" />
+            <element signature="e#19168#19169#0" expanded="false" />
+            <element signature="e#19211#19212#0" expanded="false" />
+            <element signature="e#30038#30068#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1137" column="0" selection-start="49459" selection-end="49459" vertical-scroll-proportion="-12.68" vertical-offset="18077" max-vertical-offset="19006">
+        <state line="452" column="29" selection-start="18852" selection-end="18852" vertical-scroll-proportion="12.24" vertical-offset="7140" max-vertical-offset="18088">
           <folding>
-            <element signature="e#4457#4472#0" expanded="true" />
-            <element signature="e#21438#21453#0" expanded="true" />
-            <element signature="e#21686#21701#0" expanded="true" />
+            <element signature="e#4484#4499#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/mixin/steps/tests/MixInTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="38" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0" vertical-offset="804" max-vertical-offset="1819">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1779#1795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/devdownloads/pentaho/pdi-ce-src-4.4.0-stable-r17588-OFF/src-core/org/pentaho/di/core/row/ValueMetaInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="40" selection-start="4811" selection-end="4823" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="15011">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/model/json/jackson/io/metadata/RowMetaAndDataListSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="3583" selection-end="3583" vertical-scroll-proportion="0.0" vertical-offset="1443" max-vertical-offset="1802">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/tests/TextFileInputDialogDelegateResourceTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="0" selection-start="5199" selection-end="5199" vertical-scroll-proportion="0.6313253" vertical-offset="1676" max-vertical-offset="2091">
+        <state line="131" column="0" selection-start="5199" selection-end="5199" vertical-scroll-proportion="0.5738162" vertical-offset="1732" max-vertical-offset="2091">
           <folding />
         </state>
       </provider>

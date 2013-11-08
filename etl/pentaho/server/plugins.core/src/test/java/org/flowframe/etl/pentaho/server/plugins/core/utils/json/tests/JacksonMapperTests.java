@@ -2,18 +2,12 @@ package org.flowframe.etl.pentaho.server.plugins.core.utils.json.tests;
 
 import junit.framework.TestCase;
 import org.codehaus.jackson.Version;
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.module.SimpleModule;
-import org.codehaus.jackson.map.ser.FilterProvider;
-import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
-import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaPropertyFilterMixIn;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
@@ -46,7 +40,7 @@ public class JacksonMapperTests extends TestCase {
     @Ignore
     @Test
     public final void testFilter() throws IOException {
-        ObjectMapper mapper = new ObjectMapper().setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
+/*        ObjectMapper mapper = new ObjectMapper().setVisibility(JsonMethod.FIELD, JsonAutoDetect.Visibility.ANY);
 
         FilterProvider filters = new SimpleFilterProvider().addFilter("TextFileInputMeta", SimpleBeanPropertyFilter.serializeAllExcept(TextFileInputMetaPropertyFilterMixIn.ignorableFieldNames));
         mapper.getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaPropertyFilterMixIn.class);
@@ -60,7 +54,7 @@ public class JacksonMapperTests extends TestCase {
         value.setDefault();
         ObjectWriter writer = mapper.writer(filters);
         String res = writer.writeValueAsString(value);
-        assertNotNull(res);
+        assertNotNull(res);*/
     }
 
     @Ignore
