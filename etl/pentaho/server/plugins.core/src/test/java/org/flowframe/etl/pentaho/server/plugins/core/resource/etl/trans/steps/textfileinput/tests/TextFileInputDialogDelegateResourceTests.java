@@ -127,7 +127,7 @@ public class TextFileInputDialogDelegateResourceTests extends JerseyTest {
 
         //onpreview
         res = mapper.writeValueAsString(meta);
-        resp = target("/textfileinputmeta/previewdata").request().header("userid", "test").post(Entity.entity(res, MediaType.APPLICATION_JSON_TYPE));
+        resp = target("/textfileinputmeta/previewdata").request().header("userid", "test").header("start", 1).header("pageSize", 12).post(Entity.entity(res, MediaType.APPLICATION_JSON_TYPE));
         response = resp.readEntity(String.class);
         Assert.assertNotNull(resp);
     }

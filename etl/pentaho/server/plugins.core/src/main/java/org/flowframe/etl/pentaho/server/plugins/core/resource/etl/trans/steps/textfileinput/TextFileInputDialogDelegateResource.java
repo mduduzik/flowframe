@@ -33,8 +33,10 @@ import org.pentaho.di.trans.debug.StepDebugMeta;
 import org.pentaho.di.trans.debug.TransDebugMeta;
 import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.dummytrans.DummyTransMeta;
 import org.pentaho.di.trans.steps.injector.InjectorMeta;
+import org.pentaho.di.trans.steps.samplerows.SampleRowsMeta;
 import org.pentaho.di.trans.steps.textfileinput.*;
 import org.pentaho.hadoop.HadoopCompression;
 
@@ -74,7 +76,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     public String onNew(@HeaderParam("userid") String userid) throws IOException {
         TextFileInputMeta meta = new TextFileInputMeta();
         meta.setDefault();
-        meta.allocate(1,0,0);
+        meta.allocate(1, 0, 0);
         return mapper.getFilteredWriter().writeValueAsString(meta);
     }
 
@@ -85,13 +87,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
         TextFileInputMeta res = (TextFileInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
 
-        //-- Return copy of actual metadata on startup
-        TextFileInputMetaDTO dto = new TextFileInputMetaDTO(res);
-        FileEntry fe = ecmService.getFileEntryById(dto.getFileEntryId());
-        dto.setName(res.getParentStepMeta().getName());
-        dto.setFileEntryId(fe.getFileEntryId()+"");
-
-        return dto.toJSON();
+        return mapper.getFilteredWriter().writeValueAsString(res);
     }
 
 
@@ -122,10 +118,13 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String onPreviewData(@HeaderParam("userid") String userid, TextFileInputMeta meta) throws Exception {
+    public String onPreviewData(@HeaderParam("userid") String userid,
+                                @HeaderParam("start") int start,
+                                @HeaderParam("pageSize") int pageSize,
+                                TextFileInputMeta meta) throws Exception {
         String res = null;
         try {
-        res = previewData(meta);
+        res = previewData(meta,start,pageSize);
         } catch (Exception e) {
             res = mapper.writeValueAsString(createExceptionMap(e));
             e.printStackTrace();
@@ -436,7 +435,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     }
 
 
-    public String previewData(TextFileInputMeta inputMetadata) throws Exception {
+    public String previewData(TextFileInputMeta inputMetadata,int start,int pageSize) throws Exception {
         FileObject fileObject = null;
         InputStreamReader reader = null;
         TextFileInputMeta outputMetadata = null;
@@ -478,7 +477,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                  ]
              }
              */
-            List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview");
+            List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview",start,pageSize);
             res = mapper.writeValueAsString(dataAndMetaRows);
         } catch (Exception e) {
             throw e;
@@ -1009,8 +1008,11 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     }
 
 
-    public static final List<RowMetaAndData> generatePreviewDataFromFile(TextFileInputMeta cim, String oneStepname) throws KettleException {
+    public static final List<RowMetaAndData> generatePreviewDataFromFile(TextFileInputMeta cim, String oneStepname, int start, int stepSize) throws KettleException {
         KettleEnvironment.init();
+
+        start = (start <= 0)?1:start;
+        stepSize = (stepSize <= 0)?100:stepSize;
 
         cim.setFilenameField("filename");
         cim.setIncludeFilename(true);
@@ -1043,6 +1045,23 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         transMeta.addTransHop(hi);
 
         //
+        // Create sample step
+        //
+        cim.setIncludeRowNumber(true);
+        cim.setRowNumberField("lineNumber");
+        String sortRowsStepname = "sample rows step";
+        SampleRowsMeta srm = new SampleRowsMeta();
+        srm.setLineNumberField("lineNumber");
+        srm.setLinesRange(start+".."+(start+stepSize));
+        String sortRowsStepPid = registry.getPluginId(StepPluginType.class, srm);
+        StepMeta sampleRowsStep = new StepMeta(sortRowsStepPid, sortRowsStepname, (StepMetaInterface)srm);
+        transMeta.addStep(sampleRowsStep);
+
+        hi = new TransHopMeta(csvInputStep, sampleRowsStep);
+        transMeta.addTransHop(hi);
+
+
+        //
         // Create a dummy step 1
         //
         String dummyStepname1 = "dummy step 1";
@@ -1052,7 +1071,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         StepMeta dummyStep1 = new StepMeta(dummyPid1, dummyStepname1, dm1);
         transMeta.addStep(dummyStep1);
 
-        TransHopMeta hi1 = new TransHopMeta(csvInputStep, dummyStep1);
+        TransHopMeta hi1 = new TransHopMeta(sampleRowsStep, dummyStep1);
         transMeta.addTransHop(hi1);
 
         // Now execute the transformation...
