@@ -25,9 +25,9 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
         // Reference to the Editor-Interface
         this.facade = facade;
 
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta', this.onCreate.bind(this));
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CSVMeta', this.onEdit.bind(this));
-        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CSVMeta', this.onDelete.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA, this.onCreate.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA, this.onEdit.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA, this.onDelete.bind(this));
     },
 
 

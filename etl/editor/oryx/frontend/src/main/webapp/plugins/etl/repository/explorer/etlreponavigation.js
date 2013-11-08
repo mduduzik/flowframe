@@ -475,7 +475,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {
@@ -560,7 +560,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {
@@ -577,7 +577,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'CSVMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {
@@ -595,7 +595,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'CSVMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
                             forceExecution: true
                         };
                         this.facade.raiseEvent(eventData, {

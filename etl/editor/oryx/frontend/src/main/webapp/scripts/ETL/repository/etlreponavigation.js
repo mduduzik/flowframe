@@ -79,6 +79,11 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
                                 this.render();
                                 thisEditor.registerDD(this, this.attributes['itemtype']);
                             }
+
+                            if (this.attributes['allowDrop'] && this.attributes['allowDrop'] === true) {
+                                thisEditor.registerDropZone(this, this.attributes['itemtype']);
+                            }
+
                         });
                     },
                     beforeload: function(treeLoader, node) {
@@ -128,16 +133,27 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
              */
             try {
                 var rootNode_ = this.navigationPanel.getRootNode();
+
+                //
+                // Drag
+                //
                 //-- Create a Drag-Zone for Drag'n'Drop
                 var DragZone = new Ext.dd.DragZone(rootNode_.getUI().getEl(), {
                     shadow: !Ext.isMac
                 });
-                DragZone.afterDragDrop = this.drop.bind(this, DragZone);
+                DragZone.afterDragDrop = this.afterDragDrop.bind(this, DragZone);
                 DragZone.beforeDragOver = this.beforeDragOver.bind(this, DragZone);
                 DragZone.beforeDragEnter = function () {
                     this.modalDialogShown = false;
                     return true
                 }.bind(this);
+
+                //
+                // Drop
+                //
+/*                var DropZone = new Ext.dd.DropZone(rootNode_.getUI().getEl(), {
+                    shadow: !Ext.isMac
+                });*/
             }
             catch (e) {
                 ORYX.Log.error(e);
@@ -163,9 +179,57 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
             // Set Namespace of stencil
         });
     },
-    drop: function (dragZone, target, event) {
+    registerDropZone: function (node, type) {
+        var ui = node.getUI();
+        //
+        // Drop
+        //
+        new Ext.dd.DropZone(ui.getEl(), {
+            shadow: !Ext.isMac,
+            getTargetFromEvent: function(e) {
+                var targetNode = null;
+                var t = e.getTarget('li.x-tree-node');
+                var i = 0;
+                var c = this.navigationPanel.getRootNode().childNodes;
+                this.navigationPanel.getRootNode().cascade(function(n) {
+                    if (n.getUI().getEl() == t) {
+                        targetNode = n;
+                        return;
+                    }
+                });
+
+                return targetNode;
+            }.bind(this)
+            ,onNodeDrop : function(n, dd, e, data){
+                n.select();
+
+                var sourceNode = dd.dragData.node;
+
+
+                var eventData = {
+                    type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + n.attributes.itemtype,
+                    forceExecution: true
+                };
+                this.application.handleEvents(eventData, {
+                        folderId: n.attributes['folderObjectId'],
+                        sourceNavNodeId: n.id,
+                        dropDataType: sourceNode.attributes.itemtype,
+                        dropData: {
+                            source: sourceNode
+                        }
+                    }
+                );
+
+                return true;
+            }.bind(this)
+        });
+    },
+    afterDragDrop: function (dragZone, target, event) {
         var pr = dragZone.getProxy();
         pr.hide();
+
+        var nodeId = event.target.attributes['ext:tree-node-id'].nodeValue;
+        var targetNode = this.navigationPanel.getNodeById(nodeId);
 
         //-- Raise DD event
         var eventData = {
@@ -305,11 +369,13 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         // {{{
         // install event handlers
         this.on({dblclick:{scope:this, fn:this.onDblClick}
-            ,beforenodedrop:{scope:this, fn:this.onBeforeNodeDrop}
-            ,nodedrop:{scope:this, fn:this.onNodeDrop}
-            ,nodedragover:{scope:this, fn:this.onNodeDragOver}
+            ,beforenodedrop:{scope:this, fn:this._onBeforeNodeDrop}
+            ,nodedrop:{scope:this, fn:this._onNodeDrop}
+            ,nodedragover:{scope:this, fn:this._onNodeDragOver}
             //,beforenewdir:{scope:this, fn:this.onBeforeNewDir}
         });
+
+
 
         // }}}
         // {{{
@@ -579,7 +645,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'CSVMeta',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
                             forceExecution: true
                         };
                         this.application.handleEvents(eventData, {
@@ -972,6 +1038,44 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             ORYX.Log.error(e);
         }
     }
+    // {{{
+    /**
+     * runs before node is dropped
+     * @private
+     * @param {Object} e dropEvent object
+     */
+    ,_onBeforeNodeDrop:function(e) {
+
+        // source node, node being dragged
+        var s = e.dropNode;
+    }
+    // }}}
+    // {{{
+    /**
+     * called when node is dropped
+     * @private
+     * @param {Object} dd event
+     */
+    ,_onNodeDrop:function(e) {
+
+        // failure can be signalled by cmdCallback
+        // put drop node to the original parent in that case
+        if(true === e.failure) {
+            e.oldParent.appendChild(e.dropNode);
+            return;
+        }
+    }
+    // }}}
+    // {{{
+    /**
+     * called while dragging over, decides if drop is allowed
+     * @private
+     * @param {Object} dd event
+     */
+    ,_onNodeDragOver:function(e) {
+        e.cancel = e.target.disabled || e.dropNode.parentNode === e.target.parentNode && e.target.isLeaf();
+    } // eo function onNodeDragOver
+    // }}}
     // {{{
     /**
      * called before editing is completed - allows edit cancellation

@@ -19,7 +19,7 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-//@Ignore
+@Ignore
 public class TextFileInputDialogDelegateResourceTests extends JerseyTest {
     private String modelJson = null;
 

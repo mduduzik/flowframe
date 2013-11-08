@@ -10,7 +10,7 @@ if (!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
 }
 
-ORYX.Plugins.ETL.Metadata.CSVMetaEditor = {
+ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
     eventManager: undefined,
     folderId: undefined,
@@ -1005,4 +1005,4 @@ ORYX.Plugins.ETL.Metadata.CSVMetaEditor = {
         });
     }
 }
-ORYX.Plugins.ETL.Metadata.CSVMetaEditor = Clazz.extend(ORYX.Plugins.ETL.Metadata.CSVMetaEditor);
+ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = Clazz.extend(ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor);

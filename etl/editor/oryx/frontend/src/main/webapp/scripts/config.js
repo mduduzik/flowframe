@@ -73,7 +73,7 @@ ORYX.CONFIG.BPMN2XPDLPATH =				ORYX.CONFIG.ROOT_PATH + "bpmn2xpdl";
 ORYX.CONFIG.VISIOIMPORT =               ORYX.CONFIG.ROOT_PATH + "visioimport";
 
 
-	/* Namespaces */
+/* Namespaces */
 ORYX.CONFIG.NAMESPACE_ORYX =			"http://www.b3mn.org/oryx";
 ORYX.CONFIG.NAMESPACE_SVG =				"http://www.w3.org/2000/svg";
 ORYX.CONFIG.NAMESPACE_ETL_JOB =         "http://etl.flowframe.org/stencilset/etl/job#";
@@ -201,6 +201,10 @@ ORYX.CONFIG.EVENT_MODEL_SAVED =				"model.saved";
 ORYX.CONFIG.EVENT_REGISTER_LABEL_TEMPLATE = "register.label.template";
 
 //-- ETL
+ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA = "csvmeta";
+ORYX.CONFIG.ETL_METADATA_TYPE_EXCELMETA = "excelmeta";
+ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA = "delimitedmeta";
+
 ORYX.CONFIG.ETL_PLUGINS_ENABLED =			true;
 ORYX.CONFIG.ETL_PLUGINS_CONFIG =			ORYX.CONFIG.ROOT_PATH + "plugins/etl/metadata/etlplugins.xml";
 

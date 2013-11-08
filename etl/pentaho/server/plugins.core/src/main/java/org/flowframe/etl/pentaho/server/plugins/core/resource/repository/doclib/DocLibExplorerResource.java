@@ -37,6 +37,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public static String REPOSITORY_ITEM_TYPE_EXCELMETA = "excelmeta";
     public static String REPOSITORY_ITEM_PARENTFOLDER_OBJID = "folderObjectId";
 
+
     public static String REPOSITORY_ITEMCONTAINER_TYPE = "itemcontainertype";
     public static String REPOSITORY_ITEMCONTAINER_TYPE_REPOFOLDER = "repofolder";
     public static String REPOSITORY_ITEMCONTAINER_TYPE_DOCREPOFOLDER = "docrepofolder";

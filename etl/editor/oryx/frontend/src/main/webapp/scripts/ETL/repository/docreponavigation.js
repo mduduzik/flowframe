@@ -129,7 +129,7 @@ ORYX.ETL.DOCRepoNavigation = Clazz.extend({
                 var DragZone = new Ext.dd.DragZone(rootNode_.getUI().getEl(), {
                     shadow: !Ext.isMac
                 });
-                DragZone.afterDragDrop = this.drop.bind(this, DragZone);
+                DragZone.afterDragDrop = this.afterDragDrop(this, DragZone);
                 DragZone.beforeDragOver = this.beforeDragOver.bind(this, DragZone);
                 DragZone.beforeDragEnter = function () {
                     this.modalDialogShown = false;
@@ -160,12 +160,15 @@ ORYX.ETL.DOCRepoNavigation = Clazz.extend({
             // Set Namespace of stencil
         });
     },
-    drop: function (dragZone, target, event) {
+    afterDragDrop: function (dragZone, target, event) {
         var pr = dragZone.getProxy();
         pr.hide();
 
+/*        var nodeId = event.target.attributes['ext:tree-node-id'].nodeValue;
+        var targetNode = this.navigationPanel.getNodeById(nodeId);*/
+
         //-- Raise DD event
-        var eventData = {
+/*        var eventData = {
             type: ORYX.CONFIG.EVENT_ETL_DOCREPOSITORY_DDROP,
             forceExecution: false //async call
         };
@@ -176,7 +179,7 @@ ORYX.ETL.DOCRepoNavigation = Clazz.extend({
         };
 
         this.modalDialogShown = true;
-        this.application.handleEvents(eventData, sourceData);
+        this.application.handleEvents(eventData, sourceData);*/
     },
     /**
      * On Drag Over

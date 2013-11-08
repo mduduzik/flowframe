@@ -67,27 +67,41 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
     private static Class<?> PKG = TextFileInput.class;
     private static PluginRegistry registry = PluginRegistry.getInstance();
-    private TextFileInputField[] cachedInputFields;
 
 
     @Path("/onnew")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String onNew(@HeaderParam("userid") String userid) throws IOException {
-        TextFileInputMeta meta = new TextFileInputMeta();
-        meta.setDefault();
-        meta.allocate(1, 0, 0);
-        return mapper.getFilteredWriter().writeValueAsString(meta);
+        String res = null;
+        try {
+            TextFileInputMeta meta = new TextFileInputMeta();
+            meta.setDefault();
+            meta.allocate(1, 0, 0);
+            return mapper.getFilteredWriter().writeValueAsString(meta);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+
+        return res;
     }
 
     @Path("/onedit")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws Exception {
+        String res = null;
+        try {
+            TextFileInputMeta meta = (TextFileInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
 
-        TextFileInputMeta res = (TextFileInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
+            return mapper.getFilteredWriter().writeValueAsString(meta);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
 
-        return mapper.getFilteredWriter().writeValueAsString(res);
+        return res;
     }
 
 
@@ -137,21 +151,22 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onAdd(@HeaderParam("userid") String userid,
-                        TextFileInputMetaDTO metaDTO_) throws Exception {
-        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
-        String stepPid = registry.getPluginId(StepPluginType.class, meta_);
-        StepMeta step = new StepMeta(stepPid, metaDTO_.getName(), meta_);
+                        @HeaderParam("subDirObjId") String subDirObjId,
+                        TextFileInputMeta meta) throws Exception {
+        String res = null;
+        try {
+            String stepPid = registry.getPluginId(StepPluginType.class, meta);
+            StepMeta step = new StepMeta(stepPid, meta.getName(), meta);
 
-        String pathID = RepositoryUtil.addStep(repository, metaDTO_.getSubDirObjId(), step);
+            String pathID = RepositoryUtil.addStep(repository, subDirObjId, step);
+            meta = (TextFileInputMeta)step.getStepMetaInterface();
 
-        meta_ = (TextFileInputMeta)step.getStepMetaInterface();
-        //meta_.setFilename(metaDTO_.getFileEntryId());
-
-        TextFileInputMetaDTO dto = new TextFileInputMetaDTO(meta_);
-        dto.setName(step.getName());
-        dto.setPathId(pathID);
-
-        return dto.toJSON();
+            res = mapper.writeValueAsString(meta);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Path("/save")
@@ -159,19 +174,21 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onSave(@HeaderParam("userid") String userid,
-                         TextFileInputMetaDTO metaDTO_) throws Exception {
-        TextFileInputMeta meta_ = (TextFileInputMeta) metaDTO_.fromDTO(TextFileInputMeta.class);
-        String stepPid = registry.getPluginId(StepPluginType.class, meta_);
-        StepMeta stepMeta = new StepMeta(stepPid, metaDTO_.getName(), meta_);
-        String pathID = RepositoryUtil.saveStep(repository, metaDTO_.getPathId(), stepMeta);
+                         @HeaderParam("pathId") String pathId,
+                         TextFileInputMeta meta) throws Exception {
+        String res = null;
+        try {
+            String stepPid = registry.getPluginId(StepPluginType.class, meta);
+            StepMeta stepMeta = new StepMeta(stepPid, meta.getName(), meta);
+            String pathID = RepositoryUtil.saveStep(repository, pathId, stepMeta);
 
-        meta_ = (TextFileInputMeta)stepMeta.getStepMetaInterface();
+            meta = (TextFileInputMeta)stepMeta.getStepMetaInterface();
 
-        TextFileInputMetaDTO dto = new TextFileInputMetaDTO(meta_);
-        dto.setName(stepMeta.getName());
-        dto.setPathId(pathID);
-
-        return dto.toJSON();
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @DELETE
