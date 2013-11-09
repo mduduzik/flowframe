@@ -63,8 +63,6 @@ import java.util.zip.ZipInputStream;
  */
 @Path("/textfileinputmeta")
 public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResource {
-    private final CustomObjectMapper mapper = new  CustomObjectMapper();
-
     private static Class<?> PKG = TextFileInput.class;
     private static PluginRegistry registry = PluginRegistry.getInstance();
 

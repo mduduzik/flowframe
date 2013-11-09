@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,6 +26,10 @@ public abstract class BaseDialogDelegateResource extends BaseDelegateResource {
 
     @Autowired
     protected ICustomRepository repository;
+
+    protected String toExternalURI(String internalURI) {
+        return null;
+    }
 
     protected File writeStreamToFile(InputStream in, String fileName) throws IOException {
         byte[] buffer = new byte[1024];

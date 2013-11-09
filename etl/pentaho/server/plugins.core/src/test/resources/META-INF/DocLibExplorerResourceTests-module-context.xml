@@ -21,4 +21,7 @@
         <property name="port" value="7080"/>
         <property name="loginGroupId" value="10180"/>
     </bean>
+
+    <bean id="docLibExplorerResource" class="org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource"/>
+
 </beans>

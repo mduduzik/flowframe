@@ -25,9 +25,9 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         // Reference to the Editor-Interface
         this.eventManager = eventManager;
 
-        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA, this.onCreate.bind(this));
-        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA, this.onEdit.bind(this));
-        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA, this.onDelete.bind(this));
+        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onCreate.bind(this));
+        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onEdit.bind(this));
+        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onDelete.bind(this));
     },
 
 
@@ -57,7 +57,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             addText: 'Add sample CSV file',
             buttonsAt: 'tbar',
             id: 'uppanel',
-            url: '/etl/core/csvmeta/uploadsample',
+            url: '/etl/core/textfileinputmeta/uploadsample',
             path: 'root',
             maxFileSize: 1048576,
             enableProgress: false,
@@ -68,7 +68,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
          */
         var uploadSampleFileCard = new Ext.ux.Wiz.Card({
             id: "uploadsamplefile",
-            title: 'Upload Sample CSV file',
+            title: 'Sample File',
             monitorValid: true,
             isUpload: true,
             defaults: {
@@ -97,99 +97,20 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     },
                     items: [
                         {
-                            id: 'uploadsamplefile.fileEntryId',
-                            fieldLabel: 'File Repository ID',
-                            name: 'fileEntryId',
-                            emptyText: '<Upload sample file below>',
-                            disabled: true,
-                            allowBlank: false,
-                            required: true,
-                            getSubmitData: getDisabledFieldValue
-                        },
-                        {
-                            id: 'uploadsamplefile.filename',
-                            xtype: 'fileuploadfield',
                             fieldLabel: 'Filename',
-                            name: 'filename',
-                            emptyText: '<Browse and select file first>',
+                            name: 'fileName',
                             disabled: true,
                             allowBlank: false,
                             getSubmitData: getDisabledFieldValue,
-                            buttonCfg: {
-                                text: '',
-                                iconCls: 'up-icon',
-                                disabled : true,
-                                type: 'button',
-                                buttonOnly: true,
-                                handler: function(){
-                                    var options = {
-                                        url: '/etl/core/csvmeta/uploadsample',
-                                        enctype: 'multipart/form-data',
-                                        isUpload: true,
-                                        success: function(fp, o){
-                                            var jsonResp = fp.responseText.substring(fp.responseText.indexOf("{"), fp.responseText.lastIndexOf("}") + 1);
-                                            var rec = Ext.decode(jsonResp);
-
-                                            var formPanel = Ext.getCmp('uploadsamplefile');
-
-                                            //Update fileName field
-                                            var field = formPanel.form.findField('uploadsamplefile.filename');
-                                            field.setValue(rec.fileName);
-                                            field.button.disable();
-
-                                            //Update uploadsamplefile.fileEntryId
-                                            field = formPanel.form.findField('uploadsamplefile.fileEntryId');
-                                            field.setValue(rec.fileentryid);
-
-                                            //Clear fileuploadfield.form-file
-                                            field = formPanel.form.findField('fileuploadfield.form-file');
-                                            field.reset();
-                                        }.bind(this),
-                                        failure: function(fp, o){
-                                            Oryx.Log.error('Error uploading file...')
-                                        }.bind(this)
-                                    };
-                                    options.form = uploadSampleFileCard.form.el;
-                                    // request upload
-                                    Ext.Ajax.request(options);
-                                }
-                            }
-
-                        },
-                        {
-                            xtype: 'fileuploadfield',
-                            id: 'fileuploadfield.form-file',
-                            emptyText: 'Select a CSV file',
-                            fieldLabel: 'Local File to Upload',
-                            name: 'file',
-                            buttonCfg: {
-                                text: '',
-                                iconCls: 'find-job-icon',
-                                type: 'file',
-                                buttonOnly: true,
-                                handler: function(){
-                                    this.button.enable();
-                                }
-                            },
-                            listeners:{
-                                fileselected:function(field,value){
-                                    var field = Ext.getCmp('uploadsamplefile.filename');
-                                    field.setValue(value);
-                                    field.button.enable();
-                                }
-                            }
+                            value: 'ff://repo/internal?fileentry#'+this.sampleFileNode.id
                         }
                     ]
                 }
             ],
             isValid: function () {
-                var formPanel = Ext.getCmp('uploadsamplefile');
-                if (!formPanel.form.findField('uploadsamplefile.filename') || !formPanel.form.findField('uploadsamplefile.fileEntryId'))
-                    return false;
-
                 var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
-                valid = valid || formPanel.form.findField('uploadsamplefile.filename').validate();
-                valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();
+/*                valid = valid || formPanel.form.findField('uploadsamplefile.filename').validate();
+                valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();*/
 
                 return valid;
             }
@@ -503,7 +424,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         //Preview data
         var previewDataDS = new Ext.data.Store({
             proxy: new Ext.data.HttpProxy({
-                url: '/etl/core/csvmeta/previewdata',
+                url: '/etl/core/textfileinputmeta/previewdata',
                 method: 'POST',
                 headers: {
                     'userid': 'test'
@@ -634,7 +555,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         this.defaultHeaders = {userid: 'test'};
                     });
                     Ext.Ajax.request({
-                        url: '/etl/core/csvmeta/save',
+                        url: '/etl/core/textfileinputmeta/save',
                         method: 'POST',
                         params: dataJson,
                         success: function (response, opts) {
@@ -693,7 +614,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     this.defaultHeaders = {userid: 'test'};
                 });
                 Ext.Ajax.request({
-                    url: '/etl/core/csvmeta/add',
+                    url: '/etl/core/textfileinputmeta/add',
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
@@ -796,7 +717,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     this.defaultHeaders = {userid: 'test'};
                 });
                 Ext.Ajax.request({
-                    url: '/etl/core/csvmeta/ongetmetadata',
+                    url: '/etl/core/textfileinputmeta/ongetmetadata',
                     method: 'POST',
                     params: dataJson,
                     success: function (response, opts) {
@@ -870,6 +791,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         this.wizMode = 'CREATE';
         this.folderId = arg.folderId;
         this.parentNavNodeId = arg.sourceNavNodeId;
+        this.sampleFileNode = arg.dropData.source;
 
         // Basic Dialog
         this.initWiz();
@@ -922,7 +844,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 this.defaultHeaders = {userid: 'test'};
             });
             Ext.Ajax.request({
-                url: '/etl/core/csvmeta/onedit',
+                url: '/etl/core/textfileinputmeta/onedit',
                 method: 'GET',
                 params: {pathId:this.metaId},
                 success: function (response, opts) {
@@ -985,7 +907,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         this.defaultHeaders = {userid: 'test'};
                     });
                     Ext.Ajax.request({
-                        url: '/etl/core/csvmeta/delete',
+                        url: '/etl/core/textfileinputmeta/delete',
                         method: 'DELETE',
                         params: Ext.encode({name:this.metaName,pathId:this.metaId}),
                         success: function (response, opts) {

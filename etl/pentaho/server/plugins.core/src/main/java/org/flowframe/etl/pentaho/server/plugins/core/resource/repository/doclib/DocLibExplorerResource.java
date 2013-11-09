@@ -18,6 +18,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.InputStream;
+import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +69,46 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     private String docRepositoryHostname;
     private String docRepositoryPort;
     private String docRepositoryLoginGroupId;
+
+    @Path("/getfileentryuri")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onGetFileEntryURI(@HeaderParam("userid") String userid, @QueryParam("fileEntryId") String fileEntryId) throws Exception {
+        String res = null;
+        try {
+            URI uri = getInternalFileEntryURI(fileEntryId);
+
+            Map<String, Object> resultMap = new HashMap<String,Object>();
+            resultMap.put("uri",uri.toString());
+
+            res = mapper.writeValueAsString(resultMap);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    @Path("/getwebdavuri")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onGetWebDavURI(@HeaderParam("userid") String userid, @QueryParam("fileEntryId") String fileEntryId) throws Exception {
+        String res = null;
+        try {
+            URI uri = getFileEntryWebDavURI(fileEntryId);
+
+            Map<String, Object> resultMap = new HashMap<String,Object>();
+            resultMap.put("uri",uri.toString());
+
+            res = mapper.writeValueAsString(resultMap);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+
+        return res;
+    }
 
     @GET
     @Path("/getfile")

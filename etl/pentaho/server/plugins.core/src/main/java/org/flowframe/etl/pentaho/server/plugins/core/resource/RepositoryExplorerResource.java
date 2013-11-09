@@ -26,6 +26,7 @@ import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputField;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
+import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -225,7 +226,14 @@ public class RepositoryExplorerResource {
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
 
             res = generateCSVMetadataJSON(ondemand, false, repository, dir);
-        } else if (REPOSITORY_ITEM_TYPE_EXCELMETA.equals(itemtype)) {
+        } else if (REPOSITORY_ITEM_TYPE_DELIMITEDMETA.equals(itemtype)) {
+            LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
+            RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
+            RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
+
+            res = generateDelimitedMetadataJSON(ondemand, false, repository, dir);
+        }
+        else if (REPOSITORY_ITEM_TYPE_EXCELMETA.equals(itemtype)) {
             LongObjectId dirObjId = new LongObjectId(Long.valueOf(folderObjectId));
             RepositoryDirectoryInterface mdDir = repository.provideMetadataDirectoryForTenant(tenant);
             RepositoryDirectoryInterface dir = mdDir.findDirectory(dirObjId);
@@ -678,28 +686,48 @@ public class RepositoryExplorerResource {
             /*
             //-- CSV
             */
+        //JSONObject metadataCSV = generateCSVMetadataJSON(true,repo, delimitedMdDir);
+        JSONObject metadataCSV = new JSONObject();
+        metadataCSV.put("id", "metadata.csvmeta");
+        metadataCSV.put("allowDrag", false);
+        metadataCSV.put("allowDrop", true);
+        metadataCSV.put("text", "CSV");
+        metadataCSV.put("title", "CSV");
+        metadataCSV.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
+        metadataCSV.put("leaf", false);
+        metadataCSV.put("hasChildren", true);
+        metadataCSV.put("singleClickExpand", true);
+        metadataCSV.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+        metadataCSV.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_CSVMETA);
+        metadataCSV.put(REPOSITORY_REPOFOLDER_OBJID, delimitedMdDir.getObjectId().toString());
+        metadataCSV.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_CSVMETA + ".folder");
+
+        metadataChildren.put(metadataCSV);
+
+        /*
+        //-- CSV
+        */
         //JSONObject metadataDelimited = generateCSVMetadataJSON(true,repo, delimitedMdDir);
         JSONObject metadataDelimited = new JSONObject();
-        metadataDelimited.put("id", "metadata.csvmeta");
+        metadataDelimited.put("id", "metadata.delimitedmeta");
         metadataDelimited.put("allowDrag", false);
         metadataDelimited.put("allowDrop", true);
-        metadataDelimited.put("text", "CSV");
-        metadataDelimited.put("title", "CSV");
-        metadataDelimited.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
+        metadataDelimited.put("text", "Delimited");
+        metadataDelimited.put("title", "Delimited");
+        metadataDelimited.put("icon", "/etl/images/conxbi/etl/filedelimited.gif");
         metadataDelimited.put("leaf", false);
         metadataDelimited.put("hasChildren", true);
         metadataDelimited.put("singleClickExpand", true);
         metadataDelimited.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
-        metadataDelimited.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_CSVMETA);
+        metadataDelimited.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DELIMITEDMETA);
         metadataDelimited.put(REPOSITORY_REPOFOLDER_OBJID, delimitedMdDir.getObjectId().toString());
-        metadataDelimited.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_CSVMETA + ".folder");
+        metadataDelimited.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_DELIMITEDMETA + ".folder");
 
         metadataChildren.put(metadataDelimited);
 
-
-            /*
-            //-- Excel
-            */
+        /*
+        //-- Excel
+        */
         //JSONObject metadataDExcel = generateExcelMetadataJSON(true, repo, excelMdDir);
         JSONObject metadataDExcel = new JSONObject();
         metadataDExcel.put("id", "metadata.excel");
@@ -901,6 +929,110 @@ public class RepositoryExplorerResource {
 
                     CsvInputMeta csvStep = (CsvInputMeta) step.getStepMetaInterface();
                     TextFileInputField[] inputFields = csvStep.getInputFields();
+                    for (TextFileInputField field : inputFields) {
+                        JSONObject fieldObj = new JSONObject();
+                        fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
+                        fieldObj.put("allowDrag", false);
+                        fieldObj.put("allowDrop", true);
+                        fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
+                        fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
+                        fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
+                        fieldObj.put("leaf", true);
+                        fieldObj.put("hasChildren", false);
+                        fieldObj.put("singleClickExpand", false);
+                        fields.put(fieldObj);
+                    }
+                }
+            }
+        }
+
+        subDir.put("children", childrenArray);
+
+        return subDir;
+    }
+
+    private static JSONObject generateDelimitedMetadataJSON(boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository ICustomRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
+        JSONObject subDir = new JSONObject();
+
+        // Populate
+        subDir.put("id", RepositoryUtil.generatePathID(dir, "TextFileInput"));
+        subDir.put("allowDrag", false);
+        subDir.put("allowDrop", true);
+        subDir.put("text", dir.getName());
+        subDir.put("title", dir.getName());
+        subDir.put("icon", "/etl/images/conxbi/etl/filedelimited.gif");
+        subDir.put("leaf", false);
+        subDir.put("hasChildren", false);
+        subDir.put("singleClickExpand", false);
+        subDir.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+        subDir.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DELIMITEDMETA);
+        subDir.put(REPOSITORY_ITEMCONTAINER_TYPE, REPOSITORY_ITEMCONTAINER_TYPE_REPOFOLDER);
+        subDir.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_DELIMITEDMETA + ".folder");
+
+
+        List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
+        String[] dbConnectionMetadataTransNames = ICustomRepository.getTransformationNames(dir.getObjectId(), true);
+        boolean hasChildren = !delimitedMdSubDirs.isEmpty() || (dbConnectionMetadataTransNames.length > 0);
+        if (excludeChildrenForThisNode) {
+            subDir.put("hasChildren", hasChildren);
+            subDir.put("singleClickExpand", hasChildren);
+            return subDir;
+        }
+
+        JSONArray childrenArray = new JSONArray();
+        subDir.put("children", childrenArray);
+
+
+        //Do sub dirs
+        for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
+            JSONObject subDirDir = generateDelimitedMetadataJSON(ondemand, excludeChildrenForThisNode, ICustomRepository, subDir_);
+            childrenArray.put(subDirDir);
+        }
+
+
+        //Do metadata from transformations
+        for (String transName : dbConnectionMetadataTransNames) {
+            TransMeta trans = ICustomRepository.loadTransformation(transName, dir, null, true, null);
+            List<StepMeta> steps = trans.getSteps();
+            for (StepMeta step : steps) {
+                if (step.getTypeId().equalsIgnoreCase("TextFileInput")) {
+                    JSONObject mdmObj = new JSONObject();
+                    mdmObj.put("text", step.getName());
+                    mdmObj.put("title", step.getName());
+                    mdmObj.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
+                    mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
+                    mdmObj.put("allowDrag", false);
+                    mdmObj.put("allowDrop", true);
+                    mdmObj.put("leaf", false);
+                    mdmObj.put("hasChildren", true);
+                    mdmObj.put("singleClickExpand", true);
+                    mdmObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                    mdmObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_CSVMETA);
+                    mdmObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_CSVMETA);
+                    mdmObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+                    childrenArray.put(mdmObj);
+
+                    //Create tables
+                    JSONArray mdmObjItems = new JSONArray();
+                    mdmObj.put("children", mdmObjItems);
+                    JSONObject fieldsObj = new JSONObject();
+                    fieldsObj.put("title", "Fields");
+                    fieldsObj.put("text", "Fields");
+                    fieldsObj.put("id", step.getName() + ".fields");
+                    fieldsObj.put("allowDrag", false);
+                    fieldsObj.put("allowDrop", true);
+                    fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+                    fieldsObj.put("leaf", false);
+                    fieldsObj.put("hasChildren", true);
+                    fieldsObj.put("singleClickExpand", true);
+                    fieldsObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+                    JSONArray fields = new JSONArray();
+                    fieldsObj.put("children", fields);
+                    mdmObjItems.put(fieldsObj);
+
+
+                    TextFileInputMeta tfiStep = (TextFileInputMeta) step.getStepMetaInterface();
+                    TextFileInputField[] inputFields = tfiStep.getInputFields();
                     for (TextFileInputField field : inputFields) {
                         JSONObject fieldObj = new JSONObject();
                         fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
