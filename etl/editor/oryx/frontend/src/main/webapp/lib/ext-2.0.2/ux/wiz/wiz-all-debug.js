@@ -565,6 +565,9 @@ Ext.ux.Wiz = Ext.extend(Ext.Panel, {
      */
     onCardShow : function(card)
     {
+        if (card.onBeforeCardShow)
+            card.onBeforeCardShow();
+
         var parent = card.ownerCt;
 
         var items = parent.items;

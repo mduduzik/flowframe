@@ -55,6 +55,7 @@ public class DocLibExplorerResourceTests extends JerseyTest {
     }
 
 
+    @Ignore
     @Test
     public final void testFileEntryURI() throws Exception {
         //getfileentryuri

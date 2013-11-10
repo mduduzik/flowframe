@@ -21,6 +21,8 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
     newWizDialog: undefined,
     newCsvMetaWiz: undefined,
 
+    model: undefined,
+
     construct: function (eventManager) {
         // Reference to the Editor-Interface
         this.eventManager = eventManager;
@@ -66,7 +68,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         /**
          * Cards
          */
-        var uploadSampleFileCard = new Ext.ux.Wiz.Card({
+        var selectSampleFileCard = new Ext.ux.Wiz.Card({
             id: "uploadsamplefile",
             title: 'Sample File',
             monitorValid: true,
@@ -97,7 +99,15 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     },
                     items: [
                         {
-                            fieldLabel: 'Filename',
+                            fieldLabel: 'File Title',
+                            name: 'fileTitle',
+                            disabled: true,
+                            allowBlank: false,
+                            getSubmitData: getDisabledFieldValue,
+                            value: this.sampleFileNode.text
+                        },
+                        {
+                            fieldLabel: 'File URI',
                             name: 'fileName',
                             disabled: true,
                             allowBlank: false,
@@ -113,7 +123,26 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();*/
 
                 return valid;
-            }
+            },
+            onBeforeCardShow: function (card) {
+                //--Submit
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid: 'test'};
+                });
+                Ext.Ajax.request({
+                    url: '/etl/core/textfileinputmeta/onnew',
+                    method: 'GET',
+                    asynchronous: false,
+                    success: function (response, opts) {
+                        this.model = Ext.decode(response.responseText);
+                    },
+                    failure: function (response, opts) {
+                    }
+                });
+            }.bind(this)
+
         });
         var enterMetadataSettingsCard = new Ext.ux.Wiz.Card({
             id: "entermetadatasettings",
@@ -151,6 +180,29 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             allowBlank: false
                         },
                         {
+                            xtype:'combo',
+                            fieldLabel:'File Type',
+                            name:'fileType',
+                            displayField:'text',
+                            valueField:'value',
+                            store : new Ext.data.SimpleStore({
+                                fields: ["value","text"],
+                                data: [
+                                    ["CSV","CSV"],
+                                    ["Fixed","Fixed"]
+                                ]
+                            }),
+                            typeAhead: true,
+                            triggerAction: 'all',
+                            value:"CSV",
+                            selectOnFocus:false,
+                            editable:false,
+                            forceSelection:false,
+                            allowBlank:true,
+                            mode:'local',
+                            emptyText : "FileType is Required"
+                        },
+                        {
                             fieldLabel: 'Row Number Field',
                             name: 'rowNumField'
                         },
@@ -162,8 +214,10 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             width: 15
                         },
                         {
-                            fieldLabel: 'Delimiter',
-                            name: 'delimiter',
+                            fieldLabel: 'Separator',
+                            name: 'separator',
+                            emptyText: '<Enter delimiter or separator>',
+                            allowBlank: false,
                             value: ','
                         },
                         {
@@ -172,17 +226,30 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             value: '"'
                         },
                         {
+                            xtype: 'checkbox',
+                            fieldLabel: 'Header?',
+                            name: 'header',
+                            width: 15,
+                            value: 1
+                        },
+                        {
                             xtype: 'numberfield',
-                            fieldLabel: 'Buffer Size',
-                            name: 'bufferSize',
+                            fieldLabel: 'Number of header lines',
+                            name: 'nrHeaderLines',
                             style: 'text-align: left',
-                            value: 5000
+                            value: 1
                         },
                         {
                             xtype: 'checkbox',
-                            fieldLabel: 'Lazy Conversion',
-                            name: 'lazyConversionActive',
-                            width: 15
+                            fieldLabel: 'Rownum in output?',
+                            name: 'includeRowNumber',
+                            width: 15,
+                            value: 1
+                        },
+                        {
+                            fieldLabel: 'Rownum field',
+                            name: 'rowNumberField',
+                            value: 'lineNumber'
                         },
                         {
                             xtype: 'combo',
@@ -492,7 +559,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 }
             },
             cards: [
-                uploadSampleFileCard,
+                selectSampleFileCard,
                 enterMetadataSettingsCard,
                 getMetadataCard,
                 previewDataCard
