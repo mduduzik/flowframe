@@ -124,6 +124,20 @@ ORYX.Data.ValuesManager = {
     }
     //{{
     /**
+     * _isDirty
+     * @param
+     */
+    //}
+    ,_onAfterModelLoad: function() {
+        var isDirty = false;
+        this.formPanels.values().each(function(_formPanel) {
+            if (_formPanel.onAfterModelLoad)
+                _formPanel.onAfterModelLoad();
+        }.bind(this));
+        return isDirty;
+    }
+    //{{
+    /**
      * _executeOnNewRequest
      * @param
      */
@@ -136,6 +150,8 @@ ORYX.Data.ValuesManager = {
             success: function (response, opts) {
                 var record = Ext.decode(response.responseText);
                 this._loadRecord(record);
+
+                this._onAfterModelLoad();
             }.bind(this),
             failure: function (response, opts) {
             }.bind(this)

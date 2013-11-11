@@ -1,6 +1,8 @@
 Ext.namespace('Ext.ux', 'Ext.ux.etl');
 
 Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
+    initParams: undefined,
+
     eventManager : undefined,
 
     valuesManager: undefined,
@@ -9,7 +11,7 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
     onGetMetadataURL: undefined,//e.g. /etl/core/textfileinputmeta/ongetmetadata,
     onPreviewURL: undefined,//e.g. /etl/core/textfileinputmeta/previewdata
     onSaveURL: undefined,//e.g. /etl/core/textfileinputmeta/save
-    onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete'
+    onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete',
     /**
      * Inits this component with the specified config-properties and automatically
      * creates its components.
@@ -32,11 +34,11 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
         this.valuesManager.getFacade().registerFormPanels(this.cards);
         this.addEvents(
             /**
-             * @event cancel
+             * @event aftermodelupdate
              * Fires after the cancel-button has been clicked.
              * @param {Ext.ux.Wiz} this
              */
-            //'cancel',
+            //'aftermodelupdate'
             /**
              * @event finish
              * Fires after the last card was reached in the wizard and the
@@ -96,10 +98,17 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
     {
         this.valuesManager.getFacade().isDirty()
     }
+    ,isDirty : function()
+    {
+        this.valuesManager.getFacade().isDirty()
+    }
+
 });
 
 Ext.ux.etl.BaseWizardEditorPage = Ext.extend(Ext.ux.Wiz.Card , {
     parentEditor : undefined,
+    initialized : false,
+    onAfterModelLoad: undefined,
     initComponent : function()
     {
 

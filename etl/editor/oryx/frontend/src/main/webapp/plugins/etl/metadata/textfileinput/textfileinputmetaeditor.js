@@ -98,7 +98,22 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     ]
                 }
             ]
+            ,onAfterModelLoad: function () {
+                //Update record
+                var fileNames = [];
+                fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id);
+                this.parentEditor.getValuesManager().updateRecordProperty("fileName",fileNames);
+                this.initialized = true;
+
+                //Make form fields look right
+                this.form.setValues({data: {
+                    fileTitle: this.parentEditor.initParams.sampleFileNode.text,
+                    fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
+                }})
+            }
         });
+
+
         var enterMetadataSettingsPage = new Ext.ux.etl.BaseWizardEditorPage({
             id: "entermetadatasettings",
             title: 'Enter/change settings',
@@ -247,10 +262,11 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                  valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();*/
 
                 //Update record
-                var fileNames = [];
-                fileNames.push('ff://repo/internal?fileentry#'+this.sampleFileNode.id);
-                this.parentEditor.getValuesManager().updateRecordProperty("fileName",fileNames);
-
+                var parentStepMeta = {
+                    stepname: this.getObjectValues().name
+                };
+                this.parentEditor.getValuesManager().updateRecordProperty("parentStepMeta",parentStepMeta);
+                this.initialized = true;
 
                 return valid;
             }
@@ -532,6 +548,9 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 getMetadataPage,
                 previewDataPage
             ],
+            initParams: {
+                sampleFileNode: this.sampleFileNode
+            },
             onNewURL: '/etl/core/textfileinputmeta/onnew',//e.g. /etl/core/textfileinputmeta/onnew,
             onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',//e.g. /etl/core/textfileinputmeta/ongetmetadata,
             onPreviewURL: '/etl/core/textfileinputmeta/previewdata',//e.g. /etl/core/textfileinputmeta/previewdata
