@@ -109,6 +109,7 @@ Ext.ux.etl.BaseWizardEditorPage = Ext.extend(Ext.ux.Wiz.Card , {
     parentEditor : undefined,
     initialized : false,
     onAfterModelLoad: undefined,
+    onBeforeModelSubmission: undefined,
     initComponent : function()
     {
 

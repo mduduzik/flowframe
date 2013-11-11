@@ -77,6 +77,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             meta.setDefault();
             meta.allocate(1, 0, 0);
             meta.setParentStepMeta(new StepMeta());
+            meta.setSeparator(",");
             return mapper.getFilteredWriter().writeValueAsString(meta);
         } catch (Exception e) {
             res = mapper.writeValueAsString(createExceptionMap(e));
@@ -273,6 +274,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
             //Get file object
             final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
             final String filename = transMeta.environmentSubstitute(webDavFileUrl);
             fileObject = KettleVFS.getFileObject(filename);
 
@@ -707,7 +709,8 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                     }
 
                     String delimiter = transMeta.environmentSubstitute(meta.getSeparator());
-                    Object[] r = TextFileInput.convertLineToRow(log, new TextFileLine(line, fileLineNumber, null), strinfo, null, 0, outputRowMeta, convertRowMeta, meta.getFilePaths(transMeta)[0], rownumber, delimiter, null,
+                    final String[] fpath = meta.getFilePaths(transMeta);
+                    Object[] r = TextFileInput.convertLineToRow(log, new TextFileLine(line, fileLineNumber, null), strinfo, null, 0, outputRowMeta, convertRowMeta, fpath[0], rownumber, delimiter, null,
                             false, false, false, false, false, false, false, false,
                             null, null, false, null, null, null, null, 0);
 

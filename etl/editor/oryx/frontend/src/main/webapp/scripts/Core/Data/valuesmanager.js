@@ -85,7 +85,7 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_updateRecordProperty: function(propName, propValue) {
-        this.record[propName] = propName;
+        this.record[propName] = propValue;
     }
 
     //{{
@@ -124,7 +124,7 @@ ORYX.Data.ValuesManager = {
     }
     //{{
     /**
-     * _isDirty
+     * _onAfterModelLoad
      * @param
      */
     //}
@@ -133,6 +133,20 @@ ORYX.Data.ValuesManager = {
         this.formPanels.values().each(function(_formPanel) {
             if (_formPanel.onAfterModelLoad)
                 _formPanel.onAfterModelLoad();
+        }.bind(this));
+        return isDirty;
+    }
+    //{{
+    /**
+     * _onBeforeModelSubmission
+     * @param
+     */
+    //}
+    ,_onBeforeModelSubmission: function() {
+        var isDirty = false;
+        this.formPanels.values().each(function(_formPanel) {
+            if (_formPanel.onBeforeModelSubmission)
+                _formPanel.onBeforeModelSubmission();
         }.bind(this));
         return isDirty;
     }
@@ -165,6 +179,7 @@ ORYX.Data.ValuesManager = {
      */
         //}
      ,_executeOnGetMetadataRequest: function(successHandler) {
+        this._onBeforeModelSubmission();
         var dataJson = Ext.encode(this.record);
         var options = {
             url: this.onGetMetadataURL,

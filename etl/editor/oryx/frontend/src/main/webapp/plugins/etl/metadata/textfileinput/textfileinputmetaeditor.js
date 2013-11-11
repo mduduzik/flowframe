@@ -84,16 +84,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             name: 'fileTitle',
                             disabled: true,
                             allowBlank: false,
-                            getSubmitData: this.getDisabledFieldValue,
-                            value: this.sampleFileNode.text
+                            getSubmitData: this.getDisabledFieldValue//read-only hack
                         },
                         {
                             fieldLabel: 'File URI',
                             name: 'fileName',
                             disabled: true,
                             allowBlank: false,
-                            getSubmitData: this.getDisabledFieldValue,
-                            value: 'ff://repo/internal?fileentry#'+this.sampleFileNode.id
+                            getSubmitData: this.getDisabledFieldValue//read-only hack
                         }
                     ]
                 }
@@ -103,13 +101,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 var fileNames = [];
                 fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id);
                 this.parentEditor.getValuesManager().updateRecordProperty("fileName",fileNames);
-                this.initialized = true;
 
                 //Make form fields look right
-                this.form.setValues({data: {
+                this.form.setValues({
                     fileTitle: this.parentEditor.initParams.sampleFileNode.text,
                     fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
-                }})
+                })
             }
         });
 
@@ -255,20 +252,11 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     ]
                 }
             ]
-            ,isValid: function () {
-                //Check valid and apply/update model
-                var valid = Ext.ux.etl.BaseWizardEditorPage.prototype.isValid.apply(this, arguments);
-                /*                valid = valid || formPanel.form.findField('uploadsamplefile.filename').validate();
-                 valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();*/
-
-                //Update record
+            ,onBeforeModelSubmission: function () {
                 var parentStepMeta = {
-                    stepname: this.getObjectValues().name
+                    stepname: this.getForm().getObjectValues().name
                 };
                 this.parentEditor.getValuesManager().updateRecordProperty("parentStepMeta",parentStepMeta);
-                this.initialized = true;
-
-                return valid;
             }
         });
 
@@ -460,15 +448,16 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     items: [getmetadataGrid]
                 }
             ],
-            onPageShow: function (card) {
+            onCardShow: function (page) {
                 //Call super
-                Ext.ux.etl.BaseWizardEditorPage.prototype.onPageShow.apply(this, arguments);
+                Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
 
                 this.parentEditor.getValuesManager().executeOnGetMetadataRequest(function(response, opts) {
                     var recs = Ext.decode(response.responseText);
+                    getmetadataGridStore.loadData(recs, false);
                     this.parentEditor.getValuesManager().updateRecordProperty("inputFields",recs);
-                }.bind(this));
-            }.bind(this)
+                });
+            }
         });
 
         //Preview data
@@ -828,7 +817,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             autoScroll: false,
             autoCreate: true,
             closeAction:'destroy',
-            title: 'New CSV Metadata',
+            title: 'New Text File Input Metadata',
             height: 450,
             width: 800,
             modal: true,
