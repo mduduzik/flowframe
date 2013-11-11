@@ -991,4 +991,16 @@ Ext.ux.Wiz.Header = Ext.extend(Ext.BoxComponent, {
     }
 });
 
+Ext.form.BasicForm.override({
+    getObjectValues: function() {
+        var o = {};
+        this.items.each(function(item) {
+            if (item.isFormField) {
+                o[item.name || item.id] = item.getValue();
+            }
+        });
+        return o;
+    }
+});
+
 

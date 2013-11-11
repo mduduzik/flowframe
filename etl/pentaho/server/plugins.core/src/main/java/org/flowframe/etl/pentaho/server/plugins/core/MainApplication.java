@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.server.plugins.core;
 
 import org.flowframe.etl.pentaho.server.plugins.core.exception.KettleDependencyExceptionMapper;
+import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestExceptionMapper;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapperResolver;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.*;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource;
@@ -33,7 +34,6 @@ public class MainApplication extends ResourceConfig {
         register(LoggingFilter.class);
         register(CustomObjectMapperResolver.class);
 
-
         register(DatabaseMetaResource.class);
         register(DatabaseTypeResource.class);
         register(RepositoryExplorerResource.class);
@@ -47,5 +47,6 @@ public class MainApplication extends ResourceConfig {
 
         // Exceptions
         register(KettleDependencyExceptionMapper.class);
+        register(RequestExceptionMapper.class);
     }
 }

@@ -19,7 +19,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
     wizMode: undefined,  //EDITING, CREATE
 
     newWizDialog: undefined,
-    newCsvMetaWiz: undefined,
+    newTextFileInputMetaWiz: undefined,
 
     model: undefined,
 
@@ -34,25 +34,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
 
     initWiz: function () {
-        var getDisabledFieldValue = function () {
-            var me = this,
-                data = null;
-            data = {};
-            data[me.name] = '' + me.getValue();
-            return data;
-        };
-        var getCheckboxFieldValue = function () {
-            var me = this,
-                data = null;
-            var val = me.getValue();
-            data = {};
-            if (val === 'on')
-                data[me.name] = true;
-            else
-                data[me.name] = false;
-
-            return data;
-        };
         var uploaderPanel = new Ext.ux.UploadPanel({
             layout: 'fit',
             xtype: 'uploadpanel',
@@ -66,9 +47,9 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             singleUpload: true
         });
         /**
-         * Cards
+         * Pages
          */
-        var selectSampleFileCard = new Ext.ux.Wiz.Card({
+        var selectSampleFilePage = new Ext.ux.etl.BaseWizardEditorPage({
             id: "uploadsamplefile",
             title: 'Sample File',
             monitorValid: true,
@@ -103,7 +84,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             name: 'fileTitle',
                             disabled: true,
                             allowBlank: false,
-                            getSubmitData: getDisabledFieldValue,
+                            getSubmitData: this.getDisabledFieldValue,
                             value: this.sampleFileNode.text
                         },
                         {
@@ -111,40 +92,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             name: 'fileName',
                             disabled: true,
                             allowBlank: false,
-                            getSubmitData: getDisabledFieldValue,
+                            getSubmitData: this.getDisabledFieldValue,
                             value: 'ff://repo/internal?fileentry#'+this.sampleFileNode.id
                         }
                     ]
                 }
-            ],
-            isValid: function () {
-                var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
-/*                valid = valid || formPanel.form.findField('uploadsamplefile.filename').validate();
-                valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();*/
-
-                return valid;
-            },
-            onBeforeCardShow: function (card) {
-                //--Submit
-                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                    // here you can put whatever you need as header. For instance:
-                    this.defaultPostHeader = "application/json; charset=utf-8;";
-                    this.defaultHeaders = {userid: 'test'};
-                });
-                Ext.Ajax.request({
-                    url: '/etl/core/textfileinputmeta/onnew',
-                    method: 'GET',
-                    asynchronous: false,
-                    success: function (response, opts) {
-                        this.model = Ext.decode(response.responseText);
-                    },
-                    failure: function (response, opts) {
-                    }
-                });
-            }.bind(this)
-
+            ]
         });
-        var enterMetadataSettingsCard = new Ext.ux.Wiz.Card({
+        var enterMetadataSettingsPage = new Ext.ux.etl.BaseWizardEditorPage({
             id: "entermetadatasettings",
             title: 'Enter/change settings',
             monitorValid: true,
@@ -204,12 +159,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         },
                         {
                             fieldLabel: 'Row Number Field',
-                            name: 'rowNumField'
+                            name: 'rowNumberField',
+                            value: 'lineNumber'
                         },
                         {
-                            xtype: 'checkbox',
-                            fieldLabel: 'Header Present',
-                            name: 'headerPresent',
+                            xtype: 'xcheckbox',
+                            fieldLabel: 'Header?',
+                            name: 'header',
+                            inputValue: true,
                             value: true,
                             width: 15
                         },
@@ -226,13 +183,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             value: '"'
                         },
                         {
-                            xtype: 'checkbox',
-                            fieldLabel: 'Header?',
-                            name: 'header',
-                            width: 15,
-                            value: 1
-                        },
-                        {
                             xtype: 'numberfield',
                             fieldLabel: 'Number of header lines',
                             name: 'nrHeaderLines',
@@ -240,16 +190,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                             value: 1
                         },
                         {
-                            xtype: 'checkbox',
+                            xtype: 'xcheckbox',
                             fieldLabel: 'Rownum in output?',
                             name: 'includeRowNumber',
                             width: 15,
-                            value: 1
-                        },
-                        {
-                            fieldLabel: 'Rownum field',
-                            name: 'rowNumberField',
-                            value: 'lineNumber'
+                            inputValue: true,
+                            value: true
                         },
                         {
                             xtype: 'combo',
@@ -284,14 +230,30 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         }
                         ,
                         {
-                            xtype: 'checkbox',
+                            xtype: 'xcheckbox',
                             fieldLabel: 'Newline Possible In Fields',
                             name: 'newlinePossibleInFields',
+                            inputValue: false,
+                            value: false,
                             width: 15
                         }
                     ]
                 }
             ]
+            ,isValid: function () {
+                //Check valid and apply/update model
+                var valid = Ext.ux.etl.BaseWizardEditorPage.prototype.isValid.apply(this, arguments);
+                /*                valid = valid || formPanel.form.findField('uploadsamplefile.filename').validate();
+                 valid = valid || formPanel.form.findField('uploadsamplefile.fileEntryId').validate();*/
+
+                //Update record
+                var fileNames = [];
+                fileNames.push('ff://repo/internal?fileentry#'+this.sampleFileNode.id);
+                this.parentEditor.getValuesManager().updateRecordProperty("fileName",fileNames);
+
+
+                return valid;
+            }
         });
 
         //Get Metadata
@@ -468,7 +430,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             border: true
         });
 
-        var getMetadataCard = new Ext.ux.Wiz.Card({
+        var getMetadataPage = new Ext.ux.etl.BaseWizardEditorPage({
             name: 'getmetadata',
             title: 'Get metadata fields',
             monitorValid: true,
@@ -482,9 +444,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     items: [getmetadataGrid]
                 }
             ],
-            onCardShow: function (card) {
-                Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-                this.newCsvMetaWiz.getMetadata();
+            onPageShow: function (card) {
+                //Call super
+                Ext.ux.etl.BaseWizardEditorPage.prototype.onPageShow.apply(this, arguments);
+
+                this.parentEditor.getValuesManager().executeOnGetMetadataRequest(function(response, opts) {
+                    var recs = Ext.decode(response.responseText);
+                    this.parentEditor.getValuesManager().updateRecordProperty("inputFields",recs);
+                }.bind(this));
             }.bind(this)
         });
 
@@ -528,7 +495,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
              ]*/
         });
 
-        var previewDataCard = new Ext.ux.Wiz.Card({
+        var previewDataPage = new Ext.ux.etl.BaseWizardEditorPage({
             name: 'previewdata',
             title: 'Preview data',
             monitorValid: true,
@@ -537,19 +504,20 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 labelStyle: 'font-size:11px'
             },
             items: [previewDataGrid],
-            onCardShow: function (card) {
-                Ext.ux.Wiz.Card.prototype.onCardShow.apply(this, arguments);
-                this.newCsvMetaWiz.previewData();
+            onPageShow: function (card) {
+                Ext.ux.etl.BaseWizardEditorPage.prototype.onPageShow.apply(this, arguments);
+                this.newTextFileInputMetaWiz.previewData();
             }.bind(this)
         });
 
         //-- Create New Wizard
-        this.newCsvMetaWiz = new Ext.ux.Wiz({
+        this.newTextFileInputMetaWiz = new Ext.ux.etl.BaseWizardEditor({
+            eventManager: this.eventManager,
             region: 'center',
             wizMode: this.wizMode,
             buttonsAt: 'bbar',
             headerConfig: {
-                title: 'CSVInput Metadata'
+                title: 'Text File Input Metadata'
             },
             cardPanelConfig: {
                 defaults: {
@@ -559,11 +527,16 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 }
             },
             cards: [
-                selectSampleFileCard,
-                enterMetadataSettingsCard,
-                getMetadataCard,
-                previewDataCard
+                selectSampleFilePage,
+                enterMetadataSettingsPage,
+                getMetadataPage,
+                previewDataPage
             ],
+            onNewURL: '/etl/core/textfileinputmeta/onnew',//e.g. /etl/core/textfileinputmeta/onnew,
+            onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',//e.g. /etl/core/textfileinputmeta/ongetmetadata,
+            onPreviewURL: '/etl/core/textfileinputmeta/previewdata',//e.g. /etl/core/textfileinputmeta/previewdata
+            onSaveURL: '/etl/core/textfileinputmeta/save',//e.g. /etl/core/textfileinputmeta/save
+            onDeleteURL: '/etl/core/textfileinputmeta/delete',//e.g. '/etl/core/textfileinputmeta/delete'
             onBackToFirstStep : function() {
                 this.cardPanel.getLayout().setActiveItem(0);
             },
@@ -577,16 +550,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             },
             saveMetadata: function () {
                 //-- Form data
-                if (this.newCsvMetaWiz.isDirty()) {
-                    var data = this.newCsvMetaWiz.getSelectWizardData([]);//Form
-                    var formPanel = Ext.getCmp('uploadsamplefile');
-                    var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
-                    Ext.apply(data, filenameValue);
-                    var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
-                    Ext.apply(data, feValue);
+                if (this.newTextFileInputMetaWiz.isDirty()) {
+                    var data = this.newTextFileInputMetaWiz.getSelectWizardData([]);//Form
+                    Ext.apply(this.model, data);
 
                     //--Fields
-                    var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//fields
+                    var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//inputfields
                     Ext.apply(data, fields);
 
                     //-- Normalize data
@@ -595,22 +564,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         data.headerPresent = true;
                     else
                         data.headerPresent = false;
-                    if (data.includingFilename === 'on')
-                        data.includingFilename = true;
-                    else
-                        data.includingFilename = false;
-                    if (data.isaddresult === 'on')
-                        data.isaddresult = true;
-                    else
-                        data.isaddresult = false;
-                    if (data.lazyConversionActive === 'on')
-                        data.lazyConversionActive = true;
-                    else
-                        data.lazyConversionActive = false;
-                    if (data.newlinePossibleInFields === 'on')
-                        data.newlinePossibleInFields = true;
-                    else
-                        data.newlinePossibleInFields = false;
 
 
                     //--Submit
@@ -637,7 +590,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             }.bind(this),
             addMetadata: function () {
                 //-- Form data
-                var data = this.newCsvMetaWiz.getSelectWizardData([]);//Form
+                var data = this.newTextFileInputMetaWiz.getSelectWizardData([]);//Form
                 var formPanel = Ext.getCmp('uploadsamplefile');
                 var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
                 Ext.apply(data, filenameValue);
@@ -740,44 +693,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 });
             },
             // Called by 'getmetadata' card
-            getMetadata: function () {
-                var data = this.getSelectWizardData([]);
-
-                //-- Normalize data
-                var data = this.getSelectWizardData([]);//Form
-                var formPanel = Ext.getCmp('uploadsamplefile');
-                var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
-                Ext.apply(data, filenameValue);
-                var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
-                Ext.apply(data, feValue);
-
-
-
-                //a hack: checkboxes are returning 'on' for true
-                if (data.headerPresent === 'on')
-                    data.headerPresent = true;
-                else
-                    data.headerPresent = false;
-                if (data.includingFilename === 'on')
-                    data.includingFilename = true;
-                else
-                    data.includingFilename = false;
-                if (data.isaddresult === 'on')
-                    data.isaddresult = true;
-                else
-                    data.isaddresult = false;
-                if (data.lazyConversionActive === 'on')
-                    data.lazyConversionActive = true;
-                else
-                    data.lazyConversionActive = false;
-                if (data.newlinePossibleInFields === 'on')
-                    data.newlinePossibleInFields = true;
-                else
-                    data.newlinePossibleInFields = false;
+            getMetadata: function (currentModel) {
+                currentModel = this.updateModel(currentModel);
 
 
                 //--Submit
-                var dataJson = Ext.encode(data);
+                var dataJson = Ext.encode(currentModel);
                 Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                     // here you can put whatever you need as header. For instance:
                     this.defaultPostHeader = "application/json; charset=utf-8;";
@@ -793,18 +714,39 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         getmetadataGridStore.loadData(recs, false);
                     },
                     failure: function (response, opts) {
+                        ORYX.Log.error("Request /ongetmetadata error:\n "+response.responseText);
+                        Ext.Msg.show({
+                            title: 'Request error',
+                            msg: 'Error generating metadata. See error log in Browser.',
+                            buttons: Ext.MessageBox.OK
+                        });
                     }
                 });
             },
             //@Override
-            getSelectWizardData: function (cardids) {
+            updateModel: function (currentModel) {
+                var cards = this.cards;
+                for (var i = 0, len = cards.length; i < len; i++) {
+                    var cardform = cards[i].form;
+                    if (cardform) {
+                        var values = cardform.getObjectValues();//cardform.getValues(false);
+                        for (p in values) {
+                            if (p in currentModel)
+                                currentModel[p] = values[p];
+                        }
+                    }
+                }
+                return currentModel;
+            }
+            //@Override
+            ,getSelectWizardData: function (cardids) {
                 var formValues = {};
                 var cards = this.cards;
                 for (var i = 0, len = cards.length; i < len; i++) {
 
                     var cardform = cards[i].form;
                     if (cardform) {
-                        var values = cardform.getValues(false);
+                        var values = cardform.getObjectValues();//cardform.getValues(false);
                         var applyProps = true;
                         for (p in values) {
                             var propname = p+'';
@@ -818,7 +760,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 return formValues;
             }
         });
-        this.newCsvMetaWiz.addEvents(
+        this.newTextFileInputMetaWiz.addEvents(
             /**
              * @event ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
              * Fires after new metadata artifact (e.g. DbConnection) has been created
@@ -826,14 +768,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
              */
             ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
         );
-        this.newCsvMetaWiz.on('cancel', this.onBeforeCancel, this);
+        this.newTextFileInputMetaWiz.on('cancel', this.onBeforeCancel, this);
     },
 
     /**
      *
      */
     onBeforeCancel: function() {
-        if (this.newCsvMetaWiz.isDirty()) {
+        if (this.newTextFileInputMetaWiz.isDirty()) {
             Ext.MessageBox.show({
                 title:'Save Changes?',
                 msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
@@ -884,7 +826,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     }.bind(this)
                 }
             ],
-            items: [this.newCsvMetaWiz],
+            items: [this.newTextFileInputMetaWiz],
             bodyStyle: "background-color:#FFFFFF"
         });
 
@@ -903,7 +845,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
         // Basic Dialog
         this.initWiz();
-        this.newCsvMetaWiz.on('render',function() {
+        this.newTextFileInputMetaWiz.on('render',function() {
             // Get data
             Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                 // here you can put whatever you need as header. For instance:
@@ -916,7 +858,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 params: {pathId:this.metaId},
                 success: function (response, opts) {
                     var rec = Ext.decode(response.responseText);
-                    this.newCsvMetaWiz.loadRecord({data:rec});
+                    this.newTextFileInputMetaWiz.loadRecord({data:rec});
                     //read-only field hack - update 'filename' field
                     var field = Ext.getCmp('uploadsamplefile.filename');
                     field.setValue(rec.filename);
@@ -945,7 +887,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     }.bind(this)
                 }
             ],
-            items: [this.newCsvMetaWiz],
+            items: [this.newTextFileInputMetaWiz],
             bodyStyle: "background-color:#FFFFFF"
         });
         this.newWizDialog.setTitle('Editing '+this.metaName);

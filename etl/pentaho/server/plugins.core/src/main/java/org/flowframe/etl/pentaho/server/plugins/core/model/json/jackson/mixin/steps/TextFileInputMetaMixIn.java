@@ -8,7 +8,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties({"changed",
         "databases",
         "repository",
-        "parentStepMeta",
+/*        "parentStepMeta",*/
         "ioMeta",
         "stepData",
         "stepIOMeta",
@@ -17,7 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
         "changed",
         "databases",
         "repository",
-        "parentStepMeta",
+/*        "parentStepMeta",*/
         "ioMeta",
         "log",
         "stepIOMeta",

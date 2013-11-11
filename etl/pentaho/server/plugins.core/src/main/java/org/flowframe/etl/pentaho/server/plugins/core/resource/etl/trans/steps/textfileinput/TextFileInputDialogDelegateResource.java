@@ -3,9 +3,8 @@ package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.t
 import org.apache.commons.vfs.FileObject;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
+import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
-import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.dto.TextFileInputMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
@@ -46,6 +45,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -76,6 +76,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             TextFileInputMeta meta = new TextFileInputMeta();
             meta.setDefault();
             meta.allocate(1, 0, 0);
+            meta.setParentStepMeta(new StepMeta());
             return mapper.getFilteredWriter().writeValueAsString(meta);
         } catch (Exception e) {
             res = mapper.writeValueAsString(createExceptionMap(e));
@@ -113,14 +114,15 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             //Generate metadata
             TextFileInputMeta updatedMetadata = updateMetadata(meta);
 
+
+
             Map<String, Object> resultMap = new HashMap<String,Object>();
             resultMap.put("results",updatedMetadata.getInputFields().length);
             resultMap.put("rows",updatedMetadata.getInputFields());
 
             res = mapper.writeValueAsString(resultMap);
         } catch (Exception e) {
-            res = mapper.writeValueAsString(createExceptionMap(e));
-            e.printStackTrace();
+            throw  new RequestException("Error on /ongetmetadata",e);
         }
 
         return res;
@@ -192,10 +194,10 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response onDelete(@HeaderParam("userid") String userid, TextFileInputMetaDTO metaDTO_) throws KettleException, JSONException {
-        String pathID = RepositoryUtil.deleteStep(repository, metaDTO_.getPathId());
+    public Response onDelete(@HeaderParam("userid") String userid, TextFileInputMeta meta) throws KettleException, JSONException {
+        String pathID = RepositoryUtil.deleteStep(repository, meta.getParentStepMeta().getDescription());
 
-        return Response.ok("StepMeta " + metaDTO_.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
+        return Response.ok("StepMeta " + meta.getParentStepMeta().getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
 
     @Path("/uploadsample")
@@ -262,16 +264,16 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         TextFileInputMeta outputMetadata = null;
         //TextFileInputMeta cachedMetadata;
         try {
-            LogChannelInterface log = null;
+            LogChannelInterface log =  new LogChannel("TextFileInputMeta[]");;
 
             outputMetadata = (TextFileInputMeta)inputMetadata.clone();
 
             TransMeta transMeta = new TransMeta();
             transMeta.setName("TextFileInputMeta");
-            log = new LogChannel("TextFileInputMeta[]");
 
             //Get file object
-            String filename = transMeta.environmentSubstitute(inputMetadata.getFileName()[0]);
+            final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            final String filename = transMeta.environmentSubstitute(webDavFileUrl);
             fileObject = KettleVFS.getFileObject(filename);
 
             String delimiter = transMeta.environmentSubstitute(inputMetadata.getSeparator());

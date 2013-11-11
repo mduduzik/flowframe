@@ -217,4 +217,13 @@ public abstract class BaseDelegateResource {
         return resultMap;
     }
 
+    protected String formatException(Exception e) {
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        String stacktrace = sw.toString();
+
+
+        return stacktrace;
+    }
+
 }

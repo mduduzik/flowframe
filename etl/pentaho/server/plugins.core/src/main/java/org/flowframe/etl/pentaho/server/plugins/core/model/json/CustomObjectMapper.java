@@ -18,8 +18,10 @@ import org.codehaus.jackson.type.JavaType;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.introspector.CustomBasicClassIntrospector;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataListSerializer;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.StepMetaMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaMixIn;
 import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.util.ArrayList;
@@ -140,6 +142,10 @@ public class CustomObjectMapper extends ObjectMapper {
         //Serialization features
         getSerializationConfig().with(SerializationConfig.Feature.INDENT_OUTPUT);
         getSerializationConfig().with(SerializationConfig.Feature.REQUIRE_SETTERS_FOR_GETTERS);
+
+        //StepMeta
+        getDeserializationConfig().addMixInAnnotations(StepMeta.class, StepMetaMixIn.class);
+        getSerializationConfig().addMixInAnnotations(StepMeta.class, StepMetaMixIn.class);
 
 
         //TextFileInputMeta

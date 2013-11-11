@@ -212,6 +212,9 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/rowactions/js/Ext.ux.grid.RowActions.js\"></script>\n"
                 // VrTabPanel extension
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/verticaltab/js/ux_VerticalTabPanel.js\"></script>\n"
+                // XCheckbox extension
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/xcheckbox/js/Ext.ux.form.XCheckbox.js\"></script>\n"
+
                 ///-- Inline style for resource imports
                 + "<style>\n"
                 + "@import url(\"" + getSharedRootPath() + "lib/ext-2.0.2/resources/css/ext-all.css\");\n"
@@ -367,12 +370,14 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/Event/eventmanager.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/Core/Data/valuesmanager.js\" type=\"text/javascript\" />\n"
+
                 //{{
                 // Plugin-dependent FF/ETL
                 //}}
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/pluginmanager.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n";
-
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/wizard/basewizardeditor.js\" type=\"text/javascript\" />\n";
 
     }
 }
