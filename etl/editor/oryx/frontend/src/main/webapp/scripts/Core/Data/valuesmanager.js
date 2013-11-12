@@ -49,7 +49,8 @@ ORYX.Data.ValuesManager = {
 
                 //-- AJAX requests
                 executeOnNewRequest: this._executeOnNewRequest.bind(this),
-                executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this)
+                executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this),
+                executeOnPreviewDataRequest: this._executeOnPreviewDataRequest.bind(this)
             };
 
         // return it.
@@ -192,6 +193,31 @@ ORYX.Data.ValuesManager = {
         };
         return this._executeRequest(options);
      }
+    //{{
+    /**
+     * _executeOnPreviewDataRequest
+     * @param
+     */
+    //}
+    ,_executeOnPreviewDataRequest: function(successHandler,pagingParams) {
+        this._onBeforeModelSubmission();
+
+
+        var dataJson = Ext.encode(this.record);
+
+
+        var options = {
+            url: this.onPreviewURL+'/'+pagingParams.start+'/'+pagingParams.pageSize,
+            method: 'POST',
+            asynchronous: false,
+            params: dataJson,
+            success: successHandler,
+            failure: function (response, opts) {
+            }.bind(this)
+        };
+        return this._executeRequest(options);
+    }
+
 
     //{{
     /**
@@ -200,10 +226,12 @@ ORYX.Data.ValuesManager = {
      */
         //}
      ,_executeRequest: function(options) {
+        var headers =  {userid: 'test'};
+
         Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
             // here you can put whatever you need as header. For instance:
             this.defaultPostHeader = "application/json; charset=utf-8;";
-            this.defaultHeaders = {userid: 'test'};
+            this.defaultHeaders = headers;
         });
 
         Ext.Ajax.request(options);

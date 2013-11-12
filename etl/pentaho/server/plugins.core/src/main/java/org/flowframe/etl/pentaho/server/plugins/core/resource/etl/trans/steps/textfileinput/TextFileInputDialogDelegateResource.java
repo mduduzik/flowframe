@@ -1,6 +1,8 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput;
 
 import org.apache.commons.vfs.FileObject;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
@@ -129,13 +131,13 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         return res;
     }
 
-    @Path("/previewdata")
+    @Path("/previewdata/{start}/{pageSize}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onPreviewData(@HeaderParam("userid") String userid,
-                                @HeaderParam("start") int start,
-                                @HeaderParam("pageSize") int pageSize,
+                                @PathParam("start") int start,
+                                @PathParam("pageSize") int pageSize,
                                 TextFileInputMeta meta) throws Exception {
         String res = null;
         try {
@@ -496,8 +498,16 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                  ]
              }
              */
-            List<RowMetaAndData> dataAndMetaRows = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview",start,pageSize);
-            res = mapper.writeValueAsString(dataAndMetaRows);
+            final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
+            final  Map<String,List<RowMetaAndData>> rowRes = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview",start,pageSize);
+            int totalRows = rowRes.get("totalRows").size();
+            res = mapper.writeValueAsString(rowRes.get("resultRows"));
+
+            final JsonNode resObj = mapper.readTree(res);
+            ((ObjectNode)resObj).put("results",totalRows);
+
+            res = resObj.toString();
         } catch (Exception e) {
             throw e;
         }
@@ -1028,7 +1038,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     }
 
 
-    public static final List<RowMetaAndData> generatePreviewDataFromFile(TextFileInputMeta cim, String oneStepname, int start, int stepSize) throws KettleException {
+    public static final Map<String,List<RowMetaAndData>> generatePreviewDataFromFile(TextFileInputMeta cim, String oneStepname, int start, int stepSize) throws KettleException {
         KettleEnvironment.init();
 
         start = (start <= 0)?1:start;
@@ -1100,8 +1110,12 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         trans.prepareExecution(null);
 
         StepInterface si = trans.getStepInterface(dummyStepname1, 0);
-        RowStepCollector dummyRc1 = new RowStepCollector();
-        si.addRowListener(dummyRc1);
+        RowStepCollector pagedRC = new RowStepCollector();
+        si.addRowListener(pagedRC);
+
+        si = trans.getStepInterface(csvInputName, 0);
+        RowStepCollector targetStepRC = new RowStepCollector();
+        si.addRowListener(targetStepRC);
 
         RowProducer rp = trans.addRowProducer(injectorStepname, 0);
         trans.startThreads();
@@ -1118,10 +1132,14 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         trans.waitUntilFinished();
 
         // Compare the results
-        List<RowMetaAndData> resultRows = dummyRc1.getRowsWritten();
+        List<RowMetaAndData> resultRows = pagedRC.getRowsWritten();
         //List<RowMetaAndData> goldenImageRows = createResultData1();
+        List<RowMetaAndData> totalRows = targetStepRC.getRowsWritten();
 
-        return resultRows;
+        Map<String,List<RowMetaAndData>> res = new HashMap<String, List<RowMetaAndData>>();
+        res.put("resultRows",resultRows);
+        res.put("totalRows",totalRows);
+        return res;
     }
 
 

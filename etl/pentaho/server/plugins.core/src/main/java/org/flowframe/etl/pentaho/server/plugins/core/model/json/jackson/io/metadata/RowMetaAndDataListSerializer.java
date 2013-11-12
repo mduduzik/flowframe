@@ -4,6 +4,7 @@ import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
+import org.flowframe.kernel.common.utils.HTMLUtil;
 import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
@@ -40,7 +41,8 @@ public class RowMetaAndDataListSerializer extends JsonSerializer<List<RowMetaAnd
 
             //-- metadata
             RowMetaAndData rowMeta = list.get(0);
-            jgen.writeArrayFieldStart("metaData");
+            jgen.writeObjectFieldStart("metaData");
+            jgen.writeArrayFieldStart("fields");
             for (ValueMetaInterface metaItem : rowMeta.getRowMeta().getValueMetaList()) {
                 jgen.writeStartObject();
                 jgen.writeStringField("name",metaItem.getName());
@@ -48,7 +50,10 @@ public class RowMetaAndDataListSerializer extends JsonSerializer<List<RowMetaAnd
                 jgen.writeNumberField("type",metaItem.getType());
                 jgen.writeEndObject();
             }
-            jgen.writeEndArray();
+            jgen.writeEndArray();//{{jgen.writeArrayFieldStart("fields");
+            jgen.writeStringField("totalProperty","results");
+            jgen.writeStringField("root","rows");
+            jgen.writeEndObject();//{{jgen.writeObjectFieldStart("metaData");
 
             //-- data
             jgen.writeNumberField("results", list.size());
@@ -71,7 +76,7 @@ public class RowMetaAndDataListSerializer extends JsonSerializer<List<RowMetaAnd
                             jgen.writeNumberField(vm.getName(), Long.valueOf(obj));
                             break;
                         case 2:/*TYPE_STRING*/
-                            jgen.writeStringField(vm.getName(), obj);
+                            jgen.writeStringField(vm.getName(), HTMLUtil.escape(obj));
                             break;
                         case 3:/*TYPE_DATE*/
                             jgen.writeStringField(vm.getName(), obj);

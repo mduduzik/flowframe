@@ -453,29 +453,31 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
 
                 this.parentEditor.getValuesManager().executeOnGetMetadataRequest(function(response, opts) {
-                    var recs = Ext.decode(response.responseText);
-                    getmetadataGridStore.loadData(recs, false);
-                    this.parentEditor.getValuesManager().updateRecordProperty("inputFields",recs);
-                });
+                    var data = Ext.decode(response.responseText);
+                    getmetadataGridStore.loadData(data, false);
+                    this.parentEditor.getValuesManager().updateRecordProperty("inputFields",data.rows);
+                }.bind(this));
             }
         });
 
         //Preview data
         var previewDataDS = new Ext.data.Store({
-            proxy: new Ext.data.HttpProxy({
+/*            proxy: new Ext.data.HttpProxy({
                 url: '/etl/core/textfileinputmeta/previewdata',
                 method: 'POST',
                 headers: {
                     'userid': 'test'
-                }}),
-            reader: new Ext.ux.dynagrid.DynamicJsonReader({root: 'rows'}),
+                }}),*/
+            reader: new Ext.ux.dynagrid.DynamicJsonReader({root: 'rows',totalProperty: 'totalCount'}),
             remoteSort: true,
             root: 'rows'
         });
+
+
         var previewDataGrid = new Ext.grid.EditorGridPanel({
             //title: 'test',
             //id: 'test',
-            height: 350,
+            autoHeight: true,
             ds: previewDataDS,
             cm: new Ext.ux.dynagrid.DynamicColumnModel(previewDataDS),
             selModel: new Ext.grid.RowSelectionModel({singleSelect: true}),
@@ -485,7 +487,28 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     //click:{scope:this, fn:wiz.previewData,buffer:200}
                 }
                 }
-            ]/*,
+            ],
+            bbar: new Ext.PagingToolbar({
+                pageSize: 10,
+                store: previewDataDS,
+                displayInfo: true,
+                displayMsg: 'Displaying topics {0} - {1} of {2}',
+                emptyMsg: "No data to display",
+
+                items:[
+                    '-', {
+                        pressed: true,
+                        enableToggle:true,
+                        text: 'Show Preview',
+                        cls: 'x-btn-text-icon details',
+                        toggleHandler: function(btn, pressed){
+                            var view = grid.getView();
+                            view.showPreview = pressed;
+                            view.refresh();
+                        }
+                    }]
+            })
+            /*,
              bbar : new Ext.PagingToolbar({
              store:previewDataDS
              ,displayInfo:true
@@ -509,10 +532,15 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 labelStyle: 'font-size:11px'
             },
             items: [previewDataGrid],
-            onPageShow: function (card) {
-                Ext.ux.etl.BaseWizardEditorPage.prototype.onPageShow.apply(this, arguments);
-                this.newTextFileInputMetaWiz.previewData();
-            }.bind(this)
+            onCardShow: function (card) {
+                Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
+
+                this.parentEditor.getValuesManager().executeOnPreviewDataRequest(function(response, opts) {
+                    var recs = Ext.decode(response.responseText);
+                    previewDataDS.loadData(recs, false);
+                    //this.parentEditor.getValuesManager().updateRecordProperty("inputFields",recs);
+                }.bind(this),{start:1, pageSize:10});
+            }
         });
 
         //-- Create New Wizard
@@ -818,8 +846,8 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             autoCreate: true,
             closeAction:'destroy',
             title: 'New Text File Input Metadata',
-            height: 450,
-            width: 800,
+            height: 500,
+            width: 850,
             modal: true,
             collapsible: false,
             fixedcenter: true,

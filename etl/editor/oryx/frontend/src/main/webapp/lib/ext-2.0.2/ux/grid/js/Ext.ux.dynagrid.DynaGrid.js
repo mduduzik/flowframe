@@ -70,7 +70,10 @@ Ext.extend(Ext.ux.dynagrid.DynamicJsonReader, Ext.data.JsonReader, {
             for(var j = 0; j < fl; j++){
                 f = fi[j];
                 var v = this.ef[j](n);
-                values[f.name] = f.convert((v !== undefined) ? v : f.defaultValue, n);
+                if (f.convert !== undefined)
+                    values[f.name] = f.convert((v !== undefined) ? v : f.defaultValue, n);
+                else
+                    values[f.name] = (v !== undefined) ? v : f.defaultValue;
             }
             var record = new Record(values, id);
             record.json = n;
