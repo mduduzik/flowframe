@@ -462,12 +462,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
         //Preview data
         var previewDataDS = new Ext.data.Store({
-/*            proxy: new Ext.data.HttpProxy({
+            proxy: new Ext.data.HttpProxy({
                 url: '/etl/core/textfileinputmeta/previewdata',
                 method: 'POST',
                 headers: {
                     'userid': 'test'
-                }}),*/
+                }}),
             reader: new Ext.ux.dynagrid.DynamicJsonReader({root: 'rows',totalProperty: 'totalCount'}),
             remoteSort: true,
             root: 'rows'
@@ -476,23 +476,24 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
         var previewDataGrid = new Ext.grid.EditorGridPanel({
             //title: 'test',
-            //id: 'test',
+            autoWidth: true,
             autoHeight: true,
+            autoScroll: true,
             ds: previewDataDS,
             cm: new Ext.ux.dynagrid.DynamicColumnModel(previewDataDS),
             selModel: new Ext.grid.RowSelectionModel({singleSelect: true}),
             tbar: [
                 {
                     text: 'Preview', tooltip: 'Refresh data', iconCls: 'icon-refresh', id: 'btn-refresh', listeners: {
-                    //click:{scope:this, fn:wiz.previewData,buffer:200}
-                }
+                        //click:{scope:this, fn:wiz.previewData,buffer:200}
+                    }
                 }
             ],
-            bbar: new Ext.PagingToolbar({
+            bbar: new Ext.ux.etl.EditorGridPagingToolbar({
                 pageSize: 10,
                 store: previewDataDS,
                 displayInfo: true,
-                displayMsg: 'Displaying topics {0} - {1} of {2}',
+                displayMsg: 'Displaying sample records {0} - {1} of {2}',
                 emptyMsg: "No data to display",
 
                 items:[
@@ -535,11 +536,11 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             onCardShow: function (card) {
                 Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
 
-                this.parentEditor.getValuesManager().executeOnPreviewDataRequest(function(response, opts) {
-                    var recs = Ext.decode(response.responseText);
-                    previewDataDS.loadData(recs, false);
-                    //this.parentEditor.getValuesManager().updateRecordProperty("inputFields",recs);
-                }.bind(this),{start:1, pageSize:10});
+                //Setup BBAR - update record
+                previewDataGrid.getBottomToolbar().setJsonEntity(this.parentEditor.getValuesManager().getRecord());
+
+                //Init paged load
+                previewDataGrid.getBottomToolbar().doLoad(0);
             }
         });
 

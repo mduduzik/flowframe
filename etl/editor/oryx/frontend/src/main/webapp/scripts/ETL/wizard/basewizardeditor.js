@@ -144,4 +144,51 @@ Ext.ux.etl.BaseWizardEditorPage = Ext.extend(Ext.ux.Wiz.Card , {
 });
 
 
+Ext.ux.etl.EditorGridPagingToolbar = Ext.extend(Ext.PagingToolbar,{
+    onLoadFn: undefined,
+    jsonEntity: undefined,
+    baseURL: null,
+    paramNames: {
+        start: 'start',
+        limit: 'pageSize'
+    },
+    currentStart: 0,
+    setOnLoadCallback: function(fn) {
+        this.onLoadFn = fn;
+    },
+    setJsonEntity: function(jsonEntity) {
+        this.jsonEntity  = Ext.encode(jsonEntity);
+    },
+    //@Override
+    doLoad : function(start){
+        //var o = {}, pn = this.paramNames;
+        //o[pn.start] = start;
+        //o[pn.limit] = this.pageSize;
+        //this.onLoadFn(o);
+        this.currentStart = start;
 
+        if (this.baseURL === null)
+            this.baseURL = this.store.proxy.conn.url;
+
+        this.store.proxy.conn.url = this.baseURL+'/'+start+'/'+this.pageSize;
+        this.store.load({params:this.jsonEntity});
+    },
+    //@Override
+    onLoad : function(store, r, o){
+        if(!this.rendered){
+            this.dsLoaded = [store, r, o];
+            return;
+        }
+        this.cursor = this.currentStart;
+        var d = this.getPageData(), ap = d.activePage, ps = d.pages;
+
+        this.afterTextEl.el.innerHTML = String.format(this.afterPageText, d.pages);
+        this.field.dom.value = ap;
+        this.first.setDisabled(ap == 1);
+        this.prev.setDisabled(ap == 1);
+        this.next.setDisabled(ap == ps);
+        this.last.setDisabled(ap == ps);
+        this.loading.enable();
+        this.updateInfo();
+    }
+});

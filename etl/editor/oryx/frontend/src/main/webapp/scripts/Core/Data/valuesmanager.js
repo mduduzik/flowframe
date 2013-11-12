@@ -43,6 +43,7 @@ ORYX.Data.ValuesManager = {
                 isDirty: this._isDirty.bind(this),
 
                 //-- Record methods
+                getRecord: function(record) {return this.record;}.bind(this),
                 setRecord: function(record) {this.record = record;}.bind(this),
                 loadRecord: this._loadRecord.bind(this),
                 updateRecordProperty: this._updateRecordProperty.bind(this),
@@ -96,7 +97,6 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_getValuesForSubmission: function() {
-        var formValues = {};
         this.formPanels.values().each(function(_formPanel) {
             var basicForm = _formPanel.form;
             if (basicForm) {
@@ -107,7 +107,7 @@ ORYX.Data.ValuesManager = {
                 }
             }
         }.bind(this));
-        return formValues;
+        return this.record;
     }
     //{{
     /**
@@ -130,12 +130,10 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_onAfterModelLoad: function() {
-        var isDirty = false;
         this.formPanels.values().each(function(_formPanel) {
             if (_formPanel.onAfterModelLoad)
                 _formPanel.onAfterModelLoad();
         }.bind(this));
-        return isDirty;
     }
     //{{
     /**
@@ -144,12 +142,10 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_onBeforeModelSubmission: function() {
-        var isDirty = false;
         this.formPanels.values().each(function(_formPanel) {
             if (_formPanel.onBeforeModelSubmission)
                 _formPanel.onBeforeModelSubmission();
         }.bind(this));
-        return isDirty;
     }
     //{{
     /**
