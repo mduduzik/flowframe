@@ -19,7 +19,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
     wizMode: undefined,  //EDITING, CREATE
 
     newWizDialog: undefined,
-    newTextFileInputMetaWiz: undefined,
+    stepMetaWizard: undefined,
 
     model: undefined,
 
@@ -33,7 +33,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
     },
 
 
-    initWiz: function () {
+    initPages: function () {
         var uploaderPanel = new Ext.ux.UploadPanel({
             layout: 'fit',
             xtype: 'uploadpanel',
@@ -553,7 +553,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         });
 
         //-- Create New Wizard
-        this.newTextFileInputMetaWiz = new Ext.ux.etl.BaseWizardEditor({
+        this.stepMetaWizard = new Ext.ux.etl.BaseWizardEditor({
             parentEditor: this,
             eventManager: this.eventManager,
             region: 'center',
@@ -604,7 +604,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     }.bind(this));
             }
         });
-        this.newTextFileInputMetaWiz.addEvents(
+        this.stepMetaWizard.addEvents(
             /**
              * @event ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
              * Fires after new metadata artifact (e.g. DbConnection) has been created
@@ -612,14 +612,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
              */
             ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
         );
-        this.newTextFileInputMetaWiz.on('cancel', this.onBeforeCancel, this);
+        this.stepMetaWizard.on('cancel', this.onBeforeCancel, this);
     },
 
     /**
      *
      */
     onBeforeCancel: function() {
-        if (this.newTextFileInputMetaWiz.isDirty()) {
+        if (this.stepMetaWizard.isDirty()) {
             Ext.MessageBox.show({
                 title:'Save Changes?',
                 msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
@@ -647,7 +647,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         this.sampleFileNode = arg.dropData.source;
 
         // Basic Dialog
-        this.initWiz();
+        this.initPages();
 
         this.newWizDialog = new Ext.Window({
             autoScroll: false,
@@ -670,7 +670,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     }.bind(this)
                 }
             ],
-            items: [this.newTextFileInputMetaWiz],
+            items: [this.stepMetaWizard],
             bodyStyle: "background-color:#FFFFFF"
         });
 
@@ -688,8 +688,9 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         this.metaName = arg.title;
 
         // Basic Dialog
-        this.initWiz();
-        this.newTextFileInputMetaWiz.on('render',function() {
+        this.initPages();
+
+        this.stepMetaWizard.on('render',function() {
             // Get data
             Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                 // here you can put whatever you need as header. For instance:
@@ -702,7 +703,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 params: {pathId:this.metaId},
                 success: function (response, opts) {
                     var rec = Ext.decode(response.responseText);
-                    this.newTextFileInputMetaWiz.loadRecord({data:rec});
+                    this.stepMetaWizard.loadRecord({data:rec});
                     //read-only field hack - update 'filename' field
                     var field = Ext.getCmp('uploadsamplefile.filename');
                     field.setValue(rec.filename);
@@ -731,7 +732,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     }.bind(this)
                 }
             ],
-            items: [this.newTextFileInputMetaWiz],
+            items: [this.stepMetaWizard],
             bodyStyle: "background-color:#FFFFFF"
         });
         this.newWizDialog.setTitle('Editing '+this.metaName);

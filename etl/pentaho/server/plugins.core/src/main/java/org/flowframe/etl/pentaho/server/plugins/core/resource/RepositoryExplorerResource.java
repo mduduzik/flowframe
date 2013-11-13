@@ -49,9 +49,9 @@ import java.util.Map;
 public class RepositoryExplorerResource {
     public static String REPOSITORY_ITEM_TYPE = "itemtype";
     public static String REPOSITORY_ITEM_TYPE_DATABASE = "database";
-    public static String REPOSITORY_ITEM_TYPE_CSVMETA = "csvmeta";
-    public static String REPOSITORY_ITEM_TYPE_EXCELMETA = "excelmeta";
-    public static String REPOSITORY_ITEM_TYPE_DELIMITEDMETA = "delimitedmeta";
+    public static String REPOSITORY_ITEM_TYPE_CSVMETA = "CsvInput";
+    public static String REPOSITORY_ITEM_TYPE_EXCELMETA = "ExcelInput";
+    public static String REPOSITORY_ITEM_TYPE_DELIMITEDMETA = "TextFileInput";
     public static String REPOSITORY_ITEM_TYPE_TRANSFORMATION = "transformation";
     public static String REPOSITORY_ITEM_TYPE_JOB = "job";
     public static String REPOSITORY_ITEM_PARENTFOLDER_OBJID = "folderObjectId";
@@ -688,7 +688,7 @@ public class RepositoryExplorerResource {
             */
         //JSONObject metadataCSV = generateCSVMetadataJSON(true,repo, delimitedMdDir);
         JSONObject metadataCSV = new JSONObject();
-        metadataCSV.put("id", "metadata.csvmeta");
+        metadataCSV.put("id", "metadata.CsvInput");
         metadataCSV.put("allowDrag", false);
         metadataCSV.put("allowDrop", true);
         metadataCSV.put("text", "CSV");
@@ -709,7 +709,7 @@ public class RepositoryExplorerResource {
         */
         //JSONObject metadataDelimited = generateCSVMetadataJSON(true,repo, delimitedMdDir);
         JSONObject metadataDelimited = new JSONObject();
-        metadataDelimited.put("id", "metadata.delimitedmeta");
+        metadataDelimited.put("id", "metadata."+REPOSITORY_ITEM_TYPE_DELIMITEDMETA);
         metadataDelimited.put("allowDrag", false);
         metadataDelimited.put("allowDrop", true);
         metadataDelimited.put("text", "Delimited");
@@ -951,11 +951,11 @@ public class RepositoryExplorerResource {
         return subDir;
     }
 
-    private static JSONObject generateDelimitedMetadataJSON(boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository ICustomRepository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
+    private static JSONObject generateDelimitedMetadataJSON(boolean ondemand, boolean excludeChildrenForThisNode, ICustomRepository repository, RepositoryDirectoryInterface dir) throws JSONException, KettleException {
         JSONObject subDir = new JSONObject();
 
         // Populate
-        subDir.put("id", RepositoryUtil.generatePathID(dir, "TextFileInput"));
+        subDir.put("id", RepositoryUtil.generatePathID(dir, REPOSITORY_ITEM_TYPE_DELIMITEDMETA));
         subDir.put("allowDrag", false);
         subDir.put("allowDrop", true);
         subDir.put("text", dir.getName());
@@ -971,8 +971,8 @@ public class RepositoryExplorerResource {
 
 
         List<RepositoryDirectoryInterface> delimitedMdSubDirs = dir.getChildren();
-        String[] dbConnectionMetadataTransNames = ICustomRepository.getTransformationNames(dir.getObjectId(), true);
-        boolean hasChildren = !delimitedMdSubDirs.isEmpty() || (dbConnectionMetadataTransNames.length > 0);
+        TransMeta trans = RepositoryUtil.provideTransformation(repository, dir, REPOSITORY_ITEM_TYPE_DELIMITEDMETA);
+        boolean hasChildren = !delimitedMdSubDirs.isEmpty() || trans.getSteps().size() > 0;
         if (excludeChildrenForThisNode) {
             subDir.put("hasChildren", hasChildren);
             subDir.put("singleClickExpand", hasChildren);
@@ -985,68 +985,63 @@ public class RepositoryExplorerResource {
 
         //Do sub dirs
         for (RepositoryDirectoryInterface subDir_ : delimitedMdSubDirs) {
-            JSONObject subDirDir = generateDelimitedMetadataJSON(ondemand, excludeChildrenForThisNode, ICustomRepository, subDir_);
+            JSONObject subDirDir = generateDelimitedMetadataJSON(ondemand, excludeChildrenForThisNode, repository, subDir_);
             childrenArray.put(subDirDir);
         }
 
 
         //Do metadata from transformations
-        for (String transName : dbConnectionMetadataTransNames) {
-            TransMeta trans = ICustomRepository.loadTransformation(transName, dir, null, true, null);
-            List<StepMeta> steps = trans.getSteps();
-            for (StepMeta step : steps) {
-                if (step.getTypeId().equalsIgnoreCase("TextFileInput")) {
-                    JSONObject mdmObj = new JSONObject();
-                    mdmObj.put("text", step.getName());
-                    mdmObj.put("title", step.getName());
-                    mdmObj.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
-                    mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
-                    mdmObj.put("allowDrag", false);
-                    mdmObj.put("allowDrop", true);
-                    mdmObj.put("leaf", false);
-                    mdmObj.put("hasChildren", true);
-                    mdmObj.put("singleClickExpand", true);
-                    mdmObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
-                    mdmObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_CSVMETA);
-                    mdmObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_CSVMETA);
-                    mdmObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
-                    childrenArray.put(mdmObj);
+        List<StepMeta> steps = trans.getSteps();
+        for (StepMeta step : steps) {
+            JSONObject mdmObj = new JSONObject();
+            mdmObj.put("text", step.getName());
+            mdmObj.put("title", step.getName());
+            mdmObj.put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
+            mdmObj.put("id", RepositoryUtil.generatePathID(step, steps.indexOf(step)));
+            mdmObj.put("allowDrag", false);
+            mdmObj.put("allowDrop", true);
+            mdmObj.put("leaf", false);
+            mdmObj.put("hasChildren", true);
+            mdmObj.put("singleClickExpand", true);
+            mdmObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+            mdmObj.put(REPOSITORY_ITEM_TYPE, REPOSITORY_ITEM_TYPE_DELIMITEDMETA);
+            mdmObj.put(REPOSITORY_UI_TREE_NODE_MENUGROUP_NAME, REPOSITORY_ITEM_TYPE_DELIMITEDMETA);
+            mdmObj.put(REPOSITORY_UI_TREE_NODE_DRAGNDROP_NAME, "true");
+            childrenArray.put(mdmObj);
 
-                    //Create tables
-                    JSONArray mdmObjItems = new JSONArray();
-                    mdmObj.put("children", mdmObjItems);
-                    JSONObject fieldsObj = new JSONObject();
-                    fieldsObj.put("title", "Fields");
-                    fieldsObj.put("text", "Fields");
-                    fieldsObj.put("id", step.getName() + ".fields");
-                    fieldsObj.put("allowDrag", false);
-                    fieldsObj.put("allowDrop", true);
-                    fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
-                    fieldsObj.put("leaf", false);
-                    fieldsObj.put("hasChildren", true);
-                    fieldsObj.put("singleClickExpand", true);
-                    fieldsObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
-                    JSONArray fields = new JSONArray();
-                    fieldsObj.put("children", fields);
-                    mdmObjItems.put(fieldsObj);
+            //Create tables
+            JSONArray mdmObjItems = new JSONArray();
+            mdmObj.put("children", mdmObjItems);
+            JSONObject fieldsObj = new JSONObject();
+            fieldsObj.put("title", "Fields");
+            fieldsObj.put("text", "Fields");
+            fieldsObj.put("id", step.getName() + ".fields");
+            fieldsObj.put("allowDrag", false);
+            fieldsObj.put("allowDrop", true);
+            fieldsObj.put("icon", "/etl/images/conxbi/etl/folder_close.png");
+            fieldsObj.put("leaf", false);
+            fieldsObj.put("hasChildren", true);
+            fieldsObj.put("singleClickExpand", true);
+            fieldsObj.put(REPOSITORY_UI_TREE_LOADING_TYPE, REPOSITORY_UI_TREE_LOADING_TYPE_ONDEMAND);
+            JSONArray fields = new JSONArray();
+            fieldsObj.put("children", fields);
+            mdmObjItems.put(fieldsObj);
 
 
-                    TextFileInputMeta tfiStep = (TextFileInputMeta) step.getStepMetaInterface();
-                    TextFileInputField[] inputFields = tfiStep.getInputFields();
-                    for (TextFileInputField field : inputFields) {
-                        JSONObject fieldObj = new JSONObject();
-                        fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
-                        fieldObj.put("allowDrag", false);
-                        fieldObj.put("allowDrop", true);
-                        fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
-                        fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
-                        fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
-                        fieldObj.put("leaf", true);
-                        fieldObj.put("hasChildren", false);
-                        fieldObj.put("singleClickExpand", false);
-                        fields.put(fieldObj);
-                    }
-                }
+            TextFileInputMeta tfiStep = (TextFileInputMeta) step.getStepMetaInterface();
+            TextFileInputField[] inputFields = tfiStep.getInputFields();
+            for (TextFileInputField field : inputFields) {
+                JSONObject fieldObj = new JSONObject();
+                fieldObj.put("id", fieldsObj.get("id") + "." + field.getName());
+                fieldObj.put("allowDrag", false);
+                fieldObj.put("allowDrop", true);
+                fieldObj.put("text", field.getName() + "[" + field.getTypeDesc() + "]");
+                fieldObj.put("title", field.getName() + "[" + field.getTypeDesc() + "]");
+                fieldObj.put("icon", "/etl/images/conxbi/etl/columns.gif");
+                fieldObj.put("leaf", true);
+                fieldObj.put("hasChildren", false);
+                fieldObj.put("singleClickExpand", false);
+                fields.put(fieldObj);
             }
         }
 

@@ -159,7 +159,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         String res = null;
         try {
             String stepPid = registry.getPluginId(StepPluginType.class, meta);
-            StepMeta step = new StepMeta(stepPid, meta.getName(), meta);
+            StepMeta step = new StepMeta(stepPid, meta.getParentStepMeta().getName(), meta);
+            //hack: clear parentStepMeta as placeholder
+            meta.setParentStepMeta(null);
 
             String pathID = RepositoryUtil.addStep(repository, subDirObjId, step);
             meta = (TextFileInputMeta)step.getStepMetaInterface();

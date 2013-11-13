@@ -301,7 +301,8 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
 Ext.ns("Ext.ux");
 Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
     application: undefined,
-    //Etc
+    //-- ContextMenu's
+    ContextMenusByMetaType: new Hash(),
     mainTabPanel: undefined,
     mainEditorPanel_: undefined,
     repofolder_database_contextmenu: undefined,
@@ -631,94 +632,6 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         });
         this.repoitem_database_contextmenu.on('hide', this.onContextHide, this);
 
-        /**
-         * CSVMeta and Folders
-         */
-        this.repofolder_csvmeta_contextmenu = new Ext.menu.Menu({
-            id: 'csvmeta.folder',
-            items: [
-                {
-                    id: 'addCsvMeta',
-                    icon: '/etl/images/conxbi/etl/icon_delimited.gif',
-                    text: 'Add CSV Metadata',
-                    scope: this,
-                    handler: function () {
-                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
-                        );
-                    }.bind(this)
-                },
-                new Ext.menu.Separator({cmd:'sep-open'}),
-                {
-                    id: 'createFolder',
-                    text: 'Create Folder',
-                    icon: '/etl/images/conxbi/etl/folder_close.png',
-                    scope: this,
-                    handler: function () {
-                        this.ctxNode.select();
-                        //this.mainEditorPanel.removeAll();
-                        Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
-                        this.mainEditorPanel.setTitle("New Folder");
-                        this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
-                        this.mainTabPanel.add(this.mainEditorPanel);
-                        this.mainTabPanel.setActiveTab(this.mainEditorPanel);
-                        //this.newDBWiz.show();
-                    }.bind(this)
-                },
-                {
-                    id: 'deleteFolder',
-                    text: 'Delete Folder',
-                    icon: '/etl/images/conxbi/etl/folder_delete.png',
-                    scope: this,
-                    handler: function () {
-                        var requestWiz = this;
-                        var requestCtxNode = requestWiz.ctxNode;
-
-                        var idArray = requestCtxNode.id.split('/');
-                        var dirId = idArray[1];
-                        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                            // here you can put whatever you need as header. For instance:
-                            //this.defaultPostHeader = "application/json; charset=utf-8;";
-                            this.defaultHeaders = {
-                                userid: 'test',
-                                itemtype: 'csvmeta',
-                                folderObjectId: dirId
-                            };
-                        });
-                        Ext.Ajax.request({
-                            url: '/etl/core/explorer/deletedir',
-                            method: 'DELETE',
-                            success: function (response, opts) {
-                                //Refresh this.ctxNode
-                                if (requestCtxNode.attributes)
-                                    requestCtxNode.attributes.children = false;
-                                requestCtxNode.reload();
-                            },
-                            failure: function (response, opts) {
-                            }
-                        });
-                    }.bind(this)
-                },
-                {
-                    id: 'refreshFolder',
-                    text: 'Refresh Folder',
-                    icon: '/etl/images/conxbi/etl/refresh.gif',
-                    scope: this,
-                    handler: function () {
-                        this.ctxNode.attributes.children = false;
-                        this.ctxNode.reload();
-                    }.bind(this)
-                }
-            ]
-        })
-        this.repofolder_csvmeta_contextmenu.on('hide', this.onContextHide, this);
-
         //{{
         //  Transformations and Folders
         //}}
@@ -1038,6 +951,210 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             ORYX.Log.error(e);
         }
     }
+    //{{{
+    ,_provideMetadataContextMenu: function(node, e) {
+        var menuGrp = node.attributes.menugroup;
+        var itemType = node.attributes.itemtype;
+
+        var itemTypeSupported = [ORYX.CONFIG.ETL_METADATA_TYPE_CSVMETA,
+            ORYX.CONFIG.ETL_METADATA_TYPE_EXCELMETA,
+            ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA].member(itemType);
+
+        if (!itemTypeSupported)
+            return false;
+
+        if (this.ContextMenusByMetaType.keys().member(menuGrp)) {
+            this.menu = this.ContextMenusByMetaType.keys().member(menuGrp);
+        }
+        else {
+            //-- Folder
+            if (menuGrp.endsWith('.folder')) {
+                this.menu = new Ext.menu.Menu({
+                    id: menuGrp,
+                    items: [
+                        {
+                            id: 'add'+menuGrp,
+                            icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                            text: 'Add '+itemType,
+                            scope: this,
+                            handler: function () {
+                                Ext.MessageBox.show({
+                                    title: 'Action Unsupported',
+                                    msg: 'Create new '+itemType+' metadata by drag-n-drop from file repository below.',
+                                    buttons: Ext.MessageBox.OK,
+                                    icon: Ext.MessageBox.INFO
+                                });
+                                /*                        this.ctxNode.select();
+                                 var eventData = {
+                                 type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA,
+                                 forceExecution: true
+                                 };
+                                 this.application.handleEvents(eventData, {
+                                 folderId: this.ctxNode.attributes['folderObjectId'],
+                                 sourceNavNodeId: this.ctxNode.id}
+                                 );*/
+                            }.bind(this)
+                        },
+                        new Ext.menu.Separator({cmd:'sep-open'}),
+                        {
+                            id: 'createFolder.'+menuGrp,
+                            text: 'Create Folder',
+                            icon: '/etl/images/conxbi/etl/folder_close.png',
+                            scope: this,
+                            handler: function () {
+                                this.ctxNode.select();
+                                //this.mainEditorPanel.removeAll();
+                                Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                                this.mainEditorPanel.setTitle("New Folder");
+                                this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                                this.mainTabPanel.add(this.mainEditorPanel);
+                                this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                                //this.newDBWiz.show();
+                            }.bind(this)
+                        },
+                        {
+                            id: 'deleteFolder.'+menuGrp,
+                            text: 'Delete Folder',
+                            icon: '/etl/images/conxbi/etl/folder_delete.png',
+                            scope: this,
+                            handler: function () {
+                                var requestWiz = this;
+                                var requestCtxNode = requestWiz.ctxNode;
+
+                                var idArray = requestCtxNode.id.split('/');
+                                var dirId = idArray[1];
+                                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                                    // here you can put whatever you need as header. For instance:
+                                    //this.defaultPostHeader = "application/json; charset=utf-8;";
+                                    this.defaultHeaders = {
+                                        userid: 'test',
+                                        itemtype: itemType,
+                                        folderObjectId: dirId
+                                    };
+                                });
+                                Ext.Ajax.request({
+                                    url: '/etl/core/explorer/deletedir',
+                                    method: 'DELETE',
+                                    success: function (response, opts) {
+                                        //Refresh this.ctxNode
+                                        if (requestCtxNode.attributes)
+                                            requestCtxNode.attributes.children = false;
+                                        requestCtxNode.reload();
+                                    },
+                                    failure: function (response, opts) {
+                                    }
+                                });
+                            }.bind(this)
+                        },
+                        {
+                            id: 'refreshFolder.'+menuGrp,
+                            text: 'Refresh Folder',
+                            icon: '/etl/images/conxbi/etl/refresh.gif',
+                            scope: this,
+                            handler: function () {
+                                this.ctxNode.attributes.children = false;
+                                this.ctxNode.reload();
+                            }.bind(this)
+                        }
+                    ]
+                })
+                this.ContextMenusByMetaType[menuGrp] = this.menu;
+            }
+            //-- Leaf
+            else {
+                /**
+                 * Item Menu
+                 */
+                this.menu = new Ext.menu.Menu({
+                    id: menuGrp,
+                    items: [
+                        {
+                            id: 'add.'+menuGrp,
+                            icon: '/etl/images/conxbi/etl/icon_delimited.gif',
+                            text: 'Add '+menuGrp,
+                            scope: this,
+                            handler: function () {
+                                Ext.MessageBox.show({
+                                    title: 'Action Unsupported',
+                                    msg: 'Create new '+menuGrp+' metadata by drag-n-drop from file repository below.',
+                                    buttons: Ext.MessageBox.OK,
+                                    icon: Ext.MessageBox.INFO
+                                });
+                                /*                        this.ctxNode.select();
+                                 var eventData = {
+                                 type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA,
+                                 forceExecution: true
+                                 };
+                                 this.application.raiseEvent(eventData, {
+                                 folderId: this.ctxNode.attributes['folderObjectId'],
+                                 sourceNavNodeId: this.ctxNode.id}
+                                 );*/
+                            }.bind(this)
+                        },
+                        {
+                            id: 'edit.'+menuGrp,
+                            text: 'Edit '+itemType,
+                            icon: '/etl/images/conxbi/etl/modify.gif',
+                            scope: this,
+                            handler: function () {
+                                this.ctxNode.select();
+                                var eventData = {
+                                    type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + itemType,
+                                    forceExecution: true
+                                };
+                                this.application.raiseEvent(eventData, {
+                                        title: itemType+' Metadata ' + this.ctxNode.attributes['title'],
+                                        sourceNavNodeId: this.ctxNode.id
+                                    }
+                                );
+                            }.bind(this)
+                        },
+                        {
+                            id: 'delete.'+menuGrp,
+                            text: 'Delete ' +itemType,
+                            icon: '/etl/images/conxbi/etl/connection-delete.png',
+                            scope: this,
+                            handler: function () {
+                                this.ctxNode.select();
+                                var eventData = {
+                                    type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + itemType,
+                                    forceExecution: true
+                                };
+                                this.application.raiseEvent(eventData, {
+                                        title: itemType+' Metadata ' + this.ctxNode.attributes['title'],
+                                        sourceNavNodeId: this.ctxNode.id,
+                                        parentSourceNavNodeId: this.ctxNode.parentNode.id
+                                    }
+                                );
+                                this.ctxNode = null;
+                            }.bind(this)
+                        },
+                        new Ext.menu.Separator({cmd:'sep-open'}),
+                        {
+                            text: 'Create Folder',
+                            icon: '/etl/images/conxbi/etl/folder_close.png',
+                            scope: this,
+                            handler: function () {
+                                this.ctxNode.select();
+                                //this.mainEditorPanel.removeAll();
+                                Ext.apply(this.new_repoitem_folder_wizard, {ctxNode: this.ctxNode, mainEditorPanel: this.mainEditorPanel});
+                                this.mainEditorPanel.setTitle("New Folder");
+                                this.mainEditorPanel.add(this.new_repoitem_folder_wizard);
+                                this.mainTabPanel.add(this.mainEditorPanel);
+                                this.mainTabPanel.setActiveTab(this.mainEditorPanel);
+                                //this.newDBWiz.show();
+                            }.bind(this)
+                        }
+                    ]
+                });
+                this.ContextMenusByMetaType[menuGrp] = this.menu;
+            }
+        }
+        this.menu.on('hide', this.onContextHide, this);
+
+        return true;
+    }
+    //}}}
     // {{{
     /**
      * runs before node is dropped
@@ -1692,22 +1809,6 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             if (node.id === 'metadata.dbconnections')
                 this.getItemById(this.menu,'deleteFolder').setDisabled(true);
         }
-        else if (node.attributes.menugroup && node.attributes.menugroup === 'csvmeta') {
-            this.menu = this.repoitem_csvmeta_contextmenu;
-        }
-        else if (node.attributes.menugroup && node.attributes.menugroup === 'csvmeta.folder') {
-            this.menu = this.repofolder_csvmeta_contextmenu;
-            if (node.id === 'metadata.csvmeta')
-                this.getItemById(this.menu,'deleteFolder').setDisabled(true);
-        }
-        else if (node.attributes.menugroup && node.attributes.menugroup === 'excelmeta') {
-            this.menu = this.repoitem_excelmeta_contextmenu;
-        }
-        else if (node.attributes.menugroup && node.attributes.menugroup === 'excelmeta.folder') {
-            this.menu = this.repofolder_csvmeta_contextmenu;
-            if (node.id === 'metadata.excelmeta')
-                this.getItemById(this.menu,'deleteFolder').setDisabled(true);
-        }
         else if (node.attributes.menugroup && node.attributes.menugroup === 'transformation') {
             this.menu = this.repoitem_transformation_contextmenu;
         }
@@ -1720,8 +1821,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         else if (node.attributes.menugroup && node.attributes.menugroup === 'job.folder') {
             this.menu = this.repofolder_job_contextmenu;
         }
-        else
-            return;
+        else {
+            if (!this._provideMetadataContextMenu(node, e))
+                return;
+        }
 
 
         //if(node.isLeaf()){
