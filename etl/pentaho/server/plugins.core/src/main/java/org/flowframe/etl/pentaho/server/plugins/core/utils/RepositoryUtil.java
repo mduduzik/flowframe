@@ -192,7 +192,7 @@ public class RepositoryUtil {
             int insertIndex = trans.getSteps().size();
 
             //Check for name colusion
-            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo, dir, stepMeta.getStepID(), stepMeta.getName());
+            boolean nameExists = TransformationMetaUtil.stepMetaExists(trans,stepMeta.getName());
             if (nameExists)
                 stepMeta.setName(stepMeta.getName()+"-"+insertIndex);
 
@@ -463,7 +463,8 @@ public class RepositoryUtil {
             int insertIndex = job.getSelectedEntries().size();
 
             //Check for name colusion
-            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo, dir, jobEntryMeta.getEntry().getPluginId(), jobEntryMeta.getName());
+            //TransMeta trans = provideTransformation(repo, dir, csvInputPid);
+            boolean nameExists = false;//TransformationMetaUtil.stepMetaExists(repo, dir, jobEntryMeta.getEntry().getPluginId(), jobEntryMeta.getName());
             if (nameExists)
                 jobEntryMeta.setName(jobEntryMeta.getName()+"-"+insertIndex);
 

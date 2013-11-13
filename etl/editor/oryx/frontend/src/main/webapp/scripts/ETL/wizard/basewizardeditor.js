@@ -7,10 +7,13 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
 
     valuesManager: undefined,
 
+    parentEditor: undefined,
+
     onNewURL: undefined,//e.g. /etl/core/textfileinputmeta/onnew,
     onGetMetadataURL: undefined,//e.g. /etl/core/textfileinputmeta/ongetmetadata,
     onPreviewURL: undefined,//e.g. /etl/core/textfileinputmeta/previewdata
     onSaveURL: undefined,//e.g. /etl/core/textfileinputmeta/save
+    onAddURL: undefined,//e.g. /etl/core/textfileinputmeta/add
     onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete',
     /**
      * Inits this component with the specified config-properties and automatically
@@ -29,6 +32,7 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
             onGetMetadataURL: this.onGetMetadataURL,
             onPreviewURL: this.onPreviewURL,
             onSaveURL: this.onSaveURL,
+            onAddURL: this.onAddURL,
             onDeleteURL: this.onDeleteURL
         });
         this.valuesManager.getFacade().registerFormPanels(this.cards);
@@ -158,6 +162,9 @@ Ext.ux.etl.EditorGridPagingToolbar = Ext.extend(Ext.PagingToolbar,{
     },
     setJsonEntity: function(jsonEntity) {
         this.jsonEntity  = Ext.encode(jsonEntity);
+    },
+    refresh: function() {
+       this.doLoad(this.currentStart);
     },
     //@Override
     doLoad : function(start){

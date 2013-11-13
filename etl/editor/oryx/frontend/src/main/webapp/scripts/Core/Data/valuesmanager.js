@@ -9,6 +9,7 @@ ORYX.Data.ValuesManager = {
     onGetMetadataURL: undefined,//e.g. /etl/core/textfileinputmeta/ongetmetadata,
     onPreviewURL: undefined,//e.g. /etl/core/textfileinputmeta/previewdata
     onSaveURL: undefined,//e.g. /etl/core/textfileinputmeta/save
+    onAddURL: undefined,//e.g. /etl/core/textfileinputmeta/add
     onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete'
 
     eventManager: undefined,
@@ -20,6 +21,7 @@ ORYX.Data.ValuesManager = {
         this.onGetMetadataURL = config.onGetMetadataURL;
         this.onPreviewURL = config.onPreviewURL;
         this.onSaveURL = config.onSaveURL;
+        this.onAddURL = config.onAddURL;
         this.onDeleteURL = config.onDeleteURL;
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED, this.onModelSaved.bind(this));
     },
@@ -51,7 +53,7 @@ ORYX.Data.ValuesManager = {
                 //-- AJAX requests
                 executeOnNewRequest: this._executeOnNewRequest.bind(this),
                 executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this),
-                executeOnPreviewDataRequest: this._executeOnPreviewDataRequest.bind(this)
+                executeOnAddDataRequest: this._executeOnAddDataRequest.bind(this)
             };
 
         // return it.
@@ -142,6 +144,7 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_onBeforeModelSubmission: function() {
+        this._getValuesForSubmission();
         this.formPanels.values().each(function(_formPanel) {
             if (_formPanel.onBeforeModelSubmission)
                 _formPanel.onBeforeModelSubmission();
@@ -191,11 +194,11 @@ ORYX.Data.ValuesManager = {
      }
     //{{
     /**
-     * _executeOnPreviewDataRequest
+     * _executeOnAddDataRequest
      * @param
      */
     //}
-    ,_executeOnPreviewDataRequest: function(successHandler,pagingParams) {
+    ,_executeOnAddDataRequest: function(subDirObjId,successHandler) {
         this._onBeforeModelSubmission();
 
 
@@ -203,7 +206,7 @@ ORYX.Data.ValuesManager = {
 
 
         var options = {
-            url: this.onPreviewURL+'/'+pagingParams.start+'/'+pagingParams.pageSize,
+            url: this.onAddURL+'/'+subDirObjId,
             method: 'POST',
             asynchronous: false,
             params: dataJson,

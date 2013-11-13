@@ -149,12 +149,12 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         return res;
     }
 
-    @Path("/add")
+    @Path("/add/{subDirObjId}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String onAdd(@HeaderParam("userid") String userid,
-                        @HeaderParam("subDirObjId") String subDirObjId,
+                        @PathParam("subDirObjId") String subDirObjId,
                         TextFileInputMeta meta) throws Exception {
         String res = null;
         try {

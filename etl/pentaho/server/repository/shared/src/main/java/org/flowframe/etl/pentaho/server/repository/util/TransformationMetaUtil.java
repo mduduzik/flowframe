@@ -23,12 +23,14 @@ public class TransformationMetaUtil {
         RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repo, new LongObjectId(Long.valueOf(dirId)));
         final CsvInputMeta stepMeta = new CsvInputMeta();
         String csvInputPid = PluginRegistry.getInstance().getPluginId(StepPluginType.class,stepMeta);
-        return stepMetaExists(repo,dir,csvInputPid,stepName);
+
+        TransMeta trans = RepositoryUtil.provideTransformation(repo, dir, csvInputPid);
+
+        return stepMetaExists(trans,stepName);
     }
 
 
-    static public Boolean stepMetaExists(ICustomRepository repo, RepositoryDirectoryInterface dir, String stepInputPid, String stepName) throws KettleException {
-        TransMeta transMeta = RepositoryUtil.provideTransformation(repo, dir, stepInputPid);
+    static public Boolean stepMetaExists(TransMeta transMeta, String stepName) throws KettleException {
         String[] stepNames = transMeta.getStepNames();
         return Arrays.asList(stepNames).contains(stepName);
     }

@@ -96,11 +96,15 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     ]
                 }
             ]
-            ,onAfterModelLoad: function () {
+            ,onBeforeModelSubmission: function () {
                 //Update record
                 var fileNames = [];
                 fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id);
                 this.parentEditor.getValuesManager().updateRecordProperty("fileName",fileNames);
+            }
+            ,onAfterModelLoad: function () {
+                //Update record
+                this.onBeforeModelSubmission()
 
                 //Make form fields look right
                 this.form.setValues({
@@ -294,6 +298,8 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         });
 
         var getmetadataGrid = new Ext.grid.EditorGridPanel({
+            autoScroll: true,
+            height: 300,
             clicksToEdit: 2,
             tbar: controlBar,
             store: getmetadataGridStore,
@@ -428,10 +434,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         selectOnFocus: true
                     })
                 }
-            ]),
-            height: 400,
-            //title:'Company Data',
-            border: true
+            ])
         });
 
         var getMetadataPage = new Ext.ux.etl.BaseWizardEditorPage({
@@ -442,12 +445,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             defaults: {
                 labelStyle: 'font-size:11px'
             },
-            items: [
-                {
-                    layout: 'fit',
-                    items: [getmetadataGrid]
-                }
-            ],
+            items: [getmetadataGrid],
             onCardShow: function (page) {
                 //Call super
                 Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
@@ -476,16 +474,21 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
         var previewDataGrid = new Ext.grid.EditorGridPanel({
             //title: 'test',
-            autoWidth: true,
-            autoHeight: true,
             autoScroll: true,
+            height: 300,
             ds: previewDataDS,
             cm: new Ext.ux.dynagrid.DynamicColumnModel(previewDataDS),
             selModel: new Ext.grid.RowSelectionModel({singleSelect: true}),
             tbar: [
                 {
-                    text: 'Preview', tooltip: 'Refresh data', iconCls: 'icon-refresh', id: 'btn-refresh', listeners: {
-                        //click:{scope:this, fn:wiz.previewData,buffer:200}
+                    text: 'Preview',
+                    tooltip: 'Refresh data',
+                    iconCls: 'icon-refresh',
+                    id: 'btn-refresh',
+                    listeners: {
+                        click: function() {
+                            previewDataGrid.getBottomToolbar().refresh();
+                        }
                     }
                 }
             ],
@@ -532,7 +535,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             defaults: {
                 labelStyle: 'font-size:11px'
             },
-            items: [previewDataGrid],
+            items: [{
+                layout: 'fit',
+                items: [
+                        previewDataGrid
+                    ]
+            }],
             onCardShow: function (card) {
                 Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
 
@@ -546,6 +554,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
         //-- Create New Wizard
         this.newTextFileInputMetaWiz = new Ext.ux.etl.BaseWizardEditor({
+            parentEditor: this,
             eventManager: this.eventManager,
             region: 'center',
             wizMode: this.wizMode,
@@ -573,6 +582,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',//e.g. /etl/core/textfileinputmeta/ongetmetadata,
             onPreviewURL: '/etl/core/textfileinputmeta/previewdata',//e.g. /etl/core/textfileinputmeta/previewdata
             onSaveURL: '/etl/core/textfileinputmeta/save',//e.g. /etl/core/textfileinputmeta/save
+            onAddURL: '/etl/core/textfileinputmeta/add',//e.g. /etl/core/textfileinputmeta/add
             onDeleteURL: '/etl/core/textfileinputmeta/delete',//e.g. '/etl/core/textfileinputmeta/delete'
             onBackToFirstStep : function() {
                 this.cardPanel.getLayout().setActiveItem(0);
@@ -581,220 +591,17 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             onFinish : function()
             {
                 if (this.wizMode === 'CREATE')
-                    this.addMetadata();
+                    this.getValuesManager().executeOnAddDataRequest(this.parentEditor.folderId,function(response, opts) {
+                        var title = this.getValuesManager().getRecord();
+                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
+                        this.parentEditor.newWizDialog.close();
+                    }.bind(this));
                 else if (this.wizMode === 'EDIT')
-                    this.saveMetadata();
-            },
-            saveMetadata: function () {
-                //-- Form data
-                if (this.newTextFileInputMetaWiz.isDirty()) {
-                    var data = this.newTextFileInputMetaWiz.getSelectWizardData([]);//Form
-                    Ext.apply(this.model, data);
-
-                    //--Fields
-                    var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//inputfields
-                    Ext.apply(data, fields);
-
-                    //-- Normalize data
-                    //a hack: checkboxes are returning 'on' for true
-                    if (data.headerPresent === 'on')
-                        data.headerPresent = true;
-                    else
-                        data.headerPresent = false;
-
-
-                    //--Submit
-                    Ext.apply(data,{pathId:this.metaId,subDirObjId:this.folderId})
-                    var dataJson = Ext.encode(data);
-                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                        // here you can put whatever you need as header. For instance:
-                        this.defaultPostHeader = "application/json; charset=utf-8;";
-                        this.defaultHeaders = {userid: 'test'};
-                    });
-                    Ext.Ajax.request({
-                        url: '/etl/core/textfileinputmeta/save',
-                        method: 'POST',
-                        params: dataJson,
-                        success: function (response, opts) {
-                            var meta = Ext.decode(response.responseText);
-                            this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:meta.name,treeNodeParentId:this.parentNavNodeId});
-                            this.newWizDialog.close();
-                        }.bind(this),
-                        failure: function (response, opts) {
-                        }.bind(this)
-                    });
-                }
-            }.bind(this),
-            addMetadata: function () {
-                //-- Form data
-                var data = this.newTextFileInputMetaWiz.getSelectWizardData([]);//Form
-                var formPanel = Ext.getCmp('uploadsamplefile');
-                var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
-                Ext.apply(data, filenameValue);
-                var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
-                Ext.apply(data, feValue);
-
-                //--Fields
-                var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//fields
-                Ext.apply(data, fields);
-
-                //-- Normalize data
-                //a hack: checkboxes are returning 'on' for true
-                if (data.headerPresent === 'on')
-                    data.headerPresent = true;
-                else
-                    data.headerPresent = false;
-                if (data.includingFilename === 'on')
-                    data.includingFilename = true;
-                else
-                    data.includingFilename = false;
-                if (data.isaddresult === 'on')
-                    data.isaddresult = true;
-                else
-                    data.isaddresult = false;
-                if (data.lazyConversionActive === 'on')
-                    data.lazyConversionActive = true;
-                else
-                    data.lazyConversionActive = false;
-                if (data.newlinePossibleInFields === 'on')
-                    data.newlinePossibleInFields = true;
-                else
-                    data.newlinePossibleInFields = false;
-
-
-                //--Submit
-                Ext.apply(data,{subDirObjId:this.folderId})
-                var dataJson = Ext.encode(data);
-                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                    // here you can put whatever you need as header. For instance:
-                    this.defaultPostHeader = "application/json; charset=utf-8;";
-                    this.defaultHeaders = {userid: 'test'};
-                });
-                Ext.Ajax.request({
-                    url: '/etl/core/textfileinputmeta/add',
-                    method: 'POST',
-                    params: dataJson,
-                    success: function (response, opts) {
-                        var meta = Ext.decode(response.responseText);
-                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:meta.name,treeNodeParentId:this.parentNavNodeId});
-                        this.newWizDialog.close();
-                    }.bind(this),
-                    failure: function (response, opts) {
-                    }.bind(this)
-                });
-            }.bind(this),
-            //Called by 'preview' data
-            previewData: function () {
-
-                //-- Form data
-                var data = this.getSelectWizardData([]);//Form
-                var formPanel = Ext.getCmp('uploadsamplefile');
-                var filenameValue = formPanel.form.findField('uploadsamplefile.filename').getSubmitData();
-                Ext.apply(data, filenameValue);
-                var feValue = formPanel.form.findField('uploadsamplefile.fileEntryId').getSubmitData();
-                Ext.apply(data, feValue);
-
-                //--Fields
-                var fields = {inputFields: getmetadataGridStore.reader.jsonData.rows};//fields
-                Ext.apply(data, fields);
-
-                //-- Normalize data
-                //a hack: checkboxes are returning 'on' for true
-                if (data.headerPresent === 'on')
-                    data.headerPresent = true;
-                else
-                    data.headerPresent = false;
-                if (data.includingFilename === 'on')
-                    data.includingFilename = true;
-                else
-                    data.includingFilename = false;
-                if (data.isaddresult === 'on')
-                    data.isaddresult = true;
-                else
-                    data.isaddresult = false;
-                if (data.lazyConversionActive === 'on')
-                    data.lazyConversionActive = true;
-                else
-                    data.lazyConversionActive = false;
-                if (data.newlinePossibleInFields === 'on')
-                    data.newlinePossibleInFields = true;
-                else
-                    data.newlinePossibleInFields = false;
-
-
-                //--Submit
-                var dataJson = Ext.encode(data);
-
-                previewDataDS.load({
-                    params: dataJson
-                });
-            },
-            // Called by 'getmetadata' card
-            getMetadata: function (currentModel) {
-                currentModel = this.updateModel(currentModel);
-
-
-                //--Submit
-                var dataJson = Ext.encode(currentModel);
-                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                    // here you can put whatever you need as header. For instance:
-                    this.defaultPostHeader = "application/json; charset=utf-8;";
-                    this.defaultHeaders = {userid: 'test'};
-                });
-                Ext.Ajax.request({
-                    url: '/etl/core/textfileinputmeta/ongetmetadata',
-                    method: 'POST',
-                    params: dataJson,
-                    success: function (response, opts) {
-                        var recs = Ext.decode(response.responseText);
-                        //Update 'getMetadata' card
-                        getmetadataGridStore.loadData(recs, false);
-                    },
-                    failure: function (response, opts) {
-                        ORYX.Log.error("Request /ongetmetadata error:\n "+response.responseText);
-                        Ext.Msg.show({
-                            title: 'Request error',
-                            msg: 'Error generating metadata. See error log in Browser.',
-                            buttons: Ext.MessageBox.OK
-                        });
-                    }
-                });
-            },
-            //@Override
-            updateModel: function (currentModel) {
-                var cards = this.cards;
-                for (var i = 0, len = cards.length; i < len; i++) {
-                    var cardform = cards[i].form;
-                    if (cardform) {
-                        var values = cardform.getObjectValues();//cardform.getValues(false);
-                        for (p in values) {
-                            if (p in currentModel)
-                                currentModel[p] = values[p];
-                        }
-                    }
-                }
-                return currentModel;
-            }
-            //@Override
-            ,getSelectWizardData: function (cardids) {
-                var formValues = {};
-                var cards = this.cards;
-                for (var i = 0, len = cards.length; i < len; i++) {
-
-                    var cardform = cards[i].form;
-                    if (cardform) {
-                        var values = cardform.getObjectValues();//cardform.getValues(false);
-                        var applyProps = true;
-                        for (p in values) {
-                            var propname = p+'';
-                            if (propname.indexOf('ext-comp-') == 0)
-                                applyProps = false;
-                        }
-                        if (applyProps)
-                            Ext.apply(formValues, values);
-                    }
-                }
-                return formValues;
+                    this.getValuesManager().executeOnAddDataRequest(function(response, opts) {
+                        var title = this.parentEditor.getValuesManager().getRecord();
+                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentNavNodeId});
+                        this.parentEditor.newWizDialog.close();
+                    }.bind(this));
             }
         });
         this.newTextFileInputMetaWiz.addEvents(

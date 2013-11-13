@@ -156,7 +156,7 @@ public class RepositoryUtil {
             int insertIndex = trans.getSteps().size();
 
             //Check for name colusion
-            boolean nameExists = TransformationMetaUtil.stepMetaExists(repo,dir,stepMeta.getStepID(),stepMeta.getName());
+            boolean nameExists = TransformationMetaUtil.stepMetaExists(trans,stepMeta.getName());
             if (nameExists)
                 stepMeta.setName(stepMeta.getName()+"-"+insertIndex);
 
