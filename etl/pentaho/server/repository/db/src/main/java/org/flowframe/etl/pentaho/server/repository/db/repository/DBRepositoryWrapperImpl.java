@@ -191,6 +191,14 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
             dir = createRepositoryDirectory(mdDir, FOLDER_METADATA_DELIMITED);
         return dir;
     }
+
+    public RepositoryDirectoryInterface provideMetadataDirectoryByItemTypeForTenant(Organization tenant, String itemType) throws KettleException {
+        RepositoryDirectoryInterface mdDir = provideMetadataDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = mdDir.findDirectory(itemType);
+        if (dir == null)
+            dir = createRepositoryDirectory(mdDir, itemType);
+        return dir;
+    }
 	
 	@Override
 	public void deleteDirectoryForTenant(Organization tenant) throws KettleException {

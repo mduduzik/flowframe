@@ -110,6 +110,15 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
 });
 
 Ext.ux.etl.BaseWizardEditorPage = Ext.extend(Ext.ux.Wiz.Card , {
+    monitorValid: true,
+    defaultType: 'textfield',
+    labelWidth: 200,
+    //labelStyle: 'font-size:11px; padding: 10px 10px;',
+    //labelAlign: 'right',
+    //align: 'left',
+    defaults: {
+        width: 600
+    },
     parentEditor : undefined,
     initialized : false,
     onAfterModelLoad: undefined,

@@ -31,6 +31,7 @@ public interface ICustomRepository extends Repository {
      * Metadata Tenant Directory Methods
      */
     public RepositoryDirectoryInterface provideMetadataDirectoryForTenant(Organization tenant) throws KettleException;
+    public RepositoryDirectoryInterface provideMetadataDirectoryByItemTypeForTenant(Organization tenant, String itemType) throws KettleException;
     public RepositoryDirectoryInterface provideDBConnectionsMetadataDirectoryForTenant(Organization tenant) throws KettleException;
     public RepositoryDirectoryInterface provideExcelMetadataDirectoryForTenant(Organization tenant) throws KettleException;
     public RepositoryDirectoryInterface provideDelimitedMetadataDirectoryForTenant(Organization tenant) throws KettleException;

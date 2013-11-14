@@ -157,6 +157,10 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_executeOnNewRequest: function() {
+        this.eventManager.raiseEvent({
+            type: ORYX.CONFIG.EVENT_LOADING_ENABLE,
+            text: 'Loading new record'
+        });
         var options = {
             url: this.onNewURL,
             method: 'GET',
@@ -166,8 +170,15 @@ ORYX.Data.ValuesManager = {
                 this._loadRecord(record);
 
                 this._onAfterModelLoad();
+
+                this.eventManager.raiseEvent({
+                    type: ORYX.CONFIG.EVENT_LOADING_DISABLE
+                });
             }.bind(this),
             failure: function (response, opts) {
+                this.eventManager.raiseEvent({
+                    type: ORYX.CONFIG.EVENT_LOADING_DISABLE
+                });
             }.bind(this)
         };
         return this._executeRequest(options);

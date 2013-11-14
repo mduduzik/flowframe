@@ -52,49 +52,21 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         var selectSampleFilePage = new Ext.ux.etl.BaseWizardEditorPage({
             id: "uploadsamplefile",
             title: 'Sample File',
-            monitorValid: true,
-            isUpload: true,
-            defaults: {
-                labelStyle: 'font-size:11px',
-                labelAlign: 'right',
-                align: 'left'
-            },
-            layout: 'column',
-
             items: [
-                {
-                    xtype: 'fieldset',
-                    labelWidth: 200,
-                    layoutConfig: {
-                        labelAlign: 'right'
+                    {
+                        fieldLabel: 'File Title',
+                        name: 'fileTitle',
+                        disabled: true,
+                        allowBlank: false,
+                        getSubmitData: this.getDisabledFieldValue//read-only hack
                     },
-                    //title:'Company details',
-                    defaults: {width: 350},	// Default config options for child items
-                    defaultType: 'textfield',
-                    autoHeight: true,
-                    bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
-                    border: false,
-                    style: {
-                        "margin-left": "10px", // when you add custom margin in IE 6...
-                        "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
-                    },
-                    items: [
-                        {
-                            fieldLabel: 'File Title',
-                            name: 'fileTitle',
-                            disabled: true,
-                            allowBlank: false,
-                            getSubmitData: this.getDisabledFieldValue//read-only hack
-                        },
-                        {
-                            fieldLabel: 'File URI',
-                            name: 'fileName',
-                            disabled: true,
-                            allowBlank: false,
-                            getSubmitData: this.getDisabledFieldValue//read-only hack
-                        }
-                    ]
-                }
+                    {
+                        fieldLabel: 'File URI',
+                        name: 'fileName',
+                        disabled: true,
+                        allowBlank: false,
+                        getSubmitData: this.getDisabledFieldValue//read-only hack
+                    }
             ]
             ,onBeforeModelSubmission: function () {
                 //Update record
@@ -118,142 +90,111 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         var enterMetadataSettingsPage = new Ext.ux.etl.BaseWizardEditorPage({
             id: "entermetadatasettings",
             title: 'Enter/change settings',
-            monitorValid: true,
-            defaults: {
-                labelStyle: 'font-size:11px',
-                labelAlign: 'right',
-                align: 'left'
-            },
-            layout: 'column',
-
             items: [
                 {
-                    xtype: 'fieldset',
-                    labelWidth: 200,
-                    layoutConfig: {
-                        labelAlign: 'right'
-                    },
-                    //title:'Company details',
-                    defaults: {width: 350},	// Default config options for child items
-                    defaultType: 'textfield',
-                    autoHeight: true,
-                    bodyStyle: Ext.isIE ? 'padding:0 0 5px 15px;' : 'padding:10px 15px;',
-                    border: false,
-                    style: {
-                        "margin-left": "10px", // when you add custom margin in IE 6...
-                        "margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0"  // you have to adjust for it somewhere else
-                    },
-                    items: [
-                        {
-                            fieldLabel: 'Metadata Name',
-                            name: 'name',
-                            emptyText: '<Enter name>',
-                            allowBlank: false
-                        },
-                        {
-                            xtype:'combo',
-                            fieldLabel:'File Type',
-                            name:'fileType',
-                            displayField:'text',
-                            valueField:'value',
-                            store : new Ext.data.SimpleStore({
-                                fields: ["value","text"],
-                                data: [
-                                    ["CSV","CSV"],
-                                    ["Fixed","Fixed"]
-                                ]
-                            }),
-                            typeAhead: true,
-                            triggerAction: 'all',
-                            value:"CSV",
-                            selectOnFocus:false,
-                            editable:false,
-                            forceSelection:false,
-                            allowBlank:true,
-                            mode:'local',
-                            emptyText : "FileType is Required"
-                        },
-                        {
-                            fieldLabel: 'Row Number Field',
-                            name: 'rowNumberField',
-                            value: 'lineNumber'
-                        },
-                        {
-                            xtype: 'xcheckbox',
-                            fieldLabel: 'Header?',
-                            name: 'header',
-                            inputValue: true,
-                            value: true,
-                            width: 15
-                        },
-                        {
-                            fieldLabel: 'Separator',
-                            name: 'separator',
-                            emptyText: '<Enter delimiter or separator>',
-                            allowBlank: false,
-                            value: ','
-                        },
-                        {
-                            fieldLabel: 'Enclosure',
-                            name: 'enclosure',
-                            value: '"'
-                        },
-                        {
-                            xtype: 'numberfield',
-                            fieldLabel: 'Number of header lines',
-                            name: 'nrHeaderLines',
-                            style: 'text-align: left',
-                            value: 1
-                        },
-                        {
-                            xtype: 'xcheckbox',
-                            fieldLabel: 'Rownum in output?',
-                            name: 'includeRowNumber',
-                            width: 15,
-                            inputValue: true,
-                            value: true
-                        },
-                        {
-                            xtype: 'combo',
-                            name: 'encoding',
-                            fieldLabel: 'Encoding',
-                            hiddenName: 'encoding',
-                            store: new Ext.data.Store({
-                                id: "store",
-                                remoteSort: true,
-                                autoLoad: {params: {start: 1, limit: 2}},
-                                proxy: new Ext.data.ScriptTagProxy({
-                                    url: '/etl/core/encoding/getall'
-                                }),
-                                reader: new Ext.data.JsonReader({
-                                    root: 'data',
-                                    totalProperty: 'totalCount'
-                                }, [
-                                    {name: 'id', mapping: 'id'},
-                                    {name: 'code', mapping: 'code'},
-                                    {name: 'description', mapping: 'description'}
-                                ])
-                            }),
+                    fieldLabel: 'Metadata Name',
+                    name: 'name',
+                    emptyText: '<Enter name>',
+                    allowBlank: false
+                },
+                {
+                    xtype:'combo',
+                    fieldLabel:'File Type',
+                    name:'fileType',
+                    displayField:'text',
+                    valueField:'value',
+                    store : new Ext.data.SimpleStore({
+                        fields: ["value","text"],
+                        data: [
+                            ["CSV","CSV"],
+                            ["Fixed","Fixed"]
+                        ]
+                    }),
+                    typeAhead: true,
+                    triggerAction: 'all',
+                    value:"CSV",
+                    selectOnFocus:false,
+                    editable:false,
+                    forceSelection:false,
+                    allowBlank:true,
+                    mode:'local',
+                    emptyText : "FileType is Required"
+                },
+                {
+                    fieldLabel: 'Row Number Field',
+                    name: 'rowNumberField',
+                    value: 'lineNumber'
+                },
+                {
+                    xtype: 'xcheckbox',
+                    fieldLabel: 'Header?',
+                    name: 'header',
+                    inputValue: true,
+                    value: true
+                },
+                {
+                    fieldLabel: 'Separator',
+                    name: 'separator',
+                    emptyText: '<Enter delimiter or separator>',
+                    allowBlank: false,
+                    value: ','
+                },
+                {
+                    fieldLabel: 'Enclosure',
+                    name: 'enclosure',
+                    value: '"'
+                },
+                {
+                    xtype: 'numberfield',
+                    fieldLabel: 'Number of header lines',
+                    name: 'nrHeaderLines',
+                    style: 'text-align: left',
+                    value: 1
+                },
+                {
+                    xtype: 'xcheckbox',
+                    fieldLabel: 'Rownum in output?',
+                    name: 'includeRowNumber',
+                    inputValue: true,
+                    value: true
+                },
+                {
+                    xtype: 'combo',
+                    name: 'encoding',
+                    fieldLabel: 'Encoding',
+                    hiddenName: 'encoding',
+                    store: new Ext.data.Store({
+                        id: "store",
+                        remoteSort: true,
+                        autoLoad: {params: {start: 1, limit: 2}},
+                        proxy: new Ext.data.ScriptTagProxy({
+                            url: '/etl/core/encoding/getall'
+                        }),
+                        reader: new Ext.data.JsonReader({
+                            root: 'data',
+                            totalProperty: 'totalCount'
+                        }, [
+                            {name: 'id', mapping: 'id'},
+                            {name: 'code', mapping: 'code'},
+                            {name: 'description', mapping: 'description'}
+                        ])
+                    }),
 
-                            valueField: 'code',
-                            displayField: 'description',
-                            typeAhead: true,
-                            mode: 'local',
-                            triggerAction: 'all',
-                            emptyText: 'Select encoding...',
-                            selectOnFocus: true,
-                            width: 190
-                        }
-                        ,
-                        {
-                            xtype: 'xcheckbox',
-                            fieldLabel: 'Newline Possible In Fields',
-                            name: 'newlinePossibleInFields',
-                            inputValue: false,
-                            value: false,
-                            width: 15
-                        }
-                    ]
+                    valueField: 'code',
+                    displayField: 'description',
+                    typeAhead: true,
+                    mode: 'local',
+                    triggerAction: 'all',
+                    emptyText: 'Select encoding...',
+                    selectOnFocus: true
+                }
+                ,
+                {
+                    xtype: 'xcheckbox',
+                    fieldLabel: 'Newline Possible In Fields',
+                    name: 'newlinePossibleInFields',
+                    inputValue: false,
+                    value: false
                 }
             ]
             ,onBeforeModelSubmission: function () {
@@ -532,15 +473,9 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             title: 'Preview data',
             monitorValid: true,
             layout: 'fit',
-            defaults: {
-                labelStyle: 'font-size:11px'
-            },
-            items: [{
-                layout: 'fit',
-                items: [
-                        previewDataGrid
-                    ]
-            }],
+            items: [
+                previewDataGrid
+            ],
             onCardShow: function (card) {
                 Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
 
