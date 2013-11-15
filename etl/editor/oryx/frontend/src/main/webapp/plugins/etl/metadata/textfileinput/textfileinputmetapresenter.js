@@ -10,26 +10,11 @@ if (!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
 }
 
-ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
-
-    eventManager: undefined,
-    dataPresenter: undefined,
-    folderId: undefined,
-    metaId: undefined,
-    parentNavNodeId: undefined,
-    wizMode: undefined,  //EDITING, CREATE
-
-    editorDialog: undefined,
-    stepMetaWizard: undefined,
-
-    model: undefined,
-
+ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter.extend({
     construct: function (eventManager) {
-        // Reference to the Editor-Interface
+        this.itemType = ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA;
         this.eventManager = eventManager;
-
-        //Init data manager
-        this.dataPresenter = new ORYX.ETL.DataPresenter({eventManager: this.eventManager,
+        this.dataConfig = {
             onNewURL: '/etl/core/textfileinputmeta/onnew',
             onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',
             onPreviewURL: '/etl/core/textfileinputmeta/previewdata',
@@ -37,16 +22,13 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             onAddURL: '/etl/core/textfileinputmeta/add',
             onEditURL: '/etl/core/textfileinputmeta/onedit',
             onDeleteURL: '/etl/core/textfileinputmeta/delete'
-        });
+        };
 
-
-
-        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onCreate.bind(this));
-        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onEdit.bind(this));
-        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onDelete.bind(this));
+        // Call super class constructor
+        arguments.callee.$.construct.apply(this, arguments);
     },
 
-
+    //@Override
     initWizard: function () {
         var uploaderPanel = new Ext.ux.UploadPanel({
             layout: 'fit',
@@ -492,19 +474,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                         }
                     }]
             })
-            /*,
-             bbar : new Ext.PagingToolbar({
-             store:previewDataDS
-             ,displayInfo:true
-             ,pageSize:10
-             }),
-             plugins: [
-             new Ext.ux.grid.Search({
-             iconCls: 'icon-zoom',
-             readonlyIndexes: ['note'],
-             disableIndexes: ['pctChange']
-             })
-             ]*/
         });
 
         var previewDataPage = new Ext.ux.etl.BaseWizardCardView({
@@ -591,121 +560,5 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
         );
         this.stepMetaWizard.on('cancel', this.onBeforeCancel, this);
-    },
-
-    /**
-     *
-     */
-    onBeforeCancel: function() {
-        if (this.stepMetaWizard.isDirty()) {
-            Ext.MessageBox.show({
-                title:'Save Changes?',
-                msg: 'There might be unsaved changes. <br />Do you still want to cancel?',
-                buttons: Ext.MessageBox.YESNO,
-                fn: function(btn){
-                    if (btn === 'yes'){
-                        this.editorDialog.close();
-                    }
-                }.bind(this),
-                icon: Ext.MessageBox.QUESTION
-            });
-        }
-        return false;//Don't close wizard - close dialog
-    },
-
-    /**
-     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX+'DBConnection' Event
-     * @param event
-     * @param arg - tree node
-     */
-    onCreate: function (event, arg) {
-        this.wizMode = 'CREATE';
-        this.folderId = arg.folderId;
-        this.parentNavNodeId = arg.sourceNavNodeId;
-        this.sampleFileNode = arg.dropData.source;
-
-        this.metaName = 'New TextFileInput Metadata';
-
-        //-- Launch
-        this._launchEditor();
-    },
-    /**
-     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX+'DBConnection' Event
-     * @param event
-     * @param arg - tree node
-     */
-    onEdit: function (event, arg) {
-        this.wizMode = 'EDIT';
-        this.folderId = arg.folderId;
-        this.metaId = arg.sourceNavNodeId;
-
-        this.metaName = 'Editing '+arg.title;
-
-        //-- Launch
-        this._launchEditor();
-    },
-    _launchEditor: function() {
-        // Editor dialog
-        this.initWizard();
-
-        this.editorDialog = new Ext.Window({
-            autoScroll: false,
-            autoCreate: true,
-            closeAction:'destroy',
-            title: this.metaName,
-            height: 500,
-            width: 850,
-            modal: true,
-            collapsible: false,
-            fixedcenter: true,
-            shadow: true,
-            proxyDrag: true,
-            layout: 'fit',
-            keys: [
-                {
-                    key: 27,
-                    fn: function () {
-                        this.editorDialog.hide
-                    }.bind(this)
-                }
-            ],
-            items: [this.stepMetaWizard],
-            bodyStyle: "background-color:#FFFFFF"
-        });
-
-        this.editorDialog.show();
-    },
-    /**
-     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'CSVMeta' Event
-     * @param event
-     * @param arg - tree node
-     */
-    onDelete: function (event, arg) {
-        this.wizMode = 'EDIT';
-        this.folderId = arg.parentSourceNavNodeId;
-        this.metaId = arg.sourceNavNodeId;
-        this.metaName = arg.title;
-
-        Ext.MessageBox.show({
-            title:'Confirm delete.',
-            msg: 'Delete '+arg.title+' ?',
-            buttons: Ext.MessageBox.YESNO,
-            fn: function(btn){
-                if (btn === 'yes'){
-                    this.dataPresenter.executeOnDeleteDataRequest(this.metaId,function(message) {
-                        Ext.MessageBox.show({
-                            title:'Success',
-                            msg: message,
-                            buttons: Ext.MessageBox.OK,
-                            icon: Ext.MessageBox.INFO
-                        });
-                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_DELETED,forceExecution:true,treeNodeParentId:this.folderId});
-
-                    }.bind(this));
-                }
-            }.bind(this),
-            icon: Ext.MessageBox.QUESTION
-        });
     }
-}
-ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = Clazz.extend(ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor);
+})

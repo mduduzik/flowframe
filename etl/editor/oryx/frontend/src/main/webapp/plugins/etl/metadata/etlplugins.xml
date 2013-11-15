@@ -3,6 +3,6 @@
 	<plugins>
 		<plugin source="etl/metadata/dbconnection/dbconnectioneditor.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionEditor"/>
         <plugin source="etl/metadata/csv/csvmetaeditor.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaEditor"/>
-        <plugin source="etl/metadata/textfileinput/textfileinputmetaeditor.js" name="ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor"/>
+        <plugin source="etl/metadata/textfileinput/textfileinputmetapresenter.js" name="ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter"/>
 	</plugins>
 </config>

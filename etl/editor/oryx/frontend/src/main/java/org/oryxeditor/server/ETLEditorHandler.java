@@ -377,7 +377,7 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/presenter/datapresenter.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/pluginmanager.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/ETL/wizard/basewizardeditor.js\" type=\"text/javascript\" />\n";
-
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/mvp/view/basecardview.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/mvp/presenter/stepmetabasepresenter.js\" type=\"text/javascript\" />\n";
     }
 }
