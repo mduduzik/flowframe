@@ -1,11 +1,11 @@
 Ext.namespace('Ext.ux', 'Ext.ux.etl');
 
-Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
+Ext.ux.etl.BaseCardView = Ext.extend(Ext.ux.Wiz, {
     initParams: undefined,
 
     eventManager : undefined,
 
-    valuesManager: undefined,
+    presenter: undefined,
 
     parentEditor: undefined,
 
@@ -15,6 +15,8 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
     onSaveURL: undefined,//e.g. /etl/core/textfileinputmeta/save
     onAddURL: undefined,//e.g. /etl/core/textfileinputmeta/add
     onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete',
+
+    onLoadModel: undefined,
     /**
      * Inits this component with the specified config-properties and automatically
      * creates its components.
@@ -26,16 +28,8 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
             _card.setParentEditor(this);
         }.bind(this));
 
-        //Init data manager
-        this.valuesManager = new ORYX.Data.ValuesManager({eventManager: this.eventManager,
-            onNewURL: this.onNewURL,
-            onGetMetadataURL: this.onGetMetadataURL,
-            onPreviewURL: this.onPreviewURL,
-            onSaveURL: this.onSaveURL,
-            onAddURL: this.onAddURL,
-            onDeleteURL: this.onDeleteURL
-        });
-        this.valuesManager.getFacade().registerFormPanels(this.cards);
+
+        this.dataPresenter.getFacade().registerFormPanels(this.cards);
         this.addEvents(
             /**
              * @event aftermodelupdate
@@ -57,10 +51,10 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
 
         //--Events
         this.on('render',function() {
-            this.valuesManager.getFacade().executeOnNewRequest();
+            this.onLoadModel();
         },this);
 
-        Ext.ux.etl.BaseWizardEditor.superclass.initComponent.call(this);
+        Ext.ux.etl.BaseCardView.superclass.initComponent.call(this);
     },
 
 // -------- helper
@@ -72,9 +66,9 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
      *
      * @return {Array}
      */
-    getValuesManager : function()
+    getDataPresenter : function()
     {
-        return this.valuesManager.getFacade();
+        return this.dataPresenter.getFacade();
     }
     /**
      * Returns the form-data of all cards in this wizard. The first index is the
@@ -86,30 +80,30 @@ Ext.ux.etl.BaseWizardEditor = Ext.extend(Ext.ux.Wiz, {
      */
     ,getValuesForSubmission : function()
     {
-        return this.valuesManager.getFacade().getValuesForSubmission();
+        return this.dataPresenter.getFacade().getValuesForSubmission();
     },
     /**
      * Loads data to cards/forms
      */
     loadRecord : function(record)
     {
-        this.valuesManager.getFacade().loadRecord(record);
+        this.dataPresenter.getFacade().loadRecord(record);
     },
     /**
      * Check if dirty
      */
     isDirty : function()
     {
-        this.valuesManager.getFacade().isDirty()
+        this.dataPresenter.getFacade().isDirty()
     }
     ,isDirty : function()
     {
-        this.valuesManager.getFacade().isDirty()
+        this.dataPresenter.getFacade().isDirty()
     }
 
 });
 
-Ext.ux.etl.BaseWizardEditorPage = Ext.extend(Ext.ux.Wiz.Card , {
+Ext.ux.etl.BaseWizardCardView = Ext.extend(Ext.ux.Wiz.Card , {
     monitorValid: true,
     defaultType: 'textfield',
     labelWidth: 200,
@@ -128,7 +122,7 @@ Ext.ux.etl.BaseWizardEditorPage = Ext.extend(Ext.ux.Wiz.Card , {
 
         //var itemsConfig = {items: this.items};
 
-        Ext.ux.etl.BaseWizardEditorPage.superclass.initComponent.call(this);
+        Ext.ux.etl.BaseWizardCardView.superclass.initComponent.call(this);
 
         //Ext.apply(this.form,itemsConfig);
     },

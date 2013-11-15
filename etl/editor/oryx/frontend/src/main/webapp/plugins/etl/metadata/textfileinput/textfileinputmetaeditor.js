@@ -13,12 +13,13 @@ if (!ORYX.Plugins.ETL.Metadata) {
 ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
 
     eventManager: undefined,
+    dataPresenter: undefined,
     folderId: undefined,
     metaId: undefined,
     parentNavNodeId: undefined,
     wizMode: undefined,  //EDITING, CREATE
 
-    newWizDialog: undefined,
+    editorDialog: undefined,
     stepMetaWizard: undefined,
 
     model: undefined,
@@ -27,13 +28,26 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         // Reference to the Editor-Interface
         this.eventManager = eventManager;
 
+        //Init data manager
+        this.dataPresenter = new ORYX.ETL.DataPresenter({eventManager: this.eventManager,
+            onNewURL: '/etl/core/textfileinputmeta/onnew',
+            onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',
+            onPreviewURL: '/etl/core/textfileinputmeta/previewdata',
+            onSaveURL: '/etl/core/textfileinputmeta/save',
+            onAddURL: '/etl/core/textfileinputmeta/add',
+            onEditURL: '/etl/core/textfileinputmeta/onedit',
+            onDeleteURL: '/etl/core/textfileinputmeta/delete'
+        });
+
+
+
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onCreate.bind(this));
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onEdit.bind(this));
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA, this.onDelete.bind(this));
     },
 
 
-    initPages: function () {
+    initWizard: function () {
         var uploaderPanel = new Ext.ux.UploadPanel({
             layout: 'fit',
             xtype: 'uploadpanel',
@@ -49,7 +63,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         /**
          * Pages
          */
-        var selectSampleFilePage = new Ext.ux.etl.BaseWizardEditorPage({
+        var selectSampleFilePage = new Ext.ux.etl.BaseWizardCardView({
             id: "uploadsamplefile",
             title: 'Sample File',
             items: [
@@ -69,25 +83,43 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                     }
             ]
             ,onBeforeModelSubmission: function () {
-                //Update record
-                var fileNames = [];
-                fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id);
-                this.parentEditor.getValuesManager().updateRecordProperty("fileName",fileNames);
+                if (this.parentEditor.wizMode === 'CREATE') {
+                    //Update record
+                    var fileNames = [];
+                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id);
+                    this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
+                }
+                else if (this.parentEditor.wizMode === 'EDIT') {
+                    var fileNames = [];
+                    fileNames.push(this.parentEditor.getDataPresenter().getRecord().fileName);
+                    this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
+                }
             }
             ,onAfterModelLoad: function () {
-                //Update record
-                this.onBeforeModelSubmission()
+                if (this.parentEditor.wizMode === 'CREATE') {
+                    //Update record
+                    this.onBeforeModelSubmission()
 
-                //Make form fields look right
-                this.form.setValues({
-                    fileTitle: this.parentEditor.initParams.sampleFileNode.text,
-                    fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
-                })
+                    //Make form fields look right
+                    this.form.setValues({
+                        fileTitle: this.parentEditor.initParams.sampleFileNode.text,
+                        fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
+                    })
+                }
+                else if (this.parentEditor.wizMode === 'EDIT') {
+                    var fileURI =  this.parentEditor.getDataPresenter().getRecord().fileName[0];//ff:// format
+                    this.parentEditor.getDataPresenter().getFileEntryInfo(fileURI, function(fileinfo) {
+                        this.form.setValues({
+                            fileTitle: fileinfo.title,
+                            fileName: fileURI
+                        })
+                    }.bind(this));
+                }
             }
         });
 
 
-        var enterMetadataSettingsPage = new Ext.ux.etl.BaseWizardEditorPage({
+        var enterMetadataSettingsPage = new Ext.ux.etl.BaseWizardCardView({
             id: "entermetadatasettings",
             title: 'Enter/change settings',
             items: [
@@ -201,7 +233,14 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 var parentStepMeta = {
                     stepname: this.getForm().getObjectValues().name
                 };
-                this.parentEditor.getValuesManager().updateRecordProperty("parentStepMeta",parentStepMeta);
+                this.parentEditor.getDataPresenter().updateRecordProperty("parentStepMeta",parentStepMeta);
+            }
+            ,onAfterModelLoad: function () {
+                //Populate form
+                var name =  this.parentEditor.getDataPresenter().getRecord().parentStepMeta.stepname;
+                this.form.setValues({
+                    name: name
+                })
             }
         });
 
@@ -378,7 +417,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             ])
         });
 
-        var getMetadataPage = new Ext.ux.etl.BaseWizardEditorPage({
+        var getMetadataPage = new Ext.ux.etl.BaseWizardCardView({
             name: 'getmetadata',
             title: 'Get metadata fields',
             monitorValid: true,
@@ -389,12 +428,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             items: [getmetadataGrid],
             onCardShow: function (page) {
                 //Call super
-                Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
+                Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
 
-                this.parentEditor.getValuesManager().executeOnGetMetadataRequest(function(response, opts) {
+                this.parentEditor.getDataPresenter().executeOnGetMetadataRequest(function(response, opts) {
                     var data = Ext.decode(response.responseText);
                     getmetadataGridStore.loadData(data, false);
-                    this.parentEditor.getValuesManager().updateRecordProperty("inputFields",data.rows);
+                    this.parentEditor.getDataPresenter().updateRecordProperty("inputFields",data.rows);
                 }.bind(this));
             }
         });
@@ -468,7 +507,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
              ]*/
         });
 
-        var previewDataPage = new Ext.ux.etl.BaseWizardEditorPage({
+        var previewDataPage = new Ext.ux.etl.BaseWizardCardView({
             name: 'previewdata',
             title: 'Preview data',
             monitorValid: true,
@@ -477,10 +516,10 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 previewDataGrid
             ],
             onCardShow: function (card) {
-                Ext.ux.etl.BaseWizardEditorPage.prototype.onCardShow.apply(this, arguments);
+                Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
 
                 //Setup BBAR - update record
-                previewDataGrid.getBottomToolbar().setJsonEntity(this.parentEditor.getValuesManager().getRecord());
+                previewDataGrid.getBottomToolbar().setJsonEntity(this.parentEditor.getDataPresenter().getRecord());
 
                 //Init paged load
                 previewDataGrid.getBottomToolbar().doLoad(0);
@@ -488,11 +527,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         });
 
         //-- Create New Wizard
-        this.stepMetaWizard = new Ext.ux.etl.BaseWizardEditor({
+        this.stepMetaWizard = new Ext.ux.etl.BaseCardView({
             parentEditor: this,
             eventManager: this.eventManager,
             region: 'center',
             wizMode: this.wizMode,
+            metaId: this.metaId,
             buttonsAt: 'bbar',
             headerConfig: {
                 title: 'Text File Input Metadata'
@@ -513,29 +553,32 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             initParams: {
                 sampleFileNode: this.sampleFileNode
             },
-            onNewURL: '/etl/core/textfileinputmeta/onnew',//e.g. /etl/core/textfileinputmeta/onnew,
-            onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',//e.g. /etl/core/textfileinputmeta/ongetmetadata,
-            onPreviewURL: '/etl/core/textfileinputmeta/previewdata',//e.g. /etl/core/textfileinputmeta/previewdata
-            onSaveURL: '/etl/core/textfileinputmeta/save',//e.g. /etl/core/textfileinputmeta/save
-            onAddURL: '/etl/core/textfileinputmeta/add',//e.g. /etl/core/textfileinputmeta/add
-            onDeleteURL: '/etl/core/textfileinputmeta/delete',//e.g. '/etl/core/textfileinputmeta/delete'
+            dataPresenter: this.dataPresenter,
             onBackToFirstStep : function() {
                 this.cardPanel.getLayout().setActiveItem(0);
+            },
+            //@Ovveriide
+            onLoadModel: function() {//usually called on render event
+                if (this.wizMode === 'CREATE')
+                    this.getDataPresenter().executeOnNewRequest();
+                else if (this.wizMode === 'EDIT')
+                    this.getDataPresenter().executeOnEditDataRequest(this.metaId,function(response, opts) {
+                    }.bind(this));
             },
             //@Override
             onFinish : function()
             {
                 if (this.wizMode === 'CREATE')
-                    this.getValuesManager().executeOnAddDataRequest(this.parentEditor.folderId,function(response, opts) {
-                        var title = this.getValuesManager().getRecord();
+                    this.getDataPresenter().executeOnAddDataRequest(this.parentEditor.folderId,function(response, opts) {
+                        var title = this.getDataPresenter().getRecord().name;
                         this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
-                        this.parentEditor.newWizDialog.close();
+                        this.parentEditor.editorDialog.close();
                     }.bind(this));
                 else if (this.wizMode === 'EDIT')
-                    this.getValuesManager().executeOnAddDataRequest(function(response, opts) {
-                        var title = this.parentEditor.getValuesManager().getRecord();
-                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentNavNodeId});
-                        this.parentEditor.newWizDialog.close();
+                    this.getDataPresenter().executeOnAddDataRequest(this.metaId,function(response, opts) {
+                        var title = this.parentEditor.getDataPresenter().getRecord();
+/*                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentNavNodeId});
+                        this.parentEditor.editorDialog.close();*/
                     }.bind(this));
             }
         });
@@ -561,7 +604,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 buttons: Ext.MessageBox.YESNO,
                 fn: function(btn){
                     if (btn === 'yes'){
-                        this.newWizDialog.close();
+                        this.editorDialog.close();
                     }
                 }.bind(this),
                 icon: Ext.MessageBox.QUESTION
@@ -581,14 +624,35 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
         this.parentNavNodeId = arg.sourceNavNodeId;
         this.sampleFileNode = arg.dropData.source;
 
-        // Basic Dialog
-        this.initPages();
+        this.metaName = 'New TextFileInput Metadata';
 
-        this.newWizDialog = new Ext.Window({
+        //-- Launch
+        this._launchEditor();
+    },
+    /**
+     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX+'DBConnection' Event
+     * @param event
+     * @param arg - tree node
+     */
+    onEdit: function (event, arg) {
+        this.wizMode = 'EDIT';
+        this.folderId = arg.folderId;
+        this.metaId = arg.sourceNavNodeId;
+
+        this.metaName = 'Editing '+arg.title;
+
+        //-- Launch
+        this._launchEditor();
+    },
+    _launchEditor: function() {
+        // Editor dialog
+        this.initWizard();
+
+        this.editorDialog = new Ext.Window({
             autoScroll: false,
             autoCreate: true,
             closeAction:'destroy',
-            title: 'New Text File Input Metadata',
+            title: this.metaName,
             height: 500,
             width: 850,
             modal: true,
@@ -601,7 +665,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
                 {
                     key: 27,
                     fn: function () {
-                        this.newWizDialog.hide
+                        this.editorDialog.hide
                     }.bind(this)
                 }
             ],
@@ -609,69 +673,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             bodyStyle: "background-color:#FFFFFF"
         });
 
-        this.newWizDialog.show();
-    },
-    /**
-     * Handle ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX+'DBConnection' Event
-     * @param event
-     * @param arg - tree node
-     */
-    onEdit: function (event, arg) {
-        this.wizMode = 'EDIT';
-        this.folderId = arg.folderId;
-        this.metaId = arg.sourceNavNodeId;
-        this.metaName = arg.title;
-
-        // Basic Dialog
-        this.initPages();
-
-        this.stepMetaWizard.on('render',function() {
-            // Get data
-            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                // here you can put whatever you need as header. For instance:
-                this.defaultPostHeader = "application/json; charset=utf-8;";
-                this.defaultHeaders = {userid: 'test'};
-            });
-            Ext.Ajax.request({
-                url: '/etl/core/textfileinputmeta/onedit',
-                method: 'GET',
-                params: {pathId:this.metaId},
-                success: function (response, opts) {
-                    var rec = Ext.decode(response.responseText);
-                    this.stepMetaWizard.loadRecord({data:rec});
-                    //read-only field hack - update 'filename' field
-                    var field = Ext.getCmp('uploadsamplefile.filename');
-                    field.setValue(rec.filename);
-                }.bind(this)
-            });
-        },this);
-
-        this.newWizDialog = new Ext.Window({
-            autoScroll: false,
-            autoCreate: true,
-            closeAction:'destroy',
-            title: 'Editing...',
-            height: 450,
-            width: 800,
-            modal: true,
-            collapsible: false,
-            fixedcenter: true,
-            shadow: true,
-            proxyDrag: true,
-            layout: 'fit',
-            keys: [
-                {
-                    key: 27,
-                    fn: function () {
-                        this.newWizDialog.hide
-                    }.bind(this)
-                }
-            ],
-            items: [this.stepMetaWizard],
-            bodyStyle: "background-color:#FFFFFF"
-        });
-        this.newWizDialog.setTitle('Editing '+this.metaName);
-        this.newWizDialog.show();
+        this.editorDialog.show();
     },
     /**
      * Handle ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX+'CSVMeta' Event
@@ -690,26 +692,16 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaEditor = {
             buttons: Ext.MessageBox.YESNO,
             fn: function(btn){
                 if (btn === 'yes'){
-                    Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-                        // here you can put whatever you need as header. For instance:
-                        this.defaultPostHeader = "application/json; charset=utf-8;";
-                        this.defaultHeaders = {userid: 'test'};
-                    });
-                    Ext.Ajax.request({
-                        url: '/etl/core/textfileinputmeta/delete',
-                        method: 'DELETE',
-                        params: Ext.encode({name:this.metaName,pathId:this.metaId}),
-                        success: function (response, opts) {
-                            var text = Ext.encode(response.responseText);
-                            Ext.MessageBox.show({
-                                title:'Success',
-                                msg: text,
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.INFO
-                            });
-                            this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_DELETED,forceExecution:true,treeNodeParentId:this.folderId});
-                        }.bind(this)
-                    });
+                    this.dataPresenter.executeOnDeleteDataRequest(this.metaId,function(message) {
+                        Ext.MessageBox.show({
+                            title:'Success',
+                            msg: message,
+                            buttons: Ext.MessageBox.OK,
+                            icon: Ext.MessageBox.INFO
+                        });
+                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_DELETED,forceExecution:true,treeNodeParentId:this.folderId});
+
+                    }.bind(this));
                 }
             }.bind(this),
             icon: Ext.MessageBox.QUESTION

@@ -110,6 +110,26 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         return res;
     }
 
+    @Path("/getfileentryinfo")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onFileEntryInfo(@HeaderParam("userid") String userid, @QueryParam("internalURI") String internalURI) throws Exception {
+        String res = null;
+        try {
+            String title = getFileEntryTitle(new URI(internalURI));
+
+            Map<String, Object> resultMap = new HashMap<String,Object>();
+            resultMap.put("title",title);
+
+            res = mapper.writeValueAsString(resultMap);
+        } catch (Exception e) {
+            res = mapper.writeValueAsString(createExceptionMap(e));
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
     @GET
     @Path("/getfile")
     //@Produces("application/octet-stream")

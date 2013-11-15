@@ -370,11 +370,11 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractPlugin.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/abstractLayouter.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/Event/eventmanager.js\" type=\"text/javascript\" />\n"
-                + "<script src=\"" + getRootPath(request) + "scripts/Core/Data/valuesmanager.js\" type=\"text/javascript\" />\n"
 
                 //{{
                 // Plugin-dependent FF/ETL
                 //}}
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/presenter/datapresenter.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/pluginmanager.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/baseetlpropertywindow.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/wizard/basewizardeditor.js\" type=\"text/javascript\" />\n";

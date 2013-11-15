@@ -1,15 +1,17 @@
 if(!ORYX) {var ORYX = {};}
 
-if (!ORYX.Data) {
-    ORYX.Data = new Object();
+if (!ORYX.ETL) {
+    ORYX.ETL = new Object();
 }
 
-ORYX.Data.ValuesManager = {
+
+ORYX.ETL.DataPresenter = {
     onNewURL: undefined,//e.g. /etl/core/textfileinputmeta/onnew,
     onGetMetadataURL: undefined,//e.g. /etl/core/textfileinputmeta/ongetmetadata,
     onPreviewURL: undefined,//e.g. /etl/core/textfileinputmeta/previewdata
     onSaveURL: undefined,//e.g. /etl/core/textfileinputmeta/save
     onAddURL: undefined,//e.g. /etl/core/textfileinputmeta/add
+    onEditURL: undefined,///etl/core/textfileinputmeta/onedit
     onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete'
 
     eventManager: undefined,
@@ -21,6 +23,7 @@ ORYX.Data.ValuesManager = {
         this.onGetMetadataURL = config.onGetMetadataURL;
         this.onPreviewURL = config.onPreviewURL;
         this.onSaveURL = config.onSaveURL;
+        this.onEditURL = config.onEditURL;
         this.onAddURL = config.onAddURL;
         this.onDeleteURL = config.onDeleteURL;
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED, this.onModelSaved.bind(this));
@@ -53,7 +56,11 @@ ORYX.Data.ValuesManager = {
                 //-- AJAX requests
                 executeOnNewRequest: this._executeOnNewRequest.bind(this),
                 executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this),
-                executeOnAddDataRequest: this._executeOnAddDataRequest.bind(this)
+                executeOnAddDataRequest: this._executeOnAddDataRequest.bind(this),
+                executeOnEditDataRequest: this._executeOnEditDataRequest.bind(this),
+                executeOnDeleteDataRequest: this._executeOnDeleteDataRequest.bind(this),
+
+                getFileEntryInfo: this._getFileEntryInfo.bind(this)
             };
 
         // return it.
@@ -157,10 +164,6 @@ ORYX.Data.ValuesManager = {
      */
     //}
     ,_executeOnNewRequest: function() {
-        this.eventManager.raiseEvent({
-            type: ORYX.CONFIG.EVENT_LOADING_ENABLE,
-            text: 'Loading new record'
-        });
         var options = {
             url: this.onNewURL,
             method: 'GET',
@@ -170,15 +173,8 @@ ORYX.Data.ValuesManager = {
                 this._loadRecord(record);
 
                 this._onAfterModelLoad();
-
-                this.eventManager.raiseEvent({
-                    type: ORYX.CONFIG.EVENT_LOADING_DISABLE
-                });
             }.bind(this),
             failure: function (response, opts) {
-                this.eventManager.raiseEvent({
-                    type: ORYX.CONFIG.EVENT_LOADING_DISABLE
-                });
             }.bind(this)
         };
         return this._executeRequest(options);
@@ -228,7 +224,86 @@ ORYX.Data.ValuesManager = {
         return this._executeRequest(options);
     }
 
+    //{{
+    /**
+     * _executeOnEditDataRequest
+     * @param
+     */
+    //}
+    ,_executeOnEditDataRequest: function(pathId,successHandler) {
+        //this._onBeforeModelSubmission();
 
+
+        var dataJson = Ext.encode(this.record);
+
+
+        var options = {
+            url: this.onEditURL,
+            method: 'GET',
+            asynchronous: false,
+            params: {pathId:pathId},
+            success: function (response, opts) {
+                var record = Ext.decode(response.responseText);
+                this._loadRecord(record);
+
+                //-- Call callback
+                successHandler();
+
+                //-- Update pages
+                this._onAfterModelLoad();
+            }.bind(this),
+            failure: function (response, opts) {
+            }.bind(this)
+        };
+        return this._executeRequest(options);
+    }
+    //{{
+    /**
+     * _getFileEntryInfo
+     * @param
+     */
+        //}
+     ,_getFileEntryInfo: function(internalFileURI,successHandler) {
+        var options = {
+            url: '/etl/core/docexplorer/getfileentryinfo',
+            method: 'GET',
+            asynchronous: false,
+            params: {internalURI:internalFileURI},
+            success: function (response, opts) {
+                var fileInfo = Ext.decode(response.responseText);
+                successHandler(fileInfo);
+            }.bind(this),
+            failure: function (response, opts) {
+            }.bind(this)
+        };
+        this._executeRequest(options);
+    }
+    //{{
+    /**
+     * _executeOnDeleteDataRequest
+     * @param
+     */
+    //}
+    ,_executeOnDeleteDataRequest: function(name,pathId,successHandler) {
+        var dataJson = Ext.encode(this.record);
+
+
+        var options = {
+            url: this.onDeleteURL,
+            method: 'POST',
+            asynchronous: false,
+            params: {name:name,pathId:pathId},
+            success: function (response, opts) {
+                var message = Ext.decode(response.responseText);
+
+                //-- Call callback
+                successHandler(message);
+            }.bind(this),
+            failure: function (response, opts) {
+            }.bind(this)
+        };
+        return this._executeRequest(options);
+    }
     //{{
     /**
      * _executeRequest
@@ -259,4 +334,4 @@ ORYX.Data.ValuesManager = {
         }.bind(this));
     }
 }
-ORYX.Data.ValuesManager = Clazz.extend(ORYX.Data.ValuesManager);
+ORYX.ETL.DataPresenter = Clazz.extend(ORYX.ETL.DataPresenter);

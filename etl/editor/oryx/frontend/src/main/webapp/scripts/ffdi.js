@@ -442,7 +442,7 @@ ORYX = Object.extend(ORYX, {
                 buttons: Ext.MessageBox.YESNO,
                 fn: function(btn){
                     if (btn === 'no'){
-                        //this.newWizDialog.close();
+                        //this.editorDialog.close();
                     }
                     else {
                         this.mainEditorsPanel.remove(this.CurrentEditor);

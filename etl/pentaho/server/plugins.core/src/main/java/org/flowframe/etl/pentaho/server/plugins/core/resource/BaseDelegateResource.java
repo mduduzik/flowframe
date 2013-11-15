@@ -122,6 +122,14 @@ public abstract class BaseDelegateResource {
         return getFileEntryWebDavURI(fileEntryId);
     }
 
+    public String getFileEntryTitle(URI internalURI) throws Exception {
+        String fileEntryId =internalURI.getFragment();
+
+        final FileEntry fe = ecmService.getFileEntryById(fileEntryId);
+
+        return fe.getTitle();
+    }
+
     public URI getFileEntryWebDavURI(String fileEntryId) throws Exception {
         final URI templateUri = new URI(ecmService.getFileAsURL(fileEntryId,null));
 

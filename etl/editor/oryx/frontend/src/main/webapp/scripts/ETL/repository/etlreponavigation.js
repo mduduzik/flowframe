@@ -1078,7 +1078,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + itemType,
                                     forceExecution: true
                                 };
-                                this.application.raiseEvent(eventData, {
+                                this.application.handleEvents(eventData, {
                                         title: itemType+' Metadata ' + this.ctxNode.attributes['title'],
                                         sourceNavNodeId: this.ctxNode.id
                                     }
@@ -1096,7 +1096,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + itemType,
                                     forceExecution: true
                                 };
-                                this.application.raiseEvent(eventData, {
+                                this.application.handleEvents(eventData, {
                                         title: itemType+' Metadata ' + this.ctxNode.attributes['title'],
                                         sourceNavNodeId: this.ctxNode.id,
                                         parentSourceNavNodeId: this.ctxNode.parentNode.id
