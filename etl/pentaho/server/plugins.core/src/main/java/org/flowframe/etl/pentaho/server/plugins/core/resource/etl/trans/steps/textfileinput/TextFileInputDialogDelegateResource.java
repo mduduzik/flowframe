@@ -199,10 +199,14 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @DELETE
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response onDelete(@HeaderParam("userid") String userid, TextFileInputMeta meta) throws KettleException, JSONException {
-        String pathID = RepositoryUtil.deleteStep(repository, meta.getParentStepMeta().getDescription());
+    public Response onDelete(@HeaderParam("userid") String userid,
+                             Map<String,String> params) throws KettleException, JSONException {
+        String pathId = (String)params.get("pathId");
+        StepMeta stepMeta = RepositoryUtil.getStep(repository,pathId);
 
-        return Response.ok("StepMeta " + meta.getParentStepMeta().getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
+        pathId = RepositoryUtil.deleteStep(repository, pathId);
+
+        return Response.ok("StepMeta " + stepMeta.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
 
     @Path("/uploadsample")

@@ -24,6 +24,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             onDeleteURL: '/etl/core/textfileinputmeta/delete'
         };
 
+
         // Call super class constructor
         arguments.callee.$.construct.apply(this, arguments);
     },
@@ -412,10 +413,13 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 //Call super
                 Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
 
+
+                this.parentEditor.switchDialogState(false,'fetchingMetaData');
                 this.parentEditor.getDataPresenter().executeOnGetMetadataRequest(function(response, opts) {
                     var data = Ext.decode(response.responseText);
                     getmetadataGridStore.loadData(data, false);
                     this.parentEditor.getDataPresenter().updateRecordProperty("inputFields",data.rows);
+                    this.parentEditor.switchDialogState(true);
                 }.bind(this));
             }
         });
@@ -489,9 +493,12 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
 
                 //Setup BBAR - update record
                 previewDataGrid.getBottomToolbar().setJsonEntity(this.parentEditor.getDataPresenter().getRecord());
+                previewDataGrid.getBottomToolbar().setEditor(this.parentEditor);
 
                 //Init paged load
+                this.parentEditor.switchDialogState(false,'fetchingPreviewData');
                 previewDataGrid.getBottomToolbar().doLoad(0);
+                this.parentEditor.switchDialogState(true);
             }
         });
 
@@ -528,11 +535,13 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             },
             //@Ovveriide
             onLoadModel: function() {//usually called on render event
+                this.switchDialogState(false);
                 if (this.wizMode === 'CREATE')
                     this.getDataPresenter().executeOnNewRequest();
                 else if (this.wizMode === 'EDIT')
                     this.getDataPresenter().executeOnEditDataRequest(this.metaId,function(response, opts) {
                     }.bind(this));
+                this.switchDialogState(true);
             },
             //@Override
             onFinish : function()
@@ -551,14 +560,5 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     }.bind(this));
             }
         });
-        this.stepMetaWizard.addEvents(
-            /**
-             * @event ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
-             * Fires after new metadata artifact (e.g. DbConnection) has been created
-             * @param {name:'<artifact name>',treeNodeParentId:<>}
-             */
-            ORYX.CONFIG.EVENT_ETL_METADATA_CREATED
-        );
-        this.stepMetaWizard.on('cancel', this.onBeforeCancel, this);
     }
 })

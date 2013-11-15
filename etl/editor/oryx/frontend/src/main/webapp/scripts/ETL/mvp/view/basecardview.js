@@ -17,6 +17,13 @@ Ext.ux.etl.BaseCardView = Ext.extend(Ext.ux.Wiz, {
     onDeleteURL: undefined,//e.g. '/etl/core/textfileinputmeta/delete',
 
     onLoadModel: undefined,
+
+    loadMaskConfig : {
+        'default' : 'Saving...',
+        'fetchingData' : 'Fetching data...',
+        'fetchingMetaData' : 'Fetching metadata...',
+        'fetchingPreviewData' : 'Fetching preview data...'
+    },
     /**
      * Inits this component with the specified config-properties and automatically
      * creates its components.
@@ -154,6 +161,7 @@ Ext.ux.etl.BaseWizardCardView = Ext.extend(Ext.ux.Wiz.Card , {
 Ext.ux.etl.EditorGridPagingToolbar = Ext.extend(Ext.PagingToolbar,{
     onLoadFn: undefined,
     jsonEntity: undefined,
+    editor: undefined,
     baseURL: null,
     paramNames: {
         start: 'start',
@@ -165,6 +173,9 @@ Ext.ux.etl.EditorGridPagingToolbar = Ext.extend(Ext.PagingToolbar,{
     },
     setJsonEntity: function(jsonEntity) {
         this.jsonEntity  = Ext.encode(jsonEntity);
+    },
+    setEditor: function(editor) {
+        this.editor  = editor;
     },
     refresh: function() {
        this.doLoad(this.currentStart);
@@ -181,6 +192,8 @@ Ext.ux.etl.EditorGridPagingToolbar = Ext.extend(Ext.PagingToolbar,{
             this.baseURL = this.store.proxy.conn.url;
 
         this.store.proxy.conn.url = this.baseURL+'/'+start+'/'+this.pageSize;
+
+        this.editor.switchDialogState(false,'fetchingData');
         this.store.load({params:this.jsonEntity});
     },
     //@Override
@@ -200,5 +213,8 @@ Ext.ux.etl.EditorGridPagingToolbar = Ext.extend(Ext.PagingToolbar,{
         this.last.setDisabled(ap == ps);
         this.loading.enable();
         this.updateInfo();
+
+
+        this.editor.switchDialogState(true);
     }
 });

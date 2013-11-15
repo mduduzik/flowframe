@@ -177,7 +177,7 @@ ORYX.ETL.DataPresenter = {
             failure: function (response, opts) {
             }.bind(this)
         };
-        return this._executeRequest(options);
+        return this._executeRequest(options,false);
     }
     //{{
     /**
@@ -197,7 +197,7 @@ ORYX.ETL.DataPresenter = {
             failure: function (response, opts) {
             }.bind(this)
         };
-        return this._executeRequest(options);
+        return this._executeRequest(options,true);
      }
     //{{
     /**
@@ -221,7 +221,7 @@ ORYX.ETL.DataPresenter = {
             failure: function (response, opts) {
             }.bind(this)
         };
-        return this._executeRequest(options);
+        return this._executeRequest(options,true);
     }
 
     //{{
@@ -255,7 +255,7 @@ ORYX.ETL.DataPresenter = {
             failure: function (response, opts) {
             }.bind(this)
         };
-        return this._executeRequest(options);
+        return this._executeRequest(options,false);
     }
     //{{
     /**
@@ -276,7 +276,7 @@ ORYX.ETL.DataPresenter = {
             failure: function (response, opts) {
             }.bind(this)
         };
-        this._executeRequest(options);
+        this._executeRequest(options,false);
     }
     //{{
     /**
@@ -284,15 +284,16 @@ ORYX.ETL.DataPresenter = {
      * @param
      */
     //}
-    ,_executeOnDeleteDataRequest: function(name,pathId,successHandler) {
-        var dataJson = Ext.encode(this.record);
-
+    ,_executeOnDeleteDataRequest: function(pathId,successHandler) {
+        var formData = Ext.encode({
+            pathId: pathId
+        });
 
         var options = {
             url: this.onDeleteURL,
-            method: 'POST',
+            method: 'DELETE',
             asynchronous: false,
-            params: {name:name,pathId:pathId},
+            params: formData,
             success: function (response, opts) {
                 var message = Ext.decode(response.responseText);
 
@@ -302,7 +303,7 @@ ORYX.ETL.DataPresenter = {
             failure: function (response, opts) {
             }.bind(this)
         };
-        return this._executeRequest(options);
+        return this._executeRequest(options,true);
     }
     //{{
     /**
@@ -310,14 +311,15 @@ ORYX.ETL.DataPresenter = {
      * @param
      */
         //}
-     ,_executeRequest: function(options) {
+     ,_executeRequest: function(options,isJsonRequest) {
         var headers =  {userid: 'test'};
 
-        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
-            // here you can put whatever you need as header. For instance:
-            this.defaultPostHeader = "application/json; charset=utf-8;";
-            this.defaultHeaders = headers;
-        });
+        if (isJsonRequest) //default
+            Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                // here you can put whatever you need as header. For instance:
+                this.defaultPostHeader = "application/json; charset=utf-8;";
+                this.defaultHeaders = headers;
+            });
 
         Ext.Ajax.request(options);
         return true;

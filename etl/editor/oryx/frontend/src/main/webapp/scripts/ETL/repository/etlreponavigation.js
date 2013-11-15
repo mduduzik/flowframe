@@ -964,7 +964,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
             return false;
 
         if (this.ContextMenusByMetaType.keys().member(menuGrp)) {
-            this.menu = this.ContextMenusByMetaType.keys().member(menuGrp);
+            this.menu = this.ContextMenusByMetaType[menuGrp];
         }
         else {
             //-- Folder
@@ -1034,7 +1034,6 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         }
                     ]
                 })
-                this.ContextMenusByMetaType[menuGrp] = this.menu;
             }
             //-- Leaf
             else {
@@ -1123,8 +1122,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         }
                     ]
                 });
-                this.ContextMenusByMetaType[menuGrp] = this.menu;
             }
+            this.ContextMenusByMetaType[menuGrp] = this.menu;
         }
         this.menu.on('hide', this.onContextHide, this);
 

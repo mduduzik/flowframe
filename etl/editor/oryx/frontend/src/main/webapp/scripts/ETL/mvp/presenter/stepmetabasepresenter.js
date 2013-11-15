@@ -11,7 +11,6 @@ if (!ORYX.Plugins.ETL.Metadata) {
 }
 
 ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
-
     eventManager: undefined,
     dataPresenter: undefined,
     folderId: undefined,
@@ -39,15 +38,14 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
             onDeleteURL: this.dataConfig.onDeleteURL
         });
 
-
-
+        //Events
+        //-- Global
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + this.itemType, this.onCreate.bind(this));
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + this.itemType, this.onEdit.bind(this));
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + this.itemType, this.onDelete.bind(this));
-    },
 
-    //To Override
-    initWizard: undefined,
+
+    },
 
     /**
      *
@@ -65,6 +63,9 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
                 }.bind(this),
                 icon: Ext.MessageBox.QUESTION
             });
+        }
+        else {//Close anyways
+            this.editorDialog.close();
         }
         return false;//Don't close wizard - close dialog
     },
@@ -103,6 +104,8 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
     _launchEditor: function() {
         // Editor dialog
         this.initWizard();
+
+        this.stepMetaWizard.on('cancel', this.onBeforeCancel, this);
 
         this.editorDialog = new Ext.Window({
             autoScroll: false,
@@ -148,7 +151,7 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
             buttons: Ext.MessageBox.YESNO,
             fn: function(btn){
                 if (btn === 'yes'){
-                    this.dataPresenter.executeOnDeleteDataRequest(this.metaId,function(message) {
+                    this.dataPresenter.getFacade().executeOnDeleteDataRequest(this.metaId,function(message) {
                         Ext.MessageBox.show({
                             title:'Success',
                             msg: message,
