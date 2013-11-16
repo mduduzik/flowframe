@@ -72,7 +72,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
     @Path("/onnew")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String onNew(@HeaderParam("userid") String userid) throws IOException {
+    public String onNew(@HeaderParam("userid") String userid) throws IOException, RequestException {
         String res = null;
         try {
             TextFileInputMeta meta = new TextFileInputMeta();
@@ -80,10 +80,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             meta.allocate(1, 0, 0);
             meta.setParentStepMeta(new StepMeta());
             meta.setSeparator(",");
-            return mapper.getFilteredWriter().writeValueAsString(meta);
+            res = mapper.getFilteredWriter().writeValueAsString(meta);
         } catch (Exception e) {
-            res = mapper.writeValueAsString(createExceptionMap(e));
-            e.printStackTrace();
+            throw  new RequestException("Error on /onnew",e);
         }
 
         return res;
@@ -97,10 +96,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
         try {
             TextFileInputMeta meta = (TextFileInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
 
-            return mapper.getFilteredWriter().writeValueAsString(meta);
-        } catch (Exception e) {
-            res = mapper.writeValueAsString(createExceptionMap(e));
-            e.printStackTrace();
+            res = mapper.getFilteredWriter().writeValueAsString(meta);
+        }catch (Exception e) {
+            throw  new RequestException("Error on /onedit",e);
         }
 
         return res;
@@ -141,10 +139,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                                 TextFileInputMeta meta) throws Exception {
         String res = null;
         try {
-        res = previewData(meta,start,pageSize);
+            res = previewData(meta,start,pageSize);
         } catch (Exception e) {
-            res = mapper.writeValueAsString(createExceptionMap(e));
-            e.printStackTrace();
+            throw  new RequestException("Error on /previewdata/{"+start+"}/{"+pageSize+"}",e);
         }
         return res;
     }
@@ -168,8 +165,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
             res = mapper.writeValueAsString(meta);
         } catch (Exception e) {
-            res = mapper.writeValueAsString(createExceptionMap(e));
-            e.printStackTrace();
+            throw  new RequestException("Error on /add/{"+subDirObjId+"}",e);
         }
         return res;
     }
@@ -189,9 +185,9 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
 
             meta = (TextFileInputMeta)stepMeta.getStepMetaInterface();
 
+            res = mapper.writeValueAsString(meta);
         } catch (Exception e) {
-            res = mapper.writeValueAsString(createExceptionMap(e));
-            e.printStackTrace();
+            throw  new RequestException("Error on /save",e);
         }
         return res;
     }

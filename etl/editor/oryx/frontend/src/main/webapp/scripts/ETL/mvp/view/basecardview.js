@@ -22,7 +22,8 @@ Ext.ux.etl.BaseCardView = Ext.extend(Ext.ux.Wiz, {
         'default' : 'Saving...',
         'fetchingData' : 'Fetching data...',
         'fetchingMetaData' : 'Fetching metadata...',
-        'fetchingPreviewData' : 'Fetching preview data...'
+        'fetchingPreviewData' : 'Fetching preview data...',
+        'creatingMetaData' : 'Adding metadata...'
     },
     /**
      * Inits this component with the specified config-properties and automatically

@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ec2fd18-0865-4643-b95a-b389deec36e0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -209,13 +206,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TextFileInputDialogDelegateResource.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TextFileInputDialogDelegateResource.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="204" column="0" selection-start="7883" selection-end="7883" vertical-scroll-proportion="0.33255813" vertical-offset="2407" max-vertical-offset="19091">
+            <state line="157" column="0" selection-start="6054" selection-end="6054" vertical-scroll-proportion="-6.0" vertical-offset="1601" max-vertical-offset="19023">
               <folding>
-                <element signature="e#4715#4730#0" expanded="true" />
-                <element signature="e#49568#49598#0" expanded="true" />
+                <element signature="e#4653#4668#0" expanded="true" />
+                <element signature="e#49492#49522#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RepositoryExplorerResource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="750" column="0" selection-start="37333" selection-end="37389" vertical-scroll-proportion="0.0" vertical-offset="12337" max-vertical-offset="18343">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,7 +233,22 @@
         <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0-sources.jar!/javax/ws/rs/core/MediaType.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="123" column="58" selection-start="5280" selection-end="5307" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="6001">
-              <folding />
+              <folding>
+                <element signature="e#0#16609#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2392#2420#0" expanded="false" />
+                <element signature="e#8049#8065#0" expanded="false" />
+                <element signature="e#8066#8245#0" expanded="false" />
+                <element signature="e#8234#8235#0" expanded="false" />
+                <element signature="e#10884#11083#0" expanded="false" />
+                <element signature="e#11068#11069#0" expanded="false" />
+                <element signature="e#11415#11416#0" expanded="false" />
+                <element signature="e#11447#11448#0" expanded="false" />
+                <element signature="e#11795#11796#0" expanded="false" />
+                <element signature="e#11830#11831#0" expanded="false" />
+                <element signature="e#12249#12250#0" expanded="false" />
+                <element signature="e#12282#12283#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -242,16 +265,16 @@
       <file leaf-file-name="RepositoryUtil.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/RepositoryUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="0" selection-start="5873" selection-end="5873" vertical-scroll-proportion="0.0" vertical-offset="2059" max-vertical-offset="9078">
+            <state line="207" column="0" selection-start="8083" selection-end="8083" vertical-scroll-proportion="0.0" vertical-offset="3113" max-vertical-offset="9078">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textfileinputmetapresenter.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="textfileinputmetapresenter.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="416" column="34" selection-start="16325" selection-end="16369" vertical-scroll-proportion="-10.2" vertical-offset="6817" max-vertical-offset="9673">
+            <state line="549" column="42" selection-start="21545" selection-end="21545" vertical-scroll-proportion="0.49667406" vertical-offset="9109" max-vertical-offset="9724">
               <folding />
             </state>
           </provider>
@@ -280,16 +303,7 @@
       <file leaf-file-name="basecardview.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="17" selection-start="733" selection-end="733" vertical-scroll-proportion="-7.16" vertical-offset="195" max-vertical-offset="3825">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wiz-all-debug.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="0" selection-start="4385" selection-end="4445" vertical-scroll-proportion="-12.2" vertical-offset="1684" max-vertical-offset="17221">
+            <state line="9" column="16" selection-start="181" selection-end="193" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="3842">
               <folding />
             </state>
           </provider>
@@ -299,7 +313,11 @@
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="305" column="48" selection-start="9137" selection-end="9137" vertical-scroll-proportion="-15.52" vertical-offset="4797" max-vertical-offset="5848">
-              <folding />
+              <folding>
+                <marker date="1384548904776" expanded="true" signature="103:10024" placeholder="{...}" />
+                <marker date="1384548904776" expanded="true" signature="8557:9145" placeholder="{...}" />
+                <marker date="1384548904776" expanded="true" signature="8657:9087" placeholder="{&quot;method&quot;: 'DELETE'...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -322,7 +340,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/tests/standalone/forms/colum_layout.html" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/tests/standalone/forms/formcol.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/Core/Data/valuesmanager.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/wizard/basewizardeditor.js" />
@@ -332,12 +349,13 @@
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetaeditor.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/etlplugins.xml" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java" />
+        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" />
       </list>
     </option>
   </component>
@@ -2668,16 +2686,16 @@
       <workItem from="1383698174260" duration="52311000" />
       <workItem from="1383822838660" duration="97040000" />
       <workItem from="1384093768098" duration="83134000" />
-      <workItem from="1384345074594" duration="78434000" />
+      <workItem from="1384345074594" duration="84958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="439719000" />
+    <option name="totallyTimeSpent" value="446243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1598" height="860" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2691,7 +2709,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20480405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18836915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35448277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2699,7 +2717,7 @@
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19724138" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26068965" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26068965" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44689655" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2739,8 +2757,13 @@
           <line>280</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js</url>
+          <line>553</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -2748,16 +2771,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/baseetlpropertywindow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12920">
-          <folding>
-            <marker date="1382065069204" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1382065069204" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/job/jobpropertywindow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="0" selection-start="414" selection-end="514" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
@@ -2769,7 +2782,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="205" column="0" selection-start="9440" selection-end="9482" vertical-scroll-proportion="-6.0" vertical-offset="3335" max-vertical-offset="4964">
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2807,20 +2820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="416" column="34" selection-start="16325" selection-end="16369" vertical-scroll-proportion="-10.2" vertical-offset="6817" max-vertical-offset="9673">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="17" selection-start="733" selection-end="733" vertical-scroll-proportion="-7.16" vertical-offset="195" max-vertical-offset="3825">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/etlreponavigation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="966" column="60" selection-start="39292" selection-end="39292" vertical-scroll-proportion="0.0" vertical-offset="16144" max-vertical-offset="31722">
@@ -2840,7 +2839,22 @@
     <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0-sources.jar!/javax/ws/rs/core/MediaType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="123" column="58" selection-start="5280" selection-end="5307" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="6001">
-          <folding />
+          <folding>
+            <element signature="e#0#16609#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2392#2420#0" expanded="false" />
+            <element signature="e#8049#8065#0" expanded="false" />
+            <element signature="e#8066#8245#0" expanded="false" />
+            <element signature="e#8234#8235#0" expanded="false" />
+            <element signature="e#10884#11083#0" expanded="false" />
+            <element signature="e#11068#11069#0" expanded="false" />
+            <element signature="e#11415#11416#0" expanded="false" />
+            <element signature="e#11447#11448#0" expanded="false" />
+            <element signature="e#11795#11796#0" expanded="false" />
+            <element signature="e#11830#11831#0" expanded="false" />
+            <element signature="e#12249#12250#0" expanded="false" />
+            <element signature="e#12282#12283#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2851,27 +2865,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/RepositoryUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="305" column="48" selection-start="9137" selection-end="9137" vertical-scroll-proportion="-15.52" vertical-offset="4797" max-vertical-offset="5848">
+        <state line="207" column="0" selection-start="8083" selection-end="8083" vertical-scroll-proportion="0.0" vertical-offset="3113" max-vertical-offset="9078">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/RepositoryUtil.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="0" selection-start="5873" selection-end="5873" vertical-scroll-proportion="0.0" vertical-offset="2059" max-vertical-offset="9078">
-          <folding />
+        <state line="750" column="0" selection-start="37333" selection-end="37389" vertical-scroll-proportion="0.0" vertical-offset="12337" max-vertical-offset="18343">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/etl/trans/steps/textfileinput/TextFileInputDialogDelegateResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="204" column="0" selection-start="7883" selection-end="7883" vertical-scroll-proportion="0.33255813" vertical-offset="2407" max-vertical-offset="19091">
+        <state line="157" column="0" selection-start="6054" selection-end="6054" vertical-scroll-proportion="-6.0" vertical-offset="1601" max-vertical-offset="19023">
           <folding>
-            <element signature="e#4715#4730#0" expanded="true" />
-            <element signature="e#49568#49598#0" expanded="true" />
+            <element signature="e#4653#4668#0" expanded="true" />
+            <element signature="e#49492#49522#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="305" column="48" selection-start="9137" selection-end="9137" vertical-scroll-proportion="-15.52" vertical-offset="4797" max-vertical-offset="5848">
+          <folding>
+            <marker date="1384548904776" expanded="true" signature="103:10024" placeholder="{...}" />
+            <marker date="1384548904776" expanded="true" signature="8557:9145" placeholder="{...}" />
+            <marker date="1384548904776" expanded="true" signature="8657:9087" placeholder="{&quot;method&quot;: 'DELETE'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="16" selection-start="181" selection-end="193" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="3842">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="549" column="42" selection-start="21545" selection-end="21545" vertical-scroll-proportion="0.49667406" vertical-offset="9109" max-vertical-offset="9724">
+          <folding />
         </state>
       </provider>
     </entry>

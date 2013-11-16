@@ -546,15 +546,18 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             //@Override
             onFinish : function()
             {
-                if (this.wizMode === 'CREATE')
+                if (this.wizMode === 'CREATE') {
+                    this.switchDialogState(false,'creatingMetaData');
                     this.getDataPresenter().executeOnAddDataRequest(this.parentEditor.folderId,function(response, opts) {
-                        var title = this.getDataPresenter().getRecord().name;
+                        this.switchDialogState(true);
+                        this.parentEditor.editorDialog.destroy();
+                        var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
                         this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
-                        this.parentEditor.editorDialog.close();
                     }.bind(this));
+                }
                 else if (this.wizMode === 'EDIT')
                     this.getDataPresenter().executeOnAddDataRequest(this.metaId,function(response, opts) {
-                        var title = this.parentEditor.getDataPresenter().getRecord();
+                        var title = this.getDataPresenter().getRecord();
 /*                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentNavNodeId});
                         this.parentEditor.editorDialog.close();*/
                     }.bind(this));
