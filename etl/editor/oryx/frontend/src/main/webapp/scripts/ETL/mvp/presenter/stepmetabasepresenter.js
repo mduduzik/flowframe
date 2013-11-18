@@ -18,6 +18,10 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
     parentNavNodeId: undefined,
     wizMode: undefined,  //EDITING, CREATE
 
+    shapeObject: undefined,
+    shapeObjectLabelProp: undefined,
+    editorMode: undefined, //STEP, METADATA
+
     editorDialog: undefined,
     stepMetaWizard: undefined,
 
@@ -28,7 +32,9 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
 
     construct: function (eventManager) {
         //Init data manager
-        this.dataPresenter = new ORYX.ETL.DataPresenter({eventManager: this.eventManager,
+        this.dataPresenter = new ORYX.ETL.DataPresenter({
+            editorMode: this.editorMode,
+            eventManager: this.eventManager,
             onNewURL: this.dataConfig.onNewURL,
             onGetMetadataURL: this.dataConfig.onGetMetadataURL,
             onPreviewURL: this.dataConfig.onPreviewURL,
@@ -44,7 +50,7 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + this.itemType, this.onEdit.bind(this));
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + this.itemType, this.onDelete.bind(this));
 
-
+        this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_STEP_EDIT_PREFIX + this.itemType, this.onStepEdit.bind(this));
     },
 
     /**
@@ -78,7 +84,7 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
     onCreate: function (event, arg) {
         this.wizMode = 'CREATE';
         this.folderId = arg.folderId;
-        this.parentNavNodeId = arg.sourceNavNodeId;
+        this.parentNavNodeId = arg.metaPathId;
         this.sampleFileNode = arg.dropData.source;
 
         this.metaName = 'New TextFileInput Metadata';
@@ -94,7 +100,25 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
     onEdit: function (event, arg) {
         this.wizMode = 'EDIT';
         this.folderId = arg.folderId;
-        this.metaId = arg.sourceNavNodeId;
+        this.metaId = arg.metaPathId;
+
+        this.metaName = 'Editing '+arg.title;
+
+        //-- Launch
+        this._launchEditor();
+    },
+    /**
+     * Handle ORYX.CONFIG.EVENT_ETL_STEP_EDIT_PREFIX+'DBConnection' Event
+     * @param event
+     * @param arg - tree node
+     */
+    onStepEdit: function (event, arg) {
+        this.editorMode = 'STEP',
+        this.wizMode = 'EDIT';
+        this.folderId = arg.folderId;
+        this.metaId = arg.metaId;
+        this.shapeObject = arg.shapeObject;
+        this.shapeObjectLabelProp = arg.shapeObjectLabelProp;
 
         this.metaName = 'Editing '+arg.title;
 
@@ -142,7 +166,7 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
     onDelete: function (event, arg) {
         this.wizMode = 'EDIT';
         this.folderId = arg.parentSourceNavNodeId;
-        this.metaId = arg.sourceNavNodeId;
+        this.metaId = arg.metaPathId;
         this.metaName = arg.title;
 
         Ext.MessageBox.show({

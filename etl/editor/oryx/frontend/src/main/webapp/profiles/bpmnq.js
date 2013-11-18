@@ -12,7 +12,7 @@ $LAB.script("plugins/propertywindow.js").wait();
 $LAB.script("plugins/canvasResize.js").wait();
 $LAB.script("plugins/view.js").wait();
 $LAB.script("plugins/dragdropresize.js").wait();
-$LAB.script("plugins/renameShapes.js").wait();
+$LAB.script("plugins/steprenamer.js").wait();
 $LAB.script("plugins/erdfSupport.js").wait();
 $LAB.script("plugins/jsonSupport.js").wait();
 $LAB.script("plugins/rdfExport.js").wait();

@@ -312,7 +312,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );
                     }.bind(this)
                 },
@@ -398,7 +398,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );
                     }.bind(this)
                 },
@@ -415,7 +415,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id
+                                metaPathId: this.ctxNode.id
                             }
                         );
                     }.bind(this)
@@ -433,7 +433,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id,
+                                metaPathId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
                             }
                         );
@@ -480,7 +480,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );
                     }.bind(this)
                 },
@@ -565,7 +565,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );
                     }.bind(this)
                 },
@@ -582,7 +582,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id
+                                metaPathId: this.ctxNode.id
                             }
                         );
                     }.bind(this)
@@ -600,7 +600,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.facade.raiseEvent(eventData, {
                                 title: 'CSV Metadata ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id,
+                                metaPathId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
                             }
                         );

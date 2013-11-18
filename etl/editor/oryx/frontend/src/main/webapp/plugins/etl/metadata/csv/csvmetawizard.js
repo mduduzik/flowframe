@@ -864,7 +864,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
     onCreate: function (event, arg) {
         this.wizMode = 'CREATE';
         this.folderId = arg.folderId;
-        this.parentNavNodeId = arg.sourceNavNodeId;
+        this.parentNavNodeId = arg.metaPathId;
 
         // Basic Dialog
         this.initWiz();
@@ -904,7 +904,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
     onEdit: function (event, arg) {
         this.wizMode = 'EDIT';
         this.folderId = arg.folderId;
-        this.metaId = arg.sourceNavNodeId;
+        this.metaId = arg.metaPathId;
         this.metaName = arg.title;
 
         // Basic Dialog
@@ -965,7 +965,7 @@ ORYX.Plugins.ETL.Metadata.CSVMetaWizard = {
     onDelete: function (event, arg) {
         this.wizMode = 'EDIT';
         this.folderId = arg.parentSourceNavNodeId;
-        this.metaId = arg.sourceNavNodeId;
+        this.metaId = arg.metaPathId;
         this.metaName = arg.title;
 
         Ext.MessageBox.show({

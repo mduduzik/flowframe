@@ -430,6 +430,7 @@ ORYX = Object.extend(ORYX, {
     //
     //}}
     launchEditor: function(config) {
+        var editor = null;
         if(Ext.getCmp('oryx-loading-panel')){
             Ext.getCmp('oryx-loading-panel').show();
         }
@@ -446,15 +447,17 @@ ORYX = Object.extend(ORYX, {
                     }
                     else {
                         this.mainEditorsPanel.remove(this.CurrentEditor);
-                        this._createEditor(config);
+                        editor = this._createEditor(config);
                     }
                 }.bind(this),
                 icon: Ext.MessageBox.QUESTION
             });
         }
         else {
-            this._createEditor(config);
+            editor = this._createEditor(config);
         }
+
+        return editor;
     },
     _createEditor: function(config) {
         var ssNameSpace = config.ssns;
@@ -478,10 +481,12 @@ ORYX = Object.extend(ORYX, {
         this.addToRegion('center', editor.layout, ssConfig_.title);
 
         //- Load model  if editing
-        if (config.type === ORYX.CONFIG.EVENT_ETL_MODEL_EDIT) {
+        if (config.type === ORYX.CONFIG.EVENT_ETL_MODEL_EDIT && config.newmodel === false) {
             var jsonObject = Ext.decode(config.jsonModel);
             editor._pluginFacade.importJSON(jsonObject,true);
         }
+
+        return editor;
     },
     /**
      * Create configs
@@ -822,7 +827,7 @@ ORYX = Object.extend(ORYX, {
     /**
      * Edit transformation
      */
-    editTransformation: function(title,repoPathId,repoParentDirPathId,jsonModel){
+    editTransformation: function(title,repoPathId,repoParentDirPathId,jsonModel,newmodel){
         var config = {
             ssns: ORYX.CONFIG.NAMESPACE_ETL_TRANS,
             type: ORYX.CONFIG.EVENT_ETL_MODEL_EDIT,
@@ -830,9 +835,37 @@ ORYX = Object.extend(ORYX, {
             title: title,
             repoPathId: repoPathId,
             repoParentDirPathId: repoParentDirPathId,
-            jsonModel: jsonModel
+            jsonModel: jsonModel,
+            newmodel: newmodel
         };
         this.launchEditor(config);
+    },
+    createAndEditNewTransformation: function(parentFolderId){
+        var application_ = this.application;
+        Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+            // here you can put whatever you need as header. For instance:
+            //this.defaultPostHeader = "application/json; charset=utf-8;";
+            this.defaultHeaders = {
+                userid: 'test'
+            };
+        });
+
+        var ssConfig = DEFAULT_EDITORS[ORYX.CONFIG.NAMESPACE_ETL_TRANS];
+        var name = ssConfig.title+' #'+uiId();
+        Ext.Ajax.request({
+            url: '/etl/core/transmeta/onnew',
+            method: 'GET',
+            params: {
+                name: name,
+                parentFolderId: parentFolderId
+            },
+            success: function (response, opts) {
+                var data = Ext.decode(response.responseText);
+                this.editTransformation(data.name,data.pathId,data.subDirPathId,data.jsonModel,true/*newmodel*/);
+            }.bind(this),
+            failure: function (response, opts) {
+            }.bind(this)
+        });
     },
     loadAndEditTransformation: function(transObjectId){
         var application_ = this.application;
@@ -851,7 +884,7 @@ ORYX = Object.extend(ORYX, {
             },
             success: function (response, opts) {
                 var data = Ext.decode(response.responseText);;
-                this.editTransformation(data.name,data.pathId,data.subDirPathId,data.jsonModel);
+                this.editTransformation(data.name,data.pathId,data.subDirPathId,data.jsonModel,false);
             }.bind(this),
             failure: function (response, opts) {
             }.bind(this)

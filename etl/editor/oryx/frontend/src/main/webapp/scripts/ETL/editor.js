@@ -852,6 +852,8 @@ ORYX.Editor = {
                 raiseEvent:				this.handleEvents.bind(this),
                 enableEvent:			this.enableEvent.bind(this),
                 disableEvent:			this.disableEvent.bind(this),
+                hasActiveListeners:     this.hasActiveListeners.bind(this),
+
 
                 eventCoordinates:		this.eventCoordinates.bind(this),
                 addToRegion:			this.addToRegion.bind(this),
@@ -1623,6 +1625,9 @@ ORYX.Editor = {
     },
 
     /* Event-Handler Methods */
+    hasActiveListeners: function(eventType) {
+        return this.DOMEventListeners.keys().member(eventType);
+    },
 
     /**
      * Helper method to execute an event immediately. The event is not

@@ -304,7 +304,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
     onCreate: function (event, arg) {
         this.wizMode = 'CREATE';
         this.dbFolderId = arg.folderId;
-        this.parentNavNodeId = arg.sourceNavNodeId;
+        this.parentNavNodeId = arg.metaPathId;
 
         // Basic Dialog
         this.initWiz();
@@ -344,7 +344,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
     onEdit: function (event, arg) {
         this.wizMode = 'EDIT';
         this.dbFolderId = arg.folderId;
-        this.dbId = arg.sourceNavNodeId;
+        this.dbId = arg.metaPathId;
         this.metaName = arg.title;
 
         // Basic Dialog
@@ -402,7 +402,7 @@ ORYX.Plugins.ETL.Metadata.DBConnectionWizard = {
     onDelete: function (event, arg) {
         this.wizMode = 'EDIT';
         this.dbFolderId = arg.parentSourceNavNodeId;
-        this.dbId = arg.sourceNavNodeId;
+        this.dbId = arg.metaPathId;
         this.metaName = arg.title;
 
         Ext.MessageBox.show({

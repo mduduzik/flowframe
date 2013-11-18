@@ -228,8 +228,8 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
         var pr = dragZone.getProxy();
         pr.hide();
 
-        var nodeId = event.target.attributes['ext:tree-node-id'].nodeValue;
-        var targetNode = this.navigationPanel.getNodeById(nodeId);
+        //var nodeId = event.target.attributes['ext:tree-node-id'].nodeValue;
+        //var targetNode = this.navigationPanel.getNodeById(nodeId);
 
         //-- Raise DD event
         var eventData = {
@@ -483,7 +483,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );
                     }.bind(this)
                 },
@@ -569,7 +569,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );
                     }.bind(this)
                 },
@@ -586,7 +586,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.application.handleEvents(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id
+                                metaPathId: this.ctxNode.id
                             }
                         );
                     }.bind(this)
@@ -604,7 +604,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.application.handleEvents(eventData, {
                                 title: 'DB Connection ' + this.ctxNode.attributes['title'],
-                                sourceNavNodeId: this.ctxNode.id,
+                                metaPathId: this.ctxNode.id,
                                 parentSourceNavNodeId: this.ctxNode.parentNode.id
                             }
                         );
@@ -647,7 +647,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         var dirPathId = this.ctxNode.id;
                         if (this.ctxNode.isLeaf())
                             dirPathId = this.ctxNode.parentNode.id;
-                        this.application.newTransformation(dirPathId);
+                        this.application.createAndEditNewTransformation(dirPathId);
 /*                        this.ctxNode.select();
                         var eventData = {
                             type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Transformation',
@@ -655,7 +655,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         };
                         this.application.handleEvents(eventData, {
                                 folderId: this.ctxNode.attributes['folderObjectId'],
-                                sourceNavNodeId: this.ctxNode.id}
+                                metaPathId: this.ctxNode.id}
                         );*/
                     }.bind(this)
                 },
@@ -742,7 +742,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     text: 'Add Transformation',
                     scope: this,
                     handler: function () {
-                        this.application.newTransformation(this.ctxNode.id);
+                        this.application.createAndEditNewTransformation(this.ctxNode.id);
                     }.bind(this)
                 },
                 new Ext.menu.Separator({cmd:'sep-open'}),
@@ -809,7 +809,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                          };
                          this.application.handleEvents(eventData, {
                          folderId: this.ctxNode.attributes['folderObjectId'],
-                         sourceNavNodeId: this.ctxNode.id}
+                         metaPathId: this.ctxNode.id}
                          );*/
                     }.bind(this)
                 },
@@ -991,7 +991,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                  };
                                  this.application.handleEvents(eventData, {
                                  folderId: this.ctxNode.attributes['folderObjectId'],
-                                 sourceNavNodeId: this.ctxNode.id}
+                                 metaPathId: this.ctxNode.id}
                                  );*/
                             }.bind(this)
                         },
@@ -1062,7 +1062,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                  };
                                  this.application.raiseEvent(eventData, {
                                  folderId: this.ctxNode.attributes['folderObjectId'],
-                                 sourceNavNodeId: this.ctxNode.id}
+                                 metaPathId: this.ctxNode.id}
                                  );*/
                             }.bind(this)
                         },
@@ -1078,8 +1078,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     forceExecution: true
                                 };
                                 this.application.handleEvents(eventData, {
-                                        title: itemType+' Metadata ' + this.ctxNode.attributes['title'],
-                                        sourceNavNodeId: this.ctxNode.id
+                                        title: this.ctxNode.attributes['title'],
+                                        metaPathId: this.ctxNode.id
                                     }
                                 );
                             }.bind(this)
@@ -1097,7 +1097,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                 };
                                 this.application.handleEvents(eventData, {
                                         title: itemType+' Metadata ' + this.ctxNode.attributes['title'],
-                                        sourceNavNodeId: this.ctxNode.id,
+                                        metaPathId: this.ctxNode.id,
                                         parentSourceNavNodeId: this.ctxNode.parentNode.id
                                     }
                                 );

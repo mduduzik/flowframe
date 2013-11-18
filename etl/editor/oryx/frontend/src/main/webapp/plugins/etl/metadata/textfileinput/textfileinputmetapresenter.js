@@ -69,7 +69,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 if (this.parentEditor.wizMode === 'CREATE') {
                     //Update record
                     var fileNames = [];
-                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id);
+                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.fileEntryId);
                     this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
                 }
                 else if (this.parentEditor.wizMode === 'EDIT') {
@@ -85,7 +85,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
 
                     //Make form fields look right
                     this.form.setValues({
-                        fileTitle: this.parentEditor.initParams.sampleFileNode.text,
+                        fileTitle: this.parentEditor.initParams.fileEntryTitle,
                         fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
                     })
                 }
@@ -509,6 +509,8 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             region: 'center',
             wizMode: this.wizMode,
             metaId: this.metaId,
+            shapeObject: this.shapeObject,
+            shapeObjectLabelProp: this.shapeObjectLabelProp,
             buttonsAt: 'bbar',
             headerConfig: {
                 title: 'Text File Input Metadata'
@@ -527,7 +529,8 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 previewDataPage
             ],
             initParams: {
-                sampleFileNode: this.sampleFileNode
+                fileEntryId: this.sampleFileNode.id,
+                fileEntryTitle: this.sampleFileNode.text
             },
             dataPresenter: this.dataPresenter,
             onBackToFirstStep : function() {
@@ -535,32 +538,50 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             },
             //@Ovveriide
             onLoadModel: function() {//usually called on render event
-                this.switchDialogState(false);
-                if (this.wizMode === 'CREATE')
-                    this.getDataPresenter().executeOnNewRequest();
-                else if (this.wizMode === 'EDIT')
-                    this.getDataPresenter().executeOnEditDataRequest(this.metaId,function(response, opts) {
-                    }.bind(this));
-                this.switchDialogState(true);
+                if (this.editorMode === 'STEP') {
+                        this.getDataPresenter().executeOnEditStepDataRequest(this.shapeObject);
+                }
+                else { //''METADATA'
+                    this.switchDialogState(false);
+                    if (this.wizMode === 'CREATE')
+                        this.getDataPresenter().executeOnNewRequest();
+                    else if (this.wizMode === 'EDIT')
+                        this.getDataPresenter().executeOnEditDataRequest(this.metaId,function(response, opts) {
+                        }.bind(this));
+                    this.switchDialogState(true);
+                }
             },
             //@Override
             onFinish : function()
             {
-                if (this.wizMode === 'CREATE') {
-                    this.switchDialogState(false,'creatingMetaData');
-                    this.getDataPresenter().executeOnAddDataRequest(this.parentEditor.folderId,function(response, opts) {
-                        this.switchDialogState(true);
-                        this.parentEditor.editorDialog.destroy();
-                        var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
-                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
-                    }.bind(this));
+                if (this.editorMode === 'STEP') {
+                        this.getDataPresenter().executeOnSaveStepDataRequest(function() {
+                            this.switchDialogState(true);
+                            this.parentEditor.editorDialog.destroy();
+                            var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
+
+
+                            //TBD: Update shape here
+                            //this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
+                        }.bind(this));
                 }
-                else if (this.wizMode === 'EDIT')
-                    this.getDataPresenter().executeOnAddDataRequest(this.metaId,function(response, opts) {
-                        var title = this.getDataPresenter().getRecord();
-/*                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentNavNodeId});
-                        this.parentEditor.editorDialog.close();*/
-                    }.bind(this));
+                else { //''METADATA'
+                    if (this.wizMode === 'CREATE') {
+                        this.switchDialogState(false,'creatingMetaData');
+                        this.getDataPresenter().executeOnAddDataRequest(this.parentEditor.folderId,function(response, opts) {
+                            this.switchDialogState(true);
+                            this.parentEditor.editorDialog.destroy();
+                            var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
+                            this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
+                        }.bind(this));
+                    }
+                    else if (this.wizMode === 'EDIT')
+                        this.getDataPresenter().executeOnAddDataRequest(this.metaId,function(response, opts) {
+                            var title = this.getDataPresenter().getRecord();
+    /*                        this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentNavNodeId});
+                            this.parentEditor.editorDialog.close();*/
+                        }.bind(this));
+                }
             }
         });
     }

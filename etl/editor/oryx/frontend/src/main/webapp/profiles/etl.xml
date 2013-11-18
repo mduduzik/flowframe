@@ -11,7 +11,7 @@
 		<plugin engaged="true" name="ORYX.Plugins.CanvasResize" source="canvasResize.js">
 			<notUsesIn namespace="http://b3mn.org/stencilset/xforms#"/>
 		</plugin>
-		<plugin engaged="true" name="ORYX.Plugins.RenameShapes" source="renameShapes.js"/>
+		<!--<plugin engaged="true" name="ORYX.Plugins.RenameShapes" source="renameShapes.js"/>-->
 		<plugin engaged="true" name="ORYX.Plugins.ERDFSupport" source="erdfSupport.js"/>
 		<plugin engaged="true" name="ORYX.Plugins.JSONSupport" source="jsonSupport.js">
 			<property name="color" value="red"/>
@@ -83,6 +83,8 @@
 
 
         <!-- ETL -->
+        <plugin engaged="true" name="ORYX.Plugins.ETL.Step.StepRenamer" source="etl/step/steprenamer.js"/>
+        <plugin engaged="true" name="ORYX.Plugins.ETL.Step.StepDialogEditor" source="etl/step/stepdialogeditor.js"/>
         <plugin source="etl/metadata/metadataeditorrepository.js" name="ORYX.Plugins.ETL.Metadata.EditorRepository"/>
 <!--        <plugin source="etl/repository/explorer/etlreponavigation.js" name="ORYX.Plugins.ETLRepoNavigation"/>
         <plugin source="etl/repository/explorer/docreponavigation.js" name="ORYX.Plugins.DOCRepoNavigation"/>

@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource;
 
 import org.codehaus.jettison.json.JSONException;
+import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
 import org.flowframe.etl.pentaho.server.plugins.core.model.TransMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
@@ -10,6 +11,8 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +35,44 @@ import java.net.URISyntaxException;
 public class TransformationMetaResource {
     @Autowired
     private ICustomRepository repository;
+
+    @Path("/onnew")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onNew(@HeaderParam("userid") String userid,
+                        @QueryParam("name") String name,
+                        @QueryParam("parentFolderId") String parentFolderId) throws IOException, RequestException, KettleException {
+        String res = null;
+        try {
+            Organization tenant = new Organization();
+            tenant.setId(1L);
+
+            RepositoryDirectoryInterface transRootDir = null;
+            transRootDir = repository.provideTransDirectoryForTenant(tenant);
+            String transRootDirPathId = RepositoryUtil.generatePathID(transRootDir);
+
+            if (parentFolderId == null || "transformations".equals(parentFolderId)) {
+                parentFolderId = RepositoryUtil.generatePathID(transRootDir);
+            }
+
+            TransMeta transMeta = new TransMeta();
+            transMeta.setName(name);
+
+            //-- Add/Update
+            String transNameWithDirPath = RepositoryUtil.addOrReplaceTransMeta(parentFolderId, repository, transMeta,"","");
+            TransMetaDTO dto = new TransMetaDTO(transMeta,parentFolderId,"","");
+
+            //TODO: hack
+            if (parentFolderId.equals(transRootDirPathId))
+                dto.setSubDirPathId("transformations");
+
+            res = dto.toJSON();
+        } catch (Exception e) {
+            throw  new RequestException("Error on /onnew",e);
+        }
+
+        return res;
+    }
 
 
     @Path("/add")
