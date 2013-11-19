@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd08176f-1e31-4a8d-8957-c04946dcf130" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/docreponavigation.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/docreponavigation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/step/stepdialogeditor.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/step/stepdialogeditor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" afterPath="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -80,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textfileinputmetapresenter.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="textfileinputmetapresenter.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="554" column="102" selection-start="22142" selection-end="22142" vertical-scroll-proportion="0.7007673" vertical-offset="9144" max-vertical-offset="9945">
+            <state line="205" column="42" selection-start="8059" selection-end="8059" vertical-scroll-proportion="0.0" vertical-offset="8830" max-vertical-offset="9945">
               <folding />
             </state>
           </provider>
@@ -116,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stepmetabasepresenter.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="stepmetabasepresenter.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="57" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="404" max-vertical-offset="3349">
+            <state line="121" column="94" selection-start="3955" selection-end="3955" vertical-scroll-proportion="0.44501278" vertical-offset="1883" max-vertical-offset="3366">
               <folding />
             </state>
           </provider>
@@ -139,7 +137,7 @@
       <file leaf-file-name="datapresenter.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="319" column="14" selection-start="10180" selection-end="10180" vertical-scroll-proportion="-14.28" vertical-offset="5066" max-vertical-offset="7463">
+            <state line="247" column="43" selection-start="7673" selection-end="7673" vertical-scroll-proportion="5.44" vertical-offset="4335" max-vertical-offset="7446">
               <folding />
             </state>
           </provider>
@@ -160,9 +158,9 @@
       <list>
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/repository/docreponavigation.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/step/stepdialogeditor.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js" />
+        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js" />
       </list>
     </option>
   </component>
@@ -1190,12 +1188,12 @@
       <created>1384873209907</created>
       <updated>1384873209907</updated>
       <workItem from="1384873210905" duration="3374000" />
-      <workItem from="1384878129122" duration="4123000" />
+      <workItem from="1384878129122" duration="7190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7497000" />
+    <option name="totallyTimeSpent" value="10564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1329,13 +1327,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="57" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="404" max-vertical-offset="3349">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/step/stepdialogeditor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="119" column="31" selection-start="4543" selection-end="4554" vertical-scroll-proportion="0.0" vertical-offset="1743" max-vertical-offset="3247">
@@ -1345,14 +1336,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="319" column="14" selection-start="10180" selection-end="10180" vertical-scroll-proportion="-14.28" vertical-offset="5066" max-vertical-offset="7463">
+        <state line="247" column="43" selection-start="7673" selection-end="7673" vertical-scroll-proportion="5.44" vertical-offset="4335" max-vertical-offset="7446">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/textfileinput/textfileinputmetapresenter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="554" column="102" selection-start="22142" selection-end="22142" vertical-scroll-proportion="0.7007673" vertical-offset="9144" max-vertical-offset="9945">
+        <state line="205" column="42" selection-start="8059" selection-end="8059" vertical-scroll-proportion="0.0" vertical-offset="8830" max-vertical-offset="9945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/presenter/stepmetabasepresenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="94" selection-start="3955" selection-end="3955" vertical-scroll-proportion="0.44501278" vertical-offset="1883" max-vertical-offset="3366">
           <folding />
         </state>
       </provider>

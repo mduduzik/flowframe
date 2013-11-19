@@ -118,7 +118,8 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
         this.metaId = arg.metaId;
         this.shapeConfig = arg.shapeConfig;
 
-        this.metaName = 'Editing Step '+arg.shapeConfig.shapeObjectLabelProp._jsonProp.value;
+        var shapeNamePropId		= arg.shapeConfig.shapeObjectLabelProp.prefix() + "-" + arg.shapeConfig.shapeObjectLabelProp.id();
+        this.metaName = 'Editing Step '+arg.shapeConfig.shapeObject.properties[shapeNamePropId];
 
         //-- Launch
         this._launchEditor();

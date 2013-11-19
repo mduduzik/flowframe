@@ -265,7 +265,6 @@ ORYX.ETL.DataPresenter = {
             };
             this._executeRequest(options,false);
         }
-        return this._executeRequest(options,false);
     }
     //{{
     /**

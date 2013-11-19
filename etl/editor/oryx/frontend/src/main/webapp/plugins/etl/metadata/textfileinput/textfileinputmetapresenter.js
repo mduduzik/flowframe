@@ -193,30 +193,29 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 }
             }
             ,onAfterModelLoad: function () {//Sync model-to-form
-
+                var name =  this.parentEditor.getDataPresenter().getRecord().parentStepMeta.stepname;
                 if (this.parentEditor.wizMode === 'CREATE') {
                     //Update record
-                    this.onBeforeModelSubmission()
+                    this.onBeforeModelSubmission();
 
-                    //Make form fields look right
+                    var fileTitle = this.parentEditor.initParams.fileEntryTitle;
+                    var fileName = 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id;
                     this.form.setValues({
-                        fileTitle: this.parentEditor.initParams.fileEntryTitle,
-                        fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
+                        name: name,
+                        fileTitle: fileTitle,
+                        fileName: fileName
                     })
                 }
                 else if (this.parentEditor.wizMode === 'EDIT') {
                     var fileURI =  this.parentEditor.getDataPresenter().getRecord().fileName[0];//ff:// format
                     this.parentEditor.getDataPresenter().getFileEntryInfo(fileURI, function(fileinfo) {
                         this.form.setValues({
+                            name: name,
                             fileTitle: fileinfo.title,
                             fileName: fileURI
                         })
                     }.bind(this));
                 }
-                var name =  this.parentEditor.getDataPresenter().getRecord().parentStepMeta.stepname;
-                this.form.setValues({
-                    name: name
-                })
             }
         });
 
@@ -551,6 +550,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                             try {
                                 this.parentEditor.editorDialog.destroy();
                             } catch (e) {
+                                ORYX.Log.warn("Error closing editor dialog: this.parentEditor.editorDialog.destroy() failed");
                             }
                             //var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
                             //TBD: Update shape here
