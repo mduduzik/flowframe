@@ -117,8 +117,11 @@ ORYX.Plugins.ETL.Step.StepDialogEditor = Clazz.extend({
             this.facade.getEventManager().raiseEvent(eventData, {
                     title: title,
                     metaPathId: metaPathId,
-                    shapeObject: shape,
-                    shapeObjectLabelProp: editableLabelProp
+                    shapeConfig: {
+                                   shapeObject: shape,
+                                        facade: this.facade,
+                          shapeObjectLabelProp: editableLabelProp
+                    }
                 }
             );
         }

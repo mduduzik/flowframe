@@ -16,8 +16,7 @@ ORYX.ETL.DataPresenter = {
 
     editorMode: undefined,
 
-    shapeObject: undefined,
-    shapeObjectLabelProp: undefined,
+    shapeConfig: undefined,
 
     eventManager: undefined,
     record: undefined,
@@ -237,7 +236,10 @@ ORYX.ETL.DataPresenter = {
      * @param
      */
     //}
-    ,_executeOnEditStepDataRequest: function(stepObject) {
+    ,_executeOnEditStepDataRequest: function(shapeConfig) {
+        this.shapeConfig = shapeConfig;
+        var stepObject = this.shapeConfig.shapeObject;
+
         var dataJson = Ext.encode(this.record);
 
         var exists = stepObject.hiddenProperties.keys().member('oryx-stepmeta');
@@ -271,15 +273,16 @@ ORYX.ETL.DataPresenter = {
      * @param
      */
     //}
-    ,_executeOnSaveStepDataRequest: function(stepLabelProp,facade,successHandler) {
+    ,_executeOnSaveStepDataRequest: function(successHandler) {
         this._onBeforeModelSubmission();
 
-        var currentEl 	= this.shapeObject;
+        var facade = this.shapeConfig.facade;
+        var currentEl 	= this.shapeConfig.shapeObject;
         var data = this.record;
         var propId = 'oryx-stepmeta';
 
         var labelValue = this.record.parentStepMeta.stepname;
-        var stepLabelPropId		= stepLabelProp.prefix() + "-" + stepLabelProp.id();
+        var stepLabelPropId		= this.shapeConfig.shapeObjectLabelProp.prefix() + "-" + this.shapeConfig.shapeObjectLabelProp.id();
 
         // Implement the specific command for property change
         var commandClass = ORYX.Core.Command.extend({
@@ -314,7 +317,10 @@ ORYX.ETL.DataPresenter = {
         var command = new commandClass();
 
         // Execute the command
-        this.facade.executeCommands([command]);
+        facade.executeCommands([command]);
+
+        //callback
+        successHandler();
     }
     //{{
     /**

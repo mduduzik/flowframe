@@ -627,10 +627,16 @@ ORYX.ETL.DOCRepoNavigationTreeCombo = Ext.extend(Ext.form.ComboBox, {
     },
 
     onNodeClick: function(node, e) {
-        this.setRawValue(node.attributes.text);
+        this.setValue('ff://repo/internal?fileentry#'+node.attributes.id);
+
+        if (this.hiddenFieldName) {
+            var dependentField = this.ownerCt.find('name',this.hiddenFieldName)[0];
+            dependentField.setValue(node.attributes.text);
+        }
+/*        this.findParentByType(Ext.FormPanel).find('name','fileTitle');
         if (this.hiddenField) {
             this.hiddenField.value = node.id;
-        }
+        }*/
         this.collapse();
     }
 });

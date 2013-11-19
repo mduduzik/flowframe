@@ -18,8 +18,7 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
     parentNavNodeId: undefined,
     wizMode: undefined,  //EDITING, CREATE
 
-    shapeObject: undefined,
-    shapeObjectLabelProp: undefined,
+    shapeConfig: undefined,
     editorMode: undefined, //STEP, METADATA
 
     editorDialog: undefined,
@@ -117,10 +116,9 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
         this.wizMode = 'EDIT';
         this.folderId = arg.folderId;
         this.metaId = arg.metaId;
-        this.shapeObject = arg.shapeObject;
-        this.shapeObjectLabelProp = arg.shapeObjectLabelProp;
+        this.shapeConfig = arg.shapeConfig;
 
-        this.metaName = 'Editing Step '+arg.shapeObjectLabelProp.value;
+        this.metaName = 'Editing Step '+arg.shapeConfig.shapeObjectLabelProp._jsonProp.value;
 
         //-- Launch
         this._launchEditor();

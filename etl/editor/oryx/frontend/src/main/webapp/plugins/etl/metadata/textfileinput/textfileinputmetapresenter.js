@@ -67,6 +67,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     xtype: 'docrepotreecombo',
                     fieldLabel: 'File URI',
                     name: 'fileName',
+                    hiddenFieldName: 'fileTitle',
                     //disabled: true,
                     allowBlank: false,
                     getSubmitData: this.getDisabledFieldValue//read-only hack
@@ -501,8 +502,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             region: 'center',
             wizMode: this.wizMode,
             metaId: this.metaId,
-            shapeObject: this.shapeObject,
-            shapeObjectLabelProp: this.shapeObjectLabelProp,
+            shapeConfig: this.shapeConfig,
             buttonsAt: 'bbar',
             headerConfig: {
                 title: 'Text File Input Metadata'
@@ -530,7 +530,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             //@Ovveriide
             onLoadModel: function() {//usually called on render event
                 if (this.parentEditor.editorMode === 'STEP') {
-                        this.getDataPresenter().executeOnEditStepDataRequest(this.shapeObject);
+                        this.getDataPresenter().executeOnEditStepDataRequest(this.shapeConfig);
                 }
                 else { //''METADATA'
                     this.switchDialogState(false);
@@ -548,10 +548,11 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 if (this.parentEditor.editorMode === 'STEP') {
                         this.getDataPresenter().executeOnSaveStepDataRequest(function() {
                             this.switchDialogState(true);
-                            this.parentEditor.editorDialog.destroy();
-                            var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
-
-
+                            try {
+                                this.parentEditor.editorDialog.destroy();
+                            } catch (e) {
+                            }
+                            //var title = this.getDataPresenter().getRecord().parentStepMeta.stepname;
                             //TBD: Update shape here
                             //this.eventManager.raiseEvent({type:ORYX.CONFIG.EVENT_ETL_METADATA_CREATED,forceExecution:true,name:title,treeNodeParentId:this.parentEditor.parentNavNodeId});
                         }.bind(this));
