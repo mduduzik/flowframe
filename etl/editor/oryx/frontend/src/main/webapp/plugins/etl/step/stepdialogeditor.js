@@ -111,8 +111,10 @@ ORYX.Plugins.ETL.Step.StepDialogEditor = Clazz.extend({
             forceExecution: true
         };
 
-        if (this.facade.hasActiveListeners(eventData.type)) {
-            this.facade.raiseEvent(eventData, {
+
+        //This is a global event
+        if (this.facade.getEventManager().hasActiveListeners(eventData.type)) {
+            this.facade.getEventManager().raiseEvent(eventData, {
                     title: title,
                     metaPathId: metaPathId,
                     shapeObject: shape,

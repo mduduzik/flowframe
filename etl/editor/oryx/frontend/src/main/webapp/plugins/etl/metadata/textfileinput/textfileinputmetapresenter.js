@@ -46,62 +46,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
         /**
          * Pages
          */
-        var selectSampleFilePage = new Ext.ux.etl.BaseWizardCardView({
-            id: "uploadsamplefile",
-            title: 'Sample File',
-            items: [
-                    {
-                        fieldLabel: 'File Title',
-                        name: 'fileTitle',
-                        disabled: true,
-                        allowBlank: false,
-                        getSubmitData: this.getDisabledFieldValue//read-only hack
-                    },
-                    {
-                        fieldLabel: 'File URI',
-                        name: 'fileName',
-                        disabled: true,
-                        allowBlank: false,
-                        getSubmitData: this.getDisabledFieldValue//read-only hack
-                    }
-            ]
-            ,onBeforeModelSubmission: function () {
-                if (this.parentEditor.wizMode === 'CREATE') {
-                    //Update record
-                    var fileNames = [];
-                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.fileEntryId);
-                    this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
-                }
-                else if (this.parentEditor.wizMode === 'EDIT') {
-                    var fileNames = [];
-                    fileNames.push(this.parentEditor.getDataPresenter().getRecord().fileName);
-                    this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
-                }
-            }
-            ,onAfterModelLoad: function () {
-                if (this.parentEditor.wizMode === 'CREATE') {
-                    //Update record
-                    this.onBeforeModelSubmission()
-
-                    //Make form fields look right
-                    this.form.setValues({
-                        fileTitle: this.parentEditor.initParams.fileEntryTitle,
-                        fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
-                    })
-                }
-                else if (this.parentEditor.wizMode === 'EDIT') {
-                    var fileURI =  this.parentEditor.getDataPresenter().getRecord().fileName[0];//ff:// format
-                    this.parentEditor.getDataPresenter().getFileEntryInfo(fileURI, function(fileinfo) {
-                        this.form.setValues({
-                            fileTitle: fileinfo.title,
-                            fileName: fileURI
-                        })
-                    }.bind(this));
-                }
-            }
-        });
-
-
         var enterMetadataSettingsPage = new Ext.ux.etl.BaseWizardCardView({
             id: "entermetadatasettings",
             title: 'Enter/change settings',
@@ -111,6 +55,21 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     name: 'name',
                     emptyText: '<Enter name>',
                     allowBlank: false
+                },
+                {
+                    fieldLabel: 'File Title',
+                    name: 'fileTitle',
+                    disabled: true,
+                    allowBlank: false,
+                    getSubmitData: this.getDisabledFieldValue//read-only hack
+                },
+                {
+                    xtype: 'docrepotreecombo',
+                    fieldLabel: 'File URI',
+                    name: 'fileName',
+                    //disabled: true,
+                    allowBlank: false,
+                    getSubmitData: this.getDisabledFieldValue//read-only hack
                 },
                 {
                     xtype:'combo',
@@ -212,14 +171,47 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     value: false
                 }
             ]
-            ,onBeforeModelSubmission: function () {
+            ,onBeforeModelSubmission: function () {//Sync form-to-model
+                //--name
                 var parentStepMeta = {
                     stepname: this.getForm().getObjectValues().name
                 };
                 this.parentEditor.getDataPresenter().updateRecordProperty("parentStepMeta",parentStepMeta);
+
+                if (this.parentEditor.wizMode === 'CREATE') {
+                    //fileName
+                    var fileNames = [];
+                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.fileEntryId);
+                    this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
+                }
+                else if (this.parentEditor.wizMode === 'EDIT') {
+                    //fileName
+                    var fileNames = [];
+                    fileNames.push(this.parentEditor.getDataPresenter().getRecord().fileName);
+                    this.parentEditor.getDataPresenter().updateRecordProperty("fileName",fileNames);
+                }
             }
-            ,onAfterModelLoad: function () {
-                //Populate form
+            ,onAfterModelLoad: function () {//Sync model-to-form
+
+                if (this.parentEditor.wizMode === 'CREATE') {
+                    //Update record
+                    this.onBeforeModelSubmission()
+
+                    //Make form fields look right
+                    this.form.setValues({
+                        fileTitle: this.parentEditor.initParams.fileEntryTitle,
+                        fileName: 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id
+                    })
+                }
+                else if (this.parentEditor.wizMode === 'EDIT') {
+                    var fileURI =  this.parentEditor.getDataPresenter().getRecord().fileName[0];//ff:// format
+                    this.parentEditor.getDataPresenter().getFileEntryInfo(fileURI, function(fileinfo) {
+                        this.form.setValues({
+                            fileTitle: fileinfo.title,
+                            fileName: fileURI
+                        })
+                    }.bind(this));
+                }
                 var name =  this.parentEditor.getDataPresenter().getRecord().parentStepMeta.stepname;
                 this.form.setValues({
                     name: name
@@ -523,14 +515,13 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 }
             },
             cards: [
-                selectSampleFilePage,
                 enterMetadataSettingsPage,
                 getMetadataPage,
                 previewDataPage
             ],
             initParams: {
-                fileEntryId: this.sampleFileNode.id,
-                fileEntryTitle: this.sampleFileNode.text
+                fileEntryId: (this.sampleFileNode === undefined)?'<select file>':this.sampleFileNode.id,
+                fileEntryTitle: (this.sampleFileNode === undefined)?'<select file>':this.sampleFileNode.text
             },
             dataPresenter: this.dataPresenter,
             onBackToFirstStep : function() {
@@ -538,7 +529,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             },
             //@Ovveriide
             onLoadModel: function() {//usually called on render event
-                if (this.editorMode === 'STEP') {
+                if (this.parentEditor.editorMode === 'STEP') {
                         this.getDataPresenter().executeOnEditStepDataRequest(this.shapeObject);
                 }
                 else { //''METADATA'
@@ -554,7 +545,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             //@Override
             onFinish : function()
             {
-                if (this.editorMode === 'STEP') {
+                if (this.parentEditor.editorMode === 'STEP') {
                         this.getDataPresenter().executeOnSaveStepDataRequest(function() {
                             this.switchDialogState(true);
                             this.parentEditor.editorDialog.destroy();

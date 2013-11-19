@@ -65,6 +65,9 @@ ORYX.Editor = {
     // Defines the global dom event listener
     DOMEventListeners: new Hash(),
 
+    // Global eventManager
+    eventManger: undefined,
+
     // Defines the selection
     selection: [],
 
@@ -78,6 +81,7 @@ ORYX.Editor = {
         // initialization.
         this.config = config;
         this.mode = config.type;
+        this.eventManager = config.eventManager;
 
         this._eventsQueue 	= [];
         this.loadedPlugins 	= [];
@@ -817,6 +821,7 @@ ORYX.Editor = {
 
         // create it.
             this._pluginFacade = {
+                getEventManager:  function() {return this.eventManager.getEventManagerFacade();}.bind(this),
                 getUndoRedoManager: function() {return this.redoundo;}.bind(this),
                 setUndoRedoManager: function(redoundo) {this.redoundo = redoundo;}.bind(this),
                 getCurrentEditor: function() {return this.layout}.bind(this),

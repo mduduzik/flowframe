@@ -466,6 +466,7 @@ ORYX = Object.extend(ORYX, {
         var ssConfig_ = {type:config.type};
         Ext.apply(ssConfig_,config);
         Ext.applyIf(ssConfig_,ssConfig);
+        Ext.apply(ssConfig_,{eventManager: this.eventManager});
 
 
         if (config.title)

@@ -263,27 +263,6 @@ ORYX.ETL.DataPresenter = {
             };
             this._executeRequest(options,false);
         }
-
-
-
-        var options = {
-            url: this.onEditURL,
-            method: 'GET',
-            asynchronous: false,
-            params: {pathId:pathId},
-            success: function (response, opts) {
-                var record = Ext.decode(response.responseText);
-                this._loadRecord(record);
-
-                //-- Call callback
-                successHandler();
-
-                //-- Update pages
-                this._onAfterModelLoad();
-            }.bind(this),
-            failure: function (response, opts) {
-            }.bind(this)
-        };
         return this._executeRequest(options,false);
     }
     //{{
@@ -293,6 +272,8 @@ ORYX.ETL.DataPresenter = {
      */
     //}
     ,_executeOnSaveStepDataRequest: function(stepLabelProp,facade,successHandler) {
+        this._onBeforeModelSubmission();
+
         var currentEl 	= this.shapeObject;
         var data = this.record;
         var propId = 'oryx-stepmeta';

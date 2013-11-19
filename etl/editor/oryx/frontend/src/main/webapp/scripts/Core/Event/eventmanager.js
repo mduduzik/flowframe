@@ -62,7 +62,6 @@ ORYX.EventManager = {
     construct: function(config) {
         // initialization.
         this._eventsQueue 	= [];
-        this.getEventManagerFacade = this._getEventManagerFacade.bind(this);
     }
     //{{
     ,deactivateEventListeners: function(){
@@ -72,7 +71,7 @@ ORYX.EventManager = {
      * Returns a per-editor singleton plugin facade.
      * To be used in plugin initialization.
      */
-    ,_getEventManagerFacade: function() {
+    ,getEventManagerFacade: function() {
 
         // if there is no pluginfacade already created:
         if(!(this._eventManagerFacade))
@@ -83,7 +82,8 @@ ORYX.EventManager = {
                 unregisterOnEvent:		this.unregisterOnEvent.bind(this),
                 raiseEvent:				this.handleEvents.bind(this),
                 enableEvent:			this.enableEvent.bind(this),
-                disableEvent:			this.disableEvent.bind(this)
+                disableEvent:			this.disableEvent.bind(this),
+                hasActiveListeners:     this.hasActiveListeners.bind(this)
             };
 
         // return it.
@@ -148,6 +148,10 @@ ORYX.EventManager = {
     /**
      *  Methods for the PluginFacade
      */
+    /* Event-Handler Methods */
+    hasActiveListeners: function(eventType) {
+        return this.EventListeners.keys().member(eventType);
+    },
     registerOnEvent: function(eventType, callback) {
         if(!(this.EventListeners.keys().member(eventType))) {
             this.EventListeners[eventType] = [];
