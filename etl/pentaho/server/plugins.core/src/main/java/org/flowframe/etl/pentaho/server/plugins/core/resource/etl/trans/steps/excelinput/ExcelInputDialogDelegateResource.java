@@ -29,6 +29,7 @@ import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputField;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
+import org.pentaho.di.trans.steps.excelinput.SpreadSheetType;
 import org.pentaho.di.trans.steps.excelinput.WorkbookFactory;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInput;
 
@@ -75,9 +76,9 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
     }
 
     @Path("/onedit")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws Exception {
+         @GET
+         @Produces(MediaType.APPLICATION_JSON)
+         public String onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws Exception {
         String res = null;
         try {
             ExcelInputMeta meta = (ExcelInputMeta) RepositoryUtil.getStep(repository, pathId).getStepMetaInterface();
@@ -89,6 +90,39 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
 
         return res;
     }
+
+    @Path("/validatefile")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response onValidateFile(@HeaderParam("userid") String userid,
+                                 Map<String,String> params) throws Exception {
+        String message = null;
+        try {
+            String fileEntryId = params.get("fileEntryId");
+            String ssType = params.get("spreadSheetType");
+            String encoding = params.get("encoding");
+
+            TransMeta transMeta = new TransMeta();
+            final String webDavFileUrl = getFileEntryWebDavURI(fileEntryId).toString();
+            final String filename = transMeta.environmentSubstitute(webDavFileUrl);
+            FileObject fileObject = KettleVFS.getFileObject(filename);
+
+            //try all 3 types
+            try {
+                WorkbookFactory.getWorkbook(SpreadSheetType.valueOf(ssType), KettleVFS.getFilename(fileObject), encoding);
+            }
+            catch (Exception e) {
+               throw new RequestException("File format unsupported",e);
+            }
+
+            message = "File " + fileObject.getName().getBaseName() + " validated successfully";
+        }catch (Exception e) {
+            throw  new RequestException("System Error on /validatefile",e);
+        }
+
+        return Response.ok(message, MediaType.TEXT_PLAIN).build();
+    }
+
 
 
     @Path("/ongetfields")

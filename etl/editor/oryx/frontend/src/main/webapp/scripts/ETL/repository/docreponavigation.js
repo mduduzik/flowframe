@@ -238,7 +238,7 @@ Ext.ns("Ext.ux");
 Ext.ux.DOCRepoNavigationTreePanel = Ext.extend(Ext.ux.FileTreePanel, {
     application: undefined,
     registerDDCallback: undefined,
-
+    fileExtensionFilter: undefined,
     initComponent: function () {
         try {
             Ext.apply(this, {
@@ -573,8 +573,10 @@ Ext.ux.DOCRepoNavigationTreePanel = Ext.extend(Ext.ux.FileTreePanel, {
 });
 
 ORYX.ETL.DOCRepoNavigationTreeCombo = Ext.extend(Ext.form.ComboBox, {
+    fileExtensionFilter: undefined,
     initList: function() {
         this.list = new Ext.ux.DOCRepoNavigationTreePanel({
+            fileExtensionFilter: this.fileExtensionFilter,
             header: true,
             icon: '/etl/images/conxbi/etl/home_nav.gif',
             url: '/etl/core/docexplorer/getnode',

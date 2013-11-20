@@ -54,6 +54,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                 {
                     xtype: 'docrepotreecombo',
                     fieldLabel: 'File URI',
+                    fileExtensionFilter: 'xls,xlsx',
                     name: 'fileName',
                     hiddenFieldName: 'fileTitle',
                     //disabled: true,
@@ -246,7 +247,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             ])
         });
 
-        var getMetadataPage = new Ext.ux.etl.BaseWizardCardView({
+        var getSheetsPage = new Ext.ux.etl.BaseWizardCardView({
             name: 'getsheets',
             title: 'Get Excel Sheets',
             monitorValid: true,
@@ -259,16 +260,23 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                 //Call super
                 Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
 
+                //-- Sync model
+                this.parentEditor.getDataPresenter().onBeforeModelSubmission();
 
                 this.parentEditor.switchDialogState(false,'fetchingSheets');
                 var dataJson = Ext.encode(this.parentEditor.getDataPresenter().getRecord());
 
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid: 'test'};
+                });
 
                 var options = {
                     url: '/etl/core/excelinputmeta/ongetsheets',
-                    method: 'GET',
+                    method: 'POST',
                     asynchronous: false,
-                    params: {pathId:pathId},
+                    params: dataJson,
                     success: function (response, opts) {
                         var data = Ext.decode(response.responseText);
                         getmetadataGridStore.loadData(data, false);
@@ -578,7 +586,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             },
             cards: [
                 enterMetadataSettingsPage,
-                getMetadataPage,
+                getSheetsPage,
                 previewDataPage
             ],
             initParams: {

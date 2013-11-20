@@ -60,6 +60,7 @@ ORYX.ETL.DataPresenter = {
 
                 //-- AJAX requests
                 executeRequest: this._executeRequest.bind(this),
+                onBeforeModelSubmission: this._onBeforeModelSubmission.bind(this),
                 executeOnNewRequest: this._executeOnNewRequest.bind(this),
                 executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this),
                 executeOnAddDataRequest: this._executeOnAddDataRequest.bind(this),

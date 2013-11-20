@@ -9,6 +9,7 @@ import org.flowframe.etl.pentaho.server.plugins.core.resource.BaseDelegateResour
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
+import org.flowframe.kernel.common.utils.StringUtil;
 import org.glassfish.jersey.media.multipart.*;
 import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
 import org.pentaho.di.core.exception.KettleDatabaseException;
@@ -272,6 +273,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public String getnode(@QueryParam("userid") String userid,
                           @QueryParam("callback") String callback,
                           @QueryParam("itemtype") String itemtype,
+                          @FormParam("fileExt") String fileExt,
                           @FormParam("node") String nodeId,
                           @FormParam("path") String path) throws Exception {
         Organization tenant = new Organization();
@@ -288,7 +290,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         else {
             fldr = ecmService.getFolderById(nodeId);
         }
-        JSONObject json = generateFolderChildrenJSON(fldr,path);
+        JSONObject json = generateFolderChildrenJSON(fldr,path,fileExt);
         final String res = json.getJSONArray("children").toString();
 
         if (callback != null)
@@ -318,7 +320,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         }
     }
 
-    private JSONObject generateFolderChildrenJSON(Folder folder, String path) throws Exception {
+    private JSONObject generateFolderChildrenJSON(Folder folder, String path, String fileExt) throws Exception {
         boolean hasChildren = false;
         JSONObject fldr = new JSONObject();
 
@@ -365,6 +367,9 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             //Files
             List<FileEntry> fes = ecmService.getFileEntries(Long.toString(folder.getFolderId()));
             for (FileEntry fe : fes) {
+                if (!fileExtensionsSupported(fe,fileExt))
+                    continue;
+
                 JSONObject feObj = new JSONObject();
                 feObj.put("id", fe.getFileEntryId());
                 feObj.put("allowDrag", false);
@@ -409,6 +414,22 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
 
         return fldr;
+    }
+
+    private boolean fileExtensionsSupported(FileEntry fe, String fileExt) {
+        if (fileExt == null)
+            return true;
+
+        if (fe.getExtension() == null)
+            return true;
+
+        String[] exts = StringUtil.split(fileExt,',');
+        for (String ext : exts) {
+            if (fe.getExtension().equalsIgnoreCase(ext))
+                return true;
+        }
+
+        return false;
     }
 
     private void updateAttributes(Folder fldr, JSONObject fldrJson, String path) throws JSONException {
