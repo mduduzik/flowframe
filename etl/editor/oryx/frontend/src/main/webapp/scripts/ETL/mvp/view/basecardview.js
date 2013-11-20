@@ -137,6 +137,12 @@ Ext.ux.etl.BaseWizardCardView = Ext.extend(Ext.ux.Wiz.Card , {
     setParentEditor: function(editor) {
         this.parentEditor = editor;
     },
+    updateRecordProperty: function(propName, propValue) {
+        this.parentEditor.getDataPresenter().updateRecordProperty(propName,propValue);
+    },
+    getRecord: function() {
+        return  this.parentEditor.getDataPresenter().getRecord();
+    },
     getDisabledFieldValue: function () {
         var me = this,
             data = null;

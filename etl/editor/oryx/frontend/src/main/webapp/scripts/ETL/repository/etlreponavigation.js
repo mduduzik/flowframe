@@ -212,7 +212,7 @@ ORYX.ETL.ETLRepoNavigation = Clazz.extend({
                 };
                 this.application.handleEvents(eventData, {
                         folderId: n.attributes['folderObjectId'],
-                        sourceNavNodeId: n.id,
+                        metaPathId: n.id,
                         dropDataType: sourceNode.attributes.itemtype,
                         dropData: {
                             source: sourceNode
@@ -647,16 +647,8 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                         var dirPathId = this.ctxNode.id;
                         if (this.ctxNode.isLeaf())
                             dirPathId = this.ctxNode.parentNode.id;
-                        this.application.createAndEditNewTransformation(dirPathId);
-/*                        this.ctxNode.select();
-                        var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_MODEL_CREATE_PREFIX + 'Transformation',
-                            forceExecution: true
-                        };
-                        this.application.handleEvents(eventData, {
-                                folderId: this.ctxNode.attributes['folderObjectId'],
-                                metaPathId: this.ctxNode.id}
-                        );*/
+                        //this.application.createAndEditNewTransformation(dirPathId);
+                        this.application.newTransformation(dirPathId);
                     }.bind(this)
                 },
                 {
@@ -687,19 +679,19 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     this.getEl().dom.focus();
                                     return;
                                 }
+
                                 Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                                     // here you can put whatever you need as header. For instance:
-                                    //this.defaultPostHeader = "application/json; charset=utf-8;";
-                                    this.defaultHeaders = {
-                                        userid: 'test'
-                                    };
+                                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                                    this.defaultHeaders = {user : 'test'};
                                 });
+
                                 Ext.Ajax.request({
                                     url: '/etl/core/transmeta/delete',
-                                    method: 'POST',
-                                    params: {
+                                    method: 'DELETE',
+                                    params:  Ext.encode({
                                         objectId: node_.id
-                                    },
+                                    }),
                                     success: function (response, opts) {
                                         //Refresh this.ctxNode
                                         if (parentNode_.attributes)
@@ -841,19 +833,19 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                                     this.getEl().dom.focus();
                                     return;
                                 }
+
                                 Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
                                     // here you can put whatever you need as header. For instance:
-                                    //this.defaultPostHeader = "application/json; charset=utf-8;";
-                                    this.defaultHeaders = {
-                                        userid: 'test'
-                                    };
+                                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                                    this.defaultHeaders = {user : 'test'};
                                 });
+
                                 Ext.Ajax.request({
                                     url: '/etl/core/jobmeta/delete',
-                                    method: 'POST',
-                                    params: {
+                                    method: 'DELETE',
+                                    params: Ext.encode({
                                         objectId: node_.id
-                                    },
+                                    }),
                                     success: function (response, opts) {
                                         //Refresh this.ctxNode
                                         if (parentNode_.attributes)

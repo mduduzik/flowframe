@@ -9,6 +9,7 @@ import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.repository.LongObjectId;
+import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.Response;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -153,16 +155,22 @@ public class TransformationMetaResource {
         return dto.toJSON();
     }
 
-    @Path("/delete")
-    @POST
-    public Response delete(@FormParam("objectId") String objectId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
-        LongObjectId longObjectId = new LongObjectId(Long.valueOf(objectId));
-        TransMeta transMeta = repository.loadTransformation(longObjectId, null);
 
-        repository.deleteTransformation(longObjectId);
+    @DELETE
+    @Path("/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response delete(@HeaderParam("userid") String userid,
+                           Map<String,String> params) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
+        String pathId = (String)params.get("objectId");
+        ObjectId objectId = getObjectIdFromPathID(pathId);
+
+        TransMeta transMeta = repository.loadTransformation(objectId, null);
+
+        repository.deleteTransformation(objectId);
 
         return Response.ok("Transformation " + transMeta.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
+
 
     @Path("/get")
     @GET
@@ -178,5 +186,13 @@ public class TransformationMetaResource {
         TransMetaDTO dto = new TransMetaDTO(transMeta,dirPathId,jsonModel,svgModel);
 
         return dto.toJSON();
+    }
+
+
+    static ObjectId getObjectIdFromPathID(String pathID) {
+        // /dir/1/db/2
+        String[] pathTokens = pathID.split("/");
+        int len = pathTokens.length;
+        return new LongObjectId(Long.valueOf(pathTokens[4]));
     }
 }

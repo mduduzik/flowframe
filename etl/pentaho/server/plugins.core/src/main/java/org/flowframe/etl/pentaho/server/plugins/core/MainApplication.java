@@ -6,6 +6,7 @@ import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapp
 import org.flowframe.etl.pentaho.server.plugins.core.resource.*;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.carte.TransformationJobServiceResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.csvinput.CSVInputDialogDelegateResource;
+import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.excelinput.ExcelInputDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.textfileinput.TextFileInputDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.reference.CharsetEncodingResource;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.repository.doclib.DocLibExplorerResource;
@@ -43,7 +44,9 @@ public class MainApplication extends ResourceConfig {
         register(TransformationMetaResource.class);
         register(TransformationJobServiceResource.class);
         register(JobMetaResource.class);
+
         register(TextFileInputDialogDelegateResource.class);
+        register(ExcelInputDialogDelegateResource.class);
 
         // Exceptions
         register(KettleDependencyExceptionMapper.class);

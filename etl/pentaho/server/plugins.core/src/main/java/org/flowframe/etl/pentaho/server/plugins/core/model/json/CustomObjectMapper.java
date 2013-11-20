@@ -18,10 +18,12 @@ import org.codehaus.jackson.type.JavaType;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.introspector.CustomBasicClassIntrospector;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataListSerializer;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.ExcelInputMetaMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.StepMetaMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaMixIn;
 import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
 import java.util.ArrayList;
@@ -151,6 +153,9 @@ public class CustomObjectMapper extends ObjectMapper {
         //TextFileInputMeta
         getDeserializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaMixIn.class);
         getSerializationConfig().addMixInAnnotations(TextFileInputMeta.class, TextFileInputMetaMixIn.class);
+        //TextFileInputMeta
+        getDeserializationConfig().addMixInAnnotations(ExcelInputMeta.class, ExcelInputMetaMixIn.class);
+        getSerializationConfig().addMixInAnnotations(ExcelInputMeta.class, ExcelInputMetaMixIn.class);
 
         //RowMetaAndData
         final List<RowMetaAndData> type = new ArrayList<RowMetaAndData>();

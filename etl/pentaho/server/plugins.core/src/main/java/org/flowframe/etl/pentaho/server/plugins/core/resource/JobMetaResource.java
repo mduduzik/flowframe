@@ -10,7 +10,9 @@ import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.repository.LongObjectId;
+import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
+import org.pentaho.di.trans.TransMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,7 @@ import javax.ws.rs.core.Response;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -112,13 +115,18 @@ public class JobMetaResource {
         return dto.toJSON();
     }
 
+    @DELETE
     @Path("/delete")
-    @POST
-    public Response delete(@FormParam("objectId") String objectId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
-        LongObjectId longObjectId = new LongObjectId(Long.valueOf(objectId));
-        JobMeta transMeta = repository.loadJob(longObjectId, null);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response delete(@HeaderParam("userid") String userid,
+                Map<String,String> params) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
 
-        repository.deleteTransformation(longObjectId);
+        String pathId = (String)params.get("objectId");
+        ObjectId objectId = getObjectIdFromPathID(pathId);
+
+        JobMeta transMeta = repository.loadJob(objectId, null);
+
+        repository.deleteJob(objectId);
 
         return Response.ok("Job " + transMeta.getName() + " deleted successfully", MediaType.TEXT_PLAIN).build();
     }
@@ -137,5 +145,12 @@ public class JobMetaResource {
         JobMetaDTO dto = new JobMetaDTO(transMeta,dirPathId,jsonModel,svgModel);
 
         return dto.toJSON();
+    }
+
+    static ObjectId getObjectIdFromPathID(String pathID) {
+        // /dir/1/db/2
+        String[] pathTokens = pathID.split("/");
+        int len = pathTokens.length;
+        return new LongObjectId(Long.valueOf(pathTokens[4]));
     }
 }

@@ -59,6 +59,7 @@ ORYX.ETL.DataPresenter = {
                 updateRecordProperty: this._updateRecordProperty.bind(this),
 
                 //-- AJAX requests
+                executeRequest: this._executeRequest.bind(this),
                 executeOnNewRequest: this._executeOnNewRequest.bind(this),
                 executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this),
                 executeOnAddDataRequest: this._executeOnAddDataRequest.bind(this),

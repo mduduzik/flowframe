@@ -739,7 +739,7 @@ public class RepositoryExplorerResource {
         JSONObject subDir = new JSONObject();
 
         // Populate
-        subDir.put("id", RepositoryUtil.generatePathID(dir, itemType));
+        subDir.put("id", "/dir/"+dir.getObjectId());
         subDir.put("allowDrag", false);
         subDir.put("allowDrop", true);
         subDir.put("text", dir.getName());

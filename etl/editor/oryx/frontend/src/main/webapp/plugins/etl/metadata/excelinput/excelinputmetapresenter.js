@@ -10,18 +10,18 @@ if (!ORYX.Plugins.ETL.Metadata) {
     ORYX.Plugins.ETL.Metadata = new Object();
 }
 
-ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter.extend({
+ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter.extend({
     construct: function (eventManager) {
-        this.itemType = ORYX.CONFIG.ETL_METADATA_TYPE_DELIMTEDMETA;
+        this.itemType = ORYX.CONFIG.ETL_METADATA_TYPE_EXCELMETA;
         this.eventManager = eventManager;
         this.dataConfig = {
-            onNewURL: '/etl/core/textfileinputmeta/onnew',
-            onGetMetadataURL: '/etl/core/textfileinputmeta/ongetmetadata',
-            onPreviewURL: '/etl/core/textfileinputmeta/previewdata',
-            onSaveURL: '/etl/core/textfileinputmeta/save',
-            onAddURL: '/etl/core/textfileinputmeta/add',
-            onEditURL: '/etl/core/textfileinputmeta/onedit',
-            onDeleteURL: '/etl/core/textfileinputmeta/delete'
+            onNewURL: '/etl/core/excelinputmeta/onnew',
+            onGetMetadataURL: '/etl/core/excelinputmeta/ongetmetadata',
+            onPreviewURL: '/etl/core/excelinputmeta/previewdata',
+            onSaveURL: '/etl/core/excelinputmeta/save',
+            onAddURL: '/etl/core/excelinputmeta/add',
+            onEditURL: '/etl/core/excelinputmeta/onedit',
+            onDeleteURL: '/etl/core/excelinputmeta/delete'
         };
 
 
@@ -31,18 +31,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
 
     //@Override
     initWizard: function () {
-        var uploaderPanel = new Ext.ux.UploadPanel({
-            layout: 'fit',
-            xtype: 'uploadpanel',
-            addText: 'Add sample CSV file',
-            buttonsAt: 'tbar',
-            id: 'uppanel',
-            url: '/etl/core/textfileinputmeta/uploadsample',
-            path: 'root',
-            maxFileSize: 1048576,
-            enableProgress: false,
-            singleUpload: true
-        });
         /**
          * Pages
          */
@@ -73,65 +61,35 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     getSubmitData: this.getDisabledFieldValue//read-only hack
                 },
                 {
+                    xtype: 'xcheckbox',
+                    fieldLabel: 'Header?',
+                    name: 'startsWithHeader',
+                    inputValue: true,
+                    value: true
+                },
+                {
                     xtype:'combo',
-                    fieldLabel:'File Type',
-                    name:'fileType',
+                    fieldLabel:'Spreadsheet Type',
+                    name:'spreadSheetType',
                     displayField:'text',
                     valueField:'value',
                     store : new Ext.data.SimpleStore({
                         fields: ["value","text"],
                         data: [
-                            ["CSV","CSV"],
-                            ["Fixed","Fixed"]
+                            ["JXL","Excel 97-2003 XLS (JXL)"],
+                            ["POI","Excel 2007 XLSX (Apache POI)"],
+                            ["ODS","Open Office ODS (ODFDOM)"]
                         ]
                     }),
                     typeAhead: true,
                     triggerAction: 'all',
-                    value:"CSV",
+                    value:"POI",
                     selectOnFocus:false,
                     editable:false,
                     forceSelection:false,
                     allowBlank:true,
                     mode:'local',
-                    emptyText : "FileType is Required"
-                },
-                {
-                    fieldLabel: 'Row Number Field',
-                    name: 'rowNumberField',
-                    value: 'lineNumber'
-                },
-                {
-                    xtype: 'xcheckbox',
-                    fieldLabel: 'Header?',
-                    name: 'header',
-                    inputValue: true,
-                    value: true
-                },
-                {
-                    fieldLabel: 'Separator',
-                    name: 'separator',
-                    emptyText: '<Enter delimiter or separator>',
-                    allowBlank: false,
-                    value: ','
-                },
-                {
-                    fieldLabel: 'Enclosure',
-                    name: 'enclosure',
-                    value: '"'
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Number of header lines',
-                    name: 'nrHeaderLines',
-                    style: 'text-align: left',
-                    value: 1
-                },
-                {
-                    xtype: 'xcheckbox',
-                    fieldLabel: 'Rownum in output?',
-                    name: 'includeRowNumber',
-                    inputValue: true,
-                    value: true
+                    emptyText : "Spreadsheet Type is Required"
                 },
                 {
                     xtype: 'combo',
@@ -163,14 +121,6 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     emptyText: 'Select encoding...',
                     selectOnFocus: true
                 }
-                ,
-                {
-                    xtype: 'xcheckbox',
-                    fieldLabel: 'Newline Possible In Fields',
-                    name: 'newlinePossibleInFields',
-                    inputValue: false,
-                    value: false
-                }
             ]
             ,onBeforeModelSubmission: function () {//Sync form-to-model
                 //--name
@@ -182,7 +132,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                 if (this.parentEditor.wizMode === 'CREATE') {
                     //fileName
                     var fileNames = [];
-                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.initParams.fileEntryId);
+                    fileNames.push('ff://repo/internal?fileentry#'+this.parentEditor.fileEntryId);
                     this.updateRecordProperty("fileName",fileNames);
                 }
                 else if (this.parentEditor.wizMode === 'EDIT') {
@@ -199,7 +149,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
                     this.onBeforeModelSubmission();
 
                     var fileTitle = this.parentEditor.initParams.fileEntryTitle;
-                    var fileName = 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.fileEntryId;
+                    var fileName = 'ff://repo/internal?fileentry#'+this.parentEditor.initParams.sampleFileNode.id;
                     this.form.setValues({
                         name: name,
                         fileTitle: fileTitle,
@@ -219,7 +169,120 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             }
         });
 
-        //Get Metadata
+        //Get Sheets
+        var sheetsModel = Ext.data.Record.create([
+            {name: 'name'},
+            {name: 'rowStart'},
+            {name: 'columnStart'}
+        ]);
+
+        var sheetsGridStore = new Ext.data.Store({
+            reader: new Ext.data.JsonReader({
+                totalProperty: "results",             // The property which contains the total dataset size (optional)
+                root: "rows",                         // The property which contains an Array of row objects
+                id: "name"                              // The property within each row object that provides an ID for the record (optional)
+            }, sheetsModel)
+        });
+
+
+        var controlBar = new Ext.Toolbar({
+            items: [
+                {
+                    text: 'Get sheets', tooltip: 'Refresh sheets', iconCls: 'icon-refresh', id: 'btn-refresh', toggleHandler: function (btn, pressed) {
+                    newCsvMetaWiz.getMetadata();
+                }
+                }
+            ]
+        });
+
+        var sheetsGrid = new Ext.grid.EditorGridPanel({
+            autoScroll: true,
+            height: 300,
+            clicksToEdit: 2,
+            tbar: controlBar,
+            store: sheetsGridStore,
+            listeners: {
+                afteredit: function (e) {
+                    e.record.commit();
+                }
+            },
+            cm: new Ext.grid.ColumnModel([
+                {
+                    id: 'name',
+                    header: "Name",
+                    width: 150,
+                    sortable: true,
+                    locked: false,
+                    dataIndex: 'name',
+                    allowBlank: false,
+                    editor: new Ext.form.TextField({
+                        allowBlank: false
+                    })
+                },
+                {
+                    id: 'rowStart',
+                    header: "Row Start",
+                    width: 150,
+                    sortable: true,
+                    locked: false,
+                    dataIndex: 'rowStart',
+                    allowBlank: false,
+                    editor: new Ext.form.TextField({
+                        allowBlank: false
+                    })
+                },
+                {
+                    id: 'columnStart',
+                    header: "Column Start",
+                    width: 150,
+                    sortable: true,
+                    locked: false,
+                    dataIndex: 'columnStart',
+                    allowBlank: false,
+                    editor: new Ext.form.TextField({
+                        allowBlank: false
+                    })
+                }
+            ])
+        });
+
+        var getMetadataPage = new Ext.ux.etl.BaseWizardCardView({
+            name: 'getsheets',
+            title: 'Get Excel Sheets',
+            monitorValid: true,
+            layout: 'fit',
+            defaults: {
+                labelStyle: 'font-size:11px'
+            },
+            items: [sheetsGrid],
+            onCardShow: function (page) {
+                //Call super
+                Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
+
+
+                this.parentEditor.switchDialogState(false,'fetchingSheets');
+                var dataJson = Ext.encode(this.parentEditor.getDataPresenter().getRecord());
+
+
+                var options = {
+                    url: '/etl/core/excelinputmeta/ongetsheets',
+                    method: 'GET',
+                    asynchronous: false,
+                    params: {pathId:pathId},
+                    success: function (response, opts) {
+                        var data = Ext.decode(response.responseText);
+                        getmetadataGridStore.loadData(data, false);
+                        //this.updateRecordProperty("inputFields",data.rows);
+                        this.parentEditor.switchDialogState(true);
+                    }.bind(this),
+                    failure: function (response, opts) {
+                    }.bind(this)
+                };
+                return this.parentEditor.getDataPresenter().executeRequest(options,false);
+            }
+        });
+
+        //Get Fields
         var MetadataFieldModel = Ext.data.Record.create([
             {name: 'id'},
             {name: 'name'},
@@ -419,7 +482,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
         //Preview data
         var previewDataDS = new Ext.data.Store({
             proxy: new Ext.data.HttpProxy({
-                url: '/etl/core/textfileinputmeta/previewdata',
+                url: '/etl/core/excelinputmeta/previewdata',
                 method: 'POST',
                 headers: {
                     'userid': 'test'
@@ -504,7 +567,7 @@ ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter = ORYX.Plugins.ETL.Metadata
             shapeConfig: this.shapeConfig,
             buttonsAt: 'bbar',
             headerConfig: {
-                title: 'Text File Input Metadata'
+                title: 'Excel Input Metadata'
             },
             cardPanelConfig: {
                 defaults: {
