@@ -574,9 +574,11 @@ Ext.ux.DOCRepoNavigationTreePanel = Ext.extend(Ext.ux.FileTreePanel, {
 
 ORYX.ETL.DOCRepoNavigationTreeCombo = Ext.extend(Ext.form.ComboBox, {
     fileExtensionFilter: undefined,
+    exclDirs: undefined,
     initList: function() {
         this.list = new Ext.ux.DOCRepoNavigationTreePanel({
             fileExtensionFilter: this.fileExtensionFilter,
+            exclDirs: this.exclDirs,
             header: true,
             icon: '/etl/images/conxbi/etl/home_nav.gif',
             url: '/etl/core/docexplorer/getnode',
@@ -591,12 +593,29 @@ ORYX.ETL.DOCRepoNavigationTreeCombo = Ext.extend(Ext.form.ComboBox, {
             rootVisible: false,
             cmargins: '5 0 0 0',
             padding: '0 0 0 0',
-            tbar: [
-                'Search: ', ' ',
-                new Ext.ux.SearchField({
-                    width: 'auto'
-                })
-            ],
+            tbar:['Filter:', {
+                xtype:'trigger'
+                ,triggerClass:'x-form-clear-trigger'
+                ,onTriggerClick:function() {
+                    this.setValue('');
+                    this.filter.clear();
+                }.bind(this)
+                ,id:'filter'
+                ,enableKeyEvents:true
+                ,listeners:{
+                    keyup:{buffer:150, fn:function(field, e) {
+                        if(Ext.EventObject.ESC == e.getKey()) {
+                            field.onTriggerClick();
+                        }
+                        else {
+                            var val = this.getRawValue();
+                            var re = new RegExp('.*' + val + '.*', 'i');
+                            this.filter.clear();
+                            this.filter.filter(re, 'text');
+                        }
+                    }.bind(this)}
+                }
+            }],
             listeners: {
                 click: this.onNodeClick,
                 scope: this
@@ -605,6 +624,8 @@ ORYX.ETL.DOCRepoNavigationTreeCombo = Ext.extend(Ext.form.ComboBox, {
                 this.setPagePosition(this.el.getAlignToXY(el, pos));
             }
         });
+
+        this.filter = new Ext.ux.tree.TreeFilterX(this.list);
     },
 
     expand: function() {
@@ -643,3 +664,63 @@ ORYX.ETL.DOCRepoNavigationTreeCombo = Ext.extend(Ext.form.ComboBox, {
     }
 });
 Ext.reg('docrepotreecombo', ORYX.ETL.DOCRepoNavigationTreeCombo);
+
+//Bug Fix
+Ext.override(Ext.form.ComboBox, {
+    initEvents : function(){
+        Ext.form.ComboBox.superclass.initEvents.call(this);
+        this.keyNav = new Ext.KeyNav(this.el, {
+            "up" : function(e){
+                this.inKeyMode = true;
+                this.selectPrev();
+            },
+            "down" : function(e){
+                if(!this.isExpanded()){
+                    this.onTriggerClick();
+                }else{
+                    this.inKeyMode = true;
+                    this.selectNext();
+                }
+            },
+            "enter" : function(e){
+                this.onViewClick();
+                this.delayedCheck = true;
+                this.unsetDelayCheck.defer(10, this);
+            },
+            "esc" : function(e){
+                this.collapse();
+            },
+            "tab" : function(e){
+                this.onViewClick(false);
+                return true;
+            },
+            scope : this,
+            doRelay : function(foo, bar, hname){
+                if(hname == 'down' || this.scope.isExpanded()){
+                    return Ext.KeyNav.prototype.doRelay.apply(this, arguments);
+                }
+                return true;
+            },
+            forceKeyDown : true
+        });
+        this.queryDelay = Math.max(this.queryDelay || 10,
+            this.mode == 'local' ? 10 : 250);
+        this.dqTask = new Ext.util.DelayedTask(this.initQuery, this);
+        if(this.typeAhead){
+            this.taTask = new Ext.util.DelayedTask(this.onTypeAhead, this);
+        }
+        if((this.editable !== false) && !this.enableKeyEvents) {
+            this.el.on("keyup", this.onKeyUp, this);
+        }
+        if(this.forceSelection){
+            this.on('blur', this.doForce, this);
+        }
+    },
+    onKeyUp : function(e){
+        if(this.editable !== false && !e.isSpecialKey()){
+            this.lastKey = e.getKey();
+            this.dqTask.delay(this.queryDelay);
+        }
+        Ext.form.ComboBox.superclass.onKeyUp.call(this, e);
+    }
+});

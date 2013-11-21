@@ -281,7 +281,36 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		deleteFolderById(Long.toString(fdlr.getFolderId()));
 	}
 
-	@Override
+    @Override
+    public boolean isFolderEmpty(String folderId) throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlfolder/get-folders-and-file-entries-and-file-shortcuts-count");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("groupId", loginGroupId));
+        params.add(new BasicNameValuePair("folderId", folderId));
+        params.add(new BasicNameValuePair("status", "1"));
+        params.add(new BasicNameValuePair("includeMountFolders", "false"));
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        int count = 0;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+            count = Integer.valueOf(response);
+        }
+
+        return (count < 1);
+    }
+
+    @Override
 	public List<FileEntry> getFileEntries(String folderId) throws Exception {
         // Add AuthCache to the execution context
         BasicHttpContext ctx = new BasicHttpContext();

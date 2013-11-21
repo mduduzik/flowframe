@@ -1,11 +1,16 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps;
 
 import org.apache.commons.vfs.FileObject;
+import org.codehaus.jackson.JsonGenerationException;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.BaseDelegateResource;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
+import org.flowframe.kernel.common.utils.HTMLUtil;
+import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.exception.KettleFileException;
+import org.pentaho.di.core.row.RowMetaInterface;
+import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +18,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -84,6 +93,28 @@ public abstract class BaseDialogDelegateResource extends BaseDelegateResource {
         sampleFile.delete();
 
         return sampleFileEntry;
+    }
+
+
+    protected String serializeRowMetaAndDataList(List<RowMetaAndData> rowData) throws IOException {
+        Map<String,Object> resMap = new HashMap<String, Object>();
+
+        //Metadata
+        RowMetaAndData rowMeta = rowData.get(0);
+        Map<String,Object> metadataMap = new HashMap<String, Object>();
+        metadataMap.put("fields",rowMeta.getRowMeta().getValueMetaList());
+        metadataMap.put("totalProperty","results");
+        metadataMap.put("root","rows");
+        resMap.put("metaData",metadataMap);
+
+        //Data
+        Map<String,Object> dataMap = new HashMap<String, Object>();
+        dataMap.put("results", rowData.size());
+        dataMap.put("totalProperty", "results");
+        dataMap.put("root", "rows");
+        dataMap.put("rows", rowData);
+
+        return mapper.getFilteredWriter().writeValueAsString(dataMap);
     }
 
 

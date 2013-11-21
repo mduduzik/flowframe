@@ -214,6 +214,8 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/verticaltab/js/ux_VerticalTabPanel.js\"></script>\n"
                 // XCheckbox extension
                 + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/xcheckbox/js/Ext.ux.form.XCheckbox.js\"></script>\n"
+                // TreeFilterX extension
+                + "<script type=\"text/javascript\" src=\"" + getRootPath(request) + "lib/ext-2.0.2/ux/tree/js/Ext.ux.tree.TreeFilterX.js\"></script>\n"
 
                 ///-- Inline style for resource imports
                 + "<style>\n"

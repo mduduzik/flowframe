@@ -274,10 +274,16 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                           @QueryParam("callback") String callback,
                           @QueryParam("itemtype") String itemtype,
                           @FormParam("fileExt") String fileExt,
+                          @FormParam("exclDirs") String exclDirs,
                           @FormParam("node") String nodeId,
                           @FormParam("path") String path) throws Exception {
         Organization tenant = new Organization();
         tenant.setId(1L);
+
+        if ("undefined".equals(fileExt))
+            fileExt = null;
+        if ("undefined".equals(exclDirs))
+            exclDirs = null;
 
         Folder fldr = null;
         if (nodeId == null || !NumberUtils.isNumber(nodeId))//Root
@@ -290,7 +296,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         else {
             fldr = ecmService.getFolderById(nodeId);
         }
-        JSONObject json = generateFolderChildrenJSON(fldr,path,fileExt);
+        JSONObject json = generateFolderChildrenJSON(fldr,path,fileExt,exclDirs);
         final String res = json.getJSONArray("children").toString();
 
         if (callback != null)
@@ -320,7 +326,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
         }
     }
 
-    private JSONObject generateFolderChildrenJSON(Folder folder, String path, String fileExt) throws Exception {
+    private JSONObject generateFolderChildrenJSON(Folder folder, String path, String fileExt, String exclDirs) throws Exception {
         boolean hasChildren = false;
         JSONObject fldr = new JSONObject();
 
@@ -347,6 +353,11 @@ public class DocLibExplorerResource extends BaseDelegateResource {
             }
 
             for (Folder subFldr : fldrs) {
+                //if (fileExt != null && ecmService.isFolderEmpty(Long.toString(subFldr.getFolderId())))
+                //    continue;
+                if (excludeFolder(subFldr,exclDirs))
+                    continue;
+
                 JSONObject subFldrObj = new JSONObject();
                 subFldrObj.put("id", subFldr.getFolderId());
                 subFldrObj.put("allowDrag", false);
@@ -405,7 +416,6 @@ public class DocLibExplorerResource extends BaseDelegateResource {
                 children.put(feObj);
             }
 
-
         } catch (KettleDatabaseException e) {
             throw e;
         } catch (JSONException e) {
@@ -414,6 +424,21 @@ public class DocLibExplorerResource extends BaseDelegateResource {
 
 
         return fldr;
+    }
+
+    private boolean excludeFolder(Folder subFldr, String exclDirs) {
+        if (exclDirs == null)
+            return false;
+
+
+
+        String[] exts = StringUtil.split(exclDirs,',');
+        for (String ext : exts) {
+            if (subFldr.getName().equals(ext))
+                return true;
+        }
+
+        return false;
     }
 
     private boolean fileExtensionsSupported(FileEntry fe, String fileExt) {

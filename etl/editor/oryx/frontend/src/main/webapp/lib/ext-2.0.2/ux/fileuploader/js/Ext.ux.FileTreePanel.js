@@ -267,6 +267,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 	,url:'http://localhost/list'
 	// }}}
     ,fileExtensionFilter: undefined
+    ,exclDirs: undefined
 
 	// overrides
 	// {{{
@@ -387,7 +388,7 @@ Ext.ux.FileTreePanel = Ext.extend(Ext.tree.TreePanel, {
 		if(!this.loader) {
 			this.loader = new Ext.tree.TreeLoader({
 				 url:this.url
-				,baseParams:{cmd:'get',fileExt: this.fileExtensionFilter}
+				,baseParams:{cmd:'get',fileExt: this.fileExtensionFilter, exclDirs: this.exclDirs}
 				,listeners:{
 					beforeload:{scope:this, fn:function(loader, node) {
 						loader.baseParams.path = this.getPath(node);

@@ -41,6 +41,8 @@ public interface IRemoteDocumentRepository {
 	public void deleteFolderById(String folderId)  throws Exception;
 	
 	public void deleteFolderByName(String parentFolderId, String folderId)  throws Exception;
+
+    public boolean isFolderEmpty(String folderId)  throws Exception;
 	
 	/**
 	 * 

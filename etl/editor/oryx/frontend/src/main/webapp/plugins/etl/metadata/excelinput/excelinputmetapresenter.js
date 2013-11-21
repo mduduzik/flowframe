@@ -55,6 +55,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                     xtype: 'docrepotreecombo',
                     fieldLabel: 'File URI',
                     fileExtensionFilter: 'xls,xlsx',
+                    exclDirs: 'OUTBOX',
                     name: 'fileName',
                     hiddenFieldName: 'fileTitle',
                     //disabled: true,
@@ -174,7 +175,8 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
         var sheetsModel = Ext.data.Record.create([
             {name: 'name'},
             {name: 'rowStart'},
-            {name: 'columnStart'}
+            {name: 'columnStart'},
+            {name: 'include'}
         ]);
 
         var sheetsGridStore = new Ext.data.Store({
@@ -185,22 +187,15 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             }, sheetsModel)
         });
 
-
-        var controlBar = new Ext.Toolbar({
-            items: [
-                {
-                    text: 'Get sheets', tooltip: 'Refresh sheets', iconCls: 'icon-refresh', id: 'btn-refresh', toggleHandler: function (btn, pressed) {
-                    newCsvMetaWiz.getMetadata();
-                }
-                }
-            ]
+        var sheetsTBar = new Ext.Toolbar({
+            items: []
         });
 
         var sheetsGrid = new Ext.grid.EditorGridPanel({
             autoScroll: true,
             height: 300,
             clicksToEdit: 2,
-            tbar: controlBar,
+            tbar: sheetsTBar,
             store: sheetsGridStore,
             listeners: {
                 afteredit: function (e) {
@@ -243,6 +238,18 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                     editor: new Ext.form.TextField({
                         allowBlank: false
                     })
+                },
+                {
+                    id: 'include',
+                    header: "Include Sheet?",
+                    width: 150,
+                    sortable: true,
+                    locked: false,
+                    dataIndex: 'include',
+                    allowBlank: false,
+                    editor: new Ext.form.Checkbox({
+                        allowBlank: false
+                    })
                 }
             ])
         });
@@ -256,10 +263,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                 labelStyle: 'font-size:11px'
             },
             items: [sheetsGrid],
-            onCardShow: function (page) {
-                //Call super
-                Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
-
+            _executeGetSheetsRequest: function() {
                 //-- Sync model
                 this.parentEditor.getDataPresenter().onBeforeModelSubmission();
 
@@ -279,19 +283,61 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                     params: dataJson,
                     success: function (response, opts) {
                         var data = Ext.decode(response.responseText);
-                        getmetadataGridStore.loadData(data, false);
+                        sheetsGridStore.loadData(data, false);
                         //this.updateRecordProperty("inputFields",data.rows);
                         this.parentEditor.switchDialogState(true);
                     }.bind(this),
                     failure: function (response, opts) {
                     }.bind(this)
                 };
-                return this.parentEditor.getDataPresenter().executeRequest(options,false);
+                this.parentEditor.getDataPresenter().executeRequest(options,false);
+            },
+            onCardShow: function (page) {
+                //Call super
+                Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
+                this._executeGetSheetsRequest();
+
+                return true;//show
+            },
+            //@Override
+            isValid: function () {//Sync form-to-model
+                var selectedSheets = sheetsGridStore.query('include',true);
+
+                var sheetName = [];
+                var startRow  = [];
+                var startColumn = [];
+                selectedSheets.each(function(sheet){
+                    sheetName.push(sheet.data.name);
+                    startRow.push(sheet.data.rowStart);
+                    startColumn.push(sheet.data.columnStart);
+                }.bind(this));
+
+                this.updateRecordProperty("sheetName",sheetName);
+                this.updateRecordProperty("startRow",startRow);
+                this.updateRecordProperty("startColumn",startColumn);
+
+                var valid = Ext.ux.Wiz.Card.prototype.isValid.apply(this, arguments);
+
+                return valid;
             }
         });
+        sheetsTBar.on('render',function() {
+            sheetsTBar.addButton(
+                {
+                    text: 'Get sheets',
+                    tooltip: 'Refresh sheets',
+                    iconCls: 'icon-refresh',
+                    listeners: {
+                        click: function (btn, pressed) {
+                            getSheetsPage._executeGetSheetsRequest();
+                        }
+                    }
+                }
+            );
+        },getSheetsPage);
 
         //Get Fields
-        var MetadataFieldModel = Ext.data.Record.create([
+        var fieldModel = Ext.data.Record.create([
             {name: 'id'},
             {name: 'name'},
             {name: 'typeDescription'},
@@ -304,12 +350,12 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             {name: 'trimtype'}
         ]);
 
-        var getmetadataGridStore = new Ext.data.Store({
+        var getfieldsGridStore = new Ext.data.Store({
             reader: new Ext.data.JsonReader({
                 totalProperty: "results",             // The property which contains the total dataset size (optional)
                 root: "rows",                         // The property which contains an Array of row objects
                 id: "id"                              // The property within each row object that provides an ID for the record (optional)
-            }, MetadataFieldModel)
+            }, fieldModel)
         });
 
 
@@ -323,12 +369,12 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             ]
         });
 
-        var getmetadataGrid = new Ext.grid.EditorGridPanel({
+        var getfieldsGrid = new Ext.grid.EditorGridPanel({
             autoScroll: true,
             height: 300,
             clicksToEdit: 2,
             tbar: controlBar,
-            store: getmetadataGridStore,
+            store: getfieldsGridStore,
             listeners: {
                 afteredit: function (e) {
                     e.record.commit();
@@ -463,27 +509,46 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             ])
         });
 
-        var getMetadataPage = new Ext.ux.etl.BaseWizardCardView({
-            name: 'getmetadata',
-            title: 'Get metadata fields',
+        var getfieldsPage = new Ext.ux.etl.BaseWizardCardView({
+            name: 'getfields',
+            title: 'Get fields',
             monitorValid: true,
             layout: 'fit',
             defaults: {
                 labelStyle: 'font-size:11px'
             },
-            items: [getmetadataGrid],
+            items: [getfieldsGrid],
             onCardShow: function (page) {
                 //Call super
                 Ext.ux.etl.BaseWizardCardView.prototype.onCardShow.apply(this, arguments);
 
+                //-- Sync model
+                this.parentEditor.getDataPresenter().onBeforeModelSubmission();
 
-                this.parentEditor.switchDialogState(false,'fetchingMetaData');
-                this.parentEditor.getDataPresenter().executeOnGetMetadataRequest(function(response, opts) {
-                    var data = Ext.decode(response.responseText);
-                    getmetadataGridStore.loadData(data, false);
-                    this.updateRecordProperty("inputFields",data.rows);
-                    this.parentEditor.switchDialogState(true);
-                }.bind(this));
+                this.parentEditor.switchDialogState(false,'fetchingFields');
+                var dataJson = Ext.encode(this.parentEditor.getDataPresenter().getRecord());
+
+                Ext.lib.Ajax.request = Ext.lib.Ajax.request.createInterceptor(function (method, uri, cb, data, options) {
+                    // here you can put whatever you need as header. For instance:
+                    this.defaultPostHeader = "application/json; charset=utf-8;";
+                    this.defaultHeaders = {userid: 'test'};
+                });
+
+                var options = {
+                    url: '/etl/core/excelinputmeta/ongetfields',
+                    method: 'POST',
+                    asynchronous: false,
+                    params: dataJson,
+                    success: function (response, opts) {
+                        var data = Ext.decode(response.responseText);
+                        getfieldsGridStore.loadData(data, false);
+                        this.updateRecordProperty('field',data.rows);
+                        this.parentEditor.switchDialogState(true);
+                    }.bind(this),
+                    failure: function (response, opts) {
+                    }.bind(this)
+                };
+                return this.parentEditor.getDataPresenter().executeRequest(options,false);
             }
         });
 
@@ -587,7 +652,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             cards: [
                 enterMetadataSettingsPage,
                 getSheetsPage,
-                previewDataPage
+                getfieldsPage
             ],
             initParams: {
                 fileEntryId: (this.sampleFileNode === undefined)?'<select file>':this.sampleFileNode.id,

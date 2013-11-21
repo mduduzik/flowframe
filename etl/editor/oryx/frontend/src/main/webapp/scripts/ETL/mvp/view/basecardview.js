@@ -23,6 +23,8 @@ Ext.ux.etl.BaseCardView = Ext.extend(Ext.ux.Wiz, {
         'fetchingData' : 'Fetching data...',
         'fetchingMetaData' : 'Fetching metadata...',
         'fetchingPreviewData' : 'Fetching preview data...',
+        'fetchingSheets' : 'Fetching excel sheets...',
+        'fetchingFields' : 'Fetching fields...',
         'creatingMetaData' : 'Adding metadata...'
     },
     /**

@@ -503,8 +503,10 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
             inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
             final  Map<String,List<RowMetaAndData>> rowRes = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview",start,pageSize);
+
+
             int totalRows = rowRes.get("totalRows").size();
-            res = mapper.writeValueAsString(rowRes.get("resultRows"));
+            res = serializeRowMetaAndDataList(rowRes.get("resultRows"));
 
             final JsonNode resObj = mapper.readTree(res);
             ((ObjectNode)resObj).put("results",totalRows);

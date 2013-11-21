@@ -64,6 +64,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
         String res = null;
         try {
             ExcelInputMeta meta = new ExcelInputMeta();
+            meta.setSpreadSheetType(SpreadSheetType.POI);
             meta.setDefault();
             meta.allocate(1, 0, 0);
             meta.setParentStepMeta(new StepMeta());
@@ -160,19 +161,18 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
             final ExcelInputMeta updatedMetadata = updateSheets(meta);
 
             Map<String, Object> resultMap = new HashMap<String,Object>();
-            List<Map> rows = new ArrayList<Map>();
+            List<Map<String,Object>> rows = new ArrayList<Map<String,Object>>();
             for (int i=0; i<updatedMetadata.getSheetName().length; i++) {
                 final String sheetName = updatedMetadata.getSheetName()[i];
-                rows.add(new HashMap() {
-                    {
-                        put("name",sheetName);
-                        put("rowStart",0);
-                        put("columnStart",0);
-                    }
-                });
+                HashMap<String, Object> row = new HashMap<String, Object>();
+                row.put("name",sheetName);
+                row.put("rowStart",1);
+                row.put("columnStart",1);
+                row.put("include",true);
+                rows.add(row);
             }
 
-            resultMap.put("results",updatedMetadata.getField().length);
+            resultMap.put("results",updatedMetadata.getSheetName().length);
             resultMap.put("rows",rows);
 
             res = mapper.writeValueAsString(resultMap);
@@ -331,7 +331,6 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
         FileObject fileObject;
 
         final String webDavFileUrl = getFileEntryWebDavURI(new URI(meta.getFileName()[0])).toString();
-        meta.getFileName()[0] = webDavFileUrl;//for later use
         final String filename = transMeta.environmentSubstitute(webDavFileUrl);
         fileObject = KettleVFS.getFileObject(filename);
         KWorkbook workbook = WorkbookFactory.getWorkbook(meta.getSpreadSheetType(), KettleVFS.getFilename(fileObject), meta.getEncoding());
@@ -373,7 +372,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
         FileObject fileObject;
 
         final String webDavFileUrl = getFileEntryWebDavURI(new URI(meta.getFileName()[0])).toString();
-        meta.getFileName()[0] = webDavFileUrl;//for later use
+        //meta.getFileName()[0] = webDavFileUrl;//for later use
         final String filename = transMeta.environmentSubstitute(webDavFileUrl);
         fileObject = KettleVFS.getFileObject(filename);
 

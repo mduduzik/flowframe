@@ -16,13 +16,17 @@ import org.codehaus.jackson.map.type.TypeFactory;
 import org.codehaus.jackson.map.util.ClassUtil;
 import org.codehaus.jackson.type.JavaType;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.introspector.CustomBasicClassIntrospector;
-import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataListSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.ExcelInputFieldSerializer;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.RowMetaAndDataSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.io.metadata.ValueMetaInterfaceSerializer;
+import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.ExcelInputFieldMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.ExcelInputMetaMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.StepMetaMixIn;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.jackson.mixin.steps.TextFileInputMetaMixIn;
 import org.pentaho.di.core.RowMetaAndData;
+import org.pentaho.di.core.row.ValueMetaInterface;
 import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.steps.excelinput.ExcelInputField;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
@@ -158,10 +162,13 @@ public class CustomObjectMapper extends ObjectMapper {
         getSerializationConfig().addMixInAnnotations(ExcelInputMeta.class, ExcelInputMetaMixIn.class);
 
         //RowMetaAndData
-        final List<RowMetaAndData> type = new ArrayList<RowMetaAndData>();
-        final Class<List<RowMetaAndData>> cls = ( Class<List<RowMetaAndData>>)type.getClass() ;
         this.module.addSerializer(RowMetaAndData.class,new RowMetaAndDataSerializer());
-        this.module.addSerializer(cls,new RowMetaAndDataListSerializer());
+        //ValueMetaInterface
+        this.module.addSerializer(ValueMetaInterface.class,new ValueMetaInterfaceSerializer());
+        //ExcelInputField
+        this.module.addSerializer(ExcelInputField.class,new ExcelInputFieldSerializer());
+        getDeserializationConfig().addMixInAnnotations(ExcelInputField.class, ExcelInputFieldMixIn.class);
+        getSerializationConfig().addMixInAnnotations(ExcelInputField.class, ExcelInputFieldMixIn.class);
 
         registerModule(module);
     }
