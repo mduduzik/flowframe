@@ -3,29 +3,25 @@ package org.flowframe.etl.pentaho.server.plugins.core.utils.transformation;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.DatabaseMetaUtil;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
-import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.plugins.PluginRegistry;
-import org.pentaho.di.core.plugins.StepPluginType;
 import org.pentaho.di.trans.TransHopMeta;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.step.StepMetaInterface;
-import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
-import org.pentaho.di.trans.steps.tableoutput.TableOutputMeta;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Mduduzi on 9/30/13.
  */
-public class JSONStencilSet2TransformationConverter {
+public class JSONStencilSet2TransMetaConverter {
     private static PluginRegistry registry = PluginRegistry.getInstance();
-    public static final TransMeta toTransMeta(ICustomRepository repository, String jsonModel) throws JSONException, KettleException {
+    private static StepMetaResourceConversionFactory stepMetaFactory = new StepMetaResourceConversionFactory();
+
+    public static final TransMeta toTransMeta(ICustomRepository repository, String jsonModel) throws JSONException, KettleException, IOException {
         JSONObject jsonObject = new JSONObject(jsonModel);
 
         Map<String,StepMeta> name2StepMeta = new HashMap<String,StepMeta>();
@@ -44,38 +40,11 @@ public class JSONStencilSet2TransformationConverter {
 
             type = ((JSONObject)childShape.get("stencil")).getString("id");
 
-            //================== Inputs
-            if ("CsvInput".equals(type)) {
-                //Lookup meta
-                stepMeta = RepositoryUtil.getStep(repository, getStringProperty(childShape, "metadataobjid"));
-                stepMeta.setName(getStringProperty(childShape,"name"));
-                ((CsvInputMeta)stepMeta.getStepMetaInterface()).setFilename(getStringProperty(childShape, "filename"));
-                transMeta.addStep(stepMeta);
-                name2StepMeta.put(getStringProperty(childShape,"name"),stepMeta);
-            }
-
-            //================== Outtputs
-            if ("TableOutput".equals(type)) {
-                //Lookup db
-                String pathId = getStringProperty(childShape, "metadataobjid");
-                String targettable = getStringProperty(childShape, "targettable");
-                if (targettable == null || targettable.isEmpty()) {//Get from default metadata
-                    targettable = RepositoryUtil.getDBTablenameFromPathID(pathId);
-                }
-                DatabaseMeta db = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, pathId);
-                transMeta.addDatabase(db);
-
-                //Create meta
-                TableOutputMeta tom = new TableOutputMeta();
-                tom.setDatabaseMeta(db);
-                tom.setTableName(targettable);
-
-                String fromid = registry.getPluginId(StepPluginType.class, tom);
-                stepMeta = new StepMeta(fromid, getStringProperty(childShape,"name"), (StepMetaInterface)tom);
-
-                transMeta.addStep(stepMeta);
-                name2StepMeta.put(getStringProperty(childShape,"name"),stepMeta);
-            }
+            String stepName = getStringProperty(childShape, "name");
+            stepMeta = stepMetaFactory.create(type,getStringProperty(childShape, "stepmeta"));
+            stepMeta.setName(stepName);
+            transMeta.addStep(stepMeta);
+            name2StepMeta.put(stepName,stepMeta);
         }
 
 

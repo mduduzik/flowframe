@@ -4,7 +4,7 @@ import org.codehaus.jettison.json.JSONException;
 import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
 import org.flowframe.etl.pentaho.server.plugins.core.model.TransMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransMetaConverter;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.exception.KettleException;
@@ -12,8 +12,6 @@ import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -100,7 +98,7 @@ public class TransformationMetaResource {
 
 
         //-- Translate model json into Meta
-        TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, jsonModel);
+        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(repository, jsonModel);
         transMeta.setName(title);
         transMeta.setDescription(summary);
 
@@ -139,7 +137,7 @@ public class TransformationMetaResource {
 
 
         //-- Translate model json into Meta
-        TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, jsonModel);
+        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(repository, jsonModel);
         transMeta.setName(title);
         transMeta.setDescription(summary);
 

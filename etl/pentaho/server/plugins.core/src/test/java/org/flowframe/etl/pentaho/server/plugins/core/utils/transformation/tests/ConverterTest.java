@@ -1,7 +1,7 @@
 package org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.tests;
 
 import org.codehaus.jettison.json.JSONException;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransMetaConverter;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class ConverterTest extends AbstractJUnit4SpringContextTests {
 
 	@Test
 	public final void testConversion() throws KettleException, JSONException {
-        TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, modelJson);
+        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(repository, modelJson);
 		assertNotNull(transMeta);
 
         String transMetaContent = transMeta.getXML();

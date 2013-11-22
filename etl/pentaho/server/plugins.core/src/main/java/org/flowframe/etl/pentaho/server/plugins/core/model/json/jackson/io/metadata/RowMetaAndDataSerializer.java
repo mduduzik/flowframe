@@ -5,6 +5,7 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 import org.flowframe.kernel.common.utils.HTMLUtil;
+import org.flowframe.kernel.common.utils.StringUtil;
 import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.exception.KettleValueException;
 import org.pentaho.di.core.row.RowMetaInterface;
@@ -32,7 +33,7 @@ public class RowMetaAndDataSerializer extends JsonSerializer<RowMetaAndData>
                 String obj = rowMI.getString(row, i);
                 switch(vm.getType()) {
                     case 5:/*TYPE_INTEGER*/
-                        jgen.writeNumberField(vm.getName(), Long.valueOf(obj));
+                        jgen.writeNumberField(vm.getName(), (obj == null)?null:Long.valueOf(StringUtil.trim(obj.toString())));
                         break;
                     case 2:/*TYPE_STRING*/
                         jgen.writeStringField(vm.getName(), HTMLUtil.escape(obj));
@@ -41,11 +42,11 @@ public class RowMetaAndDataSerializer extends JsonSerializer<RowMetaAndData>
                         jgen.writeStringField(vm.getName(), obj);
                         break;
                     case 4:/*TYPE_BOOLEAN*/
-                        jgen.writeBooleanField(vm.getName(), Boolean.valueOf(obj));
+                        jgen.writeBooleanField(vm.getName(),  (obj == null)?null:Boolean.valueOf(StringUtil.trim(obj.toString())));
                         break;
                     case 1:/*TYPE_NUMBER*/
                     case 6:/*TYPE_BIGNUMBER*/
-                        jgen.writeNumberField(vm.getName(), new BigDecimal(obj.toString()));
+                        jgen.writeNumberField(vm.getName(), (obj == null)?null:new BigDecimal(StringUtil.trim(obj.toString())));
                         break;
                     default:
                         jgen.writeStringField(vm.getName(), obj);

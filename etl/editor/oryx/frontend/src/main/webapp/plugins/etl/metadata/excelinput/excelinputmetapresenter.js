@@ -340,7 +340,8 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
         var fieldModel = Ext.data.Record.create([
             {name: 'id'},
             {name: 'name'},
-            {name: 'typeDescription'},
+            {name: 'type'},
+            {name: 'typeDesc'},
             {name: 'format'},
             {name: 'length'},
             {name: 'precision'},
@@ -397,10 +398,10 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                     header: "Type",
                     width: 100,
                     sortable: true,
-                    dataIndex: 'typeDescription',
+                    dataIndex: 'type',
                     editor: new Ext.form.ComboBox({
                         store: new Ext.data.SimpleStore({
-                            fields: ['type', 'description'],
+                            fields: ['type', 'typeDesc'],
                             data: [
                                 [0, "NONE"],
                                 [1, "Number"],
@@ -413,7 +414,7 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
                                 [8, "Binary"]
                             ]
                         }),
-                        displayField: 'description',
+                        displayField: 'typeDesc',
                         typeAhead: true,
                         mode: 'local',
                         triggerAction: 'all',
@@ -652,7 +653,8 @@ ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter = ORYX.Plugins.ETL.Metadata.St
             cards: [
                 enterMetadataSettingsPage,
                 getSheetsPage,
-                getfieldsPage
+                getfieldsPage,
+                previewDataPage
             ],
             initParams: {
                 fileEntryId: (this.sampleFileNode === undefined)?'<select file>':this.sampleFileNode.id,

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Application context definition for GreenPages JPA.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <bean id="repository" class="org.flowframe.etl.pentaho.server.repository.db.repository.DBRepositoryWrapperImpl" init-method="init" scope="singleton">
+        <property name="reponame" value="Kettle Database Repository"/>
+        <property name="repodescription" value="Kettle Database Repository"/>
+        <property name="username" value="admin"/>
+        <property name="userpassword" value="admin"/>
+        <property name="userfullname" value="The system administrator"/>
+        <property name="dbhostname" value="localhost"/>
+        <property name="dbusername" value="root"/>
+        <property name="dbuserpassword" value="root"/>
+        <property name="dbtype" value="MySQL"/>
+        <property name="dbname" value="ffmdmrepoetl"/>
+        <property name="dbport" value="3306"/>
+    </bean>
+
+	<bean id="docRepo" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl" init-method="init">
+        <property name="repositoryId" value="10180"/>
+        <property name="companyId" value="7080"/>
+        <property name="fflogiFolderId" value="17603"/>
+        <property name="loginEmail" value="test@liferay.com"/>
+        <property name="loginPassword" value="test"/>
+        <property name="hostname" value="localhost"/>
+        <property name="port" value="7080"/>
+        <property name="loginGroupId" value="10180"/>
+    </bean>
+
+    <bean id="excelInputDialogDelegateResource" class="org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.excelinput.ExcelInputDialogDelegateResource"/>
+</beans>

@@ -29,7 +29,7 @@ public abstract class BaseDelegateResource {
     protected final CustomObjectMapper mapper = new  CustomObjectMapper();
 
     @Autowired
-    protected IRemoteDocumentRepository ecmService;
+    protected static IRemoteDocumentRepository ecmService;
 
     protected ServletContext context;
 
@@ -117,7 +117,7 @@ public abstract class BaseDelegateResource {
         return new URI(scheme, authority, path, query, fragment);
     }
 
-    public URI getFileEntryWebDavURI(URI internalURI) throws Exception {
+    public static URI getFileEntryWebDavURI(URI internalURI) throws Exception {
         String fileEntryId =internalURI.getFragment();
         return getFileEntryWebDavURI(fileEntryId);
     }
@@ -130,7 +130,7 @@ public abstract class BaseDelegateResource {
         return fe.getTitle();
     }
 
-    public URI getFileEntryWebDavURI(String fileEntryId) throws Exception {
+    public static URI getFileEntryWebDavURI(String fileEntryId) throws Exception {
         final URI templateUri = new URI(ecmService.getFileAsURL(fileEntryId,null));
 
         final String scheme = templateUri.getScheme();

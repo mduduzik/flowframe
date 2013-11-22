@@ -6,11 +6,9 @@ import org.flowframe.etl.pentaho.server.carte.services.ICarteJobService;
 import org.flowframe.etl.pentaho.server.carte.standalone.impl.utils.XML2JSONTransformer;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransMetaConverter;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.flowframe.kernel.common.utils.HTMLUtil;
-import org.flowframe.kernel.common.utils.StringUtil;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.www.SlaveServerTransStatus;
@@ -46,7 +44,7 @@ public class TransformationJobServiceResource extends BaseDialogDelegateResource
         Organization tenant = new Organization();
         tenant.setId(1L);
 
-        TransMeta transMeta = JSONStencilSet2TransformationConverter.toTransMeta(repository, jsonModel);
+        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(repository, jsonModel);
 
         String transNameWithDirPath = RepositoryUtil.addOrReplaceTransMetaDraft(tenant,repository,transMeta);
 

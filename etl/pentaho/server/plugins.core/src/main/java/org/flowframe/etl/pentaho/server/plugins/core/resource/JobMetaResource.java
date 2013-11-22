@@ -4,7 +4,6 @@ import org.codehaus.jettison.json.JSONException;
 import org.flowframe.etl.pentaho.server.plugins.core.model.JobMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.job.JSONStencilSet2JobConverter;
-import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransformationConverter;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.exception.KettleException;
@@ -12,7 +11,6 @@ import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.ObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
-import org.pentaho.di.trans.TransMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

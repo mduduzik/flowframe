@@ -1,6 +1,8 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.excelinput;
 
 import org.apache.commons.vfs.FileObject;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
@@ -11,8 +13,10 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.pentaho.di.core.Const;
+import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.logging.LogChannelInterface;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.core.plugins.StepPluginType;
 import org.pentaho.di.core.row.RowMeta;
@@ -25,12 +29,17 @@ import org.pentaho.di.core.spreadsheet.KSheet;
 import org.pentaho.di.core.spreadsheet.KWorkbook;
 import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
-import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.*;
+import org.pentaho.di.trans.step.StepInterface;
 import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.step.StepMetaInterface;
+import org.pentaho.di.trans.steps.dummytrans.DummyTransMeta;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputField;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
 import org.pentaho.di.trans.steps.excelinput.SpreadSheetType;
 import org.pentaho.di.trans.steps.excelinput.WorkbookFactory;
+import org.pentaho.di.trans.steps.injector.InjectorMeta;
+import org.pentaho.di.trans.steps.samplerows.SampleRowsMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInput;
 
 import javax.ws.rs.*;
@@ -38,11 +47,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -184,7 +191,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
     }
 
 
-/*    @Path("/previewdata/{start}/{pageSize}")
+    @Path("/previewdata/{start}/{pageSize}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -194,12 +201,143 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
                                 ExcelInputMeta meta) throws Exception {
         String res = null;
         try {
-            //res = previewData(meta,start,pageSize);
+            res = previewData(meta,start,pageSize);
         } catch (Exception e) {
             throw  new RequestException("Error on /previewdata/{"+start+"}/{"+pageSize+"}",e);
         }
         return res;
-    }*/
+    }
+
+    public String previewData(ExcelInputMeta inputMetadata,int start,int pageSize) throws Exception {
+        FileObject fileObject = null;
+        InputStreamReader reader = null;
+        ExcelInputMeta outputMetadata = null;
+        String res = null;
+        //ExcelInputMeta cachedMetadata;
+        try {
+            LogChannelInterface log = null;
+            outputMetadata = (ExcelInputMeta)inputMetadata.clone();
+
+            final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
+            final  Map<String,List<RowMetaAndData>> rowRes = generatePreviewDataFromFile(inputMetadata, "ExcelInputPreview",start,pageSize);
+
+
+            int totalRows = rowRes.get("totalRows").size();
+            res = serializeRowMetaAndDataList(rowRes.get("resultRows"));
+
+            final JsonNode resObj = mapper.readTree(res);
+            ((ObjectNode)resObj).put("results",totalRows);
+
+            res = resObj.toString();
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return res;
+    }
+
+    public static final Map<String,List<RowMetaAndData>> generatePreviewDataFromFile(ExcelInputMeta cim, String oneStepname, int start, int stepSize) throws KettleException {
+        KettleEnvironment.init();
+
+        start = (start <= 0)?1:start;
+        stepSize = (stepSize <= 0)?100:stepSize;
+
+
+        //
+        // Create a new transformation...
+        //
+        TransMeta transMeta = new TransMeta();
+        transMeta.setName(oneStepname + "TransMeta");
+
+        //
+        // create an injector step...
+        //
+        String injectorStepname = "DataInjectorStep";
+        InjectorMeta im = new InjectorMeta();
+
+        // Set the information of the injector.
+        String injectorPid = registry.getPluginId(StepPluginType.class, im);
+        StepMeta injectorStep = new StepMeta(injectorPid, injectorStepname, im);
+        transMeta.addStep(injectorStep);
+
+        //
+        // Create a Excel Input step
+        //
+        String excelInputName = oneStepname + "Plugin";
+        String excelInputPid = registry.getPluginId(StepPluginType.class, cim);
+        StepMeta excelInputStep = new StepMeta(excelInputPid, excelInputName, cim);
+        transMeta.addStep(excelInputStep);
+        TransHopMeta hi = new TransHopMeta(injectorStep, excelInputStep);
+        transMeta.addTransHop(hi);
+
+        //
+        // Create sample step
+        //
+        //cim.setIncludeRowNumber(true);
+        cim.setRowNumberField("lineNumber");
+        String sortRowsStepname = "sample rows step";
+        SampleRowsMeta srm = new SampleRowsMeta();
+        srm.setLineNumberField("lineNumber");
+        srm.setLinesRange(start+".."+(start+stepSize));
+        String sortRowsStepPid = registry.getPluginId(StepPluginType.class, srm);
+        StepMeta sampleRowsStep = new StepMeta(sortRowsStepPid, sortRowsStepname, (StepMetaInterface)srm);
+        transMeta.addStep(sampleRowsStep);
+
+        hi = new TransHopMeta(excelInputStep, sampleRowsStep);
+        transMeta.addTransHop(hi);
+
+
+        //
+        // Create a dummy step 1
+        //
+        String dummyStepname1 = "dummy step 1";
+        DummyTransMeta dm1 = new DummyTransMeta();
+
+        String dummyPid1 = registry.getPluginId(StepPluginType.class, dm1);
+        StepMeta dummyStep1 = new StepMeta(dummyPid1, dummyStepname1, dm1);
+        transMeta.addStep(dummyStep1);
+
+        TransHopMeta hi1 = new TransHopMeta(sampleRowsStep, dummyStep1);
+        transMeta.addTransHop(hi1);
+
+        // Now execute the transformation...
+        Trans trans = new Trans(transMeta);
+
+        trans.prepareExecution(null);
+
+        StepInterface si = trans.getStepInterface(dummyStepname1, 0);
+        RowStepCollector pagedRC = new RowStepCollector();
+        si.addRowListener(pagedRC);
+
+        si = trans.getStepInterface(excelInputName, 0);
+        RowStepCollector targetStepRC = new RowStepCollector();
+        si.addRowListener(targetStepRC);
+
+        RowProducer rp = trans.addRowProducer(injectorStepname, 0);
+        trans.startThreads();
+
+        // add rows
+        List<RowMetaAndData> inputList = createData(cim.getFileName()[0]);
+        Iterator<RowMetaAndData> it = inputList.iterator();
+        while (it.hasNext()) {
+            RowMetaAndData rm = it.next();
+            rp.putRow(rm.getRowMeta(), rm.getData());
+        }
+        rp.finished();
+
+        trans.waitUntilFinished();
+
+        // Compare the results
+        List<RowMetaAndData> resultRows = pagedRC.getRowsWritten();
+        //List<RowMetaAndData> goldenImageRows = createResultData1();
+        List<RowMetaAndData> totalRows = targetStepRC.getRowsWritten();
+
+        Map<String,List<RowMetaAndData>> res = new HashMap<String, List<RowMetaAndData>>();
+        res.put("resultRows",resultRows);
+        res.put("totalRows",totalRows);
+        return res;
+    }
 
     @Path("/add/{subDirObjId}")
     @POST
