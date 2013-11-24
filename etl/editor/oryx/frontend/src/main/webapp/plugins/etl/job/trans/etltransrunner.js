@@ -23,6 +23,15 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
 
         //this.facade.registerOnEvent(ORYX.CONFIG.EVENT_STENCIL_SET_LOADED, this.initJobRunnerUI.bind(this));
         this.initJobRunnerUI();
+
+        this.changeDifference = 0;
+
+        // Register on event for executing commands --> store all commands in a stack
+        // --> Execute
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_EXECUTE, function(){ this.changeDifference++ }.bind(this) );
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_EXECUTE_COMMANDS, function(){ this.changeDifference++ }.bind(this) );
+        // --> Rollback
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_UNDO_ROLLBACK, function(){ this.changeDifference-- }.bind(this) );
     },
     disRegardEvent: function() {
         return !this.facade.getCurrentEditor() || !this.isCompatibleStencilSet(this.facade.getCurrentEditor().ns);
@@ -306,11 +315,11 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
         }
 
     },
-    runSynchronously: function(){
+    runTransformationDraft: function(){
 
         // Reset changes
         this.changeDifference = 0;
-        var reqURI= "/etl/core/transjobservice/execute";
+        var reqURI= "/etl/core/transjobservice/executedraft";
 
         // Get the serialized svg image source
         var svgClone 	= this.facade.getCanvas().getSVGRepresentation(true);
@@ -415,6 +424,7 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
             asynchronous: false,
             parameters: params,
             onSuccess: (function(response) {
+             try {
                 var data = Ext.decode(response.responseText)[0];
                 var status = data.transstatus;
 
@@ -428,10 +438,13 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
                 this.logData = [];
                 for (var i = 0; i < logList.length; i++) {
                     var log =  logList[i];
+                    var elm1 = this.padDigits(log[0],5);
+                    var elm2 = this.unescapeHTML(log[1]);
+                    var elm3 = this.unescapeHTML(log[2]);
                     this.logData.push([
-                        this.padDigits(log([0],5)),
-                        this.unescapeHTML(log[1]),
-                        this.unescapeHTML(log[2])
+                        elm1,
+                        elm2,
+                        elm3
                     ]);
                 }
                 this.loggingGrid.store.loadData(this.logData);
@@ -444,25 +457,47 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
                 //this.loggingPanelTemplate.overwrite(tabs[0].body,trace);
 
                 //Step Metric Grid
-                var stepList = status.stepstatuslist.stepstatus;
-                for (var i = 0; i < stepList.length; i++) {
-                    var step =  stepList[i];
+                if (status.stepstatuslist.stepstatus instanceof Array){
+                    var stepList = status.stepstatuslist.stepstatus;
+                    for (var i = 0; i < stepList.length; i++) {
+                        var step =  stepList[i];
+                        this.stepMetricData.push([
+                            step.stepname,
+                            step.linesRead,
+                            step.linesWritten,
+                            step.linesInput,
+                            step.linesOutput,
+                            step.linesUpdated,
+                            step.linesRejected,
+                            step.errors,
+                            step.seconds,
+                            step.speed,
+                            step.stopped,
+                            step.paused
+                        ]);
+                    }
+                }
+                else {
                     this.stepMetricData.push([
-                        step.stepname,
-                        step.linesRead,
-                        step.linesWritten,
-                        step.linesInput,
-                        step.linesOutput,
-                        step.linesUpdated,
-                        step.linesRejected,
-                        step.errors,
-                        step.seconds,
-                        step.speed,
-                        step.stopped,
-                        step.paused
+                        status.stepstatuslist.stepstatus.stepname,
+                        status.stepstatuslist.stepstatus.linesRead,
+                        status.stepstatuslist.stepstatus.linesWritten,
+                        status.stepstatuslist.stepstatus.linesInput,
+                        status.stepstatuslist.stepstatus.linesOutput,
+                        status.stepstatuslist.stepstatus.linesUpdated,
+                        status.stepstatuslist.stepstatus.linesRejected,
+                        status.stepstatuslist.stepstatus.errors,
+                        status.stepstatuslist.stepstatus.seconds,
+                        status.stepstatuslist.stepstatus.speed,
+                        status.stepstatuslist.stepstatus.stopped,
+                        status.stepstatuslist.stepstatus.paused
                     ]);
                 }
                 this.stepMetricDataSource.loadData(this.stepMetricData);
+            }
+            catch (e) {
+                ORYX.Log.error("Run results error",e);
+            }
 
             }).bind(this),
             onFailure: (function(transport) {
@@ -495,20 +530,41 @@ ORYX.Plugins.ETL.Job.ETLTransRunner = {
      * Saves the current process to the server.
      */
     runTransGraph: function(){
+        var editorConfig = this.facade.getEditorConfiguration();
 
-        // raise loading enable event
-        this.facade.raiseEvent({
-            type: ORYX.CONFIG.EVENT_LOADING_ENABLE,
-            text: 'Running Transformation Job...'
-        });
+        if (!editorConfig.pathId) {//Not saved/draft
+            // raise loading enable event
+            this.facade.raiseEvent({
+                type: ORYX.CONFIG.EVENT_LOADING_ENABLE,
+                text: 'Running Transformation Job...'
+            });
 
-        // asynchronously ...
-        window.setTimeout((function(){
+            // asynchronously ...
+            window.setTimeout((function(){
 
-            // ... save synchronously
-            this.runSynchronously();
+                // ... save synchronously
+                this.runTransformationDraft();
 
-        }).bind(this), 10);
+            }).bind(this), 10);
+        }
+        else { //existing trans
+            if (this.changeDifference > 0) {
+                    Ext.Msg.show({
+                    title: 'Transformation is unsaved',
+                    msg: 'Save before running transformation job',
+                    buttons: Ext.MessageBox.OK
+                });
+                return;
+            }
+
+            // asynchronously ...
+            window.setTimeout((function(){
+
+                // ... save synchronously
+                //this.runTransformation(editorConfig.pathId);
+
+            }).bind(this), 10);
+        }
 
 
         return true;

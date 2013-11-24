@@ -3,8 +3,8 @@ package org.flowframe.etl.pentaho.server.plugins.core.utils.transformation;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.flowframe.etl.pentaho.server.plugins.core.exception.TransConversionException;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
-import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.trans.TransHopMeta;
 import org.pentaho.di.trans.TransMeta;
@@ -21,7 +21,8 @@ public class JSONStencilSet2TransMetaConverter {
     private static PluginRegistry registry = PluginRegistry.getInstance();
     private static StepMetaResourceConversionFactory stepMetaFactory = new StepMetaResourceConversionFactory();
 
-    public static final TransMeta toTransMeta(ICustomRepository repository, String jsonModel) throws JSONException, KettleException, IOException {
+    public static final TransMeta toTransMeta(Map<String,Object> options, String jsonModel, boolean externalize) throws JSONException, IOException, TransConversionException {
+        ICustomRepository repository = (ICustomRepository)options.get("etlRepository");
         JSONObject jsonObject = new JSONObject(jsonModel);
 
         Map<String,StepMeta> name2StepMeta = new HashMap<String,StepMeta>();
@@ -41,8 +42,8 @@ public class JSONStencilSet2TransMetaConverter {
             type = ((JSONObject)childShape.get("stencil")).getString("id");
 
             String stepName = getStringProperty(childShape, "name");
-            stepMeta = stepMetaFactory.create(type,getStringProperty(childShape, "stepmeta"));
-            stepMeta.setName(stepName);
+            stepMeta = new StepMeta(stepName,stepMetaFactory.create(type,getStringProperty(childShape, "stepmeta")));
+            stepMeta.setDraw(true);
             transMeta.addStep(stepMeta);
             name2StepMeta.put(stepName,stepMeta);
         }
@@ -66,7 +67,14 @@ public class JSONStencilSet2TransMetaConverter {
 
         }
 
+        if (externalize)
+            transMeta = stepMetaFactory.externalize(transMeta,options);
+
         return transMeta;
+    }
+
+    public static TransMeta externalize(TransMeta transMeta, Map<String,Object> options) throws TransConversionException {
+        return stepMetaFactory.externalize(transMeta,options);
     }
 
     private static String findFromStepName(JSONArray childShapes, JSONObject edgeShape) throws JSONException {

@@ -3,6 +3,7 @@ package org.flowframe.etl.pentaho.server.plugins.core.resource;
 import org.apache.commons.vfs.FileObject;
 import org.flowframe.documentlibrary.remote.services.IRemoteDocumentRepository;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.repository.doclib.DocLibUtil;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.metamodel.EntityType;
@@ -29,7 +30,7 @@ public abstract class BaseDelegateResource {
     protected final CustomObjectMapper mapper = new  CustomObjectMapper();
 
     @Autowired
-    protected static IRemoteDocumentRepository ecmService;
+    protected  IRemoteDocumentRepository ecmService;
 
     protected ServletContext context;
 
@@ -42,6 +43,15 @@ public abstract class BaseDelegateResource {
     protected HttpSession session;
 
     protected boolean initialized = false;
+
+
+    protected Map<String,Object> getOptions() {
+        HashMap<String, Object> options = new HashMap<String, Object>() {{
+            put("docRepositoryService", getDocRepositoryService());
+        }};
+
+        return options;
+    }
 
 /*
     @Context
@@ -99,83 +109,8 @@ public abstract class BaseDelegateResource {
     /**
      * ECM
      */
-    public URI getInternalFolderURI(String folderId) throws Exception {
-        String scheme = "ff";
-        String authority = "repo";
-        String path = "/internal";
-        String query="folder";
-        String fragment =folderId;
-        return new URI(scheme, authority, path, query, fragment);
-    }
-
-    public URI getInternalFileEntryURI(String fileEntryId) throws Exception {
-        String scheme = "ff";
-        String authority = "repo";
-        String path = "/internal";
-        String query="fileentry";
-        String fragment =fileEntryId;
-        return new URI(scheme, authority, path, query, fragment);
-    }
-
-    public static URI getFileEntryWebDavURI(URI internalURI) throws Exception {
-        String fileEntryId =internalURI.getFragment();
-        return getFileEntryWebDavURI(fileEntryId);
-    }
-
-    public String getFileEntryTitle(URI internalURI) throws Exception {
-        String fileEntryId =internalURI.getFragment();
-
-        final FileEntry fe = ecmService.getFileEntryById(fileEntryId);
-
-        return fe.getTitle();
-    }
-
-    public static URI getFileEntryWebDavURI(String fileEntryId) throws Exception {
-        final URI templateUri = new URI(ecmService.getFileAsURL(fileEntryId,null));
-
-        final String scheme = templateUri.getScheme();
-        final String hostname = templateUri.getHost();
-        final Integer port = templateUri.getPort();
-        final String authority = templateUri.getAuthority();
 
 
-        StringBuilder path = new StringBuilder();
-        path.append("/api/secure/webdav"+"/guest/document_library");
-
-        final FileEntry fe = ecmService.getFileEntryById(fileEntryId);
-
-        Folder folder = ecmService.getFolderById(Long.toString(fe.getFolderId()));
-        String folderPath = getFolderPath(folder);
-
-        path.append(folderPath+"/"+fe.getTitle());
-
-        return new URI(scheme/*String scheme*/,
-                       "test@liferay.com:test"/*String userInfo*/,
-                       hostname/*String host*/,
-                       port/*int port*/,
-                       path.toString()/*String path*/,
-                       null,
-                       null);
-    }
-
-    private String getFolderPath(Folder folder) throws Exception {
-        StringBuilder folderPath = new StringBuilder();
-        folderPath.append(folder.getName());
-
-        while (folder.getParentFolderId() > 0) {
-            folder = ecmService.getFolderById(Long.toString(folder.getParentFolderId()));
-            folderPath.append("/" + folder.getName());
-        }
-
-        //Reverse
-        final String[] tokens = folderPath.toString().split("/");
-        folderPath = new StringBuilder();
-        for (int i=tokens.length-1; i>=0; i--) {
-           folderPath.append("/"+tokens[i]);
-        }
-
-        return folderPath.toString();
-    }
 
     protected Folder provideTenantFolder() throws Exception {
         Organization tenant = new Organization();
@@ -234,4 +169,7 @@ public abstract class BaseDelegateResource {
         return stacktrace;
     }
 
+    protected IRemoteDocumentRepository getDocRepositoryService() {
+        return ecmService;
+    }
 }

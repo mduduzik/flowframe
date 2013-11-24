@@ -6,6 +6,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.BaseDelegateResource;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.repository.doclib.DocLibUtil;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.Folder;
 import org.flowframe.kernel.common.mdm.domain.organization.Organization;
@@ -77,7 +78,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public String onGetFileEntryURI(@HeaderParam("userid") String userid, @QueryParam("fileEntryId") String fileEntryId) throws Exception {
         String res = null;
         try {
-            URI uri = getInternalFileEntryURI(fileEntryId);
+            URI uri = DocLibUtil.getInternalFileEntryURI(getDocRepositoryService(),fileEntryId);
 
             Map<String, Object> resultMap = new HashMap<String,Object>();
             resultMap.put("uri",uri.toString());
@@ -97,7 +98,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public String onGetWebDavURI(@HeaderParam("userid") String userid, @QueryParam("fileEntryId") String fileEntryId) throws Exception {
         String res = null;
         try {
-            URI uri = getFileEntryWebDavURI(fileEntryId);
+            URI uri = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),fileEntryId);
 
             Map<String, Object> resultMap = new HashMap<String,Object>();
             resultMap.put("uri",uri.toString());
@@ -117,7 +118,7 @@ public class DocLibExplorerResource extends BaseDelegateResource {
     public String onFileEntryInfo(@HeaderParam("userid") String userid, @QueryParam("internalURI") String internalURI) throws Exception {
         String res = null;
         try {
-            String title = getFileEntryTitle(new URI(internalURI));
+            String title = DocLibUtil.getFileEntryTitle(getDocRepositoryService(),new URI(internalURI));
 
             Map<String, Object> resultMap = new HashMap<String,Object>();
             resultMap.put("title",title);

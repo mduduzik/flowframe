@@ -306,7 +306,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 
     @Override
     public RepositoryDirectoryInterface provideTransformDraftsDirectoryForTenant(Organization tenant) throws KettleException {
-        RepositoryDirectoryInterface transStepDirectory = provideTransformTransStepDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface transStepDirectory = provideTransDirectoryForTenant(tenant);
         RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_TRANSFORMS_DRAFTS);
         if (dir == null)
             dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_TRANSFORMS_DRAFTS);

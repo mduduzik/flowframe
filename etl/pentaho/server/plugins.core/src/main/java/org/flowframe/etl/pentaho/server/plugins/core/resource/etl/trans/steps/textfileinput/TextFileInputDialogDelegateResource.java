@@ -8,6 +8,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.repository.doclib.DocLibUtil;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
@@ -277,7 +278,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
             transMeta.setName("TextFileInputMeta");
 
             //Get file object
-            final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            final String webDavFileUrl = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),new URI(inputMetadata.getFileName()[0])).toString();
             inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
             final String filename = transMeta.environmentSubstitute(webDavFileUrl);
             fileObject = KettleVFS.getFileObject(filename);
@@ -500,7 +501,7 @@ public class TextFileInputDialogDelegateResource extends BaseDialogDelegateResou
                  ]
              }
              */
-            final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            final String webDavFileUrl = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),new URI(inputMetadata.getFileName()[0])).toString();
             inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
             final  Map<String,List<RowMetaAndData>> rowRes = generatePreviewDataFromFile(inputMetadata, "TextFileInputPreview",start,pageSize);
 

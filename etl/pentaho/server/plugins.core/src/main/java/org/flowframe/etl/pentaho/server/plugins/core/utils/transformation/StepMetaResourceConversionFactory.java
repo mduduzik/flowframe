@@ -1,5 +1,6 @@
 package org.flowframe.etl.pentaho.server.plugins.core.utils.transformation;
 
+import org.flowframe.etl.pentaho.server.plugins.core.exception.TransConversionException;
 import org.flowframe.etl.pentaho.server.plugins.core.model.json.CustomObjectMapper;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.resourcenormalizer.ExcelInputMetaResourceNormalizer;
 import org.pentaho.di.trans.TransMeta;
@@ -31,23 +32,23 @@ public class StepMetaResourceConversionFactory {
         }
     };
 
-    public StepMeta create(String stencilID, String metaJson) throws IOException {
-       return (StepMeta)mapper.readValue(metaJson,StepPluginIDMetaClassMap.get(stencilID));
+    public StepMetaInterface create(String stencilID, String metaJson) throws IOException {
+       return (StepMetaInterface)mapper.readValue(metaJson,StepPluginIDMetaClassMap.get(stencilID));
     }
 
-    public StepMetaInterface externalize(StepMetaInterface stepMeta) throws Exception {
+    public StepMetaInterface externalize(StepMetaInterface stepMeta, Map<String,Object> options) throws TransConversionException {
         IStepMetaResourceNormalizer externalizer = StepPluginIDResourceNormalizerMap.get(stepMeta.getClass());
         if (externalizer != null)
-            stepMeta = externalizer.normalize(stepMeta);
+            stepMeta = externalizer.normalize(stepMeta, options);
 
         return stepMeta;
     }
 
-    public TransMeta externalize(TransMeta transMeta) throws Exception {
+    public TransMeta externalize(TransMeta transMeta, Map<String,Object> options) throws TransConversionException {
         int steps = transMeta.getSteps().size();
         for (int stepIndex = 0; stepIndex < steps; stepIndex++) {
             StepMeta step = transMeta.getStep(stepIndex);
-            StepMetaInterface stepMI = externalize(step.getStepMetaInterface());
+            StepMetaInterface stepMI = externalize(step.getStepMetaInterface(),options);
             step.setStepMetaInterface(stepMI);
         }
         return transMeta;

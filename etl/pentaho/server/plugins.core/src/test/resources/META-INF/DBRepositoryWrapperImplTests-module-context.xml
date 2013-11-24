@@ -24,4 +24,15 @@
         <property name="dbname" value="ffmdmrepoetl"/>
         <property name="dbport" value="3306"/>
     </bean>
+
+    <bean id="docRepo" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl" init-method="init">
+        <property name="repositoryId" value="10180"/>
+        <property name="companyId" value="7080"/>
+        <property name="fflogiFolderId" value="17603"/>
+        <property name="loginEmail" value="test@liferay.com"/>
+        <property name="loginPassword" value="test"/>
+        <property name="hostname" value="localhost"/>
+        <property name="port" value="7080"/>
+        <property name="loginGroupId" value="10180"/>
+    </bean>
 </beans>

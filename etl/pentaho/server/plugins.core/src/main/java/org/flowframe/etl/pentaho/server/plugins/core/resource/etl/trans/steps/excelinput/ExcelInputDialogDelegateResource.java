@@ -8,6 +8,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
 import org.flowframe.etl.pentaho.server.plugins.core.resource.etl.trans.steps.BaseDialogDelegateResource;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
+import org.flowframe.etl.pentaho.server.plugins.core.utils.repository.doclib.DocLibUtil;
 import org.flowframe.kernel.common.mdm.domain.documentlibrary.FileEntry;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
@@ -111,7 +112,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
             String encoding = params.get("encoding");
 
             TransMeta transMeta = new TransMeta();
-            final String webDavFileUrl = getFileEntryWebDavURI(fileEntryId).toString();
+            final String webDavFileUrl = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),fileEntryId).toString();
             final String filename = transMeta.environmentSubstitute(webDavFileUrl);
             FileObject fileObject = KettleVFS.getFileObject(filename);
 
@@ -218,7 +219,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
             LogChannelInterface log = null;
             outputMetadata = (ExcelInputMeta)inputMetadata.clone();
 
-            final String webDavFileUrl = getFileEntryWebDavURI(new URI(inputMetadata.getFileName()[0])).toString();
+            final String webDavFileUrl = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),new URI(inputMetadata.getFileName()[0])).toString();
             inputMetadata.getFileName()[0] = webDavFileUrl;//for later use
             final  Map<String,List<RowMetaAndData>> rowRes = generatePreviewDataFromFile(inputMetadata, "ExcelInputPreview",start,pageSize);
 
@@ -468,7 +469,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
 
         FileObject fileObject;
 
-        final String webDavFileUrl = getFileEntryWebDavURI(new URI(meta.getFileName()[0])).toString();
+        final String webDavFileUrl = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),new URI(meta.getFileName()[0])).toString();
         final String filename = transMeta.environmentSubstitute(webDavFileUrl);
         fileObject = KettleVFS.getFileObject(filename);
         KWorkbook workbook = WorkbookFactory.getWorkbook(meta.getSpreadSheetType(), KettleVFS.getFilename(fileObject), meta.getEncoding());
@@ -509,7 +510,7 @@ public class ExcelInputDialogDelegateResource extends BaseDialogDelegateResource
 
         FileObject fileObject;
 
-        final String webDavFileUrl = getFileEntryWebDavURI(new URI(meta.getFileName()[0])).toString();
+        final String webDavFileUrl = DocLibUtil.getFileEntryWebDavURI(getDocRepositoryService(),new URI(meta.getFileName()[0])).toString();
         //meta.getFileName()[0] = webDavFileUrl;//for later use
         final String filename = transMeta.environmentSubstitute(webDavFileUrl);
         fileObject = KettleVFS.getFileObject(filename);

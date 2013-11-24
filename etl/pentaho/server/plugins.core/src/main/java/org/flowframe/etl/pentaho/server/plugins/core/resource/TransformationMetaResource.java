@@ -2,6 +2,7 @@ package org.flowframe.etl.pentaho.server.plugins.core.resource;
 
 import org.codehaus.jettison.json.JSONException;
 import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
+import org.flowframe.etl.pentaho.server.plugins.core.exception.TransConversionException;
 import org.flowframe.etl.pentaho.server.plugins.core.model.TransMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.RepositoryUtil;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.transformation.JSONStencilSet2TransMetaConverter;
@@ -21,6 +22,7 @@ import javax.ws.rs.core.Response;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +34,7 @@ import java.util.Map;
  */
 @Path("transmeta")
 @Component
-public class TransformationMetaResource {
+public class TransformationMetaResource extends BaseDelegateResource {
     @Autowired
     private ICustomRepository repository;
 
@@ -83,7 +85,7 @@ public class TransformationMetaResource {
                       @FormParam("title") String title,
                       @FormParam("summary") String summary,
                       @FormParam("type") String namespace,
-                      @FormParam("dirPathId") String dirPathId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
+                      @FormParam("dirPathId") String dirPathId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException, TransConversionException {
         //TODO: Hack
         Organization tenant = new Organization();
         tenant.setId(1L);
@@ -98,7 +100,7 @@ public class TransformationMetaResource {
 
 
         //-- Translate model json into Meta
-        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(repository, jsonModel);
+        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(getOptions(),jsonModel,false);
         transMeta.setName(title);
         transMeta.setDescription(summary);
 
@@ -122,7 +124,7 @@ public class TransformationMetaResource {
                       @FormParam("summary") String summary,
                       @FormParam("type") String namespace,
                       @FormParam("pathId") String pathId,
-                      @FormParam("dirPathId") String dirPathId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException {
+                      @FormParam("dirPathId") String dirPathId) throws JSONException, KettleException, IOException, URISyntaxException, TransformerException, TransConversionException {
         //TODO: Hack
         Organization tenant = new Organization();
         tenant.setId(1L);
@@ -137,7 +139,7 @@ public class TransformationMetaResource {
 
 
         //-- Translate model json into Meta
-        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(repository, jsonModel);
+        TransMeta transMeta = JSONStencilSet2TransMetaConverter.toTransMeta(getOptions(), jsonModel, false);
         transMeta.setName(title);
         transMeta.setDescription(summary);
 
@@ -184,6 +186,16 @@ public class TransformationMetaResource {
         TransMetaDTO dto = new TransMetaDTO(transMeta,dirPathId,jsonModel,svgModel);
 
         return dto.toJSON();
+    }
+
+    @Override
+    protected Map<String,Object> getOptions() {
+        final HashMap<String, Object> options = new HashMap<String, Object>() {{
+            put("etlRepository", repository);
+            put("docRepositoryService", getDocRepositoryService());
+        }};
+
+        return options;
     }
 
 

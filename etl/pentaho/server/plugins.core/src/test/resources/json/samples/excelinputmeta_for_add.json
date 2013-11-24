@@ -1,0 +1,194 @@
+{
+    "resourceId": "etlTransCanvas-oryx_CAD0FFC7-773C-451C-B53A-911CAE9A4390",
+    "properties": {
+        "name": "New Transformation #1",
+        "documentation": "",
+        "version": "",
+        "author": "",
+        "metadatatype": "",
+        "metadataname": "",
+        "metadataobjid": ""
+    },
+    "stencil": {
+        "id": "ExcelInput"
+    },
+    "childShapes": [
+        {
+            "resourceId": "oryx_934B7864-6E6E-4B76-A3FC-7DD2EEFD8143",
+            "properties": {
+                "stepmeta": {
+                    "parentStepMeta": {
+                        "stepname": "s1"
+                    },
+                    "attributes": null,
+                    "fileName": [
+                        "ff://repo/internal?fileentry#28352"
+                    ],
+                    "fileMask": [
+                        null
+                    ],
+                    "excludeFileMask": [
+                        null
+                    ],
+                    "fileRequired": [
+                        null
+                    ],
+                    "fileField": null,
+                    "sheetName": [
+                        "Sheet1",
+                        "Sheet2",
+                        "Sheet3"
+                    ],
+                    "startRow": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "startColumn": [
+                        "2",
+                        1,
+                        1
+                    ],
+                    "sheetField": null,
+                    "startsWithHeader": true,
+                    "stopOnEmpty": false,
+                    "ignoreEmptyRows": true,
+                    "rowNumberField": "",
+                    "sheetRowNumberField": "",
+                    "rowLimit": 0,
+                    "field": [
+                        {
+                            "name": "Col2Date",
+                            "type": 3,
+                            "typeDesc": "Date",
+                            "length": -1,
+                            "precision": -1,
+                            "trimtype": 0,
+                            "trimTypeDesc": "none",
+                            "format": "",
+                            "currencySymbol": "",
+                            "decimalSymbol": "",
+                            "groupSymbol": "",
+                            "repeat": false
+                        },
+                        {
+                            "name": "Col3Number",
+                            "type": 1,
+                            "typeDesc": "Number",
+                            "length": -1,
+                            "precision": -1,
+                            "trimtype": 0,
+                            "trimTypeDesc": "none",
+                            "format": "",
+                            "currencySymbol": "",
+                            "decimalSymbol": "",
+                            "groupSymbol": "",
+                            "repeat": false
+                        },
+                        {
+                            "name": "Col4Boolean",
+                            "type": 4,
+                            "typeDesc": "Boolean",
+                            "length": -1,
+                            "precision": -1,
+                            "trimtype": 0,
+                            "trimTypeDesc": "none",
+                            "format": "",
+                            "currencySymbol": "",
+                            "decimalSymbol": "",
+                            "groupSymbol": "",
+                            "repeat": false
+                        },
+                        {
+                            "name": "Col4NumFormula",
+                            "type": 2,
+                            "typeDesc": "String",
+                            "length": -1,
+                            "precision": -1,
+                            "trimtype": 0,
+                            "trimTypeDesc": "none",
+                            "format": "",
+                            "currencySymbol": "",
+                            "decimalSymbol": "",
+                            "groupSymbol": "",
+                            "repeat": false
+                        }
+                    ],
+                    "strictTypes": false,
+                    "errorIgnored": false,
+                    "errorLineSkipped": false,
+                    "warningFilesDestinationDirectory": null,
+                    "warningFilesExtension": "warning",
+                    "errorFilesDestinationDirectory": null,
+                    "errorFilesExtension": "error",
+                    "lineNumberFilesDestinationDirectory": null,
+                    "lineNumberFilesExtension": "line",
+                    "acceptingFilenames": false,
+                    "acceptingField": null,
+                    "acceptingStepName": null,
+                    "includeSubFolders": [
+                        null
+                    ],
+                    "acceptingStep": null,
+                    "encoding": null,
+                    "isaddresult": true,
+                    "shortFileFieldName": null,
+                    "pathFieldName": null,
+                    "hiddenFieldName": null,
+                    "lastModificationTimeFieldName": null,
+                    "uriNameFieldName": null,
+                    "rootUriNameFieldName": null,
+                    "extensionFieldName": null,
+                    "sizeFieldName": null,
+                    "spreadSheetType": "POI"
+                },
+                "name": "s1",
+                "documentation": "",
+                "version": "",
+                "author": "",
+                "metadatatype": "",
+                "metadataname": "",
+                "metadataobjid": ""
+            },
+            "stencil": {
+                "id": "ExcelInput"
+            },
+            "childShapes": [
+
+            ],
+            "outgoing": [
+
+            ],
+            "bounds": {
+                "lowerRight": {
+                    "x": 647.6363677978516,
+                    "y": 124.1335220336914
+                },
+                "upperLeft": {
+                    "x": 615.6363677978516,
+                    "y": 92.1335220336914
+                }
+            },
+            "dockers": [
+
+            ]
+        }
+    ],
+    "bounds": {
+        "lowerRight": {
+            "x": 1029,
+            "y": 490
+        },
+        "upperLeft": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "stencilset": {
+        "url": "/etl/oryx//stencilsets/etl/etl1.0/etl1.0.json",
+        "namespace": "http://etl.flowframe.org/stencilset/etl/trans#"
+    },
+    "ssextensions": [
+
+    ]
+}

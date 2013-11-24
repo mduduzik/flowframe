@@ -200,7 +200,6 @@ ORYX.Editor = {
 
 
         this.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED,this.onModelSaved.bind(this));
-
     }
     //{{
     /**

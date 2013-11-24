@@ -247,6 +247,7 @@ ORYX.ETL.DataPresenter = {
         var exists = stepObject.hiddenProperties.keys().member('oryx-stepmeta');
         if (exists) {
             var record = stepObject.hiddenProperties['oryx-stepmeta'];
+            if (typeof record === 'string') record = Ext.decode(record);
             this._loadRecord(record);
             this._onAfterModelLoad();
         }
