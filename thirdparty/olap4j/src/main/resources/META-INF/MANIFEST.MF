@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Export-Package: org.olap4j;version="1.1.0";uses:="javax.sql,org.olap4j
+ .mdx,org.olap4j.mdx.parser,org.olap4j.metadata,org.olap4j.type",org.o
+ lap4j.impl;version="1.1.0";uses:="org.olap4j.mdx,org.olap4j.metadata"
+ ,org.olap4j.layout;version="1.1.0";uses:="org.olap4j,org.olap4j.impl"
+ ,org.olap4j.mdx;version="1.1.0";uses:="org.olap4j,org.olap4j.impl,org
+ .olap4j.mdx.parser,org.olap4j.metadata,org.olap4j.type",org.olap4j.md
+ x.parser;version="1.1.0";uses:="org.olap4j,org.olap4j.mdx",org.olap4j
+ .mdx.parser.impl;version="1.1.0";uses:="org.olap4j.mdx,org.olap4j.mdx
+ .parser",org.olap4j.metadata;version="1.1.0";uses:="org.olap4j,org.ol
+ ap4j.mdx",org.olap4j.query;version="1.1.0";uses:="org.olap4j,org.olap
+ 4j.mdx,org.olap4j.metadata",org.olap4j.sample;version="1.1.0";uses:="
+ org.olap4j",org.olap4j.transform;version="1.1.0";uses:="org.olap4j,or
+ g.olap4j.mdx,org.olap4j.metadata",org.olap4j.type;version="1.1.0";use
+ s:="org.olap4j,org.olap4j.metadata"
+Implementation-Title: olap4j
+Implementation-ProductID: olap4j
+Implementation-Version: 1.1.0
+Built-By: Mduduzi
+Compile-User: Developer
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: olap4j
+Build-Jdk: 1.6.0_45
+Bundle-Version: 1.1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.olap4j
+Import-Package: javax.sql;version="0"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

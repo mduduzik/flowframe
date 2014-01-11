@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>org.flowframe.thirdparty.pentaho5</artifactId>
+        <groupId>org.flowframe</groupId>
+        <version>0.0.1</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <version>${wrapped.version}</version>
+    <artifactId>org.flowframe.thirdparty.pentaho5.kettle-all</artifactId>
+    <properties>
+        <wrapped.version>5.0.2</wrapped.version>
+    </properties>
+
+    <dependencies>
+        <!-- Libs : kettle -->
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle-core</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle-engine</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho</groupId>
+            <artifactId>metastore</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.15</version>
+        </dependency>
+
+        <!--        <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <version>1.7.2</version>
+                </dependency>-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.flowframe</groupId>
+            <artifactId>org.flowframe.thirdparty.kettle-vfs-20100924-osgi</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createSourcesJar>true</createSourcesJar>
+                            <artifactSet>
+                                <includes>
+                                    <include>pentaho-kettle:kettle-core</include>
+                                    <include>pentaho-kettle:kettle-engine</include>
+                                    <include>pentaho:metastore</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.springsource.bundlor</groupId>
+                <artifactId>com.springsource.bundlor.maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-manifest</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+                            <outputPath>${basedir}/src/main/resources</outputPath>
+                            <!-- used to properly set-up versions for system packages -->
+                            <osgiProfilePath>${basedir}/../../../../java6-server.profile</osgiProfilePath>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-bundle</id>
+                        <goals>
+                            <goal>bundlor</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <inputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</inputPath>
+                            <outputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</outputPath>
+                            <!-- used to properly set-up versions for system packages -->
+                            <osgiProfilePath>${basedir}/../../../../java6-server.profile</osgiProfilePath>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -117,6 +117,7 @@ Ext.ux.etl.BaseWizardCardView = Ext.extend(Ext.ux.Wiz.Card , {
     monitorValid: true,
     defaultType: 'textfield',
     labelWidth: 200,
+    trackResetOnLoad: true,
     //labelStyle: 'font-size:11px; padding: 10px 10px;',
     //labelAlign: 'right',
     //align: 'left',
@@ -129,7 +130,6 @@ Ext.ux.etl.BaseWizardCardView = Ext.extend(Ext.ux.Wiz.Card , {
     onBeforeModelSubmission: undefined,
     initComponent : function()
     {
-
         //var itemsConfig = {items: this.items};
 
         Ext.ux.etl.BaseWizardCardView.superclass.initComponent.call(this);

@@ -1,0 +1,6 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.staxon
+Bundle-Name: staxon
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.2
+Import-Package: com.google.gson.stream;version="2.2.4"
+

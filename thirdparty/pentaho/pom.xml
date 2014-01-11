@@ -14,6 +14,7 @@
         <module>kettle-all</module>
         <module>reporting</module>
         <module>distribution</module>
+        <module>pentaho5</module>
     </modules>
     <artifactId>org.flowframe.thirdparty.pentaho</artifactId>
 </project>

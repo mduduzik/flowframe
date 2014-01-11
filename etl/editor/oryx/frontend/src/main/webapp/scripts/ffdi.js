@@ -959,8 +959,9 @@ ORYX = Object.extend(ORYX, {
     },
     // Explorer Navigation
     _generateRepositoryUI: function() {
-        this.etlRepoPanel = new ORYX.ETL.ETLRepoNavigation(this);
-        this.etlRepoPanel = new ORYX.ETL.DOCRepoNavigation(this);
+        new ORYX.ETL.ETLWorkGroupRepoNavigation(this);
+        new ORYX.ETL.ETLRepoNavigation(this);
+        new ORYX.ETL.DOCRepoNavigation(this);
     },
     // Default UI Panels
     _generateDefaultUIPanels: function() {
@@ -1066,6 +1067,19 @@ ORYX = Object.extend(ORYX, {
                 region	: 'west',
                 layout	: 'fit',
                 cls		: 'x-panel-editor-east',
+                tbar: [
+                    {
+                        text: 'Preview',
+                        tooltip: 'Refresh data',
+                        iconCls: 'icon-refresh',
+                        id: 'btn-refresh',
+                        listeners: {
+                            click: function() {
+                                previewDataGrid.getBottomToolbar().refresh();
+                            }
+                        }
+                    }
+                ],
                 /*layout: 'accordion',
                  layoutConfig: {
                  // layout-specific configs go here

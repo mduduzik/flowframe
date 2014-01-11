@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Export-Package: nl.cwi.monetdb.jdbc;version="0.0.1";uses:="javax.sql,n
+ l.cwi.monetdb.mcl.io,nl.cwi.monetdb.mcl.net,nl.cwi.monetdb.mcl.parser
+ ",nl.cwi.monetdb.jdbc.types;version="0.0.1",nl.cwi.monetdb.mcl;versio
+ n="0.0.1",nl.cwi.monetdb.mcl.io;version="0.0.1",nl.cwi.monetdb.mcl.ne
+ t;version="0.0.1";uses:="nl.cwi.monetdb.mcl,nl.cwi.monetdb.mcl.io,nl.
+ cwi.monetdb.mcl.parser",nl.cwi.monetdb.mcl.parser;version="0.0.1"
+Implementation-Title: monetdb-jdbc
+Implementation-ProductID: monetdb-jdbc
+Implementation-Version: 2.8
+Built-By: Mduduzi
+Compile-User: Developer
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: monetdb-jdbc
+Build-Jdk: 1.6.0_45
+Bundle-Version: 0.0.1
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.monetdb-jdbc
+Import-Package: javax.sql;version="0"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

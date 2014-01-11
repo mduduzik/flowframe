@@ -1,6 +1,7 @@
 package org.flowframe.etl.pentaho.server.plugins.core.resource;
 
 
+import org.flowframe.etl.pentaho.server.plugins.core.exception.RequestException;
 import org.flowframe.etl.pentaho.server.plugins.core.model.DatabaseMetaDTO;
 import org.flowframe.etl.pentaho.server.plugins.core.utils.DatabaseMetaUtil;
 import org.flowframe.etl.pentaho.server.repository.util.ICustomRepository;
@@ -9,14 +10,19 @@ import org.flowframe.kernel.common.mdm.domain.organization.Organization;
 import org.pentaho.di.core.database.DatabaseInterface;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
+import org.pentaho.di.core.plugins.StepPluginType;
 import org.pentaho.di.repository.LongObjectId;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
+import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
+import org.pentaho.di.trans.steps.excelinput.SpreadSheetType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,17 +34,33 @@ import java.util.List;
  */
 @Path("databasemeta")
 @Component
-public class DatabaseMetaResource  {
+public class DatabaseMetaResource  extends BaseDelegateResource {
     @Autowired
     private ICustomRepository repository;
 
+    @Path("/onnew")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String onNew(@HeaderParam("userid") String userid) throws IOException, RequestException {
+        String res = null;
+        try {
+            DatabaseMetaDTO meta = new DatabaseMetaDTO();
+            res = mapper.getFilteredWriter().writeValueAsString(meta);
+        } catch (Exception e) {
+            throw  new RequestException("Error on /onnew",e);
+        }
+
+        return res;
+    }
+
 
     // e.g. http://localhost:8082/etlrepo/databasemeta/get?pathID=/trans/1/database/0
+
+    @Path("/onedit")
     @GET
-    @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
-    public DatabaseMetaDTO get(@QueryParam("pathID")String pathID) throws KettleException {
-        DatabaseInterface res = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, pathID).getDatabaseInterface();
+    public DatabaseMetaDTO onEdit(@HeaderParam("userid") String userid, @QueryParam("pathId") String pathId) throws Exception {
+        DatabaseInterface res = DatabaseMetaUtil.getDatabaseMetaByPathId(repository, pathId).getDatabaseInterface();
         if (res == null)
             return null;
         return new DatabaseMetaDTO((LongObjectId)res.getObjectId(),
@@ -52,7 +74,6 @@ public class DatabaseMetaResource  {
                 res.getPassword(),
                 res.getServername());
     }
-
 
     @GET
     @Path("/getall")
@@ -77,11 +98,52 @@ public class DatabaseMetaResource  {
     }
 
 
-    @PUT
-    @Path("/update")
+    @Path("/add/{subDirObjId}")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public DatabaseMetaDTO update(DatabaseMetaDTO record) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public String onAdd(@HeaderParam("userid") String userid,
+                        @PathParam("subDirObjId") String subDirObjId,
+                        DatabaseMetaDTO meta) throws Exception {
+        String res = null;
+        try {
+            Organization tenant = new Organization();
+            tenant.setId(1L);
+
+            RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(Long.valueOf(subDirObjId)));
+            DatabaseMeta newRecord = DatabaseMetaUtil.addDatabaseMeta(tenant, repository, dir, meta);
+
+            res = mapper.writeValueAsString(DatabaseMetaDTO.fromMeta(newRecord));
+        } catch (Exception e) {
+            throw  new RequestException("Error on /add/{"+subDirObjId+"}",e);
+        }
+        return res;
+    }
+
+
+    @POST
+    @Path("/update/{dir}/{subDirObjId}/{db}/{dbId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String onUpdate(@HeaderParam("userid") String userid,
+                           @PathParam("dir") String dirTag,
+                           @PathParam("subDirObjId") String subDirObjId,
+                           @PathParam("db") String dbTag,
+                           @PathParam("dbId") String dbId,
+                           DatabaseMetaDTO record) throws RequestException {
+        String res = null;
+        try {
+            Organization tenant = new Organization();
+            tenant.setId(1L);
+
+            RepositoryDirectoryInterface dir = RepositoryUtil.getDirectory(repository, new LongObjectId(Long.valueOf(subDirObjId)));
+            DatabaseMeta newRecord = DatabaseMetaUtil.updateDatabaseMeta(repository, dir, record);
+
+            res = mapper.writeValueAsString(DatabaseMetaDTO.fromMeta(newRecord));
+        } catch (Exception e) {
+            throw  new RequestException("Error on /update/{"+subDirObjId+"}",e);
+        }
+        return res;
     }
 
 

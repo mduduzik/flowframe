@@ -1,0 +1,11 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.jsch
+Bundle-ManifestVersion: 2
+Bundle-Version: 0.1.50
+Implementation-Title: jsch
+Implementation-Version: 0.1.50
+Specification-Version: 1
+Implementation-Vendor: jsch
+Implementation-ProductID: jsch
+Compile-User: Developer
+Import-Package: com.jcraft.jzlib;version="0.0.1"
+

@@ -1,0 +1,13 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-connections
+Bundle-ManifestVersion: 2
+Bundle-Version: 5.0.2
+Implementation-Title: Pentaho CWM
+Implementation-Version: 5.0.2
+Specification-Version: 1
+Implementation-Vendor: Pentaho Corporation
+Implementation-ProductID: pdi-ce
+Import-Package: org.apache.commons.collections;version="3.2.1",
+ org.apache.commons.collections.map;version="3.2.1",
+ org.dom4j;version="1.6.1",
+ org.dom4j.dom;version="1.6.1",
+ org.dom4j.io;version="1.6.1"

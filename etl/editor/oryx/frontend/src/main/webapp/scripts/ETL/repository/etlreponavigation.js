@@ -440,6 +440,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
          */
             //-- Editing
         this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_CREATED, this.onCreated.bind(this));
+        this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_SAVED, this.onSaved.bind(this));
         this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_METADATA_DELETED, this.onDeleted.bind(this));
 
         this.application.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVEDAS, this.onModelSavedAs.bind(this));
@@ -468,7 +469,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
          * Database and Folders
          */
         this.repofolder_database_contextmenu = new Ext.menu.Menu({
-            id: 'database.folder',
+            id: 'Database.folder',
             items: [
                 {
                     id: 'addDatabaseInFolder',
@@ -478,7 +479,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DATABASE,
                             forceExecution: true
                         };
                         this.application.handleEvents(eventData, {
@@ -520,7 +521,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                             //this.defaultPostHeader = "application/json; charset=utf-8;";
                             this.defaultHeaders = {
                                 userid: 'test',
-                                itemtype: 'database',
+                                itemtype: 'Database',
                                 folderObjectId: dirId
                             };
                         });
@@ -554,7 +555,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         this.repofolder_database_contextmenu.on('hide', this.onContextHide, this);
 
         this.repoitem_database_contextmenu = new Ext.menu.Menu({
-            id: 'database',
+            id: 'Database',
             items: [
                 {
                     id: 'addDatabase',
@@ -564,7 +565,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + 'DBConnection',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_CREATE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DATABASE ,
                             forceExecution: true
                         };
                         this.application.handleEvents(eventData, {
@@ -581,7 +582,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + 'DBConnection',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_EDIT_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DATABASE ,
                             forceExecution: true
                         };
                         this.application.handleEvents(eventData, {
@@ -599,7 +600,7 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
                     handler: function () {
                         this.ctxNode.select();
                         var eventData = {
-                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + 'DBConnection',
+                            type: ORYX.CONFIG.EVENT_ETL_METADATA_DELETE_PREFIX + ORYX.CONFIG.ETL_METADATA_TYPE_DATABASE,
                             forceExecution: true
                         };
                         this.application.handleEvents(eventData, {
@@ -1429,8 +1430,30 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
         ctxNode_.select();
 
         Ext.MessageBox.show({
-            title: 'Saved',
+            title: 'Added',
             msg: name + ' was created successfully.',
+            buttons: Ext.MessageBox.OK,
+            icon: Ext.MessageBox.INFO
+        });
+
+        ctxNode_.reload();
+    }
+    //{{{
+    /**
+     * On Saved
+     * @param event
+     */
+    ,onSaved: function (event) {
+        var ctxNodeId = event.treeNodeParentId;
+        var name = event.name;
+
+        var ctxNode_ = this.getNodeById(ctxNodeId);
+        ctxNode_.select();
+        ctxNode_.setText(name);
+
+        Ext.MessageBox.show({
+            title: 'Saved',
+            msg: name + ' was saved successfully.',
             buttons: Ext.MessageBox.OK,
             icon: Ext.MessageBox.INFO
         });
@@ -1768,10 +1791,10 @@ Ext.ux.ETLRepoNavigationTreePanel = Ext.extend(Ext.tree.TreePanel, {
      * @param e
      */
     onContextMenu: function (node, e) {
-        if (node.attributes.menugroup && node.attributes.menugroup === 'database') {
+        if (node.attributes.menugroup && node.attributes.menugroup === 'Database') {
             this.menu = this.repoitem_database_contextmenu;
         }
-        else if (node.attributes.menugroup && node.attributes.menugroup === 'database.folder') {
+        else if (node.attributes.menugroup && node.attributes.menugroup === 'Database.folder') {
             this.menu = this.repofolder_database_contextmenu;
             if (node.id === 'metadata.dbconnections')
                 this.getItemById(this.menu,'deleteFolder').setDisabled(true);

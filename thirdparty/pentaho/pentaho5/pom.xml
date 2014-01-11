@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>org.flowframe.thirdparty.pentaho</artifactId>
+        <groupId>org.flowframe</groupId>
+        <version>0.0.1</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>org.flowframe.thirdparty.pentaho5</artifactId>
+    <packaging>pom</packaging>
+    <repositories>
+        <repository>
+            <id>pdi</id>
+            <name>pdi</name>
+            <url>http://repository.pentaho.org/artifactory/repo/pentaho/pentaho-pdi-platform-plugin/5.0.2/</url>
+        </repository>
+        <repository>
+            <id>pentaho_artifactory</id>
+            <name>pentaho_artifactory</name>
+            <url>http://repository.pentaho.org/artifactory/repo</url>
+        </repository>
+        <repository>
+            <id>pentaho_artifactor_1y</id>
+            <name>pentaho_artifactory_1</name>
+            <url>http://repository.pentaho.org/artifactory/pentaho</url>
+        </repository>
+
+
+    </repositories>
+    <modules>
+        <module>kettle-all</module>
+        <module>pentaho-reporting-engine</module>
+    </modules>
+</project>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<plugins>
-		<plugin source="etl/metadata/dbconnection/dbconnectioneditor.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionEditor"/>
+		<plugin source="etl/metadata/dbconnection/dbconnectionpresenter.js" name="ORYX.Plugins.ETL.Metadata.DBConnectionEditor"/>
         <plugin source="etl/metadata/csv/csvmetaeditor.js" name="ORYX.Plugins.ETL.Metadata.CSVMetaEditor"/>
         <plugin source="etl/metadata/textfileinput/textfileinputmetapresenter.js" name="ORYX.Plugins.ETL.Metadata.TextFileInputMetaPresenter"/>
         <plugin source="etl/metadata/excelinput/excelinputmetapresenter.js" name="ORYX.Plugins.ETL.Metadata.ExcelInputMetaPresenter"/>

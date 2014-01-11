@@ -27,7 +27,6 @@ import org.pentaho.di.trans.steps.csvinput.CsvInputMeta;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputField;
 import org.pentaho.di.trans.steps.excelinput.ExcelInputMeta;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
-import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,7 +51,7 @@ import java.util.Map;
 @Component
 public class RepositoryExplorerResource {
     public static String REPOSITORY_ITEM_TYPE = "itemtype";
-    public static String REPOSITORY_ITEM_TYPE_DATABASE = "database";
+    public static String REPOSITORY_ITEM_TYPE_DATABASE = "Database";
     public static String REPOSITORY_ITEM_TYPE_CSVMETA = "CsvInput";
     public static String REPOSITORY_ITEM_TYPE_EXCELMETA = "ExcelInput";
     public static String REPOSITORY_ITEM_TYPE_DELIMITEDMETA = "TextFileInput";
@@ -73,13 +72,13 @@ public class RepositoryExplorerResource {
 
     public static Map<String,Map<String,String>> ITEMTYPE2RESOURCE = new HashMap<String, Map<String,String>>(){
         {
-            put(REPOSITORY_ITEM_TYPE_CSVMETA,
+/*            put(REPOSITORY_ITEM_TYPE_CSVMETA,
                 new HashMap<String, String>() {
                 {
                     put("icon", "/etl/images/conxbi/etl/icon_delimited.gif");
                     put("title", "CSV");
                 }
-                });
+                });*/
 
             put(REPOSITORY_ITEM_TYPE_EXCELMETA, new HashMap<String, String>(){
                 {
@@ -270,6 +269,9 @@ public class RepositoryExplorerResource {
 
 
     public static JSONArray exportTreeToJSONByTenant(ProgressMonitorListener monitor, ICustomRepository repo, Organization tenant) throws KettleException, JSONException {
+        //-- Provide default workgroup data
+        RepositoryDirectoryInterface defaultWG = RepositoryUtil.provideTenantDirectoryAndWorkGroupData(repo, tenant);
+
         JSONArray treeByTenant = new JSONArray();
 
         //-- Metadata

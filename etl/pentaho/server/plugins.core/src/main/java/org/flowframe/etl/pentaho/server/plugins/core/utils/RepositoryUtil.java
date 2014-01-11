@@ -540,4 +540,21 @@ public class RepositoryUtil {
         return dir;
     }
 
+    public static RepositoryDirectoryInterface provideDefaultWorkGroupDirectoryAndMetadata(ICustomRepository repo, Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface tenantDir = repo.provideWorkGroupDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface wgDir = tenantDir.findDirectory(ICustomRepository.FOLDER_WORK_GROUPS_DEFAULT);
+        if (wgDir == null) {//Create default workgroup
+            wgDir = repo.provideDefaultWorkGroupDirectoryForTenant(tenant);
+
+            //-- Create metadata
+
+
+            //-- Create datastore
+
+
+            //-- Create
+        }
+
+        return wgDir;
+    }
 }

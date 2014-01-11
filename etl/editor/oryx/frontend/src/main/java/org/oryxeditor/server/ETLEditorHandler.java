@@ -340,6 +340,7 @@ public class ETLEditorHandler extends HttpServlet {
                 + "<script src=\"" + getRootPath(request) + "scripts/ffdi.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/repository/docreponavigation.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/repository/etlreponavigation.js\" type=\"text/javascript\" />\n"
+                + "<script src=\"" + getRootPath(request) + "scripts/ETL/repository/etlwgreponavigation.js\" type=\"text/javascript\" />\n"
                 + "<script src=\"" + getRootPath(request) + "scripts/ETL/editor.js\" type=\"text/javascript\" />\n"
                 //}}
                 + "<script src=\"" + getRootPath(request) + "scripts/Core/SVG/editpathhandler.js\" type=\"text/javascript\" />\n"

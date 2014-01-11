@@ -1,0 +1,8 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.com.sun.net.httpserver
+Bundle-ManifestVersion: 2
+Bundle-Version: 20070405
+Implementation-Title: org.flowframe.thirdparty.com.sun.net.httpserver
+Implementation-Version: 20070405
+Specification-Version: 1
+Compile-User: Developer
+

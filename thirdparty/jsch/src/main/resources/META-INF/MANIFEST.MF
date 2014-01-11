@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Export-Package: com.jcraft.jsch;version="0.0.1",com.jcraft.jsch.jce;ve
+ rsion="0.0.1";uses:="com.jcraft.jsch",com.jcraft.jsch.jcraft;version=
+ "0.0.1";uses:="com.jcraft.jsch",com.jcraft.jsch.jgss;version="0.0.1";
+ uses:="com.jcraft.jsch"
+Implementation-Title: jsch
+Implementation-ProductID: jsch
+Implementation-Version: 0.1.50
+Built-By: Mduduzi
+Compile-User: Developer
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: jsch
+Build-Jdk: 1.6.0_45
+Bundle-Version: 0.0.1
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.jsch
+Import-Package: com.jcraft.jzlib;version="0.0.1",javax.crypto;version=
+ "0",javax.crypto.interfaces;version="0",javax.crypto.spec;version="0"
+ ,org.ietf.jgss;version="0"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

@@ -21,37 +21,6 @@ import java.util.Properties;
 public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements ICustomRepository {
     public static final LoggingObjectInterface loggingObject = new SimpleLoggingObject("DBRepositoryWrapperImpl repository", LoggingObjectType.REPOSITORY, null);
 
-    private static final String FOLDER_METADATA = "Metadata";
-    private static final String FOLDER_METADATA_DBCONNECTIONS = "DBConnections";
-    private static final String FOLDER_METADATA_EXCEL = "Excel";
-    private static final String FOLDER_METADATA_DELIMITED = "Delimited";
-
-	private static final String FOLDER_TRANS = "Transformations";
-	private static final String FOLDER_TRANS_STEPS = "Steps";
-	private static final String FOLDER_TRANS_INPUTS = "Inputs";
-	private static final String FOLDER_TRANS_OUTPUTS = "Outputs";
-	private static final String FOLDER_TRANS_TRANSFORMS = "Transforms";
-    private static final String FOLDER_TRANS_TRANSFORMS_DRAFTS = "Drafts";
-	private static final String FOLDER_TRANS_MAPPINGS = "Mappings";
-	
-	
-	private static final String FOLDER_JOBS = "Jobs";
-    private static final String FOLDER_JOBS_JOBS_DRAFTS = "Drafts";
-	private static final String FOLDER_JOBS_GENERAL = "General";
-	private static final String FOLDER_JOBS_FILE_TRANSFER = "File Transfer";
-	private static final String FOLDER_JOBS_FILE_MANAGEMENT = "File Management";
-
-	static public final String REPO_NAME = "repo.name";// "Kettle Database Repository"
-	static public final String REPO_DESCRIPTION = "repo.description";// "Kettle Database Repository"
-	static public final String REPO_USER_NAME = "repo.user.name";//admin
-	static public final String REPO_USER_PWD = "repo.user.pwd";//admin
-	static public final String REPO_USER_FULLNAME = "repo.user.fullname";//"Administrator", "The system administrator",
-	static public final String REPO_DATABASE_HOSTNAME = "database.hostname";// localhost
-	static public final String REPO_DATABASE_USERNAME = "database.username";//root
-	static public final String REPO_DATABASE_PWD = "database.pwd";//root
-	static public final String REPO_DATABASE_TYPE = "database.type";// MYSQL
-	static public final String REPO_DATABASE_NAME = "database.name";// REPO
-	static public final String REPO_DATABASE_PORT = "database.port";// REPO
 
 	static public Properties repoProperties = new Properties();
 
@@ -165,30 +134,37 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
      */
     public RepositoryDirectoryInterface provideMetadataDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_METADATA);
+        RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_METADATA);
         if (dir == null)
-            dir = createRepositoryDirectory(tenantDir, FOLDER_METADATA);
+            dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_METADATA);
         return dir;
     }
     public RepositoryDirectoryInterface provideDBConnectionsMetadataDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface mdDir = provideMetadataDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = mdDir.findDirectory(FOLDER_METADATA_DBCONNECTIONS);
+        RepositoryDirectoryInterface dir = mdDir.findDirectory(ICustomRepository.FOLDER_METADATA_DBCONNECTIONS);
         if (dir == null)
-            dir = createRepositoryDirectory(mdDir, FOLDER_METADATA_DBCONNECTIONS);
+            dir = createRepositoryDirectory(mdDir, ICustomRepository.FOLDER_METADATA_DBCONNECTIONS);
+        return dir;
+    }
+    public RepositoryDirectoryInterface provideListsMetadataDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface mdDir = provideMetadataDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = mdDir.findDirectory(ICustomRepository.FOLDER_METADATA_DBCONNECTIONS);
+        if (dir == null)
+            dir = createRepositoryDirectory(mdDir, ICustomRepository.FOLDER_METADATA_DBCONNECTIONS);
         return dir;
     }
     public RepositoryDirectoryInterface provideExcelMetadataDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface mdDir = provideMetadataDirectoryForTenant(tenant);
         RepositoryDirectoryInterface dir = mdDir.findDirectory(FOLDER_METADATA_EXCEL);
         if (dir == null)
-            dir = createRepositoryDirectory(mdDir, FOLDER_METADATA_EXCEL);
+            dir = createRepositoryDirectory(mdDir, ICustomRepository.FOLDER_METADATA_EXCEL);
         return dir;
     }
     public RepositoryDirectoryInterface provideDelimitedMetadataDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface mdDir = provideMetadataDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = mdDir.findDirectory(FOLDER_METADATA_DELIMITED);
+        RepositoryDirectoryInterface dir = mdDir.findDirectory(ICustomRepository.FOLDER_METADATA_DELIMITED);
         if (dir == null)
-            dir = createRepositoryDirectory(mdDir, FOLDER_METADATA_DELIMITED);
+            dir = createRepositoryDirectory(mdDir, ICustomRepository.FOLDER_METADATA_DELIMITED);
         return dir;
     }
 
@@ -259,57 +235,103 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
         return dir;
     }
 
+    /**
+     *
+     * Groups and stores
+     *
+     */
+    @Override
+    public RepositoryDirectoryInterface provideWorkGroupDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_WORK_GROUPS);
+        if (dir == null)
+            dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_WORK_GROUPS);
+        return dir;
+    }
+
+    @Override
+    public RepositoryDirectoryInterface provideDefaultWorkGroupDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface tenantDir = provideWorkGroupDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_WORK_GROUPS_DEFAULT);
+        if (dir == null)
+            dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_WORK_GROUPS_DEFAULT);
+        return dir;
+    }
+
+    @Override
+    public RepositoryDirectoryInterface provideDefaultWorkGroupDefaultStoreDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface tenantDir = provideDefaultWorkGroupDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_WORK_GROUPS_DATA_STORES_DEFAULT);
+        if (dir == null)
+            dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_WORK_GROUPS_DATA_STORES_DEFAULT);
+        return dir;
+    }
+
+    @Override
+    public RepositoryDirectoryInterface provideDefaultWorkGroupStoreListsDirectoryForTenant(Organization tenant) throws KettleException {
+        RepositoryDirectoryInterface tenantDir = provideDefaultWorkGroupDefaultStoreDirectoryForTenant(tenant);
+        RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_WORK_GROUPS_DATA_STORES_LISTS);
+        if (dir == null)
+            dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_WORK_GROUPS_DATA_STORES_LISTS);
+        return dir;
+    }
+
+    /**
+     *
+     * Trans
+     */
+
     @Override
 	public RepositoryDirectoryInterface provideTransDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_TRANS);
+		RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_TRANS);
 		if (dir == null)
-			dir = createRepositoryDirectory(tenantDir, FOLDER_TRANS);
+			dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_TRANS);
 		return dir;		
 	}
 
 	@Override
 	public RepositoryDirectoryInterface provideTransStepDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface transDirectory = provideTransDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = transDirectory.findDirectory(FOLDER_TRANS_STEPS);
+		RepositoryDirectoryInterface dir = transDirectory.findDirectory(ICustomRepository.FOLDER_TRANS_STEPS);
 		if (dir == null)
-			dir = createRepositoryDirectory(transDirectory, FOLDER_TRANS_STEPS);
+			dir = createRepositoryDirectory(transDirectory, ICustomRepository.FOLDER_TRANS_STEPS);
 		return dir;	
 	}
 
 	@Override
 	public RepositoryDirectoryInterface provideInputTransStepDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface transStepDirectory = provideTransStepDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_INPUTS);
+		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(ICustomRepository.FOLDER_TRANS_INPUTS);
 		if (dir == null)
-			dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_INPUTS);
+			dir = createRepositoryDirectory(transStepDirectory, ICustomRepository.FOLDER_TRANS_INPUTS);
 		return dir;	
 	}
 
 	@Override
 	public RepositoryDirectoryInterface provideOutputTransStepDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface transStepDirectory = provideTransStepDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_OUTPUTS);
+		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(ICustomRepository.FOLDER_TRANS_OUTPUTS);
 		if (dir == null)
-			dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_OUTPUTS);
+			dir = createRepositoryDirectory(transStepDirectory, ICustomRepository.FOLDER_TRANS_OUTPUTS);
 		return dir;	
 	}
 
 	@Override
 	public RepositoryDirectoryInterface provideTransformTransStepDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface transStepDirectory = provideTransStepDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_TRANSFORMS);
+		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(ICustomRepository.FOLDER_TRANS_TRANSFORMS);
 		if (dir == null)
-			dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_TRANSFORMS);
+			dir = createRepositoryDirectory(transStepDirectory, ICustomRepository.FOLDER_TRANS_TRANSFORMS);
 		return dir;	
 	}
 
     @Override
     public RepositoryDirectoryInterface provideTransformDraftsDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface transStepDirectory = provideTransDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_TRANSFORMS_DRAFTS);
+        RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(ICustomRepository.FOLDER_TRANS_TRANSFORMS_DRAFTS);
         if (dir == null)
-            dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_TRANSFORMS_DRAFTS);
+            dir = createRepositoryDirectory(transStepDirectory, ICustomRepository.FOLDER_TRANS_TRANSFORMS_DRAFTS);
         return dir;
     }
 
@@ -318,7 +340,7 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 		RepositoryDirectoryInterface transStepDirectory = provideTransStepDirectoryForTenant(tenant);
 		RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_TRANS_MAPPINGS);
 		if (dir == null)
-			dir = createRepositoryDirectory(transStepDirectory, FOLDER_TRANS_MAPPINGS);
+			dir = createRepositoryDirectory(transStepDirectory, ICustomRepository.FOLDER_TRANS_MAPPINGS);
 		return dir;	
 	}
 
@@ -329,45 +351,45 @@ public class DBRepositoryWrapperImpl extends KettleDatabaseRepository implements
 	@Override
 	public RepositoryDirectoryInterface provideJobsDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface tenantDir = provideDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = tenantDir.findDirectory(FOLDER_JOBS);
+		RepositoryDirectoryInterface dir = tenantDir.findDirectory(ICustomRepository.FOLDER_JOBS);
 		if (dir == null)
-			dir = createRepositoryDirectory(tenantDir, FOLDER_JOBS);
+			dir = createRepositoryDirectory(tenantDir, ICustomRepository.FOLDER_JOBS);
 		return dir;	
 	}
 
 	@Override
 	public RepositoryDirectoryInterface provideJobGeneralDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface jobsDir = provideJobsDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = jobsDir.findDirectory(FOLDER_JOBS_GENERAL);
+		RepositoryDirectoryInterface dir = jobsDir.findDirectory(ICustomRepository.FOLDER_JOBS_GENERAL);
 		if (dir == null)
-			dir = createRepositoryDirectory(jobsDir, FOLDER_JOBS_GENERAL);
+			dir = createRepositoryDirectory(jobsDir, ICustomRepository.FOLDER_JOBS_GENERAL);
 		return dir;	
 	}
 
     @Override
     public RepositoryDirectoryInterface provideJobDraftsDirectoryForTenant(Organization tenant) throws KettleException {
         RepositoryDirectoryInterface transStepDirectory = provideTransformTransStepDirectoryForTenant(tenant);
-        RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(FOLDER_JOBS_JOBS_DRAFTS);
+        RepositoryDirectoryInterface dir = transStepDirectory.findDirectory(ICustomRepository.FOLDER_JOBS_JOBS_DRAFTS);
         if (dir == null)
-            dir = createRepositoryDirectory(transStepDirectory, FOLDER_JOBS_JOBS_DRAFTS);
+            dir = createRepositoryDirectory(transStepDirectory, ICustomRepository.FOLDER_JOBS_JOBS_DRAFTS);
         return dir;
     }
 
 	@Override
 	public RepositoryDirectoryInterface provideJobFileTransferDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface jobsDir = provideJobsDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = jobsDir.findDirectory(FOLDER_JOBS_FILE_TRANSFER);
+		RepositoryDirectoryInterface dir = jobsDir.findDirectory(ICustomRepository.FOLDER_JOBS_FILE_TRANSFER);
 		if (dir == null)
-			dir = createRepositoryDirectory(jobsDir, FOLDER_JOBS_FILE_TRANSFER);
+			dir = createRepositoryDirectory(jobsDir, ICustomRepository.FOLDER_JOBS_FILE_TRANSFER);
 		return dir;	
 	}
 
 	@Override
 	public RepositoryDirectoryInterface provideJobFileManagementDirectoryForTenant(Organization tenant) throws KettleException {
 		RepositoryDirectoryInterface jobsDir = provideJobsDirectoryForTenant(tenant);
-		RepositoryDirectoryInterface dir = jobsDir.findDirectory(FOLDER_JOBS_FILE_MANAGEMENT);
+		RepositoryDirectoryInterface dir = jobsDir.findDirectory(ICustomRepository.FOLDER_JOBS_FILE_MANAGEMENT);
 		if (dir == null)
-			dir = createRepositoryDirectory(jobsDir, FOLDER_JOBS_FILE_MANAGEMENT);
+			dir = createRepositoryDirectory(jobsDir, ICustomRepository.FOLDER_JOBS_FILE_MANAGEMENT);
 		return dir;	
 	}
 

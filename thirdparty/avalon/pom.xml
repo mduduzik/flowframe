@@ -16,6 +16,16 @@
 			<artifactId>avalon-framework-api</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.avalon.framework</groupId>
+            <artifactId>avalon-framework-impl</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avalon.logkit</groupId>
+            <artifactId>avalon-logkit</artifactId>
+            <version>2.2.1</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -33,6 +43,8 @@
 							<artifactSet>
 								<includes>
 									<include>org.apache.avalon.framework:avalon-framework-api</include>
+                                    <include>org.apache.avalon.framework:avalon-framework-impl</include>
+                                    <include>org.apache.avalon.logkit:avalon-logkit</include>
 								</includes>
 							</artifactSet>
 						</configuration>

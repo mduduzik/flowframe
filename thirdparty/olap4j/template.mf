@@ -1,0 +1,10 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.olap4j
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.1.0
+Implementation-Title: olap4j
+Implementation-Version: 1.1.0
+Specification-Version: 1
+Implementation-Vendor: olap4j
+Implementation-ProductID: olap4j
+Compile-User: Developer
+

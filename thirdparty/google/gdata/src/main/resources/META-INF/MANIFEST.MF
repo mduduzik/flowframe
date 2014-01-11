@@ -1,0 +1,91 @@
+Manifest-Version: 1.0
+Export-Package: com.google.gdata.client;version="1.41.1";uses:="com.go
+ ogle.gdata.client.authn.oauth,com.google.gdata.client.batch,com.googl
+ e.gdata.client.http,com.google.gdata.data,com.google.gdata.data.intro
+ spection,com.google.gdata.model,com.google.gdata.util,com.google.gdat
+ a.util.common.net,com.google.gdata.wireformats,com.google.gdata.wiref
+ ormats.input,com.google.gdata.wireformats.output",com.google.gdata.cl
+ ient.authn.oauth;version="1.41.1";uses:="com.google.gdata.util.common
+ .util",com.google.gdata.client.authn.oauthproxy;version="1.41.1",com.
+ google.gdata.client.batch;version="1.41.1";uses:="com.google.gdata.da
+ ta,com.google.gdata.data.batch,com.google.gdata.util",com.google.gdat
+ a.client.http;version="1.41.1";uses:="com.google.gdata.client,com.goo
+ gle.gdata.data,com.google.gdata.util,com.google.gdata.util.common.xml
+ ",com.google.gdata.client.uploader;version="1.41.1",com.google.gdata.
+ data;version="1.41.1";uses:="com.google.gdata.client,com.google.gdata
+ .util,com.google.gdata.util.common.xml,org.xml.sax,org.xml.sax.helper
+ s",com.google.gdata.data.acl;version="1.41.1";uses:="com.google.gdata
+ .data,com.google.gdata.util",com.google.gdata.data.apt;version="11.0.
+ 2";uses:="com.sun.mirror.apt",com.google.gdata.data.batch;version="11
+ .0.2";uses:="com.google.gdata.data,com.google.gdata.util,com.google.g
+ data.util.common.xml,org.xml.sax",com.google.gdata.data.dublincore;ve
+ rsion="1.41.1";uses:="com.google.gdata.data",com.google.gdata.data.ge
+ o;version="1.41.1";uses:="com.google.gdata.data",com.google.gdata.dat
+ a.geo.impl;version="1.41.1";uses:="com.google.gdata.data,com.google.g
+ data.data.geo,com.google.gdata.util,com.google.gdata.util.common.xml,
+ org.xml.sax",com.google.gdata.data.introspection;version="1.41.1";use
+ s:="com.google.gdata.data,com.google.gdata.util,com.google.gdata.util
+ .common.xml,org.xml.sax",com.google.gdata.data.threading;version="11.
+ 0.2";uses:="com.google.gdata.data,com.google.gdata.util",com.google.g
+ data.model;version="1.41.1";uses:="com.google.common.collect,com.goog
+ le.gdata.util,com.google.gdata.util.common.xml,com.google.gdata.wiref
+ ormats",com.google.gdata.model.atom;version="1.41.1";uses:="com.googl
+ e.gdata.client,com.google.gdata.data,com.google.gdata.model,com.googl
+ e.gdata.model.atompub,com.google.gdata.util",com.google.gdata.model.a
+ tompub;version="1.41.1";uses:="com.google.gdata.data,com.google.gdata
+ .data.introspection,com.google.gdata.model,com.google.gdata.model.ato
+ m",com.google.gdata.model.batch;version="1.41.1";uses:="com.google.gd
+ ata.client.batch,com.google.gdata.data,com.google.gdata.data.batch,co
+ m.google.gdata.model,com.google.gdata.util",com.google.gdata.model.gd
+ ;version="1.41.1";uses:="com.google.gdata.data,com.google.gdata.model
+ ,com.google.gdata.model.atom",com.google.gdata.model.transforms.atom;
+ version="1.41.1";uses:="com.google.gdata.model,com.google.gdata.util,
+ com.google.gdata.util.common.xml,com.google.gdata.wireformats",com.go
+ ogle.gdata.model.transforms.atompub;version="1.41.1";uses:="com.googl
+ e.gdata.model",com.google.gdata.util;version="1.41.1";uses:="com.goog
+ le.common.annotations,com.google.gdata.client.authn.oauthproxy,com.go
+ ogle.gdata.data,com.google.gdata.model,com.google.gdata.util.common.x
+ ml,javax.xml.parsers,org.xml.sax,org.xml.sax.helpers",com.google.gdat
+ a.util.common.base;version="1.41.1";uses:="com.google.common.annotati
+ ons",com.google.gdata.util.common.html;version="1.41.1",com.google.gd
+ ata.util.common.io;version="1.41.1",com.google.gdata.util.common.logg
+ ing;version="1.41.1",com.google.gdata.util.common.net;version="1.41.1
+ ";uses:="com.google.common.collect,com.google.gdata.util.httputil",co
+ m.google.gdata.util.common.util;version="1.41.1";uses:="com.google.co
+ mmon.annotations",com.google.gdata.util.common.xml;version="1.41.1",c
+ om.google.gdata.util.common.xml.parsing;version="1.41.1";uses:="javax
+ .xml.parsers,javax.xml.validation,org.xml.sax",com.google.gdata.util.
+ httputil;version="1.41.1";uses:="com.google.common.annotations,com.go
+ ogle.gdata.util.parser",com.google.gdata.util.io.base;version="1.41.1
+ ",com.google.gdata.util.parser;version="1.41.1",com.google.gdata.wire
+ formats;version="1.41.1";uses:="com.google.common.collect,com.google.
+ gdata.data,com.google.gdata.model,com.google.gdata.util,com.google.gd
+ ata.util.common.xml,com.google.gdata.wireformats.input,com.google.gda
+ ta.wireformats.output,javax.xml.parsers,org.xml.sax,org.xml.sax.helpe
+ rs",com.google.gdata.wireformats.input;version="1.41.1";uses:="com.go
+ ogle.gdata.data,com.google.gdata.data.introspection,com.google.gdata.
+ util,com.google.gdata.wireformats",com.google.gdata.wireformats.outpu
+ t;version="1.41.1";uses:="com.google.gdata.data,com.google.gdata.data
+ .introspection,com.google.gdata.util,com.google.gdata.util.common.xml
+ ,com.google.gdata.wireformats"
+Implementation-Title: Google :: Gdata
+Implementation-Version: 1.41.1
+Built-By: dev
+Specification-Vendor: Google
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: Google :: Gdata
+Created-By: 1.6.0_30 (Sun Microsystems Inc.)
+Implementation-Vendor: Google
+Bundle-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: com.google
+Build-Jdk: 1.6.0_45
+Bundle-Version: 1.41.1
+Specification-Title: Google :: Gdata
+Bundle-ManifestVersion: 2
+Bundle-Description: Google :: Gdata
+Import-Package: com.google.common.annotations;version="[14.0,15.0)",co
+ m.google.common.collect;version="[14.0,15.0)"
+Specification-Version: 1.41.1
+Bundle-SymbolicName: org.flowframe.thirdparty.gdata
+Archiver-Version: Plexus Archiver
+

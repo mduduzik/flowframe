@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Export-Package: com.jcraft.jzlib;version="0.0.1"
+Implementation-Title: jzlib
+Implementation-ProductID: jzlib
+Implementation-Version: 1.1.3
+Compile-User: Developer
+Built-By: Mduduzi
+Tool: Bundlor 1.0.0.RELEASE
+Exclude-Import: com.jcraft.jzlib
+Created-By: Apache Maven
+Implementation-Vendor: jzlib
+Build-Jdk: 1.6.0_45
+Bundle-Version: 0.0.1
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.jzlib
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Export-Package: net.sourceforge.barbecue;version="1.5";uses:="javax.po
+ rtlet,javax.servlet,javax.servlet.http,javax.swing,net.sourceforge.ba
+ rbecue.output",net.sourceforge.barbecue.env;version="1.5",net.sourcef
+ orge.barbecue.formatter;version="1.5";uses:="net.sourceforge.barbecue
+ ",net.sourceforge.barbecue.linear;version="1.5";uses:="net.sourceforg
+ e.barbecue,net.sourceforge.barbecue.output",net.sourceforge.barbecue.
+ linear.codabar;version="1.5";uses:="net.sourceforge.barbecue,net.sour
+ ceforge.barbecue.linear",net.sourceforge.barbecue.linear.code128;vers
+ ion="1.5";uses:="net.sourceforge.barbecue,net.sourceforge.barbecue.li
+ near",net.sourceforge.barbecue.linear.code39;version="1.5";uses:="net
+ .sourceforge.barbecue,net.sourceforge.barbecue.linear",net.sourceforg
+ e.barbecue.linear.ean;version="1.5";uses:="net.sourceforge.barbecue,n
+ et.sourceforge.barbecue.linear.code128,net.sourceforge.barbecue.linea
+ r.upc,net.sourceforge.barbecue.output",net.sourceforge.barbecue.linea
+ r.postnet;version="1.5";uses:="net.sourceforge.barbecue,net.sourcefor
+ ge.barbecue.linear,net.sourceforge.barbecue.output",net.sourceforge.b
+ arbecue.linear.twoOfFive;version="1.5";uses:="net.sourceforge.barbecu
+ e,net.sourceforge.barbecue.linear",net.sourceforge.barbecue.linear.up
+ c;version="1.5";uses:="net.sourceforge.barbecue,net.sourceforge.barbe
+ cue.linear,net.sourceforge.barbecue.output",net.sourceforge.barbecue.
+ output;version="1.5";uses:="org.jdom",net.sourceforge.barbecue.twod.p
+ df417;version="1.5";uses:="net.sourceforge.barbecue,net.sourceforge.b
+ arbecue.linear,net.sourceforge.barbecue.output"
+Implementation-Title: barbecue
+Implementation-ProductID: barbecue
+Implementation-Version: 1.5
+Built-By: Mduduzi
+Compile-User: Developer
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: barbecue
+Build-Jdk: 1.6.0_45
+Bundle-Version: 1.5
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.barbecue
+Import-Package: javax.imageio;version="0",javax.portlet;version="[2.0,
+ 3.0)",javax.servlet;version="[2.6,2.7)",javax.servlet.http;version="[
+ 2.6,2.7)",javax.swing;version="0",org.jdom;version="[1.1,1.2)",org.jd
+ om.output;version="[1.1,1.2)"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

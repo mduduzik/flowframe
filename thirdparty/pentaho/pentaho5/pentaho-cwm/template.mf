@@ -1,0 +1,8 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-cwm
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.5.4
+Implementation-Title: Pentaho CWM
+Implementation-Version: 1.5.4
+Specification-Version: 1
+Implementation-Vendor: Pentaho Corporation
+Implementation-ProductID: pdi-ce

@@ -716,6 +716,7 @@ Ext.ux.Wiz.Card = Ext.extend(Ext.FormPanel, {
 
         Ext.ux.Wiz.Card.superclass.initComponent.call(this);
 
+        this.form.trackResetOnLoad = true;
         //Ext.apply(this.form,itemsConfig);
     },
 // -------- helper

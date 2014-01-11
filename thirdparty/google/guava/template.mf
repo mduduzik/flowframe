@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.6.0_30 (Sun Microsystems Inc.)
+Built-By: dev
+Specification-Title: Google :: Guava
+Specification-Version: 11.0.2
+Specification-Vendor: Google
+Implementation-Title: Google :: Guava
+Implementation-Version: 11.0.2
+Implementation-Vendor-Id: com.google
+Implementation-Vendor: Google
+Bundle-SymbolicName: org.flowframe.thirdparty.guava
+Bundle-Name: Google :: Guava
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 11.0.2
+Bundle-ManifestVersion: 2
+Bundle-Description: Google :: Guava
+Import-Package: javax.annotation.concurrent;version="0"
+

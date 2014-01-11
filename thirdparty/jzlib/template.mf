@@ -1,0 +1,11 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.jzlib
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.1.3
+Implementation-Title: jzlib
+Implementation-Version: 1.1.3
+Specification-Version: 1
+Implementation-Vendor: jzlib
+Implementation-ProductID: jzlib
+Compile-User: Developer
+Exclude-Import: com.jcraft.jzlib
+

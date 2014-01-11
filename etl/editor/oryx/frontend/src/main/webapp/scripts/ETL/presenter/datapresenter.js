@@ -19,7 +19,11 @@ ORYX.ETL.DataPresenter = {
     shapeConfig: undefined,
 
     eventManager: undefined,
+
     record: undefined,
+
+    changeCount: 0,
+
     formPanels: new Hash(),//type FormPanel
     construct: function (config) {
         this.editorMode = config.editorMode,
@@ -34,6 +38,7 @@ ORYX.ETL.DataPresenter = {
         this.eventManager.registerOnEvent(ORYX.CONFIG.EVENT_ETL_MODEL_SAVED, this.onModelSaved.bind(this));
     },
     onModelSaved: function (event,args) {
+        this.changeCount = 0;
     },
     /**
      * Returns facade.
@@ -64,6 +69,7 @@ ORYX.ETL.DataPresenter = {
                 executeOnNewRequest: this._executeOnNewRequest.bind(this),
                 executeOnGetMetadataRequest: this._executeOnGetMetadataRequest.bind(this),
                 executeOnAddDataRequest: this._executeOnAddDataRequest.bind(this),
+                executeOnSaveDataRequest: this._executeOnSaveDataRequest.bind(this),
                 executeOnEditDataRequest: this._executeOnEditDataRequest.bind(this),
                 executeOnEditStepDataRequest: this._executeOnEditStepDataRequest.bind(this),
                 executeOnDeleteDataRequest: this._executeOnDeleteDataRequest.bind(this),
@@ -106,6 +112,7 @@ ORYX.ETL.DataPresenter = {
     //}
     ,_updateRecordProperty: function(propName, propValue) {
         this.record[propName] = propValue;
+        this.changeCount++;
     }
 
     //{{
@@ -139,7 +146,7 @@ ORYX.ETL.DataPresenter = {
             if (_formPanel.form.isDirty())
                 isDirty = true;
         }.bind(this));
-        return isDirty;
+        return this.changeCount > 0 || isDirty;
     }
     //{{
     /**
@@ -210,11 +217,35 @@ ORYX.ETL.DataPresenter = {
      }
     //{{
     /**
-     * _executeOnAddDataRequest
+     * _executeOnSaveDataRequest
      * @param
      */
     //}
-    ,_executeOnAddDataRequest: function(subDirObjId,successHandler) {
+    ,_executeOnSaveDataRequest: function(subDirObjId,successHandler) {
+        this._onBeforeModelSubmission();
+
+
+        var dataJson = Ext.encode(this.record);
+
+
+        var options = {
+            url: this.onSaveURL+'/'+subDirObjId,
+            method: 'POST',
+            asynchronous: false,
+            params: dataJson,
+            success: successHandler,
+            failure: function (response, opts) {
+            }.bind(this)
+        };
+        return this._executeRequest(options,true);
+    }
+    //{{
+    /**
+     * _executeOnAddDataRequest
+     * @param
+     */
+        //}
+        ,_executeOnAddDataRequest: function(subDirObjId,successHandler) {
         this._onBeforeModelSubmission();
 
 

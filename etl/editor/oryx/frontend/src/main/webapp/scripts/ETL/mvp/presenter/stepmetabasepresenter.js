@@ -84,9 +84,10 @@ ORYX.Plugins.ETL.Metadata.StepMetaBasePresenter = {
         this.wizMode = 'CREATE';
         this.folderId = arg.folderId;
         this.parentNavNodeId = arg.metaPathId;
-        this.sampleFileNode = arg.dropData.source;
+        if (arg.dropData)
+            this.sampleFileNode = arg.dropData.source;
 
-        this.metaName = 'New TextFileInput Metadata';
+        this.metaName = 'New '+this.itemType+' Metadata';
 
         //-- Launch
         this._launchEditor();

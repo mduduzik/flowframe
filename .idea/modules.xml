@@ -81,6 +81,7 @@
       <module fileurl="file://$PROJECT_DIR$/kernel/jpa/org.flowframe.kernel.jpa.iml" filepath="$PROJECT_DIR$/kernel/jpa/org.flowframe.kernel.jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/kernel/jpa/jpa.container.services/org.flowframe.kernel.jpa.container.services.iml" filepath="$PROJECT_DIR$/kernel/jpa/jpa.container.services/org.flowframe.kernel.jpa.container.services.iml" />
       <module fileurl="file://$PROJECT_DIR$/kernel/jpa/jpa.container.services.impl/org.flowframe.kernel.jpa.container.services.impl.iml" filepath="$PROJECT_DIR$/kernel/jpa/jpa.container.services.impl/org.flowframe.kernel.jpa.container.services.impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/org.flowframe.kernel.jpa.lob.jpacontainer.minimal.iml" filepath="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/org.flowframe.kernel.jpa.lob.jpacontainer.minimal.iml" />
       <module fileurl="file://$PROJECT_DIR$/kernel/json/org.flowframe.kernel.json.iml" filepath="$PROJECT_DIR$/kernel/json/org.flowframe.kernel.json.iml" />
       <module fileurl="file://$PROJECT_DIR$/kernel/metamodel/org.flowframe.kernel.metamodel.iml" filepath="$PROJECT_DIR$/kernel/metamodel/org.flowframe.kernel.metamodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/kernel/metamodel/dao.services/org.flowframe.kernel.metamodel.dao.services.iml" filepath="$PROJECT_DIR$/kernel/metamodel/dao.services/org.flowframe.kernel.metamodel.dao.services.iml" />
@@ -92,6 +93,7 @@
       <module fileurl="file://$PROJECT_DIR$/portal/remote.services/org.flowframe.portal.remote.services.iml" filepath="$PROJECT_DIR$/portal/remote.services/org.flowframe.portal.remote.services.iml" />
       <module fileurl="file://$PROJECT_DIR$/portal/remote.services.impl/org.flowframe.portal.remote.services.impl.iml" filepath="$PROJECT_DIR$/portal/remote.services.impl/org.flowframe.portal.remote.services.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/portal/remote.services.impl.config.fragment/org.flowframe.portal.remote.services.impl.config.fragment.iml" filepath="$PROJECT_DIR$/portal/remote.services.impl.config.fragment/org.flowframe.portal.remote.services.impl.config.fragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/portal/remote.services.min.impl/org.flowframe.portal.remote.services.min.impl.iml" filepath="$PROJECT_DIR$/portal/remote.services.min.impl/org.flowframe.portal.remote.services.min.impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/reporting/org.flowframe.reporting.iml" filepath="$PROJECT_DIR$/reporting/org.flowframe.reporting.iml" />
       <module fileurl="file://$PROJECT_DIR$/reporting/jasper/org.flowframe.reporting.jasper.iml" filepath="$PROJECT_DIR$/reporting/jasper/org.flowframe.reporting.jasper.iml" />
       <module fileurl="file://$PROJECT_DIR$/reporting/jasper/web.services/org.flowframe.reporting.jasper.web.services.iml" filepath="$PROJECT_DIR$/reporting/jasper/web.services/org.flowframe.reporting.jasper.web.services.iml" />

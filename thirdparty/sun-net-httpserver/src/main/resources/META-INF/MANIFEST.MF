@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Export-Package: com.sun.net.httpserver;version="0.0.1";uses:="javax.ne
+ t.ssl",com.sun.net.httpserver.spi;version="0.0.1";uses:="com.sun.net.
+ httpserver"
+Implementation-Title: org.flowframe.thirdparty.com.sun.net.httpserver
+Implementation-ProductID: monetdb-jdbc
+Implementation-Version: 20070405
+Built-By: Mduduzi
+Compile-User: Developer
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: monetdb-jdbc
+Build-Jdk: 1.6.0_45
+Bundle-Version: 0.0.1
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.com.sun.net.httpserver
+Import-Package: javax.net.ssl;version="0"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

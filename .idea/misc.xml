@@ -72,6 +72,8 @@
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/pom.xml" />
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/core-ui/pom.xml" />
+        <option value="$PROJECT_DIR$/portal/remote.services.min.impl/pom.xml" />
+        <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

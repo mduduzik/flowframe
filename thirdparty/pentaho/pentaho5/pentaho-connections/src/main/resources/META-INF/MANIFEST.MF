@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Export-Package: org.pentaho.commons.connection;version="5.0.2";uses:="
+ javax.activation,org.pentaho.commons.connection.memory",org.pentaho.c
+ ommons.connection.marshal;version="5.0.2";uses:="org.pentaho.commons.
+ connection",org.pentaho.commons.connection.memory;version="5.0.2";use
+ s:="org.dom4j,org.pentaho.commons.connection"
+Implementation-Title: Pentaho CWM
+Implementation-ProductID: pdi-ce
+Implementation-Version: 5.0.2
+Built-By: Mduduzi
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: Pentaho Corporation
+Build-Jdk: 1.6.0_45
+Bundle-Version: 5.0.2
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-connections
+Import-Package: javax.activation;version="0",org.apache.commons.collec
+ tions;version="3.2.1",org.apache.commons.collections.map;version="3.2
+ .1",org.dom4j;version="1.6.1",org.dom4j.dom;version="1.6.1",org.dom4j
+ .io;version="1.6.1"
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

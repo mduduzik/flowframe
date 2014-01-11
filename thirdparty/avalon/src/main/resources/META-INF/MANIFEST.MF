@@ -2,15 +2,37 @@ Manifest-Version: 1.0
 Export-Package: org.apache.avalon.framework;version="4.3.1",org.apache
  .avalon.framework.activity;version="4.3.1",org.apache.avalon.framewor
  k.availability;version="4.3.1",org.apache.avalon.framework.component;
- version="4.3.1";uses:="org.apache.avalon.framework",org.apache.avalon
- .framework.configuration;version="4.3.1";uses:="org.apache.avalon.fra
- mework",org.apache.avalon.framework.context;version="4.3.1";uses:="or
- g.apache.avalon.framework",org.apache.avalon.framework.logger;version
- ="4.3.1";uses:="org.apache.log",org.apache.avalon.framework.parameter
- s;version="4.3.1";uses:="org.apache.avalon.framework,org.apache.avalo
- n.framework.configuration",org.apache.avalon.framework.service;versio
- n="4.3.1";uses:="org.apache.avalon.framework",org.apache.avalon.frame
- work.thread;version="4.3.1"
+ version="4.3.1";uses:="org.apache.avalon.framework,org.apache.avalon.
+ framework.service",org.apache.avalon.framework.configuration;version=
+ "4.3.1";uses:="javax.xml.transform,javax.xml.transform.sax,org.apache
+ .avalon.framework,org.w3c.dom,org.xml.sax,org.xml.sax.helpers",org.ap
+ ache.avalon.framework.container;version="4.3.1";uses:="org.apache.ava
+ lon.framework.component,org.apache.avalon.framework.configuration,org
+ .apache.avalon.framework.context,org.apache.avalon.framework.logger,o
+ rg.apache.avalon.framework.parameters,org.apache.avalon.framework.ser
+ vice",org.apache.avalon.framework.context;version="4.3.1";uses:="org.
+ apache.avalon.framework",org.apache.avalon.framework.logger;version="
+ 4.3.1";uses:="org.apache.commons.logging,org.apache.log,org.apache.lo
+ g.format,org.apache.log4j",org.apache.avalon.framework.parameters;ver
+ sion="4.3.1";uses:="org.apache.avalon.framework,org.apache.avalon.fra
+ mework.configuration",org.apache.avalon.framework.service;version="4.
+ 3.1";uses:="org.apache.avalon.framework,org.apache.avalon.framework.c
+ omponent",org.apache.avalon.framework.thread;version="4.3.1",org.apac
+ he.log;version="4.3.1";uses:="org.apache.log.util",org.apache.log.for
+ mat;version="4.3.1";uses:="org.apache.log",org.apache.log.output;vers
+ ion="4.3.1";uses:="javax.servlet,org.apache.log,org.apache.log.format
+ ,org.apache.log.util",org.apache.log.output.db;version="4.3.1";uses:=
+ "javax.sql,org.apache.log,org.apache.log.output",org.apache.log.outpu
+ t.io;version="4.3.1";uses:="org.apache.log,org.apache.log.format,org.
+ apache.log.output",org.apache.log.output.io.rotate;version="4.3.1";us
+ es:="org.apache.log.format,org.apache.log.output.io",org.apache.log.o
+ utput.jms;version="4.3.1";uses:="javax.jms,org.apache.log,org.apache.
+ log.format,org.apache.log.output",org.apache.log.output.lf5;version="
+ 4.3.1";uses:="org.apache.log,org.apache.log.format,org.apache.log4j.l
+ f5,org.apache.log4j.lf5.viewer",org.apache.log.output.net;version="4.
+ 3.1";uses:="javax.mail,org.apache.log,org.apache.log.format,org.apach
+ e.log.output",org.apache.log.util;version="4.3.1";uses:="org.apache.l
+ og"
 Build-Jdk: 1.7.0_25
 Built-By: Sandile
 Bundle-Version: 4.3.1
@@ -19,5 +41,9 @@ Bundle-Name: avalon-framework-api
 Bundle-ManifestVersion: 2
 Created-By: Apache Maven
 Bundle-SymbolicName: org.flowframe.thirdparty.avalon-framework-api
+Import-Package: javax.sql;version="0",javax.xml.parsers;version="0",ja
+ vax.xml.transform;version="0",javax.xml.transform.sax;version="0",jav
+ ax.xml.transform.stream;version="0",org.w3c.dom;version="0",org.xml.s
+ ax;version="0",org.xml.sax.helpers;version="0"
 Archiver-Version: Plexus Archiver
 

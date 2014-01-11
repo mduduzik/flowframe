@@ -94,18 +94,17 @@ public class DatabaseMetaUtil {
         ObjectId id = new LongObjectId(dto.getObjectId());
         DatabaseMeta databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(id);
 
-        databaseMeta.setDatabaseType(dto.getDatabaseType());
-        databaseMeta.setHostname(dto.getHostname());
-        databaseMeta.setDBName(dto.getDatabaseName());
-        databaseMeta.setDBPort(Integer.toString(dto.getDatabasePort()));
-        databaseMeta.setUsername(dto.getUsername());
-        databaseMeta.setPassword(dto.getPassword());
+        databaseMeta.getDatabaseInterface().setName(dto.getName());
+        databaseMeta.getDatabaseInterface().setHostname(dto.getHostname());
+        databaseMeta.getDatabaseInterface().setDatabaseName(dto.getDatabaseName());
+        databaseMeta.getDatabaseInterface().setDatabasePortNumberString(Integer.toString(dto.getDatabasePort()));
+        databaseMeta.getDatabaseInterface().setUsername(dto.getUsername());
+        databaseMeta.getDatabaseInterface().setPassword(dto.getPassword());
 
         repo.getRepositoryDatabaseDelegate().saveDatabaseMeta(databaseMeta);
+        repo.getRepositoryConnectionDelegate().commit();
 
         databaseMeta = repo.getRepositoryDatabaseDelegate().loadDatabaseMeta(id);
-
-        repo.getRepositoryConnectionDelegate().commit();
 
         return databaseMeta;
     }

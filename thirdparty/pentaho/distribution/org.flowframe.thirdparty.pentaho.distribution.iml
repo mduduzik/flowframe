@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.kettle-all" />
+    <orderEntry type="library" name="Maven: com.pentaho:kettle-core:4.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.pentaho:kettle-engine:4.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.pentaho:kettle-db:4.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.pentaho:kettle-test:4.4.0" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.15" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.jms:jms:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jdmk:jmxtools:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jmx:jmxri:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.kettle-vfs-20100924-osgi:4.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.collections:3.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.httpclient:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.codec:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:com.springsource.org.apache.tools.ant:1.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.samba.jcifs:com.springsource.jcifs:1.2.15" level="project" />
+    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.jackrabbit.version160.core:1.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.jackrabbit.version160.webdav:1.6.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:com.springsource.javax.mail:1.4.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft.jsch:com.springsource.com.jcraft.jsch:0.1.41" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.net:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.flowframe:org.flowframe.thirdparty.pentaho-metadata:3.4.6" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho-library-libbase" />
+    <orderEntry type="library" name="Maven: pentaho-library:libbase:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.libdocbundle" />
+    <orderEntry type="library" name="Maven: pentaho-library:libdocbundle:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libfonts" />
+    <orderEntry type="library" name="Maven: pentaho-library:libfonts:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libformat" />
+    <orderEntry type="library" name="Maven: pentaho-library:libformat:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho-library-libformula" />
+    <orderEntry type="library" name="Maven: pentaho-library:libformula:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libformula-ui" />
+    <orderEntry type="library" name="Maven: pentaho-library:libformula-ui:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libloader" />
+    <orderEntry type="library" name="Maven: pentaho-library:libloader:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libpixie" />
+    <orderEntry type="library" name="Maven: pentaho-library:libpixie:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.librepository" />
+    <orderEntry type="library" name="Maven: pentaho-library:librepository:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libserializer" />
+    <orderEntry type="library" name="Maven: pentaho-library:libserializer:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libswing" />
+    <orderEntry type="library" name="Maven: pentaho-library:libswing:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho.reporting.libxml" />
+    <orderEntry type="library" name="Maven: pentaho-library:libxml:1.2.8" level="project" />
+    <orderEntry type="module" module-name="org.flowframe.thirdparty.pentaho-reporting-engine-library" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-core:3.9.1-GA" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.core:0.9.24" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.instrument:3.1.3.RELEASE" level="project" />
+  </component>
+</module>
+

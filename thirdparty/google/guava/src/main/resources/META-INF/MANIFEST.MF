@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Export-Package: com.google.common.annotations;version="11.0.2",com.goo
+ gle.common.base;version="11.0.2";uses:="com.google.common.annotations
+ ,javax.annotation",com.google.common.base.internal;version="11.0.2",c
+ om.google.common.cache;version="11.0.2";uses:="com.google.common.anno
+ tations,com.google.common.base,com.google.common.collect,com.google.c
+ ommon.util.concurrent,javax.annotation,javax.annotation.concurrent",c
+ om.google.common.collect;version="11.0.2";uses:="com.google.common.an
+ notations,com.google.common.base,javax.annotation,javax.annotation.co
+ ncurrent",com.google.common.eventbus;version="11.0.2";uses:="com.goog
+ le.common.annotations,com.google.common.base,com.google.common.cache,
+ com.google.common.collect",com.google.common.hash;version="11.0.2";us
+ es:="com.google.common.annotations,javax.annotation",com.google.commo
+ n.io;version="11.0.2";uses:="com.google.common.annotations,javax.anno
+ tation",com.google.common.math;version="11.0.2";uses:="com.google.com
+ mon.annotations,javax.annotation",com.google.common.net;version="11.0
+ .2";uses:="com.google.common.annotations,com.google.common.collect,ja
+ vax.annotation,javax.annotation.concurrent",com.google.common.primiti
+ ves;version="11.0.2";uses:="com.google.common.annotations,javax.annot
+ ation",com.google.common.util.concurrent;version="11.0.2";uses:="com.
+ google.common.annotations,com.google.common.base,com.google.common.co
+ llect,javax.annotation,javax.annotation.concurrent"
+Implementation-Title: Google :: Guava
+Implementation-Version: 11.0.2
+Built-By: dev
+Specification-Vendor: Google
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: Google :: Guava
+Created-By: 1.6.0_30 (Sun Microsystems Inc.)
+Implementation-Vendor: Google
+Bundle-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: com.google
+Build-Jdk: 1.6.0_45
+Bundle-Version: 11.0.2
+Specification-Title: Google :: Guava
+Bundle-ManifestVersion: 2
+Bundle-Description: Google :: Guava
+Import-Package: javax.annotation;version="0",javax.annotation.concurre
+ nt;version="0"
+Specification-Version: 11.0.2
+Bundle-SymbolicName: org.flowframe.thirdparty.guava
+Archiver-Version: Plexus Archiver
+

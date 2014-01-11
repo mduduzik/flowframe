@@ -90,6 +90,7 @@
         <module name="org.flowframe.kernel.eventmanagement.springdm.services.impl" />
         <module name="org.flowframe.kernel.jpa.container.services" />
         <module name="org.flowframe.kernel.jpa.container.services.impl" />
+        <module name="org.flowframe.kernel.jpa.lob.jpacontainer.minimal" />
         <module name="org.flowframe.kernel.json" />
         <module name="org.flowframe.kernel.metamodel.dao.services" />
         <module name="org.flowframe.kernel.metamodel.dao.services.impl" />
@@ -98,6 +99,7 @@
         <module name="org.flowframe.portal.remote.services" />
         <module name="org.flowframe.portal.remote.services.impl" />
         <module name="org.flowframe.portal.remote.services.impl.config.fragment" />
+        <module name="org.flowframe.portal.remote.services.min.impl" />
         <module name="org.flowframe.reporting.jasper.web.services" />
         <module name="org.flowframe.reporting.remote.services" />
         <module name="org.flowframe.scheduling.jobs.manager" />
@@ -228,6 +230,7 @@
       <module name="org.flowframe.kernel.jpa" target="1.6" />
       <module name="org.flowframe.kernel.jpa.container.services" target="1.6" />
       <module name="org.flowframe.kernel.jpa.container.services.impl" target="1.6" />
+      <module name="org.flowframe.kernel.jpa.lob.jpacontainer.minimal" target="1.6" />
       <module name="org.flowframe.kernel.json" target="1.6" />
       <module name="org.flowframe.kernel.metamodel" target="1.6" />
       <module name="org.flowframe.kernel.metamodel.dao.services" target="1.6" />
@@ -239,6 +242,7 @@
       <module name="org.flowframe.portal.remote.services" target="1.6" />
       <module name="org.flowframe.portal.remote.services.impl" target="1.6" />
       <module name="org.flowframe.portal.remote.services.impl.config.fragment" target="1.6" />
+      <module name="org.flowframe.portal.remote.services.min.impl" target="1.6" />
       <module name="org.flowframe.reporting" target="1.6" />
       <module name="org.flowframe.reporting.jasper" target="1.6" />
       <module name="org.flowframe.reporting.jasper.web.services" target="1.6" />

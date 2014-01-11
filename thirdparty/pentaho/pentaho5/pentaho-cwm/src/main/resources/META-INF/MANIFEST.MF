@@ -1,0 +1,64 @@
+Manifest-Version: 1.0
+Export-Package: javax.jmi.primitivetypes;version="1.5.4";uses:="javax.
+ jmi.reflect",javax.jmi.reflect;version="1.5.4",javax.jmi.xmi;version=
+ "1.5.4";uses:="javax.jmi.reflect",org.pentaho.pms.cwm.pentaho;version
+ ="1.5.4";uses:="javax.jmi.reflect,org.pentaho.pms.cwm.pentaho.meta",o
+ rg.pentaho.pms.cwm.pentaho.meta;version="1.5.4";uses:="javax.jmi.refl
+ ect,org.pentaho.pms.cwm.pentaho.meta.behavioral,org.pentaho.pms.cwm.p
+ entaho.meta.businessinformation,org.pentaho.pms.cwm.pentaho.meta.core
+ ,org.pentaho.pms.cwm.pentaho.meta.datatypes,org.pentaho.pms.cwm.penta
+ ho.meta.expressions,org.pentaho.pms.cwm.pentaho.meta.instance,org.pen
+ taho.pms.cwm.pentaho.meta.keysindexes,org.pentaho.pms.cwm.pentaho.met
+ a.multidimensional,org.pentaho.pms.cwm.pentaho.meta.olap,org.pentaho.
+ pms.cwm.pentaho.meta.relational,org.pentaho.pms.cwm.pentaho.meta.rela
+ tionships,org.pentaho.pms.cwm.pentaho.meta.softwaredeployment,org.pen
+ taho.pms.cwm.pentaho.meta.transformation,org.pentaho.pms.cwm.pentaho.
+ meta.typemapping",org.pentaho.pms.cwm.pentaho.meta.behavioral;version
+ ="1.5.4";uses:="javax.jmi.reflect,org.pentaho.pms.cwm.pentaho.meta.co
+ re",org.pentaho.pms.cwm.pentaho.meta.businessinformation;version="1.5
+ .4";uses:="javax.jmi.reflect,org.pentaho.pms.cwm.pentaho.meta.core",o
+ rg.pentaho.pms.cwm.pentaho.meta.core;version="1.5.4";uses:="javax.jmi
+ .reflect",org.pentaho.pms.cwm.pentaho.meta.datatypes;version="1.5.4";
+ uses:="javax.jmi.reflect,org.pentaho.pms.cwm.pentaho.meta.core",org.p
+ entaho.pms.cwm.pentaho.meta.expressions;version="1.5.4";uses:="javax.
+ jmi.reflect,org.pentaho.pms.cwm.pentaho.meta.core",org.pentaho.pms.cw
+ m.pentaho.meta.instance;version="1.5.4";uses:="javax.jmi.reflect,org.
+ pentaho.pms.cwm.pentaho.meta.core",org.pentaho.pms.cwm.pentaho.meta.k
+ eysindexes;version="1.5.4";uses:="javax.jmi.reflect,org.pentaho.pms.c
+ wm.pentaho.meta.core",org.pentaho.pms.cwm.pentaho.meta.multidimension
+ al;version="1.5.4";uses:="javax.jmi.reflect,org.pentaho.pms.cwm.penta
+ ho.meta.core,org.pentaho.pms.cwm.pentaho.meta.instance",org.pentaho.p
+ ms.cwm.pentaho.meta.olap;version="1.5.4";uses:="javax.jmi.reflect,org
+ .pentaho.pms.cwm.pentaho.meta.core,org.pentaho.pms.cwm.pentaho.meta.e
+ xpressions,org.pentaho.pms.cwm.pentaho.meta.transformation",org.penta
+ ho.pms.cwm.pentaho.meta.relational;version="1.5.4";uses:="javax.jmi.r
+ eflect,org.pentaho.pms.cwm.pentaho.meta.behavioral,org.pentaho.pms.cw
+ m.pentaho.meta.core,org.pentaho.pms.cwm.pentaho.meta.datatypes,org.pe
+ ntaho.pms.cwm.pentaho.meta.instance,org.pentaho.pms.cwm.pentaho.meta.
+ keysindexes,org.pentaho.pms.cwm.pentaho.meta.relational.enumerations"
+ ,org.pentaho.pms.cwm.pentaho.meta.relational.enumerations;version="1.
+ 5.4";uses:="javax.jmi.reflect",org.pentaho.pms.cwm.pentaho.meta.relat
+ ionships;version="1.5.4";uses:="javax.jmi.reflect,org.pentaho.pms.cwm
+ .pentaho.meta.core",org.pentaho.pms.cwm.pentaho.meta.softwaredeployme
+ nt;version="1.5.4";uses:="javax.jmi.reflect,org.pentaho.pms.cwm.penta
+ ho.meta.businessinformation,org.pentaho.pms.cwm.pentaho.meta.core,org
+ .pentaho.pms.cwm.pentaho.meta.typemapping",org.pentaho.pms.cwm.pentah
+ o.meta.transformation;version="1.5.4";uses:="javax.jmi.reflect,org.pe
+ ntaho.pms.cwm.pentaho.meta.core,org.pentaho.pms.cwm.pentaho.meta.expr
+ essions,org.pentaho.pms.cwm.pentaho.meta.softwaredeployment",org.pent
+ aho.pms.cwm.pentaho.meta.typemapping;version="1.5.4";uses:="javax.jmi
+ .reflect,org.pentaho.pms.cwm.pentaho.meta.core"
+Implementation-Title: Pentaho CWM
+Implementation-ProductID: pdi-ce
+Implementation-Version: 1.5.4
+Built-By: Mduduzi
+Tool: Bundlor 1.0.0.RELEASE
+Created-By: Apache Maven
+Implementation-Vendor: Pentaho Corporation
+Bundle-Version: 1.5.4
+Build-Jdk: 1.6.0_45
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-cwm
+Specification-Version: 1
+Archiver-Version: Plexus Archiver
+

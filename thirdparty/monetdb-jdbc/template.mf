@@ -1,0 +1,10 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.monetdb-jdbc
+Bundle-ManifestVersion: 2
+Bundle-Version: 2.8
+Implementation-Title: monetdb-jdbc
+Implementation-Version: 2.8
+Specification-Version: 1
+Implementation-Vendor: monetdb-jdbc
+Implementation-ProductID: monetdb-jdbc
+Compile-User: Developer
+
