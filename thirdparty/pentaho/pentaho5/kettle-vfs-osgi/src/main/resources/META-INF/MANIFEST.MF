@@ -1,67 +1,67 @@
 Manifest-Version: 1.0
-Export-Package: org.apache.commons.test;version="5.0.2";uses:="org.apa
- che.commons.vfs",org.apache.commons.vfs;version="5.0.2";uses:="org.ap
+Export-Package: org.apache.commons.test;version="5.0.3";uses:="org.apa
+ che.commons.vfs",org.apache.commons.vfs;version="5.0.3";uses:="org.ap
  ache.commons.logging,org.apache.commons.vfs.operations,org.apache.com
- mons.vfs.util",org.apache.commons.vfs.auth;version="5.0.2";uses:="org
- .apache.commons.vfs",org.apache.commons.vfs.cache;version="5.0.2";use
+ mons.vfs.util",org.apache.commons.vfs.auth;version="5.0.3";uses:="org
+ .apache.commons.vfs",org.apache.commons.vfs.cache;version="5.0.3";use
  s:="org.apache.commons.collections.map,org.apache.commons.logging,org
  .apache.commons.vfs,org.apache.commons.vfs.impl,org.apache.commons.vf
- s.provider",org.apache.commons.vfs.events;version="5.0.2";uses:="org.
- apache.commons.vfs",org.apache.commons.vfs.impl;version="5.0.2";uses:
+ s.provider",org.apache.commons.vfs.events;version="5.0.3";uses:="org.
+ apache.commons.vfs",org.apache.commons.vfs.impl;version="5.0.3";uses:
  ="org.apache.commons.logging,org.apache.commons.vfs,org.apache.common
  s.vfs.operations,org.apache.commons.vfs.provider",org.apache.commons.
- vfs.operations;version="5.0.2";uses:="org.apache.commons.vfs",org.apa
- che.commons.vfs.operations.vcs;version="5.0.2";uses:="org.apache.comm
+ vfs.operations;version="5.0.3";uses:="org.apache.commons.vfs",org.apa
+ che.commons.vfs.operations.vcs;version="5.0.3";uses:="org.apache.comm
  ons.vfs,org.apache.commons.vfs.operations",org.apache.commons.vfs.pro
- vider;version="5.0.2";uses:="org.apache.commons.httpclient,org.apache
+ vider;version="5.0.3";uses:="org.apache.commons.httpclient,org.apache
  .commons.logging,org.apache.commons.vfs,org.apache.commons.vfs.operat
  ions,org.apache.commons.vfs.util",org.apache.commons.vfs.provider.bzi
- p2;version="5.0.2";uses:="org.apache.commons.vfs,org.apache.commons.v
+ p2;version="5.0.3";uses:="org.apache.commons.vfs,org.apache.commons.v
  fs.provider.compressed",org.apache.commons.vfs.provider.compressed;ve
- rsion="5.0.2";uses:="org.apache.commons.vfs,org.apache.commons.vfs.pr
- ovider",org.apache.commons.vfs.provider.ftp;version="5.0.2";uses:="or
+ rsion="5.0.3";uses:="org.apache.commons.vfs,org.apache.commons.vfs.pr
+ ovider",org.apache.commons.vfs.provider.ftp;version="5.0.3";uses:="or
  g.apache.commons.net.ftp,org.apache.commons.net.ftp.parser,org.apache
  .commons.vfs,org.apache.commons.vfs.provider,org.apache.commons.vfs.u
- til",org.apache.commons.vfs.provider.gzip;version="5.0.2";uses:="org.
+ til",org.apache.commons.vfs.provider.gzip;version="5.0.3";uses:="org.
  apache.commons.vfs,org.apache.commons.vfs.provider.compressed",org.ap
- ache.commons.vfs.provider.http;version="5.0.2";uses:="org.apache.comm
+ ache.commons.vfs.provider.http;version="5.0.3";uses:="org.apache.comm
  ons.httpclient,org.apache.commons.httpclient.methods,org.apache.commo
  ns.httpclient.params,org.apache.commons.vfs,org.apache.commons.vfs.pr
  ovider,org.apache.commons.vfs.util",org.apache.commons.vfs.provider.h
- ttps;version="5.0.2";uses:="org.apache.commons.vfs.provider,org.apach
+ ttps;version="5.0.3";uses:="org.apache.commons.vfs.provider,org.apach
  e.commons.vfs.provider.http",org.apache.commons.vfs.provider.jar;vers
- ion="5.0.2";uses:="org.apache.commons.vfs,org.apache.commons.vfs.prov
- ider.zip",org.apache.commons.vfs.provider.local;version="5.0.2";uses:
+ ion="5.0.3";uses:="org.apache.commons.vfs,org.apache.commons.vfs.prov
+ ider.zip",org.apache.commons.vfs.provider.local;version="5.0.3";uses:
  ="org.apache.commons.vfs,org.apache.commons.vfs.provider,org.apache.c
- ommons.vfs.util",org.apache.commons.vfs.provider.mime;version="5.0.2"
+ ommons.vfs.util",org.apache.commons.vfs.provider.mime;version="5.0.3"
  ;uses:="javax.mail,org.apache.commons.vfs,org.apache.commons.vfs.prov
- ider",org.apache.commons.vfs.provider.ram;version="5.0.2";uses:="org.
+ ider",org.apache.commons.vfs.provider.ram;version="5.0.3";uses:="org.
  apache.commons.vfs,org.apache.commons.vfs.provider,org.apache.commons
- .vfs.util",org.apache.commons.vfs.provider.res;version="5.0.2";uses:=
+ .vfs.util",org.apache.commons.vfs.provider.res;version="5.0.3";uses:=
  "org.apache.commons.vfs,org.apache.commons.vfs.provider",org.apache.c
- ommons.vfs.provider.sftp;version="5.0.2";uses:="com.jcraft.jsch,org.a
+ ommons.vfs.provider.sftp;version="5.0.3";uses:="com.jcraft.jsch,org.a
  pache.commons.vfs,org.apache.commons.vfs.provider,org.apache.commons.
- vfs.util",org.apache.commons.vfs.provider.smb;version="5.0.2";uses:="
+ vfs.util",org.apache.commons.vfs.provider.smb;version="5.0.3";uses:="
  jcifs.smb,org.apache.commons.vfs,org.apache.commons.vfs.provider,org.
  apache.commons.vfs.util",org.apache.commons.vfs.provider.tar;version=
- "5.0.2";uses:="org.apache.commons.vfs,org.apache.commons.vfs.provider
- ",org.apache.commons.vfs.provider.temp;version="5.0.2";uses:="org.apa
+ "5.0.3";uses:="org.apache.commons.vfs,org.apache.commons.vfs.provider
+ ",org.apache.commons.vfs.provider.temp;version="5.0.3";uses:="org.apa
  che.commons.vfs,org.apache.commons.vfs.provider",org.apache.commons.v
- fs.provider.url;version="5.0.2";uses:="org.apache.commons.httpclient,
+ fs.provider.url;version="5.0.3";uses:="org.apache.commons.httpclient,
  org.apache.commons.vfs,org.apache.commons.vfs.provider",org.apache.co
- mmons.vfs.provider.webdav;version="5.0.2";uses:="org.apache.commons.h
+ mmons.vfs.provider.webdav;version="5.0.3";uses:="org.apache.commons.h
  ttpclient,org.apache.commons.vfs,org.apache.commons.vfs.provider,org.
  apache.commons.vfs.provider.http,org.apache.commons.vfs.util,org.apac
  he.jackrabbit.webdav,org.apache.jackrabbit.webdav.client.methods,org.
  apache.jackrabbit.webdav.property",org.apache.commons.vfs.provider.zi
- p;version="5.0.2";uses:="org.apache.commons.vfs,org.apache.commons.vf
- s.provider",org.apache.commons.vfs.tasks;version="5.0.2";uses:="org.a
+ p;version="5.0.3";uses:="org.apache.commons.vfs,org.apache.commons.vf
+ s.provider",org.apache.commons.vfs.tasks;version="5.0.3";uses:="org.a
  pache.commons.logging,org.apache.commons.vfs,org.apache.tools.ant",or
- g.apache.commons.vfs.util;version="5.0.2";uses:="javax.mail.internet,
+ g.apache.commons.vfs.util;version="5.0.3";uses:="javax.mail.internet,
  org.apache.commons.vfs,org.apache.commons.vfs.provider"
 Implementation-ProductID: pdi-ce
 Implementation-Title: Pentaho VFS
-Implementation-Version: 5.0.2
+Implementation-Version: 5.0.3
 Built-By: Mduduzi
 Compile-User: Developer
 Tool: Bundlor 1.0.0.RELEASE
@@ -72,7 +72,7 @@ Require-Bundle: com.springsource.org.apache.xmlcommons;bundle-version=
 Implementation-Vendor: Pentaho Corporation
 Compile-Timestamp: 2012-11-25 19.55.36
 Build-Jdk: 1.6.0_45
-Bundle-Version: 5.0.2
+Bundle-Version: 5.0.3
 Bundle-ManifestVersion: 2
 Import-Package: com.ccg.net.ethernet;version="0";resolution:="optional
  ",com.ctc.wstx.exc;version="[3.2.8,3.3.0)",com.enterprisedt.net.ftp;v

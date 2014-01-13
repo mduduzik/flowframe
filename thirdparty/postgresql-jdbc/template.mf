@@ -1,0 +1,4 @@
+Bundle-SymbolicName: org.flowframe.thirdparty.postgresql-jdbc
+Bundle-Name: postgresql-jdbc
+Bundle-ManifestVersion: 2
+Bundle-Version: 9.3

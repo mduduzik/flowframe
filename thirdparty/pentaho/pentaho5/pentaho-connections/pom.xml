@@ -13,7 +13,7 @@
     <artifactId>org.flowframe.thirdparty.pentaho5.pentaho-connections</artifactId>
     <version>${wrapped.version}</version>
     <properties>
-        <wrapped.version>5.0.2</wrapped.version>
+        <wrapped.version>5.0.3</wrapped.version>
     </properties>
 
     <dependencies>

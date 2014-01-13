@@ -1,8 +1,8 @@
 Bundle-SymbolicName: org.flowframe.thirdparty.kettle-all
 Bundle-ManifestVersion: 2
-Bundle-Version: 5.0.2
+Bundle-Version: 5.0.3
 Implementation-Title: Pentaho Data Integration Engine
-Implementation-Version: 5.0.2
+Implementation-Version: 5.0.3
 Specification-Version: 1
 Implementation-Vendor: Pentaho Corporation
 Implementation-ProductID: pdi-ce

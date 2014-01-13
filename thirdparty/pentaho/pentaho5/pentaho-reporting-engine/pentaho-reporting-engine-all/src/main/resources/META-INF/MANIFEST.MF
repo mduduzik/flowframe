@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
- .2";uses:="javax.swing.table,org.pentaho.reporting.engine.classic.cor
+ .3";uses:="javax.swing.table,org.pentaho.reporting.engine.classic.cor
  e.event,org.pentaho.reporting.engine.classic.core.filter,org.pentaho.
  reporting.engine.classic.core.function,org.pentaho.reporting.engine.c
  lassic.core.layout.style,org.pentaho.reporting.engine.classic.core.me
@@ -14,12 +14,12 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  rting.libraries.base.versioning,org.pentaho.reporting.libraries.docbu
  ndle,org.pentaho.reporting.libraries.repository,org.pentaho.reporting
  .libraries.resourceloader,org.pentaho.reporting.libraries.xmlns.commo
- n",org.pentaho.reporting.engine.classic.core.cache;version="5.0.2";us
+ n",org.pentaho.reporting.engine.classic.core.cache;version="5.0.3";us
  es:="javax.swing.event,javax.swing.table,net.sf.ehcache,org.pentaho.r
  eporting.engine.classic.core,org.pentaho.reporting.engine.classic.cor
  e.util,org.pentaho.reporting.engine.classic.core.wizard,org.pentaho.r
  eporting.libraries.base.util",org.pentaho.reporting.engine.classic.co
- re.designtime;version="5.0.2";uses:="javax.swing.event,javax.swing.ta
+ re.designtime;version="5.0.3";uses:="javax.swing.event,javax.swing.ta
  ble,org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.e
  ngine.classic.core.event,org.pentaho.reporting.engine.classic.core.fu
  nction,org.pentaho.reporting.engine.classic.core.metadata,org.pentaho
@@ -27,48 +27,48 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ssic.core.wizard,org.pentaho.reporting.libraries.base.util,org.pentah
  o.reporting.libraries.designtime.swing.settings,org.pentaho.reporting
  .libraries.resourceloader",org.pentaho.reporting.engine.classic.core.
- designtime.compat;version="5.0.2";uses:="org.pentaho.reporting.engine
+ designtime.compat;version="5.0.3";uses:="org.pentaho.reporting.engine
  .classic.core,org.pentaho.reporting.engine.classic.core.function,org.
  pentaho.reporting.engine.classic.core.metadata,org.pentaho.reporting.
  engine.classic.core.parameters,org.pentaho.reporting.engine.classic.c
  ore.style,org.pentaho.reporting.engine.classic.core.util",org.pentaho
- .reporting.engine.classic.core.designtime.datafactory;version="5.0.2"
+ .reporting.engine.classic.core.designtime.datafactory;version="5.0.3"
  ;uses:="javax.script,javax.swing,javax.swing.event,org.pentaho.report
  ing.engine.classic.core,org.pentaho.reporting.engine.classic.core.des
  igntime,org.pentaho.reporting.libraries.base.config,org.pentaho.repor
  ting.libraries.base.util,org.pentaho.reporting.libraries.designtime.s
  wing.event,org.pentaho.reporting.libraries.resourceloader",org.pentah
  o.reporting.engine.classic.core.designtime.datafactory.resources;vers
- ion="5.0.2",org.pentaho.reporting.engine.classic.core.designtime.data
- factory.scripts;version="5.0.2",org.pentaho.reporting.engine.classic.
- core.devtools;version="5.0.2";uses:="org.pentaho.reporting.engine.cla
+ ion="5.0.3",org.pentaho.reporting.engine.classic.core.designtime.data
+ factory.scripts;version="5.0.3",org.pentaho.reporting.engine.classic.
+ core.devtools;version="5.0.3";uses:="org.pentaho.reporting.engine.cla
  ssic.core.metadata,org.pentaho.reporting.libraries.base.util",org.pen
- taho.reporting.engine.classic.core.dom;version="5.0.2";uses:="org.pen
+ taho.reporting.engine.classic.core.dom;version="5.0.3";uses:="org.pen
  taho.reporting.engine.classic.core,org.pentaho.reporting.engine.class
  ic.core.metadata,org.pentaho.reporting.engine.classic.core.util",org.
- pentaho.reporting.engine.classic.core.elementfactory;version="5.0.2";
+ pentaho.reporting.engine.classic.core.elementfactory;version="5.0.3";
  uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.reportin
  g.engine.classic.core.designtime,org.pentaho.reporting.engine.classic
  .core.style",org.pentaho.reporting.engine.classic.core.event;version=
- "5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.
+ "5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.
  reporting.engine.classic.core.states",org.pentaho.reporting.engine.cl
- assic.core.filter;version="5.0.2";uses:="org.pentaho.reporting.engine
+ assic.core.filter;version="5.0.3";uses:="org.pentaho.reporting.engine
  .classic.core,org.pentaho.reporting.engine.classic.core.function,org.
  pentaho.reporting.engine.classic.core.util",org.pentaho.reporting.eng
- ine.classic.core.filter.templates;version="5.0.2";uses:="org.pentaho.
+ ine.classic.core.filter.templates;version="5.0.3";uses:="org.pentaho.
  reporting.engine.classic.core,org.pentaho.reporting.engine.classic.co
  re.filter,org.pentaho.reporting.engine.classic.core.function",org.pen
- taho.reporting.engine.classic.core.filter.types;version="5.0.2";uses:
+ taho.reporting.engine.classic.core.filter.types;version="5.0.3";uses:
  ="org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.eng
  ine.classic.core.filter,org.pentaho.reporting.engine.classic.core.fil
  ter.types.bands,org.pentaho.reporting.engine.classic.core.function,or
  g.pentaho.reporting.engine.classic.core.metadata,org.pentaho.reportin
  g.engine.classic.core.util",org.pentaho.reporting.engine.classic.core
- .filter.types.bands;version="5.0.2";uses:="org.pentaho.reporting.engi
+ .filter.types.bands;version="5.0.3";uses:="org.pentaho.reporting.engi
  ne.classic.core,org.pentaho.reporting.engine.classic.core.filter.type
  s,org.pentaho.reporting.engine.classic.core.function,org.pentaho.repo
  rting.engine.classic.core.metadata",org.pentaho.reporting.engine.clas
- sic.core.function;version="5.0.2";uses:="javax.swing.table,org.pentah
+ sic.core.function;version="5.0.3";uses:="javax.swing.table,org.pentah
  o.reporting.engine.classic.core,org.pentaho.reporting.engine.classic.
  core.designtime,org.pentaho.reporting.engine.classic.core.event,org.p
  entaho.reporting.engine.classic.core.layout,org.pentaho.reporting.eng
@@ -81,31 +81,31 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ntaho.reporting.libraries.formula.operators,org.pentaho.reporting.lib
  raries.formula.typing,org.pentaho.reporting.libraries.resourceloader"
  ,org.pentaho.reporting.engine.classic.core.function.bool;version="5.0
- .2";uses:="org.pentaho.reporting.engine.classic.core.function",org.pe
- ntaho.reporting.engine.classic.core.function.date;version="5.0.2";use
+ .3";uses:="org.pentaho.reporting.engine.classic.core.function",org.pe
+ ntaho.reporting.engine.classic.core.function.date;version="5.0.3";use
  s:="org.pentaho.reporting.engine.classic.core.function",org.pentaho.r
- eporting.engine.classic.core.function.formula;version="5.0.2";uses:="
+ eporting.engine.classic.core.function.formula;version="5.0.3";uses:="
  org.pentaho.reporting.engine.classic.core.function,org.pentaho.report
  ing.libraries.formula,org.pentaho.reporting.libraries.formula.functio
  n,org.pentaho.reporting.libraries.formula.lvalues,org.pentaho.reporti
  ng.libraries.formula.typing",org.pentaho.reporting.engine.classic.cor
- e.function.numeric;version="5.0.2";uses:="org.pentaho.reporting.engin
+ e.function.numeric;version="5.0.3";uses:="org.pentaho.reporting.engin
  e.classic.core.function",org.pentaho.reporting.engine.classic.core.fu
- nction.strings;version="5.0.2";uses:="org.apache.commons.logging,org.
+ nction.strings;version="5.0.3";uses:="org.apache.commons.logging,org.
  pentaho.reporting.engine.classic.core,org.pentaho.reporting.engine.cl
  assic.core.function",org.pentaho.reporting.engine.classic.core.functi
- on.sys;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.co
+ on.sys;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.co
  re,org.pentaho.reporting.engine.classic.core.event,org.pentaho.report
  ing.engine.classic.core.function,org.pentaho.reporting.engine.classic
  .core.layout.output,org.pentaho.reporting.engine.classic.core.style.r
  esolver,org.pentaho.reporting.engine.classic.core.wizard",org.pentaho
- .reporting.engine.classic.core.imagemap;version="5.0.2",org.pentaho.r
- eporting.engine.classic.core.imagemap.parser;version="5.0.2";uses:="o
+ .reporting.engine.classic.core.imagemap;version="5.0.3",org.pentaho.r
+ eporting.engine.classic.core.imagemap.parser;version="5.0.3";uses:="o
  rg.pentaho.reporting.engine.classic.core.imagemap,org.pentaho.reporti
  ng.libraries.base.config,org.pentaho.reporting.libraries.resourceload
  er,org.pentaho.reporting.libraries.xmlns.parser,org.pentaho.reporting
  .libraries.xmlns.writer,org.xml.sax",org.pentaho.reporting.engine.cla
- ssic.core.layout;version="5.0.2";uses:="org.pentaho.reporting.engine.
+ ssic.core.layout;version="5.0.3";uses:="org.pentaho.reporting.engine.
  classic.core,org.pentaho.reporting.engine.classic.core.function,org.p
  entaho.reporting.engine.classic.core.layout.build,org.pentaho.reporti
  ng.engine.classic.core.layout.model,org.pentaho.reporting.engine.clas
@@ -113,7 +113,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  es,org.pentaho.reporting.engine.classic.core.states.process,org.penta
  ho.reporting.engine.classic.core.style,org.pentaho.reporting.engine.c
  lassic.core.util",org.pentaho.reporting.engine.classic.core.layout.bu
- ild;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,
+ ild;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,
  org.pentaho.reporting.engine.classic.core.function,org.pentaho.report
  ing.engine.classic.core.layout,org.pentaho.reporting.engine.classic.c
  ore.layout.model,org.pentaho.reporting.engine.classic.core.layout.mod
@@ -121,7 +121,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  g.pentaho.reporting.engine.classic.core.states,org.pentaho.reporting.
  engine.classic.core.style,org.pentaho.reporting.engine.classic.core.u
  til",org.pentaho.reporting.engine.classic.core.layout.model;version="
- 5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.r
+ 5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.r
  eporting.engine.classic.core.layout.model.context,org.pentaho.reporti
  ng.engine.classic.core.layout.output,org.pentaho.reporting.engine.cla
  ssic.core.layout.text,org.pentaho.reporting.engine.classic.core.metad
@@ -129,13 +129,13 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  rting.engine.classic.core.style,org.pentaho.reporting.engine.classic.
  core.util,org.pentaho.reporting.engine.classic.core.util.geom,org.pen
  taho.reporting.libraries.resourceloader",org.pentaho.reporting.engine
- .classic.core.layout.model.context;version="5.0.2";uses:="org.pentaho
+ .classic.core.layout.model.context;version="5.0.3";uses:="org.pentaho
  .reporting.engine.classic.core,org.pentaho.reporting.engine.classic.c
  ore.layout.model,org.pentaho.reporting.engine.classic.core.layout.tex
  t,org.pentaho.reporting.engine.classic.core.metadata,org.pentaho.repo
  rting.engine.classic.core.style,org.pentaho.reporting.engine.classic.
  core.util",org.pentaho.reporting.engine.classic.core.layout.model.tab
- le;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,o
+ le;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,o
  rg.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.rep
  orting.engine.classic.core.layout.model.context,org.pentaho.reporting
  .engine.classic.core.layout.model.table.cells,org.pentaho.reporting.e
@@ -144,14 +144,14 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ne.classic.core.metadata,org.pentaho.reporting.engine.classic.core.st
  ates,org.pentaho.reporting.engine.classic.core.style,org.pentaho.repo
  rting.engine.classic.core.util",org.pentaho.reporting.engine.classic.
- core.layout.model.table.cells;version="5.0.2",org.pentaho.reporting.e
- ngine.classic.core.layout.model.table.columns;version="5.0.2";uses:="
+ core.layout.model.table.cells;version="5.0.3",org.pentaho.reporting.e
+ ngine.classic.core.layout.model.table.columns;version="5.0.3";uses:="
  org.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.re
  porting.engine.classic.core.layout.model.table",org.pentaho.reporting
- .engine.classic.core.layout.model.table.rows;version="5.0.2";uses:="o
+ .engine.classic.core.layout.model.table.rows;version="5.0.3";uses:="o
  rg.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.rep
  orting.engine.classic.core.layout.model.table",org.pentaho.reporting.
- engine.classic.core.layout.output;version="5.0.2";uses:="javax.swing.
+ engine.classic.core.layout.output;version="5.0.3";uses:="javax.swing.
  table,org.apache.commons.logging,org.pentaho.reporting.engine.classic
  .core,org.pentaho.reporting.engine.classic.core.event,org.pentaho.rep
  orting.engine.classic.core.function,org.pentaho.reporting.engine.clas
@@ -170,7 +170,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  gistry,org.pentaho.reporting.libraries.formula,org.pentaho.reporting.
  libraries.resourceloader,org.pentaho.reporting.libraries.resourceload
  er.factory.drawable",org.pentaho.reporting.engine.classic.core.layout
- .output.crosstab;version="5.0.2";uses:="org.pentaho.reporting.engine.
+ .output.crosstab;version="5.0.3";uses:="org.pentaho.reporting.engine.
  classic.core,org.pentaho.reporting.engine.classic.core.event,org.pent
  aho.reporting.engine.classic.core.layout.build,org.pentaho.reporting.
  engine.classic.core.layout.model,org.pentaho.reporting.engine.classic
@@ -178,7 +178,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  yout.output,org.pentaho.reporting.engine.classic.core.states.crosstab
  ,org.pentaho.reporting.engine.classic.core.style,org.pentaho.reportin
  g.engine.classic.core.util",org.pentaho.reporting.engine.classic.core
- .layout.process;version="5.0.2";uses:="org.pentaho.reporting.engine.c
+ .layout.process;version="5.0.3";uses:="org.pentaho.reporting.engine.c
  lassic.core,org.pentaho.reporting.engine.classic.core.function,org.pe
  ntaho.reporting.engine.classic.core.layout.model,org.pentaho.reportin
  g.engine.classic.core.layout.model.context,org.pentaho.reporting.engi
@@ -189,15 +189,15 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  rocess.alignment,org.pentaho.reporting.engine.classic.core.layout.pro
  cess.util,org.pentaho.reporting.engine.classic.core.states,org.pentah
  o.reporting.engine.classic.core.util",org.pentaho.reporting.engine.cl
- assic.core.layout.process.alignment;version="5.0.2";uses:="org.pentah
+ assic.core.layout.process.alignment;version="5.0.3";uses:="org.pentah
  o.reporting.engine.classic.core.layout.model,org.pentaho.reporting.en
  gine.classic.core.layout.output,org.pentaho.reporting.engine.classic.
  core.layout.process.layoutrules",org.pentaho.reporting.engine.classic
- .core.layout.process.layoutrules;version="5.0.2";uses:="org.pentaho.r
+ .core.layout.process.layoutrules;version="5.0.3";uses:="org.pentaho.r
  eporting.engine.classic.core.layout.model",org.pentaho.reporting.engi
- ne.classic.core.layout.process.linebreak;version="5.0.2";uses:="org.p
+ ne.classic.core.layout.process.linebreak;version="5.0.3";uses:="org.p
  entaho.reporting.engine.classic.core.layout.model",org.pentaho.report
- ing.engine.classic.core.layout.process.util;version="5.0.2";uses:="or
+ ing.engine.classic.core.layout.process.util;version="5.0.3";uses:="or
  g.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.repo
  rting.engine.classic.core.layout.model.table,org.pentaho.reporting.en
  gine.classic.core.layout.model.table.columns,org.pentaho.reporting.en
@@ -205,14 +205,14 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  gine.classic.core.layout.process.valign,org.pentaho.reporting.engine.
  classic.core.states,org.pentaho.reporting.engine.classic.core.style",
  org.pentaho.reporting.engine.classic.core.layout.process.valign;versi
- on="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.layout.mo
+ on="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.layout.mo
  del",org.pentaho.reporting.engine.classic.core.layout.richtext;versio
- n="5.0.2";uses:="javax.swing.text,javax.swing.text.html,org.pentaho.r
+ n="5.0.3";uses:="javax.swing.text,javax.swing.text.html,org.pentaho.r
  eporting.engine.classic.core,org.pentaho.reporting.engine.classic.cor
  e.style",org.pentaho.reporting.engine.classic.core.layout.style;versi
- on="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.style,org
+ on="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.style,org
  .pentaho.reporting.engine.classic.core.util",org.pentaho.reporting.en
- gine.classic.core.layout.text;version="5.0.2";uses:="org.pentaho.repo
+ gine.classic.core.layout.text;version="5.0.3";uses:="org.pentaho.repo
  rting.engine.classic.core,org.pentaho.reporting.engine.classic.core.l
  ayout.model,org.pentaho.reporting.engine.classic.core.layout.output,o
  rg.pentaho.reporting.engine.classic.core.metadata,org.pentaho.reporti
@@ -223,23 +223,23 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  eporting.libraries.fonts.text.classifier,org.pentaho.reporting.librar
  ies.fonts.text.font,org.pentaho.reporting.libraries.fonts.text.whites
  pace",org.pentaho.reporting.engine.classic.core.metadata;version="5.0
- .2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.repo
+ .3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.repo
  rting.engine.classic.core.designtime,org.pentaho.reporting.engine.cla
  ssic.core.filter,org.pentaho.reporting.engine.classic.core.function,o
  rg.pentaho.reporting.engine.classic.core.style,org.pentaho.reporting.
  libraries.base.boot,org.pentaho.reporting.libraries.base.util,org.pen
  taho.reporting.libraries.resourceloader,org.pentaho.reporting.librari
  es.xmlns.common",org.pentaho.reporting.engine.classic.core.metadata.i
- cons;version="5.0.2",org.pentaho.reporting.engine.classic.core.metada
- ta.parser;version="5.0.2";uses:="org.pentaho.reporting.engine.classic
+ cons;version="5.0.3",org.pentaho.reporting.engine.classic.core.metada
+ ta.parser;version="5.0.3";uses:="org.pentaho.reporting.engine.classic
  .core.metadata,org.pentaho.reporting.libraries.base.config,org.pentah
  o.reporting.libraries.resourceloader,org.pentaho.reporting.libraries.
  xmlns.common,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax
  ",org.pentaho.reporting.engine.classic.core.metadata.propertyeditors;
- version="5.0.2";uses:="javax.swing,javax.swing.event,org.pentaho.repo
+ version="5.0.3";uses:="javax.swing,javax.swing.event,org.pentaho.repo
  rting.engine.classic.core.style",org.pentaho.reporting.engine.classic
- .core.modules;version="5.0.2",org.pentaho.reporting.engine.classic.co
- re.modules.gui.base;version="5.0.2";uses:="javax.swing,javax.swing.ev
+ .core.modules;version="5.0.3",org.pentaho.reporting.engine.classic.co
+ re.modules.gui.base;version="5.0.3";uses:="javax.swing,javax.swing.ev
  ent,org.apache.commons.logging,org.pentaho.reporting.engine.classic.c
  ore,org.pentaho.reporting.engine.classic.core.event,org.pentaho.repor
  ting.engine.classic.core.modules.gui.base.event,org.pentaho.reporting
@@ -254,14 +254,14 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  entaho.reporting.libraries.designtime.swing,org.pentaho.reporting.lib
  raries.docbundle,org.pentaho.reporting.libraries.resourceloader",org.
  pentaho.reporting.engine.classic.core.modules.gui.base.about;version=
- "5.0.2";uses:="javax.swing,org.pentaho.reporting.libraries.base.versi
+ "5.0.3";uses:="javax.swing,org.pentaho.reporting.libraries.base.versi
  oning",org.pentaho.reporting.engine.classic.core.modules.gui.base.act
- ions;version="5.0.2";uses:="javax.swing,org.pentaho.reporting.engine.
+ ions;version="5.0.3";uses:="javax.swing,org.pentaho.reporting.engine.
  classic.core.modules.gui.base,org.pentaho.reporting.engine.classic.co
  re.modules.gui.commonswing",org.pentaho.reporting.engine.classic.core
- .modules.gui.base.event;version="5.0.2";uses:="org.pentaho.reporting.
+ .modules.gui.base.event;version="5.0.3";uses:="org.pentaho.reporting.
  engine.classic.core.layout.model",org.pentaho.reporting.engine.classi
- c.core.modules.gui.base.internal;version="5.0.2";uses:="javax.swing,j
+ c.core.modules.gui.base.internal;version="5.0.3";uses:="javax.swing,j
  avax.swing.event,org.pentaho.reporting.engine.classic.core.modules.gu
  i.base,org.pentaho.reporting.engine.classic.core.modules.gui.base.act
  ions,org.pentaho.reporting.engine.classic.core.modules.gui.base.event
@@ -269,53 +269,53 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  taho.reporting.engine.classic.core.modules.gui.commonswing,org.pentah
  o.reporting.engine.classic.core.modules.output.pageable.graphics,org.
  pentaho.reporting.libraries.base.config",org.pentaho.reporting.engine
- .classic.core.modules.gui.base.messages;version="5.0.2",org.pentaho.r
+ .classic.core.modules.gui.base.messages;version="5.0.3",org.pentaho.r
  eporting.engine.classic.core.modules.gui.base.parameters;version="5.0
- .2";uses:="javax.swing,javax.swing.event,javax.swing.text,org.pentaho
+ .3";uses:="javax.swing,javax.swing.event,javax.swing.text,org.pentaho
  .reporting.engine.classic.core,org.pentaho.reporting.engine.classic.c
  ore.modules.gui.base.internal,org.pentaho.reporting.engine.classic.co
  re.parameters,org.pentaho.reporting.engine.classic.core.util.beans,or
  g.pentaho.reporting.libraries.designtime.swing,org.pentaho.reporting.
  libraries.designtime.swing.date",org.pentaho.reporting.engine.classic
- .core.modules.gui.common;version="5.0.2";uses:="javax.swing,org.penta
+ .core.modules.gui.common;version="5.0.3";uses:="javax.swing,org.penta
  ho.reporting.libraries.base.boot,org.pentaho.reporting.libraries.base
  .config",org.pentaho.reporting.engine.classic.core.modules.gui.common
- .messages;version="5.0.2",org.pentaho.reporting.engine.classic.core.m
- odules.gui.commonswing;version="5.0.2";uses:="javax.swing,javax.swing
+ .messages;version="5.0.3",org.pentaho.reporting.engine.classic.core.m
+ odules.gui.commonswing;version="5.0.3";uses:="javax.swing,javax.swing
  .event,javax.swing.text,org.pentaho.reporting.engine.classic.core,org
  .pentaho.reporting.engine.classic.core.event,org.pentaho.reporting.en
  gine.classic.core.modules.gui.common,org.pentaho.reporting.libraries.
  base.boot,org.pentaho.reporting.libraries.base.config,org.pentaho.rep
  orting.libraries.base.util,org.pentaho.reporting.libraries.resourcelo
  ader.factory.drawable",org.pentaho.reporting.engine.classic.core.modu
- les.gui.commonswing.action;version="5.0.2";uses:="javax.swing",org.pe
+ les.gui.commonswing.action;version="5.0.3";uses:="javax.swing",org.pe
  ntaho.reporting.engine.classic.core.modules.gui.commonswing.localizat
- ion;version="5.0.2";uses:="javax.swing",org.pentaho.reporting.engine.
- classic.core.modules.gui.commonswing.messages;version="5.0.2",org.pen
- taho.reporting.engine.classic.core.modules.gui.csv;version="5.0.2";us
+ ion;version="5.0.3";uses:="javax.swing",org.pentaho.reporting.engine.
+ classic.core.modules.gui.commonswing.messages;version="5.0.3",org.pen
+ taho.reporting.engine.classic.core.modules.gui.csv;version="5.0.3";us
  es:="javax.swing,org.pentaho.reporting.engine.classic.core,org.pentah
  o.reporting.engine.classic.core.modules.gui.base,org.pentaho.reportin
  g.engine.classic.core.modules.gui.commonswing,org.pentaho.reporting.l
  ibraries.base.boot,org.pentaho.reporting.libraries.base.config,org.pe
  ntaho.reporting.libraries.base.util",org.pentaho.reporting.engine.cla
- ssic.core.modules.gui.csv.messages;version="5.0.2",org.pentaho.report
- ing.engine.classic.core.modules.gui.html;version="5.0.2";uses:="javax
+ ssic.core.modules.gui.csv.messages;version="5.0.3",org.pentaho.report
+ ing.engine.classic.core.modules.gui.html;version="5.0.3";uses:="javax
  .swing,org.pentaho.reporting.engine.classic.core,org.pentaho.reportin
  g.engine.classic.core.modules.gui.base,org.pentaho.reporting.engine.c
  lassic.core.modules.gui.commonswing,org.pentaho.reporting.engine.clas
  sic.core.modules.output.table.html,org.pentaho.reporting.libraries.ba
  se.boot,org.pentaho.reporting.libraries.base.config,org.pentaho.repor
  ting.libraries.base.util",org.pentaho.reporting.engine.classic.core.m
- odules.gui.html.messages;version="5.0.2",org.pentaho.reporting.engine
- .classic.core.modules.gui.pdf;version="5.0.2";uses:="javax.swing,org.
+ odules.gui.html.messages;version="5.0.3",org.pentaho.reporting.engine
+ .classic.core.modules.gui.pdf;version="5.0.3";uses:="javax.swing,org.
  pentaho.reporting.engine.classic.core,org.pentaho.reporting.engine.cl
  assic.core.modules.gui.base,org.pentaho.reporting.engine.classic.core
  .modules.gui.common,org.pentaho.reporting.engine.classic.core.modules
  .gui.commonswing,org.pentaho.reporting.libraries.base.boot,org.pentah
  o.reporting.libraries.base.config,org.pentaho.reporting.libraries.bas
  e.util",org.pentaho.reporting.engine.classic.core.modules.gui.pdf.mes
- sages;version="5.0.2",org.pentaho.reporting.engine.classic.core.modul
- es.gui.plaintext;version="5.0.2";uses:="javax.swing,org.pentaho.repor
+ sages;version="5.0.3",org.pentaho.reporting.engine.classic.core.modul
+ es.gui.plaintext;version="5.0.3";uses:="javax.swing,org.pentaho.repor
  ting.engine.classic.core,org.pentaho.reporting.engine.classic.core.mo
  dules.gui.base,org.pentaho.reporting.engine.classic.core.modules.gui.
  commonswing,org.pentaho.reporting.engine.classic.core.modules.gui.com
@@ -324,8 +324,8 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  re.modules.output.pageable.plaintext.helper,org.pentaho.reporting.lib
  raries.base.boot,org.pentaho.reporting.libraries.base.config,org.pent
  aho.reporting.libraries.base.util",org.pentaho.reporting.engine.class
- ic.core.modules.gui.plaintext.messages;version="5.0.2",org.pentaho.re
- porting.engine.classic.core.modules.gui.print;version="5.0.2";uses:="
+ ic.core.modules.gui.plaintext.messages;version="5.0.3",org.pentaho.re
+ porting.engine.classic.core.modules.gui.print;version="5.0.3";uses:="
  javax.swing,javax.swing.event,org.pentaho.reporting.engine.classic.co
  re,org.pentaho.reporting.engine.classic.core.event,org.pentaho.report
  ing.engine.classic.core.layout.model,org.pentaho.reporting.engine.cla
@@ -338,55 +338,55 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  aho.reporting.libraries.base.config,org.pentaho.reporting.libraries.b
  ase.util,org.pentaho.reporting.libraries.designtime.swing",org.pentah
  o.reporting.engine.classic.core.modules.gui.print.messages;version="5
- .0.2",org.pentaho.reporting.engine.classic.core.modules.gui.rtf;versi
- on="5.0.2";uses:="javax.swing,org.pentaho.reporting.engine.classic.co
+ .0.3",org.pentaho.reporting.engine.classic.core.modules.gui.rtf;versi
+ on="5.0.3";uses:="javax.swing,org.pentaho.reporting.engine.classic.co
  re,org.pentaho.reporting.engine.classic.core.modules.gui.base,org.pen
  taho.reporting.engine.classic.core.modules.gui.commonswing,org.pentah
  o.reporting.libraries.base.boot,org.pentaho.reporting.libraries.base.
  config,org.pentaho.reporting.libraries.base.util",org.pentaho.reporti
- ng.engine.classic.core.modules.gui.rtf.messages;version="5.0.2",org.p
+ ng.engine.classic.core.modules.gui.rtf.messages;version="5.0.3",org.p
  entaho.reporting.engine.classic.core.modules.gui.themes.default;versi
- on="5.0.2",org.pentaho.reporting.engine.classic.core.modules.gui.xls;
- version="5.0.2";uses:="javax.swing,org.pentaho.reporting.engine.class
+ on="5.0.3",org.pentaho.reporting.engine.classic.core.modules.gui.xls;
+ version="5.0.3";uses:="javax.swing,org.pentaho.reporting.engine.class
  ic.core,org.pentaho.reporting.engine.classic.core.modules.gui.base,or
  g.pentaho.reporting.engine.classic.core.modules.gui.commonswing,org.p
  entaho.reporting.libraries.base.boot,org.pentaho.reporting.libraries.
  base.config,org.pentaho.reporting.libraries.base.util",org.pentaho.re
- porting.engine.classic.core.modules.gui.xls.messages;version="5.0.2",
+ porting.engine.classic.core.modules.gui.xls.messages;version="5.0.3",
  org.pentaho.reporting.engine.classic.core.modules.misc.beanshell;vers
- ion="5.0.2";uses:="bsh,org.pentaho.reporting.engine.classic.core.func
+ ion="5.0.3";uses:="bsh,org.pentaho.reporting.engine.classic.core.func
  tion,org.pentaho.reporting.libraries.base.boot",org.pentaho.reporting
- .engine.classic.core.modules.misc.bsf;version="5.0.2";uses:="org.apac
+ .engine.classic.core.modules.misc.bsf;version="5.0.3";uses:="org.apac
  he.bsf,org.pentaho.reporting.engine.classic.core,org.pentaho.reportin
  g.engine.classic.core.function,org.pentaho.reporting.engine.classic.c
  ore.states.datarow,org.pentaho.reporting.libraries.base.boot",org.pen
  taho.reporting.engine.classic.core.modules.misc.configstore.base;vers
- ion="5.0.2";uses:="org.pentaho.reporting.libraries.base.boot,org.pent
+ ion="5.0.3";uses:="org.pentaho.reporting.libraries.base.boot,org.pent
  aho.reporting.libraries.base.config",org.pentaho.reporting.engine.cla
- ssic.core.modules.misc.configstore.filesystem;version="5.0.2";uses:="
+ ssic.core.modules.misc.configstore.filesystem;version="5.0.3";uses:="
  org.pentaho.reporting.engine.classic.core.modules.misc.configstore.ba
  se,org.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.li
  braries.base.config",org.pentaho.reporting.engine.classic.core.module
- s.misc.datafactory;version="5.0.2";uses:="javax.script,javax.swing.ta
+ s.misc.datafactory;version="5.0.3";uses:="javax.script,javax.swing.ta
  ble,org.apache.commons.logging,org.pentaho.reporting.engine.classic.c
  ore,org.pentaho.reporting.engine.classic.core.metadata,org.pentaho.re
  porting.libraries.base.boot,org.pentaho.reporting.libraries.base.conf
  ig,org.pentaho.reporting.libraries.resourceloader",org.pentaho.report
  ing.engine.classic.core.modules.misc.datafactory.sequence;version="5.
- 0.2";uses:="javax.swing.table,org.pentaho.reporting.engine.classic.co
+ 0.3";uses:="javax.swing.table,org.pentaho.reporting.engine.classic.co
  re",org.pentaho.reporting.engine.classic.core.modules.misc.datafactor
- y.sql;version="5.0.2";uses:="javax.naming,javax.swing.table,org.penta
+ y.sql;version="5.0.3";uses:="javax.naming,javax.swing.table,org.penta
  ho.reporting.engine.classic.core,org.pentaho.reporting.engine.classic
  .core.metadata,org.pentaho.reporting.engine.classic.core.modules.misc
  .tablemodel,org.pentaho.reporting.engine.classic.core.util,org.pentah
  o.reporting.engine.classic.core.wizard",org.pentaho.reporting.engine.
- classic.core.modules.misc.referencedoc;version="5.0.2";uses:="javax.s
+ classic.core.modules.misc.referencedoc;version="5.0.3";uses:="javax.s
  wing.table,org.pentaho.reporting.engine.classic.core.modules.parser.e
  xt.factory.base,org.pentaho.reporting.engine.classic.core.modules.par
  ser.ext.factory.datasource,org.pentaho.reporting.engine.classic.core.
  modules.parser.ext.factory.stylekey,org.pentaho.reporting.engine.clas
  sic.core.style,org.pentaho.reporting.libraries.base.boot",org.pentaho
- .reporting.engine.classic.core.modules.misc.survey;version="5.0.2";us
+ .reporting.engine.classic.core.modules.misc.survey;version="5.0.3";us
  es:="org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.
  engine.classic.core.filter.types,org.pentaho.reporting.engine.classic
  .core.function,org.pentaho.reporting.engine.classic.core.imagemap,org
@@ -394,19 +394,19 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  entaho.reporting.engine.classic.core.style,org.pentaho.reporting.engi
  ne.classic.core.util,org.pentaho.reporting.libraries.base.boot,org.pe
  ntaho.reporting.libraries.base.config",org.pentaho.reporting.engine.c
- lassic.core.modules.misc.survey.parser;version="5.0.2";uses:="org.pen
+ lassic.core.modules.misc.survey.parser;version="5.0.3";uses:="org.pen
  taho.reporting.engine.classic.core.modules.parser.bundle.layout.eleme
  nts,org.pentaho.reporting.libraries.xmlns.parser",org.pentaho.reporti
- ng.engine.classic.core.modules.misc.survey.writer;version="5.0.2";use
+ ng.engine.classic.core.modules.misc.survey.writer;version="5.0.3";use
  s:="org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.e
  ngine.classic.core.modules.parser.bundle.writer,org.pentaho.reporting
  .engine.classic.core.modules.parser.bundle.writer.elements,org.pentah
  o.reporting.libraries.docbundle,org.pentaho.reporting.libraries.xmlns
  .writer",org.pentaho.reporting.engine.classic.core.modules.misc.table
- model;version="5.0.2";uses:="javax.swing.event,javax.swing.table,org.
+ model;version="5.0.3";uses:="javax.swing.event,javax.swing.table,org.
  pentaho.reporting.engine.classic.core.wizard,org.pentaho.reporting.li
  braries.base.boot",org.pentaho.reporting.engine.classic.core.modules.
- output.csv;version="5.0.2";uses:="org.pentaho.reporting.engine.classi
+ output.csv;version="5.0.3";uses:="org.pentaho.reporting.engine.classi
  c.core,org.pentaho.reporting.engine.classic.core.event,org.pentaho.re
  porting.engine.classic.core.function,org.pentaho.reporting.engine.cla
  ssic.core.layout,org.pentaho.reporting.engine.classic.core.layout.mod
@@ -414,13 +414,13 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  o.reporting.engine.classic.core.states,org.pentaho.reporting.engine.c
  lassic.core.states.process,org.pentaho.reporting.libraries.base.boot,
  org.pentaho.reporting.libraries.base.config",org.pentaho.reporting.en
- gine.classic.core.modules.output.pageable.base;version="5.0.2";uses:=
+ gine.classic.core.modules.output.pageable.base;version="5.0.3";uses:=
  "org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engi
  ne.classic.core.function,org.pentaho.reporting.engine.classic.core.la
  yout,org.pentaho.reporting.engine.classic.core.layout.model,org.penta
  ho.reporting.engine.classic.core.layout.output,org.pentaho.reporting.
  libraries.base.boot",org.pentaho.reporting.engine.classic.core.module
- s.output.pageable.graphics;version="5.0.2";uses:="org.pentaho.reporti
+ s.output.pageable.graphics;version="5.0.3";uses:="org.pentaho.reporti
  ng.engine.classic.core,org.pentaho.reporting.engine.classic.core.even
  t,org.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.
  reporting.engine.classic.core.layout.output,org.pentaho.reporting.eng
@@ -428,7 +428,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ngine.classic.core.modules.output.pageable.graphics.internal,org.pent
  aho.reporting.libraries.base.boot,org.pentaho.reporting.libraries.bas
  e.config",org.pentaho.reporting.engine.classic.core.modules.output.pa
- geable.graphics.internal;version="5.0.2";uses:="org.pentaho.reporting
+ geable.graphics.internal;version="5.0.3";uses:="org.pentaho.reporting
  .engine.classic.core.layout.model,org.pentaho.reporting.engine.classi
  c.core.layout.model.context,org.pentaho.reporting.engine.classic.core
  .layout.model.table,org.pentaho.reporting.engine.classic.core.layout.
@@ -441,7 +441,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  eporting.libraries.fonts.registry,org.pentaho.reporting.libraries.res
  ourceloader,org.pentaho.reporting.libraries.resourceloader.factory.dr
  awable",org.pentaho.reporting.engine.classic.core.modules.output.page
- able.pdf;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.
+ able.pdf;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.
  core,org.pentaho.reporting.engine.classic.core.layout.model,org.penta
  ho.reporting.engine.classic.core.layout.output,org.pentaho.reporting.
  engine.classic.core.modules.output.pageable.base,org.pentaho.reportin
@@ -449,7 +449,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  o.reporting.libraries.base.boot,org.pentaho.reporting.libraries.base.
  config,org.pentaho.reporting.libraries.resourceloader",org.pentaho.re
  porting.engine.classic.core.modules.output.pageable.pdf.internal;vers
- ion="5.0.2";uses:="com.lowagie.text,com.lowagie.text.pdf,org.pentaho.
+ ion="5.0.3";uses:="com.lowagie.text,com.lowagie.text.pdf,org.pentaho.
  reporting.engine.classic.core,org.pentaho.reporting.engine.classic.co
  re.layout.model,org.pentaho.reporting.engine.classic.core.layout.outp
  ut,org.pentaho.reporting.engine.classic.core.modules.output.pageable.
@@ -457,7 +457,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  .pentaho.reporting.libraries.base.config,org.pentaho.reporting.librar
  ies.base.util,org.pentaho.reporting.libraries.fonts.itext,org.pentaho
  .reporting.libraries.resourceloader",org.pentaho.reporting.engine.cla
- ssic.core.modules.output.pageable.plaintext;version="5.0.2";uses:="or
+ ssic.core.modules.output.pageable.plaintext;version="5.0.3";uses:="or
  g.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engine.
  classic.core.layout.model,org.pentaho.reporting.engine.classic.core.l
  ayout.model.table,org.pentaho.reporting.engine.classic.core.layout.ou
@@ -466,28 +466,28 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  entaho.reporting.engine.classic.core.modules.output.pageable.plaintex
  t.driver,org.pentaho.reporting.libraries.base.boot,org.pentaho.report
  ing.libraries.base.config",org.pentaho.reporting.engine.classic.core.
- modules.output.pageable.plaintext.driver;version="5.0.2";uses:="org.p
+ modules.output.pageable.plaintext.driver;version="5.0.3";uses:="org.p
  entaho.reporting.engine.classic.core.modules.output.pageable.plaintex
  t.helper,org.pentaho.reporting.engine.classic.core.style",org.pentaho
  .reporting.engine.classic.core.modules.output.pageable.plaintext.help
- er;version="5.0.2";uses:="org.pentaho.reporting.libraries.base.config
+ er;version="5.0.3";uses:="org.pentaho.reporting.libraries.base.config
  ",org.pentaho.reporting.engine.classic.core.modules.output.pageable.x
- ml;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,o
+ ml;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,o
  rg.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.rep
  orting.engine.classic.core.layout.output,org.pentaho.reporting.engine
  .classic.core.modules.output.pageable.base,org.pentaho.reporting.libr
  aries.base.boot,org.pentaho.reporting.libraries.base.config",org.pent
  aho.reporting.engine.classic.core.modules.output.pageable.xml.interna
- l;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.la
+ l;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.la
  yout.model,org.pentaho.reporting.engine.classic.core.layout.model.tab
  le,org.pentaho.reporting.engine.classic.core.layout.output,org.pentah
  o.reporting.engine.classic.core.layout.process,org.pentaho.reporting.
  libraries.base.config,org.pentaho.reporting.libraries.fonts.registry"
  ,org.pentaho.reporting.engine.classic.core.modules.output.support.ite
- xt;version="5.0.2";uses:="org.pentaho.reporting.libraries.base.boot,o
+ xt;version="5.0.3";uses:="org.pentaho.reporting.libraries.base.boot,o
  rg.pentaho.reporting.libraries.fonts.itext,org.pentaho.reporting.libr
  aries.resourceloader",org.pentaho.reporting.engine.classic.core.modul
- es.output.table.base;version="5.0.2";uses:="org.pentaho.reporting.eng
+ es.output.table.base;version="5.0.3";uses:="org.pentaho.reporting.eng
  ine.classic.core,org.pentaho.reporting.engine.classic.core.function,o
  rg.pentaho.reporting.engine.classic.core.layout.model,org.pentaho.rep
  orting.engine.classic.core.layout.model.table,org.pentaho.reporting.e
@@ -496,7 +496,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ta,org.pentaho.reporting.engine.classic.core.util.geom,org.pentaho.re
  porting.libraries.base.boot,org.pentaho.reporting.libraries.fonts.enc
  oding",org.pentaho.reporting.engine.classic.core.modules.output.table
- .csv;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core
+ .csv;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core
  ,org.pentaho.reporting.engine.classic.core.function,org.pentaho.repor
  ting.engine.classic.core.layout.model,org.pentaho.reporting.engine.cl
  assic.core.layout.output,org.pentaho.reporting.engine.classic.core.mo
@@ -504,10 +504,10 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  modules.output.table.base,org.pentaho.reporting.libraries.base.boot,o
  rg.pentaho.reporting.libraries.base.config,org.pentaho.reporting.libr
  aries.repository",org.pentaho.reporting.engine.classic.core.modules.o
- utput.table.csv.helper;version="5.0.2";uses:="org.pentaho.reporting.e
+ utput.table.csv.helper;version="5.0.3";uses:="org.pentaho.reporting.e
  ngine.classic.core.layout.output,org.pentaho.reporting.libraries.base
  .config",org.pentaho.reporting.engine.classic.core.modules.output.tab
- le.html;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.c
+ le.html;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.c
  ore,org.pentaho.reporting.engine.classic.core.layout.model,org.pentah
  o.reporting.engine.classic.core.layout.output,org.pentaho.reporting.e
  ngine.classic.core.modules.output.pageable.base,org.pentaho.reporting
@@ -517,22 +517,22 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ,org.pentaho.reporting.libraries.repository,org.pentaho.reporting.lib
  raries.resourceloader,org.pentaho.reporting.libraries.xmlns.common,or
  g.pentaho.reporting.libraries.xmlns.writer",org.pentaho.reporting.eng
- ine.classic.core.modules.output.table.html.helper;version="5.0.2";use
+ ine.classic.core.modules.output.table.html.helper;version="5.0.3";use
  s:="org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.e
  ngine.classic.core.layout.model,org.pentaho.reporting.engine.classic.
  core.layout.output,org.pentaho.reporting.engine.classic.core.style,or
  g.pentaho.reporting.libraries.base.config,org.pentaho.reporting.libra
  ries.fonts.registry,org.pentaho.reporting.libraries.xmlns.common",org
  .pentaho.reporting.engine.classic.core.modules.output.table.html.util
- ;version="5.0.2";uses:="org.pentaho.reporting.libraries.xmlns.writer"
+ ;version="5.0.3";uses:="org.pentaho.reporting.libraries.xmlns.writer"
  ,org.pentaho.reporting.engine.classic.core.modules.output.table.rtf;v
- ersion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.p
+ ersion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.p
  entaho.reporting.engine.classic.core.layout.model,org.pentaho.reporti
  ng.engine.classic.core.layout.output,org.pentaho.reporting.engine.cla
  ssic.core.modules.output.table.base,org.pentaho.reporting.libraries.b
  ase.boot,org.pentaho.reporting.libraries.base.config,org.pentaho.repo
  rting.libraries.resourceloader",org.pentaho.reporting.engine.classic.
- core.modules.output.table.rtf.helper;version="5.0.2";uses:="com.lowag
+ core.modules.output.table.rtf.helper;version="5.0.3";uses:="com.lowag
  ie.text,org.pentaho.reporting.engine.classic.core,org.pentaho.reporti
  ng.engine.classic.core.layout.model,org.pentaho.reporting.engine.clas
  sic.core.layout.output,org.pentaho.reporting.engine.classic.core.modu
@@ -540,10 +540,10 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ,org.pentaho.reporting.libraries.base.config,org.pentaho.reporting.li
  braries.fonts.itext,org.pentaho.reporting.libraries.resourceloader",o
  rg.pentaho.reporting.engine.classic.core.modules.output.table.rtf.ite
- xt;version="5.0.2";uses:="com.lowagie.text,com.lowagie.text.pdf,com.l
+ xt;version="5.0.3";uses:="com.lowagie.text,com.lowagie.text.pdf,com.l
  owagie.text.rtf,com.lowagie.text.rtf.document,com.lowagie.text.rtf.pa
  rser,com.lowagie.text.rtf.style",org.pentaho.reporting.engine.classic
- .core.modules.output.table.xls;version="5.0.2";uses:="org.pentaho.rep
+ .core.modules.output.table.xls;version="5.0.3";uses:="org.pentaho.rep
  orting.engine.classic.core,org.pentaho.reporting.engine.classic.core.
  layout.model,org.pentaho.reporting.engine.classic.core.layout.output,
  org.pentaho.reporting.engine.classic.core.modules.output.pageable.bas
@@ -551,7 +551,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ,org.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.libr
  aries.base.config,org.pentaho.reporting.libraries.resourceloader",org
  .pentaho.reporting.engine.classic.core.modules.output.table.xls.helpe
- r;version="5.0.2";uses:="org.apache.poi.hssf.usermodel,org.apache.poi
+ r;version="5.0.3";uses:="org.apache.poi.hssf.usermodel,org.apache.poi
  .hssf.util,org.apache.poi.ss.usermodel,org.apache.poi.xssf.usermodel,
  org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engin
  e.classic.core.layout.model,org.pentaho.reporting.engine.classic.core
@@ -560,20 +560,20 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  taho.reporting.engine.classic.core.util,org.pentaho.reporting.librari
  es.base.config,org.pentaho.reporting.libraries.resourceloader",org.pe
  ntaho.reporting.engine.classic.core.modules.output.table.xml;version=
- "5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.
+ "5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.
  reporting.engine.classic.core.layout.model,org.pentaho.reporting.engi
  ne.classic.core.layout.output,org.pentaho.reporting.engine.classic.co
  re.modules.output.pageable.base,org.pentaho.reporting.engine.classic.
  core.modules.output.table.base,org.pentaho.reporting.libraries.base.b
  oot",org.pentaho.reporting.engine.classic.core.modules.output.table.x
- ml.internal;version="5.0.2";uses:="org.pentaho.reporting.engine.class
+ ml.internal;version="5.0.3";uses:="org.pentaho.reporting.engine.class
  ic.core.layout.model,org.pentaho.reporting.engine.classic.core.layout
  .model.table,org.pentaho.reporting.engine.classic.core.layout.output,
  org.pentaho.reporting.engine.classic.core.layout.process,org.pentaho.
  reporting.engine.classic.core.modules.output.table.base,org.pentaho.r
  eporting.libraries.base.config,org.pentaho.reporting.libraries.fonts.
  registry",org.pentaho.reporting.engine.classic.core.modules.output.xm
- l;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,or
+ l;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,or
  g.pentaho.reporting.engine.classic.core.event,org.pentaho.reporting.e
  ngine.classic.core.function,org.pentaho.reporting.engine.classic.core
  .layout,org.pentaho.reporting.engine.classic.core.layout.model,org.pe
@@ -581,35 +581,35 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ng.engine.classic.core.states,org.pentaho.reporting.engine.classic.co
  re.states.process,org.pentaho.reporting.libraries.base.boot,org.penta
  ho.reporting.libraries.base.config",org.pentaho.reporting.engine.clas
- sic.core.modules.parser.base;version="5.0.2";uses:="org.pentaho.repor
+ sic.core.modules.parser.base;version="5.0.3";uses:="org.pentaho.repor
  ting.engine.classic.core,org.pentaho.reporting.engine.classic.core.st
  yle,org.pentaho.reporting.engine.classic.core.util.beans,org.pentaho.
  reporting.libraries.base.boot,org.pentaho.reporting.libraries.base.co
  nfig,org.pentaho.reporting.libraries.resourceloader,org.pentaho.repor
  ting.libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine
- .classic.core.modules.parser.base.common;version="5.0.2";uses:="org.p
+ .classic.core.modules.parser.base.common;version="5.0.3";uses:="org.p
  entaho.reporting.engine.classic.core,org.pentaho.reporting.engine.cla
  ssic.core.function,org.pentaho.reporting.engine.classic.core.modules.
  parser.base,org.pentaho.reporting.engine.classic.core.style,org.penta
  ho.reporting.engine.classic.core.util.beans,org.pentaho.reporting.lib
  raries.base.config,org.pentaho.reporting.libraries.xmlns.parser,org.x
  ml.sax",org.pentaho.reporting.engine.classic.core.modules.parser.base
- .compat;version="5.0.2",org.pentaho.reporting.engine.classic.core.mod
- ules.parser.bundle;version="5.0.2";uses:="org.pentaho.reporting.engin
+ .compat;version="5.0.3",org.pentaho.reporting.engine.classic.core.mod
+ ules.parser.bundle;version="5.0.3";uses:="org.pentaho.reporting.engin
  e.classic.core,org.pentaho.reporting.engine.classic.core.modules.pars
  er.bundle.layout,org.pentaho.reporting.engine.classic.core.modules.pa
  rser.bundle.writer,org.pentaho.reporting.engine.classic.core.modules.
  parser.bundle.writer.styles,org.pentaho.reporting.libraries.base.boot
  ,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.pentah
  o.reporting.engine.classic.core.modules.parser.bundle.content;version
- ="5.0.2";uses:="org.pentaho.reporting.libraries.xmlns.parser,org.xml.
+ ="5.0.3";uses:="org.pentaho.reporting.libraries.xmlns.parser,org.xml.
  sax",org.pentaho.reporting.engine.classic.core.modules.parser.bundle.
- data;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core
+ data;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core
  ,org.pentaho.reporting.engine.classic.core.function,org.pentaho.repor
  ting.engine.classic.core.parameters,org.pentaho.reporting.libraries.b
  ase.config,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",
  org.pentaho.reporting.engine.classic.core.modules.parser.bundle.layou
- t;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,or
+ t;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,or
  g.pentaho.reporting.engine.classic.core.function,org.pentaho.reportin
  g.engine.classic.core.metadata,org.pentaho.reporting.engine.classic.c
  ore.modules.parser.base,org.pentaho.reporting.engine.classic.core.mod
@@ -618,7 +618,7 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  .pentaho.reporting.libraries.base.config,org.pentaho.reporting.librar
  ies.resourceloader,org.pentaho.reporting.libraries.xmlns.parser,org.x
  ml.sax",org.pentaho.reporting.engine.classic.core.modules.parser.bund
- le.layout.elements;version="5.0.2";uses:="org.pentaho.reporting.engin
+ le.layout.elements;version="5.0.3";uses:="org.pentaho.reporting.engin
  e.classic.core,org.pentaho.reporting.engine.classic.core.function,org
  .pentaho.reporting.engine.classic.core.metadata,org.pentaho.reporting
  .engine.classic.core.modules.parser.base,org.pentaho.reporting.engine
@@ -626,10 +626,10 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  .classic.core.modules.parser.bundle.layout,org.pentaho.reporting.engi
  ne.classic.core.modules.parser.ext.readhandlers,org.pentaho.reporting
  .libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine.cla
- ssic.core.modules.parser.bundle.settings;version="5.0.2";uses:="org.p
+ ssic.core.modules.parser.bundle.settings;version="5.0.3";uses:="org.p
  entaho.reporting.libraries.base.config,org.pentaho.reporting.librarie
  s.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine.classic.core
- .modules.parser.bundle.writer;version="5.0.2";uses:="org.pentaho.repo
+ .modules.parser.bundle.writer;version="5.0.3";uses:="org.pentaho.repo
  rting.engine.classic.core,org.pentaho.reporting.engine.classic.core.f
  unction,org.pentaho.reporting.engine.classic.core.metadata,org.pentah
  o.reporting.engine.classic.core.parameters,org.pentaho.reporting.engi
@@ -640,96 +640,96 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  .libraries.resourceloader,org.pentaho.reporting.libraries.xmlns.commo
  n,org.pentaho.reporting.libraries.xmlns.writer",org.pentaho.reporting
  .engine.classic.core.modules.parser.bundle.writer.elements;version="5
- .0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.re
+ .0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.re
  porting.engine.classic.core.metadata,org.pentaho.reporting.engine.cla
  ssic.core.modules.parser.bundle.writer,org.pentaho.reporting.librarie
  s.docbundle,org.pentaho.reporting.libraries.xmlns.common,org.pentaho.
  reporting.libraries.xmlns.parser,org.pentaho.reporting.libraries.xmln
  s.writer",org.pentaho.reporting.engine.classic.core.modules.parser.bu
- ndle.writer.styles;version="5.0.2";uses:="org.pentaho.reporting.engin
+ ndle.writer.styles;version="5.0.3";uses:="org.pentaho.reporting.engin
  e.classic.core.style,org.pentaho.reporting.libraries.xmlns.writer",or
  g.pentaho.reporting.engine.classic.core.modules.parser.data.compoundd
- ata;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,
+ ata;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,
  org.pentaho.reporting.engine.classic.core.modules.parser.base,org.pen
  taho.reporting.libraries.base.boot,org.pentaho.reporting.libraries.xm
  lns.parser,org.xml.sax",org.pentaho.reporting.engine.classic.core.mod
- ules.parser.data.compounddata.writer;version="5.0.2";uses:="org.penta
+ ules.parser.data.compounddata.writer;version="5.0.3";uses:="org.penta
  ho.reporting.engine.classic.core,org.pentaho.reporting.engine.classic
  .core.modules.parser.bundle.writer,org.pentaho.reporting.libraries.do
  cbundle",org.pentaho.reporting.engine.classic.core.modules.parser.dat
- a.external;version="5.0.2";uses:="org.pentaho.reporting.engine.classi
+ a.external;version="5.0.3";uses:="org.pentaho.reporting.engine.classi
  c.core,org.pentaho.reporting.engine.classic.core.modules.parser.base,
  org.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.libra
  ries.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine.classic.c
- ore.modules.parser.data.external.writer;version="5.0.2";uses:="org.pe
+ ore.modules.parser.data.external.writer;version="5.0.3";uses:="org.pe
  ntaho.reporting.engine.classic.core,org.pentaho.reporting.engine.clas
  sic.core.modules.parser.bundle.writer,org.pentaho.reporting.libraries
  .docbundle",org.pentaho.reporting.engine.classic.core.modules.parser.
- data.inlinedata;version="5.0.2";uses:="javax.swing.table,org.pentaho.
+ data.inlinedata;version="5.0.3";uses:="javax.swing.table,org.pentaho.
  reporting.engine.classic.core,org.pentaho.reporting.engine.classic.co
  re.modules.parser.base,org.pentaho.reporting.libraries.base.boot,org.
  pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.pentaho.rep
  orting.engine.classic.core.modules.parser.data.inlinedata.writer;vers
- ion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pent
+ ion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pent
  aho.reporting.engine.classic.core.modules.parser.bundle.writer,org.pe
  ntaho.reporting.libraries.docbundle",org.pentaho.reporting.engine.cla
- ssic.core.modules.parser.data.sequence;version="5.0.2";uses:="org.pen
+ ssic.core.modules.parser.data.sequence;version="5.0.3";uses:="org.pen
  taho.reporting.engine.classic.core,org.pentaho.reporting.engine.class
  ic.core.modules.misc.datafactory.sequence,org.pentaho.reporting.engin
  e.classic.core.modules.parser.base,org.pentaho.reporting.libraries.ba
  se.boot,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org
  .pentaho.reporting.engine.classic.core.modules.parser.data.sequence.w
- riter;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.cor
+ riter;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.cor
  e,org.pentaho.reporting.engine.classic.core.modules.parser.bundle.wri
  ter,org.pentaho.reporting.libraries.docbundle",org.pentaho.reporting.
- engine.classic.core.modules.parser.data.sql;version="5.0.2";uses:="or
+ engine.classic.core.modules.parser.data.sql;version="5.0.3";uses:="or
  g.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engine.
  classic.core.modules.misc.datafactory.sql,org.pentaho.reporting.engin
  e.classic.core.modules.parser.base,org.pentaho.reporting.libraries.ba
  se.boot,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org
  .pentaho.reporting.engine.classic.core.modules.parser.data.sql.writer
- ;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org
+ ;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org
  .pentaho.reporting.engine.classic.core.modules.misc.datafactory.sql,o
  rg.pentaho.reporting.engine.classic.core.modules.parser.bundle.writer
  ,org.pentaho.reporting.libraries.docbundle,org.pentaho.reporting.libr
  aries.xmlns.writer",org.pentaho.reporting.engine.classic.core.modules
- .parser.data.staticdata;version="5.0.2";uses:="org.pentaho.reporting.
+ .parser.data.staticdata;version="5.0.3";uses:="org.pentaho.reporting.
  engine.classic.core,org.pentaho.reporting.engine.classic.core.modules
  .parser.base,org.pentaho.reporting.libraries.base.boot,org.pentaho.re
  porting.libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.eng
- ine.classic.core.modules.parser.data.staticdata.writer;version="5.0.2
+ ine.classic.core.modules.parser.data.staticdata.writer;version="5.0.3
  ";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.report
  ing.engine.classic.core.modules.parser.bundle.writer,org.pentaho.repo
  rting.libraries.docbundle",org.pentaho.reporting.engine.classic.core.
- modules.parser.ext;version="5.0.2";uses:="org.pentaho.reporting.libra
+ modules.parser.ext;version="5.0.3";uses:="org.pentaho.reporting.libra
  ries.base.boot,org.pentaho.reporting.libraries.xmlns.parser",org.pent
  aho.reporting.engine.classic.core.modules.parser.ext.factory.base;ver
- sion="5.0.2";uses:="org.pentaho.reporting.libraries.base.config",org.
+ sion="5.0.3";uses:="org.pentaho.reporting.libraries.base.config",org.
  pentaho.reporting.engine.classic.core.modules.parser.ext.factory.data
- source;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.co
+ source;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.co
  re.modules.parser.ext.factory.base,org.pentaho.reporting.libraries.ba
  se.config",org.pentaho.reporting.engine.classic.core.modules.parser.e
- xt.factory.elements;version="5.0.2";uses:="org.pentaho.reporting.engi
+ xt.factory.elements;version="5.0.3";uses:="org.pentaho.reporting.engi
  ne.classic.core",org.pentaho.reporting.engine.classic.core.modules.pa
- rser.ext.factory.objects;version="5.0.2";uses:="org.pentaho.reporting
+ rser.ext.factory.objects;version="5.0.3";uses:="org.pentaho.reporting
  .engine.classic.core.modules.parser.ext.factory.base",org.pentaho.rep
  orting.engine.classic.core.modules.parser.ext.factory.stylekey;versio
- n="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.modules.pa
+ n="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.modules.pa
  rser.ext.factory.base,org.pentaho.reporting.engine.classic.core.style
  ",org.pentaho.reporting.engine.classic.core.modules.parser.ext.factor
- y.templates;version="5.0.2";uses:="org.pentaho.reporting.engine.class
+ y.templates;version="5.0.3";uses:="org.pentaho.reporting.engine.class
  ic.core.filter.templates,org.pentaho.reporting.engine.classic.core.mo
  dules.parser.ext.factory.base,org.pentaho.reporting.libraries.base.co
  nfig",org.pentaho.reporting.engine.classic.core.modules.parser.ext.re
- adhandlers;version="5.0.2";uses:="org.pentaho.reporting.engine.classi
+ adhandlers;version="5.0.3";uses:="org.pentaho.reporting.engine.classi
  c.core,org.pentaho.reporting.engine.classic.core.modules.parser.base,
  org.pentaho.reporting.engine.classic.core.modules.parser.base.common,
  org.pentaho.reporting.engine.classic.core.modules.parser.ext.factory.
  base,org.pentaho.reporting.engine.classic.core.style,org.pentaho.repo
  rting.libraries.base.config,org.pentaho.reporting.libraries.xmlns.par
  ser,org.xml.sax",org.pentaho.reporting.engine.classic.core.modules.pa
- rser.ext.resources;version="5.0.2",org.pentaho.reporting.engine.class
- ic.core.modules.parser.extwriter;version="5.0.2";uses:="org.pentaho.r
+ rser.ext.resources;version="5.0.3",org.pentaho.reporting.engine.class
+ ic.core.modules.parser.extwriter;version="5.0.3";uses:="org.pentaho.r
  eporting.engine.classic.core,org.pentaho.reporting.engine.classic.cor
  e.filter,org.pentaho.reporting.engine.classic.core.function,org.penta
  ho.reporting.engine.classic.core.modules.parser.ext.factory.base,org.
@@ -741,38 +741,38 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ic.core.style,org.pentaho.reporting.libraries.base.boot,org.pentaho.r
  eporting.libraries.base.config,org.pentaho.reporting.libraries.xmlns.
  writer",org.pentaho.reporting.engine.classic.core.modules.parser.extw
- riter.compounddata;version="5.0.2";uses:="org.pentaho.reporting.engin
+ riter.compounddata;version="5.0.3";uses:="org.pentaho.reporting.engin
  e.classic.core,org.pentaho.reporting.engine.classic.core.modules.pars
  er.extwriter,org.pentaho.reporting.libraries.xmlns.writer",org.pentah
  o.reporting.engine.classic.core.modules.parser.extwriter.inlinedata;v
- ersion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.p
+ ersion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.p
  entaho.reporting.engine.classic.core.modules.parser.extwriter,org.pen
  taho.reporting.libraries.xmlns.writer",org.pentaho.reporting.engine.c
- lassic.core.modules.parser.extwriter.sql;version="5.0.2";uses:="org.p
+ lassic.core.modules.parser.extwriter.sql;version="5.0.3";uses:="org.p
  entaho.reporting.engine.classic.core,org.pentaho.reporting.engine.cla
  ssic.core.modules.misc.datafactory.sql,org.pentaho.reporting.engine.c
  lassic.core.modules.parser.extwriter,org.pentaho.reporting.libraries.
  xmlns.writer",org.pentaho.reporting.engine.classic.core.modules.parse
- r.extwriter.staticdata;version="5.0.2";uses:="org.pentaho.reporting.e
+ r.extwriter.staticdata;version="5.0.3";uses:="org.pentaho.reporting.e
  ngine.classic.core,org.pentaho.reporting.engine.classic.core.modules.
  parser.extwriter,org.pentaho.reporting.libraries.xmlns.writer",org.pe
  ntaho.reporting.engine.classic.core.modules.parser.simple;version="5.
- 0.2";uses:="org.pentaho.reporting.libraries.base.boot,org.pentaho.rep
+ 0.3";uses:="org.pentaho.reporting.libraries.base.boot,org.pentaho.rep
  orting.libraries.xmlns.parser",org.pentaho.reporting.engine.classic.c
- ore.modules.parser.simple.readhandlers;version="5.0.2";uses:="org.pen
+ ore.modules.parser.simple.readhandlers;version="5.0.3";uses:="org.pen
  taho.reporting.engine.classic.core,org.pentaho.reporting.engine.class
  ic.core.elementfactory,org.pentaho.reporting.engine.classic.core.modu
  les.parser.base,org.pentaho.reporting.engine.classic.core.modules.par
  ser.base.common,org.pentaho.reporting.libraries.xmlns.parser,org.xml.
  sax",org.pentaho.reporting.engine.classic.core.modules.parser.simple.
- resources;version="5.0.2",org.pentaho.reporting.engine.classic.core.p
- arameters;version="5.0.2";uses:="javax.swing.table,org.pentaho.report
+ resources;version="5.0.3",org.pentaho.reporting.engine.classic.core.p
+ arameters;version="5.0.3";uses:="javax.swing.table,org.pentaho.report
  ing.engine.classic.core,org.pentaho.reporting.engine.classic.core.fun
  ction,org.pentaho.reporting.engine.classic.core.util,org.pentaho.repo
  rting.engine.classic.core.wizard,org.pentaho.reporting.libraries.base
  .config,org.pentaho.reporting.libraries.base.util,org.pentaho.reporti
  ng.libraries.docbundle,org.pentaho.reporting.libraries.resourceloader
- ",org.pentaho.reporting.engine.classic.core.states;version="5.0.2";us
+ ",org.pentaho.reporting.engine.classic.core.states;version="5.0.3";us
  es:="javax.swing.event,javax.swing.table,org.pentaho.reporting.engine
  .classic.core,org.pentaho.reporting.engine.classic.core.cache,org.pen
  taho.reporting.engine.classic.core.event,org.pentaho.reporting.engine
@@ -782,11 +782,11 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  sic.core.states.datarow,org.pentaho.reporting.engine.classic.core.uti
  l,org.pentaho.reporting.engine.classic.core.wizard,org.pentaho.report
  ing.libraries.base.util",org.pentaho.reporting.engine.classic.core.st
- ates.crosstab;version="5.0.2";uses:="org.pentaho.reporting.engine.cla
+ ates.crosstab;version="5.0.3";uses:="org.pentaho.reporting.engine.cla
  ssic.core,org.pentaho.reporting.engine.classic.core.event,org.pentaho
  .reporting.engine.classic.core.function,org.pentaho.reporting.engine.
  classic.core.states",org.pentaho.reporting.engine.classic.core.states
- .datarow;version="5.0.2";uses:="javax.swing.event,javax.swing.table,o
+ .datarow;version="5.0.3";uses:="javax.swing.event,javax.swing.table,o
  rg.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engine
  .classic.core.event,org.pentaho.reporting.engine.classic.core.functio
  n,org.pentaho.reporting.engine.classic.core.states,org.pentaho.report
@@ -794,31 +794,31 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  classic.core.util,org.pentaho.reporting.engine.classic.core.wizard,or
  g.pentaho.reporting.libraries.base.config,org.pentaho.reporting.libra
  ries.resourceloader",org.pentaho.reporting.engine.classic.core.states
- .process;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.
+ .process;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.
  core,org.pentaho.reporting.engine.classic.core.function,org.pentaho.r
  eporting.engine.classic.core.layout,org.pentaho.reporting.engine.clas
  sic.core.states,org.pentaho.reporting.engine.classic.core.states.data
  row,org.pentaho.reporting.libraries.base.util",org.pentaho.reporting.
- engine.classic.core.style;version="5.0.2";uses:="org.pentaho.reportin
+ engine.classic.core.style;version="5.0.3";uses:="org.pentaho.reportin
  g.engine.classic.core.layout.style,org.pentaho.reporting.engine.class
  ic.core.util",org.pentaho.reporting.engine.classic.core.style.css;ver
- sion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pen
+ sion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pen
  taho.reporting.engine.classic.core.style,org.pentaho.reporting.engine
  .classic.core.style.css.namespaces,org.pentaho.reporting.engine.class
  ic.core.style.css.selector,org.pentaho.reporting.engine.classic.core.
  style.resolver,org.pentaho.reporting.libraries.resourceloader,org.w3c
  .css.sac",org.pentaho.reporting.engine.classic.core.style.css.namespa
- ces;version="5.0.2";uses:="org.pentaho.reporting.libraries.resourcelo
+ ces;version="5.0.3";uses:="org.pentaho.reporting.libraries.resourcelo
  ader",org.pentaho.reporting.engine.classic.core.style.css.selector;ve
- rsion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.style.
+ rsion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.style.
  css.namespaces,org.w3c.css.sac",org.pentaho.reporting.engine.classic.
- core.style.css.selector.conditions;version="5.0.2";uses:="org.pentaho
+ core.style.css.selector.conditions;version="5.0.3";uses:="org.pentaho
  .reporting.engine.classic.core.style.css.namespaces,org.w3c.css.sac",
  org.pentaho.reporting.engine.classic.core.style.resolver;version="5.0
- .2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.repo
+ .3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.repo
  rting.engine.classic.core.layout.style,org.pentaho.reporting.engine.c
  lassic.core.style",org.pentaho.reporting.engine.classic.core.util;ver
- sion="5.0.2";uses:="javax.swing,javax.swing.table,org.pentaho.reporti
+ sion="5.0.3";uses:="javax.swing,javax.swing.table,org.pentaho.reporti
  ng.engine.classic.core,org.pentaho.reporting.engine.classic.core.func
  tion,org.pentaho.reporting.engine.classic.core.imagemap,org.pentaho.r
  eporting.engine.classic.core.metadata,org.pentaho.reporting.engine.cl
@@ -826,11 +826,11 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ,org.pentaho.reporting.engine.classic.core.wizard,org.pentaho.reporti
  ng.libraries.base.config,org.pentaho.reporting.libraries.resourceload
  er,org.pentaho.reporting.libraries.resourceloader.factory.drawable",o
- rg.pentaho.reporting.engine.classic.core.util.beans;version="5.0.2";u
+ rg.pentaho.reporting.engine.classic.core.util.beans;version="5.0.3";u
  ses:="org.pentaho.reporting.engine.classic.core.util,org.pentaho.repo
  rting.libraries.base.util",org.pentaho.reporting.engine.classic.core.
- util.geom;version="5.0.2",org.pentaho.reporting.engine.classic.core.w
- izard;version="5.0.2";uses:="javax.swing.table,org.pentaho.reporting.
+ util.geom;version="5.0.3",org.pentaho.reporting.engine.classic.core.w
+ izard;version="5.0.3";uses:="javax.swing.table,org.pentaho.reporting.
  engine.classic.core,org.pentaho.reporting.engine.classic.core.designt
  ime,org.pentaho.reporting.engine.classic.core.function,org.pentaho.re
  porting.engine.classic.core.layout.output,org.pentaho.reporting.engin
@@ -838,13 +838,13 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ameters,org.pentaho.reporting.engine.classic.core.states.datarow,org.
  pentaho.reporting.libraries.base.util,org.pentaho.reporting.libraries
  .resourceloader",org.pentaho.reporting.engine.classic.core.wizard.par
- ser;version="5.0.2";uses:="org.pentaho.reporting.libraries.base.confi
+ ser;version="5.0.3";uses:="org.pentaho.reporting.libraries.base.confi
  g,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.penta
- ho.reporting.engine.classic.core.wizard.writer;version="5.0.2";uses:=
+ ho.reporting.engine.classic.core.wizard.writer;version="5.0.3";uses:=
  "org.pentaho.reporting.engine.classic.core.wizard",org.pentaho.report
- ing.engine.classic.extensions;version="5.0.2";uses:="org.pentaho.repo
+ ing.engine.classic.extensions;version="5.0.3";uses:="org.pentaho.repo
  rting.libraries.base.versioning",org.pentaho.reporting.engine.classic
- .extensions.datasources.kettle;version="5.0.2";uses:="javax.swing.tab
+ .extensions.datasources.kettle;version="5.0.3";uses:="javax.swing.tab
  le,org.pentaho.di.core.exception,org.pentaho.di.core.logging,org.pent
  aho.di.core.row,org.pentaho.di.repository,org.pentaho.di.trans,org.pe
  ntaho.di.trans.step,org.pentaho.reporting.engine.classic.core,org.pen
@@ -852,33 +852,33 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ngine.classic.core.metadata,org.pentaho.reporting.libraries.base.boot
  ,org.pentaho.reporting.libraries.resourceloader,org.w3c.dom",org.pent
  aho.reporting.engine.classic.extensions.datasources.kettle.parser;ver
- sion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pen
+ sion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pen
  taho.reporting.engine.classic.core.modules.parser.base,org.pentaho.re
  porting.engine.classic.extensions.datasources.kettle,org.pentaho.repo
  rting.libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.engin
- e.classic.extensions.datasources.kettle.writer;version="5.0.2";uses:=
+ e.classic.extensions.datasources.kettle.writer;version="5.0.3";uses:=
  "org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engi
  ne.classic.core.modules.parser.bundle.writer,org.pentaho.reporting.en
  gine.classic.core.modules.parser.extwriter,org.pentaho.reporting.libr
  aries.docbundle,org.pentaho.reporting.libraries.xmlns.writer",org.pen
  taho.reporting.engine.classic.extensions.datasources.olap4j;version="
- 5.0.2";uses:="javax.swing.table,org.olap4j,org.olap4j.metadata,org.pe
+ 5.0.3";uses:="javax.swing.table,org.olap4j,org.olap4j.metadata,org.pe
  ntaho.reporting.engine.classic.core,org.pentaho.reporting.engine.clas
  sic.core.metadata,org.pentaho.reporting.engine.classic.core.util,org.
  pentaho.reporting.engine.classic.core.wizard,org.pentaho.reporting.en
  gine.classic.extensions.datasources.olap4j.connections,org.pentaho.re
  porting.libraries.base.boot",org.pentaho.reporting.engine.classic.ext
- ensions.datasources.olap4j.connections;version="5.0.2";uses:="javax.n
+ ensions.datasources.olap4j.connections;version="5.0.3";uses:="javax.n
  aming,org.olap4j",org.pentaho.reporting.engine.classic.extensions.dat
- asources.olap4j.parser;version="5.0.2";uses:="org.pentaho.reporting.e
+ asources.olap4j.parser;version="5.0.3";uses:="org.pentaho.reporting.e
  ngine.classic.core,org.pentaho.reporting.engine.classic.core.modules.
  parser.base,org.pentaho.reporting.engine.classic.extensions.datasourc
  es.olap4j,org.pentaho.reporting.engine.classic.extensions.datasources
  .olap4j.connections,org.pentaho.reporting.libraries.xmlns.parser,org.
  xml.sax",org.pentaho.reporting.engine.classic.extensions.datasources.
- olap4j.types;version="5.0.2";uses:="org.olap4j.metadata,org.pentaho.r
+ olap4j.types;version="5.0.3";uses:="org.olap4j.metadata,org.pentaho.r
  eporting.engine.classic.core.wizard",org.pentaho.reporting.engine.cla
- ssic.extensions.datasources.olap4j.writer;version="5.0.2";uses:="org.
+ ssic.extensions.datasources.olap4j.writer;version="5.0.3";uses:="org.
  pentaho.reporting.engine.classic.core,org.pentaho.reporting.engine.cl
  assic.core.modules.parser.bundle.writer,org.pentaho.reporting.engine.
  classic.core.modules.parser.extwriter,org.pentaho.reporting.engine.cl
@@ -886,80 +886,80 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  sic.extensions.datasources.olap4j.connections,org.pentaho.reporting.l
  ibraries.docbundle,org.pentaho.reporting.libraries.xmlns.writer",org.
  pentaho.reporting.engine.classic.extensions.datasources.scriptable;ve
- rsion="5.0.2";uses:="javax.swing.table,org.apache.bsf,org.pentaho.rep
+ rsion="5.0.3";uses:="javax.swing.table,org.apache.bsf,org.pentaho.rep
  orting.engine.classic.core,org.pentaho.reporting.libraries.base.boot"
  ,org.pentaho.reporting.engine.classic.extensions.datasources.scriptab
- le.parser;version="5.0.2";uses:="org.pentaho.reporting.engine.classic
+ le.parser;version="5.0.3";uses:="org.pentaho.reporting.engine.classic
  .core,org.pentaho.reporting.engine.classic.core.modules.parser.base,o
  rg.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.pentaho.
  reporting.engine.classic.extensions.datasources.scriptable.writer;ver
- sion="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pen
+ sion="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pen
  taho.reporting.engine.classic.core.modules.parser.bundle.writer,org.p
  entaho.reporting.engine.classic.core.modules.parser.extwriter,org.pen
  taho.reporting.libraries.docbundle,org.pentaho.reporting.libraries.xm
  lns.writer",org.pentaho.reporting.engine.classic.extensions.drilldown
- ;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.met
+ ;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.met
  adata,org.pentaho.reporting.engine.classic.core.util.beans,org.pentah
  o.reporting.libraries.base.boot,org.pentaho.reporting.libraries.formu
  la,org.pentaho.reporting.libraries.formula.function,org.pentaho.repor
  ting.libraries.formula.lvalues,org.pentaho.reporting.libraries.formul
  a.typing",org.pentaho.reporting.engine.classic.extensions.drilldown.d
- evtools;version="5.0.2";uses:="javax.swing,org.pentaho.reporting.engi
+ evtools;version="5.0.3";uses:="javax.swing,org.pentaho.reporting.engi
  ne.classic.extensions.drilldown,org.pentaho.reporting.libraries.desig
  ntime.swing",org.pentaho.reporting.engine.classic.extensions.drilldow
- n.parser;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.
+ n.parser;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.
  extensions.drilldown,org.pentaho.reporting.libraries.base.config,org.
  pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.pentaho.rep
- orting.engine.classic.extensions.modules.java14config;version="5.0.2"
+ orting.engine.classic.extensions.modules.java14config;version="5.0.3"
  ;uses:="org.pentaho.reporting.engine.classic.core.modules.misc.config
  store.base,org.pentaho.reporting.libraries.base.boot,org.pentaho.repo
  rting.libraries.base.config",org.pentaho.reporting.engine.classic.ext
- ensions.modules.java14print;version="5.0.2";uses:="javax.print,javax.
+ ensions.modules.java14print;version="5.0.3";uses:="javax.print,javax.
  print.attribute,javax.print.attribute.standard,org.pentaho.reporting.
  engine.classic.core,org.pentaho.reporting.engine.classic.core.event,o
  rg.pentaho.reporting.engine.classic.core.modules.gui.common,org.penta
  ho.reporting.engine.classic.core.modules.gui.commonswing,org.pentaho.
  reporting.engine.classic.core.modules.gui.print,org.pentaho.reporting
  .libraries.base.boot",org.pentaho.reporting.engine.classic.extensions
- .modules.mailer;version="5.0.2";uses:="javax.mail,javax.mail.internet
+ .modules.mailer;version="5.0.3";uses:="javax.mail,javax.mail.internet
  ,javax.swing.event,javax.swing.table,org.pentaho.reporting.engine.cla
  ssic.core,org.pentaho.reporting.engine.classic.core.modules.output.ta
  ble.html,org.pentaho.reporting.engine.classic.core.parameters,org.pen
  taho.reporting.engine.classic.core.util,org.pentaho.reporting.librari
  es.base.boot,org.pentaho.reporting.libraries.repository,org.pentaho.r
  eporting.libraries.resourceloader",org.pentaho.reporting.engine.class
- ic.extensions.modules.mailer.parser;version="5.0.2";uses:="org.pentah
+ ic.extensions.modules.mailer.parser;version="5.0.3";uses:="org.pentah
  o.reporting.engine.classic.core,org.pentaho.reporting.engine.classic.
  extensions.modules.mailer,org.pentaho.reporting.libraries.base.config
  ,org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.pentah
  o.reporting.engine.classic.extensions.modules.mailer.writer;version="
- 5.0.2";uses:="org.pentaho.reporting.engine.classic.core.modules.parse
+ 5.0.3";uses:="org.pentaho.reporting.engine.classic.core.modules.parse
  r.bundle.writer,org.pentaho.reporting.engine.classic.extensions.modul
  es.mailer,org.pentaho.reporting.libraries.docbundle,org.pentaho.repor
  ting.libraries.repository",org.pentaho.reporting.engine.classic.exten
- sions.modules.rhino;version="5.0.2";uses:="org.mozilla.javascript,org
+ sions.modules.rhino;version="5.0.3";uses:="org.mozilla.javascript,org
  .pentaho.reporting.engine.classic.core.function,org.pentaho.reporting
  .engine.classic.core.states,org.pentaho.reporting.libraries.base.boot
  ",org.pentaho.reporting.engine.classic.extensions.modules.sbarcodes;v
- ersion="5.0.2";uses:="net.sourceforge.barbecue,org.krysalis.barcode4j
+ ersion="5.0.3";uses:="net.sourceforge.barbecue,org.krysalis.barcode4j
  ,org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.engi
  ne.classic.core.filter.types,org.pentaho.reporting.engine.classic.cor
  e.function,org.pentaho.reporting.engine.classic.core.imagemap,org.pen
  taho.reporting.engine.classic.core.style,org.pentaho.reporting.engine
  .classic.core.util,org.pentaho.reporting.libraries.base.boot,org.pent
  aho.reporting.libraries.base.config",org.pentaho.reporting.engine.cla
- ssic.extensions.modules.sbarcodes.elementfactory;version="5.0.2";uses
+ ssic.extensions.modules.sbarcodes.elementfactory;version="5.0.3";uses
  :="org.pentaho.reporting.engine.classic.core,org.pentaho.reporting.en
  gine.classic.core.elementfactory,org.pentaho.reporting.engine.classic
  .core.style",org.pentaho.reporting.engine.classic.extensions.modules.
- sbarcodes.xml;version="5.0.2";uses:="org.pentaho.reporting.engine.cla
+ sbarcodes.xml;version="5.0.3";uses:="org.pentaho.reporting.engine.cla
  ssic.core,org.pentaho.reporting.engine.classic.core.modules.parser.bu
  ndle.layout.elements,org.pentaho.reporting.engine.classic.core.module
  s.parser.bundle.writer,org.pentaho.reporting.engine.classic.core.modu
  les.parser.bundle.writer.elements,org.pentaho.reporting.libraries.doc
  bundle,org.pentaho.reporting.libraries.xmlns.parser,org.pentaho.repor
  ting.libraries.xmlns.writer",org.pentaho.reporting.engine.classic.ext
- ensions.modules.sparklines;version="5.0.2";uses:="org.pentaho.reporti
+ ensions.modules.sparklines;version="5.0.3";uses:="org.pentaho.reporti
  ng.engine.classic.core,org.pentaho.reporting.engine.classic.core.filt
  er.types,org.pentaho.reporting.engine.classic.core.function,org.penta
  ho.reporting.engine.classic.core.imagemap,org.pentaho.reporting.engin
@@ -968,10 +968,10 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  ies.base.config,org.pentaho.reporting.libraries.libsparklines,org.pen
  taho.reporting.libraries.resourceloader.factory.drawable",org.pentaho
  .reporting.engine.classic.extensions.modules.sparklines.elementfactor
- y;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core,or
+ y;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core,or
  g.pentaho.reporting.engine.classic.core.elementfactory,org.pentaho.re
  porting.engine.classic.core.style",org.pentaho.reporting.engine.class
- ic.extensions.modules.sparklines.xml;version="5.0.2";uses:="org.penta
+ ic.extensions.modules.sparklines.xml;version="5.0.3";uses:="org.penta
  ho.reporting.engine.classic.core,org.pentaho.reporting.engine.classic
  .core.modules.parser.bundle.layout,org.pentaho.reporting.engine.class
  ic.core.modules.parser.bundle.layout.elements,org.pentaho.reporting.e
@@ -982,52 +982,52 @@ Export-Package: org.pentaho.reporting.engine.classic.core;version="5.0
  libraries.docbundle,org.pentaho.reporting.libraries.xmlns.parser,org.
  pentaho.reporting.libraries.xmlns.writer,org.xml.sax",org.pentaho.rep
  orting.engine.classic.extensions.parsers.reportdesigner;version="5.0.
- 2";uses:="org.pentaho.reporting.libraries.base.boot,org.pentaho.repor
+ 3";uses:="org.pentaho.reporting.libraries.base.boot,org.pentaho.repor
  ting.libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine
- .classic.extensions.parsers.reportdesigner.converter;version="5.0.2";
+ .classic.extensions.parsers.reportdesigner.converter;version="5.0.3";
  uses:="org.pentaho.reporting.libraries.xmlns.parser,org.xml.sax",org.
  pentaho.reporting.engine.classic.extensions.parsers.reportdesigner.da
- tasets;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.co
+ tasets;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.co
  re.function,org.pentaho.reporting.engine.classic.core.modules.parser.
  base,org.pentaho.reporting.engine.classic.core.modules.parser.base.co
  mmon,org.pentaho.reporting.engine.classic.core.util.beans,org.pentaho
  .reporting.libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.
  engine.classic.extensions.parsers.reportdesigner.elements;version="5.
- 0.2";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.rep
+ 0.3";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.rep
  orting.engine.classic.core.style,org.pentaho.reporting.libraries.xmln
  s.parser,org.xml.sax",org.pentaho.reporting.engine.classic.extensions
- .parsers.reportdesigner.model;version="5.0.2",org.pentaho.reporting.e
- ngine.classic.extensions.parsers.reportdesigner.report;version="5.0.2
+ .parsers.reportdesigner.model;version="5.0.3",org.pentaho.reporting.e
+ ngine.classic.extensions.parsers.reportdesigner.report;version="5.0.3
  ";uses:="org.pentaho.reporting.engine.classic.core,org.pentaho.report
  ing.engine.classic.core.function,org.pentaho.reporting.engine.classic
  .extensions.parsers.reportdesigner.model,org.pentaho.reporting.librar
  ies.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine.classic.ex
- tensions.resource;version="5.0.2",org.pentaho.reporting.engine.classi
- c.extensions.toc;version="5.0.2";uses:="javax.swing.event,javax.swing
+ tensions.resource;version="5.0.3",org.pentaho.reporting.engine.classi
+ c.extensions.toc;version="5.0.3";uses:="javax.swing.event,javax.swing
  .table,org.pentaho.reporting.engine.classic.core,org.pentaho.reportin
  g.engine.classic.core.event,org.pentaho.reporting.engine.classic.core
  .filter.types.bands,org.pentaho.reporting.engine.classic.core.functio
  n,org.pentaho.reporting.engine.classic.core.states.datarow,org.pentah
  o.reporting.engine.classic.core.util,org.pentaho.reporting.libraries.
  base.boot",org.pentaho.reporting.engine.classic.extensions.toc.parser
- ;version="5.0.2";uses:="org.pentaho.reporting.engine.classic.core.mod
+ ;version="5.0.3";uses:="org.pentaho.reporting.engine.classic.core.mod
  ules.parser.bundle.layout,org.pentaho.reporting.libraries.base.config
  ,org.pentaho.reporting.libraries.resourceloader,org.pentaho.reporting
  .libraries.xmlns.parser,org.xml.sax",org.pentaho.reporting.engine.cla
- ssic.extensions.toc.writer;version="5.0.2";uses:="org.pentaho.reporti
+ ssic.extensions.toc.writer;version="5.0.3";uses:="org.pentaho.reporti
  ng.engine.classic.core,org.pentaho.reporting.engine.classic.core.modu
  les.parser.bundle.writer,org.pentaho.reporting.engine.classic.core.mo
  dules.parser.bundle.writer.elements,org.pentaho.reporting.libraries.d
  ocbundle,org.pentaho.reporting.libraries.xmlns.writer"
 Implementation-Title: Pentaho Reporting Uber Bundle
 Implementation-ProductID: pdi-ce
-Implementation-Version: 5.0.2
+Implementation-Version: 5.0.3
 Built-By: Mduduzi
 Tool: Bundlor 1.0.0.RELEASE
 Created-By: Apache Maven
 Implementation-Vendor: Pentaho Corporation
 Build-Jdk: 1.6.0_45
-Bundle-Version: 5.0.2
+Bundle-Version: 5.0.3
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-reporting-engine
  -all

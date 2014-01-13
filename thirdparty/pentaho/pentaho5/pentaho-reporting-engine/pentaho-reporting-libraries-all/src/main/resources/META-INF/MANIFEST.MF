@@ -1,270 +1,270 @@
 Manifest-Version: 1.0
-Export-Package: org.pentaho.reporting.libraries.base;version="5.0.2";u
+Export-Package: org.pentaho.reporting.libraries.base;version="5.0.3";u
  ses:="org.pentaho.reporting.libraries.base.boot,org.pentaho.reporting
  .libraries.base.config,org.pentaho.reporting.libraries.base.versionin
- g",org.pentaho.reporting.libraries.base.boot;version="5.0.2";uses:="o
+ g",org.pentaho.reporting.libraries.base.boot;version="5.0.3";uses:="o
  rg.pentaho.reporting.libraries.base.config,org.pentaho.reporting.libr
  aries.base.versioning",org.pentaho.reporting.libraries.base.config;ve
- rsion="5.0.2",org.pentaho.reporting.libraries.base.config.metadata;ve
- rsion="5.0.2";uses:="javax.xml.parsers,org.pentaho.reporting.librarie
+ rsion="5.0.3",org.pentaho.reporting.libraries.base.config.metadata;ve
+ rsion="5.0.3";uses:="javax.xml.parsers,org.pentaho.reporting.librarie
  s.base.boot,org.w3c.dom,org.xml.sax",org.pentaho.reporting.libraries.
- base.encoder;version="5.0.2",org.pentaho.reporting.libraries.base.uti
- l;version="5.0.2";uses:="javax.crypto,javax.swing,javax.swing.filecho
+ base.encoder;version="5.0.3",org.pentaho.reporting.libraries.base.uti
+ l;version="5.0.3";uses:="javax.crypto,javax.swing,javax.swing.filecho
  oser,org.pentaho.reporting.libraries.base.encoder",org.pentaho.report
- ing.libraries.base.versioning;version="5.0.2",org.pentaho.reporting.l
- ibraries.designtime.swing;version="5.0.2";uses:="javax.swing,javax.sw
+ ing.libraries.base.versioning;version="5.0.3",org.pentaho.reporting.l
+ ibraries.designtime.swing;version="5.0.3";uses:="javax.swing,javax.sw
  ing.event,javax.swing.table,javax.swing.text,org.apache.commons.loggi
  ng,org.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.li
  braries.base.config,org.pentaho.reporting.libraries.base.util,org.pen
  taho.reporting.libraries.base.versioning",org.pentaho.reporting.libra
- ries.designtime.swing.background;version="5.0.2";uses:="javax.swing,j
+ ries.designtime.swing.background;version="5.0.3";uses:="javax.swing,j
  avax.swing.table,org.apache.commons.logging",org.pentaho.reporting.li
- braries.designtime.swing.bulk;version="5.0.2";uses:="javax.swing,java
+ braries.designtime.swing.bulk;version="5.0.3";uses:="javax.swing,java
  x.swing.event",org.pentaho.reporting.libraries.designtime.swing.color
- chooser;version="5.0.2";uses:="javax.swing,javax.swing.event,org.pent
+ chooser;version="5.0.3";uses:="javax.swing,javax.swing.event,org.pent
  aho.reporting.libraries.base.config,org.pentaho.reporting.libraries.b
  ase.util,org.pentaho.reporting.libraries.designtime.swing,org.pentaho
  .reporting.libraries.designtime.swing.event",org.pentaho.reporting.li
- braries.designtime.swing.date;version="5.0.2";uses:="javax.swing,java
+ braries.designtime.swing.date;version="5.0.3";uses:="javax.swing,java
  x.swing.event,javax.swing.table,javax.swing.text",org.pentaho.reporti
- ng.libraries.designtime.swing.event;version="5.0.2";uses:="javax.swin
+ ng.libraries.designtime.swing.event;version="5.0.3";uses:="javax.swin
  g.event",org.pentaho.reporting.libraries.designtime.swing.filechooser
- ;version="5.0.2";uses:="javax.swing,javax.swing.filechooser",org.pent
- aho.reporting.libraries.designtime.swing.icons;version="5.0.2",org.pe
+ ;version="5.0.3";uses:="javax.swing,javax.swing.filechooser",org.pent
+ aho.reporting.libraries.designtime.swing.icons;version="5.0.3",org.pe
  ntaho.reporting.libraries.designtime.swing.propertyeditors;version="5
- .0.2";uses:="javax.swing,javax.swing.event,javax.swing.table,javax.sw
+ .0.3";uses:="javax.swing,javax.swing.event,javax.swing.table,javax.sw
  ing.text,org.pentaho.reporting.libraries.designtime.swing,org.pentaho
  .reporting.libraries.designtime.swing.colorchooser",org.pentaho.repor
- ting.libraries.designtime.swing.settings;version="5.0.2",org.pentaho.
- reporting.libraries.designtime.swing.table;version="5.0.2";uses:="jav
+ ting.libraries.designtime.swing.settings;version="5.0.3",org.pentaho.
+ reporting.libraries.designtime.swing.table;version="5.0.3";uses:="jav
  ax.swing,javax.swing.event,javax.swing.table,javax.swing.text,org.apa
  che.commons.logging,org.pentaho.reporting.libraries.designtime.swing,
  org.pentaho.reporting.libraries.designtime.swing.bulk,org.pentaho.rep
  orting.libraries.designtime.swing.settings",org.pentaho.reporting.lib
- raries.docbundle;version="5.0.2";uses:="org.pentaho.reporting.librari
+ raries.docbundle;version="5.0.3";uses:="org.pentaho.reporting.librari
  es.base.boot,org.pentaho.reporting.libraries.base.config,org.pentaho.
  reporting.libraries.base.versioning,org.pentaho.reporting.libraries.r
  epository,org.pentaho.reporting.libraries.resourceloader",org.pentaho
- .reporting.libraries.docbundle.bundlefactory;version="5.0.2";uses:="o
+ .reporting.libraries.docbundle.bundlefactory;version="5.0.3";uses:="o
  rg.pentaho.reporting.libraries.resourceloader",org.pentaho.reporting.
- libraries.docbundle.bundleloader;version="5.0.2";uses:="org.pentaho.r
+ libraries.docbundle.bundleloader;version="5.0.3";uses:="org.pentaho.r
  eporting.libraries.repository,org.pentaho.reporting.libraries.resourc
  eloader,org.pentaho.reporting.libraries.resourceloader.loader",org.pe
- ntaho.reporting.libraries.docbundle.metadata;version="5.0.2",org.pent
- aho.reporting.libraries.docbundle.metadata.parser;version="5.0.2";use
+ ntaho.reporting.libraries.docbundle.metadata;version="5.0.3",org.pent
+ aho.reporting.libraries.docbundle.metadata.parser;version="5.0.3";use
  s:="org.pentaho.reporting.libraries.base.config,org.pentaho.reporting
  .libraries.docbundle.metadata,org.pentaho.reporting.libraries.xmlns.p
  arser,org.xml.sax",org.pentaho.reporting.libraries.docbundle.metadata
- .writer;version="5.0.2";uses:="org.pentaho.reporting.libraries.base.c
+ .writer;version="5.0.3";uses:="org.pentaho.reporting.libraries.base.c
  onfig,org.pentaho.reporting.libraries.docbundle,org.pentaho.reporting
  .libraries.docbundle.metadata,org.pentaho.reporting.libraries.xmlns.w
- riter",org.pentaho.reporting.libraries.fonts;version="5.0.2";uses:="o
+ riter",org.pentaho.reporting.libraries.fonts;version="5.0.3";uses:="o
  rg.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.librar
  ies.base.config,org.pentaho.reporting.libraries.base.versioning,org.p
  entaho.reporting.libraries.fonts.cache,org.pentaho.reporting.librarie
  s.fonts.encoding",org.pentaho.reporting.libraries.fonts.afm;version="
- 5.0.2";uses:="org.pentaho.reporting.libraries.fonts.cache,org.pentaho
+ 5.0.3";uses:="org.pentaho.reporting.libraries.fonts.cache,org.pentaho
  .reporting.libraries.fonts.io,org.pentaho.reporting.libraries.fonts.r
- egistry",org.pentaho.reporting.libraries.fonts.awt;version="5.0.2";us
+ egistry",org.pentaho.reporting.libraries.fonts.awt;version="5.0.3";us
  es:="org.pentaho.reporting.libraries.fonts.cache,org.pentaho.reportin
  g.libraries.fonts.registry",org.pentaho.reporting.libraries.fonts.cac
- he;version="5.0.2";uses:="org.pentaho.reporting.libraries.fonts.regis
- try",org.pentaho.reporting.libraries.fonts.encoding;version="5.0.2";u
+ he;version="5.0.3";uses:="org.pentaho.reporting.libraries.fonts.regis
+ try",org.pentaho.reporting.libraries.fonts.encoding;version="5.0.3";u
  ses:="org.pentaho.reporting.libraries.resourceloader",org.pentaho.rep
- orting.libraries.fonts.encoding.generated;version="5.0.2",org.pentaho
- .reporting.libraries.fonts.encoding.generator;version="5.0.2",org.pen
- taho.reporting.libraries.fonts.encoding.manual;version="5.0.2";uses:=
+ orting.libraries.fonts.encoding.generated;version="5.0.3",org.pentaho
+ .reporting.libraries.fonts.encoding.generator;version="5.0.3",org.pen
+ taho.reporting.libraries.fonts.encoding.manual;version="5.0.3";uses:=
  "org.pentaho.reporting.libraries.fonts.encoding",org.pentaho.reportin
- g.libraries.fonts.io;version="5.0.2";uses:="org.pentaho.reporting.lib
+ g.libraries.fonts.io;version="5.0.3";uses:="org.pentaho.reporting.lib
  raries.resourceloader",org.pentaho.reporting.libraries.fonts.itext;ve
- rsion="5.0.2";uses:="com.lowagie.text.pdf,org.pentaho.reporting.libra
+ rsion="5.0.3";uses:="com.lowagie.text.pdf,org.pentaho.reporting.libra
  ries.fonts.cache,org.pentaho.reporting.libraries.fonts.merge,org.pent
  aho.reporting.libraries.fonts.registry",org.pentaho.reporting.librari
- es.fonts.merge;version="5.0.2";uses:="org.pentaho.reporting.libraries
+ es.fonts.merge;version="5.0.3";uses:="org.pentaho.reporting.libraries
  .fonts.cache,org.pentaho.reporting.libraries.fonts.registry",org.pent
- aho.reporting.libraries.fonts.monospace;version="5.0.2";uses:="org.pe
+ aho.reporting.libraries.fonts.monospace;version="5.0.3";uses:="org.pe
  ntaho.reporting.libraries.fonts.cache,org.pentaho.reporting.libraries
  .fonts.registry",org.pentaho.reporting.libraries.fonts.pfm;version="5
- .0.2";uses:="org.pentaho.reporting.libraries.fonts.cache,org.pentaho.
+ .0.3";uses:="org.pentaho.reporting.libraries.fonts.cache,org.pentaho.
  reporting.libraries.fonts.io,org.pentaho.reporting.libraries.fonts.re
- gistry",org.pentaho.reporting.libraries.fonts.registry;version="5.0.2
+ gistry",org.pentaho.reporting.libraries.fonts.registry;version="5.0.3
  ";uses:="org.pentaho.reporting.libraries.fonts.cache",org.pentaho.rep
- orting.libraries.fonts.text;version="5.0.2",org.pentaho.reporting.lib
- raries.fonts.text.breaks;version="5.0.2";uses:="org.pentaho.reporting
+ orting.libraries.fonts.text;version="5.0.3",org.pentaho.reporting.lib
+ raries.fonts.text.breaks;version="5.0.3";uses:="org.pentaho.reporting
  .libraries.fonts.text",org.pentaho.reporting.libraries.fonts.text.cla
- ssifier;version="5.0.2";uses:="org.pentaho.reporting.libraries.fonts.
- text",org.pentaho.reporting.libraries.fonts.text.font;version="5.0.2"
+ ssifier;version="5.0.3";uses:="org.pentaho.reporting.libraries.fonts.
+ text",org.pentaho.reporting.libraries.fonts.text.font;version="5.0.3"
  ;uses:="org.pentaho.reporting.libraries.fonts.registry,org.pentaho.re
  porting.libraries.fonts.text",org.pentaho.reporting.libraries.fonts.t
- ext.generated;version="5.0.2",org.pentaho.reporting.libraries.fonts.t
- ext.generator;version="5.0.2",org.pentaho.reporting.libraries.fonts.t
- ext.whitespace;version="5.0.2",org.pentaho.reporting.libraries.fonts.
- tools;version="5.0.2";uses:="org.pentaho.reporting.libraries.fonts.re
- gistry",org.pentaho.reporting.libraries.fonts.truetype;version="5.0.2
+ ext.generated;version="5.0.3",org.pentaho.reporting.libraries.fonts.t
+ ext.generator;version="5.0.3",org.pentaho.reporting.libraries.fonts.t
+ ext.whitespace;version="5.0.3",org.pentaho.reporting.libraries.fonts.
+ tools;version="5.0.3";uses:="org.pentaho.reporting.libraries.fonts.re
+ gistry",org.pentaho.reporting.libraries.fonts.truetype;version="5.0.3
  ";uses:="org.pentaho.reporting.libraries.fonts,org.pentaho.reporting.
  libraries.fonts.cache,org.pentaho.reporting.libraries.fonts.encoding,
  org.pentaho.reporting.libraries.fonts.io,org.pentaho.reporting.librar
  ies.fonts.registry,org.pentaho.reporting.libraries.fonts.truetype.map
  pings",org.pentaho.reporting.libraries.fonts.truetype.mappings;versio
- n="5.0.2",org.pentaho.reporting.libraries.formatting;version="5.0.2";
+ n="5.0.3",org.pentaho.reporting.libraries.formatting;version="5.0.3";
  uses:="org.pentaho.reporting.libraries.base.boot,org.pentaho.reportin
  g.libraries.base.config,org.pentaho.reporting.libraries.base.versioni
- ng",org.pentaho.reporting.libraries.formula;version="5.0.2";uses:="or
+ ng",org.pentaho.reporting.libraries.formula;version="5.0.3";uses:="or
  g.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.librari
  es.base.config,org.pentaho.reporting.libraries.base.util,org.pentaho.
  reporting.libraries.base.versioning,org.pentaho.reporting.libraries.f
  ormula.function,org.pentaho.reporting.libraries.formula.lvalues,org.p
  entaho.reporting.libraries.formula.operators,org.pentaho.reporting.li
  braries.formula.parser,org.pentaho.reporting.libraries.formula.typing
- ",org.pentaho.reporting.libraries.formula.function;version="5.0.2";us
+ ",org.pentaho.reporting.libraries.formula.function;version="5.0.3";us
  es:="org.pentaho.reporting.libraries.base.config,org.pentaho.reportin
  g.libraries.formula,org.pentaho.reporting.libraries.formula.lvalues,o
  rg.pentaho.reporting.libraries.formula.typing",org.pentaho.reporting.
- libraries.formula.function.database;version="5.0.2";uses:="org.pentah
+ libraries.formula.function.database;version="5.0.3";uses:="org.pentah
  o.reporting.libraries.formula,org.pentaho.reporting.libraries.formula
  .function,org.pentaho.reporting.libraries.formula.lvalues,org.pentaho
  .reporting.libraries.formula.typing",org.pentaho.reporting.libraries.
- formula.function.datetime;version="5.0.2";uses:="org.pentaho.reportin
+ formula.function.datetime;version="5.0.3";uses:="org.pentaho.reportin
  g.libraries.formula,org.pentaho.reporting.libraries.formula.function,
  org.pentaho.reporting.libraries.formula.lvalues,org.pentaho.reporting
  .libraries.formula.typing",org.pentaho.reporting.libraries.formula.fu
- nction.financial;version="5.0.2";uses:="org.pentaho.reporting.librari
+ nction.financial;version="5.0.3";uses:="org.pentaho.reporting.librari
  es.formula.function",org.pentaho.reporting.libraries.formula.function
- .information;version="5.0.2";uses:="org.pentaho.reporting.libraries.f
+ .information;version="5.0.3";uses:="org.pentaho.reporting.libraries.f
  ormula,org.pentaho.reporting.libraries.formula.function,org.pentaho.r
  eporting.libraries.formula.lvalues,org.pentaho.reporting.libraries.fo
  rmula.typing",org.pentaho.reporting.libraries.formula.function.logica
- l;version="5.0.2";uses:="org.pentaho.reporting.libraries.formula,org.
+ l;version="5.0.3";uses:="org.pentaho.reporting.libraries.formula,org.
  pentaho.reporting.libraries.formula.function,org.pentaho.reporting.li
  braries.formula.lvalues,org.pentaho.reporting.libraries.formula.typin
  g",org.pentaho.reporting.libraries.formula.function.math;version="5.0
- .2";uses:="org.pentaho.reporting.libraries.formula,org.pentaho.report
+ .3";uses:="org.pentaho.reporting.libraries.formula,org.pentaho.report
  ing.libraries.formula.function,org.pentaho.reporting.libraries.formul
  a.lvalues,org.pentaho.reporting.libraries.formula.typing",org.pentaho
- .reporting.libraries.formula.function.rounding;version="5.0.2";uses:=
+ .reporting.libraries.formula.function.rounding;version="5.0.3";uses:=
  "org.pentaho.reporting.libraries.formula,org.pentaho.reporting.librar
  ies.formula.function,org.pentaho.reporting.libraries.formula.lvalues,
  org.pentaho.reporting.libraries.formula.typing",org.pentaho.reporting
- .libraries.formula.function.text;version="5.0.2";uses:="org.pentaho.r
+ .libraries.formula.function.text;version="5.0.3";uses:="org.pentaho.r
  eporting.libraries.formula,org.pentaho.reporting.libraries.formula.fu
  nction,org.pentaho.reporting.libraries.formula.lvalues,org.pentaho.re
  porting.libraries.formula.typing",org.pentaho.reporting.libraries.for
- mula.function.userdefined;version="5.0.2";uses:="org.pentaho.reportin
+ mula.function.userdefined;version="5.0.3";uses:="org.pentaho.reportin
  g.libraries.formula,org.pentaho.reporting.libraries.formula.function,
  org.pentaho.reporting.libraries.formula.lvalues,org.pentaho.reporting
  .libraries.formula.typing",org.pentaho.reporting.libraries.formula.lv
- alues;version="5.0.2";uses:="org.apache.commons.logging,org.pentaho.r
+ alues;version="5.0.3";uses:="org.apache.commons.logging,org.pentaho.r
  eporting.libraries.base.util,org.pentaho.reporting.libraries.formula,
  org.pentaho.reporting.libraries.formula.function,org.pentaho.reportin
  g.libraries.formula.operators,org.pentaho.reporting.libraries.formula
  .typing",org.pentaho.reporting.libraries.formula.operators;version="5
- .0.2";uses:="org.pentaho.reporting.libraries.base.config,org.pentaho.
+ .0.3";uses:="org.pentaho.reporting.libraries.base.config,org.pentaho.
  reporting.libraries.formula,org.pentaho.reporting.libraries.formula.l
  values,org.pentaho.reporting.libraries.formula.typing",org.pentaho.re
- porting.libraries.formula.parser;version="5.0.2";uses:="org.pentaho.r
+ porting.libraries.formula.parser;version="5.0.3";uses:="org.pentaho.r
  eporting.libraries.formula.lvalues,org.pentaho.reporting.libraries.fo
  rmula.operators",org.pentaho.reporting.libraries.formula.typing;versi
- on="5.0.2";uses:="org.pentaho.reporting.libraries.base.config,org.pen
+ on="5.0.3";uses:="org.pentaho.reporting.libraries.base.config,org.pen
  taho.reporting.libraries.formula,org.pentaho.reporting.libraries.form
  ula.lvalues",org.pentaho.reporting.libraries.formula.typing.coretypes
- ;version="5.0.2";uses:="org.pentaho.reporting.libraries.formula.typin
+ ;version="5.0.3";uses:="org.pentaho.reporting.libraries.formula.typin
  g",org.pentaho.reporting.libraries.formula.typing.sequence;version="5
- .0.2";uses:="org.pentaho.reporting.libraries.formula,org.pentaho.repo
+ .0.3";uses:="org.pentaho.reporting.libraries.formula,org.pentaho.repo
  rting.libraries.formula.lvalues,org.pentaho.reporting.libraries.formu
  la.typing",org.pentaho.reporting.libraries.formula.util;version="5.0.
- 2";uses:="org.pentaho.reporting.libraries.base.util,org.pentaho.repor
+ 3";uses:="org.pentaho.reporting.libraries.base.util,org.pentaho.repor
  ting.libraries.formula,org.pentaho.reporting.libraries.formula.lvalue
  s,org.pentaho.reporting.libraries.formula.parser,org.pentaho.reportin
  g.libraries.formula.typing",org.pentaho.reporting.libraries.pixie;ver
- sion="5.0.2";uses:="javax.swing,org.pentaho.reporting.libraries.base.
- versioning",org.pentaho.reporting.libraries.pixie.wmf;version="5.0.2"
- ,org.pentaho.reporting.libraries.pixie.wmf.bitmap;version="5.0.2";use
+ sion="5.0.3";uses:="javax.swing,org.pentaho.reporting.libraries.base.
+ versioning",org.pentaho.reporting.libraries.pixie.wmf;version="5.0.3"
+ ,org.pentaho.reporting.libraries.pixie.wmf.bitmap;version="5.0.3";use
  s:="org.pentaho.reporting.libraries.pixie.wmf",org.pentaho.reporting.
- libraries.pixie.wmf.records;version="5.0.2";uses:="org.pentaho.report
+ libraries.pixie.wmf.records;version="5.0.3";uses:="org.pentaho.report
  ing.libraries.pixie.wmf",org.pentaho.reporting.libraries.repository;v
- ersion="5.0.2";uses:="org.pentaho.reporting.libraries.base.boot,org.p
+ ersion="5.0.3";uses:="org.pentaho.reporting.libraries.base.boot,org.p
  entaho.reporting.libraries.base.config,org.pentaho.reporting.librarie
  s.base.versioning",org.pentaho.reporting.libraries.repository.dummy;v
- ersion="5.0.2";uses:="org.pentaho.reporting.libraries.repository",org
- .pentaho.reporting.libraries.repository.email;version="5.0.2";uses:="
+ ersion="5.0.3";uses:="org.pentaho.reporting.libraries.repository",org
+ .pentaho.reporting.libraries.repository.email;version="5.0.3";uses:="
  javax.mail,javax.mail.internet,org.pentaho.reporting.libraries.reposi
- tory",org.pentaho.reporting.libraries.repository.file;version="5.0.2"
+ tory",org.pentaho.reporting.libraries.repository.file;version="5.0.3"
  ;uses:="org.pentaho.reporting.libraries.repository",org.pentaho.repor
- ting.libraries.repository.stream;version="5.0.2";uses:="org.pentaho.r
+ ting.libraries.repository.stream;version="5.0.3";uses:="org.pentaho.r
  eporting.libraries.repository",org.pentaho.reporting.libraries.reposi
- tory.zip;version="5.0.2";uses:="org.pentaho.reporting.libraries.repos
+ tory.zip;version="5.0.3";uses:="org.pentaho.reporting.libraries.repos
  itory",org.pentaho.reporting.libraries.repository.zipreader;version="
- 5.0.2";uses:="org.pentaho.reporting.libraries.repository",org.pentaho
- .reporting.libraries.repository.zipwriter;version="5.0.2";uses:="org.
+ 5.0.3";uses:="org.pentaho.reporting.libraries.repository",org.pentaho
+ .reporting.libraries.repository.zipwriter;version="5.0.3";uses:="org.
  pentaho.reporting.libraries.repository",org.pentaho.reporting.librari
- es.resourceloader;version="5.0.2";uses:="org.pentaho.reporting.librar
+ es.resourceloader;version="5.0.3";uses:="org.pentaho.reporting.librar
  ies.base.boot,org.pentaho.reporting.libraries.base.config,org.pentaho
  .reporting.libraries.base.versioning,org.pentaho.reporting.libraries.
  resourceloader.cache",org.pentaho.reporting.libraries.resourceloader.
- cache;version="5.0.2";uses:="org.pentaho.reporting.libraries.resource
+ cache;version="5.0.3";uses:="org.pentaho.reporting.libraries.resource
  loader",org.pentaho.reporting.libraries.resourceloader.factory;versio
- n="5.0.2";uses:="org.pentaho.reporting.libraries.resourceloader",org.
+ n="5.0.3";uses:="org.pentaho.reporting.libraries.resourceloader",org.
  pentaho.reporting.libraries.resourceloader.factory.drawable;version="
- 5.0.2";uses:="org.pentaho.reporting.libraries.resourceloader,org.pent
+ 5.0.3";uses:="org.pentaho.reporting.libraries.resourceloader,org.pent
  aho.reporting.libraries.resourceloader.factory",org.pentaho.reporting
- .libraries.resourceloader.factory.image;version="5.0.2";uses:="org.pe
+ .libraries.resourceloader.factory.image;version="5.0.3";uses:="org.pe
  ntaho.reporting.libraries.resourceloader,org.pentaho.reporting.librar
  ies.resourceloader.factory",org.pentaho.reporting.libraries.resourcel
- oader.factory.property;version="5.0.2";uses:="org.pentaho.reporting.l
+ oader.factory.property;version="5.0.3";uses:="org.pentaho.reporting.l
  ibraries.resourceloader",org.pentaho.reporting.libraries.resourceload
- er.loader;version="5.0.2";uses:="org.pentaho.reporting.libraries.reso
+ er.loader;version="5.0.3";uses:="org.pentaho.reporting.libraries.reso
  urceloader",org.pentaho.reporting.libraries.resourceloader.loader.fil
- e;version="5.0.2";uses:="org.pentaho.reporting.libraries.resourceload
+ e;version="5.0.3";uses:="org.pentaho.reporting.libraries.resourceload
  er,org.pentaho.reporting.libraries.resourceloader.loader",org.pentaho
- .reporting.libraries.resourceloader.loader.raw;version="5.0.2";uses:=
+ .reporting.libraries.resourceloader.loader.raw;version="5.0.3";uses:=
  "org.pentaho.reporting.libraries.resourceloader",org.pentaho.reportin
- g.libraries.resourceloader.loader.resource;version="5.0.2";uses:="org
+ g.libraries.resourceloader.loader.resource;version="5.0.3";uses:="org
  .pentaho.reporting.libraries.resourceloader,org.pentaho.reporting.lib
  raries.resourceloader.loader",org.pentaho.reporting.libraries.resourc
- eloader.loader.zip;version="5.0.2";uses:="org.pentaho.reporting.libra
+ eloader.loader.zip;version="5.0.3";uses:="org.pentaho.reporting.libra
  ries.resourceloader,org.pentaho.reporting.libraries.resourceloader.lo
  ader",org.pentaho.reporting.libraries.resourceloader.modules.cache.eh
- cache;version="5.0.2";uses:="net.sf.ehcache,org.pentaho.reporting.lib
+ cache;version="5.0.3";uses:="net.sf.ehcache,org.pentaho.reporting.lib
  raries.base.boot,org.pentaho.reporting.libraries.resourceloader,org.p
  entaho.reporting.libraries.resourceloader.cache",org.pentaho.reportin
- g.libraries.resourceloader.modules.factory.imageio;version="5.0.2";us
+ g.libraries.resourceloader.modules.factory.imageio;version="5.0.3";us
  es:="org.pentaho.reporting.libraries.base.boot,org.pentaho.reporting.
  libraries.resourceloader,org.pentaho.reporting.libraries.resourceload
  er.factory",org.pentaho.reporting.libraries.resourceloader.modules.fa
- ctory.svg;version="5.0.2";uses:="org.apache.batik.bridge,org.apache.b
+ ctory.svg;version="5.0.3";uses:="org.apache.batik.bridge,org.apache.b
  atik.gvt,org.apache.batik.util,org.pentaho.reporting.libraries.base.b
  oot,org.pentaho.reporting.libraries.resourceloader,org.pentaho.report
  ing.libraries.resourceloader.factory",org.pentaho.reporting.libraries
- .resourceloader.modules.factory.wmf;version="5.0.2";uses:="org.pentah
+ .resourceloader.modules.factory.wmf;version="5.0.3";uses:="org.pentah
  o.reporting.libraries.base.boot,org.pentaho.reporting.libraries.resou
  rceloader,org.pentaho.reporting.libraries.resourceloader.factory",org
- .pentaho.reporting.libraries.serializer;version="5.0.2";uses:="org.pe
+ .pentaho.reporting.libraries.serializer;version="5.0.3";uses:="org.pe
  ntaho.reporting.libraries.base.boot,org.pentaho.reporting.libraries.b
  ase.config,org.pentaho.reporting.libraries.base.versioning",org.penta
- ho.reporting.libraries.serializer.methods;version="5.0.2";uses:="org.
+ ho.reporting.libraries.serializer.methods;version="5.0.3";uses:="org.
  pentaho.reporting.libraries.serializer",org.pentaho.reporting.librari
- es.xmlns;version="5.0.2";uses:="org.pentaho.reporting.libraries.base.
+ es.xmlns;version="5.0.3";uses:="org.pentaho.reporting.libraries.base.
  boot,org.pentaho.reporting.libraries.base.config,org.pentaho.reportin
  g.libraries.base.versioning",org.pentaho.reporting.libraries.xmlns.co
- mmon;version="5.0.2";uses:="org.pentaho.reporting.libraries.xmlns.par
+ mmon;version="5.0.3";uses:="org.pentaho.reporting.libraries.xmlns.par
  ser,org.xml.sax",org.pentaho.reporting.libraries.xmlns.parser;version
- ="5.0.2";uses:="javax.xml.parsers,org.apache.commons.logging,org.pent
+ ="5.0.3";uses:="javax.xml.parsers,org.apache.commons.logging,org.pent
  aho.reporting.libraries.base.config,org.pentaho.reporting.libraries.r
  esourceloader,org.w3c.dom,org.xml.sax,org.xml.sax.ext,org.xml.sax.hel
- pers",org.pentaho.reporting.libraries.xmlns.writer;version="5.0.2";us
+ pers",org.pentaho.reporting.libraries.xmlns.writer;version="5.0.3";us
  es:="org.pentaho.reporting.libraries.base.config,org.pentaho.reportin
- g.libraries.xmlns.common",org.w3c.flute.parser;version="5.0.2";uses:=
- "org.w3c.css.sac",org.w3c.flute.parser.selectors;version="5.0.2";uses
- :="org.w3c.css.sac",org.w3c.flute.util;version="5.0.2"
+ g.libraries.xmlns.common",org.w3c.flute.parser;version="5.0.3";uses:=
+ "org.w3c.css.sac",org.w3c.flute.parser.selectors;version="5.0.3";uses
+ :="org.w3c.css.sac",org.w3c.flute.util;version="5.0.3"
 Implementation-Title: Pentaho Reporting Libraries Uber Bundle
 Implementation-ProductID: pdi-ce
-Implementation-Version: 5.0.2
+Implementation-Version: 5.0.3
 Built-By: Mduduzi
 Tool: Bundlor 1.0.0.RELEASE
 Created-By: Apache Maven
 Implementation-Vendor: Pentaho Corporation
 Build-Jdk: 1.6.0_45
-Bundle-Version: 5.0.2
+Bundle-Version: 5.0.3
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-reporting-librar
  ies-all

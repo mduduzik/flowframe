@@ -15,7 +15,7 @@
         <repository>
             <id>pdi</id>
             <name>pdi</name>
-            <url>http://repository.pentaho.org/artifactory/repo/pentaho/pentaho-pdi-platform-plugin/5.0.2/</url>
+            <url>http://repository.pentaho.org/artifactory/repo/pentaho/pentaho-pdi-platform-plugin/5.0.3/</url>
         </repository>
         <repository>
             <id>pentaho_artifactory</id>
@@ -33,5 +33,9 @@
     <modules>
         <module>kettle-all</module>
         <module>pentaho-reporting-engine</module>
+        <module>kettle-vfs-osgi</module>
+        <module>pentaho-connections</module>
+        <module>pentaho-cwm</module>
+        <module>pentaho-metadata</module>
     </modules>
 </project>

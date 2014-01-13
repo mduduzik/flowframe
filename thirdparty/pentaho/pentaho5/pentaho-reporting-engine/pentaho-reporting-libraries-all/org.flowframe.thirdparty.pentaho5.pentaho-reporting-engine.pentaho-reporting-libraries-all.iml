@@ -11,18 +11,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: pentaho-library:libbase:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libdocbundle:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libfonts:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libformat:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libformula:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libloader:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:librepository:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libserializer:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libxml:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libswing:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:flute:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: pentaho-library:libpixie:5.0.2" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libbase:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libdocbundle:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libfonts:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libformat:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libformula:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libloader:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:librepository:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libserializer:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libxml:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libswing:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:flute:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-library:libpixie:5.0.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />

@@ -1,9 +1,9 @@
 Bundle-SymbolicName: org.flowframe.thirdparty.kettle-vfs-20100924
 Bundle-ManifestVersion: 2
-Bundle-Version: 5.0.2
+Bundle-Version: 5.0.3
 Bundle-Name: org.flowframe.thirdparty.kettle-vfs-20100924
 Implementation-Title: Pentaho VFS
-Implementation-Version: 5.0.2
+Implementation-Version: 5.0.3
 Specification-Version: 1
 Implementation-Vendor: Pentaho Corporation
 Implementation-ProductID: pdi-ce

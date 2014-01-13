@@ -12,7 +12,7 @@
     <version>${wrapped.version}</version>
     <artifactId>org.flowframe.thirdparty.pentaho5.kettle-all</artifactId>
     <properties>
-        <wrapped.version>5.0.2</wrapped.version>
+        <wrapped.version>5.0.3</wrapped.version>
     </properties>
 
     <dependencies>
@@ -25,6 +25,11 @@
         <dependency>
             <groupId>pentaho-kettle</groupId>
             <artifactId>kettle-engine</artifactId>
+            <version>${wrapped.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>kettle5-log4j-plugin</artifactId>
             <version>${wrapped.version}</version>
         </dependency>
         <dependency>
