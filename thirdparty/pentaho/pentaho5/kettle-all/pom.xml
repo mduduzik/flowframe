@@ -37,7 +37,12 @@
             <artifactId>metastore</artifactId>
             <version>${wrapped.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.2</version>
+            <classifier>sources</classifier>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -57,7 +62,7 @@
         <dependency>
             <groupId>org.flowframe</groupId>
             <artifactId>org.flowframe.thirdparty.kettle-vfs-20100924-osgi</artifactId>
-            <version>4.4.0</version>
+            <version>5.0.3</version>
         </dependency>
     </dependencies>
 
@@ -79,6 +84,7 @@
                                 <includes>
                                     <include>pentaho-kettle:kettle-core</include>
                                     <include>pentaho-kettle:kettle-engine</include>
+                                    <include>pentaho-kettle:kettle5-log4j-plugin</include>
                                     <include>pentaho:metastore</include>
                                 </includes>
                             </artifactSet>
