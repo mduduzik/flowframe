@@ -4,9 +4,6 @@
     <facet type="Osmorc" name="OSGi">
       <configuration manifestGenerationMode="Manually" manifestLocation="src/main/resources/META-INF/MANIFEST.MF" jarfileLocation="org.flowframe.thirdparty.com.google.protobuf-2.4.1.jar" outputPathType="OsgiOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="" bundleSymbolicName="org.flowframe.org.flowframe.thirdparty.com.google.protobuf" bundleVersion="1.0.0" ignoreFilePattern="" useProjectDefaultManifestFileLocation="false" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
         <additionalProperties>
-          <property key="Bundle-Description" value="This bundle simply wraps com.google.protobuf.jar for use as an OSGI bundle." />
-          <property key="Bundle-Vendor" value="Apache Felix Project" />
-          <property key="Bundle-DocURL" value="http://felix.apache.org/" />
           <property key="-include" value="src/main/resources/META-INF/MANIFEST.MF" />
           <property key="Bundle-Name" value="org.flowframe.org.flowframe.thirdparty.com.google.protobuf" />
           <property key="Include-Resource" value="META-INF/MANIFEST.MF=$MODULE_DIR$/src/main/resources/META-INF/MANIFEST.MF" />

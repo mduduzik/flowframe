@@ -3,84 +3,44 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>org.flowframe.thirdparty.pentaho</artifactId>
+        <artifactId>org.flowframe.thirdparty.pentaho5</artifactId>
         <groupId>org.flowframe</groupId>
         <version>0.0.1</version>
         <relativePath>..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kettle-engine</artifactId>
-    <version>4.4.0</version>
+    <version>5.0.3</version>
     <properties>
-        <wrapped.version>4.4.0</wrapped.version>
+        <wrapped.version>5.0.3</wrapped.version>
     </properties>
 
 
     <dependencies>
         <!-- Libs : kettle -->
         <dependency>
-            <groupId>com.pentaho</groupId>
+            <groupId>pentaho-kettle</groupId>
             <artifactId>kettle-engine</artifactId>
             <version>${wrapped.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.pentaho</groupId>
+            <groupId>pentaho-kettle</groupId>
             <artifactId>kettle-core</artifactId>
             <version>${wrapped.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>secondstring</groupId>
-                    <artifactId>secondstring</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>jug-lgpl</groupId>
-                    <artifactId>jug-lgpl</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>secondstring</groupId>
-                    <artifactId>secondstring</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>jug-lgpl</groupId>
-                    <artifactId>jug-lgpl</artifactId>
-                </exclusion>
-            </exclusions>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>secondstring</groupId>
-                    <artifactId>secondstring</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>jug-lgpl</groupId>
-                    <artifactId>jug-lgpl</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.15</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>secondstring</groupId>
-                    <artifactId>secondstring</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>jug-lgpl</groupId>
-                    <artifactId>jug-lgpl</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -100,7 +60,7 @@
                             <!-- <createSourcesJar>true</createSourcesJar> -->
                             <artifactSet>
                                 <includes>
-                                    <include>com.pentaho:kettle-engine</include>
+                                    <include>pentaho-kettle:kettle-engine</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
@@ -122,6 +82,7 @@
                             <outputPath>${basedir}/src/main/resources</outputPath>
                             <!-- used to properly set-up versions for system packages -->
                             <osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
+                            <outputPath>${basedir}/src/main/resources</outputPath>
                         </configuration>
                     </execution>
                     <execution>
@@ -135,6 +96,7 @@
                             <outputPath>${project.build.directory}/${project.build.finalName}.${project.packaging}</outputPath>
                             <!-- used to properly set-up versions for system packages -->
                             <osgiProfilePath>${basedir}/../../../java6-server.profile</osgiProfilePath>
+                            <outputPath>${basedir}/src/main/resources</outputPath>
                         </configuration>
                     </execution>
                 </executions>

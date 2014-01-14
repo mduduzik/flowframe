@@ -10,8 +10,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: de.odysseus.staxon:staxon:1.2" level="project" />
-    <orderEntry type="library" name="Maven: de.odysseus.staxon:staxon-jackson:1.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.0.6" level="project" />
+    <orderEntry type="library" name="Maven: de.odysseus.staxon:staxon-gson:1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />
