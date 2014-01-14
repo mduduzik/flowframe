@@ -23,6 +23,7 @@
 package org.pentaho.di.www;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.encryption.Encr;
 import org.pentaho.di.core.exception.KettleException;
@@ -167,9 +168,9 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CartePluginI
                 String record;
                 for (KettleLoggingEvent event : logEvents) {
                     if (logEvents.size() == 1 || stringBuffer.length() == 0)
-                        stringBuffer.append("[" + (index++) + ",\"" + encodeJson(new Date(event.getTimeStamp()).toString()) + "\",\"" + encodeJson(event.getMessage().toString()) + "\"]");
+                        stringBuffer.append("[" + (index++) + ",\"" + StringEscapeUtils.escapeHtml(new Date(event.getTimeStamp()).toString()) + "\",\"" +  StringEscapeUtils.escapeHtml(event.getMessage().toString()) + "\"]");
                     else
-                        stringBuffer.append(",[" + (index++) + ",\"" + encodeJson(new Date(event.getTimeStamp()).toString()) + "\",\"" + encodeJson(event.getMessage().toString()) + "\"]");
+                        stringBuffer.append(",[" + (index++) + ",\"" + StringEscapeUtils.escapeHtml(new Date(event.getTimeStamp()).toString()) + "\",\"" +  StringEscapeUtils.escapeHtml(event.getMessage().toString()) + "\"]");
                 }
                 String logText = "{\"records\":[" + stringBuffer.toString() + "]}";
 
@@ -315,6 +316,8 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CartePluginI
         message = message.replaceAll("\"", "%22");
         message = message.replaceAll("'", "%27");
         message = message.replaceAll("\\\\", "%5C");
+        message = message.replaceAll("#", "%23");
+
         return message;
     }
 
