@@ -259,7 +259,12 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		deleteFolderById(Long.toString(fdlr.getFolderId()));
 	}
 
-	@Override
+    @Override
+    public boolean isFolderEmpty(String folderId) throws Exception {
+        return false;
+    }
+
+    @Override
 	public List<FileEntry> getFileEntries(String folderId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
@@ -689,7 +694,12 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return fe;
 	}
 
-	@Override
+    @Override
+    public void moveFileEntryById(String fileEntryId, String folderId) throws Exception {
+
+    }
+
+    @Override
 	public Folder provideFolderForEntity(EntityType entityType, Long entityId) throws Exception {
 		String recordTypeFolderName = entityType.getEntityJavaSimpleType();
 		if (recordTypeFolderName.endsWith("s"))

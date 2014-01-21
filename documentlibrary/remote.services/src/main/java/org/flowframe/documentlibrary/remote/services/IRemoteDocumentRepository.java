@@ -54,8 +54,10 @@ public interface IRemoteDocumentRepository {
 	public FileEntry getFileEntryById(String fileEntryId)  throws Exception;
 	
 	public FileEntry getFileEntryByTitle(String parentFolderId, String title)  throws Exception;
-	
-	public 	InputStream getFileAsStream(String fileEntryId, String version) throws Exception;
+
+    public void moveFileEntryById(String fileEntryId, String folderId) throws Exception;
+
+    public 	InputStream getFileAsStream(String fileEntryId, String version) throws Exception;
 	
 	public 	String getFileAsURL(String fileEntryId, String version) throws Exception;
 	

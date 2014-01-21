@@ -24,6 +24,14 @@
     <file type="web" url="file://$PROJECT_DIR$/reporting/jasper/web.services" />
   </component>
   <component name="IdProvider" IDEtalkID="29F4991F0E195EEBD0F6CCADE40F6322" />
+  <component name="IvyIDEA.ProjectSettings">
+    <option name="artifactTypeSettings">
+      <ArtifactTypeSettings />
+    </option>
+    <option name="propertiesSettings">
+      <PropertiesSettings />
+    </option>
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

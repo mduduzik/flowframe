@@ -56,7 +56,7 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CartePluginI
 
     private static final long serialVersionUID = -5879219287669847357L;
 
-    public static final String CONTEXT_PATH = "/kettle/executeTrans";
+    public static final String CONTEXT_PATH = "/kettle/executeTransAndWaitForCompletion";
 
     public ExecuteTransServlet() {
     }
@@ -82,8 +82,6 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CartePluginI
         String passOption = Encr.decryptPasswordOptionallyEncrypted(request.getParameter("pass"));
         String transOption = request.getParameter("trans");
         String levelOption = request.getParameter("level");
-        boolean resturnstatus = (request.getParameter("resturnstatus") != null)?"Y".equalsIgnoreCase(request.getParameter("resturnstatus")):false;
-        boolean waitForCompletion = (request.getParameter("waitforcompletion") != null)?"Y".equalsIgnoreCase(request.getParameter("waitforcompletion")):true;
 
         int startLineNr = Const.toInt(request.getParameter("from"), 0);
 
@@ -155,91 +153,68 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CartePluginI
             trans.setServletRequest(request);
 
             try {
-                if (!waitForCompletion) {
-                    executeTrans(trans);
-                    SlaveServerTransStatus sstatus = new SlaveServerTransStatus(trans.getName(), carteObjectId, Trans.STRING_PREPARING);
-                    try {
-                        out.println(sstatus.getXML());
-                    } catch (KettleException e) {
-                        throw new ServletException("Unable to get the transformation status in XML format", e);
+                // Execute the transformation...
+                //
+                executeTrans(trans);
+
+
+                //gather status
+                CarteObjectEntry entry = new CarteObjectEntry(transMeta.getName(), carteObjectId);
+                String status = trans.getStatus();
+                int lastLineNr = KettleLogStore.getLastBufferLineNr();
+                List<KettleLoggingEvent> logEvents = KettleLogStore.getAppender().getLogBufferFromTo(trans.getLogChannel().getLogChannelId(), false, startLineNr, lastLineNr);
+                StringBuffer stringBuffer = new StringBuffer(10000);
+                int index = startLineNr;
+                String record;
+                for (KettleLoggingEvent event : logEvents) {
+                    if (logEvents.size() == 1 || stringBuffer.length() == 0)
+                        stringBuffer.append("[" + (index++) + ",\"" + StringEscapeUtils.escapeHtml(new Date(event.getTimeStamp()).toString()) + "\",\"" +  StringEscapeUtils.escapeHtml(event.getMessage().toString()) + "\"]");
+                    else
+                        stringBuffer.append(",[" + (index++) + ",\"" + StringEscapeUtils.escapeHtml(new Date(event.getTimeStamp()).toString()) + "\",\"" +  StringEscapeUtils.escapeHtml(event.getMessage().toString()) + "\"]");
+                }
+                String logText = "{\"records\":[" + stringBuffer.toString() + "]}";
+
+                response.setContentType("text/xml");
+                response.setCharacterEncoding(Const.XML_ENCODING);
+                out.print(XMLHandler.getXMLHeader(Const.XML_ENCODING));
+
+                SlaveServerTransStatus transStatus = new SlaveServerTransStatus(transMeta.getName(), entry.getId(), status);
+                transStatus.setFirstLoggingLineNr(startLineNr);
+                transStatus.setLastLoggingLineNr(lastLineNr);
+
+                for (int i = 0; i < trans.nrSteps(); i++) {
+                    StepInterface baseStep = trans.getRunThread(i);
+                    if ((baseStep.isRunning()) || baseStep.getStatus() != BaseStepData.StepExecutionStatus.STATUS_EMPTY) {
+                        StepStatus stepStatus = new StepStatus(baseStep);
+                        transStatus.getStepStatusList().add(stepStatus);
                     }
                 }
-                else {
-                    // Execute the transformation...
-                    //
-                    executeTransAndWaitForCompletion(trans);
 
+                // The log can be quite large at times, we are going to put a base64 encoding around a compressed stream
+                // of bytes to handle this one.
 
-                    //gather status
-                    CarteObjectEntry entry = new CarteObjectEntry(transMeta.getName(), carteObjectId);
-                    if (resturnstatus) {
-                        SlaveServerTransStatus sstatus = new SlaveServerTransStatus(entry.getName(), entry.getId(), trans.getStatus());
-                        // Send the status back as XML
-                        //
-                        try {
-                            out.println(sstatus.getXML());
-                        } catch (KettleException e) {
-                            throw new ServletException("Unable to get the transformation status in XML format", e);
-                        }
-                    }
-                    else {
-                        String status = trans.getStatus();
-                        int lastLineNr = KettleLogStore.getLastBufferLineNr();
-                        List<KettleLoggingEvent> logEvents = KettleLogStore.getAppender().getLogBufferFromTo(trans.getLogChannel().getLogChannelId(), false, startLineNr, lastLineNr);
-                        StringBuffer stringBuffer = new StringBuffer(10000);
-                        int index = startLineNr;
-                        String record;
-                        for (KettleLoggingEvent event : logEvents) {
-                            if (logEvents.size() == 1 || stringBuffer.length() == 0)
-                                stringBuffer.append("[" + (index++) + ",\"" + StringEscapeUtils.escapeHtml(new Date(event.getTimeStamp()).toString()) + "\",\"" +  StringEscapeUtils.escapeHtml(event.getMessage().toString()) + "\"]");
-                            else
-                                stringBuffer.append(",[" + (index++) + ",\"" + StringEscapeUtils.escapeHtml(new Date(event.getTimeStamp()).toString()) + "\",\"" +  StringEscapeUtils.escapeHtml(event.getMessage().toString()) + "\"]");
-                        }
-                        String logText = "{\"records\":[" + stringBuffer.toString() + "]}";
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                GZIPOutputStream gzos = new GZIPOutputStream(baos);
+                gzos.write(logText.getBytes());
+                gzos.close();
 
-                        response.setContentType("text/xml");
-                        response.setCharacterEncoding(Const.XML_ENCODING);
-                        out.print(XMLHandler.getXMLHeader(Const.XML_ENCODING));
+                String loggingString = new String(Base64.encodeBase64(baos.toByteArray()));
+                transStatus.setLoggingString(loggingString);
 
-                        SlaveServerTransStatus transStatus = new SlaveServerTransStatus(transMeta.getName(), entry.getId(), status);
-                        transStatus.setFirstLoggingLineNr(startLineNr);
-                        transStatus.setLastLoggingLineNr(lastLineNr);
+                // Also set the result object...
+                //
+                transStatus.setResult(trans.getResult());
 
-                        for (int i = 0; i < trans.nrSteps(); i++) {
-                            StepInterface baseStep = trans.getRunThread(i);
-                            if ((baseStep.isRunning()) || baseStep.getStatus() != BaseStepData.StepExecutionStatus.STATUS_EMPTY) {
-                                StepStatus stepStatus = new StepStatus(baseStep);
-                                transStatus.getStepStatusList().add(stepStatus);
-                            }
-                        }
+                // Is the transformation paused?
+                //
+                transStatus.setPaused(trans.isPaused());
 
-                        // The log can be quite large at times, we are going to put a base64 encoding around a compressed stream
-                        // of bytes to handle this one.
-
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        GZIPOutputStream gzos = new GZIPOutputStream(baos);
-                        gzos.write(logText.getBytes());
-                        gzos.close();
-
-                        String loggingString = new String(Base64.encodeBase64(baos.toByteArray()));
-                        transStatus.setLoggingString(loggingString);
-
-                        // Also set the result object...
-                        //
-                        transStatus.setResult(trans.getResult());
-
-                        // Is the transformation paused?
-                        //
-                        transStatus.setPaused(trans.isPaused());
-
-                        // Send the result back as XML
-                        //
-                        try {
-                            out.println(transStatus.getXML());
-                        } catch (KettleException e) {
-                            throw new ServletException("Unable to get the transformation status in XML format", e);
-                        }
-                    }
+                // Send the result back as XML
+                //
+                try {
+                    out.println(transStatus.getXML());
+                } catch (KettleException e) {
+                    throw new ServletException("Unable to get the transformation status in XML format", e);
                 }
                 out.flush();
 
@@ -321,11 +296,6 @@ public class ExecuteTransServlet extends BaseHttpServlet implements CartePluginI
     }
 
     protected void executeTrans(Trans trans) throws KettleException {
-        trans.prepareExecution(null);
-        trans.startThreads();
-    }
-
-    protected void executeTransAndWaitForCompletion(Trans trans) throws KettleException {
         trans.prepareExecution(null);
         trans.startThreads();
         trans.waitUntilFinished();

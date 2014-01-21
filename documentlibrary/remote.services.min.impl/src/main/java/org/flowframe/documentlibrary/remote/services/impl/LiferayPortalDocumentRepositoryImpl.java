@@ -106,7 +106,16 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	@Override
 	public void init() {
 		initProperties();
-		initialized = true;
+
+        //Ping
+        try {
+            if (!pingDLServer())
+                throw new IllegalArgumentException("DocRepo not ping'able");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error ping'ing DocRepo");
+        }
+
+        initialized = true;
 	}
 	
 
@@ -136,6 +145,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		// auth cache
 		BasicScheme basicAuth = new BasicScheme();
 		authCache.put(targetHost, basicAuth);
+
 	}
 
 	@Override
@@ -211,6 +221,35 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 		return fldr;
 	}
+
+    public boolean pingDLServer() throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws//company/get-company-by-id");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("companyId ", companyId));
+
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("pingDLServer Res:[" + response + "]");
+
+        if (resp.getStatusLine().getStatusCode() != 200) {
+            return false;
+        }
+        else
+            return true;
+    }
 
 	@Override
 	public Folder getFolderByName(String parentFolderId, String name) throws Exception {
@@ -374,6 +413,35 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 
 		return fe;
 	}
+
+    @Override
+    public void moveFileEntryById(String fileEntryId, String folderId) throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlapp/move-file-entry");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("fileEntryId", fileEntryId));
+        params.add(new BasicNameValuePair("newFolderId", folderId));
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println("moveFileEntryById Status:[" + resp.getStatusLine() + "]");
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("moveFileEntryById Res:[" + response + "]");
+
+        if (StringUtil.contains(response, "Exception", "")) {
+            throw new IllegalArgumentException("Error moving file "+fileEntryId+" to Folder "+folderId+": "+response);
+        }
+    }
 
 	@Override
 	public InputStream getFileAsStream(String fileEntryId, String version) throws Exception {
