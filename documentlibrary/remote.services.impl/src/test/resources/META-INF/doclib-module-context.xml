@@ -33,5 +33,5 @@
 		EntityManager will be auto-injected due to @PersistenceContext.
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
-	<bean id="lplDocLibService" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl"/>
+	<bean id="lplDocLibService" class="org.flowframe.documentlibrary.remote.services.impl.min.LiferayPortalDocumentRepositoryImpl"/>
 </beans>

@@ -1,4 +1,4 @@
-package org.flowframe.documentlibrary.remote.services.impl;
+package org.flowframe.documentlibrary.remote.services.impl.min;
 
 import flexjson.JSONDeserializer;
 import flexjson.ObjectBinder;
@@ -36,7 +36,6 @@ import org.flowframe.kernel.common.utils.StringUtil;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayInputStream;
@@ -52,7 +51,6 @@ import java.util.Map;
 import java.util.Properties;
 
 @Transactional
-@Service
 public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepository {
 
 	//@PersistenceContext
@@ -530,7 +528,9 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
         return null;
 	}
 
-	public static Properties loadLiferayProperties() {
+
+
+    public static Properties loadLiferayProperties() {
 		if (!liferayProperties.isEmpty()) {
 			return liferayProperties;
 		}
@@ -640,22 +640,29 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		HttpPost post = new HttpPost("/api/secure/jsonws/dlapp/update-file-entry");
 		MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 
-		final URL testfile = LiferayPortalDocumentRepositoryImpl.class.getResource(sourceFileName);// "/bol.pdf");
-		File file = null;
-		if (Validator.isNotNull(testfile)) {
-			file = new File(testfile.toURI());
-		} else {
-			file = new File(sourceFileName);
-			sourceFileName = title;
-		}
+        File file = null;
+        FileBody fb = null;
+        StringBody sb = null;
+        if (Validator.isNotNull(sourceFileName)) {
+            final URL testfile = LiferayPortalDocumentRepositoryImpl.class.getResource(sourceFileName);// "/bol.pdf");
+            if (Validator.isNotNull(testfile)) {
+                file = new File(testfile.toURI());
+            } else {
+                file = new File(sourceFileName);
+                sourceFileName = title;
+            }
+            fb = new FileBody(file, mimeType, sourceFileName);
+            sb = new StringBody(sourceFileName, Charset.forName("UTF-8"));
+        }
+
 
 		entity.addPart("fileEntryId", new StringBody(Long.toString(fileEntryId), Charset.forName("UTF-8")));
-		entity.addPart("sourceFileName", new StringBody(sourceFileName, Charset.forName("UTF-8")));
+		entity.addPart("sourceFileName", sb);
 		entity.addPart("mimeType ", new StringBody(mimeType, Charset.forName("UTF-8")));
 		entity.addPart("title", new StringBody(title, Charset.forName("UTF-8")));
 		entity.addPart("description", new StringBody(description, Charset.forName("UTF-8")));
 		entity.addPart("changeLog", new StringBody("", Charset.forName("UTF-8")));
-		entity.addPart("file", new FileBody(file, mimeType, sourceFileName));
+		entity.addPart("file", fb);
 		// entity.addPart("bytes", new
 		// ByteArrayBody("Test Content".getBytes(),mimeType,sourceFileName));
 		entity.addPart("majorVersion", new StringBody("false", Charset.forName("UTF-8")));
@@ -679,6 +686,47 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		}
 		return fe;
 	}
+
+    @Override
+    public FileEntry renameFileEntry(String fileEntryId, String title, String description)
+            throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlapp/update-file-entry");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+        params.add(new BasicNameValuePair("fileEntryId", fileEntryId));
+        params.add(new BasicNameValuePair("sourceFileName", ""));
+        params.add(new BasicNameValuePair("mimeType", ""));
+        params.add(new BasicNameValuePair("title", title));
+        params.add(new BasicNameValuePair("description", description));
+        params.add(new BasicNameValuePair("changeLog", ""));
+        params.add(new BasicNameValuePair("bytes", ""));
+        params.add(new BasicNameValuePair("majorVersion", "false"));
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("renameFileEntry Res:[" + response + "]");
+
+        FileEntry fe = null;
+        if (!StringUtil.contains(response, "com.liferay.portlet.documentlibrary.NoSuchFileEntryException", "")) {
+            JSONDeserializer<FileEntry> deserializer = new JSONDeserializer<FileEntry>();
+            fe = deserializer.deserialize(response, FileEntry.class);
+        }
+        return fe;
+    }
+
 
 	private FileEntry updateFileEntry(long fileEntryId, File sourceFile, String mimeType, String title, String description)
 			throws Exception {
@@ -814,6 +862,49 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		}
 		return fe;
 	}
+
+    @Override
+    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String newFilename) throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlfileentry/copy-file-entry");
+        MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+
+        entity.addPart("groupId", new StringBody(loginGroupId, Charset.forName("UTF-8")));
+        entity.addPart("repositoryId", new StringBody(repositoryId, Charset.forName("UTF-8")));
+        entity.addPart("destFolderId", new StringBody(destFolderId, Charset.forName("UTF-8")));
+        entity.addPart("fileEntryId ", new StringBody(originFileEntryId, Charset.forName("UTF-8")));
+        entity.addPart("serviceContext", new StringBody("{}", Charset.forName("UTF-8")));
+
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("addFileEntry Res:[" + response + "]");
+
+        FileEntry fe = null;
+        if (!StringUtil.contains(response, "com.liferay.portlet.documentlibrary.NoSuchFileEntryException", "")
+                && !StringUtil.contains(response, "com.liferay.portal.NoSuchRepositoryEntryException", "")) {
+            JSONDeserializer<FileEntry> deserializer = new JSONDeserializer<FileEntry>();
+            fe = deserializer.deserialize(response, FileEntry.class);
+        }
+
+        //--Rename
+        if (!fe.getTitle().equals(newFilename)) {
+            fe = renameFileEntry(Long.toString(fe.getFileEntryId()), newFilename, "Copied from FE ID("+originFileEntryId+")");
+        }
+
+
+        return fe;
+    }
 
 	@Override
 	public String getConxlogiFolderId() {

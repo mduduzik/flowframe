@@ -81,6 +81,10 @@ public interface IRemoteDocumentRepository {
 			String description) throws Exception;		
 	
 	public FileEntry deleteFileEntryById(String folderId, String fileEntryId)  throws Exception;
+
+    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String newFilename) throws Exception;
+
+    public FileEntry renameFileEntry(String fileEntryId, String title, String description) throws Exception;
 	
 	/**
 	 * 

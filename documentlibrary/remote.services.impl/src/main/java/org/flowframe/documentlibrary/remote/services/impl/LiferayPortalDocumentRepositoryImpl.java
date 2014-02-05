@@ -34,7 +34,6 @@ import org.flowframe.kernel.common.utils.StringUtil;
 import org.flowframe.kernel.common.utils.Validator;
 import org.flowframe.kernel.metamodel.dao.services.IEntityTypeDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -50,7 +49,6 @@ import java.util.List;
 import java.util.Properties;
 
 @Transactional
-@Service
 public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepository {
 
 	@PersistenceContext
@@ -365,7 +363,93 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 		return null;
 	}
 
-	public static Properties loadLiferayProperties() {
+    @Override
+    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String newFilename) throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlfileentry/copy-file-entry");
+        MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+
+        entity.addPart("groupId", new StringBody(loginGroupId, Charset.forName("UTF-8")));
+        entity.addPart("repositoryId", new StringBody(repositoryId, Charset.forName("UTF-8")));
+        entity.addPart("destFolderId", new StringBody(destFolderId, Charset.forName("UTF-8")));
+        entity.addPart("fileEntryId ", new StringBody(originFileEntryId, Charset.forName("UTF-8")));
+        entity.addPart("serviceContext", new StringBody("{}", Charset.forName("UTF-8")));
+
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("addFileEntry Res:[" + response + "]");
+
+        FileEntry fe = null;
+        if (!StringUtil.contains(response, "com.liferay.portlet.documentlibrary.NoSuchFileEntryException", "")
+                && !StringUtil.contains(response, "com.liferay.portal.NoSuchRepositoryEntryException", "")) {
+            JSONDeserializer<FileEntry> deserializer = new JSONDeserializer<FileEntry>();
+            fe = deserializer.deserialize(response, FileEntry.class);
+        }
+
+        //--Rename
+        if (!fe.getTitle().equals(newFilename)) {
+            fe = renameFileEntry(Long.toString(fe.getFileEntryId()), newFilename, "newFilename");
+        }
+
+
+        return fe;
+    }
+
+    @Override
+    public FileEntry renameFileEntry(String fileEntryId, String title, String description)
+            throws Exception {
+        // Add AuthCache to the execution context
+        BasicHttpContext ctx = new BasicHttpContext();
+        ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
+
+        HttpPost post = new HttpPost("/api/secure/jsonws/dlapp/update-file-entry");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+        params.add(new BasicNameValuePair("fileEntryId", fileEntryId));
+        params.add(new BasicNameValuePair("sourceFileName", null));
+        params.add(new BasicNameValuePair("mimeType ", null));
+        params.add(new BasicNameValuePair("title", title));
+        params.add(new BasicNameValuePair("description", description));
+        params.add(new BasicNameValuePair("changeLog", ""));
+        params.add(new BasicNameValuePair("bytes", null));
+        params.add(new BasicNameValuePair("majorVersion", "false"));
+        params.add(new BasicNameValuePair("serviceContext", "{}"));
+
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+        post.setEntity(entity);
+
+        post.setEntity(entity);
+
+        HttpResponse resp = httpclient.execute(targetHost, post, ctx);
+        System.out.println(resp.getStatusLine());
+
+        String response = null;
+        if (resp.getEntity() != null) {
+            response = EntityUtils.toString(resp.getEntity());
+        }
+        System.out.println("renameFileEntry Res:[" + response + "]");
+
+        FileEntry fe = null;
+        if (!StringUtil.contains(response, "com.liferay.portlet.documentlibrary.NoSuchFileEntryException", "")) {
+            JSONDeserializer<FileEntry> deserializer = new JSONDeserializer<FileEntry>();
+            fe = deserializer.deserialize(response, FileEntry.class);
+        }
+        return fe;
+    }
+
+
+    public static Properties loadLiferayProperties() {
 		if (!liferayProperties.isEmpty()) {
 			return liferayProperties;
 		}

@@ -1,11 +1,10 @@
 Manifest-Version: 1.0
-Export-Package: org.flowframe.documentlibrary.remote.services.impl;ver
- sion="0.0.1";uses:="org.flowframe.documentlibrary.remote.services,org
- .flowframe.kernel.common.mdm.domain,org.flowframe.kernel.common.mdm.d
- omain.documentlibrary,org.flowframe.kernel.common.mdm.domain.metamode
- l,org.flowframe.kernel.metamodel.dao.services,org.springframework.bea
- ns.factory.annotation,org.springframework.stereotype,org.springframew
- ork.transaction.annotation"
+Export-Package: org.flowframe.documentlibrary.remote.services.impl.min
+ ;version="0.0.1";uses:="org.flowframe.documentlibrary.remote.services
+ ,org.flowframe.kernel.common.mdm.domain,org.flowframe.kernel.common.m
+ dm.domain.documentlibrary,org.flowframe.kernel.common.mdm.domain.meta
+ model,org.flowframe.kernel.metamodel.dao.services,org.springframework
+ .beans.factory.annotation,org.springframework.transaction.annotation"
 Bundle-Vendor: ConX
 Bundle-Version: 0.0.1
 Tool: Bundlor 1.0.0.RELEASE

@@ -11,7 +11,7 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<bean id="docRepo" class="org.flowframe.documentlibrary.remote.services.impl.LiferayPortalDocumentRepositoryImpl" init-method="init">
+	<bean id="docRepo" class="org.flowframe.documentlibrary.remote.services.impl.min.LiferayPortalDocumentRepositoryImpl" init-method="init">
         <property name="repositoryId" value="10180"/>
         <property name="companyId" value="7080"/>
         <property name="fflogiFolderId" value="17603"/>
