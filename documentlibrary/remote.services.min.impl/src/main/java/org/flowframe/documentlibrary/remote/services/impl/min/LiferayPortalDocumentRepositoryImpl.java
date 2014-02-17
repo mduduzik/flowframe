@@ -45,10 +45,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 @Transactional
 public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepository {
@@ -413,7 +410,7 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	}
 
     @Override
-    public void moveFileEntryById(String fileEntryId, String folderId) throws Exception {
+    public FileEntry moveFileEntryById(String fileEntryId, String folderId) throws Exception {
         // Add AuthCache to the execution context
         BasicHttpContext ctx = new BasicHttpContext();
         ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);
@@ -439,6 +436,11 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
         if (StringUtil.contains(response, "Exception", "")) {
             throw new IllegalArgumentException("Error moving file "+fileEntryId+" to Folder "+folderId+": "+response);
         }
+
+        JSONDeserializer<FileEntry> deserializer = new JSONDeserializer<FileEntry>();
+        FileEntry fe = deserializer.deserialize(response, FileEntry.class);
+
+        return fe;
     }
 
 	@Override
@@ -864,7 +866,12 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	}
 
     @Override
-    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String newFilename) throws Exception {
+    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String originalFilename, String originalExt, String newFilename) throws Exception {
+        //Check for same filename
+        if (fileEntryExists(destFolderId,originalFilename)) {
+            FileEntry existingFE = getFileEntryByTitle(destFolderId, originalFilename);
+            renameFileEntry(Long.toString(existingFE.getFileEntryId()),originalFilename+"_renamed_"+System.currentTimeMillis()+"."+originalExt,"Renamed from "+originalFilename);
+        }
         // Add AuthCache to the execution context
         BasicHttpContext ctx = new BasicHttpContext();
         ctx.setAttribute(ClientContext.AUTH_CACHE, authCache);

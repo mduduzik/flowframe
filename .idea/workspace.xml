@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a8cb1f0-bb1d-4882-beee-5ca3cdc9bb2c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/tika/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepositoryMin.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-engine/src/main/java/org/pentaho/di/www/RunJobServlet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/tika/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/tika/template.mf" />
-      <change type="MOVED" beforePath="C:\dev\gitrepos\flowframe\documentlibrary\remote.services.min.impl\src\main\java\org\flowframe\documentlibrary\remote\services\impl\LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DBRepositoryWrapperImplTests-module-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DBRepositoryWrapperImplTests-module-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DocLibExplorerResourceTests-module-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/DocLibExplorerResourceTests-module-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/ExcelInputMetaTests-module-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/ExcelInputMetaTests-module-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/core/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/RepoConnection.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/core/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/RepoConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/RepoConnection.java" afterPath="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/src/main/java/org/flowframe/etl/pentaho/plugin/di/docrepo/RepoConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/TextFileInputMetaTests-module-context.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/test/resources/META-INF/TextFileInputMetaTests-module-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/repository.db/src/main/resources/applicationContext.xml" afterPath="$PROJECT_DIR$/etl/pentaho/repository.db/src/main/resources/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/webapp/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/etl/pentaho/server/snaps/core/src/main/webapp/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/resources/META-INF/doclib-module-context.xml" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/resources/META-INF/doclib-module-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/business.services.impl/src/test/resources/META-INF/documentlibrary-module-context.xml" afterPath="$PROJECT_DIR$/erp/app.contractmanagement/business.services.impl/src/test/resources/META-INF/documentlibrary-module-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/resources/META-INF/spring/module-context.xml" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/resources/META-INF/spring/module-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -78,6 +60,23 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" line="718" class="org.flowframe.documentlibrary.remote.services.impl.min.LiferayPortalDocumentRepositoryImpl" package="org.flowframe.documentlibrary.remote.services.impl.min">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -87,14 +86,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LiferayPortalDocumentRepositoryImpl.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LiferayPortalDocumentRepositoryImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="901" column="125" selection-start="37530" selection-end="37530" vertical-scroll-proportion="0.8707317" vertical-offset="14960" max-vertical-offset="18020">
+            <state line="50" column="76" selection-start="2336" selection-end="2336" vertical-scroll-proportion="-10.6" vertical-offset="585" max-vertical-offset="18105">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#37618#37619#0" expanded="true" />
-                <element signature="e#37646#37647#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,7 +100,7 @@
       <file leaf-file-name="ICarteJobService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/services/src/main/java/org/flowframe/etl/pentaho/server/carte/services/ICarteJobService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="36" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+            <state line="2" column="36" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="765">
               <folding />
             </state>
           </provider>
@@ -121,7 +118,7 @@
       <file leaf-file-name="IRemoteDocumentRepositoryMin.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepositoryMin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="72" selection-start="3756" selection-end="3756" vertical-scroll-proportion="0.0" vertical-offset="1112" max-vertical-offset="1581">
+            <state line="85" column="72" selection-start="3756" selection-end="3756" vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="1717">
               <folding />
             </state>
           </provider>
@@ -130,25 +127,7 @@
       <file leaf-file-name="LiferayPortalDocumentRepositoryImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="401" column="67" selection-start="16527" selection-end="16527" vertical-scroll-proportion="0.0" vertical-offset="5293" max-vertical-offset="14365">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="documentlibrary-module-context.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/business.services.impl/src/test/resources/META-INF/documentlibrary-module-context.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="14" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="323">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IEntityContainerProvider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kernel/eventmanagement/services/src/main/java/org/flowframe/kernel/jpa/container/services/IEntityContainerProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="24" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="272">
+            <state line="370" column="7" selection-start="14856" selection-end="14856" vertical-scroll-proportion="0.0" vertical-offset="5377" max-vertical-offset="14450">
               <folding />
             </state>
           </provider>
@@ -163,19 +142,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IRemoteDocumentRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
+      <file leaf-file-name="StandardFileSystemManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/impl/StandardFileSystemManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="123" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0" vertical-offset="1039" max-vertical-offset="1598">
+            <state line="136" column="19" selection-start="4707" selection-end="4707" vertical-scroll-proportion="0.0" vertical-offset="2312" max-vertical-offset="8500">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LiferayPortalDocumentRepositorySimpleTests.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/LiferayPortalDocumentRepositorySimpleTests.java">
+      <file leaf-file-name="FileObject.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/FileObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="13" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1683">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5933">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2278">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IRemoteDocumentRepository.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.35054347" vertical-offset="704" max-vertical-offset="1598">
               <folding />
             </state>
           </provider>
@@ -221,8 +218,8 @@
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepositoryMin.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" />
+        <option value="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
       </list>
     </option>
   </component>
@@ -240,49 +237,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.kernel.jpa.container.services" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.kernel.common.mdm.domain" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.erp.app.salesmanagement.domain" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.erp.app.contractmanagement" />
+          <option name="myItemId" value="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -310,35 +265,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.documentlibrary.remote.services.impl" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="org.flowframe.documentlibrary.remote.services" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.documentlibrary" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -349,7 +276,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2" />
+    <option name="x" value="-15" />
     <option name="y" value="-2" />
     <option name="width" value="1616" />
     <option name="height" value="876" />
@@ -380,7 +307,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -449,7 +375,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kettle-engine" />
+              <option name="myItemId" value="pentaho5" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -471,91 +397,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kettle-engine" />
+              <option name="myItemId" value="pentaho5" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kettle-engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kettle-engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="di" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
+              <option name="myItemId" value="kettle-all" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -612,188 +458,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.min.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.min.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="min" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.impl.config.fragment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -810,94 +474,13 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="remote.services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1292,15 +875,25 @@
       <workItem from="1391374067965" duration="3427000" />
       <workItem from="1391480276493" duration="6549000" />
       <workItem from="1391541817768" duration="369000" />
-      <workItem from="1391542220696" duration="13666000" />
+      <workItem from="1391542220696" duration="14134000" />
+      <workItem from="1391784664621" duration="596000" />
+      <workItem from="1391859124251" duration="1301000" />
+      <workItem from="1392041691111" duration="562000" />
+      <workItem from="1392059333782" duration="595000" />
+      <workItem from="1392072145394" duration="592000" />
+      <workItem from="1392074376866" duration="1930000" />
+      <workItem from="1392156889829" duration="102000" />
+      <workItem from="1392157191774" duration="596000" />
+      <workItem from="1392210091826" duration="1819000" />
+      <workItem from="1392387678064" duration="4502000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100693000" />
+    <option name="totallyTimeSpent" value="113756000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="-2" width="1616" height="876" extended-state="1" />
+    <frame x="-15" y="-2" width="1616" height="876" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1316,24 +909,24 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30364373" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30364373" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16734143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40137932" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.240625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16734143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1358,21 +951,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ffdi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1081" column="18" selection-start="37481" selection-end="37481" vertical-scroll-proportion="0.0" vertical-offset="18085" max-vertical-offset="21029" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/db/src/main/java/org/flowframe/etl/pentaho/server/repository/db/repository/DBRepositoryWrapperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="391" column="71" selection-start="17324" selection-end="17324" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="7191" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/domain/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/domain/src/main/java/org/flowframe/erp/app/contractmanagement/domain/service/ServiceProvisionGroup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="13" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="510" />
@@ -1527,23 +1105,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/WEB-INF/module-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/resources/META-INF/spring/module-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="918">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="918" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portal/remote.services.impl/src/main/resources/META-INF/spring/module-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1606" selection-end="2145" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="884">
-          <folding />
-        </state>
+        <state line="37" column="0" selection-start="1606" selection-end="2145" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="884" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/pom.xml">
@@ -1648,37 +1220,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="63" selection-start="12671" selection-end="12671" vertical-scroll-proportion="0.0" vertical-offset="4624" max-vertical-offset="17731">
-          <folding />
-        </state>
+        <state line="272" column="63" selection-start="12671" selection-end="12671" vertical-scroll-proportion="0.0" vertical-offset="4624" max-vertical-offset="17731" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/LiferayPortalDocumentRepositorySimpleTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="1360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/JobMetaResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="36" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="2720">
-          <folding />
-        </state>
+        <state line="27" column="13" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="1360" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kernel/eventmanagement/services/src/main/java/org/flowframe/kernel/jpa/container/services/IEntityContainerProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="24" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding />
-        </state>
+        <state line="2" column="24" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/business.services.impl/src/test/resources/META-INF/documentlibrary-module-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="14" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="323">
-          <folding />
-        </state>
+        <state line="12" column="14" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="323" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/pom.xml">
@@ -1702,28 +1259,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
+    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/JobMetaResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="123" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0" vertical-offset="1039" max-vertical-offset="1598">
+        <state line="8" column="36" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="2720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/impl/StandardFileSystemManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="19" selection-start="4707" selection-end="4707" vertical-scroll-proportion="0.0" vertical-offset="1714" max-vertical-offset="8126">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/FileObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5882">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2278">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="401" column="67" selection-start="16527" selection-end="16527" vertical-scroll-proportion="0.0" vertical-offset="5293" max-vertical-offset="14365">
+        <state line="370" column="7" selection-start="14856" selection-end="14856" vertical-scroll-proportion="0.0" vertical-offset="5377" max-vertical-offset="14450">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="901" column="125" selection-start="37530" selection-end="37530" vertical-scroll-proportion="0.8707317" vertical-offset="14960" max-vertical-offset="18020">
+        <state line="50" column="76" selection-start="2336" selection-end="2336" vertical-scroll-proportion="-10.6" vertical-offset="585" max-vertical-offset="18105">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#37618#37619#0" expanded="true" />
-            <element signature="e#37646#37647#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.35054347" vertical-offset="704" max-vertical-offset="1598">
+          <folding />
         </state>
       </provider>
     </entry>

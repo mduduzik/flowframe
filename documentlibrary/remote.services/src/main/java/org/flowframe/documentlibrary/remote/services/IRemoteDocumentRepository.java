@@ -55,7 +55,7 @@ public interface IRemoteDocumentRepository {
 	
 	public FileEntry getFileEntryByTitle(String parentFolderId, String title)  throws Exception;
 
-    public void moveFileEntryById(String fileEntryId, String folderId) throws Exception;
+    public FileEntry moveFileEntryById(String fileEntryId, String folderId) throws Exception;
 
     public 	InputStream getFileAsStream(String fileEntryId, String version) throws Exception;
 	
@@ -82,7 +82,7 @@ public interface IRemoteDocumentRepository {
 	
 	public FileEntry deleteFileEntryById(String folderId, String fileEntryId)  throws Exception;
 
-    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String newFilename) throws Exception;
+    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String originalFilename, String originalExt, String newFilename) throws Exception;
 
     public FileEntry renameFileEntry(String fileEntryId, String title, String description) throws Exception;
 	

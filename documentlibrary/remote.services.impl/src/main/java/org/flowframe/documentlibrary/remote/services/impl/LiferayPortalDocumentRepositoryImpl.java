@@ -364,6 +364,11 @@ public class LiferayPortalDocumentRepositoryImpl implements IRemoteDocumentRepos
 	}
 
     @Override
+    public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String originalFilename, String originalExt, String newFilename) throws Exception {
+        return null;
+    }
+
+    @Override
     public FileEntry copyFileEntryById(String destFolderId, String originFileEntryId, String newFilename) throws Exception {
         // Add AuthCache to the execution context
         BasicHttpContext ctx = new BasicHttpContext();
