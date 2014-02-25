@@ -1,0 +1,4 @@
+Bundle-SymbolicName: jexcelapi-jxl
+Bundle-Name: jexcelapi-jxl
+Bundle-ManifestVersion: 2
+Bundle-Version: 2.6.10

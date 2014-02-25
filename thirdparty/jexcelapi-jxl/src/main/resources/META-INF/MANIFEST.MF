@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Export-Package: jxl;version="2.6.10";uses:="jxl.biff,jxl.biff.formula,
+ jxl.common,jxl.format,jxl.read.biff,jxl.write",jxl.biff;version="2.6.
+ 10";uses:="jxl,jxl.biff.drawing,jxl.biff.formula,jxl.common,jxl.forma
+ t,jxl.read.biff,jxl.write,jxl.write.biff",jxl.biff.drawing;version="2
+ .6.10";uses:="jxl,jxl.biff,jxl.common,jxl.read.biff,jxl.write.biff",j
+ xl.biff.formula;version="2.6.10";uses:="jxl,jxl.biff,jxl.read.biff",j
+ xl.common;version="2.6.10",jxl.common.log;version="2.6.10";uses:="jxl
+ .common",jxl.demo;version="2.6.10";uses:="jxl,jxl.read.biff,jxl.write
+ ",jxl.format;version="2.6.10",jxl.read.biff;version="2.6.10";uses:="j
+ xl,jxl.biff,jxl.biff.drawing,jxl.biff.formula,jxl.format",jxl.write;v
+ ersion="2.6.10";uses:="jxl,jxl.biff,jxl.biff.drawing,jxl.format,jxl.w
+ rite.biff",jxl.write.biff;version="2.6.10";uses:="jxl,jxl.biff,jxl.bi
+ ff.drawing,jxl.biff.formula,jxl.format,jxl.read.biff,jxl.write"
+Build-Jdk: 1.6.0_45
+Built-By: Mduduzi
+Bundle-Version: 2.6.10
+Tool: Bundlor 1.0.0.RELEASE
+Bundle-Name: jexcelapi-jxl
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: jexcelapi-jxl
+Archiver-Version: Plexus Archiver
+

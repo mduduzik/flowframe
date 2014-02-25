@@ -82,6 +82,9 @@
         <option value="$PROJECT_DIR$/etl/pentaho/plugin/core-ui/pom.xml" />
         <option value="$PROJECT_DIR$/portal/remote.services.min.impl/pom.xml" />
         <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/google/guava/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jasperreports/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

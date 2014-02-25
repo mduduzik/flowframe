@@ -155,6 +155,7 @@
     <file url="file://$PROJECT_DIR$/thirdparty/flexjson" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/google" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/google/guava" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/gwt-console-server-integration" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hibernate-commons-annotations" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hibernate-core" charset="UTF-8" />
@@ -165,6 +166,8 @@
     <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160/core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160/webdav" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jasperreports" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/javassist" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/javax.security.jacc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jboss-errai-all" charset="UTF-8" />
@@ -186,6 +189,7 @@
     <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-spring3" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jersey/spring-bridge" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jetty-servlet-tester" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jflex" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/json20090211" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/knowledge-api" charset="UTF-8" />
@@ -200,6 +204,14 @@
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-engine" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-metadata" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/pentaho-reporting-engine-all" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libbase" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libdocbundle" charset="UTF-8" />

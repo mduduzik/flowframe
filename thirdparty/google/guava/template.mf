@@ -15,5 +15,5 @@ Bundle-Vendor: JBoss by Red Hat
 Bundle-Version: 11.0.2
 Bundle-ManifestVersion: 2
 Bundle-Description: Google :: Guava
-Import-Package: javax.annotation.concurrent;version="0"
+Import-Package: javax.annotation;version="[1.1,1.2)",javax.annotation.concurrent;version="[1.1,1.2)"
 

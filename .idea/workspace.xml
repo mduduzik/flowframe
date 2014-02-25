@@ -2,9 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a8cb1f0-bb1d-4882-beee-5ca3cdc9bb2c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" afterPath="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/org.flowframe.thirdparty.dynamic-reports.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi (2).iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/org.flowframe.thirdparty.pentaho5.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/org.flowframe.thirdparty.pentaho5.kettle-all.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-metadata/org.flowframe.thirdparty.pentaho5.pentaho-metadata.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/pentaho-reporting-engine-all/org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.pentaho-reporting-engine-all.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/org.flowframe.thirdparty.jasperreports.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" afterPath="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/org.flowframe.thirdparty.jexcelapi-jxl.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/google/guava/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/thirdparty/google/guava/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/google/guava/template.mf" afterPath="$PROJECT_DIR$/thirdparty/google/guava/template.mf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -60,7 +79,7 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" line="718" class="org.flowframe.documentlibrary.remote.services.impl.min.LiferayPortalDocumentRepositoryImpl" package="org.flowframe.documentlibrary.remote.services.impl.min">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -86,93 +105,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LiferayPortalDocumentRepositoryImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="76" selection-start="2336" selection-end="2336" vertical-scroll-proportion="-10.6" vertical-offset="585" max-vertical-offset="18105">
+            <state line="12" column="31" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="0" selection-start="3306" selection-end="3504" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1377">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1393299435106" expanded="true" signature="528:3288" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="546:3275" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="567:1460" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="755:1438" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="787:1408" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="866:946" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="986:1375" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="1481:3256" placeholder="..." />
+                <marker date="1393299435106" expanded="true" signature="3325:3503" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ICarteJobService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/services/src/main/java/org/flowframe/etl/pentaho/server/carte/services/ICarteJobService.java">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/itext/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="36" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="765">
+            <state line="12" column="0" selection-start="510" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="2057">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/pom.xml">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="143" column="0" selection-start="4709" selection-end="4835" vertical-scroll-proportion="0.0" vertical-offset="2366" max-vertical-offset="3910">
+            <state line="14" column="21" selection-start="600" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IRemoteDocumentRepositoryMin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepositoryMin.java">
+      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="72" selection-start="3756" selection-end="3756" vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="1717">
+            <state line="4" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LiferayPortalDocumentRepositoryImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
+      <file leaf-file-name="MANIFEST.MF" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/src/main/resources/META-INF/MANIFEST.MF">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="370" column="7" selection-start="14856" selection-end="14856" vertical-scroll-proportion="0.0" vertical-offset="5377" max-vertical-offset="14450">
+            <state line="10" column="51" selection-start="712" selection-end="712" vertical-scroll-proportion="0.38901603" vertical-offset="0" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobMetaResource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/JobMetaResource.java">
+      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="36" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="2720">
+            <state line="18" column="43" selection-start="658" selection-end="658" vertical-scroll-proportion="-1.3" vertical-offset="241" max-vertical-offset="1224">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StandardFileSystemManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/impl/StandardFileSystemManager.java">
+      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/template.mf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="19" selection-start="4707" selection-end="4707" vertical-scroll-proportion="0.0" vertical-offset="2312" max-vertical-offset="8500">
+            <state line="13" column="21" selection-start="516" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="2941">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/FileObject.java">
+      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdparty/jabsorb/template.mf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5933">
+            <state line="4" column="0" selection-start="123" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/pom.xml">
+        <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2278">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IRemoteDocumentRepository.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.35054347" vertical-offset="704" max-vertical-offset="1598">
+            <state line="75" column="28" selection-start="741" selection-end="3484" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="1394">
               <folding />
             </state>
           </provider>
@@ -220,6 +247,12 @@
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
+        <option value="$PROJECT_DIR$/thirdparty/google/guava/template.mf" />
+        <option value="$PROJECT_DIR$/thirdparty/jasperreports/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf" />
+        <option value="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf" />
       </list>
     </option>
   </component>
@@ -238,6 +271,30 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.flowframe.thirdparty.jexcelapi-jxl" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.flowframe.thirdparty.jexcelapi-jxl" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -276,9 +333,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-15" />
+    <option name="x" value="-11" />
     <option name="y" value="-2" />
-    <option name="width" value="1616" />
+    <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -307,6 +364,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -353,7 +411,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
+              <option name="myItemId" value="json-path" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -371,11 +429,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho5" />
+              <option name="myItemId" value="jexcelapi-jxl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -393,71 +447,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pentaho5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kettle-all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.min.impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services.min.impl" />
+              <option name="myItemId" value="jexcelapi-jxl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -469,17 +477,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="documentlibrary" />
+              <option name="myItemId" value="thirdparty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="remote.services" />
+              <option name="myItemId" value="itext" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -504,11 +511,11 @@
       <recent name="org.flowframe.documentlibrary.remote.services" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\thirdparty\jexcelapi-jxl" />
+      <recent name="C:\dev\gitrepos\flowframe\thirdparty\jasperreports\dynamic-reports" />
+      <recent name="C:\dev\gitrepos\flowframe\thirdparty\jasperreports" />
       <recent name="C:\dev\gitrepos\flowframe\kernel\jpa\lob.jpacontainer.minimal" />
       <recent name="C:\dev\gitrepos\flowframe\kernel\jpa" />
-      <recent name="C:\dev\gitrepos\flowframe\portal\remote.services.min.impl" />
-      <recent name="C:\dev\gitrepos\flowframe\portal" />
-      <recent name="C:\dev\gitrepos\flowframe\etl\editor\oryx\frontend\src\main\webapp\scripts\ETL\repository" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.flowframe.documentlibrary.remote.services.impl.min" />
@@ -885,15 +892,18 @@
       <workItem from="1392156889829" duration="102000" />
       <workItem from="1392157191774" duration="596000" />
       <workItem from="1392210091826" duration="1819000" />
-      <workItem from="1392387678064" duration="4502000" />
+      <workItem from="1392387678064" duration="6769000" />
+      <workItem from="1392810891317" duration="6245000" />
+      <workItem from="1393182893329" duration="566000" />
+      <workItem from="1393274566117" duration="6105000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113756000" />
+    <option name="totallyTimeSpent" value="128939000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-15" y="-2" width="1616" height="876" extended-state="1" />
+    <frame x="-11" y="-2" width="1612" height="876" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -909,24 +919,24 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30364373" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39097744" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31848854" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36032388" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40137932" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.240625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1829574" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16734143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -951,148 +961,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/domain/src/main/java/org/flowframe/erp/app/contractmanagement/domain/service/ServiceProvisionGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="510" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/domain/src/main/java/org/flowframe/erp/app/contractmanagement/domain/CustomSubscriptionPlan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/domain/src/main/java/org/flowframe/erp/app/contractmanagement/domain/SubscriptionPlan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="13" selection-start="979" selection-end="979" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/domain/src/main/java/org/flowframe/erp/app/contractmanagement/domain/service/ServiceProvision.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="18" selection-start="450" selection-end="466" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision</OriginalElement>
-          <nodes>
-            <node x="302.6875" y="312.0">org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision</node>
-            <node x="22.25" y="78.0">org.flowframe.kernel.common.mdm.domain.BaseEntity</node>
-            <node x="223.4375" y="156.0">javax.persistence.Table</node>
-            <node x="412.4375" y="156.0">javax.persistence.Entity</node>
-            <node x="107.0" y="0.0">javax.persistence.MappedSuperclass</node>
-            <node x="0.0" y="0.0">java.io.Serializable</node>
-            <node x="64.4375" y="156.0">org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity</node>
-            <node x="303.4375" y="156.0">javax.persistence.Inheritance</node>
-            <node x="263.25" y="234.0">org.flowframe.erp.app.mdm.domain.product.Product</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="org.flowframe.kernel.common.mdm.domain.BaseEntity" target="javax.persistence.MappedSuperclass">
-              <point x="21.25" y="-14.0" />
-              <point x="86.0" y="53.0" />
-              <point x="137.75" y="53.0" />
-              <point x="-30.75" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.kernel.common.mdm.domain.BaseEntity" target="java.io.Serializable">
-              <point x="-21.25" y="-14.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.erp.app.mdm.domain.product.Product" target="org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity">
-              <point x="-26.625" y="-14.0" />
-              <point x="272.125" y="214.0" />
-              <point x="133.9375" y="214.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.erp.app.mdm.domain.product.Product" target="javax.persistence.Inheritance">
-              <point x="8.875" y="-14.0" />
-              <point x="307.625" y="204.0" />
-              <point x="347.9375" y="204.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity" target="javax.persistence.MappedSuperclass">
-              <point x="34.75" y="-14.0" />
-              <point x="168.6875" y="131.0" />
-              <point x="199.25" y="131.0" />
-              <point x="30.75" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.erp.app.mdm.domain.product.Product" target="javax.persistence.Entity">
-              <point x="26.625" y="-14.0" />
-              <point x="325.375" y="214.0" />
-              <point x="427.9375" y="214.0" />
-              <point x="-15.5" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision" target="org.flowframe.erp.app.mdm.domain.product.Product">
-              <point x="-28.0" y="-14.0" />
-              <point x="330.6875" y="287.0" />
-              <point x="298.75" y="287.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.kernel.common.mdm.domain.MultitenantBaseEntity" target="org.flowframe.kernel.common.mdm.domain.BaseEntity">
-              <point x="-34.75" y="-14.0" />
-              <point x="99.1875" y="131.0" />
-              <point x="64.75" y="131.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision" target="javax.persistence.Entity">
-              <point x="28.0" y="-14.0" />
-              <point x="386.6875" y="287.0" />
-              <point x="458.9375" y="287.0" />
-              <point x="15.5" y="14.0" />
-            </edge>
-            <edge source="org.flowframe.erp.app.mdm.domain.product.Product" target="javax.persistence.Table">
-              <point x="-8.875" y="-14.0" />
-              <point x="289.875" y="204.0" />
-              <point x="253.4375" y="204.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="238.0" y="158.0" />
-          <SelectedNodes>
-            <node>org.flowframe.erp.app.contractmanagement.domain.service.ServiceProvision</node>
-          </SelectedNodes>
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/java/org/oryxeditor/server/ETLEditorHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="385" column="1" selection-start="1237" selection-end="24733" vertical-scroll-proportion="0.0" vertical-offset="5642" max-vertical-offset="6307" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="2642" selection-end="2811" vertical-scroll-proportion="-15.24" vertical-offset="622" max-vertical-offset="8806" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared/src/main/java/org/flowframe/etl/pentaho/server/repository/util/ICustomRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="29" selection-start="419" selection-end="419" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2091" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/remote.services/src/main/java/org/flowframe/portal/remote/services/IPortalUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/remote.services/src/main/java/org/flowframe/portal/remote/services/IPortalOrganizationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="184" selection-end="184" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/remote.services.impl/src/main/java/org/flowframe/portal/remote/services/impl/LiferayPortalServicesImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="13" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="16847" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/remote.services.min.impl/src/main/java/org/flowframe/portal/remote/services/impl/LiferayPortalServicesImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="22" selection-start="3679" selection-end="3679" vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="18241" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/portal/remote.services.min.impl/template.mf">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="53" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884" />
@@ -1240,16 +1108,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="0" selection-start="4709" selection-end="4835" vertical-scroll-proportion="0.0" vertical-offset="2366" max-vertical-offset="3910">
-          <folding />
-        </state>
+        <state line="143" column="0" selection-start="4709" selection-end="4835" vertical-scroll-proportion="0.0" vertical-offset="2366" max-vertical-offset="3910" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/services/src/main/java/org/flowframe/etl/pentaho/server/carte/services/ICarteJobService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
+        <state line="2" column="36" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepositoryMin.java">
@@ -1287,25 +1151,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
+    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="370" column="7" selection-start="14856" selection-end="14856" vertical-scroll-proportion="0.0" vertical-offset="5377" max-vertical-offset="14450">
+        <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1734">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="76" selection-start="2336" selection-end="2336" vertical-scroll-proportion="-10.6" vertical-offset="585" max-vertical-offset="18105">
+        <state line="692" column="21" selection-start="27405" selection-end="27474" vertical-scroll-proportion="0.0" vertical-offset="11764" max-vertical-offset="18105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="32" selection-start="577" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="7" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="14450">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#5770#5785#0" expanded="false" />
+            <element signature="e#6642#6656#0" expanded="false" />
+            <element signature="e#7115#7130#0" expanded="false" />
+            <element signature="e#7812#7820#0" expanded="false" />
+            <element signature="e#8273#8288#0" expanded="false" />
+            <element signature="e#9070#9078#0" expanded="false" />
+            <element signature="e#9689#9704#0" expanded="false" />
+            <element signature="e#10993#11008#0" expanded="false" />
+            <element signature="e#11569#11580#0" expanded="false" />
+            <element signature="e#12010#12025#0" expanded="false" />
+            <element signature="e#16507#16518#0" expanded="false" />
+            <element signature="e#17247#17262#0" expanded="false" />
+            <element signature="e#18563#18574#0" expanded="false" />
+            <element signature="e#19424#19439#0" expanded="false" />
+            <element signature="e#20457#20472#0" expanded="false" />
+            <element signature="e#21128#21136#0" expanded="false" />
+            <element signature="e#24383#24394#0" expanded="false" />
+            <element signature="e#26439#26450#0" expanded="false" />
+            <element signature="e#28547#28558#0" expanded="false" />
+            <element signature="e#30931#30942#0" expanded="false" />
+            <element signature="e#31667#31682#0" expanded="false" />
+            <element signature="e#32587#32598#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
+    <entry file="file://$PROJECT_DIR$/thirdparty/google/gdata/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.35054347" vertical-offset="704" max-vertical-offset="1598">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="28" selection-start="741" selection-end="3484" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="1394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="31" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="21" selection-start="516" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="2941">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jabsorb/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="123" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="43" selection-start="658" selection-end="658" vertical-scroll-proportion="-1.3" vertical-offset="241" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="0" selection-start="3306" selection-end="3504" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1377">
+          <folding>
+            <marker date="1393299435106" expanded="true" signature="528:3288" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="546:3275" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="567:1460" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="755:1438" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="787:1408" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="866:946" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="986:1375" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="1481:3256" placeholder="..." />
+            <marker date="1393299435106" expanded="true" signature="3325:3503" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/itext/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="510" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="2057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="21" selection-start="600" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="51" selection-start="712" selection-end="712" vertical-scroll-proportion="0.38901603" vertical-offset="0" max-vertical-offset="510">
           <folding />
         </state>
       </provider>

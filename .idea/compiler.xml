@@ -106,6 +106,15 @@
         <module name="org.flowframe.scheduling.remote.services" />
         <module name="org.flowframe.scheduling.remote.services.impl" />
         <module name="org.flowframe.tests.common" />
+        <module name="org.flowframe.thirdparty.dynamic-reports" />
+        <module name="org.flowframe.thirdparty.guava" />
+        <module name="org.flowframe.thirdparty.jexcelapi-jxl" />
+        <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi (2)" />
+        <module name="org.flowframe.thirdparty.pentaho5.kettle-all" />
+        <module name="org.flowframe.thirdparty.pentaho5.pentaho-connections" />
+        <module name="org.flowframe.thirdparty.pentaho5.pentaho-cwm" />
+        <module name="org.flowframe.thirdparty.pentaho5.pentaho-metadata" />
+        <module name="org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.pentaho-reporting-engine-all" />
         <module name="remote.services.min.impl" />
         <module name="services" />
       </profile>
@@ -264,11 +273,13 @@
       <module name="org.flowframe.thirdparty.commons-math" target="1.6" />
       <module name="org.flowframe.thirdparty.drools-core" target="1.6" />
       <module name="org.flowframe.thirdparty.drools-persistence" target="1.6" />
+      <module name="org.flowframe.thirdparty.dynamic-reports" target="1.6" />
       <module name="org.flowframe.thirdparty.flexjson" target="1.6" />
       <module name="org.flowframe.thirdparty.google" target="1.6" />
       <module name="org.flowframe.thirdparty.grizzly-framework" target="1.6" />
       <module name="org.flowframe.thirdparty.grizzly-http" target="1.6" />
       <module name="org.flowframe.thirdparty.grizzly-http-server" target="1.6" />
+      <module name="org.flowframe.thirdparty.guava" target="1.6" />
       <module name="org.flowframe.thirdparty.gwt-console-rpc" target="1.6" />
       <module name="org.flowframe.thirdparty.gwt-console-server-integration" target="1.6" />
       <module name="org.flowframe.thirdparty.hibernate.annotations.commons" target="1.6" />
@@ -280,6 +291,7 @@
       <module name="org.flowframe.thirdparty.jackrabbit.version160" target="1.6" />
       <module name="org.flowframe.thirdparty.jackrabbit.version160.core" target="1.6" />
       <module name="org.flowframe.thirdparty.jackrabbit.version160.webdav" target="1.6" />
+      <module name="org.flowframe.thirdparty.jasperreports" target="1.6" />
       <module name="org.flowframe.thirdparty.javassist" target="1.6" />
       <module name="org.flowframe.thirdparty.javax.security.jacc" target="1.6" />
       <module name="org.flowframe.thirdparty.jboss-arrai-all" target="1.6" />
@@ -297,6 +309,7 @@
       <module name="org.flowframe.thirdparty.jersey.javax.inject" target="1.6" />
       <module name="org.flowframe.thirdparty.jersey.jersey-spring3" target="1.6" />
       <module name="org.flowframe.thirdparty.jetty-servlet-tester" target="1.6" />
+      <module name="org.flowframe.thirdparty.jexcelapi-jxl" target="1.6" />
       <module name="org.flowframe.thirdparty.jflex" target="1.6" />
       <module name="org.flowframe.thirdparty.json20090211" target="1.6" />
       <module name="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" target="1.6" />
