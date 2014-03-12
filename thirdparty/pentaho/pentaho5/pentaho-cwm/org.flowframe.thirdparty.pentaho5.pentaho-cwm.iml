@@ -11,6 +11,14 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: pentaho:pentaho-cwm:1.5.4" level="project" />
+    <orderEntry type="library" name="Maven: org.netbeans:jmi:200507110943" level="project" />
+    <orderEntry type="library" name="Maven: org.netbeans:jmiutils:200507110943" level="project" />
+    <orderEntry type="library" name="Maven: org.netbeans:mdrapi:200507110943" level="project" />
+    <orderEntry type="library" name="Maven: org.netbeans:mof:200507110943" level="project" />
+    <orderEntry type="library" name="Maven: org.netbeans:openide-util:200507110943" level="project" />
+    <orderEntry type="library" name="Maven: org.netbeans:nbmdr:200507110943-custom" level="project" />
+    <orderEntry type="library" name="Maven: org.andromda.thirdparty.jmi:jmi:20030918" level="project" />
   </component>
 </module>
 

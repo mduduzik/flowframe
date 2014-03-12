@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -9,7 +9,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin:vaadin:6.4.0" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
@@ -19,7 +18,6 @@
     <orderEntry type="library" name="Maven: org.springframework:org.springframework.asm:3.1.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:org.springframework.context:3.1.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:org.springframework.aop:3.1.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.aopalliance:com.springsource.org.aopalliance:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:org.springframework.expression:3.1.2.RELEASE" level="project" />
   </component>
 </module>

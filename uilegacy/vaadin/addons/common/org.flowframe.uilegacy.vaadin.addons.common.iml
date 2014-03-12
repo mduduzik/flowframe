@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="gwt" name="GWT">
-      <configuration>
-        <setting name="additionalCompilerParameters" value="-Xmx512M -Xss1024k" />
-        <setting name="gwtSdkUrl" value="file://$MAVEN_REPOSITORY$/com/google/gwt/gwt-dev/2.3.0/" />
-        <setting name="gwtSdkType" value="maven" />
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -19,6 +10,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.google.gwt:gwt-user:2.3.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.vaadin.addon:jpacontainer-addon-agpl-3.0:2.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.vaadin:vaadin:6.8.6" level="project" />
+    <orderEntry type="library" name="Maven: org.vaadin.addons:popupbutton:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.vaadin.addons:easyuploads:0.5.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.gwt:gwt-user:2.3.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.vaadin.addon:jpacontainer-addon-agpl-3.0:2.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.vaadin:vaadin:6.8.6" level="project" />

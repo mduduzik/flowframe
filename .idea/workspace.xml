@@ -1,29 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/testing/karaf/pom.xml" line="62" mnemonic="1" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4a8cb1f0-bb1d-4882-beee-5ca3cdc9bb2c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/org.flowframe.thirdparty.dynamic-reports.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/org.flowframe.thirdparty.kettle-vfs-20100924-osgi (2).iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/org.flowframe.thirdparty.pentaho5.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/org.flowframe.thirdparty.pentaho5.kettle-all.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-metadata/org.flowframe.thirdparty.pentaho5.pentaho-metadata.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/pentaho-reporting-engine-all/org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.pentaho-reporting-engine-all.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" afterPath="$PROJECT_DIR$/thirdparty/jasperreports/org.flowframe.thirdparty.jasperreports.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" afterPath="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/org.flowframe.thirdparty.jexcelapi-jxl.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/google/guava/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/thirdparty/google/guava/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/asm-all/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/asm-all/src/main/resources/META-INF/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/src/test/java/org/flowframe/testing/karaf/common/itesting/support/FFKarafTestSupport.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/src/test/java/org/flowframe/testing/karaf/common/itesting/support/FFKarafTestWatcher.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/src/main/resources/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/all.policy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/config.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/custom.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/distribution.info" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/equinox-debug.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/java.util.logging.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jmx.acl.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jmx.acl.java.lang.Memory.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jmx.acl.org.apache.karaf.bundle.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jmx.acl.org.apache.karaf.config.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jmx.acl.org.apache.karaf.security.jmx.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jmx.acl.osgi.compendium.cm.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/jre.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/keys.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/src/test/resources/etc/myconfig-test1.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.felix.fileinstall-deploy.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.bundle.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.config.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.feature.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.jaas.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.kar.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.shell.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.command.acl.system.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.features.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.features.obr.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.features.repos.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.jaas.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.kar.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.log.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.management.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.apache.karaf.shell.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.ops4j.pax.logging.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/src/test/resources/etc/org.ops4j.pax.logging.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/org.ops4j.pax.url.mvn.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/asm-all/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/regions-config.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/shell.init.script" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/startup.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/system.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/template.mf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/asm-all/template.mf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/template.mf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/template.mf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/test.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/support/src/test/resources/etc/user.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/karaf/common/src/test/resources/etc/users.properties" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/bpmserver.persistence/org.flowframe.bpm.jbpm.bpmserver.persistence.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/bpmserver/org.flowframe.bpm.jbpm.bpmserver.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/persistence.datasource/org.flowframe.bpm.jbpm.persistence.datasource.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/services/org.flowframe.bpm.jbpm.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/shared/org.flowframe.bpm.jbpm.shared.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/taskserver.human-task-core.fragment/org.flowframe.bpm.jbpm.taskserver.human-task-core.fragment.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/taskserver.jta.tm.fragment/org.flowframe.bpm.jbpm.taskserver.jta.tm.fragment.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/taskserver.persistence/org.flowframe.bpm.jbpm.taskserver.persistence.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/taskserver/org.flowframe.bpm.jbpm.taskserver.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services.impl/org.flowframe.bpm.jbpm.ui.pageflow.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services/org.flowframe.bpm.jbpm.ui.pageflow.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/vaadin/org.flowframe.bpm.jbpm.ui.pageflow.vaadin.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bpm/org.flowframe.bpm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/documentlibrary/org.flowframe.documentlibrary.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl/org.flowframe.documentlibrary.remote.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/documentlibrary/remote.services/org.flowframe.documentlibrary.remote.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ds/dao.services.impl/org.flowframe.ds.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ds/dao.services/org.flowframe.ds.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ds/domain/org.flowframe.ds.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ds/org.flowframe.ds.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/business.services.impl/org.flowframe.erp.app.contractmanagement.business.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/business.services/org.flowframe.erp.app.contractmanagement.business.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/dao.services.impl/org.flowframe.erp.app.contractmanagement.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/dao.services/org.flowframe.erp.app.contractmanagement.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/domain/org.flowframe.erp.app.contractmanagement.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.contractmanagement/org.flowframe.erp.app.contractmanagement.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.financialmanagement/dao.services.impl/org.flowframe.erp.app.financialmanagement.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.financialmanagement/dao.services/org.flowframe.erp.app.financialmanagement.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.financialmanagement/domain/org.flowframe.erp.app.financialmanagement.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.financialmanagement/org.flowframe.erp.app.financialmanagement.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.mdm/dao.services.impl/org.flowframe.erp.app.mdm.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.mdm/dao.services/org.flowframe.erp.app.mdm.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.mdm/domain/org.flowframe.erp.app.mdm.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.mdm/org.flowframe.erp.app.mdm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/app.salesmanagement/org.flowframe.erp.app.salesmanagement.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/org.flowframe.erp.integration.adaptors.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/remote.services/org.flowframe.erp.integration.adaptors.remote.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/datasource.mysql/org.flowframe.erp.integration.adaptors.stripe.datasource.mysql.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/domain/org.flowframe.erp.integration.adaptors.stripe.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/org.flowframe.erp.integration.adaptors.stripe.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl.config.fragment/org.flowframe.erp.integration.adaptors.stripe.service.impl.config.fragment.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/org.flowframe.erp.integration.adaptors.stripe.service.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.services/org.flowframe.erp.integration.adaptors.stripe.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.webhooks.service.impl/org.flowframe.erp.integration.adaptors.stripe.webhooks.service.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.webhooks.soap.client/org.flowframe.erp.integration.adaptors.stripe.webhooks.soap.client.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/integration/org.flowframe.erp.integration.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/org.flowframe.erp.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/remote.services.impl.config.fragment/org.flowframe.erp.remote.services.impl.config.fragment.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/remote.services.impl/org.flowframe.erp.remote.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erp/remote.services/org.flowframe.erp.remote.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/common.mdm/mdm.dao.services.impl/org.flowframe.kernel.common.mdm.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/common.mdm/mdm.dao.services/org.flowframe.kernel.common.mdm.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/common.mdm/mdm.domain/org.flowframe.kernel.common.mdm.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/common.mdm/org.flowframe.kernel.common.mdm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/common.utils/org.flowframe.kernel.common.utils.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/datasource/common/org.flowframe.kernel.datasource.common.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/datasource/org.flowframe.kernel.datasource.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/eventmanagement/domain/org.flowframe.kernel.eventmanagement.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/eventmanagement/org.flowframe.kernel.eventmanagement.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/eventmanagement/springdm.services.impl/org.flowframe.kernel.eventmanagement.springdm.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/jpa/jpa.container.services.impl/org.flowframe.kernel.jpa.container.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/jpa/jpa.container.services/org.flowframe.kernel.jpa.container.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/org.flowframe.kernel.jpa.lob.jpacontainer.springdm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/jpa/org.flowframe.kernel.jpa.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/json/org.flowframe.kernel.json.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/metamodel/dao.services.impl/org.flowframe.kernel.metamodel.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/metamodel/dao.services/org.flowframe.kernel.metamodel.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/metamodel/org.flowframe.kernel.metamodel.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/org.flowframe.kernel.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/services/org.flowframe.kernel.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kernel/servlet/org.flowframe.kernel.servlet.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/org.flowframe.toplevel.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/parent/org.flowframe.parent.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/permissions/permissions.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/portal/org.flowframe.portal.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/portal/remote.services.impl.config.fragment/org.flowframe.portal.remote.services.impl.config.fragment.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/portal/remote.services.impl/org.flowframe.portal.remote.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/portal/remote.services/org.flowframe.portal.remote.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/reporting/jasper/org.flowframe.reporting.jasper.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/reporting/jasper/web.services/org.flowframe.reporting.jasper.web.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/reporting/org.flowframe.reporting.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/reporting/remote.services/org.flowframe.reporting.remote.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scheduling/jobs.manager/org.flowframe.scheduling.jobs.manager.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scheduling/org.flowframe.scheduling.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scheduling/remote.services.impl/org.flowframe.scheduling.remote.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scheduling/remote.services/org.flowframe.scheduling.remote.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/common/org.flowframe.tests.common.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/org.flowframe.tests.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/asm/org.flowframe.thirdparty.asm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/bitronix212/org.flowframe.thirdparty.bitronix.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/com.mysql.jdbc/org.flowframe.thirdparty.com.mysql.jdbc.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/commons-compress/org.flowframe.thirdparty.commons-compress.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/commons-exec/org.flowframe.thirdparty.commons-exec.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/drools-core/org.flowframe.thirdparty.drools-core.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/drools-persistence/org.flowframe.thirdparty.drools-persistence.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/flexjson/org.flowframe.thirdparty.flexjson.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/google/com.google.protobuf/org.flowframe.thirdparty.com.google.protobuf.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/google/org.flowframe.thirdparty.google.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/gwt-console-server-integration/org.flowframe.thirdparty.gwt-console-server-integration.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/hibernate-commons-annotations/org.flowframe.thirdparty.hibernate.annotations.commons.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/hibernate-core/org.flowframe.thirdparty.hibernate.core.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/hibernate-entitymanager/org.flowframe.thirdparty.hibernate.entitymanager.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/hornetq-all/org.flowframe.thirdparty.hornetq.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/itext/org.flowframe.thirdparty.itext.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/javassist/org.flowframe.thirdparty.javassist.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/javax.security.jacc/org.flowframe.thirdparty.javax.security.jacc.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/jboss-errai-all/org.flowframe.thirdparty.jboss-arrai-all.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/jbpm-bam/org.flowframe.thirdparty.jbpm-bam.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/jbpm-human-task-core/org.flowframe.thirdparty.jbpm-human-task-core.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/jbpm-human-task-mina/org.flowframe.thirdparty.jbpm-human-task-mina.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa/org.flowframe.thirdparty.jbpm-persistence-jpa.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/jbpm-workitems/org.flowframe.thirdparty.jbpm-workitems.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/knowledge-api/org.flowframe.thirdparty.knowledge-api.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/knowledge-internal-api/org.flowframe.thirdparty.knowledge-internal-api.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/netty/org.flowframe.thirdparty.netty.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/org.flowframe.thirdparty.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/org.jboss.bpm.gwt-console-rpc/org.flowframe.thirdparty.gwt-console-rpc.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/org.jvnet.hyperjaxb3/org.flowframe.thirdparty.org.jvnet.hyperjaxb3.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/org.springframework.orm/org.flowframe.thirdparty.org.springframework.orm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/distribution/org.flowframe.thirdparty.pentaho.distribution.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/org.flowframe.thirdparty.pentaho.kettle-all.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/org.flowframe.thirdparty.pentaho5.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-metadata/org.flowframe.thirdparty.pentaho5.pentaho-metadata.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/pentaho-reporting-engine-all/org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.pentaho-reporting-engine-all.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-reporting-engine/pentaho-reporting-engine-all/src/main/resources/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libbase/org.flowframe.thirdparty.pentaho-library-libbase.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libdocbundle/org.flowframe.thirdparty.pentaho.libdocbundle.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libfonts/org.flowframe.thirdparty.pentaho.reporting.libfonts.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformat/org.flowframe.thirdparty.pentaho.reporting.libformat.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula-ui/org.flowframe.thirdparty.pentaho.reporting.libformula-ui.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula/org.flowframe.thirdparty.pentaho-library-libformula.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libloader/org.flowframe.thirdparty.pentaho.reporting.libloader.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libpixie/org.flowframe.thirdparty.pentaho.reporting.libpixie.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/librepository/org.flowframe.thirdparty.pentaho.reporting.librepository.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libserializer/org.flowframe.thirdparty.pentaho.reporting.libserializer.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing/org.flowframe.thirdparty.pentaho.reporting.libswing.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml/org.flowframe.thirdparty.pentaho.reporting.libxml.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/org.flowframe.thirdparty.pentaho.reporting.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library/org.flowframe.thirdparty.pentaho-reporting-engine-library.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/spring-vaadin/org.flowframe.thirdparty.spring-vaadin-integration.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/stripe-java/org.flowframe.thirdparty.stripe-java.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-contextmenu/org.flowframe.thirdparty.vaadin-addon-contextmenu.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-easyuploads/org.flowframe.thirdparty.vaadin-addon-easyuploads.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-jpacontainer-agpl-3.0/org.flowframe.thirdparty.vaadin-addon-jpacontainer-agpl-3.0.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/org.flowframe.thirdparty.org.vaadin.addons.mvp-customized.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-osgi/org.flowframe.thirdparty.org.vaadin.addons.mvp-customized-common-osgi.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-tests/org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.tests.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common/org.flowframe.thirdparty.org.vaadin.addons.mvp-common-customized.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-phakama/org.flowframe.thirdparty.vaadin.addons.mvp.phakama.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvplite-customized/common/org.flowframe.thirdparty.vaadin-addon-mvplite-customized-common.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvplite-customized/org.flowframe.thirdparty.vaadin-addon-mvplite-customized.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-mvplite-customized/osgi/org.flowframe.thirdparty.vaadin-addon-mvplite-customized-osgi.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-popup-button/org.flowframe.thirdparty.vaadin-addon-popup-button.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-portallayout/org.flowframe.thirdparty.vaadin-addon-portallayout.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-refresher/org.flowframe.thirdparty.vaadin-addon-refresher.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-tableexport/org.flowframe.thirdparty.vaadin-addon-tableexport.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin-addon-toolbar/org.flowframe.thirdparty.vaadin-addon-toolbar.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thirdparty/vaadin686/org.flowframe.thirdparty.vaadin.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tm/jta/org.flowframe.tm.jta.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tm/org.flowframe.tm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ui/org.flowframe.ui.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ui/pageflow/org.flowframe.ui.pageflow.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ui/pageflow/services/org.flowframe.ui.pageflow.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ui/pageflow/vaadin/org.flowframe.ui.pageflow.vaadin.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/component/dao.services.impl/org.flowframe.uilegacy.component.dao.services.impl.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/component/dao.services/org.flowframe.uilegacy.component.dao.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/component/domain/org.flowframe.uilegacy.component.domain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/component/org.flowframe.uilegacy.component.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/manager/org.flowframe.uilegacy.manager.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/org.flowframe.uilegacy.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/services/org.flowframe.uilegacy.services.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/addons/common/org.flowframe.uilegacy.vaadin.addons.common.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/addons/org.flowframe.uilegacy.vaadin.addons.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/common.editors/org.flowframe.uilegacy.vaadin.common.editors.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/common/org.flowframe.uilegacy.vaadin.common.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/editors/org.flowframe.uilegacy.vaadin.editors.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/expressions/org.flowframe.uilegacy.vaadin.expressions.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/factory/org.flowframe.uilegacy.vaadin.factory.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/forms/org.flowframe.uilegacy.vaadin.forms.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uilegacy/vaadin/org.flowframe.uilegacy.vaadin.iml" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\gitrepos\flowframe\thirdparty\pentaho\pentaho5\pentaho-reporting-engine\pentaho-reporting-libraries-all\src\main\resources\META-INF\MANIFEST.MF" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/bpm/jbpm/org.flowframe.bpm.jbpm.iml" afterPath="$PROJECT_DIR$/testing/org.flowframe.testing.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/bpm/jbpm/ui/org.flowframe.bpm.jbpm.ui.iml" afterPath="$PROJECT_DIR$/assemblies/karaf/org.flowframe.assemblies.karaf.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/org.flowframe.bpm.jbpm.ui.pageflow.iml" afterPath="$PROJECT_DIR$/thirdparty/asm-all/org.flowframe.thirdparty.asm-all.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/documentlibrary/remote.services.impl.config.fragment/org.flowframe.documentlibrary.remote.services.impl.config.fragment.iml" afterPath="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/org.flowframe.thirdparty.jersey.osgi-resource-locator.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/erp/app.salesmanagement/domain/org.flowframe.erp.app.salesmanagement.domain.iml" afterPath="$PROJECT_DIR$/testing/karaf/common/org.flowframe.testing.karaf.common.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/kernel/datasource/hsqldb/org.flowframe.kernel.datasource.hsqldb.iml" afterPath="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/org.flowframe.thirdparty.jersey.hk2-locator.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/kernel/eventmanagement/services/org.flowframe.kernel.eventmanagement.services.iml" afterPath="$PROJECT_DIR$/testing/karaf/org.flowframe.testing.karaf.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/org.flowframe.thirdparty.pentaho.iml" afterPath="$PROJECT_DIR$/assemblies/org.flowframe.assemblies.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/org.flowframe.thirdparty.pentaho5.kettle-all.iml" afterPath="$PROJECT_DIR$/testing/karaf/common/support/org.flowframe.testing.karaf.common.support.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/src/main/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/src/main/resources/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-connections/org.flowframe.thirdparty.pentaho5.pentaho-connections.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" afterPath="$PROJECT_DIR$/thirdparty/pentaho/pentaho5/pentaho-cwm/org.flowframe.thirdparty.pentaho5.pentaho-cwm.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thirdparty/google/guava/template.mf" afterPath="$PROJECT_DIR$/thirdparty/google/guava/template.mf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/org_flowframe_reporting_jasper_web_services_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/org_flowframe_reporting_jasper_web_services_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="org.flowframe.toplevel.iws" />
@@ -79,23 +324,6 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" line="718" class="org.flowframe.documentlibrary.remote.services.impl.min.LiferayPortalDocumentRepositoryImpl" package="org.flowframe.documentlibrary.remote.services.impl.min">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -106,100 +334,92 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/pom.xml">
+        <entry file="file://$PROJECT_DIR$/testing/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="31" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+            <state line="14" column="17" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="476">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml">
+        <entry file="file://$PROJECT_DIR$/testing/karaf/common/support/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="0" selection-start="3306" selection-end="3504" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1377">
+            <state line="105" column="21" selection-start="3965" selection-end="3965" vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="2176">
               <folding>
-                <marker date="1393299435106" expanded="true" signature="528:3288" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="546:3275" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="567:1460" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="755:1438" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="787:1408" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="866:946" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="986:1375" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="1481:3256" placeholder="..." />
-                <marker date="1393299435106" expanded="true" signature="3325:3503" placeholder="..." />
+                <marker date="1394648635923" expanded="true" signature="3537:3964" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/itext/pom.xml">
+      <file leaf-file-name="bootstrap-persistence.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/src/main/resources/bootstrapping/bootstrap-persistence.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="510" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="2057">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module-context.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/src/main/resources/META-INF/spring/module-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="115" column="62" selection-start="5642" selection-end="5642" vertical-scroll-proportion="0.0" vertical-offset="1910" max-vertical-offset="2363">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiConfigAwarePersistenceUnitManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/src/main/java/org/flowframe/kernel/jpa/multipu/MultiConfigAwarePersistenceUnitManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="61" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="3587">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml">
+        <entry file="file://$PROJECT_DIR$/assemblies/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="21" selection-start="600" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MANIFEST.MF" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/src/main/resources/META-INF/MANIFEST.MF">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="51" selection-start="712" selection-end="712" vertical-scroll-proportion="0.38901603" vertical-offset="0" max-vertical-offset="510">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="43" selection-start="658" selection-end="658" vertical-scroll-proportion="-1.3" vertical-offset="241" max-vertical-offset="1224">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/template.mf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="21" selection-start="516" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="2941">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.mf" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/jabsorb/template.mf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="123" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+            <state line="7" column="22" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="374">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/pom.xml">
+        <entry file="file://$PROJECT_DIR$/assemblies/karaf/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="28" selection-start="741" selection-end="3484" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="1394">
+            <state line="12" column="16" selection-start="517" selection-end="541" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="408">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assemblies/karaf/features/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="22" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="391">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assemblies/karaf/features/hibernate/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="29" selection-start="1137" selection-end="1137" vertical-scroll-proportion="1.3333334" vertical-offset="0" max-vertical-offset="1955">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="feature.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assemblies/karaf/features/hibernate/src/main/resources/feature/feature.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="89" column="0" selection-start="6698" selection-end="6698" vertical-scroll-proportion="0.0" vertical-offset="1203" max-vertical-offset="1615">
               <folding />
             </state>
           </provider>
@@ -218,9 +438,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/config.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/mvp/view/basecardview.js" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/lib/ext-2.0.2/ux/wiz/wiz-all-debug.js" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/scripts/ETL/presenter/datapresenter.js" />
         <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/DatabaseMetaResource.java" />
         <option value="$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/plugins/etl/metadata/dbconnection/dbconnectionpresenter.js" />
@@ -247,12 +464,31 @@
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java" />
-        <option value="$PROJECT_DIR$/thirdparty/google/guava/template.mf" />
         <option value="$PROJECT_DIR$/thirdparty/jasperreports/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf" />
         <option value="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml" />
         <option value="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/template.mf" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/src/main/resources/META-INF/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/template.mf" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-locator/src/main/resources/META-INF/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/thirdparty/asm-all/template.mf" />
+        <option value="$PROJECT_DIR$/thirdparty/asm-all/pom.xml" />
+        <option value="$PROJECT_DIR$/thirdparty/google/guava/template.mf" />
+        <option value="$PROJECT_DIR$/testing/karaf/common/support/src/test/java/org/flowframe/testing/karaf/common/itesting/support/AssembliesKarafTestWatcher.java" />
+        <option value="$PROJECT_DIR$/testing/karaf/common/support/src/test/java/org/flowframe/testing/karaf/common/itesting/support/FFKarafTestWatcher.java" />
+        <option value="$PROJECT_DIR$/testing/karaf/pom.xml" />
+        <option value="$PROJECT_DIR$/testing/karaf/common/pom.xml" />
+        <option value="$PROJECT_DIR$/testing/pom.xml" />
+        <option value="$PROJECT_DIR$/testing/karaf/common/support/pom.xml" />
+        <option value="$PROJECT_DIR$/assemblies/karaf/pom.xml" />
+        <option value="$PROJECT_DIR$/assemblies/pom.xml" />
+        <option value="$PROJECT_DIR$/assemblies/karaf/features/hibernate/src/main/resources/feature/feature.xml" />
+        <option value="$PROJECT_DIR$/assemblies/karaf/features/hibernate/pom.xml" />
+        <option value="$PROJECT_DIR$/assemblies/karaf/features/pom.xml" />
       </list>
     </option>
   </component>
@@ -262,6 +498,40 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.flowframe.thirdparty.pentaho5.pentaho-reporting-engine.pentaho-reporting-engine-all" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.flowframe.thirdparty.pentaho5.pentaho-cwm" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.flowframe.thirdparty.kettle-vfs-20100924-osgi" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -284,17 +554,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.thirdparty.jexcelapi-jxl" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.thirdparty.jexcelapi-jxl" />
+          <option name="myItemId" value="org.flowframe.thirdparty.itext" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -308,12 +568,8 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.documentlibrary.remote.services.min.impl" />
+          <option name="myItemId" value="org.flowframe.assemblies" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -322,7 +578,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="org.flowframe.documentlibrary.remote.services" />
+          <option name="myItemId" value="org.flowframe.assemblies" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -333,10 +589,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
-    <option name="y" value="-2" />
-    <option name="width" value="1612" />
-    <option name="height" value="876" />
+    <option name="width" value="1600" />
+    <option name="height" value="860" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -349,7 +603,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -364,6 +618,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -393,7 +648,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
+              <option name="myItemId" value="assemblies" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,29 +662,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
+              <option name="myItemId" value="assemblies" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="json-path" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jexcelapi-jxl" />
+              <option name="myItemId" value="karaf" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,85 +680,119 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
+              <option name="myItemId" value="assemblies" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jexcelapi-jxl" />
+              <option name="myItemId" value="karaf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assemblies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="karaf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hibernate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org.flowframe.toplevel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assemblies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="karaf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hibernate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org.flowframe.toplevel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flowframe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="itext" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
-    <property name="FullScreen" value="false" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.flowframe.documentlibrary.remote.services" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\gitrepos\flowframe\testing\karaf\common\support\src\test\resources" />
+      <recent name="C:\dev\gitrepos\flowframe\testing\karaf\common\support\src\test\java\org\flowframe\testing\karaf\common\itesting\support" />
+      <recent name="C:\dev\gitrepos\flowframe\thirdparty" />
+      <recent name="C:\dev\gitrepos\flowframe\thirdparty\jersey" />
       <recent name="C:\dev\gitrepos\flowframe\thirdparty\jexcelapi-jxl" />
-      <recent name="C:\dev\gitrepos\flowframe\thirdparty\jasperreports\dynamic-reports" />
-      <recent name="C:\dev\gitrepos\flowframe\thirdparty\jasperreports" />
-      <recent name="C:\dev\gitrepos\flowframe\kernel\jpa\lob.jpacontainer.minimal" />
-      <recent name="C:\dev\gitrepos\flowframe\kernel\jpa" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.flowframe.documentlibrary.remote.services.impl.min" />
     </key>
   </component>
   <component name="RunManager" selected="Spring dmServer.Virgo3.6.2.DEV">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails" singleton="true">
       <module name="" />
       <setting name="vmparams" value="" />
@@ -530,12 +801,6 @@
       <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <setting name="launchBrowser" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
@@ -571,17 +836,37 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" output_log_level="null" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browserFamily" value="FIREFOX" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
       <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -610,6 +895,34 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="com.intellij.dmserver.run.DMServerRunConfigurationType:id" factoryName="Spring dmServer (Local)" ALTERNATIVE_JRE_ENABLED="false">
@@ -730,54 +1043,6 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" output_log_level="null" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browserFamily" value="FIREFOX" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="Virgo3.6.2.DEV" type="com.intellij.dmserver.run.DMServerRunConfigurationType:id" factoryName="Spring dmServer (Local)" APPLICATION_SERVER_NAME="dmServer (3.6.2.RELEASE)" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -895,47 +1160,54 @@
       <workItem from="1392387678064" duration="6769000" />
       <workItem from="1392810891317" duration="6245000" />
       <workItem from="1393182893329" duration="566000" />
-      <workItem from="1393274566117" duration="6105000" />
+      <workItem from="1393274566117" duration="6107000" />
+      <workItem from="1393516875158" duration="3019000" />
+      <workItem from="1393545311508" duration="594000" />
+      <workItem from="1393636114504" duration="17421000" />
+      <workItem from="1394558874818" duration="639000" />
+      <workItem from="1394640316990" duration="30000" />
+      <workItem from="1394646702691" duration="5137000" />
+      <workItem from="1394668088142" duration="103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128939000" />
+    <option name="totallyTimeSpent" value="155884000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-2" width="1612" height="876" extended-state="1" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1600" height="860" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IvyIDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39097744" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31848854" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36032388" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40137932" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IvyIDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1829574" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2834596" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28030303" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36689654" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="DM Shell" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -961,334 +1233,388 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/portal/remote.services.min.impl/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="53" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/remote.services.min.impl/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="14" selection-start="431" selection-end="476" vertical-scroll-proportion="0.0" vertical-offset="299" max-vertical-offset="2210" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/WEB-INF/module-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/resources/META-INF/spring/module-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="918" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/remote.services.impl/src/main/resources/META-INF/spring/module-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1606" selection-end="2145" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="884" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="2" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2465" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="63" selection-start="477" selection-end="484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="19" selection-start="796" selection-end="796" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1139" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/app.salesmanagement/domain/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="299" selection-end="355" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kernel/common.mdm/mdm.domain/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="56" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/tests/samples.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3842" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/tests/standalone/forms/colum_layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/editor/oryx/frontend/src/main/webapp/tests/standalone/forms/formcol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2346" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/job/DelegationListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="694" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/trans/steps/jobexecutor/JobExecutorData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/www/AddTransServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="25" selection-start="4923" selection-end="4923" vertical-scroll-proportion="0.0" vertical-offset="2057" max-vertical-offset="3213" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/core/logging/LogWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="37" selection-start="8823" selection-end="8823" vertical-scroll-proportion="0.0" vertical-offset="3501" max-vertical-offset="7055" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/trans/steps/jobexecutor/JobExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="14" selection-start="6539" selection-end="6539" vertical-scroll-proportion="0.0" vertical-offset="3077" max-vertical-offset="8551" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all/src/main/java/org/pentaho/di/core/logging/KettleLogStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="3524" max-vertical-offset="4080" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/src/main/java/org/pentaho/di/www/AddTransServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="32" selection-start="5910" selection-end="5930" vertical-scroll-proportion="0.0" vertical-offset="1928" max-vertical-offset="6239" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/utils/RepositoryUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="19" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="9622" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/src/main/java/org/pentaho/di/www/ExecuteTransServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="27" selection-start="8224" selection-end="8235" vertical-scroll-proportion="0.0" vertical-offset="3094" max-vertical-offset="5338" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/SimpleLiferayPortalDocumentRepositoryTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0" vertical-offset="173" max-vertical-offset="1462" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/LiferayPortalDocumentRepositoryTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="0" selection-start="4057" selection-end="4210" vertical-scroll-proportion="0.0" vertical-offset="1287" max-vertical-offset="3094" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/RepositoryExplorerResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="63" selection-start="12671" selection-end="12671" vertical-scroll-proportion="0.0" vertical-offset="4624" max-vertical-offset="17731" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/test/java/org/flowframe/documentlibrary/remote/services/impl/tests/LiferayPortalDocumentRepositorySimpleTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="1360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kernel/eventmanagement/services/src/main/java/org/flowframe/kernel/jpa/container/services/IEntityContainerProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="24" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/app.contractmanagement/business.services.impl/src/test/resources/META-INF/documentlibrary-module-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="14" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="323" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/integration/adaptors/stripe/stripe.service.impl/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="0" selection-start="4709" selection-end="4835" vertical-scroll-proportion="0.0" vertical-offset="2366" max-vertical-offset="3910" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/etl/pentaho/server/carte/services/src/main/java/org/flowframe/etl/pentaho/server/carte/services/ICarteJobService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepositoryMin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="72" selection-start="3756" selection-end="3756" vertical-scroll-proportion="0.0" vertical-offset="1112" max-vertical-offset="1581">
-          <folding />
-        </state>
+        <state line="85" column="72" selection-start="3756" selection-end="3756" vertical-scroll-proportion="0.0" vertical-offset="1112" max-vertical-offset="1581" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core/src/main/java/org/flowframe/etl/pentaho/server/plugins/core/resource/JobMetaResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="36" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="2720">
-          <folding />
-        </state>
+        <state line="8" column="36" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="2720" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/impl/StandardFileSystemManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="19" selection-start="4707" selection-end="4707" vertical-scroll-proportion="0.0" vertical-offset="1714" max-vertical-offset="8126">
-          <folding />
-        </state>
+        <state line="136" column="19" selection-start="4707" selection-end="4707" vertical-scroll-proportion="0.0" vertical-offset="1714" max-vertical-offset="8126" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/src/main/java/org/apache/commons/vfs/FileObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5882">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5882" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2278">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2278" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services/src/main/java/org/flowframe/documentlibrary/remote/services/IRemoteDocumentRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1734">
-          <folding />
-        </state>
+        <state line="57" column="21" selection-start="1953" selection-end="1953" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1734" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.min.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/min/LiferayPortalDocumentRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="692" column="21" selection-start="27405" selection-end="27474" vertical-scroll-proportion="0.0" vertical-offset="11764" max-vertical-offset="18105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/template.mf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="32" selection-start="577" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <folding />
-        </state>
+        <state line="692" column="21" selection-start="27405" selection-end="27474" vertical-scroll-proportion="0.0" vertical-offset="11764" max-vertical-offset="18105" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentlibrary/remote.services.impl/src/main/java/org/flowframe/documentlibrary/remote/services/impl/LiferayPortalDocumentRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="7" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="14450">
-          <folding>
-            <element signature="e#5770#5785#0" expanded="false" />
-            <element signature="e#6642#6656#0" expanded="false" />
-            <element signature="e#7115#7130#0" expanded="false" />
-            <element signature="e#7812#7820#0" expanded="false" />
-            <element signature="e#8273#8288#0" expanded="false" />
-            <element signature="e#9070#9078#0" expanded="false" />
-            <element signature="e#9689#9704#0" expanded="false" />
-            <element signature="e#10993#11008#0" expanded="false" />
-            <element signature="e#11569#11580#0" expanded="false" />
-            <element signature="e#12010#12025#0" expanded="false" />
-            <element signature="e#16507#16518#0" expanded="false" />
-            <element signature="e#17247#17262#0" expanded="false" />
-            <element signature="e#18563#18574#0" expanded="false" />
-            <element signature="e#19424#19439#0" expanded="false" />
-            <element signature="e#20457#20472#0" expanded="false" />
-            <element signature="e#21128#21136#0" expanded="false" />
-            <element signature="e#24383#24394#0" expanded="false" />
-            <element signature="e#26439#26450#0" expanded="false" />
-            <element signature="e#28547#28558#0" expanded="false" />
-            <element signature="e#30931#30942#0" expanded="false" />
-            <element signature="e#31667#31682#0" expanded="false" />
-            <element signature="e#32587#32598#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="51" column="7" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="14450" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/google/gdata/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="28" selection-start="741" selection-end="3484" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="1394">
-          <folding />
-        </state>
+        <state line="13" column="0" selection-start="549" selection-end="720" vertical-scroll-proportion="0.31937173" vertical-offset="99" max-vertical-offset="1394" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="31" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
+        <state line="12" column="31" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi/template.mf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="21" selection-start="516" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="2941">
-          <folding />
-        </state>
+        <state line="13" column="21" selection-start="516" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="2941" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jabsorb/template.mf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="123" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <folding />
-        </state>
+        <state line="4" column="0" selection-start="123" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/template.mf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="43" selection-start="658" selection-end="658" vertical-scroll-proportion="-1.3" vertical-offset="241" max-vertical-offset="1224">
-          <folding />
-        </state>
+        <state line="18" column="43" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1224" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="3306" selection-end="3504" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1377">
-          <folding>
-            <marker date="1393299435106" expanded="true" signature="528:3288" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="546:3275" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="567:1460" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="755:1438" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="787:1408" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="866:946" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="986:1375" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="1481:3256" placeholder="..." />
-            <marker date="1393299435106" expanded="true" signature="3325:3503" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thirdparty/itext/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="510" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="2057">
-          <folding />
-        </state>
+        <state line="69" column="0" selection-start="3306" selection-end="3504" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1377" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="21" selection-start="600" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
-          <folding />
-        </state>
+        <state line="14" column="21" selection-start="600" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/template.mf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
-          <folding />
-        </state>
+        <state line="4" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl/src/main/resources/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="51" selection-start="712" selection-end="712" vertical-scroll-proportion="0.38901603" vertical-offset="0" max-vertical-offset="510">
+        <state line="16" column="22" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/barbecue/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="501" selection-end="590" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/itext/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="510" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="2057" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/javax.inject/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="1428" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/hk2-utils/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/hk2-utils/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="29" selection-start="0" selection-end="940" vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="493" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0" vertical-offset="194" max-vertical-offset="493" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/orgi-resource-locator/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="16" selection-start="552" selection-end="605" vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="1428" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/hk2-locator/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="74" selection-start="1493" selection-end="1493" vertical-scroll-proportion="0.0" vertical-offset="453" max-vertical-offset="1428" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/hk2-locator/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="2" selection-start="0" selection-end="1169" vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="578" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/jersey/hk2-locator/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="1169" selection-end="1169" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="578" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/asm/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="20" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1411">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/asm-all/src/main/resources/META-INF/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="359" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/asm-all/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="53" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/asm-all/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="48" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1411" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/asm-all/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="69" selection-start="90" selection-end="91" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="510" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdparty/google/guava/template.mf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="32" selection-start="577" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/karaf/common/support/src/test/java/org/flowframe/testing/karaf/common/itesting/support/FFKarafTestWatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="15" selection-start="208" selection-end="208" vertical-scroll-proportion="-4.76" vertical-offset="0" max-vertical-offset="561">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/apache/karaf/karaf/3.0.0/karaf-3.0.0.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="352" column="45" selection-start="16262" selection-end="16268" vertical-scroll-proportion="-4.68" vertical-offset="5867" max-vertical-offset="41276">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/karaf/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="18" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parent/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2526" column="0" selection-start="80034" selection-end="86436" vertical-scroll-proportion="-4.48" vertical-offset="42830" max-vertical-offset="48178">
+          <folding>
+            <element signature="tag#repositories#0;tag#project#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/karaf/common/support/src/test/resources/etc/user.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/karaf/common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="21" selection-start="3874" selection-end="3874" vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="3060">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="17" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/karaf/common/support/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="21" selection-start="3965" selection-end="3965" vertical-scroll-proportion="0.0" vertical-offset="1532" max-vertical-offset="2176">
+          <folding>
+            <marker date="1394648635923" expanded="true" signature="3537:3964" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/src/main/resources/bootstrapping/bootstrap-persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/src/main/resources/META-INF/spring/module-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="62" selection-start="5642" selection-end="5642" vertical-scroll-proportion="0.0" vertical-offset="1910" max-vertical-offset="2363">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/src/main/java/org/flowframe/kernel/jpa/multipu/MultiConfigAwarePersistenceUnitManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="61" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0" vertical-offset="2412" max-vertical-offset="3553">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assemblies/karaf/features/hibernate/src/main/resources/feature/feature.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="0" selection-start="6698" selection-end="6698" vertical-scroll-proportion="0.0" vertical-offset="1203" max-vertical-offset="1615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assemblies/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assemblies/karaf/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="16" selection-start="517" selection-end="541" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assemblies/karaf/features/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assemblies/karaf/features/hibernate/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="29" selection-start="1137" selection-end="1137" vertical-scroll-proportion="1.3333334" vertical-offset="0" max-vertical-offset="1955">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>dm Bundle for 'org.flowframe.etl.pentaho.server.services'</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>org.flowframe.bpm</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: cglib:cglib-nodep:2.2.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

@@ -12,6 +12,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.eclipse.osgi:org.eclipse.osgi:3.7.0.v20110613" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:com.springsource.javax.persistence:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.osgi:org.eclipse.osgi:3.7.0.v20110613" level="project" />
+    <orderEntry type="library" name="Maven: javax.persistence:com.springsource.javax.persistence:2.0.0" level="project" />
     <orderEntry type="module" module-name="org.flowframe.kernel.jpa.container.services" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />

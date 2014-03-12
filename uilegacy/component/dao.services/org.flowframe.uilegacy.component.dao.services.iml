@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -10,42 +10,21 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="org.flowframe.uilegacy.component.domain" />
-    <orderEntry type="module" module-name="org.flowframe.ds.domain" />
     <orderEntry type="library" name="Maven: javax.persistence:com.springsource.javax.persistence:2.0.0" level="project" />
-    <orderEntry type="module" module-name="org.flowframe.kernel.common.utils" />
     <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.lang:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.jodd:jodd:3.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.jodd:jodd-wot:3.3.1" level="project" />
     <orderEntry type="library" name="Maven: asm:asm:3.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.4" level="project" />
-    <orderEntry type="module" module-name="org.flowframe.kernel.common.mdm.domain" />
     <orderEntry type="library" name="Maven: org.springframework.osgi:org.springframework.osgi.core:1.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.aopalliance:com.springsource.org.aopalliance:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:org.springframework.aop:3.1.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:org.springframework.beans:3.1.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:org.springframework.core:3.1.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:org.springframework.asm:3.1.3.RELEASE" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.context:3.1.3.RELEASE" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.expression:3.1.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.osgi:org.springframework.osgi.io:1.2.1" level="project" />
-    <orderEntry type="module" module-name="org.flowframe.thirdparty.org.jvnet.hyperjaxb3" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.beanutils:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1" level="project" />
-    <orderEntry type="module" module-name="org.flowframe.thirdparty.hibernate.core" />
-    <orderEntry type="module" module-name="org.flowframe.thirdparty.hibernate.annotations.commons" />
     <orderEntry type="library" name="Maven: org.antlr:com.springsource.antlr:2.7.6" level="project" />
     <orderEntry type="library" name="Maven: org.dom4j:com.springsource.org.dom4j:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.cglib:com.springsource.net.sf.cglib:2.2.0" level="project" />
-    <orderEntry type="module" module-name="org.flowframe.thirdparty.javassist" />
-    <orderEntry type="module" module-name="org.flowframe.thirdparty.asm" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.api:1.6.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:com.springsource.slf4j.org.apache.commons.logging:1.6.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.classic:0.9.24" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:com.springsource.ch.qos.logback.core:0.9.24" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:org.springframework.instrument:3.1.3.RELEASE" level="project" />
   </component>
 </module>
 

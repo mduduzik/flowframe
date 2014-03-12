@@ -1,0 +1,748 @@
+<?xml version="1.0"?>
+<features>  <feature name="javax.jcr">
+</feature>
+    <feature name="org.glassfish.jersey.containers.jersey-container-servlet-core">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="org.springframework.oxm">
+    </feature>
+    <feature name="com.springsource.org.apache.batik.script">
+        <feature>com.springsource.org.apache.batik.bridge</feature>
+        <bundle dependency="true">mvn:com.springsource.org.mozilla.javascript/1.7.0.R2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.apps.splash">
+        <feature>org.eclipse.virgo.web.servlet.adapter</feature>
+    </feature>
+    <feature name="org.glassfish.jersey.media.jersey-media-json-jackson">
+        <feature>jackson-jaxrs</feature>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.kernel.agent.dm">
+    </feature>
+    <feature name="org.springframework.web.servlet">
+        <bundle dependency="true">mvn:itext/2.1.7</bundle>
+        <bundle dependency="true">mvn:jexcelapi-jxl/2.6.10</bundle>
+    </feature>
+    <feature name="org.glassfish.jersey.containers.jersey-container-servlet">
+        <feature>org.glassfish.jersey.containers.jersey-container-servlet-core</feature>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="com.springsource.com.sun.msv">
+        <feature>com.springsource.org.iso_relax.verifier</feature>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xml.resolver/1.2.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.relaxng.datatype/1.0.0</bundle>
+    </feature>
+    <feature name="org.eclipse.equinox.util">
+        <feature>org.eclipse.osgi.services</feature>
+    </feature>
+    <feature name="com.springsource.javax.portlet">
+    </feature>
+    <feature name="com.springsource.org.apache.bsf">
+        <bundle dependency="true">mvn:com.springsource.org.mozilla.javascript/1.7.0.R2</bundle>
+    </feature>
+    <feature name="org.flowframe.kernel.metamodel.dao.services">
+    </feature>
+    <feature name="org.apache.catalina.ha">
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+    </feature>
+    <feature name="jackson-core-asl">
+    </feature>
+    <feature name="com.springsource.org.antlr.runtime">
+        <feature>com.springsource.org.antlr.stringtemplate</feature>
+    </feature>
+    <feature name="com.springsource.org.apache.batik.parser">
+        <feature>com.springsource.org.apache.batik.xml</feature>
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.hsqldb">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.snaps.api">
+    </feature>
+    <feature name="org.flowframe.thirdparty.bpmnq">
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:com.springsource.edu.oswego.cs.dl.util.concurrent/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.antlr/3.1.3</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jflex/1.3.5</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.management.fragment">
+    </feature>
+    <feature name="javax.persistence">
+    </feature>
+    <feature name="org.apache.servicemix.bundles.quartz">
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:javax.jms/1.1.0.v201205091237</bundle>
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="org.springframework.jdbc">
+    </feature>
+    <feature name="org.codehaus.jettison.jettison">
+    </feature>
+    <feature name="com.springsource.com.sun.msv.datatype">
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.relaxng.datatype/1.0.0</bundle>
+    </feature>
+    <feature name="org.flowframe.documentlibrary.remote.services">
+    </feature>
+    <feature name="org.apache.servicemix.bundles.antisamy">
+        <feature>com.springsource.org.apache.batik.css</feature>
+        <feature>com.springsource.org.apache.commons.httpclient</feature>
+        <feature>com.springsource.org.cyberneko.html</feature>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.w3c.css.sac/1.3.0</bundle>
+    </feature>
+    <feature name="com.conx.bi.solution.application.etl.editor.backend.pentaho.kettle-conxbi-plugin">
+        <feature>com.conx.bi.solution.application.etl.editor.backend.pentaho.shared</feature>
+        <feature>org.flowframe.documentlibrary.remote.services</feature>
+        <feature>org.flowframe.documentlibrary.remote.services.min.impl</feature>
+    </feature>
+    <feature name="org.springframework.context">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.joda.time/1.6.2</bundle>
+        <bundle dependency="true">mvn:javax.jms/1.1.0.v201205091237</bundle>
+        <bundle dependency="true">mvn:javax.validation.api/1.1.0.Final</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.com.sun.net.httpserver/0.0.1</bundle>
+    </feature>
+    <feature name="com.springsource.org.hibernate.validator">
+        <bundle dependency="true">mvn:com.springsource.org.joda.time/1.6.2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.jsoup/1.5.2</bundle>
+        <bundle dependency="true">mvn:javax.validation.api/1.1.0.Final</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.commons.beanutils">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+    </feature>
+    <feature name="javax.servlet.jsp">
+    </feature>
+    <feature name="com.springsource.org.apache.batik.gvt">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+    </feature>
+    <feature name="javax.xml.rpc">
+    </feature>
+    <feature name="org.apache.felix.gogo.shell">
+    </feature>
+    <feature name="org.apache.commons.jxpath">
+    </feature>
+    <feature name="org.apache.catalina">
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.jetty-servlet-tester">
+        <feature>com.springsource.org.mortbay.util</feature>
+    </feature>
+    <feature name="com.springsource.org.apache.batik.ext.awt">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+    </feature>
+    <feature name="org.flowframe.kernel.common.mdm.domain">
+    </feature>
+    <feature name="org.eclipse.virgo.management">
+        <feature>org.eclipse.gemini.management</feature>
+        <feature>org.eclipse.virgo.management.fragment</feature>
+        <feature>osgi.enterprise</feature>
+    </feature>
+    <feature name="com.springsource.org.apache.commons.digester">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+    </feature>
+    <feature name="com.springsource.org.codehaus.btm">
+        <bundle dependency="true">mvn:javax.jms/1.1.0.v201205091237</bundle>
+    </feature>
+    <feature name="com.springsource.net.sf.cglib">
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+    </feature>
+    <feature name="javax.ejb">
+    </feature>
+    <feature name="org.eclipse.virgo.web.spring.integration">
+    </feature>
+    <feature name="org.flowframe.kernel.common.utils">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.web.servlet.adapter">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.batik.anim">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+        <bundle dependency="true">mvn:org.w3c.dom.smil/1.0.0.v200806040011</bundle>
+    </feature>
+    <feature name="org.eclipse.gemini.web.tomcat">
+        <feature>org.apache.tomcat.api</feature>
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+    </feature>
+    <feature name="org.springframework.beans">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.commons.httpclient">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+    </feature>
+    <feature name="org.glassfish.jersey.core.jersey-common">
+        <feature>com.google.guava</feature>
+        <feature>javax.annotation-api</feature>
+        <feature>org.glassfish.hk2.api</feature>
+        <feature>org.glassfish.hk2.locator</feature>
+        <feature>org.glassfish.hk2.osgi-resource-locator</feature>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="com.conx.bi.solution.application.etl.editor.frontend">
+        <feature>com.springsource.com.thoughtworks.xstream</feature>
+        <feature>com.springsource.javax.servlet.jsp.jstl</feature>
+        <feature>com.springsource.net.sf.cglib</feature>
+        <feature>com.springsource.org.apache.xalan</feature>
+        <feature>com.springsource.org.jdom</feature>
+        <feature>org.eclipse.virgo.web.dm</feature>
+        <feature>org.flowframe.thirdparty.bpmnq</feature>
+        <feature>org.springframework.context.support</feature>
+        <feature>org.springframework.expression</feature>
+        <feature>org.springframework.jdbc</feature>
+        <feature>org.springframework.jms</feature>
+        <feature>org.springframework.oxm</feature>
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.jsoup/1.5.2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.mozilla.javascript/1.7.0.R2</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:org.springframework.asm/3.1.0.RELEASE</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+        <bundle dependency="true">mvn:batik-transcoder/1.7.0</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.json20090211/0.0.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.supercsv/1.5.2</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.web.core">
+        <feature>org.eclipse.gemini.web.core</feature>
+    </feature>
+    <feature name="org.flowframe.thirdparty.pentaho-reporting-engine-all">
+        <feature>org.flowframe.thirdparty.barbecue</feature>
+        <feature>org.krysalis.barcode4j</feature>
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.mozilla.javascript/1.7.0.R2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.w3c.css.sac/1.3.0</bundle>
+        <bundle dependency="true">mvn:itext/2.1.7</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.olap4j/1.1.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.commons.dbcp">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.pool/1.5.3</bundle>
+    </feature>
+    <feature name="org.eclipse.persistence.core">
+        <feature>javax.enterprise.cdi-api</feature>
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:javax.jms/1.1.0.v201205091237</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.kettle-all">
+        <feature>com.conx.bi.thirdparty.poi</feature>
+        <feature>com.springsource.com.sun.msv.datatype</feature>
+        <feature>com.springsource.org.apache.commons.dbcp</feature>
+        <feature>com.springsource.org.apache.commons.validator</feature>
+        <feature>com.springsource.org.mortbay.jetty</feature>
+        <feature>com.springsource.org.scannotation</feature>
+        <feature>javax.jcr</feature>
+        <feature>org.apache.jackrabbit.jackrabbit-webdav</feature>
+        <feature>org.apache.servicemix.bundles.gdata</feature>
+        <feature>org.codehaus.jettison.jettison</feature>
+        <feature>org.flowframe.thirdparty.jetty-servlet-tester</feature>
+        <feature>org.flowframe.thirdparty.jsch</feature>
+        <feature>org.flowframe.thirdparty.kettle-vfs-20100924</feature>
+        <feature>org.flowframe.thirdparty.pentaho-reporting-engine-all</feature>
+        <feature>org.flowframe.thirdparty.pentaho-reporting-libraries-all</feature>
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.io/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.pool/1.5.3</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xml.resolver/1.2.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.joda.time/1.6.2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.mozilla.javascript/1.7.0.R2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.relaxng.datatype/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.xmlpull/1.1.4.c</bundle>
+        <bundle dependency="true">mvn:javax.jms/1.1.0.v201205091237</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:com.springsource.edu.oswego.cs.dl.util.concurrent/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.antlr/3.1.3</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.net/2.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.lucene/2.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.jivesoftware.smack/3.1.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+        <bundle dependency="true">mvn:jexcelapi-jxl/2.6.10</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.avalon-framework-api/4.3.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.monetdb-jdbc/0.0.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.olap4j/1.1.0</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.pentaho-cwm/1.5.4</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.postgresql-jdbc/9.3.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.jdom">
+        <feature>com.springsource.org.jaxen</feature>
+    </feature>
+    <feature name="org.krysalis.barcode4j">
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.avalon-framework-api/4.3.1</bundle>
+    </feature>
+    <feature name="com.googlecode.jsendnsca">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.kernel.userregion">
+    </feature>
+    <feature name="org.apache.tomcat.api">
+    </feature>
+    <feature name="org.w3c.dom.svg">
+        <bundle dependency="true">mvn:org.w3c.dom.smil/1.0.0.v200806040011</bundle>
+    </feature>
+    <feature name="com.springsource.com.thoughtworks.xstream">
+        <bundle dependency="true">mvn:com.springsource.org.joda.time/1.6.2</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.xmlpull/1.1.4.c</bundle>
+    </feature>
+    <feature name="org.flowframe.kernel.jpa.lob.jpacontainer">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.jsoup/1.5.2</bundle>
+        <bundle dependency="true">mvn:javax.validation.api/1.1.0.Final</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.hibernate.annotations.commons/3.2.0.Final</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+    </feature>
+    <feature name="org.springframework.expression">
+    </feature>
+    <feature name="dynamicreports-core">
+        <feature>net.sf.jasperreports.engine</feature>
+        <bundle dependency="true">mvn:org.apache.commons.lang3/3.2.1</bundle>
+    </feature>
+    <feature name="com.springsource.org.mortbay.util">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="org.flowframe.kernel.common.mdm.dao.services">
+    </feature>
+    <feature name="com.springsource.org.cyberneko.html">
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.hibernate.entitymanager">
+        <feature>com.springsource.org.dom4j</feature>
+        <feature>org.flowframe.thirdparty.hibernate.core</feature>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.hibernate.annotations.commons/3.2.0.Final</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+    </feature>
+    <feature name="com.springsource.org.dom4j">
+        <bundle dependency="true">mvn:com.springsource.org.relaxng.datatype/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.xmlpull/1.1.4.c</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.pentaho-reporting-libraries-all">
+        <feature>com.springsource.org.apache.batik.gvt</feature>
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.w3c.css.sac/1.3.0</bundle>
+        <bundle dependency="true">mvn:itext/2.1.7</bundle>
+    </feature>
+    <feature name="com.conx.bi.snaps.main">
+        <feature>org.eclipse.virgo.snaps.api</feature>
+        <feature>org.eclipse.virgo.snaps.core</feature>
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.jsoup/1.5.2</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+        <bundle dependency="true">mvn:org.springframework.asm/3.1.0.RELEASE</bundle>
+    </feature>
+    <feature name="org.flowframe.etl.pentaho.server.repository.db.fragments.commons-dbcp">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.postgresql-jdbc/9.3.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.scannotation">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+    </feature>
+    <feature name="org.glassfish.hk2.locator">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:org.glassfish.hk2.external.asm-all-repackaged/2.2.0.b14</bundle>
+    </feature>
+    <feature name="org.eclipse.equinox.ds">
+    </feature>
+    <feature name="org.eclipse.gemini.web.core">
+    </feature>
+    <feature name="com.springsource.org.apache.batik.xml">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.kernel.userregion.blueprint">
+        <bundle dependency="true">mvn:osgi.console/0.0.0</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.barbecue">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.jersey-spring3">
+        <feature>org.flowframe.thirdparty.org.glassfish.hk2.spring-bridge</feature>
+        <feature>org.springframework.web</feature>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.xerces">
+        <bundle dependency="true">mvn:com.springsource.org.apache.xml.resolver/1.2.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.kettle-vfs-20100924">
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.io/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.pool/1.5.3</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.mozilla.javascript/1.7.0.R2</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.net/2.0.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+        <bundle dependency="true">mvn:jexcelapi-jxl/2.6.10</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.olap4j/1.1.0</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.postgresql-jdbc/9.3.0</bundle>
+    </feature>
+    <feature name="org.apache.jackrabbit.jackrabbit-webdav">
+    </feature>
+    <feature name="com.springsource.org.apache.httpcomponents.httpclient">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.httpcomponents.httpcore/4.2.1</bundle>
+    </feature>
+    <feature name="org.glassfish.hk2.osgi-resource-locator">
+    </feature>
+    <feature name="org.flowframe.documentlibrary.remote.services.min.impl">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.httpcomponents.httpcore/4.2.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.flexjson/2.1.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.batik.dom">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.w3c.css.sac/1.3.0</bundle>
+        <bundle dependency="true">mvn:org.w3c.dom.smil/1.0.0.v200806040011</bundle>
+    </feature>
+    <feature name="org.eclipse.equinox.console">
+    </feature>
+    <feature name="com.springsource.org.codehaus.groovy">
+        <feature>com.springsource.org.apache.bsf</feature>
+        <bundle dependency="true">mvn:com.springsource.antlr/2.7.7</bundle>
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.asm/3.3.1</bundle>
+    </feature>
+    <feature name="org.flowframe.erp.app.financialmanagement.domain">
+    </feature>
+    <feature name="com.springsource.javax.servlet.jsp.jstl">
+    </feature>
+    <feature name="org.eclipse.virgo.web.dm">
+    </feature>
+    <feature name="org.flowframe.erp.app.mdm.domain">
+    </feature>
+    <feature name="org.eclipse.virgo.snaps">
+    </feature>
+    <feature name="org.eclipse.equinox.cm">
+    </feature>
+    <feature name="org.springframework.aop">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.pool/1.5.3</bundle>
+    </feature>
+    <feature name="org.springframework.context.support">
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+    </feature>
+    <feature name="osgi.enterprise">
+    </feature>
+    <feature name="com.springsource.org.apache.httpcomponents.httpmime">
+        <bundle dependency="true">mvn:com.springsource.org.apache.httpcomponents.httpcore/4.2.1</bundle>
+    </feature>
+    <feature name="org.springframework.jms">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:javax.jms/1.1.0.v201205091237</bundle>
+    </feature>
+    <feature name="org.jvnet.mimepull">
+    </feature>
+    <feature name="org.springframework.core">
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:org.springframework.asm/3.1.0.RELEASE</bundle>
+    </feature>
+    <feature name="org.eclipse.gemini.blueprint.io">
+    </feature>
+    <feature name="org.eclipse.virgo.web.tomcat.support">
+    </feature>
+    <feature name="org.eclipse.virgo.shell.command">
+    </feature>
+    <feature name="org.eclipse.virgo.apps.repository-3.6.2.RELEASE-org.eclipse.virgo.apps.repository.web">
+    </feature>
+    <feature name="org.apache.tomcat.util">
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+    </feature>
+    <feature name="com.conx.bi.solution.application.etl.editor.backend.pentaho.shared">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.io/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.antlr/3.1.3</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.commons.validator">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.oro/2.0.8</bundle>
+    </feature>
+    <feature name="jackson-jaxrs">
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="org.apache.servicemix.bundles.esapi">
+        <feature>com.springsource.bsh</feature>
+        <feature>com.springsource.org.apache.commons.fileupload</feature>
+        <feature>javax.servlet.jsp</feature>
+        <feature>org.apache.commons.configuration</feature>
+        <feature>org.apache.servicemix.bundles.antisamy</feature>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+    </feature>
+    <feature name="org.apache.mina.core">
+    </feature>
+    <feature name="com.springsource.org.apache.batik.bridge">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.management.console">
+        <feature>org.jolokia.osgi</feature>
+    </feature>
+    <feature name="com.springsource.org.iso_relax.verifier">
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+    </feature>
+    <feature name="org.flowframe.erp.app.salesmanagement.domain">
+    </feature>
+    <feature name="org.eclipse.equinox.console.ssh">
+    </feature>
+    <feature name="net.sf.jasperreports.engine">
+    </feature>
+    <feature name="org.flowframe.thirdparty.hibernate.core">
+        <feature>javax.security.jacc</feature>
+        <bundle dependency="true">mvn:com.springsource.antlr/2.7.7</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:javax.validation.api/1.1.0.Final</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.asm/3.3.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.hibernate.annotations.commons/3.2.0.Final</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+    </feature>
+    <feature name="org.glassfish.jersey.core.jersey-client">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.web.tomcat">
+        <bundle dependency="true">mvn:org.eclipse.virgo.web/0.0.0</bundle>
+    </feature>
+    <feature name="org.apache.coyote">
+        <feature>org.apache.catalina</feature>
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.snaps.core">
+    </feature>
+    <feature name="org.springframework.web.portlet">
+        <feature>com.springsource.javax.portlet</feature>
+        <feature>org.springframework.web.servlet</feature>
+    </feature>
+    <feature name="org.flowframe.thirdparty.jsch">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jzlib/0.0.1</bundle>
+    </feature>
+    <feature name="com.springsource.net.sf.ehcache">
+    </feature>
+    <feature name="org.flowframe.thirdparty.staxon">
+        <bundle dependency="true">mvn:com.google.gson/2.2.4</bundle>
+    </feature>
+    <feature name="org.springframework.orm">
+        <feature>org.eclipse.persistence.core</feature>
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.org.glassfish.hk2.spring-bridge">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+    </feature>
+    <feature name="org.eclipse.gemini.blueprint.extender">
+        <feature>org.eclipse.gemini.blueprint.core</feature>
+        <feature>org.eclipse.gemini.blueprint.io</feature>
+        <feature>org.springframework.beans</feature>
+        <feature>org.springframework.context</feature>
+        <feature>org.springframework.core</feature>
+    </feature>
+    <feature name="com.springsource.bsh">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="com.conx.bi.solution.application.etl.editor.backend.pentaho.core">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.httpcomponents.httpcore/4.2.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.jsoup/1.5.2</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.javassist/3.12.0.GA</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:org.springframework.asm/3.1.0.RELEASE</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.flexjson/2.1.0</bundle>
+    </feature>
+    <feature name="javax.security.jacc">
+    </feature>
+    <feature name="org.eclipse.osgi.services">
+    </feature>
+    <feature name="javax.enterprise.cdi-api">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+    </feature>
+    <feature name="org.apache.commons.configuration">
+        <bundle dependency="true">mvn:com.springsource.javax.mail/1.4.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xml.resolver/1.2.0</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.lang/2.4.0</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.commons-jexl/1.1.0.5</bundle>
+    </feature>
+    <feature name="com.ctc.wstx">
+        <feature>com.springsource.com.sun.msv</feature>
+        <bundle dependency="true">mvn:com.springsource.org.relaxng.datatype/1.0.0</bundle>
+    </feature>
+    <feature name="commons-math">
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.avalon-framework-api/4.3.1</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.batik.dom.svg">
+        <feature>com.springsource.org.apache.batik.anim</feature>
+        <feature>com.springsource.org.apache.batik.dom</feature>
+        <feature>com.springsource.org.apache.batik.ext.awt</feature>
+        <feature>com.springsource.org.apache.batik.parser</feature>
+        <feature>org.w3c.dom.svg</feature>
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.w3c.css.sac/1.3.0</bundle>
+        <bundle dependency="true">mvn:org.w3c.dom.smil/1.0.0.v200806040011</bundle>
+    </feature>
+    <feature name="org.apache.servicemix.bundles.gdata">
+    </feature>
+    <feature name="org.flowframe.thirdparty.com.mysql.jdbc">
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+    </feature>
+    <feature name="org.flowframe.kernel.jpa.container.services">
+    </feature>
+    <feature name="org.apache.sshd.core">
+    </feature>
+    <feature name="org.glassfish.jersey.media.jersey-media-multipart">
+        <feature>org.glassfish.jersey.core.jersey-server</feature>
+        <feature>org.jvnet.mimepull</feature>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+    </feature>
+    <feature name="org.apache.jasper">
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jdt.core.compiler.batch/3.8.0.I20120518-2145</bundle>
+    </feature>
+    <feature name="jackson-mapper-asl">
+    </feature>
+    <feature name="javax.annotation-api">
+    </feature>
+    <feature name="org.apache.commons.vfs">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.collections/3.2.1</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.net/2.0.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.commons.fileupload">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.io/1.4.0</bundle>
+    </feature>
+    <feature name="com.springsource.org.apache.xalan">
+        <bundle dependency="true">mvn:com.springsource.org.apache.xml.serializer/2.7.1</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.xmlcommons/1.3.4</bundle>
+    </feature>
+    <feature name="com.springsource.org.antlr.stringtemplate">
+        <bundle dependency="true">mvn:com.springsource.org.antlr/3.1.3</bundle>
+    </feature>
+    <feature name="com.conx.bi.thirdparty.poi">
+        <bundle dependency="true">mvn:com.springsource.org.apache.commons.codec/1.4.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.relaxng.datatype/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.xmlpull/1.1.4.c</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles.ant/1.7.0.5</bundle>
+    </feature>
+    <feature name="org.eclipse.gemini.management">
+    </feature>
+    <feature name="org.eclipse.virgo.apps.repository-3.6.2.RELEASE-org.eclipse.virgo.apps.repository.core">
+    </feature>
+    <feature name="org.eclipse.virgo.kernel.deployer.dm">
+        <feature>org.eclipse.virgo.kernel.agent.dm</feature>
+    </feature>
+    <feature name="org.apache.catalina.tribes">
+        <bundle dependency="true">mvn:org.apache.juli.extras/7.0.35.v201302120746</bundle>
+    </feature>
+    <feature name="org.springframework.transaction">
+        <feature>javax.ejb</feature>
+        <feature>org.springframework.aop</feature>
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+    </feature>
+    <feature name="org.springframework.web">
+        <feature>com.springsource.com.sun.syndication</feature>
+        <feature>jackson-core-asl</feature>
+        <feature>jackson-mapper-asl</feature>
+        <feature>javax.el</feature>
+        <feature>javax.xml.rpc</feature>
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.httpcomponents.httpcore/4.2.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.com.sun.net.httpserver/0.0.1</bundle>
+        <bundle dependency="true">mvn:org.slf4j.log4j/1.7.2.v20130115-1340</bundle>
+    </feature>
+    <feature name="javax.el">
+    </feature>
+    <feature name="org.eclipse.gemini.blueprint.core">
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+    </feature>
+    <feature name="com.google.guava">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+    </feature>
+    <feature name="org.eclipse.virgo.apps.repository">
+        <feature>org.eclipse.virgo.apps.repository-3.6.2.RELEASE-synthetic.context</feature>
+    </feature>
+    <feature name="com.springsource.org.jaxen">
+    </feature>
+    <feature name="com.springsource.org.mortbay.jetty">
+        <bundle dependency="true">mvn:javax.servlet/3.0.0.v201112011016</bundle>
+    </feature>
+    <feature name="com.springsource.com.sun.syndication">
+    </feature>
+    <feature name="org.springframework.aspects">
+    </feature>
+    <feature name="jackson-xc">
+    </feature>
+    <feature name="com.conx.bi.solution.application.etl.domain">
+    </feature>
+    <feature name="com.springsource.org.apache.batik.css">
+        <bundle dependency="true">mvn:com.springsource.org.apache.batik.util/1.7.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.w3c.css.sac/1.3.0</bundle>
+    </feature>
+    <feature name="org.flowframe.thirdparty.org.glassfish.hk2.utils">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+    </feature>
+    <feature name="org.glassfish.jersey.core.jersey-server">
+        <feature>org.glassfish.jersey.core.jersey-client</feature>
+        <bundle dependency="true">mvn:javax.validation.api/1.1.0.Final</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+        <bundle dependency="true">mvn:javax.ws.rs-api/2.0.0</bundle>
+        <bundle dependency="true">mvn:org.glassfish.hk2.external.asm-all-repackaged/2.2.0.b14</bundle>
+    </feature>
+    <feature name="org.flowframe.portal.remote.services.min.impl">
+        <feature>com.springsource.org.apache.httpcomponents.httpclient</feature>
+        <feature>com.springsource.org.apache.httpcomponents.httpmime</feature>
+        <feature>javax.persistence</feature>
+        <feature>org.flowframe.kernel.common.utils</feature>
+        <feature>org.flowframe.kernel.jpa.lob.jpacontainer</feature>
+        <feature>org.flowframe.portal.remote.services</feature>
+        <feature>org.springframework.aspects</feature>
+        <feature>org.springframework.orm</feature>
+        <bundle dependency="true">mvn:com.springsource.org.aopalliance/1.0.0</bundle>
+        <bundle dependency="true">mvn:com.springsource.org.apache.httpcomponents.httpcore/4.2.1</bundle>
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.flexjson/2.1.0</bundle>
+    </feature>
+    <feature name="org.glassfish.hk2.api">
+        <bundle dependency="true">mvn:org.flowframe.thirdparty.jersey.javax.inject/2.2.0</bundle>
+    </feature>
+    <feature name="org.flowframe.portal.remote.services">
+        <feature>org.flowframe.kernel.common.mdm.dao.services</feature>
+        <feature>org.flowframe.kernel.metamodel.dao.services</feature>
+    </feature>
+    <feature name="org.eclipse.virgo.kernel.dmfragment">
+    </feature>
+    <feature name="org.eclipse.virgo.apps.repository-3.6.2.RELEASE-synthetic.context">
+    </feature>
+    <feature name="org.flowframe.erp.app.contractmanagement.domain">
+    </feature>
+    <feature name="org.jolokia.osgi">
+    </feature>
+    <feature name="org.apache.felix.gogo.command">
+    </feature>
+    <feature name="org.apache.el">
+    </feature>
+    <feature name="org.apache.felix.gogo.runtime">
+    </feature>
+</features>

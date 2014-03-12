@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/assemblies" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assemblies/karaf" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm/jbpm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm/jbpm/bpmserver" charset="UTF-8" />
@@ -17,22 +19,6 @@
     <file url="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bpm/jbpm/ui/pageflow/vaadin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/deployment" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/common" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/documentlibrary" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/drools-jbpm" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/ds" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/jdbc" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/jpa" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/kernel" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/metamodel" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/pageflow" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/portal" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/reporting" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/tm" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/ui" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/distribution/ui/component" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/documentlibrary" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/documentlibrary/remote.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/documentlibrary/remote.services.impl" charset="UTF-8" />
@@ -42,7 +28,6 @@
     <file url="file://$PROJECT_DIR$/ds/dao.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ds/dao.services.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ds/domain" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/editors/oryx/backend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp/app.contractmanagement" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp/app.contractmanagement/business.services" charset="UTF-8" />
@@ -74,34 +59,6 @@
     <file url="file://$PROJECT_DIR$/erp/remote.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp/remote.services.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/erp/remote.services.impl.config.fragment" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/editor" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/editor/oryx" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/editor/oryx/frontend" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/editor/oryx/snaps" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/core" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/core-ui" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/distribution" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/job" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/repository.db" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/carte" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/carte/services" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/snaps" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/common.mdm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/common.mdm/mdm.dao.services" charset="UTF-8" />
@@ -118,7 +75,6 @@
     <file url="file://$PROJECT_DIR$/kernel/jpa" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/jpa/jpa.container.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/jpa/jpa.container.services.impl" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kernel/metamodel" charset="UTF-8" />
@@ -131,7 +87,6 @@
     <file url="file://$PROJECT_DIR$/portal/remote.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/portal/remote.services.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/portal/remote.services.impl.config.fragment" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/portal/remote.services.min.impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reporting" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reporting/jasper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reporting/jasper/web.services" charset="UTF-8" />
@@ -140,34 +95,29 @@
     <file url="file://$PROJECT_DIR$/scheduling/jobs.manager" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/scheduling/remote.services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/scheduling/remote.services.impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/testing" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/testing/karaf" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/testing/karaf/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/testing/karaf/common/support" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tests" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tests/common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/asm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/bitronix212" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/bpmnq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/com.mysql.jdbc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/commons-compress" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/commons-exec" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/commons-math" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/drools-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/drools-persistence" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/flexjson" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/google" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/google/guava" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/gwt-console-server-integration" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hibernate-commons-annotations" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hibernate-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hibernate-entitymanager" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/hornetq-all" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/itext" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160/core" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jackrabbit/version160/webdav" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jasperreports" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jasperreports/dynamic-reports" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/javassist" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/javax.security.jacc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jboss-errai-all" charset="UTF-8" />
@@ -176,22 +126,6 @@
     <file url="file://$PROJECT_DIR$/thirdparty/jbpm-human-task-mina" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/jbpm-workitems" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jbpt" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/grizzly-http" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/hk2-utils" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/javax.inject" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-http" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-servlet" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-grizzly-framework" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-server" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/jersey-spring3" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jersey/spring-bridge" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jetty-servlet-tester" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jexcelapi-jxl" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/jflex" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/json20090211" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/knowledge-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/knowledge-internal-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/netty" charset="UTF-8" />
@@ -201,9 +135,6 @@
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/distribution" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-all" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-engine" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-all" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/pentaho5/kettle-vfs-osgi" charset="UTF-8" />
@@ -226,10 +157,8 @@
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/poi" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/spring-vaadin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/stripe-java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/thirdparty/supercsv" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/vaadin-addon-contextmenu" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/vaadin-addon-easyuploads" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/thirdparty/vaadin-addon-jpacontainer-agpl-3.0" charset="UTF-8" />

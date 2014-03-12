@@ -1026,7 +1026,7 @@ Built-By: Mduduzi
 Tool: Bundlor 1.0.0.RELEASE
 Created-By: Apache Maven
 Implementation-Vendor: Pentaho Corporation
-Build-Jdk: 1.6.0_45
+Build-Jdk: 1.7.0_51
 Bundle-Version: 5.0.3
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-reporting-engine

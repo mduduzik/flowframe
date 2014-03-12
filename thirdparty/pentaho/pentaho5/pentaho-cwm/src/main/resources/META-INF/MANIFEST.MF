@@ -55,8 +55,8 @@ Built-By: Mduduzi
 Tool: Bundlor 1.0.0.RELEASE
 Created-By: Apache Maven
 Implementation-Vendor: Pentaho Corporation
-Bundle-Version: 1.5.4
 Build-Jdk: 1.6.0_45
+Bundle-Version: 1.5.4
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.flowframe.thirdparty.pentaho-cwm
 Specification-Version: 1

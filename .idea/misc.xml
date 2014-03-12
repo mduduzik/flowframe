@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="gwt" url="file://$PROJECT_DIR$/uilegacy/vaadin/addons/common" />
-    <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" />
-    <file type="Osmorc" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/utils" />
-    <file type="Osmorc" url="file://$PROJECT_DIR$/thirdparty/google/com.google.protobuf" />
-    <file type="web" url="file://$PROJECT_DIR$/editors/oryx/backend" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/frontend" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/editor/oryx/snaps/frontend" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/plugin/job/entries" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/repository.db" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server.springdm" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.core" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/plugins.manager" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/db.fragments.commons-dbcp" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/repository/shared" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/core" />
-    <file type="web" url="file://$PROJECT_DIR$/etl/pentaho/server/snaps/main" />
     <file type="web" url="file://$PROJECT_DIR$/reporting/jasper/web.services" />
   </component>
-  <component name="IdProvider" IDEtalkID="29F4991F0E195EEBD0F6CCADE40F6322" />
+  <component name="IdProvider" IDEtalkID="DF76015B53D78A06F2FA95B1DB29EB52" />
   <component name="IvyIDEA.ProjectSettings">
     <option name="artifactTypeSettings">
       <ArtifactTypeSettings />
@@ -36,220 +22,126 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.manager/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server.springdm/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/plugins.core/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/main/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/snaps/core/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/db/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/commons-math/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/libbase/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/libformula/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jackrabbit/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/poi/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/spring-bridge/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/javax.inject/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-utils/pom.xml" />
-        <option value="$PROJECT_DIR$/documentlibrary/remote.services.min.impl/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/editor/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/bpmnq/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpt/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/supercsv/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jflex/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/services/pom.xml" />
-        <option value="$PROJECT_DIR$/deployment/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/shared/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-http/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-servlet/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-grizzly-framework/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/json20090211/pom.xml" />
-        <option value="$PROJECT_DIR$/editors/oryx/backend/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/carte/standalone.impl/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jetty-servlet-tester/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/job/entries/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/plugin/core-ui/pom.xml" />
-        <option value="$PROJECT_DIR$/portal/remote.services.min.impl/pom.xml" />
-        <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.minimal/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/google/guava/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jasperreports/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jexcelapi-jxl/pom.xml" />
+        <option value="$PROJECT_DIR$/testing/karaf/pom.xml" />
+        <option value="$PROJECT_DIR$/testing/pom.xml" />
+        <option value="$PROJECT_DIR$/assemblies/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/bpm/jbpm/bpmserver.persistence/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/bpmserver/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/persistence.datasource/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/services/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/shared/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/taskserver.human-task-core.fragment/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/taskserver.jta.tm.fragment/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/taskserver.persistence/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/taskserver/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services.impl/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/services/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/ui/pageflow/vaadin/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/jbpm/ui/pom.xml" />
-        <option value="$PROJECT_DIR$/bpm/pom.xml" />
-        <option value="$PROJECT_DIR$/deployment/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/common/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/documentlibrary/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/drools-jbpm/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/ds/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/jdbc/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/jpa/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/kernel/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/metamodel/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/pageflow/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/portal/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/reporting/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/tm/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/ui/component/pom.xml" />
-        <option value="$PROJECT_DIR$/distribution/ui/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/editor/oryx/snaps/pom.xml" />
-        <option value="$PROJECT_DIR$/etl/pentaho/server/repository/pom.xml" />
-        <option value="$PROJECT_DIR$/kernel/jpa/lob.jpacontainer.springdm/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/asm/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/bitronix212/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/bpmnq/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/com.mysql.jdbc/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/commons-compress/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/commons-exec/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/commons-math/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/drools-core/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/drools-persistence/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/flexjson/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/google/com.google.protobuf/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/google/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/gwt-console-server-integration/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/hibernate-commons-annotations/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/hibernate-core/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/hibernate-entitymanager/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/hornetq-all/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/itext/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jackrabbit/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jackrabbit/version160/core/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jackrabbit/version160/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jackrabbit/version160/webdav/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/javassist/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/javax.security.jacc/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jboss-errai-all/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpm-bam/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpm-human-task-core/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpm-human-task-mina/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpm-persistence-jpa/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpm-workitems/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jbpt/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http-server/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/grizzly-http/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/hk2-utils/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/javax.inject/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-http/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-container-grizzly2-servlet/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-grizzly-framework/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-server/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/jersey-spring3/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jersey/spring-bridge/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jetty-servlet-tester/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/jflex/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/json20090211/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/knowledge-api/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/knowledge-internal-api/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/netty/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/org.jboss.bpm.gwt-console-rpc/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/org.jvnet.hyperjaxb3/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/org.springframework.orm/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/distribution/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-all/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-engine/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/kettle-vfs-osgi/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/pentaho-metadata/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libbase/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libdocbundle/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libfonts/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformat/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula-ui/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libformula/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libloader/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libpixie/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/librepository/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libserializer/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libswing/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/libxml/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/pentaho-reporting-engine-library/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pentaho/reporting/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/poi/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/spring-vaadin/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/stripe-java/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/supercsv/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-contextmenu/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-easyuploads/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-jpacontainer-agpl-3.0/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-osgi/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common-tests/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-customized/vaadin-addon-mvp-customized-common/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvp-phakama/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvplite-customized/common/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvplite-customized/osgi/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-mvplite-customized/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-popup-button/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-portallayout/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-refresher/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-tableexport/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin-addon-toolbar/pom.xml" />
-        <option value="$PROJECT_DIR$/thirdparty/vaadin686/pom.xml" />
-        <option value="$PROJECT_DIR$/tm/jta/pom.xml" />
-        <option value="$PROJECT_DIR$/tm/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/pageflow/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/pageflow/services/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/pageflow/vaadin/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/component/dao.services.impl/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/component/dao.services/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/component/domain/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/component/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/manager/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/services/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/addons/common/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/addons/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/common.editors/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/common/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/editors/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/expressions/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/factory/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/forms/pom.xml" />
-        <option value="$PROJECT_DIR$/uilegacy/vaadin/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="Osmorc">
+    <option name="bundlesOutputPath" value="C:\Users\Mduduzi\AppData\Local\Temp" />
     <option name="frameworkInstanceName" value="dmServer (3.6.2.RELEASE) Framework" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
-  <component name="SvnBranchConfigurationManager">
-    <option name="mySupportsUserInfoFilter" value="true" />
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
   </component>
 </project>
 

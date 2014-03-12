@@ -11,6 +11,15 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-core:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-scripting:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-reportdesigner-parser:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-drill-down:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-olap4j:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-kettle:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-toc:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-extensions-mondrian:5.0.3" level="project" />
   </component>
 </module>
 
